@@ -9,20 +9,20 @@ const Container = styled.section<{
   justify-content: center;
   align-items: center;
 
-  width: 35rem;
-  height: 5.2rem;
+  width: 16.5rem;
+  height: 4.8rem;
 
   background-color: ${({ backgroundColor }) => backgroundColor};
 
   border: ${({ outline }) => outline !== "none" && "0.1rem solid " + outline};
-  border-radius: 3rem;
+  border-radius: 0.8rem;
   box-sizing: border-box;
 `;
 const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
 `;
 
-const RoundButton = ({ outline, backgroundColor, color, text }: IButton) => {
+const RectButton = ({ outline, backgroundColor, color, text }: IButton) => {
   return (
     <Container backgroundColor={backgroundColor} outline={outline}>
       <ButtonText color={color}>{text}</ButtonText>
@@ -30,4 +30,4 @@ const RoundButton = ({ outline, backgroundColor, color, text }: IButton) => {
   );
 };
 
-export default RoundButton;
+export default RectButton;

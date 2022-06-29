@@ -1,5 +1,6 @@
 const color = {
   blue: "#587cf7",
+  sub_blue: "#b7beff",
   green: "#d2fa64",
   red: "#ff6c45",
   grey_100: "#fdfdfd",

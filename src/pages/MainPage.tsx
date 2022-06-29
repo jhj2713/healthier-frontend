@@ -16,13 +16,13 @@ const MainPage = () => {
   return (
     <Container>
       <RoundButton
-        outline="transparent"
+        outline="none"
         backgroundColor={theme.color.green}
         color={theme.color.grey_800}
         text={"빠른 진단 시작하기"}
       />
       <RoundButton
-        outline="transparent"
+        outline="none"
         backgroundColor={theme.color.blue}
         color={theme.color.grey_100}
         text={"나의 진단기록장 보기"}
