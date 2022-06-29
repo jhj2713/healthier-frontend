@@ -1,12 +1,18 @@
-import styled from "styled-components";
-
-const Container = styled.div`
-  color: ${({ theme }) => theme.color.grey_100};
-  font-size: 2rem;
-`;
+import { Routes, Route } from "react-router-dom";
+import MainHeader from "./components/header/MainHeader";
+import MainPage from "./pages/MainPage";
 
 function App() {
-  return <Container>Healthier</Container>;
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<MainHeader />} />
+      </Routes>
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
