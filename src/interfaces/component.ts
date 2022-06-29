@@ -3,5 +3,4 @@ export interface IButton {
   backgroundColor: string;
   color: string;
   text: string;
-  radius: number;
 }
