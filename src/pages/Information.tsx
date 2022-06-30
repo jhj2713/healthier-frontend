@@ -4,6 +4,7 @@ import Gender from "../components/infoPage/Gender";
 import RoundButton from "../components/buttons/RoundButton";
 import theme from "../lib/theme";
 import Tags from "../components/infoPage/Tags";
+import YearPicker from "../components/infoPage/YearPicker";
 
 const Buttons = styled.section`
   display: flex;
@@ -17,8 +18,10 @@ const Buttons = styled.section`
 
 const Information = () => {
   const [active, setActive] = useState(false);
+
   return (
     <>
+      <YearPicker />
       <Gender />
       <Tags />
       <Buttons onClick={() => setActive(!active)}>

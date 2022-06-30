@@ -4,7 +4,7 @@ import theme from "../lib/theme";
 
 const Container = styled.div`
   color: ${({ theme }) => theme.color.grey_100};
-  font-size: 1.5rem;
+  font-size: 1.6rem;
 
   display: flex;
   flex-direction: column;
