@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Description from "./Description";
 
 const Background = styled.section<{ idx: number }>`
   display: flex;
@@ -48,7 +49,7 @@ const LifeComponent = ({
       <Container>
         <Contents>
           <Title>{title}</Title>
-          <Content>{content}</Content>
+          <Description text={content} />
         </Contents>
       </Container>
     </Background>
