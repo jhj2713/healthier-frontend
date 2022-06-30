@@ -4,7 +4,7 @@ import theme from "../../lib/theme";
 import { useState } from "react";
 
 const Container = styled.section`
-  margin: 3.2rem 2.6rem 0 2.4rem;
+  margin-top: 3.2rem;
 `;
 const GenderContainer = styled.section`
   display: flex;

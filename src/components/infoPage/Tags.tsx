@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Tag from "../tags/Tag";
 
 const Container = styled.section`
-  margin-left: 2.4rem;
   margin-top: 3.2rem;
 `;
 const Title = styled.section`

@@ -12,17 +12,18 @@ const ButtonBox = styled.section`
   margin: 0 2rem 3.4rem 2rem;
   font-size: 1.3rem;
 `;
-const Contents = styled.section`
+const Title = styled.section`
   font-size: 2.2rem;
 
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-top: 4rem;
-  margin-left: 2.4rem;
 
   line-height: 150%;
-
   font-weight: bolder;
+`;
+const Contents = styled.section`
+  margin: 0 2.4rem;
 `;
 
 const Information = () => {
@@ -31,12 +32,14 @@ const Information = () => {
   return (
     <>
       <Contents>
-        잠깐! <br />더 나은 진단 서비스를 위해
-        <br /> 간단한 정보가 필요해요
+        <Title>
+          잠깐! <br />더 나은 진단 서비스를 위해
+          <br /> 간단한 정보가 필요해요
+        </Title>
+        <YearPicker />
+        <Gender />
+        <Tags />
       </Contents>
-      <YearPicker />
-      <Gender />
-      <Tags />
       <ButtonBox onClick={() => setActive(!active)}>
         <RoundButton
           outline="none"

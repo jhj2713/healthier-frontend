@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.section`
-  margin: 4rem 2.4rem 0 2.4rem;
+  margin-top: 4rem;
 `;
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};

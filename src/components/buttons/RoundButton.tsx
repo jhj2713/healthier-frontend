@@ -20,6 +20,8 @@ const Container = styled.section<{
 `;
 const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
+
+  font-size: 1.6rem;
   font-weight: bolder;
 `;
 
