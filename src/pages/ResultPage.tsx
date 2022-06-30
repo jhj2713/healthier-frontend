@@ -5,6 +5,7 @@ import styled from "styled-components";
 import "swiper/css";
 import CoverPage from "../components/resultPage/CoverPage";
 import DefinitionPage from "../components/resultPage/DefinitionPage";
+import LifePage from "../components/resultPage/LifePage";
 
 const Container = styled.main``;
 const SwiperContainer = styled(Swiper)`
@@ -27,7 +28,9 @@ const ResultPage = () => {
         <SwiperSlide>
           <DefinitionPage />
         </SwiperSlide>
-        <SwiperSlide>3</SwiperSlide>
+        <SwiperSlide>
+          <LifePage />
+        </SwiperSlide>
       </SwiperContainer>
     </Container>
   );

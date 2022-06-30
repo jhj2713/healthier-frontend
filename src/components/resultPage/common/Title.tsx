@@ -11,11 +11,15 @@ const Highlight = styled.span`
 `;
 const TitleText = styled.section`
   margin-top: 1rem;
+  color: ${({ theme }) => theme.color.grey_200};
 
   font-size: 2.2rem;
+  white-space: pre-wrap;
+
+  line-height: 140%;
 `;
 
-const TitleBar = ({ highlight, text }: { highlight: string; text: string }) => {
+const Title = ({ highlight, text }: { highlight: string; text: string }) => {
   return (
     <>
       <Line />
@@ -27,4 +31,4 @@ const TitleBar = ({ highlight, text }: { highlight: string; text: string }) => {
   );
 };
 
-export default TitleBar;
+export default Title;

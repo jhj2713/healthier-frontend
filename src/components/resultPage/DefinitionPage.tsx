@@ -4,9 +4,6 @@ import Title from "./common/Title";
 import Description from "./common/Description";
 import CauseBox from "./common/CauseBox";
 
-const Container = styled.section`
-  color: ${({ theme }) => theme.color.grey_100};
-`;
 const Contents = styled.section`
   margin-top: 3.4rem;
   margin-left: 2.4rem;
@@ -19,7 +16,7 @@ const DescriptionBox = styled.section<{ top: number }>`
 
 const DefinitionPage = () => {
   return (
-    <Container>
+    <>
       <Contents>
         <Title highlight="일주기 리듬 수면 장애" text="란?" />
         <DescriptionBox top={2.4}>
@@ -39,7 +36,7 @@ const DefinitionPage = () => {
         </DescriptionBox>
       </Contents>
       <BottomNumber curNum={2} />
-    </Container>
+    </>
   );
 };
 
