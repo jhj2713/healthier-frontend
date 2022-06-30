@@ -21,6 +21,8 @@ const Contents = styled.section`
   margin-left: 2.4rem;
 
   line-height: 150%;
+
+  font-weight: bolder;
 `;
 
 const Information = () => {

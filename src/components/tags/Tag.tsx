@@ -18,6 +18,8 @@ const Container = styled.section<{ selected: boolean }>`
         `}
 
   border-radius: 6rem;
+
+  font-weight: bolder;
 `;
 
 const Tag = ({ text, selected }: { text: string; selected: boolean }) => {

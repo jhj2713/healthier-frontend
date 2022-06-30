@@ -30,6 +30,9 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
+const Highlight = styled.span`
+  font-weight: bolder;
+`;
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -37,8 +40,8 @@ const MainPage = () => {
   return (
     <Container>
       <Title>
-        <strong>빠른 진단</strong>으로
-        <br />내 몸의 <strong>정확한 증상</strong>을
+        <Highlight>빠른 진단</Highlight>으로
+        <br />내 몸의 <Highlight>정확한 증상</Highlight>을
         <br />
         알아보세요!
       </Title>

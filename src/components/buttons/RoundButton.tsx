@@ -20,6 +20,7 @@ const Container = styled.section<{
 `;
 const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
+  font-weight: bolder;
 `;
 
 const RoundButton = ({ outline, backgroundColor, color, text }: IButton) => {
