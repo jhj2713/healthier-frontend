@@ -8,6 +8,7 @@ const Container = styled.header`
   letter-spacing: 0.015rem;
 
   border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
+  box-sizing: border-box;
 `;
 
 const Header = () => {

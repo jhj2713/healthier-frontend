@@ -52,7 +52,11 @@ const MainPage = () => {
             text={"빠른 진단 시작하기"}
           />
         </ButtonBox>
-        <ButtonBox>
+        <ButtonBox
+          onClick={() =>
+            navigate("/result", { state: { title: "일주기 리듬 수면 장애" } })
+          }
+        >
           <RoundButton
             outline="none"
             backgroundColor={theme.color.blue}
