@@ -16,7 +16,7 @@ const Header = () => {
         <Route path="/" element={<MainHeader />} />
         <Route
           path="/info"
-          element={<ContentHeader back={true} text="정보수집" />}
+          element={<ContentHeader back={false} text="정보 수집" />}
         />
       </Routes>
     </Container>

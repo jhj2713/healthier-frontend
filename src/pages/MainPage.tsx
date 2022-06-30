@@ -15,11 +15,15 @@ const Title = styled.section`
   margin-left: 2.4rem;
 `;
 const Buttons = styled.section`
+  position: absolute;
+  bottom: 0;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
 
   font-size: 1.6rem;
+
+  margin: 7rem 2rem;
 `;
 const ButtonBox = styled.section`
   & + & {

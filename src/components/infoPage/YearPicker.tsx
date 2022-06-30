@@ -25,6 +25,7 @@ const SelectBox = styled.select`
   appearance: none;
 
   font-size: 1.3rem;
+  line-height: 150%;
 
   background-image: url("/images/informationPage/dropdown.svg");
   background-position: right 1.6rem center;
@@ -42,7 +43,7 @@ const years = Array.from(Array(92).keys())
 function YearPicker() {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    console.log(target);
+    console.log(target.value);
   };
 
   return (

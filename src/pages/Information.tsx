@@ -6,13 +6,11 @@ import theme from "../lib/theme";
 import Tags from "../components/infoPage/Tags";
 import YearPicker from "../components/infoPage/YearPicker";
 
-const Buttons = styled.section`
+const ButtonBox = styled.section`
   position: absolute;
-
+  bottom: 0;
+  margin: 0 2rem 3.4rem 2rem;
   font-size: 1.3rem;
-
-  margin-left: 2rem;
-  margin-bottom: 3.4rem;
 `;
 const Contents = styled.section`
   font-size: 2.2rem;
@@ -37,14 +35,14 @@ const Information = () => {
       <YearPicker />
       <Gender />
       <Tags />
-      <Buttons onClick={() => setActive(!active)}>
+      <ButtonBox onClick={() => setActive(!active)}>
         <RoundButton
           outline="none"
           backgroundColor={active ? theme.color.blue : theme.color.grey_750}
           color={active ? theme.color.grey_100 : theme.color.grey_600}
           text="증상 진단하러 가기"
         />
-      </Buttons>
+      </ButtonBox>
     </>
   );
 };
