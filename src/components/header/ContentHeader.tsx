@@ -35,7 +35,7 @@ const ContentHeader = ({ back, text }: IContentHeader) => {
       </BackButton>
       <Title>{text}</Title>
       <QuitButton>
-        <img src="/images/header/default.svg" />
+        <img src="/images/header/quit.svg" />
       </QuitButton>
     </Container>
   );

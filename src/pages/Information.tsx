@@ -7,13 +7,22 @@ import Tags from "../components/infoPage/Tags";
 import YearPicker from "../components/infoPage/YearPicker";
 
 const Buttons = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
 
   font-size: 1.3rem;
 
-  margin: 2rem;
+  margin-left: 2rem;
+  margin-bottom: 3.4rem;
+`;
+const Contents = styled.section`
+  font-size: 2.2rem;
+
+  color: ${({ theme }) => theme.color.grey_200};
+
+  margin-top: 4rem;
+  margin-left: 2.4rem;
+
+  line-height: 150%;
 `;
 
 const Information = () => {
@@ -21,6 +30,10 @@ const Information = () => {
 
   return (
     <>
+      <Contents>
+        잠깐! <br />더 나은 진단 서비스를 위해
+        <br /> 간단한 정보가 필요해요
+      </Contents>
       <YearPicker />
       <Gender />
       <Tags />

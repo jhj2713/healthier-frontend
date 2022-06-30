@@ -2,14 +2,30 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Tag from "../tags/Tag";
 
+const Container = styled.section`
+  margin-left: 2.4rem;
+  margin-top: 3.2rem;
+`;
+const Title = styled.section`
+  font-size: 1.3rem;
+  color: ${({ theme }) => theme.color.grey_300};
+`;
 const TagContainer = styled.section`
   display: flexbox;
-  flex-wrap: wrap;
+
+  margin-top: 0.8rem;
 `;
 const TagBox = styled.section`
-  display: flex;
   font-size: 1.3rem;
-  margin: 1rem;
+  & + & {
+    margin-left: 0.8rem;
+  }
+`;
+const Description = styled.section`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.color.grey_600};
+
+  margin-top: 1.6rem;
 `;
 
 const health_arr = [
@@ -40,13 +56,24 @@ const Tags = () => {
   };
 
   return (
-    <TagContainer>
-      {health.map((health) => (
-        <TagBox key={health.id} onClick={handleClick}>
-          <Tag text={health.name} selected={health.selected} />
-        </TagBox>
-      ))}
-    </TagContainer>
+    <Container>
+      <Title>관심 건강분야</Title>
+      <TagContainer>
+        {health.slice(0, 5).map((health) => (
+          <TagBox key={health.id} onClick={handleClick}>
+            <Tag text={health.name} selected={health.selected} />
+          </TagBox>
+        ))}
+      </TagContainer>
+      <TagContainer>
+        {health.slice(5).map((health) => (
+          <TagBox key={health.id} onClick={handleClick}>
+            <Tag text={health.name} selected={health.selected} />
+          </TagBox>
+        ))}
+      </TagContainer>
+      <Description>관심 분야는 최대 3개까지 선택 가능합니다.</Description>
+    </Container>
   );
 };
 
