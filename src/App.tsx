@@ -1,12 +1,12 @@
 import { Routes, Route } from "react-router-dom";
-import MainHeader from "./components/header/MainHeader";
+import Header from "./components/header/Header";
 import Information from "./pages/Information";
 import MainPage from "./pages/MainPage";
 
 function App() {
   return (
     <>
-      <MainHeader />
+      <Header />
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/info" element={<Information />} />

@@ -4,3 +4,8 @@ export interface IButton {
   color: string;
   text: string;
 }
+
+export interface IContentHeader {
+  back: boolean;
+  text: string;
+}
