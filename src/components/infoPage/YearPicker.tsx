@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.section`
@@ -10,7 +10,7 @@ const Title = styled.section`
 
   margin-bottom: 0.8rem;
 `;
-const SelectBox = styled.select`
+const SelectBox = styled.select<{ year: number }>`
   background: transparent;
 
   width: calc(100vw - 4.8rem);
@@ -21,7 +21,8 @@ const SelectBox = styled.select`
 
   padding: 1.4rem 1.6rem;
 
-  color: ${({ theme }) => theme.color.grey_600};
+  color: ${({ theme, year }) =>
+    year !== 0 ? theme.color.grey_300 : theme.color.grey_600};
   appearance: none;
 
   font-size: 1.3rem;
@@ -41,15 +42,17 @@ const years = Array.from(Array(92).keys())
   .reverse();
 
 function YearPicker() {
+  const [year, setYear] = useState(0);
+
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    console.log(target.value);
+    setYear(Number(target.value));
   };
 
   return (
     <Container>
       <Title>출생연도</Title>
-      <SelectBox onChange={handleChange} defaultValue="">
+      <SelectBox onChange={handleChange} defaultValue="" year={year}>
         <option hidden disabled value="">
           선택해주세요
         </option>

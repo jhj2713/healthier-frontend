@@ -19,6 +19,7 @@ const Title = styled.section`
 `;
 const GenderButton = styled.section`
   width: calc(100vw - 5.8rem);
+
   & + & {
     margin-left: 1rem;
   }
