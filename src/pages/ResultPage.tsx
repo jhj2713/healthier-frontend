@@ -4,9 +4,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import "swiper/css";
 import CoverPage from "../components/resultPage/CoverPage";
-import DefinitionPage from "../components/resultPage/DefinitionPage";
-import LifePage from "../components/resultPage/LifePage";
-import MedicinePage from "../components/resultPage/MedicinePage";
+import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPage";
+import LifePage from "../components/resultPage/lifePage/LifePage";
+import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
 import TreatmentPage from "../components/resultPage/TreatmentPage";
 
 const Container = styled.main``;

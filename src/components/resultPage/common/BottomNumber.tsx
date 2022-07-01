@@ -2,11 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.section`
   display: flex;
-  position: absolute;
-  bottom: 0;
-
-  margin-bottom: 4.8rem;
-  margin-left: calc((100vw - 12.8rem) / 2);
+  margin-left: calc((100vw - 16.2rem) / 2);
 `;
 const Number = styled.section<{ curNum: number; num: number }>`
   display: flex;
@@ -30,7 +26,7 @@ const Number = styled.section<{ curNum: number; num: number }>`
   }
 `;
 
-const number = Array.from(Array(4).keys()).map((y) => y + 1);
+const number = Array.from(Array(5).keys()).map((y) => y + 1);
 
 const BottomNumber = ({ curNum }: { curNum: number }) => {
   return (

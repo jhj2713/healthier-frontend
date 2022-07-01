@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import BottomNumber from "./common/BottomNumber";
-import Title from "./common/Title";
-import Description from "./common/Description";
-import CauseBox from "./common/CauseBox";
+import BottomNumber from "../common/BottomNumber";
+import Title from "../common/Title";
+import Description from "../common/Description";
+import CauseBox from "./CauseBox";
 
 const Contents = styled.section`
   margin-top: 3.4rem;
@@ -12,6 +12,12 @@ const Contents = styled.section`
 const DescriptionBox = styled.section<{ top: number }>`
   margin-top: ${({ top }) => top}rem;
   margin-bottom: 9rem;
+`;
+const BottomBox = styled.section`
+  position: absolute;
+  bottom: 0;
+
+  margin-bottom: 4.8rem;
 `;
 
 const DefinitionPage = () => {
@@ -35,7 +41,9 @@ const DefinitionPage = () => {
           <Description text="일주기 리듬을 결정하는 뇌의 생체시계의 셋팅이 일반 사람들의 생활주기와 달라져서 발생해요." />
         </DescriptionBox>
       </Contents>
-      <BottomNumber curNum={2} />
+      <BottomBox>
+        <BottomNumber curNum={2} />
+      </BottomBox>
     </>
   );
 };

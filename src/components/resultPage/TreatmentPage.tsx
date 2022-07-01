@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import theme from "../../lib/theme";
 import RoundButton from "../buttons/RoundButton";
+import BottomNumber from "./common/BottomNumber";
 import Title from "./common/Title";
 import TreatmentBox from "./common/TreatmentBox";
 
@@ -16,6 +17,12 @@ const ButtonBox = styled.section`
 `;
 const TreatmentList = styled.section`
   margin: 0 2.4rem;
+`;
+const BottomBox = styled.section`
+  position: absolute;
+  bottom: 0;
+
+  margin-bottom: 10.6rem;
 `;
 
 const treatment_arr = [
@@ -46,6 +53,9 @@ const TreatmentPage = () => {
           />
         ))}
       </TreatmentList>
+      <BottomBox>
+        <BottomNumber curNum={5} />
+      </BottomBox>
       <ButtonBox>
         <RoundButton
           outline="none"

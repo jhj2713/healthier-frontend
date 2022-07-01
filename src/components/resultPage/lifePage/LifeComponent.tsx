@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Description from "./Description";
+import Description from "../common/Description";
 
 const Background = styled.section<{ idx: number }>`
   display: flex;
