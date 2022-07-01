@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import BottomNumber from "../common/BottomNumber";
 import LifeComponent from "./LifeComponent";
 import Title from "../common/Title";
 
@@ -7,12 +6,6 @@ const Contents = styled.section`
   margin: 3.4rem 0 2rem 2.4rem;
 
   width: calc(100vw - 4.8rem);
-`;
-const BottomBox = styled.section`
-  position: absolute;
-  bottom: 0;
-
-  margin-bottom: 4.8rem;
 `;
 
 const life_arr = [
@@ -47,9 +40,6 @@ const LifePage = () => {
           content={life.contents}
         />
       ))}
-      <BottomBox>
-        <BottomNumber curNum={3} />
-      </BottomBox>
     </>
   );
 };

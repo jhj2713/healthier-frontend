@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import theme from "../../lib/theme";
 import RoundButton from "../buttons/RoundButton";
-import BottomNumber from "./common/BottomNumber";
 import Title from "./common/Title";
 import TreatmentBox from "./common/TreatmentBox";
 
@@ -9,20 +8,8 @@ const Container = styled.section``;
 const TitleBox = styled.section`
   margin: 4rem 0 4.5rem 2.4rem;
 `;
-const ButtonBox = styled.section`
-  position: absolute;
-  bottom: 0;
-
-  margin: 3.4rem 2rem;
-`;
 const TreatmentList = styled.section`
   margin: 0 2.4rem;
-`;
-const BottomBox = styled.section`
-  position: absolute;
-  bottom: 0;
-
-  margin-bottom: 10.6rem;
 `;
 
 const treatment_arr = [
@@ -53,17 +40,6 @@ const TreatmentPage = () => {
           />
         ))}
       </TreatmentList>
-      <BottomBox>
-        <BottomNumber curNum={5} />
-      </BottomBox>
-      <ButtonBox>
-        <RoundButton
-          outline="none"
-          backgroundColor={theme.color.blue}
-          color={theme.color.grey_100}
-          text="나의 진단기록장에 저장하기"
-        />
-      </ButtonBox>
     </Container>
   );
 };

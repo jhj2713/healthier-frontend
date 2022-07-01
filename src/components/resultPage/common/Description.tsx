@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Text = styled.section`
   font-size: 1.5rem;
-  font-weight: lighter;
   color: ${({ theme }) => theme.color.grey_400};
 
   line-height: 150%;
