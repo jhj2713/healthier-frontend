@@ -11,8 +11,12 @@ const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
 `;
 const TagContainer = styled.section`
-  display: flexbox;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: flex;
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
 `;
 const TagBox = styled.section`
   font-size: 1.3rem;

@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import Description from "../common/Description";
 
-const Container = styled.section`
-  width: 100%;
-`;
+const Container = styled.section``;
 const Contents = styled.section`
   margin-top: 2.4rem;
 `;
@@ -23,11 +21,14 @@ const Highlight = styled.section`
   line-height: 150%;
 `;
 const Tags = styled.section`
-  display: flexbox;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: flex;
   flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
 `;
 const Tag = styled.section`
-  -webkit-flex: 1 1 auto;
   background-color: ${({ theme }) => theme.color.grey_750};
   color: ${({ theme }) => theme.color.grey_300};
 
