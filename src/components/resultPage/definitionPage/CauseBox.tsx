@@ -1,23 +1,22 @@
 import styled from "styled-components";
 
 const Container = styled.section`
-  display: flex;
-
   margin-top: 2.4rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1rem 1fr;
 `;
 const TagBox = styled.section`
-  background-color: ${({ theme }) => theme.color.grey_800};
-  border-radius: 0.8rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  & + & {
-    margin-left: 1rem;
-  }
+  background-color: ${({ theme }) => theme.color.grey_800};
+  border-radius: 0.8rem;
 `;
 const Tag = styled.section<{ num: number }>`
+  display: flex;
+
   margin-top: 1.4rem;
   padding: 0.8rem 1rem;
 
@@ -53,6 +52,7 @@ const CauseBox = ({
         <Tag num={0}>#생활요인</Tag>
         <Description>{description_1}</Description>
       </TagBox>
+      <section />
       <TagBox>
         <Tag num={1}>#유전요인</Tag>
         <Description>{description_2}</Description>
