@@ -1,5 +1,6 @@
 import { IContentHeader } from "../../interfaces/component";
 import styled from "styled-components";
+import HeaderContainer from "./HeaderContainer";
 
 const Container = styled.section`
   color: ${({ theme }) => theme.color.grey_200};
@@ -29,15 +30,17 @@ const QuitButton = styled.section`
 
 const ContentHeader = ({ back, text }: IContentHeader) => {
   return (
-    <Container>
-      <BackButton back={back}>
-        <img src="/images/header/back.svg" />
-      </BackButton>
-      <Title>{text}</Title>
-      <QuitButton>
-        <img src="/images/header/quit.svg" />
-      </QuitButton>
-    </Container>
+    <HeaderContainer>
+      <Container>
+        <BackButton back={back}>
+          <img src="/images/header/back.svg" />
+        </BackButton>
+        <Title>{text}</Title>
+        <QuitButton>
+          <img src="/images/header/quit.svg" />
+        </QuitButton>
+      </Container>
+    </HeaderContainer>
   );
 };
 

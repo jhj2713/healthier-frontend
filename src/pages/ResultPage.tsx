@@ -10,6 +10,7 @@ import TreatmentPage from "../components/resultPage/TreatmentPage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import BottomBar from "../components/resultPage/common/BottomBar";
+import ResultHeader from "../components/header/ResultHeader";
 
 const Container = styled.main``;
 
@@ -27,6 +28,7 @@ const ResultPage = () => {
 
   return (
     <Container>
+      <ResultHeader isCover={curIndex === 1} />
       <Swiper onActiveIndexChange={handleIndexChange}>
         <SwiperSlide>
           <CoverPage />
