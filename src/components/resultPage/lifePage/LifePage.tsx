@@ -2,6 +2,9 @@ import styled from "styled-components";
 import LifeComponent from "./LifeComponent";
 import Title from "../common/Title";
 
+const Container = styled.section`
+  padding-top: 9.6rem;
+`;
 const Contents = styled.section`
   margin: 3.4rem 0 2rem 2.4rem;
 
@@ -31,7 +34,7 @@ const life_arr = [
 
 const LifePage = () => {
   return (
-    <>
+    <Container>
       <Contents>
         <Title highlight="생활습관" text={"으로\n증상을 개선해보아요"} />
       </Contents>
@@ -44,7 +47,7 @@ const LifePage = () => {
           content={life.contents}
         />
       ))}
-    </>
+    </Container>
   );
 };
 

@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const HeaderContainer = styled.header<{ isCover: boolean }>`
   height: 9.6rem;
@@ -7,11 +7,8 @@ const HeaderContainer = styled.header<{ isCover: boolean }>`
 
   border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
 
-  ${({ isCover }) =>
-    isCover &&
-    css`
-      position: absolute;
-    `}
+  position: absolute;
+
   z-index: 10;
 `;
 const Container = styled.section`

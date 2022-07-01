@@ -5,7 +5,9 @@ import Medicine from "./Medicine";
 import Tooltip from "./Tooltip";
 import MedicineDetail from "./MedicineDetail";
 
-const Container = styled.section``;
+const Container = styled.section`
+  padding-top: 9.6rem;
+`;
 const Contents = styled.section`
   margin: 4rem 2.4rem 0 2.4rem;
 `;

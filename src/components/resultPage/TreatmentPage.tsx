@@ -2,7 +2,9 @@ import styled from "styled-components";
 import Title from "./common/Title";
 import TreatmentBox from "./common/TreatmentBox";
 
-const Container = styled.section``;
+const Container = styled.section`
+  padding-top: 9.6rem;
+`;
 const TitleBox = styled.section`
   margin: 4rem 0 4.5rem 2.4rem;
 `;
