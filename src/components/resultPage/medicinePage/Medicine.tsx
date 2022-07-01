@@ -14,7 +14,7 @@ const MedicineImg = styled.section<{ selected: boolean }>`
   width: 6.6rem;
   height: 6.6rem;
 
-  background-color: ${({ theme }) => theme.color.blue};
+  background-color: rgba(84, 100, 242, 0.5);
   border-radius: 50%;
   border: ${({ selected, theme }) =>
     selected && `0.15rem solid ${theme.color.grey_300}`};
@@ -22,7 +22,7 @@ const MedicineImg = styled.section<{ selected: boolean }>`
 
   font-size: 3.2rem;
 
-  opacity: ${({ selected }) => (selected ? 1 : 0.5)};
+  opacity: ${({ selected }) => !selected && 0.5};
 `;
 const MedicineBox = styled.section`
   display: flex;

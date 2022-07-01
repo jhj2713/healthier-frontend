@@ -50,7 +50,7 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
     <HeaderContainer isCover={isCover}>
       <Container>
         <BackButton />
-        <Title isCover={isCover}>결과 화면</Title>
+        <Title isCover={isCover}>진단결과</Title>
         <QuitButton>
           <img src="/images/header/quit.svg" />
         </QuitButton>

@@ -5,13 +5,14 @@ const Container = styled.section`
   margin-bottom: 2.8rem;
 `;
 const TextBox = styled.section`
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 `;
-const Text = styled.section`
+const Text = styled.section<{ align: string }>`
   font-size: 1.4rem;
 
   color: ${({ theme }) => theme.color.grey_400};
+  text-align: ${({ align }) => align};
 `;
 const Background = styled.section`
   margin-top: 1rem;
@@ -21,11 +22,11 @@ const Background = styled.section`
   width: 26.7rem;
   height: 0.5rem;
 `;
-const Highlight = styled.section`
+const Highlight = styled.section<{ severity: number }>`
   position: relative;
 
   height: 100%;
-  width: 50%;
+  width: ${({ severity }) => severity}%;
 
   background-color: ${({ theme }) => theme.color.blue};
 `;
@@ -47,12 +48,12 @@ const SeverityBar = () => {
   return (
     <Container>
       <TextBox>
-        <Text>일시적</Text>
-        <Text>보통</Text>
-        <Text>심각</Text>
+        <Text align="left">일시적</Text>
+        <Text align="center">보통</Text>
+        <Text align="right">심각</Text>
       </TextBox>
       <Background>
-        <Highlight>
+        <Highlight severity={40}>
           <Knob></Knob>
         </Highlight>
       </Background>

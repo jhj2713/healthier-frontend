@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const Container = styled.section`
   position: absolute;
-  transform: translate(0, -120%);
   background-color: ${({ theme }) => theme.color.grey_650};
   display: flex;
 

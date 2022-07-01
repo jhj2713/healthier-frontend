@@ -17,7 +17,9 @@ const Description = styled.section`
 
   margin-top: 0.8rem;
 `;
-const TooltipContainer = styled.section``;
+const TooltipContainer = styled.section`
+  margin-top: 1.3rem;
+`;
 
 const MedicinePage = () => {
   const [selected, setSelected] = useState(0);
