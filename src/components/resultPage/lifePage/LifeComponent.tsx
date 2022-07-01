@@ -27,12 +27,6 @@ const Title = styled.section`
 
   margin-bottom: 0.02rem;
 `;
-const Content = styled.section`
-  line-height: 150%;
-  font-size: 1.5rem;
-
-  color: ${({ theme }) => theme.color.grey_400};
-`;
 
 const LifeComponent = ({
   idx,

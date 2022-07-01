@@ -14,10 +14,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const Container = styled.main``;
-const SwiperContainer = styled(Swiper)`
-  height: calc(100vh - 9.6rem);
-`;
-
 const BottomNumbers = styled.section`
   z-index: 5;
 
@@ -45,7 +41,7 @@ const BottomButton = styled.section`
 
 const ResultPage = () => {
   const { state } = useLocation();
-  const [curIndex, setCurIndex] = useState(0);
+  const [curIndex, setCurIndex] = useState(1);
 
   useEffect(() => {
     console.log(state);
@@ -57,7 +53,7 @@ const ResultPage = () => {
 
   return (
     <Container>
-      <SwiperContainer onActiveIndexChange={handleIndexChange}>
+      <Swiper onActiveIndexChange={handleIndexChange}>
         <SwiperSlide>
           <CoverPage />
         </SwiperSlide>
@@ -73,7 +69,7 @@ const ResultPage = () => {
         <SwiperSlide>
           <TreatmentPage />
         </SwiperSlide>
-      </SwiperContainer>
+      </Swiper>
       {curIndex !== 5 ? (
         <BottomNumbers>
           <BottomNumber curNum={curIndex} />

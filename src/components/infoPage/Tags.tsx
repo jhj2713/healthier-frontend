@@ -12,14 +12,12 @@ const Title = styled.section`
 `;
 const TagContainer = styled.section`
   display: flexbox;
-
-  margin-top: 0.8rem;
+  flex-wrap: wrap;
 `;
 const TagBox = styled.section`
   font-size: 1.3rem;
-  & + & {
-    margin-left: 0.8rem;
-  }
+  margin-top: 0.8rem;
+  margin-right: 0.8rem;
 `;
 const Description = styled.section`
   font-size: 1.2rem;
@@ -45,14 +43,7 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
     <Container>
       <Title>관심 건강분야</Title>
       <TagContainer>
-        {health.slice(0, 5).map((health) => (
-          <TagBox key={health.id} onClick={handleClick}>
-            <Tag text={health.name} selected={health.selected} />
-          </TagBox>
-        ))}
-      </TagContainer>
-      <TagContainer>
-        {health.slice(5).map((health) => (
+        {health.map((health) => (
           <TagBox key={health.id} onClick={handleClick}>
             <Tag text={health.name} selected={health.selected} />
           </TagBox>

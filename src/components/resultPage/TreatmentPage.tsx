@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import theme from "../../lib/theme";
-import RoundButton from "../buttons/RoundButton";
 import Title from "./common/Title";
 import TreatmentBox from "./common/TreatmentBox";
 

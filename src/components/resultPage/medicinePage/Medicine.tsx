@@ -1,9 +1,12 @@
+import { Dispatch } from "react";
 import styled from "styled-components";
 
 const Container = styled.section`
   display: flex;
+
+  margin-top: 2.6rem;
 `;
-const MedicineBox = styled.section<{ selected: boolean }>`
+const MedicineImg = styled.section<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,12 +24,43 @@ const MedicineBox = styled.section<{ selected: boolean }>`
 
   opacity: ${({ selected }) => (selected ? 1 : 0.5)};
 `;
+const MedicineBox = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-const Medicine = () => {
+  & + & {
+    margin-left: 1.5rem;
+  }
+`;
+const MedicineText = styled.section<{ selected: boolean }>`
+  color: ${({ theme, selected }) =>
+    selected ? theme.color.grey_200 : theme.color.grey_600};
+
+  font-weight: bolder;
+  font-size: 1.2rem;
+  line-height: 150%;
+
+  margin-top: 0.8rem;
+`;
+
+const Medicine = ({
+  selected,
+  setSelected,
+}: {
+  selected: number;
+  setSelected: Dispatch<number>;
+}) => {
   return (
     <Container>
-      <MedicineBox selected={true}>💊</MedicineBox>
-      <MedicineBox selected={false}>💊</MedicineBox>
+      <MedicineBox onClick={() => setSelected(1)}>
+        <MedicineImg selected={selected === 1}>💊</MedicineImg>
+        <MedicineText selected={selected === 1}>항히스타민제</MedicineText>
+      </MedicineBox>
+      <MedicineBox onClick={() => setSelected(2)}>
+        <MedicineImg selected={selected === 2}>💊</MedicineImg>
+        <MedicineText selected={selected === 2}>레돌민</MedicineText>
+      </MedicineBox>
     </Container>
   );
 };

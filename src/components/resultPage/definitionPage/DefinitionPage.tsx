@@ -4,8 +4,7 @@ import Description from "../common/Description";
 import CauseBox from "./CauseBox";
 
 const Contents = styled.section`
-  margin-top: 3.4rem;
-  margin-left: 2.4rem;
+  margin: 3.4rem 0 0 2.4rem;
   width: calc(100vw - 4.8rem);
 `;
 const DescriptionBox = styled.section<{ top: number }>`
