@@ -7,16 +7,17 @@ const Background = styled.section<{ idx: number }>`
     idx % 2 === 0 ? theme.color.grey_800 : "transparent"};
 `;
 const Icon = styled.section`
-  width: 2.3rem;
-  height: 3.3rem;
-`;
-const Container = styled.section`
-  display: flex;
+  margin-top: 2.6rem;
+  margin-left: 2.4rem;
 
-  padding: 1.6rem 0;
+  //width: 2.3rem;
+  //height: 3.3rem;
+  font-size: 2.3rem;
+`;
+const Contents = styled.section`
+  padding: 1.6rem 2.4rem 1.6rem 1.6rem;
   width: calc(100vw - 4.8rem);
 `;
-const Contents = styled.section``;
 const Title = styled.section`
   line-height: 150%;
   font-size: 1.6rem;
@@ -25,27 +26,27 @@ const Title = styled.section`
 
   font-weight: bolder;
 
-  margin-bottom: 0.02rem;
+  margin-bottom: 0.2rem;
 `;
 
 const LifeComponent = ({
   idx,
+  icon,
   title,
   content,
 }: {
   idx: number;
+  icon: string;
   title: string;
   content: string;
 }) => {
   return (
     <Background idx={idx}>
-      <Icon></Icon>
-      <Container>
-        <Contents>
-          <Title>{title}</Title>
-          <Description text={content} />
-        </Contents>
-      </Container>
+      <Icon>{icon}</Icon>
+      <Contents>
+        <Title>{title}</Title>
+        <Description text={content} />
+      </Contents>
     </Background>
   );
 };
