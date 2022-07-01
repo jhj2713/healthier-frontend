@@ -9,7 +9,7 @@ const HeaderContainer = styled.header<{ isCover: boolean }>`
 
   position: absolute;
 
-  z-index: 10;
+  z-index: 3;
 `;
 const Container = styled.section`
   height: inherit;

@@ -1,14 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
+import Modal from "../components/modal/Modal";
 import theme from "../lib/theme";
+import { useState } from "react";
+import ModalContainer from "../components/modal/ModalContainer";
 
 const Container = styled.main`
-  height: inherit;
   color: ${({ theme }) => theme.color.grey_100};
 `;
 const Title = styled.section`
   font-size: 2.2rem;
+  font-weight: bolder;
   line-height: 150%;
 
   margin-top: 4rem;
@@ -28,12 +31,11 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
-const Highlight = styled.span`
-  font-weight: bolder;
-`;
+const Highlight = styled.span``;
 
 const MainPage = () => {
   const navigate = useNavigate();
+  const [modal, setModal] = useState(false);
 
   return (
     <Container>
@@ -53,9 +55,10 @@ const MainPage = () => {
           />
         </ButtonBox>
         <ButtonBox
-          onClick={() =>
-            navigate("/result", { state: { title: "일주기 리듬 수면 장애" } })
-          }
+          onClick={() => {
+            //navigate("/result", { state: { title: "일주기 리듬 수면 장애" } })
+            setModal(true);
+          }}
         >
           <RoundButton
             outline="none"
@@ -65,6 +68,11 @@ const MainPage = () => {
           />
         </ButtonBox>
       </Buttons>
+      {modal && (
+        <ModalContainer>
+          <Modal setModal={setModal} />
+        </ModalContainer>
+      )}
     </Container>
   );
 };
