@@ -11,6 +11,10 @@ const Wrapper = styled.section`
   background-color: rgba(0, 0, 0, 0.6);
 
   z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ModalContainer = ({ children }: { children: JSX.Element }) => {

@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.section`
-  margin-top: 1.8rem;
-  margin-bottom: 2.8rem;
+  margin-top: 2rem;
 `;
 const TextBox = styled.section`
   display: grid;

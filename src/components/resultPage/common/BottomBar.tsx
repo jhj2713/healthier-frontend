@@ -3,15 +3,15 @@ import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 
-const BottomContainer = styled.section`
+const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
 
   position: fixed;
   bottom: 0;
   width: 100%;
 
-  padding-top: 13.6rem;
-  padding-bottom: 4.8rem;
+  padding-top: 14.6rem;
+  padding-bottom: 4rem;
 
   background: linear-gradient(
     180deg,
@@ -30,7 +30,7 @@ const BottomButton = styled.section`
 
 const BottomBar = ({ curIndex }: { curIndex: number }) => {
   return (
-    <BottomContainer>
+    <BottomContainer curIndex={curIndex}>
       {curIndex !== 5 ? (
         <BottomNumber curNum={curIndex} />
       ) : (

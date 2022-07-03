@@ -4,11 +4,8 @@ import styled from "styled-components";
 const Container = styled.section`
   position: relative;
 
-  width: calc(100vw - 4.8rem);
-  height: calc(100vh - 34.1rem);
-
-  margin-top: 18rem;
-  margin-left: 2.4rem;
+  width: calc(100vw - 4rem);
+  height: 48.2rem;
 
   border-radius: 0.8rem;
 
@@ -22,8 +19,8 @@ const Container = styled.section`
 const ModalBox = styled.section`
   position: absolute;
 
-  width: calc(100vw - 4.8rem);
-  height: calc(100vh - 34.1rem);
+  width: calc(100vw - 4rem);
+  height: 48.2rem;
 `;
 const QuitImage = styled.section`
   display: flex;

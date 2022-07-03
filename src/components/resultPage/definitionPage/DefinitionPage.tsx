@@ -7,7 +7,7 @@ const Container = styled.section`
   padding-top: 9.6rem;
 `;
 const Contents = styled.section`
-  margin: 2rem 2.4rem 0 2.4rem;
+  margin: 2rem 2.4rem;
   width: calc(100vw - 4.8rem);
 `;
 const DescriptionBox = styled.section<{ top: number }>`

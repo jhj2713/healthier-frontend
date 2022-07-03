@@ -2,16 +2,13 @@ import styled from "styled-components";
 import SeverityBar from "./SeverityBar";
 
 const Container = styled.section``;
-const CoverImage = styled.section`
-  height: 36.3rem;
-  width: 55.1rem;
-`;
+const CoverImage = styled.section``;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-top: 4.8rem;
+  margin-top: 4.6rem;
 `;
 const SeverityText = styled.section`
   font-size: 1.5rem;
@@ -19,7 +16,7 @@ const SeverityText = styled.section`
 
   color: ${({ theme }) => theme.color.green};
 
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.6rem;
 `;
 const Title = styled.section`
   font-size: 2.8rem;
@@ -41,12 +38,6 @@ const Description = styled.section`
 
   width: 20rem;
 `;
-const SlideText = styled.section`
-  font-size: 1.2rem;
-  line-height: 150%;
-
-  color: ${({ theme }) => theme.color.grey_500};
-`;
 
 const CoverPage = () => {
   return (
@@ -62,7 +53,6 @@ const CoverPage = () => {
           수면클리닉에 내원하세요.
         </Description>
         <SeverityBar />
-        <SlideText>화면을 슬라이드하여 자세한 결과를 받아보세요!</SlideText>
       </Contents>
     </Container>
   );

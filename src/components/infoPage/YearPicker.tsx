@@ -3,11 +3,12 @@ import styled from "styled-components";
 import { IYearPickerProps } from "../../interfaces/component";
 
 const Container = styled.section`
-  margin-top: 4rem;
+  margin-top: 4.6rem;
 `;
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
   font-size: 1.3rem;
+  line-height: 150%;
 
   margin-bottom: 0.8rem;
 `;

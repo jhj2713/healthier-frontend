@@ -11,7 +11,7 @@ import { userSubmit } from "../state/userSlice";
 const ButtonBox = styled.section`
   position: absolute;
   bottom: 0;
-  margin: 0 2rem 3.4rem 2rem;
+  margin: 0 2rem 3rem 2rem;
   font-size: 1.3rem;
 `;
 const Title = styled.section`

@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Tag from "../tags/Tag";
-import { ITagsProps, ITag } from "../../interfaces/component";
+import { ITagsProps } from "../../interfaces/component";
 
 const Container = styled.section`
   margin-top: 3.2rem;
 `;
 const Title = styled.section`
   font-size: 1.3rem;
+  line-height: 150%;
   color: ${({ theme }) => theme.color.grey_300};
 `;
 const TagContainer = styled.section`
@@ -25,6 +26,7 @@ const TagBox = styled.section`
 `;
 const Description = styled.section`
   font-size: 1.2rem;
+  line-height: 150%;
   color: ${({ theme }) => theme.color.grey_600};
 
   margin-top: 1.6rem;
