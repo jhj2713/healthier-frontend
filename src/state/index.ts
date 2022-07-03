@@ -12,13 +12,13 @@ export interface UserState {
   id: number;
   name: string;
   email: string;
-  gender: number;
+  gender: string;
   birth_year: number;
   interests: number[];
 }
 
 export interface fillInfoAction {
-  gender: number;
+  gender: string;
   birth_year: number;
   interests: number[];
 }
