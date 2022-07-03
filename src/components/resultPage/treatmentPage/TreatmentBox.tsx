@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Description from "./Description";
+import Description from "../common/Description";
 
 const Container = styled.section`
   background-color: ${({ theme }) => theme.color.grey_800};
@@ -13,10 +13,10 @@ const Container = styled.section`
 `;
 const Title = styled.section`
   font-size: 1.8rem;
-  margin-bottom: 1.4rem;
+  font-weight: bolder;
   color: ${({ theme }) => theme.color.grey_200};
 
-  font-weight: bolder;
+  margin-bottom: 0.6rem;
 `;
 
 const TreatmentBox = ({

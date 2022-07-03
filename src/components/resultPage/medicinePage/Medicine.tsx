@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Container = styled.section`
   display: flex;
 
-  margin-top: 2.6rem;
+  margin-top: 2rem;
 `;
 const MedicineImg = styled.section<{ selected: boolean }>`
   display: flex;
@@ -30,7 +30,7 @@ const MedicineBox = styled.section`
   align-items: center;
 
   & + & {
-    margin-left: 1.5rem;
+    margin-left: 1.6rem;
   }
 `;
 const MedicineText = styled.section<{ selected: boolean }>`
@@ -41,7 +41,7 @@ const MedicineText = styled.section<{ selected: boolean }>`
   font-size: 1.2rem;
   line-height: 150%;
 
-  margin-top: 0.8rem;
+  margin-top: 0.7rem;
 `;
 
 const Medicine = ({

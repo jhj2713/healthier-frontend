@@ -8,7 +8,7 @@ const Line = styled.section`
 `;
 const Highlight = styled.span``;
 const TitleText = styled.section`
-  margin-top: 1rem;
+  margin-top: 1.2rem;
   color: ${({ theme }) => theme.color.grey_200};
 
   font-size: 2.2rem;

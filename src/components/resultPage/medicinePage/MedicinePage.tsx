@@ -9,7 +9,7 @@ const Container = styled.section`
   padding-top: 9.6rem;
 `;
 const Contents = styled.section`
-  margin: 4rem 2.4rem 0 2.4rem;
+  margin: 2rem 2.4rem;
 `;
 const Description = styled.section`
   font-size: 1.4rem;
@@ -17,7 +17,7 @@ const Description = styled.section`
 
   color: ${({ theme }) => theme.color.grey_300};
 
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
 `;
 const TooltipContainer = styled.section`
   margin-top: 1.3rem;

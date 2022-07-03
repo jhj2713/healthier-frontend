@@ -3,7 +3,7 @@ import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 
-const BottomNumbers = styled.section`
+const BottomContainer = styled.section`
   z-index: 5;
 
   position: fixed;
@@ -25,16 +25,14 @@ const BottomButton = styled.section`
 
   position: fixed;
   margin: 0 2rem;
-  bottom: 3.4rem;
+  bottom: 3rem;
 `;
 
 const BottomBar = ({ curIndex }: { curIndex: number }) => {
   return (
-    <>
+    <BottomContainer>
       {curIndex !== 5 ? (
-        <BottomNumbers>
-          <BottomNumber curNum={curIndex} />
-        </BottomNumbers>
+        <BottomNumber curNum={curIndex} />
       ) : (
         <BottomButton>
           <RoundButton
@@ -45,7 +43,7 @@ const BottomBar = ({ curIndex }: { curIndex: number }) => {
           />
         </BottomButton>
       )}
-    </>
+    </BottomContainer>
   );
 };
 

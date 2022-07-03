@@ -3,7 +3,7 @@ import Description from "../common/Description";
 
 const Container = styled.section``;
 const Contents = styled.section`
-  margin-top: 2.4rem;
+  margin-top: 2.2rem;
 `;
 const SubTitle = styled.section`
   font-size: 1.6rem;

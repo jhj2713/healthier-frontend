@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import Title from "./common/Title";
-import TreatmentBox from "./common/TreatmentBox";
+import Title from "../common/Title";
+import TreatmentBox from "./TreatmentBox";
 
 const Container = styled.section`
   padding-top: 9.6rem;
+  margin: 0 2.4rem;
 `;
 const TitleBox = styled.section`
-  margin: 4rem 0 4.5rem 2.4rem;
-`;
-const TreatmentList = styled.section`
-  margin: 0 2.4rem;
+  margin: 2rem 0rem;
 `;
 
 const treatment_arr = [
@@ -31,15 +29,13 @@ const TreatmentPage = () => {
       <TitleBox>
         <Title highlight="" text={"병원에 가면\n이런 치료를 받아요"} />
       </TitleBox>
-      <TreatmentList>
-        {treatment_arr.map((treat, idx) => (
-          <TreatmentBox
-            key={idx}
-            title={treat.title}
-            description={treat.content}
-          />
-        ))}
-      </TreatmentList>
+      {treatment_arr.map((treat, idx) => (
+        <TreatmentBox
+          key={idx}
+          title={treat.title}
+          description={treat.content}
+        />
+      ))}
     </Container>
   );
 };

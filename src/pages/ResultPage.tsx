@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import CoverPage from "../components/resultPage/CoverPage";
+import CoverPage from "../components/resultPage/coverPage/CoverPage";
 import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPage";
 import LifePage from "../components/resultPage/lifePage/LifePage";
 import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
-import TreatmentPage from "../components/resultPage/TreatmentPage";
+import TreatmentPage from "../components/resultPage/treatmentPage/TreatmentPage";
 import BottomBar from "../components/resultPage/common/BottomBar";
 import ResultHeader from "../components/header/ResultHeader";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-
-const Container = styled.main``;
 
 const ResultPage = () => {
   const { state } = useLocation();
@@ -27,7 +25,7 @@ const ResultPage = () => {
   };
 
   return (
-    <Container>
+    <>
       <ResultHeader isCover={curIndex === 1} />
       <Swiper onActiveIndexChange={handleIndexChange}>
         <SwiperSlide>
@@ -47,7 +45,7 @@ const ResultPage = () => {
         </SwiperSlide>
       </Swiper>
       <BottomBar curIndex={curIndex} />
-    </Container>
+    </>
   );
 };
 

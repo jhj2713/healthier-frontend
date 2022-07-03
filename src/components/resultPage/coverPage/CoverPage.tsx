@@ -1,8 +1,11 @@
 import styled from "styled-components";
-import SeverityBar from "./coverPage/SeverityBar";
+import SeverityBar from "./SeverityBar";
 
 const Container = styled.section``;
-const CoverImage = styled.section``;
+const CoverImage = styled.section`
+  height: 36.3rem;
+  width: 55.1rem;
+`;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
@@ -49,7 +52,7 @@ const CoverPage = () => {
   return (
     <Container>
       <CoverImage>
-        <img src="/images/Mask group.png" />
+        <img src="/images/cover.png" />
       </CoverImage>
       <Contents>
         <SeverityText>경과를 지켜봐야하는 증상이에요!</SeverityText>

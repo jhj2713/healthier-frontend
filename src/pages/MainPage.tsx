@@ -24,7 +24,7 @@ const Buttons = styled.section`
   display: flex;
   flex-direction: column;
 
-  margin: 7rem 2rem;
+  margin: 3rem 2rem;
 `;
 const ButtonBox = styled.section`
   & + & {

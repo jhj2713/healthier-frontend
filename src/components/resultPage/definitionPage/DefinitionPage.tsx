@@ -7,12 +7,12 @@ const Container = styled.section`
   padding-top: 9.6rem;
 `;
 const Contents = styled.section`
-  margin: 3.4rem 0 0 2.4rem;
+  margin: 2rem 2.4rem 0 2.4rem;
   width: calc(100vw - 4.8rem);
 `;
 const DescriptionBox = styled.section<{ top: number }>`
   margin-top: ${({ top }) => top}rem;
-  margin-bottom: 9rem;
+  margin-bottom: 8rem;
 `;
 
 const DefinitionPage = () => {
@@ -20,7 +20,7 @@ const DefinitionPage = () => {
     <Container>
       <Contents>
         <Title highlight="일주기 리듬 수면 장애" text="란?" />
-        <DescriptionBox top={2.4}>
+        <DescriptionBox top={2}>
           <Description
             text="일반적인 수면시간에 잠을 잘 수가 없는 증상으로, 늦게 잠이 들고 늦게
           일어나는 지연성 수면 위상증후군과 초저녁에 잠이들어 이른 새벽에 깨는
