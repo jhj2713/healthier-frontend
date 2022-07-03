@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Tag from "../tags/Tag";
+import { ITagsProps, ITag } from "../../interfaces/component";
 
 const Container = styled.section`
   margin-top: 3.2rem;
@@ -27,21 +28,7 @@ const Description = styled.section`
   margin-top: 1.6rem;
 `;
 
-const health_arr = [
-  { id: 1, name: "금연", selected: false },
-  { id: 2, name: "금주", selected: false },
-  { id: 3, name: "노화방지", selected: false },
-  { id: 4, name: "다이어트", selected: false },
-  { id: 5, name: "수면", selected: false },
-  { id: 6, name: "암예방", selected: false },
-  { id: 7, name: "영양제", selected: false },
-  { id: 8, name: "건강검진", selected: false },
-  { id: 9, name: "미용", selected: false },
-];
-
-const Tags = () => {
-  const [health, setHealth] = useState(health_arr);
-
+const Tags = ({ health, setHealth }: ITagsProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
     let newHealthArr = health.map((health) =>

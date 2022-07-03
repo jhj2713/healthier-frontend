@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import RectButton from "../buttons/RectButton";
 import theme from "../../lib/theme";
-import { useState } from "react";
+import { IGenderProps } from "../../interfaces/component";
 
 const Container = styled.section`
   margin-top: 3.2rem;
@@ -25,9 +25,7 @@ const GenderButton = styled.section`
   }
 `;
 
-const Gender = () => {
-  const [gender, setGender] = useState("");
-
+const Gender = ({ gender, setGender }: IGenderProps) => {
   return (
     <Container>
       <Title>성별</Title>
