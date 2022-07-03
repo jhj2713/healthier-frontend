@@ -86,7 +86,7 @@ const ButtonText = styled.section`
   color: ${({ theme }) => theme.color.blue};
 `;
 
-const Modal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
+const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   return (
     <Container>
       <ModalBox>
@@ -103,11 +103,13 @@ const Modal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           <LoginButton>
             <ButtonText>로그인 하러 갈래요</ButtonText>
           </LoginButton>
-          <Continue>괜찮아요, 다음에 할게요</Continue>
+          <Continue onClick={() => setModal(false)}>
+            괜찮아요, 다음에 할게요
+          </Continue>
         </BottomButtons>
       </ModalBox>
     </Container>
   );
 };
 
-export default Modal;
+export default LoginModal;

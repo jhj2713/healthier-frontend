@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import styled from "styled-components";
 import CoverPage from "../components/resultPage/coverPage/CoverPage";
 import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPage";
 import LifePage from "../components/resultPage/lifePage/LifePage";

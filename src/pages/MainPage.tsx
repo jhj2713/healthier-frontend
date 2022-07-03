@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
-import Modal from "../components/modal/Modal";
+import LoginModal from "../components/modal/LoginModal";
 import theme from "../lib/theme";
 import { useState } from "react";
 import ModalContainer from "../components/modal/ModalContainer";
@@ -70,7 +70,7 @@ const MainPage = () => {
       </Buttons>
       {modal && (
         <ModalContainer>
-          <Modal setModal={setModal} />
+          <LoginModal setModal={setModal} />
         </ModalContainer>
       )}
     </Container>
