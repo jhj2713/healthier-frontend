@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { IYearPickerProps } from "../../interfaces/component";
 
 const Container = styled.section`
   margin-top: 4rem;
@@ -41,9 +42,7 @@ const years = Array.from(Array(92).keys())
   .map((y) => y + 1930)
   .reverse();
 
-function YearPicker() {
-  const [year, setYear] = useState(0);
-
+function YearPicker({ year, setYear }: IYearPickerProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
     setYear(Number(target.value));
