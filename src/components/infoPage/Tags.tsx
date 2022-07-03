@@ -1,28 +1,32 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import Tag from "../tags/Tag";
-import { ITagsProps, ITag } from "../../interfaces/component";
+import { ITagsProps } from "../../interfaces/component";
 
 const Container = styled.section`
   margin-top: 3.2rem;
 `;
 const Title = styled.section`
   font-size: 1.3rem;
+  line-height: 150%;
   color: ${({ theme }) => theme.color.grey_300};
 `;
 const TagContainer = styled.section`
-  display: flexbox;
-
-  margin-top: 0.8rem;
+  display: -webkit-flexbox;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
 `;
 const TagBox = styled.section`
   font-size: 1.3rem;
-  & + & {
-    margin-left: 0.8rem;
-  }
+  margin-top: 0.8rem;
+  margin-right: 0.8rem;
 `;
 const Description = styled.section`
   font-size: 1.2rem;
+  line-height: 150%;
   color: ${({ theme }) => theme.color.grey_600};
 
   margin-top: 1.6rem;
@@ -45,14 +49,7 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
     <Container>
       <Title>관심 건강분야</Title>
       <TagContainer>
-        {health.slice(0, 5).map((health) => (
-          <TagBox key={health.id} onClick={handleClick}>
-            <Tag text={health.name} selected={health.selected} />
-          </TagBox>
-        ))}
-      </TagContainer>
-      <TagContainer>
-        {health.slice(5).map((health) => (
+        {health.map((health) => (
           <TagBox key={health.id} onClick={handleClick}>
             <Tag text={health.name} selected={health.selected} />
           </TagBox>

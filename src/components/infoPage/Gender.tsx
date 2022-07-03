@@ -14,6 +14,7 @@ const GenderContainer = styled.section`
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
   font-size: 1.3rem;
+  line-height: 150%;
 
   margin-bottom: 0.8rem;
 `;

@@ -1,10 +1,18 @@
-import { IContentHeader } from "../../interfaces/component";
-import styled from "styled-components";
-import HeaderContainer from "./HeaderContainer";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 
+const HeaderContainer = styled.header`
+  height: 9.6rem;
+  width: 100%;
+  letter-spacing: 0.015rem;
+
+  border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
+
+  position: absolute;
+
+  z-index: 3;
+`;
 const Container = styled.section`
-  color: ${({ theme }) => theme.color.grey_200};
   height: inherit;
 
   display: flex;
@@ -13,13 +21,19 @@ const Container = styled.section`
 
   position: relative;
 `;
-const Title = styled.section`
+const Title = styled.section<{ isCover: boolean }>`
+  color: ${({ theme }) => theme.color.grey_200};
   font-size: 1.6rem;
 
   margin-bottom: 1.6rem;
+
+  opacity: ${({ isCover }) => isCover && 0};
 `;
-const BackButton = styled.section<{ back: boolean }>`
-  opacity: ${({ back }) => (back ? 1 : 0)};
+const BackButton = styled.section`
+  opacity: 0;
+
+  width: 3.2rem;
+  height: 3.2rem;
 
   margin-left: 1.5rem;
   margin-bottom: 0.9rem;
@@ -29,16 +43,14 @@ const QuitButton = styled.section`
   margin-right: 1.5rem;
 `;
 
-const ContentHeader = ({ back, text }: IContentHeader) => {
+const ResultHeader = ({ isCover }: { isCover: boolean }) => {
   const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <Container>
-        <BackButton back={back}>
-          <img src="/images/header/back.svg" />
-        </BackButton>
-        <Title>{text}</Title>
+        <BackButton />
+        <Title isCover={isCover}>진단결과</Title>
         <QuitButton onClick={() => navigate("/")}>
           <img src="/images/header/quit.svg" />
         </QuitButton>
@@ -47,4 +59,4 @@ const ContentHeader = ({ back, text }: IContentHeader) => {
   );
 };
 
-export default ContentHeader;
+export default ResultHeader;

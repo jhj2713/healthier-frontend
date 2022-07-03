@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import HeaderContainer from "./HeaderContainer";
 
 const Container = styled.section`
   height: inherit;
@@ -16,9 +17,11 @@ const Logo = styled.section`
 
 const MainHeader = () => {
   return (
-    <Container>
-      <Logo>Healthier</Logo>
-    </Container>
+    <HeaderContainer>
+      <Container>
+        <Logo>Healthier</Logo>
+      </Container>
+    </HeaderContainer>
   );
 };
 

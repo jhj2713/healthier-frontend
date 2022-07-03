@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Gender from "../components/infoPage/Gender";
 import RoundButton from "../components/buttons/RoundButton";
@@ -11,7 +11,7 @@ import { userSubmit } from "../state/userSlice";
 const ButtonBox = styled.section`
   position: absolute;
   bottom: 0;
-  margin: 0 2rem 3.4rem 2rem;
+  margin: 0 2rem 3rem 2rem;
   font-size: 1.3rem;
 `;
 const Title = styled.section`
@@ -49,9 +49,25 @@ const Information = () => {
   const dispatch = useAppDispatch();
 
   const handleProceed = () => {
-    const healthId = health.map((item) => item.id);
-    dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
+    if (active) {
+      const healthId = health
+        .filter((item) => item.selected)
+        .map((item) => item.id);
+      dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
+    }
   };
+
+  useEffect(() => {
+    if (
+      year !== 0 &&
+      health.filter((item) => item.selected).length !== 0 &&
+      gender
+    ) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [year, health, gender]);
 
   return (
     <>
@@ -64,12 +80,7 @@ const Information = () => {
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
       </Contents>
-      <ButtonBox
-        onClick={() => {
-          setActive(!active);
-          handleProceed();
-        }}
-      >
+      <ButtonBox onClick={handleProceed}>
         <RoundButton
           outline="none"
           backgroundColor={active ? theme.color.blue : theme.color.grey_750}
