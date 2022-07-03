@@ -6,11 +6,11 @@ import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPa
 import LifePage from "../components/resultPage/lifePage/LifePage";
 import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
 import TreatmentPage from "../components/resultPage/TreatmentPage";
+import BottomBar from "../components/resultPage/common/BottomBar";
+import ResultHeader from "../components/header/ResultHeader";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import BottomBar from "../components/resultPage/common/BottomBar";
-import ResultHeader from "../components/header/ResultHeader";
 
 const Container = styled.main``;
 

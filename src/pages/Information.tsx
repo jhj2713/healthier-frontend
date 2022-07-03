@@ -49,7 +49,9 @@ const Information = () => {
   const dispatch = useAppDispatch();
 
   const handleProceed = () => {
-    const healthId = health.map((item) => item.id);
+    const healthId = health
+      .filter((item) => item.selected)
+      .map((item) => item.id);
     dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
   };
 

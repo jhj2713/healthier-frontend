@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const HeaderContainer = styled.header<{ isCover: boolean }>`
+const HeaderContainer = styled.header`
   height: 9.6rem;
   width: 100%;
   letter-spacing: 0.015rem;
@@ -43,12 +44,14 @@ const QuitButton = styled.section`
 `;
 
 const ResultHeader = ({ isCover }: { isCover: boolean }) => {
+  const navigate = useNavigate();
+
   return (
-    <HeaderContainer isCover={isCover}>
+    <HeaderContainer>
       <Container>
         <BackButton />
         <Title isCover={isCover}>진단결과</Title>
-        <QuitButton>
+        <QuitButton onClick={() => navigate("/")}>
           <img src="/images/header/quit.svg" />
         </QuitButton>
       </Container>

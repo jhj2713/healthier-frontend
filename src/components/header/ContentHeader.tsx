@@ -1,6 +1,7 @@
 import { IContentHeader } from "../../interfaces/component";
 import styled from "styled-components";
 import HeaderContainer from "./HeaderContainer";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.section`
   color: ${({ theme }) => theme.color.grey_200};
@@ -29,6 +30,8 @@ const QuitButton = styled.section`
 `;
 
 const ContentHeader = ({ back, text }: IContentHeader) => {
+  const navigate = useNavigate();
+
   return (
     <HeaderContainer>
       <Container>
@@ -36,7 +39,7 @@ const ContentHeader = ({ back, text }: IContentHeader) => {
           <img src="/images/header/back.svg" />
         </BackButton>
         <Title>{text}</Title>
-        <QuitButton>
+        <QuitButton onClick={() => navigate("/")}>
           <img src="/images/header/quit.svg" />
         </QuitButton>
       </Container>

@@ -11,7 +11,7 @@ const Header = () => {
           path="/info"
           element={<ContentHeader back={false} text="정보 수집" />}
         />
-        <Route path="result" element={<></>} />
+        <Route path="/*" element={<></>} />
       </Routes>
     </>
   );
