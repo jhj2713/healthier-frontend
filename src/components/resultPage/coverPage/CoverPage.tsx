@@ -13,10 +13,11 @@ const Contents = styled.section`
 const SeverityText = styled.section`
   font-size: 1.5rem;
   line-height: 150%;
+  font-weight: 100;
 
   color: ${({ theme }) => theme.color.green};
 
-  margin-bottom: 0.6rem;
+  margin-bottom: 1rem;
 `;
 const Title = styled.section`
   font-size: 2.8rem;
@@ -24,13 +25,14 @@ const Title = styled.section`
 
   color: ${({ theme }) => theme.color.grey_100};
 
-  font-weight: bolder;
+  font-weight: 300;
 
   margin-bottom: 1.6rem;
 `;
 const Description = styled.section`
   font-size: 1.3rem;
   line-height: 150%;
+  font-weight: 100;
 
   color: ${({ theme }) => theme.color.grey_200};
 

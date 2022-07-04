@@ -24,7 +24,7 @@ const Title = styled.section`
 
   color: ${({ theme }) => theme.color.grey_300};
 
-  font-weight: bolder;
+  font-weight: 300;
 
   margin-bottom: 0.2rem;
 `;

@@ -22,7 +22,8 @@ const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
 
   font-size: 1.6rem;
-  font-weight: bolder;
+  font-weight: 300;
+  line-height: 150%;
 `;
 
 const RoundButton = ({ outline, backgroundColor, color, text }: IButton) => {

@@ -8,7 +8,7 @@ const Contents = styled.section`
 const SubTitle = styled.section`
   font-size: 1.6rem;
   line-height: 150%;
-  font-weight: bolder;
+  font-weight: 300;
 
   color: ${({ theme }) => theme.color.grey_200};
 
@@ -18,6 +18,7 @@ const Highlight = styled.section`
   color: ${({ theme }) => theme.color.green};
 
   font-size: 1.5rem;
+  font-weight: 100;
   line-height: 150%;
 `;
 const Tags = styled.section`
@@ -37,8 +38,7 @@ const Tag = styled.section`
   border-radius: 6rem;
 
   font-size: 1.2rem;
-  font-weight: bolder;
-  font-weight: bolder;
+  font-weight: 300;
   letter-spacing: 0;
 
   margin-right: 0.8rem;

@@ -15,7 +15,7 @@ const TitleText = styled.section`
   white-space: pre-wrap;
 
   line-height: 140%;
-  font-weight: bolder;
+  font-weight: 300;
 `;
 
 const Title = ({ highlight, text }: { highlight: string; text: string }) => {

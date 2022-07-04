@@ -15,6 +15,7 @@ const Container = styled.section`
 `;
 const Title = styled.section`
   font-size: 1.6rem;
+  font-weight: 200;
 
   margin-bottom: 1.6rem;
 `;

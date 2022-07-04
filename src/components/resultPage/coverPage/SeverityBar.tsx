@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.section`
-  margin-top: 2rem;
+  margin-top: 2.4rem;
 `;
 const TextBox = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+  font-weight: 100;
 `;
 const Text = styled.section<{ align: string }>`
   font-size: 1.4rem;

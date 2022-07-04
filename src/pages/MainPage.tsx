@@ -11,8 +11,8 @@ const Container = styled.main`
 `;
 const Title = styled.section`
   font-size: 2.2rem;
-  font-weight: bolder;
-  line-height: 150%;
+  font-weight: 300;
+  line-height: 140%;
 
   margin-top: 4rem;
   margin-left: 2.4rem;
@@ -64,7 +64,7 @@ const MainPage = () => {
             outline="none"
             backgroundColor={theme.color.blue}
             color={theme.color.grey_100}
-            text={"나의 진단기록장 보기"}
+            text={"로그인 후 진단기록장 보기"}
           />
         </ButtonBox>
       </Buttons>

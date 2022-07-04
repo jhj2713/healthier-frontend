@@ -13,6 +13,7 @@ const Contents = styled.section`
 `;
 const Description = styled.section`
   font-size: 1.4rem;
+  font-weight: 100;
   line-height: 150%;
 
   color: ${({ theme }) => theme.color.grey_300};

@@ -13,7 +13,7 @@ const Container = styled.section`
 `;
 const Title = styled.section`
   font-size: 1.8rem;
-  font-weight: bolder;
+  font-weight: 300;
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-bottom: 0.6rem;

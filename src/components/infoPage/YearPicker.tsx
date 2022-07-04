@@ -8,6 +8,7 @@ const Container = styled.section`
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
   font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
 
   margin-bottom: 0.8rem;

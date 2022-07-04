@@ -14,12 +14,16 @@ const GenderContainer = styled.section`
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
   font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
 
   margin-bottom: 0.8rem;
 `;
 const GenderButton = styled.section`
   width: calc(100vw - 5.8rem);
+
+  font-weight: 200;
+  font-size: 1.4rem;
 
   & + & {
     margin-left: 1rem;

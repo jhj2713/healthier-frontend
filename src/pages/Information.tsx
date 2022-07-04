@@ -21,8 +21,8 @@ const Title = styled.section`
 
   margin-top: 4rem;
 
-  line-height: 150%;
-  font-weight: bolder;
+  line-height: 140%;
+  font-weight: 300;
 `;
 const Contents = styled.section`
   margin: 0 2.4rem;

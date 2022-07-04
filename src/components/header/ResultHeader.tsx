@@ -24,6 +24,7 @@ const Container = styled.section`
 const Title = styled.section<{ isCover: boolean }>`
   color: ${({ theme }) => theme.color.grey_200};
   font-size: 1.6rem;
+  font-weight: 200;
 
   margin-bottom: 1.6rem;
 

@@ -20,6 +20,7 @@ const Number = styled.section<{ curNum: number; num: number }>`
     curNum === num ? theme.color.blue : theme.color.grey_300};
 
   font-size: 1.2rem;
+  font-weight: 200;
 
   & + & {
     margin-left: 0.8rem;

@@ -27,11 +27,13 @@ const Tag = styled.section<{ num: number }>`
   border-radius: 10rem;
 
   font-size: 1.3rem;
+  font-weight: 300;
 `;
 const Description = styled.section`
   margin: 1.2rem 1.9rem 1.4rem 1.9rem;
 
   font-size: 1.5rem;
+  font-weight: 100;
   line-height: 150%;
 
   color: ${({ theme }) => theme.color.grey_300};

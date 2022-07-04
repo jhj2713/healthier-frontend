@@ -8,6 +8,7 @@ const Container = styled.section`
 `;
 const Title = styled.section`
   font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
   color: ${({ theme }) => theme.color.grey_300};
 `;
@@ -26,6 +27,7 @@ const TagBox = styled.section`
 `;
 const Description = styled.section`
   font-size: 1.2rem;
+  font-weight: 100;
   line-height: 150%;
   color: ${({ theme }) => theme.color.grey_600};
 

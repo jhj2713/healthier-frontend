@@ -37,7 +37,7 @@ const MedicineText = styled.section<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
     selected ? theme.color.grey_200 : theme.color.grey_600};
 
-  font-weight: bolder;
+  font-weight: 100;
   font-size: 1.2rem;
   line-height: 150%;
 
