@@ -5,10 +5,9 @@ import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
 import { useEffect } from "react";
 import styled from "styled-components";
+import Diagnosis from "./pages/Diagnosis";
 
-const Container = styled.section`
-  height: calc(var(--vh, 1vh) * 100);
-`;
+const Container = styled.section``;
 
 function App() {
   return (
@@ -18,6 +17,7 @@ function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
+        <Route path="/diagnosis" element={<Diagnosis />} />
       </Routes>
     </Container>
   );

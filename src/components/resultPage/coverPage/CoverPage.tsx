@@ -45,7 +45,7 @@ const CoverPage = () => {
   return (
     <Container>
       <CoverImage>
-        <img src="/images/cover.png" />
+        <img alt="cover" src="/images/cover.png" />
       </CoverImage>
       <Contents>
         <SeverityText>경과를 지켜봐야하는 증상이에요!</SeverityText>
