@@ -51,14 +51,21 @@ const AnswerButtons = ({
   isMultiple,
 }: IAnswerButtonProps) => {
   const handleSelect = (idx: number) => {
-    setSelectedAnswer([...selectedAnswer, answers[idx]]);
+    let filtered = selectedAnswer.filter(
+      (ans) => ans.a_id !== answers[idx].a_id
+    );
+    if (filtered.length !== selectedAnswer.length) {
+      setSelectedAnswer(filtered);
+    } else {
+      setSelectedAnswer([...selectedAnswer, answers[idx]]);
+    }
     if (!isMultiple) {
       handleNext();
     }
   };
   const handleActive = (id: number): boolean => {
-    let filtered = selectedAnswer.filter((ans) => ans.a_id === id);
-    if (filtered.length !== 0) return true;
+    let idx = selectedAnswer.findIndex((ans) => ans.a_id === id);
+    if (idx !== -1) return true;
     return false;
   };
 

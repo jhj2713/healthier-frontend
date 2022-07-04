@@ -38,17 +38,25 @@ const Diagnosis = () => {
   const [isMultiple, setIsMultiple] = useState(false);
 
   useEffect(() => {
-    if (curIndex < 5) {
-      setCurQuestion(first_questions[curIndex].question);
-      setCurAnswers(first_questions[curIndex].answers);
-      setIsMultiple(first_questions[curIndex].is_multiple);
-      setSelectedAnswer([]);
-    } else {
-    }
+    setCurQuestion(first_questions[curIndex].question);
+    setCurAnswers(first_questions[curIndex].answers);
+    setIsMultiple(first_questions[curIndex].is_multiple);
+    setSelectedAnswer([]);
+    console.log(sleepScore);
   }, [curIndex]);
   const handleNext = () => {
-    setCurIndex(curIndex + 1);
-    setSleepScore(sleepScore + (selectedAnswer[0]?.score || 0));
+    if (curIndex < 4) {
+      setCurIndex(curIndex + 1);
+      setSleepScore(sleepScore + (selectedAnswer[0]?.score || 0));
+    } else {
+      setCurQuestion("수면의 문제가 일상생활에 지장을 주나요?");
+      setCurAnswers([
+        { a_id: 1, answer: "예" },
+        { a_id: 2, answer: "아니요" },
+      ]);
+      setIsMultiple(true);
+      setSelectedAnswer([]);
+    }
   };
 
   return (
