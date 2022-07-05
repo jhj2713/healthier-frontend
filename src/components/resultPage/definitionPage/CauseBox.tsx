@@ -39,6 +39,8 @@ const Description = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
 
   text-align: center;
+
+  word-break: keep-all;
 `;
 
 const CauseBox = ({

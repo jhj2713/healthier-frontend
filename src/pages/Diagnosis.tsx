@@ -17,6 +17,8 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  word-break: keep-all;
 `;
 const Question = styled.section`
   font-size: 2.2rem;

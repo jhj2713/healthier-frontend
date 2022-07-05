@@ -10,6 +10,8 @@ const Contents = styled.section`
 
   margin-top: 4.6rem;
   padding-bottom: 12rem;
+
+  word-break: keep-all;
 `;
 const SeverityText = styled.section`
   font-size: 1.5rem;

@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
 
         background-color: #131416;
 
-        word-break: keep-all;
     }
 `;
 
