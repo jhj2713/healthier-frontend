@@ -33,6 +33,12 @@ export interface IYearPickerProps {
   setYear: (year: number) => void;
 }
 
+export interface IQuestion {
+  question: string;
+  answers: IAnswer[];
+  is_multiple: boolean;
+}
+
 export interface IAnswer {
   a_id: number;
   answer: string;
@@ -45,4 +51,6 @@ export interface IAnswerButtonProps {
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
   isMultiple: boolean;
+  sleepScore: number;
+  setSleepScore: Dispatch<number>;
 }

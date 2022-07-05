@@ -29,61 +29,55 @@ const QuitImage = styled.section`
   margin-top: 1.4rem;
   margin-right: 1.4rem;
 `;
-const Description = styled.section`
-  font-size: 1.3rem;
-  line-height: 150%;
+const Highlight = styled.span`
+  font-weight: 300;
 
-  color: ${({ theme }) => theme.color.grey_200};
-
-  margin-top: 1.2rem;
+  color: ${({ theme }) => theme.color.green};
 `;
 const Title = styled.section`
   font-size: 1.8rem;
-  font-weight: bolder;
+  font-weight: 200;
   line-height: 140%;
 
   color: ${({ theme }) => theme.color.grey_200};
 
   text-align: center;
 
-  margin-top: 0.4rem;
+  margin-top: 2.4rem;
 `;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
+const NoteImage = styled.img`
+  transform: rotate(-10deg);
+
+  width: 16.6rem;
+  height: 18.1rem;
+
+  margin-top: 2.2rem;
+`;
 const BottomButtons = styled.section`
   position: absolute;
-  bottom: 0;
+  bottom: 2.4rem;
 
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
-const Continue = styled(Description)`
-  margin-bottom: 2.4rem;
-`;
-const LoginButton = styled.section`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: calc(100vw - 7.6rem);
-  height: 5.2rem;
-
-  background-color: ${({ theme }) => theme.color.sub_blue};
-
-  border-radius: 3rem;
-  box-sizing: border-box;
-`;
-const ButtonText = styled.section`
-  font-size: 1.5rem;
-  font-weight: bolder;
+const Continue = styled.section`
+  font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
 
-  color: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.grey_200};
+
+  margin-top: 1.4rem;
+`;
+const LoginButton = styled.img`
+  width: calc(100vw - 6.8rem);
 `;
 
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
@@ -91,20 +85,23 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
     <Container>
       <ModalBox>
         <QuitImage onClick={() => setModal(false)}>
-          <img src="/images/header/quit.svg" />
+          <img alt="quit" src="/images/header/quit.svg" />
         </QuitImage>
         <Contents>
-          <Description>해당 진단결과를 다시 보고 싶나요?</Description>
           <Title>
-            진단기록은 로그인 후<br /> 홈화면에서 볼 수 있어요
+            로그인을 하면
+            <br />
+            <Highlight>나의 진단 기록장</Highlight>을 이용할 수 있어요
           </Title>
+          <NoteImage alt="note" src="/images/note.png" />
         </Contents>
         <BottomButtons>
-          <LoginButton>
-            <ButtonText>로그인 하러 갈래요</ButtonText>
-          </LoginButton>
+          <LoginButton
+            alt="kakao_login"
+            src="images/login/kakao_login_large_wide.png"
+          />
           <Continue onClick={() => setModal(false)}>
-            괜찮아요, 다음에 할게요
+            괜찮아요, 비회원으로 이용할게요
           </Continue>
         </BottomButtons>
       </ModalBox>

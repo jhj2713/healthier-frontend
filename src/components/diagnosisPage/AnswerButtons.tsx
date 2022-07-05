@@ -1,3 +1,4 @@
+import { useState } from "react";
 import styled from "styled-components";
 import { IAnswerButtonProps } from "../../interfaces/component";
 import RoundButton from "../buttons/RoundButton";
@@ -49,6 +50,8 @@ const AnswerButtons = ({
   setSelectedAnswer,
   handleNext,
   isMultiple,
+  sleepScore,
+  setSleepScore,
 }: IAnswerButtonProps) => {
   const handleSelect = (idx: number) => {
     let filtered = selectedAnswer.filter(
@@ -58,6 +61,10 @@ const AnswerButtons = ({
       setSelectedAnswer(filtered);
     } else {
       setSelectedAnswer([...selectedAnswer, answers[idx]]);
+
+      if (answers[idx]?.score) {
+        setSleepScore(sleepScore + (answers[idx].score || 0));
+      }
     }
     if (!isMultiple) {
       handleNext();
