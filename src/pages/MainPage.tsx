@@ -7,6 +7,11 @@ import { useState } from "react";
 import ModalContainer from "../components/modal/ModalContainer";
 
 const Container = styled.main`
+  display: flex;
+  flex-direction: column;
+
+  height: calc(100vh - 9.6rem);
+
   color: ${({ theme }) => theme.color.grey_100};
 `;
 const Title = styled.section`
@@ -31,7 +36,25 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
-const Highlight = styled.span``;
+const Strong = styled.span``;
+const MainImage = styled.section`
+  display: flex;
+  height: calc(100% - 28rem);
+`;
+const StethoscopeImage = styled.img`
+  margin-bottom: 7rem;
+`;
+const GuideText = styled.section`
+  font-size: 1.3rem;
+  font-weight: 200;
+  line-height: 150%;
+  letter-spacing: 0.015rem;
+
+  color: ${({ theme }) => theme.color.grey_300};
+`;
+const Highlight = styled.span`
+  color: ${({ theme }) => theme.color.green};
+`;
 
 const MainPage = () => {
   const navigate = useNavigate();
@@ -40,11 +63,18 @@ const MainPage = () => {
   return (
     <Container>
       <Title>
-        <Highlight>빠른 진단</Highlight>으로
-        <br />내 몸의 <Highlight>정확한 증상</Highlight>을
+        <Strong>빠른 진단</Strong>으로
+        <br />내 몸의 <Strong>정확한 증상</Strong>을
         <br />
         알아보세요!
       </Title>
+      <MainImage>
+        <StethoscopeImage alt="stethoscope" src="/images/stethoscope.png" />
+      </MainImage>
+      <GuideText>
+        현재 <Highlight>두통</Highlight>과 <Highlight>수면장애</Highlight>{" "}
+        진단이 가능해요!
+      </GuideText>
       <Buttons>
         <ButtonBox onClick={() => navigate("/info")}>
           <RoundButton

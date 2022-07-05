@@ -7,9 +7,10 @@ import Tags from "../components/infoPage/Tags";
 import YearPicker from "../components/infoPage/YearPicker";
 import { useAppDispatch } from "../state";
 import { userSubmit } from "../state/userSlice";
+import { health_interest } from "../store/interest";
 
 const ButtonBox = styled.section`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   margin: 0 2rem 3rem 2rem;
   font-size: 1.3rem;
@@ -25,25 +26,13 @@ const Title = styled.section`
   font-weight: 300;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem;
+  margin: 0 2.4rem 12rem 2.4rem;
 `;
-
-const health_arr = [
-  { id: 1, name: "금연", selected: false },
-  { id: 2, name: "금주", selected: false },
-  { id: 3, name: "노화방지", selected: false },
-  { id: 4, name: "다이어트", selected: false },
-  { id: 5, name: "수면", selected: false },
-  { id: 6, name: "암예방", selected: false },
-  { id: 7, name: "영양제", selected: false },
-  { id: 8, name: "건강검진", selected: false },
-  { id: 9, name: "미용", selected: false },
-];
 
 const Information = () => {
   const [active, setActive] = useState(false);
   const [year, setYear] = useState(0);
-  const [health, setHealth] = useState(health_arr);
+  const [health, setHealth] = useState(health_interest);
   const [gender, setGender] = useState("");
 
   const dispatch = useAppDispatch();

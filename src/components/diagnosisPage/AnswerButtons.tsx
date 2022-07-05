@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { IAnswerButtonProps } from "../../interfaces/component";
 import RoundButton from "../buttons/RoundButton";

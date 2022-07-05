@@ -43,6 +43,7 @@ const Diagnosis = () => {
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
 
   useEffect(() => {
+    console.log(state);
     if (curIndex <= 4) {
       setCurQuestion(first_questions[curIndex]);
       setSelectedAnswer([]);
