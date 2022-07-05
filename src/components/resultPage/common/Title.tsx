@@ -7,7 +7,9 @@ const Line = styled.section`
 
   background-color: ${({ theme }) => theme.color.green};
 `;
-const Highlight = styled.span``;
+const Highlight = styled.span`
+  font-weight: 500;
+`;
 const TitleText = styled.section`
   margin-top: 1.2rem;
   color: ${({ theme }) => theme.color.grey_200};

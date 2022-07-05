@@ -10,11 +10,24 @@ import { userSubmit } from "../state/userSlice";
 import { health_interest } from "../store/interest";
 import ContentHeader from "../components/header/ContentHeader";
 
+const Container = styled.section`
+  padding-top: 9.6rem;
+`;
 const ButtonBox = styled.section`
   position: fixed;
   bottom: 0;
-  margin: 0 2rem 3rem 2rem;
+  margin: 0 2rem;
   font-size: 1.3rem;
+
+  padding-top: 12rem;
+  padding-bottom: 3rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 `;
 const Title = styled.section`
   font-size: 2.2rem;
@@ -60,8 +73,8 @@ const Information = () => {
   }, [year, health, gender]);
 
   return (
-    <>
-      <ContentHeader text="정보 수집" />
+    <Container>
+      <ContentHeader text="정보 수집" back={true} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해
@@ -79,7 +92,7 @@ const Information = () => {
           text="증상 진단하러 가기"
         />
       </ButtonBox>
-    </>
+    </Container>
   );
 };
 

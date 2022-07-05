@@ -8,6 +8,7 @@ import ModalContainer from "../components/modal/ModalContainer";
 import MainHeader from "../components/header/MainHeader";
 
 const Container = styled.main`
+  padding-top: 9.6rem;
   height: calc(100vh - 9.6rem);
 
   color: ${({ theme }) => theme.color.grey_100};
@@ -34,7 +35,9 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
-const Strong = styled.span``;
+const Strong = styled.span`
+  font-weight: 500;
+`;
 const MainImage = styled.section``;
 const StethoscopeImage = styled.img`
   height: 29.5rem;

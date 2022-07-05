@@ -4,9 +4,12 @@ import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
 
 const Container = styled.section``;
+const AnswersContainer = styled.section<{ ansCount: number }>`
+  margin-top: ${({ ansCount }) =>
+    ansCount === 4 ? 6.6 : ansCount === 2 ? 13 : 0}rem;
+`;
 const ButtonBox = styled.section`
   width: calc(100% - 4rem);
-  margin-top: 6.6rem;
 
   & + & {
     margin-top: 1.2rem;
@@ -77,11 +80,13 @@ const AnswerButtons = ({
 
   return (
     <Container>
-      {answers.map((ans, idx) => (
-        <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
-          <Button selected={handleActive(ans.a_id)}>{ans.answer}</Button>
-        </ButtonBox>
-      ))}
+      <AnswersContainer ansCount={answers.length}>
+        {answers.map((ans, idx) => (
+          <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
+            <Button selected={handleActive(ans.a_id)}>{ans.answer}</Button>
+          </ButtonBox>
+        ))}
+      </AnswersContainer>
       {isMultiple && (
         <NextButton onClick={handleNext}>
           <RoundButton

@@ -1,3 +1,8 @@
+export interface IContentHeader {
+  text: string;
+  back: boolean;
+}
+
 export interface IButton {
   outline: string;
   backgroundColor: string;

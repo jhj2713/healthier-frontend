@@ -3,7 +3,7 @@ import { IBottomBar } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
-  margin-left: calc((100vw - 16.2rem) / 2);
+  justify-content: center;
 `;
 const Number = styled.section<{ curNum: number; num: number }>`
   display: flex;

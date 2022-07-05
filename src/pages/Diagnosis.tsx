@@ -20,7 +20,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  word-break: keep-all;
+  padding-top: 9.6rem;
 `;
 const Question = styled.section`
   font-size: 2.2rem;
@@ -79,7 +79,7 @@ const Diagnosis = () => {
         <Loading />
       ) : (
         <>
-          <ContentHeader text="자가 진단" />
+          <ContentHeader text="자가 진단" back={false} />
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons

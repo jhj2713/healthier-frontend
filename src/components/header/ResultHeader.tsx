@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const HeaderContainer = styled.header<{ isCover: boolean }>`
+  position: fixed;
+
   height: 9.6rem;
   width: 100%;
   letter-spacing: 0.015rem;
@@ -9,9 +11,10 @@ const HeaderContainer = styled.header<{ isCover: boolean }>`
   border-bottom: ${({ isCover, theme }) =>
     !isCover && `0.05rem solid ${theme.color.grey_800}`};
 
-  position: absolute;
-
   z-index: 3;
+
+  background-color: ${({ isCover, theme }) =>
+    isCover ? "transparent" : theme.color.grey_900};
 `;
 const Container = styled.section`
   height: inherit;
