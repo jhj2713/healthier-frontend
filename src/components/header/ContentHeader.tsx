@@ -1,4 +1,3 @@
-import { IContentHeader } from "../../interfaces/component";
 import styled from "styled-components";
 import HeaderContainer from "./HeaderContainer";
 import { useNavigate } from "react-router-dom";
@@ -19,8 +18,9 @@ const Title = styled.section`
 
   margin-bottom: 1.6rem;
 `;
-const BackButton = styled.section<{ back: boolean }>`
-  opacity: ${({ back }) => (back ? 1 : 0)};
+const BackButton = styled.section`
+  width: 3.2rem;
+  height: 3.2rem;
 
   margin-left: 1.5rem;
   margin-bottom: 0.9rem;
@@ -30,15 +30,13 @@ const QuitButton = styled.section`
   margin-right: 1.5rem;
 `;
 
-const ContentHeader = ({ back, text }: IContentHeader) => {
+const ContentHeader = ({ text }: { text: string }) => {
   const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <Container>
-        <BackButton back={back}>
-          <img alt="back" src="/images/header/back.svg" />
-        </BackButton>
+        <BackButton />
         <Title>{text}</Title>
         <QuitButton onClick={() => navigate("/")}>
           <img alt="quit" src="/images/header/quit.svg" />

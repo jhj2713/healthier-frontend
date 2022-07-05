@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
+import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/component";
 import { first_questions } from "../store/diagnosis";
+import Loading from "./Loading";
 
 const Container = styled.section`
   height: calc(100vh - 9.6rem);
@@ -43,6 +45,7 @@ const Diagnosis = () => {
     is_multiple: false,
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log(state);
@@ -61,6 +64,8 @@ const Diagnosis = () => {
         is_multiple: true,
       });
       setSelectedAnswer([]);
+      setLoading(true);
+      setTimeout(() => setLoading(false), 3000);
     }
   }, [curIndex]);
 
@@ -69,18 +74,27 @@ const Diagnosis = () => {
   };
 
   return (
-    <Container>
-      <Question>{curQuestion.question}</Question>
-      <AnswerButtons
-        answers={curQuestion.answers}
-        selectedAnswer={selectedAnswer}
-        setSelectedAnswer={setSelectedAnswer}
-        handleNext={handleNext}
-        isMultiple={curQuestion.is_multiple}
-        sleepScore={sleepScore}
-        setSleepScore={setSleepScore}
-      />
-    </Container>
+    <>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <ContentHeader text="자가 진단" />
+          <Container>
+            <Question>{curQuestion.question}</Question>
+            <AnswerButtons
+              answers={curQuestion.answers}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
+              handleNext={handleNext}
+              isMultiple={curQuestion.is_multiple}
+              sleepScore={sleepScore}
+              setSleepScore={setSleepScore}
+            />
+          </Container>
+        </>
+      )}
+    </>
   );
 };
 

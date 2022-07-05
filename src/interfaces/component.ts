@@ -7,11 +7,6 @@ export interface IButton {
   text: string;
 }
 
-export interface IContentHeader {
-  back: boolean;
-  text: string;
-}
-
 export interface IGenderProps {
   gender: string;
   setGender: (gender: string) => void;

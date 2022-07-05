@@ -32,8 +32,6 @@ const Title = styled.section<{ isCover: boolean }>`
   opacity: ${({ isCover }) => isCover && 0};
 `;
 const BackButton = styled.section`
-  opacity: 0;
-
   width: 3.2rem;
   height: 3.2rem;
 

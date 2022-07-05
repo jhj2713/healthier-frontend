@@ -8,6 +8,7 @@ import YearPicker from "../components/infoPage/YearPicker";
 import { useAppDispatch } from "../state";
 import { userSubmit } from "../state/userSlice";
 import { health_interest } from "../store/interest";
+import ContentHeader from "../components/header/ContentHeader";
 
 const ButtonBox = styled.section`
   position: fixed;
@@ -60,6 +61,7 @@ const Information = () => {
 
   return (
     <>
+      <ContentHeader text="정보 수집" />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해
