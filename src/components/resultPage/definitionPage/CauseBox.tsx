@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ICauseBox } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   margin-top: 2rem;
@@ -29,37 +30,40 @@ const Tag = styled.section<{ num: number }>`
   font-size: 1.3rem;
   font-weight: 300;
 `;
-const Description = styled.section`
+const CauseDetailBox = styled.section`
   margin: 1.2rem 1.9rem 1.4rem 1.9rem;
-
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 150%;
-
-  color: ${({ theme }) => theme.color.grey_300};
 
   text-align: center;
 
   word-break: keep-all;
 `;
+const Description = styled.section`
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 150%;
 
-const CauseBox = ({
-  description_1,
-  description_2,
-}: {
-  description_1: string;
-  description_2: string;
-}) => {
+  color: ${({ theme }) => theme.color.grey_300};
+`;
+
+const CauseBox = ({ cause_1, cause_2 }: ICauseBox) => {
   return (
     <Container>
       <TagBox>
-        <Tag num={0}>#생활요인</Tag>
-        <Description>{description_1}</Description>
+        <Tag num={0}>{cause_1.cause}</Tag>
+        <CauseDetailBox>
+          {cause_1.details.map((cause, idx) => (
+            <Description key={idx}>{cause}</Description>
+          ))}
+        </CauseDetailBox>
       </TagBox>
       <section />
       <TagBox>
-        <Tag num={1}>#유전요인</Tag>
-        <Description>{description_2}</Description>
+        <Tag num={1}>{cause_2.cause}</Tag>
+        <CauseDetailBox>
+          {cause_2.details.map((cause, idx) => (
+            <Description key={idx}>{cause}</Description>
+          ))}
+        </CauseDetailBox>
       </TagBox>
     </Container>
   );

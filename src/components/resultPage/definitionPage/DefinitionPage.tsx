@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Title from "../common/Title";
 import Description from "../common/Description";
 import CauseBox from "./CauseBox";
+import { IDefinePageProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -16,25 +17,22 @@ const DescriptionBox = styled.section<{ top: number; bottom: number }>`
   margin-bottom: ${({ bottom }) => bottom}rem;
 `;
 
-const DefinitionPage = () => {
+const DefinitionPage = ({
+  defineData: { title, definition, cause, cause_detail },
+}: {
+  defineData: IDefinePageProps;
+}) => {
   return (
     <Container>
       <Contents>
-        <Title highlight="일주기 리듬 수면 장애" text="란?" />
+        <Title highlight={title} text="란?" />
         <DescriptionBox top={2} bottom={8}>
-          <Description
-            text="일반적인 수면시간에 잠을 잘 수가 없는 증상으로, 늦게 잠이 들고 늦게
-          일어나는 지연성 수면 위상증후군과 초저녁에 잠이들어 이른 새벽에 깨는
-          전진성 수면위상 증후군으로 나뉘어요."
-          />
+          <Description text={definition} />
         </DescriptionBox>
         <Title highlight="" text="원인이 무엇인가요?" />
-        <CauseBox
-          description_1="수면시간에 맞지 않는 빛의 노출"
-          description_2="수면 유전자 이상 호르몬 분비 변화"
-        />
+        <CauseBox cause_1={cause[0]} cause_2={cause[1]} />
         <DescriptionBox top={1.6} bottom={0}>
-          <Description text="일주기 리듬을 결정하는 뇌의 생체시계의 셋팅이 일반 사람들의 생활주기와 달라져서 발생해요." />
+          <Description text={cause_detail} />
         </DescriptionBox>
       </Contents>
     </Container>

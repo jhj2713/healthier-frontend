@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ICoverPageProps } from "../../../interfaces/resultPage";
 import SeverityBar from "./SeverityBar";
 
 const Container = styled.section``;
@@ -44,20 +45,21 @@ const Description = styled.section`
   width: 20rem;
 `;
 
-const CoverPage = () => {
+const CoverPage = ({
+  coverData: { illustration, highlight, title, description, severity },
+}: {
+  coverData: ICoverPageProps;
+}) => {
   return (
     <Container>
       <CoverImage>
-        <img alt="cover" src="/images/cover.png" />
+        <img alt="cover" src={illustration} />
       </CoverImage>
       <Contents>
-        <SeverityText>경과를 지켜봐야하는 증상이에요!</SeverityText>
-        <Title>일주기 리듬 수면 장애</Title>
-        <Description>
-          수면환경을 개선하여 경과를 지켜보고, 증상이 2주 이상 반복될 경우
-          수면클리닉에 내원하세요.
-        </Description>
-        <SeverityBar />
+        <SeverityText>{highlight}</SeverityText>
+        <Title>{title}</Title>
+        <Description>{description}</Description>
+        <SeverityBar severity={(severity - 1) * 50} />
       </Contents>
     </Container>
   );

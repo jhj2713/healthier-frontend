@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header<{ isCover: boolean }>`
   height: 9.6rem;
   width: 100%;
   letter-spacing: 0.015rem;
 
-  border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
+  border-bottom: ${({ isCover, theme }) =>
+    !isCover && `0.05rem solid ${theme.color.grey_800}`};
 
   position: absolute;
 
@@ -48,7 +49,7 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
   const navigate = useNavigate();
 
   return (
-    <HeaderContainer>
+    <HeaderContainer isCover={isCover}>
       <Container>
         <BackButton />
         <Title isCover={isCover}>진단결과</Title>

@@ -4,7 +4,7 @@ import Title from "../common/Title";
 import Medicine from "./Medicine";
 import Tooltip from "./Tooltip";
 import MedicineDetail from "./MedicineDetail";
-import { IMedicine } from "../../../interfaces/component";
+import { IMedicine } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;

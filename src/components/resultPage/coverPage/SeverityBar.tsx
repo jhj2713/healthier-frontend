@@ -45,7 +45,7 @@ const Knob = styled.section`
   background-color: ${({ theme }) => theme.color.blue};
 `;
 
-const SeverityBar = () => {
+const SeverityBar = ({ severity }: { severity: number }) => {
   return (
     <Container>
       <TextBox>
@@ -54,7 +54,7 @@ const SeverityBar = () => {
         <Text align="right">심각</Text>
       </TextBox>
       <Background>
-        <Highlight severity={40}>
+        <Highlight severity={severity}>
           <Knob></Knob>
         </Highlight>
       </Background>

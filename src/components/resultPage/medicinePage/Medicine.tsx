@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
-import { IMedicine } from "../../../interfaces/component";
+import { IMedicine } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
@@ -60,7 +60,7 @@ const Medicine = ({
         <MedicineBox key={idx} onClick={() => setSelected(idx + 1)}>
           <MedicineImg selected={selected === idx + 1}>💊</MedicineImg>
           <MedicineText selected={selected === idx + 1}>
-            {med.medicine}
+            {med.name}
           </MedicineText>
         </MedicineBox>
       ))}

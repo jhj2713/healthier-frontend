@@ -54,17 +54,3 @@ export interface IAnswerButtonProps {
   sleepScore: number;
   setSleepScore: Dispatch<number>;
 }
-
-export interface IMedicine {
-  id: number;
-  image: string;
-  medicine: string;
-  efficacy: string;
-  precautions: string[];
-  side_effect: string[];
-}
-
-export interface IMedicineDetail {
-  selected: number;
-  medicine: IMedicine[];
-}

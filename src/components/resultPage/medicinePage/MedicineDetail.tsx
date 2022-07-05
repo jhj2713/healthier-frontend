@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IMedicineDetail } from "../../../interfaces/component";
+import { IMedicineDetail } from "../../../interfaces/resultPage";
 import Description from "../common/Description";
 
 const Container = styled.section``;
@@ -55,14 +55,14 @@ const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
       </Contents>
       <Contents>
         <SubTitle>복용 시 주의해주세요</SubTitle>
-        <Highlight>{medicine[selected - 1].precautions[0]}</Highlight>
-        <Description text={medicine[selected - 1].precautions[1]} />
+        <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
+        <Description text={medicine[selected - 1].caution.h2} />
       </Contents>
       <Contents>
         <SubTitle>부작용</SubTitle>
         <Tags>
-          {medicine[selected - 1].side_effect.map((tag, idx) => (
-            <Tag key={idx}>{tag}</Tag>
+          {medicine[selected - 1].sideeffects.map((tag, idx) => (
+            <Tag key={idx}>{tag.emoji + " " + tag.name}</Tag>
           ))}
         </Tags>
       </Contents>
