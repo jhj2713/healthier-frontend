@@ -2,6 +2,7 @@ import styled from "styled-components";
 import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
+import { IBottomBar } from "../../../interfaces/resultPage";
 
 const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
@@ -28,11 +29,11 @@ const BottomButton = styled.section`
   bottom: 3rem;
 `;
 
-const BottomBar = ({ curIndex }: { curIndex: number }) => {
+const BottomBar = ({ curIndex, totalCount }: IBottomBar) => {
   return (
     <BottomContainer curIndex={curIndex}>
-      {curIndex !== 5 ? (
-        <BottomNumber curNum={curIndex} />
+      {curIndex !== totalCount ? (
+        <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
         <BottomButton>
           <RoundButton

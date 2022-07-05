@@ -5,6 +5,11 @@ export interface ITitle {
   text: string;
 }
 
+export interface IBottomBar {
+  curIndex: number;
+  totalCount: number;
+}
+
 export interface ICoverPageProps {
   illustration: string;
   highlight: string;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { IBottomBar } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
@@ -27,13 +28,13 @@ const Number = styled.section<{ curNum: number; num: number }>`
   }
 `;
 
-const number = Array.from(Array(5).keys()).map((y) => y + 1);
+const BottomNumber = ({ curIndex, totalCount }: IBottomBar) => {
+  const number = Array.from(Array(totalCount).keys()).map((y) => y + 1);
 
-const BottomNumber = ({ curNum }: { curNum: number }) => {
   return (
     <Container>
       {number.map((n) => (
-        <Number key={n} curNum={curNum} num={n}>
+        <Number key={n} curNum={curIndex} num={n}>
           {n}
         </Number>
       ))}

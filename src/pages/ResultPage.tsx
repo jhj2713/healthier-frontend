@@ -63,7 +63,7 @@ const ResultPage = () => {
           <TreatmentPage treatData={treatData} />
         </SwiperSlide>
       </Swiper>
-      <BottomBar curIndex={curIndex} />
+      <BottomBar curIndex={curIndex} totalCount={5} />
     </>
   );
 };
