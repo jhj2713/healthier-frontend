@@ -4,12 +4,14 @@ import Title from "../common/Title";
 import Medicine from "./Medicine";
 import Tooltip from "./Tooltip";
 import MedicineDetail from "./MedicineDetail";
+import { IMedicine } from "../../../interfaces/component";
 
 const Container = styled.section`
   padding-top: 9.6rem;
+  padding-bottom: 12rem;
 `;
 const Contents = styled.section`
-  margin: 2rem 2.4rem;
+  margin: 2rem 2.4rem 0 2.4rem;
 `;
 const Description = styled.section`
   font-size: 1.4rem;
@@ -24,7 +26,7 @@ const TooltipContainer = styled.section`
   margin-top: 1.3rem;
 `;
 
-const MedicinePage = () => {
+const MedicinePage = ({ medicine }: { medicine: IMedicine[] }) => {
   const [selected, setSelected] = useState(0);
 
   return (
@@ -32,13 +34,17 @@ const MedicinePage = () => {
       <Contents>
         <Title highlight="" text="증상에 맞는 약을 추천해 드려요" />
         <Description>해당 의약품은 처방없이 구매할 수 있어요</Description>
-        <Medicine selected={selected} setSelected={setSelected} />
+        <Medicine
+          selected={selected}
+          setSelected={setSelected}
+          medicine={medicine}
+        />
         {selected === 0 ? (
           <TooltipContainer>
             <Tooltip />
           </TooltipContainer>
         ) : (
-          <MedicineDetail />
+          <MedicineDetail selected={selected} medicine={medicine} />
         )}
       </Contents>
     </Container>

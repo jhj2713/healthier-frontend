@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
+import { IMedicine } from "../../../interfaces/component";
 
 const Container = styled.section`
   display: flex;
@@ -47,20 +48,22 @@ const MedicineText = styled.section<{ selected: boolean }>`
 const Medicine = ({
   selected,
   setSelected,
+  medicine,
 }: {
   selected: number;
   setSelected: Dispatch<number>;
+  medicine: IMedicine[];
 }) => {
   return (
     <Container>
-      <MedicineBox onClick={() => setSelected(1)}>
-        <MedicineImg selected={selected === 1}>💊</MedicineImg>
-        <MedicineText selected={selected === 1}>항히스타민제</MedicineText>
-      </MedicineBox>
-      <MedicineBox onClick={() => setSelected(2)}>
-        <MedicineImg selected={selected === 2}>💊</MedicineImg>
-        <MedicineText selected={selected === 2}>레돌민</MedicineText>
-      </MedicineBox>
+      {medicine.map((med, idx) => (
+        <MedicineBox key={idx} onClick={() => setSelected(idx + 1)}>
+          <MedicineImg selected={selected === idx + 1}>💊</MedicineImg>
+          <MedicineText selected={selected === idx + 1}>
+            {med.medicine}
+          </MedicineText>
+        </MedicineBox>
+      ))}
     </Container>
   );
 };

@@ -4,8 +4,10 @@ import Title from "../common/Title";
 
 const Container = styled.section`
   padding-top: 9.6rem;
+  padding-bottom: 12rem;
 `;
-const Contents = styled.section`
+const Contents = styled.section``;
+const TitleBox = styled.section`
   margin: 2rem 2.4rem;
 
   width: calc(100vw - 4.8rem);
@@ -42,17 +44,19 @@ const LifePage = () => {
   return (
     <Container>
       <Contents>
-        <Title highlight="생활습관" text={"으로\n증상을 개선해보아요"} />
+        <TitleBox>
+          <Title highlight="생활습관" text={"으로\n증상을 개선해보아요"} />
+        </TitleBox>
+        {life_arr.map((life, idx) => (
+          <LifeComponent
+            key={idx}
+            idx={idx}
+            icon={life.icon}
+            title={life.title}
+            content={life.contents}
+          />
+        ))}
       </Contents>
-      {life_arr.map((life, idx) => (
-        <LifeComponent
-          key={idx}
-          idx={idx}
-          icon={life.icon}
-          title={life.title}
-          content={life.contents}
-        />
-      ))}
     </Container>
   );
 };

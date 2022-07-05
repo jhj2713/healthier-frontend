@@ -9,6 +9,7 @@ const Contents = styled.section`
   align-items: center;
 
   margin-top: 4.6rem;
+  padding-bottom: 12rem;
 `;
 const SeverityText = styled.section`
   font-size: 1.5rem;

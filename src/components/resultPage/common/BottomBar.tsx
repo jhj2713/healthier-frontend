@@ -10,7 +10,7 @@ const BottomContainer = styled.section<{ curIndex: number }>`
   bottom: 0;
   width: 100%;
 
-  padding-top: 14.6rem;
+  padding-top: 12rem;
   padding-bottom: 4rem;
 
   background: linear-gradient(

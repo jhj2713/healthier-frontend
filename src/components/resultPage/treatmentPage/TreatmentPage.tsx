@@ -4,6 +4,7 @@ import TreatmentBox from "./TreatmentBox";
 
 const Container = styled.section`
   padding-top: 9.6rem;
+  padding-bottom: 12rem;
   margin: 0 2.4rem;
 `;
 const TitleBox = styled.section`
