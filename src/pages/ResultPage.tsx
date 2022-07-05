@@ -51,6 +51,9 @@ const ResultPage = () => {
   useEffect(() => {
     console.log(state);
   }, [state]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [curIndex]);
 
   const handleIndexChange = (swiper: any) => {
     setCurIndex(swiper.activeIndex + 1);
