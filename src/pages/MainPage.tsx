@@ -7,9 +7,6 @@ import { useState } from "react";
 import ModalContainer from "../components/modal/ModalContainer";
 
 const Container = styled.main`
-  display: flex;
-  flex-direction: column;
-
   height: calc(100vh - 9.6rem);
 
   color: ${({ theme }) => theme.color.grey_100};
@@ -37,14 +34,16 @@ const ButtonBox = styled.section`
   }
 `;
 const Strong = styled.span``;
-const MainImage = styled.section`
-  display: flex;
-  height: calc(100% - 28rem);
-`;
+const MainImage = styled.section``;
 const StethoscopeImage = styled.img`
-  margin-bottom: 7rem;
+  height: 29.5rem;
+  width: 22.2rem;
+
+  margin-bottom: 1.4rem;
 `;
 const GuideText = styled.section`
+  text-align: center;
+
   font-size: 1.3rem;
   font-weight: 200;
   line-height: 150%;
