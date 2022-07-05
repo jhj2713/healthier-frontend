@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 export interface IButton {
   outline: string;
   backgroundColor: string;
@@ -26,26 +24,4 @@ export interface ITag {
 export interface IYearPickerProps {
   year: number;
   setYear: (year: number) => void;
-}
-
-export interface IQuestion {
-  question: string;
-  answers: IAnswer[];
-  is_multiple: boolean;
-}
-
-export interface IAnswer {
-  a_id: number;
-  answer: string;
-  score?: number;
-}
-
-export interface IAnswerButtonProps {
-  answers: IAnswer[];
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleNext: () => void;
-  isMultiple: boolean;
-  sleepScore: number;
-  setSleepScore: Dispatch<number>;
 }

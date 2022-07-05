@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
-import { IAnswer, IQuestion } from "../interfaces/component";
+import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { first_questions } from "../store/diagnosis";
 import Loading from "./Loading";
 

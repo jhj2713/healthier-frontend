@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ITreatBoxProps } from "../../../interfaces/resultPage";
 import Description from "../common/Description";
 
 const Container = styled.section`
@@ -19,13 +20,7 @@ const Title = styled.section`
   margin-bottom: 0.6rem;
 `;
 
-const TreatmentBox = ({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) => {
+const TreatmentBox = ({ title, description }: ITreatBoxProps) => {
   return (
     <Container>
       <Title>{title}</Title>

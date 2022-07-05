@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ITitle } from "../../../interfaces/resultPage";
 
 const Line = styled.section`
   width: 2.4rem;
@@ -18,7 +19,7 @@ const TitleText = styled.section`
   font-weight: 300;
 `;
 
-const Title = ({ highlight, text }: { highlight: string; text: string }) => {
+const Title = ({ highlight, text }: ITitle) => {
   return (
     <>
       <Line />

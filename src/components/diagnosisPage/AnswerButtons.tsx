@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IAnswerButtonProps } from "../../interfaces/component";
+import { IAnswerButtonProps } from "../../interfaces/diagnosisPage";
 import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
 

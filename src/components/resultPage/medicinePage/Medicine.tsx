@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
-import { IMedicine } from "../../../interfaces/resultPage";
+import { IMedicine, IMedicineProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
@@ -45,15 +45,7 @@ const MedicineText = styled.section<{ selected: boolean }>`
   margin-top: 0.7rem;
 `;
 
-const Medicine = ({
-  selected,
-  setSelected,
-  medicine,
-}: {
-  selected: number;
-  setSelected: Dispatch<number>;
-  medicine: IMedicine[];
-}) => {
+const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {
   return (
     <Container>
       {medicine.map((med, idx) => (

@@ -1,3 +1,10 @@
+import { Dispatch } from "react";
+
+export interface ITitle {
+  highlight: string;
+  text: string;
+}
+
 export interface ICoverPageProps {
   illustration: string;
   highlight: string;
@@ -30,12 +37,25 @@ export interface ILifeProps {
   emoji: string;
 }
 
+export interface ILifeComponent {
+  idx: number;
+  icon: string;
+  title: string;
+  content: string;
+}
+
 export interface IMedicine {
   name: string;
   efficacy: string;
   caution: { h1: string; h2: string; is_colored: string[] };
   n_sideeffects: number;
   sideeffects: { name: string; emoji: string }[];
+}
+
+export interface IMedicineProps {
+  selected: number;
+  setSelected: Dispatch<number>;
+  medicine: IMedicine[];
 }
 
 export interface IMedicineDetail {
@@ -46,4 +66,9 @@ export interface IMedicineDetail {
 export interface ITreatPageProps {
   title: string;
   detail: string;
+}
+
+export interface ITreatBoxProps {
+  title: string;
+  description: string;
 }
