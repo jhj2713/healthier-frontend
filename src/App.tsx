@@ -6,6 +6,7 @@ import ResultPage from "./pages/ResultPage";
 import { useEffect } from "react";
 import styled from "styled-components";
 import Diagnosis from "./pages/Diagnosis";
+import Loading from "./pages/Loading";
 
 const Container = styled.section``;
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
     </Container>
   );
