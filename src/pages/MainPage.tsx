@@ -22,7 +22,7 @@ const Title = styled.section`
   margin-left: 2.4rem;
 `;
 const Buttons = styled.section`
-  position: absolute;
+  position: fixed;
   bottom: 0;
 
   display: flex;

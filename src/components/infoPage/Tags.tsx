@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Tag from "../tags/Tag";
-import { ITagsProps } from "../../interfaces/component";
+import { ITagsProps } from "../../interfaces/informationPage";
 
 const Container = styled.section`
   margin-top: 3.2rem;

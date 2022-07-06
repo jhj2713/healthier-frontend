@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import RectButton from "../buttons/RectButton";
 import theme from "../../lib/theme";
-import { IGenderProps } from "../../interfaces/component";
+import { IGenderProps } from "../../interfaces/informationPage";
 
 const Container = styled.section`
   margin-top: 3.2rem;

@@ -19,7 +19,7 @@ const ButtonBox = styled.section`
   margin: 0 2rem;
   font-size: 1.3rem;
 
-  padding-top: 12rem;
+  padding-top: 10.4rem;
   padding-bottom: 3rem;
 
   background: linear-gradient(
@@ -40,7 +40,7 @@ const Title = styled.section`
   font-weight: 300;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem 17rem 2.4rem;
+  margin: 0 2.4rem 15rem 2.4rem;
 `;
 
 const Information = () => {

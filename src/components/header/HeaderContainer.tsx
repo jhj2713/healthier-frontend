@@ -11,6 +11,8 @@ const Container = styled.header`
   border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
 
   background-color: ${({ theme }) => theme.color.grey_900};
+
+  z-index: 3;
 `;
 
 const HeaderContainer = ({ children }: { children: JSX.Element }) => {

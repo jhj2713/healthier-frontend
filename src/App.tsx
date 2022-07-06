@@ -4,7 +4,7 @@ import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
 import styled from "styled-components";
 import Diagnosis from "./pages/Diagnosis";
-import Loading from "./pages/Loading";
+import DiagnosisList from "./pages/DiagnosisList";
 
 const Container = styled.section``;
 
@@ -16,7 +16,7 @@ function App() {
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
-        <Route path="/loading" element={<Loading />} />
+        <Route path="/diagnosisList" element={<DiagnosisList />} />
       </Routes>
     </Container>
   );

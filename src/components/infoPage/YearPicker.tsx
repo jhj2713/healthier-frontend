@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IYearPickerProps } from "../../interfaces/component";
+import { IYearPickerProps } from "../../interfaces/informationPage";
 
 const Container = styled.section`
   margin-top: 4.6rem;

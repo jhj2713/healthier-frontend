@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { ITag } from "../../interfaces/component";
 
 const Container = styled.section<{ selected: boolean }>`
   ${({ selected }) =>
@@ -18,7 +19,7 @@ const Container = styled.section<{ selected: boolean }>`
   font-weight: 300;
 `;
 
-const Tag = ({ text, selected }: { text: string; selected: boolean }) => {
+const Tag = ({ text, selected }: ITag) => {
   return <Container selected={selected}>{text}</Container>;
 };
 
