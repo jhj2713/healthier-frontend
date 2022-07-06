@@ -19,7 +19,7 @@ const LifePage = ({ lifestyle }: { lifestyle: ILifeProps[] }) => {
     <Container>
       <Contents>
         <TitleBox>
-          <Title highlight="생활습관" text={"으로\n증상을 개선해보아요"} />
+          <Title text={"생활습관으로\n증상을 개선해보아요"} />
         </TitleBox>
         {lifestyle.map((life, idx) => (
           <LifeComponent

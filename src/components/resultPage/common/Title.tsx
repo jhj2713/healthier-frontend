@@ -1,14 +1,10 @@
 import styled from "styled-components";
-import { ITitle } from "../../../interfaces/resultPage";
 
 const Line = styled.section`
   width: 2.4rem;
   height: 0.2rem;
 
   background-color: ${({ theme }) => theme.color.green};
-`;
-const Highlight = styled.span`
-  font-weight: 500;
 `;
 const TitleText = styled.section`
   margin-top: 1.2rem;
@@ -21,14 +17,11 @@ const TitleText = styled.section`
   font-weight: 300;
 `;
 
-const Title = ({ highlight, text }: ITitle) => {
+const Title = ({ text }: { text: string }) => {
   return (
     <>
       <Line />
-      <TitleText>
-        <Highlight>{highlight}</Highlight>
-        {text}
-      </TitleText>
+      <TitleText>{text}</TitleText>
     </>
   );
 };

@@ -40,7 +40,7 @@ const Title = styled.section`
   font-weight: 300;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem 12rem 2.4rem;
+  margin: 0 2.4rem 17rem 2.4rem;
 `;
 
 const Information = () => {

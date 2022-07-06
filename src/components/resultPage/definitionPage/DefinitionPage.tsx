@@ -25,11 +25,11 @@ const DefinitionPage = ({
   return (
     <Container>
       <Contents>
-        <Title highlight={title} text="란?" />
+        <Title text={`${title}란?`} />
         <DescriptionBox top={2} bottom={8}>
           <Description text={definition} />
         </DescriptionBox>
-        <Title highlight="" text="원인이 무엇인가요?" />
+        <Title text="원인이 무엇인가요?" />
         <CauseBox cause_1={cause[0]} cause_2={cause[1]} />
         <DescriptionBox top={1.6} bottom={0}>
           <Description text={cause_detail} />

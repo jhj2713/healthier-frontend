@@ -1,10 +1,5 @@
 import { Dispatch } from "react";
 
-export interface ITitle {
-  highlight: string;
-  text: string;
-}
-
 export interface IBottomBar {
   curIndex: number;
   totalCount: number;

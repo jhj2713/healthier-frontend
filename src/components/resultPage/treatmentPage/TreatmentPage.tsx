@@ -16,7 +16,7 @@ const TreatmentPage = ({ treatData }: { treatData: ITreatPageProps[] }) => {
   return (
     <Container>
       <TitleBox>
-        <Title highlight="" text={"병원에 가면\n이런 치료를 받아요"} />
+        <Title text={"병원에 가면\n이런 치료를 받아요"} />
       </TitleBox>
       {treatData.map((treat, idx) => (
         <TreatmentBox
