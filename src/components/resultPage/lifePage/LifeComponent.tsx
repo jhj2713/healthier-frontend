@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ILifeComponent } from "../../../interfaces/resultPage";
 import Description from "../common/Description";
 
 const Background = styled.section<{ idx: number }>`
@@ -24,22 +25,12 @@ const Title = styled.section`
 
   color: ${({ theme }) => theme.color.grey_300};
 
-  font-weight: bolder;
+  font-weight: 300;
 
   margin-bottom: 0.2rem;
 `;
 
-const LifeComponent = ({
-  idx,
-  icon,
-  title,
-  content,
-}: {
-  idx: number;
-  icon: string;
-  title: string;
-  content: string;
-}) => {
+const LifeComponent = ({ idx, icon, title, content }: ILifeComponent) => {
   return (
     <Background idx={idx}>
       <Icon>{icon}</Icon>

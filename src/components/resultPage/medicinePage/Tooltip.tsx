@@ -23,6 +23,7 @@ const Container = styled.section`
 `;
 const TextBox = styled.section`
   font-size: 1.2rem;
+  font-weight: 300;
   line-height: 150%;
   color: ${({ theme }) => theme.color.grey_300};
 `;

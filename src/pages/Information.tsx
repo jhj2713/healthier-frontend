@@ -7,12 +7,27 @@ import Tags from "../components/infoPage/Tags";
 import YearPicker from "../components/infoPage/YearPicker";
 import { useAppDispatch } from "../state";
 import { userSubmit } from "../state/userSlice";
+import { health_interest } from "../store/interest";
+import ContentHeader from "../components/header/ContentHeader";
 
+const Container = styled.section`
+  padding-top: 9.6rem;
+`;
 const ButtonBox = styled.section`
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  margin: 0 2rem 3rem 2rem;
+  margin: 0 2rem;
   font-size: 1.3rem;
+
+  padding-top: 10.4rem;
+  padding-bottom: 3rem;
+
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 `;
 const Title = styled.section`
   font-size: 2.2rem;
@@ -21,29 +36,17 @@ const Title = styled.section`
 
   margin-top: 4rem;
 
-  line-height: 150%;
-  font-weight: bolder;
+  line-height: 140%;
+  font-weight: 300;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem;
+  margin: 0 2.4rem 15rem 2.4rem;
 `;
-
-const health_arr = [
-  { id: 1, name: "금연", selected: false },
-  { id: 2, name: "금주", selected: false },
-  { id: 3, name: "노화방지", selected: false },
-  { id: 4, name: "다이어트", selected: false },
-  { id: 5, name: "수면", selected: false },
-  { id: 6, name: "암예방", selected: false },
-  { id: 7, name: "영양제", selected: false },
-  { id: 8, name: "건강검진", selected: false },
-  { id: 9, name: "미용", selected: false },
-];
 
 const Information = () => {
   const [active, setActive] = useState(false);
   const [year, setYear] = useState(0);
-  const [health, setHealth] = useState(health_arr);
+  const [health, setHealth] = useState(health_interest);
   const [gender, setGender] = useState("");
 
   const dispatch = useAppDispatch();
@@ -70,7 +73,8 @@ const Information = () => {
   }, [year, health, gender]);
 
   return (
-    <>
+    <Container>
+      <ContentHeader text="정보 수집" back={true} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해
@@ -88,7 +92,7 @@ const Information = () => {
           text="증상 진단하러 가기"
         />
       </ButtonBox>
-    </>
+    </Container>
   );
 };
 

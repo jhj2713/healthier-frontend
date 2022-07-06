@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { ITreatBoxProps } from "../../../interfaces/resultPage";
 import Description from "../common/Description";
 
 const Container = styled.section`
@@ -13,19 +14,13 @@ const Container = styled.section`
 `;
 const Title = styled.section`
   font-size: 1.8rem;
-  font-weight: bolder;
+  font-weight: 300;
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-bottom: 0.6rem;
 `;
 
-const TreatmentBox = ({
-  title,
-  description,
-}: {
-  title: string;
-  description: string;
-}) => {
+const TreatmentBox = ({ title, description }: ITreatBoxProps) => {
   return (
     <Container>
       <Title>{title}</Title>

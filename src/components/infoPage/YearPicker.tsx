@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IYearPickerProps } from "../../interfaces/component";
+import { IYearPickerProps } from "../../interfaces/informationPage";
 
 const Container = styled.section`
   margin-top: 4.6rem;
@@ -8,6 +8,7 @@ const Container = styled.section`
 const Title = styled.section`
   color: ${({ theme }) => theme.color.grey_300};
   font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
 
   margin-bottom: 0.8rem;

@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 const Container = styled.section`
-  margin-top: 2rem;
+  margin-top: 2.4rem;
 `;
 const TextBox = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+
+  font-weight: 100;
 `;
 const Text = styled.section<{ align: string }>`
   font-size: 1.4rem;
@@ -43,7 +45,7 @@ const Knob = styled.section`
   background-color: ${({ theme }) => theme.color.blue};
 `;
 
-const SeverityBar = () => {
+const SeverityBar = ({ severity }: { severity: number }) => {
   return (
     <Container>
       <TextBox>
@@ -52,7 +54,7 @@ const SeverityBar = () => {
         <Text align="right">심각</Text>
       </TextBox>
       <Background>
-        <Highlight severity={40}>
+        <Highlight severity={severity}>
           <Knob></Knob>
         </Highlight>
       </Background>

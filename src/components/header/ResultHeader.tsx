@@ -1,16 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const HeaderContainer = styled.header`
+const HeaderContainer = styled.header<{ isCover: boolean }>`
+  position: fixed;
+
   height: 9.6rem;
   width: 100%;
   letter-spacing: 0.015rem;
 
-  border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
-
-  position: absolute;
+  border-bottom: ${({ isCover, theme }) =>
+    !isCover && `0.05rem solid ${theme.color.grey_800}`};
 
   z-index: 3;
+
+  background-color: ${({ isCover, theme }) =>
+    isCover ? "transparent" : theme.color.grey_900};
 `;
 const Container = styled.section`
   height: inherit;
@@ -24,14 +28,13 @@ const Container = styled.section`
 const Title = styled.section<{ isCover: boolean }>`
   color: ${({ theme }) => theme.color.grey_200};
   font-size: 1.6rem;
+  font-weight: 200;
 
   margin-bottom: 1.6rem;
 
   opacity: ${({ isCover }) => isCover && 0};
 `;
 const BackButton = styled.section`
-  opacity: 0;
-
   width: 3.2rem;
   height: 3.2rem;
 
@@ -47,12 +50,12 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
   const navigate = useNavigate();
 
   return (
-    <HeaderContainer>
+    <HeaderContainer isCover={isCover}>
       <Container>
         <BackButton />
         <Title isCover={isCover}>진단결과</Title>
         <QuitButton onClick={() => navigate("/")}>
-          <img src="/images/header/quit.svg" />
+          <img alt="quit" src="/images/header/quit.svg" />
         </QuitButton>
       </Container>
     </HeaderContainer>

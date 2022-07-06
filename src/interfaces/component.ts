@@ -1,3 +1,8 @@
+export interface IContentHeader {
+  text: string;
+  back: boolean;
+}
+
 export interface IButton {
   outline: string;
   backgroundColor: string;
@@ -5,28 +10,16 @@ export interface IButton {
   text: string;
 }
 
-export interface IContentHeader {
-  back: boolean;
-  text: string;
-}
-
-export interface IGenderProps {
-  gender: string;
-  setGender: (gender: string) => void;
-}
-
-export interface ITagsProps {
-  health: ITag[];
-  setHealth: (health: ITag[]) => void;
-}
-
 export interface ITag {
-  id: number;
-  name: string;
+  text: string;
   selected: boolean;
 }
 
-export interface IYearPickerProps {
-  year: number;
-  setYear: (year: number) => void;
+export interface IListComponent {
+  diagnosis: {
+    result_log_id: number;
+    name: string;
+    date: string;
+    photo: string;
+  };
 }

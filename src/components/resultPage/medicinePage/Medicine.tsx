@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
+import { IMedicine, IMedicineProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
@@ -37,30 +38,24 @@ const MedicineText = styled.section<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
     selected ? theme.color.grey_200 : theme.color.grey_600};
 
-  font-weight: bolder;
+  font-weight: 100;
   font-size: 1.2rem;
   line-height: 150%;
 
   margin-top: 0.7rem;
 `;
 
-const Medicine = ({
-  selected,
-  setSelected,
-}: {
-  selected: number;
-  setSelected: Dispatch<number>;
-}) => {
+const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {
   return (
     <Container>
-      <MedicineBox onClick={() => setSelected(1)}>
-        <MedicineImg selected={selected === 1}>💊</MedicineImg>
-        <MedicineText selected={selected === 1}>항히스타민제</MedicineText>
-      </MedicineBox>
-      <MedicineBox onClick={() => setSelected(2)}>
-        <MedicineImg selected={selected === 2}>💊</MedicineImg>
-        <MedicineText selected={selected === 2}>레돌민</MedicineText>
-      </MedicineBox>
+      {medicine.map((med, idx) => (
+        <MedicineBox key={idx} onClick={() => setSelected(idx + 1)}>
+          <MedicineImg selected={selected === idx + 1}>💊</MedicineImg>
+          <MedicineText selected={selected === idx + 1}>
+            {med.name}
+          </MedicineText>
+        </MedicineBox>
+      ))}
     </Container>
   );
 };

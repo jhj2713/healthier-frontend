@@ -6,7 +6,6 @@ const Line = styled.section`
 
   background-color: ${({ theme }) => theme.color.green};
 `;
-const Highlight = styled.span``;
 const TitleText = styled.section`
   margin-top: 1.2rem;
   color: ${({ theme }) => theme.color.grey_200};
@@ -15,17 +14,14 @@ const TitleText = styled.section`
   white-space: pre-wrap;
 
   line-height: 140%;
-  font-weight: bolder;
+  font-weight: 300;
 `;
 
-const Title = ({ highlight, text }: { highlight: string; text: string }) => {
+const Title = ({ text }: { text: string }) => {
   return (
     <>
       <Line />
-      <TitleText>
-        <Highlight>{highlight}</Highlight>
-        {text}
-      </TitleText>
+      <TitleText>{text}</TitleText>
     </>
   );
 };

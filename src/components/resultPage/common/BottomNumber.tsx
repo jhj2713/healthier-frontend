@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { IBottomBar } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
-  margin-left: calc((100vw - 16.2rem) / 2);
+  justify-content: center;
 `;
 const Number = styled.section<{ curNum: number; num: number }>`
   display: flex;
@@ -20,19 +21,20 @@ const Number = styled.section<{ curNum: number; num: number }>`
     curNum === num ? theme.color.blue : theme.color.grey_300};
 
   font-size: 1.2rem;
+  font-weight: 200;
 
   & + & {
     margin-left: 0.8rem;
   }
 `;
 
-const number = Array.from(Array(5).keys()).map((y) => y + 1);
+const BottomNumber = ({ curIndex, totalCount }: IBottomBar) => {
+  const number = Array.from(Array(totalCount).keys()).map((y) => y + 1);
 
-const BottomNumber = ({ curNum }: { curNum: number }) => {
   return (
     <Container>
       {number.map((n) => (
-        <Number key={n} curNum={curNum} num={n}>
+        <Number key={n} curNum={curIndex} num={n}>
           {n}
         </Number>
       ))}
