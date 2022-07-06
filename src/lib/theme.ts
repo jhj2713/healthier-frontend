@@ -19,17 +19,4 @@ const color = {
   grey_900: "#131416",
 };
 
-const font_size = {
-  heading_1: 2.8,
-  heading_2: 2.4,
-  heading_3: 2.2,
-  heading_4: 2.0,
-  heading_5: 1.8,
-  body_1: 1.6,
-  body_2: 1.5,
-  body_3: 1.4,
-  body_4: 1.3,
-  description: 1.2,
-};
-
-export default { color, font_size };
+export default { color };
