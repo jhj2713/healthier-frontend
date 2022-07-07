@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IAnswerButtonProps } from "../../interfaces/diagnosisPage";
 import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
+import { Body_1 } from "../../lib/fontStyle";
 
 const Container = styled.section``;
 const AnswersContainer = styled.section<{ ansCount: number }>`
@@ -15,7 +16,7 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
-const Button = styled.section<{ selected: boolean }>`
+const Button = styled(Body_1)<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,9 +35,7 @@ const Button = styled.section<{ selected: boolean }>`
   border-radius: 3rem;
   box-sizing: border-box;
 
-  font-size: 1.6rem;
   font-weight: 200;
-  line-height: 150%;
   text-align: center;
 `;
 const NextButton = styled.section`

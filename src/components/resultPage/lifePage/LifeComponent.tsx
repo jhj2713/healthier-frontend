@@ -22,10 +22,9 @@ const Contents = styled.section`
 const Title = styled.section`
   line-height: 150%;
   font-size: 1.6rem;
+  font-weight: 300;
 
   color: ${({ theme }) => theme.color.grey_300};
-
-  font-weight: 300;
 
   margin-bottom: 0.2rem;
 `;

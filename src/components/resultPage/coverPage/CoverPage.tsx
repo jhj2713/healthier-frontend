@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ICoverPageProps } from "../../../interfaces/resultPage";
+import { Body_2, Body_4, Heading_1 } from "../../../lib/fontStyle";
 import SeverityBar from "./SeverityBar";
 
 const Container = styled.section``;
@@ -12,30 +13,17 @@ const Contents = styled.section`
   margin-top: 4.6rem;
   padding-bottom: 12rem;
 `;
-const SeverityText = styled.section`
-  font-size: 1.5rem;
-  line-height: 150%;
-  font-weight: 100;
-
+const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
 
   margin-bottom: 1rem;
 `;
-const Title = styled.section`
-  font-size: 2.8rem;
-  line-height: 140%;
-
+const Title = styled(Heading_1)`
   color: ${({ theme }) => theme.color.grey_100};
-
-  font-weight: 300;
 
   margin-bottom: 1.6rem;
 `;
-const Description = styled.section`
-  font-size: 1.3rem;
-  line-height: 150%;
-  font-weight: 100;
-
+const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
   text-align: center;

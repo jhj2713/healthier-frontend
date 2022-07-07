@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Heading_3 } from "../../../lib/fontStyle";
 
 const Line = styled.section`
   width: 2.4rem;
@@ -6,15 +7,11 @@ const Line = styled.section`
 
   background-color: ${({ theme }) => theme.color.green};
 `;
-const TitleText = styled.section`
+const TitleText = styled(Heading_3)`
   margin-top: 1.2rem;
   color: ${({ theme }) => theme.color.grey_200};
 
-  font-size: 2.2rem;
   white-space: pre-wrap;
-
-  line-height: 140%;
-  font-weight: 300;
 `;
 
 const Title = ({ text }: { text: string }) => {

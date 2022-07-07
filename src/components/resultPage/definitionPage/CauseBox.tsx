@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ICauseBox } from "../../../interfaces/resultPage";
+import { Body_2 } from "../../../lib/fontStyle";
 
 const Container = styled.section`
   margin-top: 2rem;
@@ -37,11 +38,7 @@ const CauseDetailBox = styled.section`
 
   word-break: keep-all;
 `;
-const Description = styled.section`
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 150%;
-
+const Description = styled(Body_2)`
   color: ${({ theme }) => theme.color.grey_300};
 `;
 

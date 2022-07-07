@@ -4,6 +4,7 @@ import MainHeader from "../components/header/MainHeader";
 import ListComponent from "../components/diagnosisListPage/ListComponent";
 import theme from "../lib/theme";
 import { useNavigate } from "react-router-dom";
+import { Description, Heading_3 } from "../lib/fontStyle";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -24,21 +25,13 @@ const ButtonBox = styled.section`
     #131416 100%
   );
 `;
-const Title = styled.section`
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 150%;
-
+const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin: 4rem 2.4rem 0 2.4rem;
 `;
-const Description = styled.section`
+const DescriptionBox = styled(Description)`
   text-align: end;
-
-  font-size: 1.2rem;
-  font-weight: 100;
-  line-height: 150%;
 
   color: ${({ theme }) => theme.color.grey_500};
 
@@ -84,9 +77,9 @@ const DiagnosisList = () => {
         <Highlight type="title">홍길동님</Highlight>이 저장한
         <br /> 진단 내역이에요
       </Title>
-      <Description>
+      <DescriptionBox>
         <Highlight type="description">3개</Highlight>의 진단내역
-      </Description>
+      </DescriptionBox>
       <List>
         {list.map((diag, idx) => (
           <ListComponent key={idx} diagnosis={diag} />

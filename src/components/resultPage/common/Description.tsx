@@ -1,11 +1,8 @@
 import styled from "styled-components";
+import { Body_2 } from "../../../lib/fontStyle";
 
-const Text = styled.section`
-  font-size: 1.5rem;
-  font-weight: 100;
+const Text = styled(Body_2)`
   color: ${({ theme }) => theme.color.grey_400};
-
-  line-height: 150%;
 `;
 
 const Description = ({ text }: { text: string }) => {

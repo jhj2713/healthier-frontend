@@ -1,5 +1,6 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
+import { Body_4, Heading_5 } from "../../lib/fontStyle";
 
 const Container = styled.section`
   position: relative;
@@ -34,13 +35,9 @@ const Highlight = styled.span`
 
   color: ${({ theme }) => theme.color.green};
 `;
-const Title = styled.section`
-  font-size: 1.8rem;
-  font-weight: 200;
-  line-height: 140%;
-
+const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
-
+  font-weight: 200;
   text-align: center;
 
   margin-top: 2.4rem;
@@ -67,11 +64,7 @@ const BottomButtons = styled.section`
   flex-direction: column;
   align-items: center;
 `;
-const Continue = styled.section`
-  font-size: 1.3rem;
-  font-weight: 100;
-  line-height: 150%;
-
+const Continue = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-top: 1.4rem;

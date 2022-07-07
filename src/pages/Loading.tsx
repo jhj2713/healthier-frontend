@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Heading_3, Body_1, Body_3 } from "../lib/fontStyle";
 
 const Container = styled.section`
   width: 100vw;
@@ -16,17 +17,15 @@ const Container = styled.section`
   align-items: center;
   justify-content: center;
 `;
-const Title = styled.section`
+const Highlight = styled.span`
+  font-weight: 300;
+`;
+const Title = styled(Heading_3)`
   width: 27rem;
 
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 150%;
-
+  font-weight: 200;
   text-align: center;
-
   word-break: keep-all;
-
   color: ${({ theme }) => theme.color.grey_200};
 `;
 const Icon = styled.section`
@@ -38,21 +37,15 @@ const Icon = styled.section`
 const BottomTextBox = styled.section`
   text-align: center;
 `;
-const Tips = styled.section`
-  font-size: 1.4rem;
-  font-weight: 100;
-  line-height: 150%;
+const Tips = styled(Body_3)`
+  font-weight: 200;
 
   color: ${({ theme }) => theme.color.grey_300};
 `;
-const Description = styled.section`
+const Description = styled(Body_1)`
   margin-top: 0.8rem;
 
   width: 17.2rem;
-
-  font-size: 1.6rem;
-  font-weight: 100;
-  line-height: 150%;
 
   color: ${({ theme }) => theme.color.grey_400};
 `;
@@ -61,7 +54,8 @@ const Loading = () => {
   return (
     <Container>
       <Title>
-        <strong>정확한 증상 진단</strong>을 위해 헬시어가 증상을 분석중이에요
+        <Highlight>정확한 증상 진단</Highlight>을 위해 헬시어가 증상을
+        분석중이에요
       </Title>
       <Icon></Icon>
       <BottomTextBox>

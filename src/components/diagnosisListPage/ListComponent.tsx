@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IListComponent } from "../../interfaces/component";
+import { Heading_5 } from "../../lib/fontStyle";
 
 const Container = styled.section<{ photo: string }>`
   height: 16rem;
@@ -19,11 +20,7 @@ const Box = styled.section`
 
   padding: 1.4rem 1.2rem 1.2rem 1.2rem;
 `;
-const Title = styled.section`
-  font-size: 1.8rem;
-  font-weight: 300;
-  line-height: 140%;
-
+const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
 `;
 const Date = styled.section`

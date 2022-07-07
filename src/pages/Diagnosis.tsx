@@ -4,17 +4,13 @@ import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
+import { Heading_3 } from "../lib/fontStyle";
 import { first_questions } from "../store/diagnosis";
 import Loading from "./Loading";
 
 const Container = styled.section`
   height: calc(100vh - 9.6rem);
-  background: radial-gradient(
-      300.02% 130.63% at 164.62% 165.58%,
-      rgba(84, 100, 242, 0.9) 0%,
-      rgba(52, 62, 135, 0) 100%
-    )
-    #131416;
+  background: linear-gradient(180deg, rgba(40, 46, 91, 0) 0%, #272d5a 100%);
 
   display: flex;
   flex-direction: column;
@@ -22,10 +18,7 @@ const Container = styled.section`
 
   padding-top: 9.6rem;
 `;
-const Question = styled.section`
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 140%;
+const Question = styled(Heading_3)`
   text-align: center;
 
   color: ${({ theme }) => theme.color.grey_200};

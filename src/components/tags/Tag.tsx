@@ -16,6 +16,7 @@ const Container = styled.section<{ selected: boolean }>`
   padding: 0.8rem 1rem;
   border-radius: 6rem;
 
+  font-size: 1.3rem;
   font-weight: 300;
   cursor: pointer;
 `;

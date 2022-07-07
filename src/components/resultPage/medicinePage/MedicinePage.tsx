@@ -4,6 +4,7 @@ import Title from "../common/Title";
 import Medicine from "./Medicine";
 import MedicineDetail from "./MedicineDetail";
 import { IMedicine } from "../../../interfaces/resultPage";
+import { Body_3 } from "../../../lib/fontStyle";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -12,11 +13,7 @@ const Container = styled.section`
 const Contents = styled.section`
   margin: 2rem 2.4rem 0 2.4rem;
 `;
-const Description = styled.section`
-  font-size: 1.4rem;
-  font-weight: 100;
-  line-height: 150%;
-
+const Description = styled(Body_3)`
   color: ${({ theme }) => theme.color.grey_300};
 
   margin-top: 0.6rem;

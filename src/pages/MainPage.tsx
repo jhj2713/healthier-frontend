@@ -6,6 +6,7 @@ import theme from "../lib/theme";
 import { useState } from "react";
 import ModalContainer from "../components/modal/ModalContainer";
 import MainHeader from "../components/header/MainHeader";
+import { Heading_3 } from "../lib/fontStyle";
 
 const Container = styled.main`
   padding-top: 9.6rem;
@@ -13,11 +14,7 @@ const Container = styled.main`
 
   color: ${({ theme }) => theme.color.grey_100};
 `;
-const Title = styled.section`
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 140%;
-
+const Title = styled(Heading_3)`
   margin-top: 4rem;
   margin-left: 2.4rem;
 `;
