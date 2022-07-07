@@ -2,7 +2,6 @@ import { useState } from "react";
 import styled from "styled-components";
 import Title from "../common/Title";
 import Medicine from "./Medicine";
-import Tooltip from "./Tooltip";
 import MedicineDetail from "./MedicineDetail";
 import { IMedicine } from "../../../interfaces/resultPage";
 
@@ -22,12 +21,9 @@ const Description = styled.section`
 
   margin-top: 0.6rem;
 `;
-const TooltipContainer = styled.section`
-  margin-top: 1.3rem;
-`;
 
 const MedicinePage = ({ medicine }: { medicine: IMedicine[] }) => {
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState(1);
 
   return (
     <Container>
@@ -39,13 +35,7 @@ const MedicinePage = ({ medicine }: { medicine: IMedicine[] }) => {
           setSelected={setSelected}
           medicine={medicine}
         />
-        {selected === 0 ? (
-          <TooltipContainer>
-            <Tooltip />
-          </TooltipContainer>
-        ) : (
-          <MedicineDetail selected={selected} medicine={medicine} />
-        )}
+        <MedicineDetail selected={selected} medicine={medicine} />
       </Contents>
     </Container>
   );

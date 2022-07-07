@@ -1,4 +1,6 @@
+import React, { useRef } from "react";
 import styled from "styled-components";
+import { IModal } from "../../interfaces/component";
 
 const Wrapper = styled.section`
   position: absolute;
@@ -17,8 +19,20 @@ const Wrapper = styled.section`
   align-items: center;
 `;
 
-const ModalContainer = ({ children }: { children: JSX.Element }) => {
-  return <Wrapper>{children}</Wrapper>;
+const ModalContainer = ({ children, setModal }: IModal) => {
+  const wrapperRef = useRef(null);
+
+  const handleModalClose = (e: React.MouseEvent) => {
+    if (wrapperRef.current === e.target) {
+      setModal(false);
+    }
+  };
+
+  return (
+    <Wrapper ref={wrapperRef} onClick={handleModalClose}>
+      {children}
+    </Wrapper>
+  );
 };
 
 export default ModalContainer;

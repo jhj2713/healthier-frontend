@@ -1,7 +1,7 @@
 {
   "is_result": 1,
   "diagnostic_result": {
-    "illustration": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5abd0a89-6748-40a5-a663-95a2c66cbc67/cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220705%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220705T093718Z&X-Amz-Expires=86400&X-Amz-Signature=0f53969c57db2c490f70e0acdbd726f8642317996caa3ad36c454a97f0bdc4f6&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22cover.png%22&x-id=GetObject",
+    "illustration": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/5abd0a89-6748-40a5-a663-95a2c66cbc67/cover.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220706%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220706T160523Z&X-Amz-Expires=86400&X-Amz-Signature=c097c0270f46572d1a3d388057afaca95690351880f9685603eb5ce7e98a2fbc&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22cover.png%22&x-id=GetObject",
     "h1": "경과를 지켜봐야하는 증상이에요!",
     "title": "일주기 리듬 수면 장애",
     "h2": "수면환경을 개선하여 경과를 지켜보고, 증상이 2주 이상 반복될 경우 수면 클리닉에 내원하세요.",

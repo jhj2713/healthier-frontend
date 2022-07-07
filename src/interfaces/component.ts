@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export interface IContentHeader {
   text: string;
   back: boolean;
@@ -22,4 +24,9 @@ export interface IListComponent {
     date: string;
     photo: string;
   };
+}
+
+export interface IModal {
+  children: JSX.Element;
+  setModal: Dispatch<boolean>;
 }

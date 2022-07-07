@@ -104,7 +104,7 @@ const MainPage = () => {
           </ButtonBox>
         </Buttons>
         {modal && (
-          <ModalContainer>
+          <ModalContainer setModal={setModal}>
             <LoginModal setModal={setModal} />
           </ModalContainer>
         )}
