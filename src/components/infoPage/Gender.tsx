@@ -25,6 +25,8 @@ const GenderButton = styled.section`
   font-weight: 200;
   font-size: 1.4rem;
 
+  cursor: pointer;
+
   & + & {
     margin-left: 1rem;
   }
