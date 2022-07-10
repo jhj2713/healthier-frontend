@@ -17,6 +17,7 @@ const Container = styled.section<{ selected: boolean }>`
   border-radius: 6rem;
 
   font-weight: 300;
+  cursor: pointer;
 `;
 
 const Tag = ({ text, selected }: ITag) => {
