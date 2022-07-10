@@ -24,13 +24,13 @@ const ResultPage = () => {
   };
   const defineData = {
     title: diagnosis_result.diagnostic_result.title,
-    definition: diagnosis_result.diagnostic_result.b1,
-    cause: diagnosis_result.diagnostic_result.b2.tags,
-    cause_detail: diagnosis_result.diagnostic_result.b2.detail,
+    definition: diagnosis_result.diagnostic_result.explanation,
+    cause: diagnosis_result.diagnostic_result.cause.tags,
+    cause_detail: diagnosis_result.diagnostic_result.cause.detail,
   };
-  const lifeData = diagnosis_result.diagnostic_result.b3;
-  const medicineData = diagnosis_result.diagnostic_result.b4;
-  const treatData = diagnosis_result.diagnostic_result.b5.treatments;
+  const lifeData = diagnosis_result.diagnostic_result.solutions;
+  const medicineData = diagnosis_result.diagnostic_result.medicines;
+  const treatData = diagnosis_result.diagnostic_result.treatments;
 
   useEffect(() => {
     console.log(state);

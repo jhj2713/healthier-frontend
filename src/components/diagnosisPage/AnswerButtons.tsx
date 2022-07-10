@@ -7,7 +7,7 @@ import { Body_1 } from "../../lib/fontStyle";
 const Container = styled.section``;
 const AnswersContainer = styled.section<{ ansCount: number }>`
   margin-top: ${({ ansCount }) =>
-    ansCount === 4 ? 6.6 : ansCount === 2 ? 13 : 0}rem;
+    ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
 const ButtonBox = styled.section`
   width: calc(100% - 4rem);
@@ -22,8 +22,7 @@ const Button = styled(Body_1)<{ selected: boolean }>`
   align-items: center;
 
   width: calc(100vw - 4rem);
-  height: 5.2rem;
-  padding: 0.2rem 2.3rem;
+  padding: 1.4rem 2.3rem;
 
   background-color: ${({ selected, theme }) =>
     selected ? theme.color.sub_blue : "transparent"};

@@ -45,10 +45,10 @@ export interface ILifeComponent {
 }
 
 export interface IMedicine {
+  image: string;
   name: string;
   efficacy: string;
   caution: { h1: string; h2: string; is_colored: string[] };
-  n_sideeffects: number;
   sideeffects: { name: string; emoji: string }[];
 }
 
