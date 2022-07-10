@@ -5,6 +5,7 @@ import ResultPage from "./pages/ResultPage";
 import styled from "styled-components";
 import Diagnosis from "./pages/Diagnosis";
 import DiagnosisList from "./pages/DiagnosisList";
+import SymptomPage from "./pages/SymptomPage";
 
 const Container = styled.section``;
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
         <Route path="/diagnosisList" element={<DiagnosisList />} />
+        <Route path="/symptom" element={<SymptomPage />} />
       </Routes>
     </Container>
   );
