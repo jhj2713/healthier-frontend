@@ -45,7 +45,7 @@ const CoverPage = ({
         <SeverityText>{highlight}</SeverityText>
         <Title>{title}</Title>
         <Description>{description}</Description>
-        <SeverityBar severity={(severity - 1) * 50} />
+        <SeverityBar severity={severity} />
       </Contents>
     </Container>
   );
