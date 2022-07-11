@@ -15,6 +15,13 @@ const OverlaySection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0) 78.12%,
+    #131416 100%
+  );
 `;
 
 const ButtonDiv = styled.div`
@@ -61,14 +68,26 @@ const TitleDiv = styled.div`
   height: 20vh;
 
   padding-top: 12.6rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
-const Title = styled.p`
+const Title = styled.h1`
   font-size: 2.2rem;
   color: white;
   font-weight: 200;
-  margin-left: 2rem;
-  line-height: 3rem;
+  margin: 0 0 0 2rem;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.4rem;
+  font-weight: 100;
+  color: white;
+  margin: 1rem 0 0 2rem;
+  text-decoration: underline;
+  color: ${theme.color.green};
 `;
 
 const RotateButton = styled.button<{ toggle: boolean }>`
@@ -117,10 +136,13 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             선택했어요
           </Title>
         ) : (
-          <Title>
-            증상 부위를 <br />
-            선택해주세요
-          </Title>
+          <>
+            <Title>
+              증상 부위를 <br />
+              선택해주세요
+            </Title>
+            <SubTitle>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+          </>
         )}
       </TitleDiv>
       {view ? (
