@@ -29,22 +29,25 @@ const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 `;
 const Icon = styled.section`
-  width: 21.8rem;
-  height: 21.8rem;
+  width: 26rem;
+  height: 24.8rem;
 
-  margin: 3.1rem 0;
+  background: ${({ theme }) => theme.color.blue};
+  opacity: 0.5;
+
+  margin: 2rem 5rem 1.2rem 5rem;
 `;
 const BottomTextBox = styled.section`
   text-align: center;
 `;
 const Tips = styled(Body_3)`
   font-weight: 200;
+  letter-spacing: -0.05rem;
 
   color: ${({ theme }) => theme.color.grey_300};
 `;
 const Description = styled(Body_1)`
   margin-top: 0.8rem;
-
   width: 17.2rem;
 
   color: ${({ theme }) => theme.color.grey_400};

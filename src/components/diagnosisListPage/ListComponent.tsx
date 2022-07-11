@@ -18,7 +18,7 @@ const Box = styled.section`
   position: relative;
   height: calc(100% - 2.6rem);
 
-  padding: 1.4rem 1.2rem 1.2rem 1.2rem;
+  padding: 1.4rem 1.2rem 1.2rem 1.4rem;
 `;
 const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};

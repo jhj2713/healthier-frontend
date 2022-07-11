@@ -32,7 +32,7 @@ const Tag = styled.section<{ num: number }>`
   font-weight: 300;
 `;
 const CauseDetailBox = styled.section`
-  margin: 1.2rem 1.9rem 1.4rem 1.9rem;
+  margin: 1.2rem 1.8rem 1.4rem 1.8rem;
 
   text-align: center;
 

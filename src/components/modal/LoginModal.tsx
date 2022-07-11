@@ -46,14 +46,20 @@ const Contents = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  height: 100%;
+  width: 100%;
 `;
-const NoteImage = styled.img`
-  transform: rotate(-10deg);
-
-  width: 16.6rem;
-  height: 18.1rem;
-
-  margin-top: 2.2rem;
+const NoteImage = styled.section`
+  height: 21.7rem;
+  width: 26rem;
+  margin-top: 1.6rem;
+`;
+const Image = styled.section`
+  height: 100%;
+  width: 100%;
+  background: ${({ theme }) => theme.color.grey_900};
+  opacity: 0.5;
 `;
 const BottomButtons = styled.section`
   position: absolute;
@@ -86,7 +92,9 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
             <br />
             <Highlight>나의 진단 기록장</Highlight>을 이용할 수 있어요
           </Title>
-          <NoteImage alt="note" src="/images/note.png" />
+          <NoteImage>
+            <Image></Image>
+          </NoteImage>
         </Contents>
         <BottomButtons>
           <LoginButton

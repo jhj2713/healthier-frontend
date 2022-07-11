@@ -18,6 +18,9 @@ const Title = styled(Heading_3)`
   margin-top: 4rem;
   margin-left: 2.4rem;
 `;
+const Strong = styled.span`
+  font-weight: 500;
+`;
 const Buttons = styled.section`
   position: fixed;
   bottom: 0;
@@ -32,18 +35,18 @@ const ButtonBox = styled.section`
     margin-top: 1.2rem;
   }
 `;
-const Strong = styled.span`
-  font-weight: 500;
+const MainImage = styled.section`
+  height: calc(100% - 15.3rem - 17.6rem);
+  margin: 2rem 5rem 0 5rem;
 `;
-const MainImage = styled.section``;
-const StethoscopeImage = styled.img`
-  height: 29.5rem;
-  width: 22.2rem;
-
-  margin-bottom: 1.4rem;
+const Image = styled.section`
+  height: 100%;
+  background: ${({ theme }) => theme.color.blue};
+  opacity: 0.5;
 `;
 const GuideText = styled.section`
-  text-align: center;
+  margin-top: 0.8rem;
+  margin-left: 2.5rem;
 
   font-size: 1.3rem;
   font-weight: 200;
@@ -66,17 +69,16 @@ const MainPage = () => {
       <Container>
         <Title>
           <Strong>빠른 진단</Strong>으로
-          <br />내 몸의 <Strong>정확한 증상</Strong>을
           <br />
-          알아보세요!
+          <Strong>정확한 증상</Strong>을 알아보세요!
         </Title>
-        <MainImage>
-          <StethoscopeImage alt="stethoscope" src="/images/stethoscope.png" />
-        </MainImage>
         <GuideText>
           현재 <Highlight>두통</Highlight>과 <Highlight>수면장애</Highlight>{" "}
           진단이 가능해요!
         </GuideText>
+        <MainImage>
+          <Image></Image>
+        </MainImage>
         <Buttons>
           <ButtonBox onClick={() => navigate("/info")}>
             <RoundButton

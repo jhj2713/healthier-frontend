@@ -10,7 +10,7 @@ const Contents = styled.section`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 4.6rem;
+  margin-top: 4.7rem;
   padding-bottom: 12rem;
 `;
 const SeverityText = styled(Body_2)`
