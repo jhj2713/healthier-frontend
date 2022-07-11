@@ -1,8 +1,12 @@
 import { Dispatch } from "react";
 
-export interface IBottomBar {
+export interface IBottomNumber {
   curIndex: number;
   totalCount: number;
+}
+
+export interface IBottomBar extends IBottomNumber {
+  setModal: Dispatch<boolean>;
 }
 
 export interface ICoverPageProps {

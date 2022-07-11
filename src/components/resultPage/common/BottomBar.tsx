@@ -29,13 +29,13 @@ const BottomButton = styled.section`
   bottom: 3rem;
 `;
 
-const BottomBar = ({ curIndex, totalCount }: IBottomBar) => {
+const BottomBar = ({ curIndex, totalCount, setModal }: IBottomBar) => {
   return (
     <BottomContainer>
       {curIndex !== totalCount ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
-        <BottomButton>
+        <BottomButton onClick={() => setModal(true)}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.blue}

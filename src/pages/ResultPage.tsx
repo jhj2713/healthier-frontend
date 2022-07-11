@@ -8,6 +8,8 @@ import TreatmentPage from "../components/resultPage/treatmentPage/TreatmentPage"
 import BottomBar from "../components/resultPage/common/BottomBar";
 import ResultHeader from "../components/header/ResultHeader";
 import diagnosis_result from "../store/diagnosis_result.json";
+import ModalContainer from "../components/modal/ModalContainer";
+import ResultModal from "../components/modal/ResultModal";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -32,6 +34,8 @@ const ResultPage = () => {
   const medicineData = diagnosis_result.diagnostic_result.medicines;
   const treatData = diagnosis_result.diagnostic_result.treatments;
 
+  const [modal, setModal] = useState(false);
+
   useEffect(() => {
     console.log(state);
   }, [state]);
@@ -46,7 +50,7 @@ const ResultPage = () => {
   return (
     <>
       <ResultHeader isCover={curIndex === 1} />
-      <Swiper onActiveIndexChange={handleIndexChange}>
+      <Swiper onActiveIndexChange={handleIndexChange} autoHeight={true}>
         <SwiperSlide>
           <CoverPage coverData={coverData} />
         </SwiperSlide>
@@ -63,7 +67,12 @@ const ResultPage = () => {
           <TreatmentPage treatData={treatData} />
         </SwiperSlide>
       </Swiper>
-      <BottomBar curIndex={curIndex} totalCount={5} />
+      {modal && (
+        <ModalContainer setModal={setModal}>
+          <ResultModal setModal={setModal} />
+        </ModalContainer>
+      )}
+      <BottomBar curIndex={curIndex} totalCount={5} setModal={setModal} />
     </>
   );
 };

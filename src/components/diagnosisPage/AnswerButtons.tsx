@@ -10,8 +10,6 @@ const AnswersContainer = styled.section<{ ansCount: number }>`
     ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
 const ButtonBox = styled.section`
-  width: calc(100% - 4rem);
-
   & + & {
     margin-top: 1.2rem;
   }
@@ -31,7 +29,7 @@ const Button = styled(Body_1)<{ selected: boolean }>`
 
   border: ${({ selected, theme }) =>
     selected ? "none" : "0.1rem solid " + theme.color.grey_650};
-  border-radius: 3rem;
+  border-radius: 9rem;
   box-sizing: border-box;
 
   font-weight: 200;

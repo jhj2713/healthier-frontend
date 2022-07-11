@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { IModal } from "../../interfaces/component";
 
 const Wrapper = styled.section`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
 
@@ -18,6 +18,21 @@ const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
 `;
+const Container = styled.section`
+  position: relative;
+
+  width: calc(100vw - 4rem);
+  height: 48.2rem;
+
+  border-radius: 0.8rem;
+
+  background: radial-gradient(
+      181.28% 184.02% at -58.92% 120.58%,
+      rgba(210, 250, 100, 0.9) 0%,
+      rgba(84, 100, 243, 0) 100%
+    ),
+    #5464f2;
+`;
 
 const ModalContainer = ({ children, setModal }: IModal) => {
   const wrapperRef = useRef(null);
@@ -30,7 +45,7 @@ const ModalContainer = ({ children, setModal }: IModal) => {
 
   return (
     <Wrapper ref={wrapperRef} onClick={handleModalClose}>
-      {children}
+      <Container>{children}</Container>
     </Wrapper>
   );
 };

@@ -3,7 +3,9 @@ import { ICoverPageProps } from "../../../interfaces/resultPage";
 import { Body_2, Body_4, Heading_1 } from "../../../lib/fontStyle";
 import SeverityBar from "./SeverityBar";
 
-const Container = styled.section``;
+const Container = styled.section`
+  padding-bottom: 12rem;
+`;
 const CoverImage = styled.section``;
 const Contents = styled.section`
   display: flex;
@@ -11,7 +13,6 @@ const Contents = styled.section`
   align-items: center;
 
   margin-top: 4.7rem;
-  padding-bottom: 12rem;
 `;
 const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
