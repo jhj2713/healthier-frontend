@@ -163,8 +163,14 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               setMenu(2);
             }}
           >
-            여긴 어디
+            뒷머리
           </PartButton>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
           <div></div>
           <PartButton
             toggle={menu === 3}
@@ -172,7 +178,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               setMenu(3);
             }}
           >
-            나는 누구
+            뒷목
           </PartButton>
         </PartDiv>
       ) : (
