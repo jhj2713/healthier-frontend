@@ -2,27 +2,25 @@ import styled from "styled-components";
 import { IAnswerButtonProps } from "../../interfaces/diagnosisPage";
 import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
+import { Body_1 } from "../../lib/fontStyle";
 
 const Container = styled.section``;
 const AnswersContainer = styled.section<{ ansCount: number }>`
   margin-top: ${({ ansCount }) =>
-    ansCount === 4 ? 6.6 : ansCount === 2 ? 13 : 0}rem;
+    ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
 const ButtonBox = styled.section`
-  width: calc(100% - 4rem);
-
   & + & {
     margin-top: 1.2rem;
   }
 `;
-const Button = styled.section<{ selected: boolean }>`
+const Button = styled(Body_1)<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: calc(100vw - 4rem);
-  height: 5.2rem;
-  padding: 0.2rem 2.3rem;
+  padding: 1.4rem 2.3rem;
 
   background-color: ${({ selected, theme }) =>
     selected ? theme.color.sub_blue : "transparent"};
@@ -31,12 +29,10 @@ const Button = styled.section<{ selected: boolean }>`
 
   border: ${({ selected, theme }) =>
     selected ? "none" : "0.1rem solid " + theme.color.grey_650};
-  border-radius: 3rem;
+  border-radius: 9rem;
   box-sizing: border-box;
 
-  font-size: 1.6rem;
   font-weight: 200;
-  line-height: 150%;
   text-align: center;
 `;
 const NextButton = styled.section`
@@ -57,7 +53,7 @@ const AnswerButtons = ({
 }: IAnswerButtonProps) => {
   const handleSelect = (idx: number) => {
     let filtered = selectedAnswer.filter(
-      (ans) => ans.a_id !== answers[idx].a_id
+      (ans) => ans.answer_id !== answers[idx].answer_id
     );
     if (filtered.length !== selectedAnswer.length) {
       setSelectedAnswer(filtered);
@@ -73,7 +69,7 @@ const AnswerButtons = ({
     }
   };
   const handleActive = (id: number): boolean => {
-    let idx = selectedAnswer.findIndex((ans) => ans.a_id === id);
+    let idx = selectedAnswer.findIndex((ans) => ans.answer_id === id);
     if (idx !== -1) return true;
     return false;
   };
@@ -83,7 +79,7 @@ const AnswerButtons = ({
       <AnswersContainer ansCount={answers.length}>
         {answers.map((ans, idx) => (
           <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
-            <Button selected={handleActive(ans.a_id)}>{ans.answer}</Button>
+            <Button selected={handleActive(ans.answer_id)}>{ans.answer}</Button>
           </ButtonBox>
         ))}
       </AnswersContainer>

@@ -4,7 +4,7 @@ import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
 
-const BottomContainer = styled.section<{ curIndex: number }>`
+const BottomContainer = styled.section`
   z-index: 5;
 
   position: fixed;
@@ -14,9 +14,12 @@ const BottomContainer = styled.section<{ curIndex: number }>`
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: ${({ curIndex }) =>
-    curIndex !== 1 &&
-    "linear-gradient(180deg,rgba(19, 20, 22, 0) 0%,rgba(19, 20, 22, 0.947917) 78.12%,#131416 100%)"};
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 `;
 const BottomButton = styled.section`
   z-index: 5;
@@ -26,13 +29,29 @@ const BottomButton = styled.section`
   bottom: 3rem;
 `;
 
-const BottomBar = ({ curIndex, totalCount }: IBottomBar) => {
+const BottomBar = ({
+  curIndex,
+  totalCount,
+  setModal,
+  setLoading,
+  isSaved,
+}: IBottomBar) => {
+  const handleSave = () => {
+    // 로그인되지 않은 경우
+    setModal(true);
+
+    // 로그인되어있는 경우
+    // setLoading(true);
+    // 저장 api 호출
+    // 시간 지나면 navigate("/");
+  };
+
   return (
-    <BottomContainer curIndex={curIndex}>
-      {curIndex !== totalCount ? (
+    <BottomContainer>
+      {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
-        <BottomButton>
+        <BottomButton onClick={handleSave}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.blue}

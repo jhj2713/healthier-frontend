@@ -2,25 +2,39 @@ import { Routes, Route } from "react-router-dom";
 import Information from "./pages/Information";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
-import styled from "styled-components";
 import Diagnosis from "./pages/Diagnosis";
 import DiagnosisList from "./pages/DiagnosisList";
 import SymptomPage from "./pages/SymptomPage";
-
-const Container = styled.section``;
+import Loading from "./pages/Loading";
+import { useEffect } from "react";
 
 function App() {
+  const handleResize = () => {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  };
+
+  useEffect(() => {
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  });
+
   return (
-    <Container>
+    <section>
       <Routes>
+        {/* / route는 로그인되어있는 경우 List, 되어있지 않은 경우 Main */}
         <Route path="/" element={<MainPage />} />
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
         <Route path="/diagnosisList" element={<DiagnosisList />} />
         <Route path="/symptom" element={<SymptomPage />} />
+        <Route path="/loading" element={<Loading />} />
       </Routes>
-    </Container>
+    </section>
   );
 }
 

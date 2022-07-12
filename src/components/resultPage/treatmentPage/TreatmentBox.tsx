@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { ITreatBoxProps } from "../../../interfaces/resultPage";
+import { Heading_5 } from "../../../lib/fontStyle";
 import Description from "../common/Description";
 
 const Container = styled.section`
@@ -12,9 +13,7 @@ const Container = styled.section`
     margin-top: 1rem;
   }
 `;
-const Title = styled.section`
-  font-size: 1.8rem;
-  font-weight: 300;
+const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-bottom: 0.6rem;

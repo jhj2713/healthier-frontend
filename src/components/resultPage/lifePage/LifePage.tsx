@@ -7,7 +7,6 @@ const Container = styled.section`
   padding-top: 9.6rem;
   padding-bottom: 12rem;
 `;
-const Contents = styled.section``;
 const TitleBox = styled.section`
   margin: 2rem 2.4rem;
 
@@ -17,20 +16,18 @@ const TitleBox = styled.section`
 const LifePage = ({ lifestyle }: { lifestyle: ILifeProps[] }) => {
   return (
     <Container>
-      <Contents>
-        <TitleBox>
-          <Title text={"생활습관으로\n증상을 개선해보아요"} />
-        </TitleBox>
-        {lifestyle.map((life, idx) => (
-          <LifeComponent
-            key={idx}
-            idx={idx}
-            icon={life.emoji}
-            title={life.title}
-            content={life.detail}
-          />
-        ))}
-      </Contents>
+      <TitleBox>
+        <Title text={"생활습관으로\n증상을 개선해보아요"} />
+      </TitleBox>
+      {lifestyle.map((life, idx) => (
+        <LifeComponent
+          key={idx}
+          idx={idx}
+          icon={life.emoji}
+          title={life.title}
+          content={life.detail}
+        />
+      ))}
     </Container>
   );
 };

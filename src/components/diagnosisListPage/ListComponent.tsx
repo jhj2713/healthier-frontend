@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IListComponent } from "../../interfaces/component";
+import { Heading_5 } from "../../lib/fontStyle";
+import axios from "axios";
 
 const Container = styled.section<{ photo: string }>`
   height: 16rem;
@@ -17,13 +19,9 @@ const Box = styled.section`
   position: relative;
   height: calc(100% - 2.6rem);
 
-  padding: 1.4rem 1.2rem 1.2rem 1.2rem;
+  padding: 1.4rem 1.2rem 1.2rem 1.4rem;
 `;
-const Title = styled.section`
-  font-size: 1.8rem;
-  font-weight: 300;
-  line-height: 140%;
-
+const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
 `;
 const Date = styled.section`
@@ -63,8 +61,17 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
     diagnosis.date.split("/")[1].padStart(2, "0") +
     "일";
 
+  const handleNavigate = () => {
+    /* axios
+      .get(
+        `http://localhost:3000/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
+      )
+      .then(); */
+    navigate("/result");
+  };
+
   return (
-    <Container photo={diagnosis.photo} onClick={() => navigate("/result")}>
+    <Container photo={diagnosis.photo} onClick={handleNavigate}>
       <Box>
         <Title>
           일주기 리듬 <br />

@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
 import styled from "styled-components";
+import { IResultModal } from "../../interfaces/component";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 
 const Container = styled.section`
@@ -15,16 +15,16 @@ const QuitImage = styled.section`
   margin-top: 1.4rem;
   margin-right: 1.4rem;
 `;
-const Highlight = styled.span`
-  font-weight: 500;
+const Description = styled(Body_4)`
+  color: ${({ theme }) => theme.color.grey_200};
 
-  color: ${({ theme }) => theme.color.green};
+  margin-top: 1.2rem;
 `;
 const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
   text-align: center;
 
-  margin-top: 2.4rem;
+  margin-top: 0.4rem;
 `;
 const Contents = styled.section`
   display: flex;
@@ -47,7 +47,7 @@ const Image = styled.section`
 `;
 const BottomButtons = styled.section`
   position: absolute;
-  bottom: 2.4rem;
+  bottom: 2.2rem;
 
   width: 100%;
   display: flex;
@@ -63,11 +63,13 @@ const LoginButton = styled.img`
   width: calc(100vw - 6.8rem);
 `;
 
-const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
+const ResultModal = ({ setModal, setLoading }: IResultModal) => {
   const handleLogin = () => {
     console.log("로그인");
-    // 로그인 api 호출
     // setModal(false);
+    // setLoading(true);
+    // 로그인 api 호출 후 저장 api 호출
+    // 시간 지나면 navigate("/");
   };
 
   return (
@@ -76,10 +78,11 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
       </QuitImage>
       <Contents>
+        <Description>해당 진단결과를 다시 보고 싶나요?</Description>
         <Title>
-          로그인을 하면
+          진단기록은 로그인 후
           <br />
-          <Highlight>나의 진단 기록장</Highlight>을 이용할 수 있어요
+          홈화면에서 볼 수 있어요
         </Title>
         <NoteImage>
           <Image></Image>
@@ -93,11 +96,11 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           />
         </section>
         <Continue onClick={() => setModal(false)}>
-          괜찮아요, 비회원으로 이용할게요
+          괜찮아요, 다음에 할게요
         </Continue>
       </BottomButtons>
     </Container>
   );
 };
 
-export default LoginModal;
+export default ResultModal;

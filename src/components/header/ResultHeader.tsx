@@ -55,7 +55,12 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
         <BackButton />
         <Title isCover={isCover}>진단결과</Title>
         <QuitButton onClick={() => navigate("/")}>
-          <img alt="quit" src="/images/header/quit.svg" />
+          <img
+            alt="quit"
+            src="/images/header/quit.svg"
+            width={32}
+            height={32}
+          />
         </QuitButton>
       </Container>
     </HeaderContainer>

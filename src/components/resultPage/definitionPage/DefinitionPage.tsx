@@ -6,10 +6,10 @@ import { IDefinePageProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
+  padding-bottom: 12rem;
 `;
 const Contents = styled.section`
   margin: 2rem 2.4rem 0 2.4rem;
-  padding-bottom: 12rem;
   width: calc(100vw - 4.8rem);
 `;
 const DescriptionBox = styled.section<{ top: number; bottom: number }>`

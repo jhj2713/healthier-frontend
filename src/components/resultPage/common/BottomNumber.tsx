@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IBottomBar } from "../../../interfaces/resultPage";
+import { IBottomNumber } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   display: flex;
@@ -28,7 +28,7 @@ const Number = styled.section<{ curNum: number; num: number }>`
   }
 `;
 
-const BottomNumber = ({ curIndex, totalCount }: IBottomBar) => {
+const BottomNumber = ({ curIndex, totalCount }: IBottomNumber) => {
   const number = Array.from(Array(totalCount).keys()).map((y) => y + 1);
 
   return (

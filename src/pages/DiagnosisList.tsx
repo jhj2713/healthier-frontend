@@ -1,9 +1,14 @@
+import { useState } from "react";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
 import MainHeader from "../components/header/MainHeader";
 import ListComponent from "../components/diagnosisListPage/ListComponent";
 import theme from "../lib/theme";
 import { useNavigate } from "react-router-dom";
+import { Description, Heading_3 } from "../lib/fontStyle";
+import { useEffect } from "react";
+import axios from "axios";
+import { IDiagnosisList } from "../interfaces/component";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -24,21 +29,13 @@ const ButtonBox = styled.section`
     #131416 100%
   );
 `;
-const Title = styled.section`
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 150%;
-
+const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin: 4rem 2.4rem 0 2.4rem;
 `;
-const Description = styled.section`
+const DescriptionBox = styled(Description)`
   text-align: end;
-
-  font-size: 1.2rem;
-  font-weight: 100;
-  line-height: 150%;
 
   color: ${({ theme }) => theme.color.grey_500};
 
@@ -53,29 +50,33 @@ const List = styled.section`
   margin: 0 2.4rem 10rem 2.4rem;
 `;
 
-const list = [
-  {
-    result_log_id: 1,
-    name: "일주기 리듬 수면 장애",
-    date: "6/25",
-    photo: "/images/list_component.png",
-  },
-  {
-    result_log_id: 2,
-    name: "일주기 리듬 수면 장애",
-    date: "6/27",
-    photo: "/images/list_component.png",
-  },
-  {
-    result_log_id: 3,
-    name: "일주기 리듬 수면 장애",
-    date: "7/5",
-    photo: "/images/list_component.png",
-  },
-];
-
 const DiagnosisList = () => {
   const navigate = useNavigate();
+  const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
+
+  useEffect(() => {
+    // axios.get("http://localhost:3000/api/diagnosis/sleepdisorder/list").then();
+    setDiagnosisList([
+      {
+        result_log_id: "1",
+        name: "일주기 리듬 수면 장애",
+        date: "6/25",
+        photo: "/images/list_component.png",
+      },
+      {
+        result_log_id: "2",
+        name: "일주기 리듬 수면 장애",
+        date: "6/27",
+        photo: "/images/list_component.png",
+      },
+      {
+        result_log_id: "3",
+        name: "일주기 리듬 수면 장애",
+        date: "7/5",
+        photo: "/images/list_component.png",
+      },
+    ]);
+  }, []);
 
   return (
     <Container>
@@ -84,12 +85,12 @@ const DiagnosisList = () => {
         <Highlight type="title">홍길동님</Highlight>이 저장한
         <br /> 진단 내역이에요
       </Title>
-      <Description>
+      <DescriptionBox>
         <Highlight type="description">3개</Highlight>의 진단내역
-      </Description>
+      </DescriptionBox>
       <List>
-        {list.map((diag, idx) => (
-          <ListComponent key={idx} diagnosis={diag} />
+        {diagnosisList.map((diag) => (
+          <ListComponent key={diag.result_log_id} diagnosis={diag} />
         ))}
       </List>
       <ButtonBox>

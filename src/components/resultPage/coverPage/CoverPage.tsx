@@ -1,41 +1,30 @@
 import styled from "styled-components";
 import { ICoverPageProps } from "../../../interfaces/resultPage";
+import { Body_2, Body_4, Heading_1 } from "../../../lib/fontStyle";
 import SeverityBar from "./SeverityBar";
 
-const Container = styled.section``;
+const Container = styled.section`
+  padding-bottom: 12rem;
+`;
 const CoverImage = styled.section``;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-top: 4.6rem;
-  padding-bottom: 12rem;
+  margin-top: 4.7rem;
 `;
-const SeverityText = styled.section`
-  font-size: 1.5rem;
-  line-height: 150%;
-  font-weight: 100;
-
+const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
 
   margin-bottom: 1rem;
 `;
-const Title = styled.section`
-  font-size: 2.8rem;
-  line-height: 140%;
-
+const Title = styled(Heading_1)`
   color: ${({ theme }) => theme.color.grey_100};
-
-  font-weight: 300;
 
   margin-bottom: 1.6rem;
 `;
-const Description = styled.section`
-  font-size: 1.3rem;
-  line-height: 150%;
-  font-weight: 100;
-
+const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
   text-align: center;
@@ -57,7 +46,7 @@ const CoverPage = ({
         <SeverityText>{highlight}</SeverityText>
         <Title>{title}</Title>
         <Description>{description}</Description>
-        <SeverityBar severity={(severity - 1) * 50} />
+        <SeverityBar severity={severity} />
       </Contents>
     </Container>
   );

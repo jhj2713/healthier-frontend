@@ -1,15 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { IYearPickerProps } from "../../interfaces/informationPage";
+import { Body_4 } from "../../lib/fontStyle";
 
 const Container = styled.section`
   margin-top: 4.6rem;
 `;
-const Title = styled.section`
+const Title = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_300};
-  font-size: 1.3rem;
-  font-weight: 100;
-  line-height: 150%;
 
   margin-bottom: 0.8rem;
 `;
@@ -29,6 +27,7 @@ const SelectBox = styled.select<{ year: number }>`
   appearance: none;
 
   font-size: 1.3rem;
+  font-weight: 100;
   line-height: 150%;
 
   background-image: url("/images/informationPage/dropdown.svg");
@@ -37,6 +36,10 @@ const SelectBox = styled.select<{ year: number }>`
 
   :focus {
     border: 0.1rem solid ${({ theme }) => theme.color.blue};
+
+    background-image: url("/images/informationPage/dropdown.svg");
+    background-position: right 1.6rem center;
+    background-repeat: no-repeat;
   }
 `;
 

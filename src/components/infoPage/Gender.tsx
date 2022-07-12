@@ -2,6 +2,7 @@ import styled from "styled-components";
 import RectButton from "../buttons/RectButton";
 import theme from "../../lib/theme";
 import { IGenderProps } from "../../interfaces/informationPage";
+import { Body_4 } from "../../lib/fontStyle";
 
 const Container = styled.section`
   margin-top: 3.2rem;
@@ -11,19 +12,14 @@ const GenderContainer = styled.section`
 
   font-size: 1.3rem;
 `;
-const Title = styled.section`
+const Title = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_300};
-  font-size: 1.3rem;
-  font-weight: 100;
-  line-height: 150%;
 
   margin-bottom: 0.8rem;
 `;
-const GenderButton = styled.section`
+const GenderButton = styled(Body_4)`
   width: calc(100vw - 5.8rem);
-
   font-weight: 200;
-  font-size: 1.4rem;
 
   cursor: pointer;
 
