@@ -5,7 +5,7 @@ import MainHeader from "../components/header/MainHeader";
 import ListComponent from "../components/diagnosisListPage/ListComponent";
 import theme from "../lib/theme";
 import { useNavigate } from "react-router-dom";
-import { Description, Heading_3 } from "../lib/fontStyle";
+import { Body_2, Description, Heading_3 } from "../lib/fontStyle";
 import { useEffect } from "react";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
@@ -49,6 +49,13 @@ const Highlight = styled.span<{ type: string }>`
 const List = styled.section`
   margin: 0 2.4rem 10rem 2.4rem;
 `;
+const EmptyContainer = styled.section`
+  padding-top: 12.5rem;
+`;
+const EmptyText = styled(Body_2)`
+  text-align: center;
+  color: ${({ theme }) => theme.color.grey_400};
+`;
 
 const DiagnosisList = () => {
   const navigate = useNavigate();
@@ -81,18 +88,34 @@ const DiagnosisList = () => {
   return (
     <Container>
       <MainHeader />
-      <Title>
-        <Highlight type="title">홍길동님</Highlight>이 저장한
-        <br /> 진단 내역이에요
-      </Title>
-      <DescriptionBox>
-        <Highlight type="description">3개</Highlight>의 진단내역
-      </DescriptionBox>
-      <List>
-        {diagnosisList.map((diag) => (
-          <ListComponent key={diag.result_log_id} diagnosis={diag} />
-        ))}
-      </List>
+      {diagnosisList.length === 0 ? (
+        <>
+          <Title>
+            빠른 진단으로
+            <br /> 내 몸의 정확한 증상을
+            <br />
+            알아보세요!
+          </Title>
+          <EmptyContainer>
+            <EmptyText>진단 내역이 없어요</EmptyText>
+          </EmptyContainer>
+        </>
+      ) : (
+        <>
+          <Title>
+            <Highlight type="title">홍길동님</Highlight>이 저장한
+            <br /> 진단 내역이에요
+          </Title>
+          <DescriptionBox>
+            <Highlight type="description">3개</Highlight>의 진단내역
+          </DescriptionBox>
+          <List>
+            {diagnosisList.map((diag) => (
+              <ListComponent key={diag.result_log_id} diagnosis={diag} />
+            ))}
+          </List>
+        </>
+      )}
       <ButtonBox>
         <section onClick={() => navigate("/diagnosis")}>
           <RoundButton
