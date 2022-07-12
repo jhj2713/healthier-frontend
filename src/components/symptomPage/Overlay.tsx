@@ -45,10 +45,12 @@ const PartAnimation = keyframes`
   }
 `;
 
+// 화면 조정 시 3D 모형과 인터페이스가 조절이 불일치하는 문제가 존재
+
 const PartDiv = styled.div`
   height: 45vh;
-  width: 100vw;
-  max-width: 60rem;
+  width: 45vh;
+  padding-top: calc(1vmax + 1vh);
 
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
