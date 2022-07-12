@@ -26,6 +26,11 @@ export interface IModal {
   setModal: Dispatch<boolean>;
 }
 
+export interface IResultModal {
+  setModal: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
+}
+
 export interface IDiagnosisList {
   result_log_id: string;
   name: string;

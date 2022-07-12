@@ -25,6 +25,7 @@ function App() {
   return (
     <section>
       <Routes>
+        {/* / route는 로그인되어있는 경우 List, 되어있지 않은 경우 Main */}
         <Route path="/" element={<MainPage />} />
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />

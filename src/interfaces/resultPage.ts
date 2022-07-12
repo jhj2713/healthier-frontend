@@ -7,6 +7,8 @@ export interface IBottomNumber {
 
 export interface IBottomBar extends IBottomNumber {
   setModal: Dispatch<boolean>;
+  setLoading: Dispatch<boolean>;
+  isSaved: boolean;
 }
 
 export interface ICoverPageProps {

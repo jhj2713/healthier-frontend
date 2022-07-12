@@ -10,6 +10,7 @@ import ResultHeader from "../components/header/ResultHeader";
 import diagnosis_result from "../store/diagnosis_result.json";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
+import Loading from "./Loading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -34,10 +35,15 @@ const ResultPage = () => {
   const medicineData = diagnosis_result.diagnostic_result.medicines;
   const treatData = diagnosis_result.diagnostic_result.treatments;
 
+  const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
     console.log(state);
+    if (!diagnosis_result.is_result) {
+      setIsSaved(true);
+    }
   }, [state]);
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -51,30 +57,42 @@ const ResultPage = () => {
 
   return (
     <>
-      <ResultHeader isCover={curIndex === 1} />
-      <Swiper onActiveIndexChange={handleIndexChange} autoHeight={true}>
-        <SwiperSlide>
-          <CoverPage coverData={coverData} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <DefinitionPage defineData={defineData} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <LifePage lifestyle={lifeData} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <MedicinePage medicine={medicineData} />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TreatmentPage treatData={treatData} />
-        </SwiperSlide>
-      </Swiper>
-      {modal && (
-        <ModalContainer setModal={setModal}>
-          <ResultModal setModal={setModal} />
-        </ModalContainer>
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <ResultHeader isCover={curIndex === 1} />
+          <Swiper onActiveIndexChange={handleIndexChange} autoHeight={true}>
+            <SwiperSlide>
+              <CoverPage coverData={coverData} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <DefinitionPage defineData={defineData} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <LifePage lifestyle={lifeData} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <MedicinePage medicine={medicineData} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <TreatmentPage treatData={treatData} />
+            </SwiperSlide>
+          </Swiper>
+          {modal && (
+            <ModalContainer setModal={setModal}>
+              <ResultModal setModal={setModal} setLoading={setLoading} />
+            </ModalContainer>
+          )}
+          <BottomBar
+            curIndex={curIndex}
+            totalCount={5}
+            setModal={setModal}
+            setLoading={setLoading}
+            isSaved={isSaved}
+          />
+        </>
       )}
-      <BottomBar curIndex={curIndex} totalCount={5} setModal={setModal} />
     </>
   );
 };

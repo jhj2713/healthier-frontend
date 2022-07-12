@@ -90,7 +90,6 @@ const MainPage = () => {
           </ButtonBox>
           <ButtonBox
             onClick={() => {
-              //navigate("/result", { state: { title: "일주기 리듬 수면 장애" } })
               setModal(true);
             }}
           >

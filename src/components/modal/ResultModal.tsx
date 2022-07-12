@@ -1,5 +1,5 @@
-import { Dispatch } from "react";
 import styled from "styled-components";
+import { IResultModal } from "../../interfaces/component";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 
 const Container = styled.section`
@@ -63,10 +63,13 @@ const LoginButton = styled.img`
   width: calc(100vw - 6.8rem);
 `;
 
-const ResultModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
+const ResultModal = ({ setModal, setLoading }: IResultModal) => {
   const handleLogin = () => {
     console.log("로그인");
-    // 로그인 api 호출
+    // setModal(false);
+    // setLoading(true);
+    // 로그인 api 호출 후 저장 api 호출
+    // 시간 지나면 navigate("/");
   };
 
   return (

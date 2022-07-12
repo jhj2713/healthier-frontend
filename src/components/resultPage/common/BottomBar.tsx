@@ -29,20 +29,26 @@ const BottomButton = styled.section`
   bottom: 3rem;
 `;
 
-const BottomBar = ({ curIndex, totalCount, setModal }: IBottomBar) => {
+const BottomBar = ({
+  curIndex,
+  totalCount,
+  setModal,
+  setLoading,
+  isSaved,
+}: IBottomBar) => {
   const handleSave = () => {
     // 로그인되지 않은 경우
     setModal(true);
-    // 로그인 api 호출 후 저장 api 호출
 
     // 로그인되어있는 경우
+    // setLoading(true);
     // 저장 api 호출
+    // 시간 지나면 navigate("/");
   };
 
   return (
     <BottomContainer>
-      {/* 로그인되어있는 경우도 조건으로 추가 */}
-      {curIndex !== totalCount ? (
+      {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
         <BottomButton onClick={handleSave}>
