@@ -9,6 +9,7 @@ import { useAppDispatch } from "../state";
 import { userSubmit } from "../state/userSlice";
 import { health_interest } from "../store/interest";
 import ContentHeader from "../components/header/ContentHeader";
+import { Heading_3 } from "../lib/fontStyle";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -29,15 +30,10 @@ const ButtonBox = styled.section`
     #131416 100%
   );
 `;
-const Title = styled.section`
-  font-size: 2.2rem;
-
+const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-top: 4rem;
-
-  line-height: 140%;
-  font-weight: 300;
 `;
 const Contents = styled.section`
   margin: 0 2.4rem 15rem 2.4rem;
@@ -74,7 +70,7 @@ const Information = () => {
 
   return (
     <Container>
-      <ContentHeader text="정보 수집" back={true} />
+      <ContentHeader text="정보 수집" />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해

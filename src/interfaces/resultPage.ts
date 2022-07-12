@@ -1,8 +1,12 @@
 import { Dispatch } from "react";
 
-export interface IBottomBar {
+export interface IBottomNumber {
   curIndex: number;
   totalCount: number;
+}
+
+export interface IBottomBar extends IBottomNumber {
+  setModal: Dispatch<boolean>;
 }
 
 export interface ICoverPageProps {
@@ -45,10 +49,10 @@ export interface ILifeComponent {
 }
 
 export interface IMedicine {
+  image: string;
   name: string;
   efficacy: string;
   caution: { h1: string; h2: string; is_colored: string[] };
-  n_sideeffects: number;
   sideeffects: { name: string; emoji: string }[];
 }
 

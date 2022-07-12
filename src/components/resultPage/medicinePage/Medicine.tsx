@@ -1,6 +1,6 @@
-import { Dispatch } from "react";
 import styled from "styled-components";
-import { IMedicine, IMedicineProps } from "../../../interfaces/resultPage";
+import { IMedicineProps } from "../../../interfaces/resultPage";
+import { Description } from "../../../lib/fontStyle";
 
 const Container = styled.section`
   display: flex;
@@ -34,13 +34,9 @@ const MedicineBox = styled.section`
     margin-left: 1.6rem;
   }
 `;
-const MedicineText = styled.section<{ selected: boolean }>`
+const MedicineText = styled(Description)<{ selected: boolean }>`
   color: ${({ theme, selected }) =>
-    selected ? theme.color.grey_200 : theme.color.grey_600};
-
-  font-weight: 100;
-  font-size: 1.2rem;
-  line-height: 150%;
+    selected ? theme.color.grey_300 : theme.color.grey_600};
 
   margin-top: 0.7rem;
 `;

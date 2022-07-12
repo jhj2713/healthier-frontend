@@ -1,11 +1,9 @@
-import React, { Suspense, useState, useMemo, useEffect, useRef } from "react";
+import { Suspense, useState, useMemo, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
-import ContentHeader from "../components/header/ContentHeader";
-import theme from "../lib/theme";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
-import RoundButton from "../components/buttons/RoundButton";
 import Overlay from "../components/symptomPage/Overlay";
+import SymptomHeader from "../components/header/SymptomHeader";
 
 const Container = styled.section`
   width: 100vw;
@@ -64,7 +62,7 @@ const Symptom = () => {
           </Suspense>
         </Canvas>
       </CanvasSection>
-      <ContentHeader text="" back={true} />
+      <SymptomHeader />
       <Overlay menu={menu} setMenu={setMenu} view={view} setView={setView} />
     </Container>
   );

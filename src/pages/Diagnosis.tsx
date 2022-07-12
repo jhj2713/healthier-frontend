@@ -4,6 +4,7 @@ import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
+import { Heading_3 } from "../lib/fontStyle";
 import { first_questions } from "../store/diagnosis";
 import Loading from "./Loading";
 
@@ -15,23 +16,19 @@ const Container = styled.section`
       rgba(52, 62, 135, 0) 100%
     )
     #131416;
-
   display: flex;
   flex-direction: column;
   align-items: center;
 
   padding-top: 9.6rem;
 `;
-const Question = styled.section`
-  font-size: 2.2rem;
-  font-weight: 300;
-  line-height: 140%;
+const Question = styled(Heading_3)`
   text-align: center;
 
   color: ${({ theme }) => theme.color.grey_200};
 
-  width: 26rem;
   margin-top: 7rem;
+  padding: 0 5rem;
 `;
 
 const Diagnosis = () => {
@@ -79,7 +76,7 @@ const Diagnosis = () => {
         <Loading />
       ) : (
         <>
-          <ContentHeader text="자가 진단" back={false} />
+          <ContentHeader text="자가 진단" />
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons

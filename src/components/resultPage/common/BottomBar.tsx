@@ -4,7 +4,7 @@ import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
 
-const BottomContainer = styled.section<{ curIndex: number }>`
+const BottomContainer = styled.section`
   z-index: 5;
 
   position: fixed;
@@ -14,9 +14,12 @@ const BottomContainer = styled.section<{ curIndex: number }>`
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: ${({ curIndex }) =>
-    curIndex !== 1 &&
-    "linear-gradient(180deg,rgba(19, 20, 22, 0) 0%,rgba(19, 20, 22, 0.947917) 78.12%,#131416 100%)"};
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 `;
 const BottomButton = styled.section`
   z-index: 5;
@@ -26,13 +29,13 @@ const BottomButton = styled.section`
   bottom: 3rem;
 `;
 
-const BottomBar = ({ curIndex, totalCount }: IBottomBar) => {
+const BottomBar = ({ curIndex, totalCount, setModal }: IBottomBar) => {
   return (
-    <BottomContainer curIndex={curIndex}>
+    <BottomContainer>
       {curIndex !== totalCount ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
-        <BottomButton>
+        <BottomButton onClick={() => setModal(true)}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.blue}

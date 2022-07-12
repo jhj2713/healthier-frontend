@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { IMedicineDetail } from "../../../interfaces/resultPage";
+import { Body_2 } from "../../../lib/fontStyle";
 import Description from "../common/Description";
 
 const Container = styled.section``;
@@ -15,12 +16,8 @@ const SubTitle = styled.section`
 
   margin-bottom: 0.2rem;
 `;
-const Highlight = styled.section`
+const Highlight = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
-
-  font-size: 1.5rem;
-  font-weight: 100;
-  line-height: 150%;
 `;
 const Tags = styled.section`
   display: -webkit-flexbox;

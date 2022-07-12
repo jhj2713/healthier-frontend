@@ -8,7 +8,7 @@ const Background = styled.section<{ idx: number }>`
     idx % 2 === 0 ? theme.color.grey_800 : "transparent"};
 `;
 const Icon = styled.section`
-  margin-top: 2.6rem;
+  margin-top: 2.1rem;
   margin-left: 2.4rem;
 
   //width: 2.3rem;
@@ -22,10 +22,9 @@ const Contents = styled.section`
 const Title = styled.section`
   line-height: 150%;
   font-size: 1.6rem;
+  font-weight: 300;
 
   color: ${({ theme }) => theme.color.grey_300};
-
-  font-weight: 300;
 
   margin-bottom: 0.2rem;
 `;

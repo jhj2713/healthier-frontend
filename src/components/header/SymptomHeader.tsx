@@ -1,7 +1,20 @@
 import styled from "styled-components";
-import HeaderContainer from "./HeaderContainer";
 import { useNavigate } from "react-router-dom";
 
+const Wrapper = styled.header`
+  position: fixed;
+  width: 100vw;
+  top: 0;
+
+  height: 9.6rem;
+  letter-spacing: 0.015rem;
+
+  border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
+
+  background-color: transparent;
+
+  z-index: 3;
+`;
 const Container = styled.section`
   color: ${({ theme }) => theme.color.grey_200};
   height: inherit;
@@ -12,16 +25,7 @@ const Container = styled.section`
 
   position: relative;
 `;
-const Title = styled.section`
-  font-size: 1.6rem;
-  font-weight: 200;
-
-  margin-bottom: 1.6rem;
-`;
 const BackButton = styled.section`
-  width: 3.2rem;
-  height: 3.2rem;
-
   margin-left: 1.5rem;
   margin-bottom: 0.9rem;
 `;
@@ -30,14 +34,21 @@ const QuitButton = styled.section`
   margin-right: 1.5rem;
 `;
 
-const ContentHeader = ({ text }: { text: string }) => {
+const SymptomHeader = () => {
   const navigate = useNavigate();
 
   return (
-    <HeaderContainer>
+    <Wrapper>
       <Container>
-        <BackButton />
-        <Title>{text}</Title>
+        <BackButton onClick={() => navigate(-1)}>
+          <img
+            alt="back"
+            src="/images/header/back.svg"
+            width={32}
+            height={32}
+          />
+        </BackButton>
+        <section></section>
         <QuitButton onClick={() => navigate("/")}>
           <img
             alt="quit"
@@ -47,8 +58,8 @@ const ContentHeader = ({ text }: { text: string }) => {
           />
         </QuitButton>
       </Container>
-    </HeaderContainer>
+    </Wrapper>
   );
 };
 
-export default ContentHeader;
+export default SymptomHeader;

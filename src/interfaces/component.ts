@@ -1,7 +1,4 @@
-export interface IContentHeader {
-  text: string;
-  back: boolean;
-}
+import { Dispatch } from "react";
 
 export interface IButton {
   outline: string;
@@ -22,4 +19,9 @@ export interface IListComponent {
     date: string;
     photo: string;
   };
+}
+
+export interface IModal {
+  children: JSX.Element;
+  setModal: Dispatch<boolean>;
 }
