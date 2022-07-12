@@ -1,10 +1,8 @@
-import React, { Suspense, useState, useMemo, useEffect, useRef } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import ContentHeader from "../components/header/ContentHeader";
-import theme from "../lib/theme";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
-import RoundButton from "../components/buttons/RoundButton";
 import Overlay from "../components/symptomPage/Overlay";
 
 const Container = styled.section`
