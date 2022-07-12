@@ -14,7 +14,7 @@ export interface ITag {
 
 export interface IListComponent {
   diagnosis: {
-    result_log_id: number;
+    result_log_id: string;
     name: string;
     date: string;
     photo: string;
@@ -24,4 +24,11 @@ export interface IListComponent {
 export interface IModal {
   children: JSX.Element;
   setModal: Dispatch<boolean>;
+}
+
+export interface IDiagnosisList {
+  result_log_id: string;
+  name: string;
+  date: string;
+  photo: string;
 }

@@ -10,6 +10,7 @@ import { userSubmit } from "../state/userSlice";
 import { health_interest } from "../store/interest";
 import ContentHeader from "../components/header/ContentHeader";
 import { Heading_3 } from "../lib/fontStyle";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -46,6 +47,7 @@ const Information = () => {
   const [gender, setGender] = useState("");
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleProceed = () => {
     if (active) {
@@ -53,6 +55,7 @@ const Information = () => {
         .filter((item) => item.selected)
         .map((item) => item.id);
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
+      navigate("/symptom");
     }
   };
 

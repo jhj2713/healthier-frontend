@@ -7,9 +7,11 @@ import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { Heading_3 } from "../lib/fontStyle";
 import { first_questions } from "../store/diagnosis";
 import Loading from "./Loading";
+import axios from "axios";
+import { useAppSelector } from "../state";
 
 const Container = styled.section`
-  height: calc(100vh - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,
       rgba(84, 100, 242, 0.9) 0%,
@@ -37,32 +39,90 @@ const Diagnosis = () => {
   const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
+    id: "",
     question: "",
     answers: [],
     is_multiple: false,
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
   const [loading, setLoading] = useState(false);
+  const { gender, birth_year, interests } = useAppSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
-    console.log(state);
-    if (curIndex <= 4) {
+    if (curIndex <= 5) {
       setCurQuestion(first_questions[curIndex]);
       setSelectedAnswer([]);
-    } else if (curIndex === 5) {
-      console.log(sleepScore);
-      setCurIndex(curIndex + 1);
-      setCurQuestion({
-        question: "수면의 문제가 일상생활에 지장을 주나요?",
-        answers: [
-          { a_id: 1, answer: "예" },
-          { a_id: 2, answer: "아니요" },
-        ],
-        is_multiple: true,
-      });
-      setSelectedAnswer([]);
-      setLoading(true);
-      setTimeout(() => setLoading(false), 3000);
+    } else {
+      if (curIndex === 6) {
+        if (selectedAnswer[0].answer_id === 1) {
+          /* axios
+            .post("http://localhost:3000/api/diagnose/sleepdisorder/first", {
+              answer: "y",
+            })
+            .then(); */
+          setCurQuestion({
+            id: "6",
+            question: "수면의 문제가 일상생활에 지장을 주나요?",
+            answers: [
+              { answer_id: 1, answer: "예", is_decisive: 0 },
+              { answer_id: 2, answer: "아니요", is_decisive: 0 },
+            ],
+            is_multiple: true,
+          });
+          setSelectedAnswer([]);
+        } else {
+          const data = {
+            answer: "n",
+            score_b: sleepScore,
+            gender,
+            birth_year,
+            interests,
+          };
+          /* axios
+            .post("http://localhost:3000/api/diagnose/sleepdisorder/first", 
+              data,
+            )
+            .then(); */
+          console.log(data);
+          // setLoading(true);
+          // navigate("/result");
+        }
+      } else {
+        if (selectedAnswer[0].is_decisive === 1) {
+          // 결정적응답 api 호출
+          const data = {
+            question_id: curQuestion.id,
+            answer_id: selectedAnswer,
+            sleep_hygiene_score: sleepScore,
+            gender,
+            birth_year,
+            interests,
+          };
+          /*axios
+            .post(
+              "http://localhost:3000/api/diagnose/sleepdisorder/decisive",
+              data
+            )
+            .then(); */
+          // setLoading(true);
+          // navigate("/result");
+          console.log(data);
+        } else {
+          // 진단응답 api 호출
+          const data = {
+            question_id: curQuestion.id,
+            answer_id: selectedAnswer,
+          };
+          /* axios
+            .post("http://localhost:3000/api/diagnose/sleepdisorder", 
+              data,
+            )
+            .then(); */
+          console.log(data);
+        }
+      }
     }
   }, [curIndex]);
 

@@ -53,7 +53,7 @@ const AnswerButtons = ({
 }: IAnswerButtonProps) => {
   const handleSelect = (idx: number) => {
     let filtered = selectedAnswer.filter(
-      (ans) => ans.a_id !== answers[idx].a_id
+      (ans) => ans.answer_id !== answers[idx].answer_id
     );
     if (filtered.length !== selectedAnswer.length) {
       setSelectedAnswer(filtered);
@@ -69,7 +69,7 @@ const AnswerButtons = ({
     }
   };
   const handleActive = (id: number): boolean => {
-    let idx = selectedAnswer.findIndex((ans) => ans.a_id === id);
+    let idx = selectedAnswer.findIndex((ans) => ans.answer_id === id);
     if (idx !== -1) return true;
     return false;
   };
@@ -79,7 +79,7 @@ const AnswerButtons = ({
       <AnswersContainer ansCount={answers.length}>
         {answers.map((ans, idx) => (
           <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
-            <Button selected={handleActive(ans.a_id)}>{ans.answer}</Button>
+            <Button selected={handleActive(ans.answer_id)}>{ans.answer}</Button>
           </ButtonBox>
         ))}
       </AnswersContainer>
