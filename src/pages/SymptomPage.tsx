@@ -1,5 +1,6 @@
-import { Suspense, useState, useMemo, useEffect, useRef } from "react";
+import React, { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import ContentHeader from "../components/header/ContentHeader";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
 import Overlay from "../components/symptomPage/Overlay";
@@ -58,7 +59,7 @@ const Symptom = () => {
               position={[-100, 100, 100]}
               intensity={0.5}
             />
-            <Character view={view} />
+            <Character view={view} menu={menu} />
           </Suspense>
         </Canvas>
       </CanvasSection>

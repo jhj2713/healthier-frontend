@@ -14,6 +14,13 @@ const OverlaySection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0) 78.12%,
+    #131416 100%
+  );
 `;
 
 const ButtonDiv = styled.div`
@@ -37,10 +44,12 @@ const PartAnimation = keyframes`
   }
 `;
 
+// 화면 조정 시 3D 모형과 인터페이스가 조절이 불일치하는 문제가 존재
+
 const PartDiv = styled.div`
   height: 45vh;
-  width: 100vw;
-  max-width: 60rem;
+  width: 45vh;
+  padding-top: calc(1vmax + 1vh);
 
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
@@ -49,7 +58,6 @@ const PartDiv = styled.div`
   justify-items: center;
   align-items: center;
 
-  // background-color: rgba(255, 255, 0, 0.5);
   padding-bottom: 2rem;
 
   animation: ${PartAnimation} 0.6s ease-in-out both;
@@ -60,14 +68,27 @@ const TitleDiv = styled.div`
   height: 20vh;
 
   padding-top: 12.6rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `;
 
-const Title = styled.p`
+const Title = styled.h1`
   font-size: 2.2rem;
   color: white;
   font-weight: 200;
-  margin-left: 2rem;
-  line-height: 3rem;
+  margin: 0 0 0 2rem;
+`;
+
+const SubTitle = styled.h2`
+  font-size: 1.4rem;
+  font-weight: 100;
+  color: white;
+  margin: 2rem 0 0 2rem;
+  text-decoration: underline;
+  color: ${theme.color.green};
+  cursor: pointer;
 `;
 
 const RotateButton = styled.button<{ toggle: boolean }>`
@@ -115,17 +136,20 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             선택했어요
           </Title>
         ) : (
-          <Title>
-            증상 부위를 <br />
-            선택해주세요
-          </Title>
+          <>
+            <Title>
+              증상 부위를 <br />
+              선택해주세요
+            </Title>
+            <SubTitle>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+          </>
         )}
       </TitleDiv>
       {view ? (
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu == 1}
+            toggle={menu === 1}
             onClick={() => {
               setMenu(1);
             }}
@@ -134,28 +158,34 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu == 2}
+            toggle={menu === 2}
             onClick={() => {
               setMenu(2);
             }}
           >
-            여긴 어디
+            뒷머리
           </PartButton>
           <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
           <PartButton
-            toggle={menu == 3}
+            toggle={menu === 3}
             onClick={() => {
               setMenu(3);
             }}
           >
-            나는 누구
+            뒷목
           </PartButton>
         </PartDiv>
       ) : (
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu == 1}
+            toggle={menu === 1}
             onClick={() => {
               setMenu(1);
             }}
@@ -164,7 +194,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu == 4}
+            toggle={menu === 4}
             onClick={() => {
               setMenu(4);
             }}
@@ -173,7 +203,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu == 5}
+            toggle={menu === 5}
             onClick={() => {
               setMenu(5);
             }}
@@ -181,7 +211,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             이마의 띠
           </PartButton>
           <PartButton
-            toggle={menu == 6}
+            toggle={menu === 6}
             onClick={() => {
               setMenu(6);
             }}
@@ -190,7 +220,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu == 7}
+            toggle={menu === 7}
             onClick={() => {
               setMenu(7);
             }}
@@ -198,7 +228,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             눈
           </PartButton>
           <PartButton
-            toggle={menu == 8}
+            toggle={menu === 8}
             onClick={() => {
               setMenu(8);
             }}
@@ -207,7 +237,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu == 9}
+            toggle={menu === 9}
             onClick={() => {
               setMenu(9);
             }}
@@ -219,7 +249,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
 
       <ButtonDiv>
         <RotateButton
-          toggle={view == 0}
+          toggle={view === 0}
           onClick={() => {
             setView(0);
           }}
@@ -227,7 +257,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           앞
         </RotateButton>
         <RotateButton
-          toggle={view == 1}
+          toggle={view === 1}
           onClick={() => {
             setView(1);
             setMenu(0);
