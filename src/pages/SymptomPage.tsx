@@ -58,7 +58,7 @@ const Symptom = () => {
               position={[-100, 100, 100]}
               intensity={0.5}
             />
-            <Character view={view} />
+            <Character view={view} menu={menu} />
           </Suspense>
         </Canvas>
       </CanvasSection>
