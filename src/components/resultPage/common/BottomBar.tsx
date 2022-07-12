@@ -33,6 +33,7 @@ const BottomBar = ({ curIndex, totalCount, setModal }: IBottomBar) => {
   const handleSave = () => {
     // 로그인되지 않은 경우
     setModal(true);
+    // 로그인 api 호출 후 저장 api 호출
 
     // 로그인되어있는 경우
     // 저장 api 호출
@@ -40,6 +41,7 @@ const BottomBar = ({ curIndex, totalCount, setModal }: IBottomBar) => {
 
   return (
     <BottomContainer>
+      {/* 로그인되어있는 경우도 조건으로 추가 */}
       {curIndex !== totalCount ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (

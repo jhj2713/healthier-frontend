@@ -64,6 +64,11 @@ const LoginButton = styled.img`
 `;
 
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
+  const handleLogin = () => {
+    console.log("로그인");
+    // 로그인 api 호출
+  };
+
   return (
     <Container>
       <QuitImage onClick={() => setModal(false)}>
@@ -80,10 +85,12 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <LoginButton
-          alt="kakao_login"
-          src="images/login/kakao_login_large_wide.png"
-        />
+        <section onClick={handleLogin}>
+          <LoginButton
+            alt="kakao_login"
+            src="images/login/kakao_login_large_wide.png"
+          />
+        </section>
         <Continue onClick={() => setModal(false)}>
           괜찮아요, 비회원으로 이용할게요
         </Continue>
