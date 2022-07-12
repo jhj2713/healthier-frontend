@@ -76,7 +76,7 @@ const Diagnosis = () => {
         <Loading />
       ) : (
         <>
-          <ContentHeader text="자가 진단" back={false} />
+          <ContentHeader text="자가 진단" />
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons

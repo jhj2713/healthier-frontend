@@ -79,8 +79,7 @@ const RotateButton = styled.button<{ toggle: boolean }>`
 
   background-color: ${({ toggle }) =>
     toggle ? theme.color.sub_blue : "rgba(0, 0, 0, 0)"};
-  color: ${({ toggle }) =>
-    toggle ? theme.color.blue_500 : theme.color.grey_500};
+  color: ${({ toggle }) => (toggle ? theme.color.blue : theme.color.grey_500)};
   border: ${({ toggle }) => (toggle ? "none" : "solid")};
   border-width: 0.1rem;
   border-color: ${theme.color.grey_500};
@@ -240,7 +239,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         <RoundButton
           outline="none"
           backgroundColor={menu ? theme.color.green : theme.color.grey_750}
-          color={menu ? theme.color.black : theme.color.grey_500}
+          color={menu ? theme.color.grey_900 : theme.color.grey_500}
           text={"진단 시작하기"}
         />
       </ButtonDiv>
