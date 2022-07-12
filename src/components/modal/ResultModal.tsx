@@ -67,7 +67,7 @@ const ResultModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   return (
     <Container>
       <QuitImage onClick={() => setModal(false)}>
-        <img alt="quit" src="/images/header/quit.svg" />
+        <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
       </QuitImage>
       <Contents>
         <Description>해당 진단결과를 다시 보고 싶나요?</Description>

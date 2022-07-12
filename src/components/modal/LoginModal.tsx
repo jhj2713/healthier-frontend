@@ -67,7 +67,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   return (
     <Container>
       <QuitImage onClick={() => setModal(false)}>
-        <img alt="quit" src="/images/header/quit.svg" />
+        <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
       </QuitImage>
       <Contents>
         <Title>

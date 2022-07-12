@@ -47,6 +47,8 @@ const ResultPage = () => {
     setCurIndex(swiper.activeIndex + 1);
   };
 
+  const setTotalCount = () => {};
+
   return (
     <>
       <ResultHeader isCover={curIndex === 1} />

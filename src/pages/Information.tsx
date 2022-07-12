@@ -70,7 +70,7 @@ const Information = () => {
 
   return (
     <Container>
-      <ContentHeader text="정보 수집" back={true} />
+      <ContentHeader text="정보 수집" back={false} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해
