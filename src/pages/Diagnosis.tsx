@@ -9,7 +9,7 @@ import { first_questions } from "../store/diagnosis";
 import Loading from "./Loading";
 
 const Container = styled.section`
-  height: calc(100vh - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,
       rgba(84, 100, 242, 0.9) 0%,

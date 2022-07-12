@@ -7,9 +7,9 @@ import SymptomHeader from "../components/header/SymptomHeader";
 
 const Container = styled.section`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
-  background: black;
+  background: #0c0d10;
 
   display: flex;
   flex-direction: column;
@@ -19,7 +19,7 @@ const Container = styled.section`
 
 const CanvasSection = styled.div`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
   z-index: 0;
   position: absolute;

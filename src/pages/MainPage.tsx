@@ -10,7 +10,7 @@ import { Heading_3 } from "../lib/fontStyle";
 
 const Container = styled.main`
   padding-top: 9.6rem;
-  height: calc(100vh - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
 
   color: ${({ theme }) => theme.color.grey_100};
 `;

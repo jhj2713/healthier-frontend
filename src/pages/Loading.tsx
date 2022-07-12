@@ -3,7 +3,7 @@ import { Heading_3, Body_1, Body_3 } from "../lib/fontStyle";
 
 const Container = styled.section`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,

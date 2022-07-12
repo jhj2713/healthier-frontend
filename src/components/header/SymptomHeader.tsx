@@ -11,7 +11,7 @@ const Wrapper = styled.header`
 
   border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
 
-  background-color: transparent;
+  background-color: #0c0d10;
 
   z-index: 3;
 `;
