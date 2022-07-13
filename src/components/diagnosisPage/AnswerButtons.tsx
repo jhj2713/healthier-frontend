@@ -64,7 +64,7 @@ const AnswerButtons = ({
         setSleepScore(sleepScore + (answers[idx].score || 0));
       }
     }
-    if (!isMultiple) {
+    if (isMultiple === 0) {
       handleNext();
     }
   };

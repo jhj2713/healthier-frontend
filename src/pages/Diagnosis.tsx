@@ -42,7 +42,7 @@ const Diagnosis = () => {
     id: "",
     question: "",
     answers: [],
-    is_multiple: false,
+    is_multiple: 0,
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
   const [loading, setLoading] = useState(false);
@@ -62,15 +62,27 @@ const Diagnosis = () => {
               answer: "y",
             })
             .then(); */
-          setCurQuestion({
-            id: "6",
-            question: "수면의 문제가 일상생활에 지장을 주나요?",
-            answers: [
-              { answer_id: 1, answer: "예", is_decisive: 0 },
-              { answer_id: 2, answer: "아니요", is_decisive: 0 },
-            ],
-            is_multiple: true,
-          });
+          const response = {
+            is_result: 0,
+            question: {
+              id: "62ca4918705b0e3bdeefc746",
+              question: "자신을 가장 잘 설명하는 증상을 골라주세요",
+              is_multiple: 0,
+              answers: [
+                {
+                  answer_id: 0,
+                  answer: "잠드는 것이 어려워요",
+                  is_decisive: 0,
+                },
+                {
+                  answer_id: 1,
+                  answer: "자는 도중 중간에 자꾸 깨요",
+                  is_decisive: 0,
+                },
+              ],
+            },
+          };
+          setCurQuestion(response.question);
           setSelectedAnswer([]);
         } else {
           const data = {
@@ -94,7 +106,7 @@ const Diagnosis = () => {
           // 결정적응답 api 호출
           const data = {
             question_id: curQuestion.id,
-            answer_id: selectedAnswer,
+            answer_id: selectedAnswer[0].answer_id,
             sleep_hygiene_score: sleepScore,
             gender,
             birth_year,
@@ -113,14 +125,11 @@ const Diagnosis = () => {
           // 진단응답 api 호출
           const data = {
             question_id: curQuestion.id,
-            answer_id: selectedAnswer,
+            answer_id: selectedAnswer[0].answer_id,
           };
-          /* axios
-            .post("http://localhost:3000/api/diagnose/sleepdisorder", 
-              data,
-            )
-            .then(); */
-          console.log(data);
+          axios
+            .post("http://localhost:3000/api/diagnose/sleepdisorder", data)
+            .then((res) => console.log(res));
         }
       }
     }
