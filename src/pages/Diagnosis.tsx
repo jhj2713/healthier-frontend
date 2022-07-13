@@ -58,7 +58,7 @@ const Diagnosis = () => {
       if (curIndex === 6) {
         if (selectedAnswer[0].answer_id === 1) {
           /* axios
-            .post("http://localhost:3000/api/diagnose/sleepdisorder/first", {
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, {
               answer: "y",
             })
             .then(); */
@@ -93,7 +93,7 @@ const Diagnosis = () => {
             interests,
           };
           /* axios
-            .post("http://localhost:3000/api/diagnose/sleepdisorder/first", 
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, 
               data,
             )
             .then(); */
@@ -114,7 +114,7 @@ const Diagnosis = () => {
           };
           /*axios
             .post(
-              "http://localhost:3000/api/diagnose/sleepdisorder/decisive",
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/decisive`,
               data
             )
             .then(); */

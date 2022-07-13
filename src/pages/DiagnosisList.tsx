@@ -62,10 +62,10 @@ const DiagnosisList = () => {
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/api/diagnosis/sleepdisorder/list").then();
+    // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
     setDiagnosisList([
       {
-        result_log_id: "1",
+        result_log_id: "62cd703fe49face142d9cffe",
         name: "일주기 리듬 수면 장애",
         date: "6/25",
         photo: "/images/list_component.png",

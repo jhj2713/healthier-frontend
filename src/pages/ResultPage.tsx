@@ -14,26 +14,28 @@ import ResultModal from "../components/modal/ResultModal";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ResultLoading from "../components/loading/ResultLoading";
+import { IDiagnosticResult } from "../interfaces/diagnosticResult";
 
 const ResultPage = () => {
-  const { state } = useLocation();
+  const { state } = useLocation() as IDiagnosticResult;
   const [curIndex, setCurIndex] = useState(1);
   const coverData = {
-    illustration: diagnosis_result.diagnostic_result.illustration,
-    highlight: diagnosis_result.diagnostic_result.h1,
-    title: diagnosis_result.diagnostic_result.title,
-    description: diagnosis_result.diagnostic_result.h2,
-    severity: diagnosis_result.diagnostic_result.severity,
+    illustration: state.illustration,
+    highlight: state.h1,
+    title: state.title,
+    description: state.h2,
+    severity: state.severity,
   };
   const defineData = {
-    title: diagnosis_result.diagnostic_result.title,
-    definition: diagnosis_result.diagnostic_result.explanation,
-    cause: diagnosis_result.diagnostic_result.cause.tags,
-    cause_detail: diagnosis_result.diagnostic_result.cause.detail,
+    title: state.title,
+    definition: state.explanation,
+    tag_flag: state.cause.tag_flag,
+    cause: state.cause.tags,
+    cause_detail: state.cause.detail,
   };
-  const lifeData = diagnosis_result.diagnostic_result.solutions;
-  const medicineData = diagnosis_result.diagnostic_result.medicines;
-  const treatData = diagnosis_result.diagnostic_result.treatments;
+  const lifeData = state.solutions;
+  const medicineData = state.medicines;
+  const treatData = state.treatments;
 
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
@@ -72,12 +74,16 @@ const ResultPage = () => {
             <SwiperSlide>
               <LifePage lifestyle={lifeData} />
             </SwiperSlide>
-            <SwiperSlide>
-              <MedicinePage medicine={medicineData} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <TreatmentPage treatData={treatData} />
-            </SwiperSlide>
+            {medicineData && (
+              <SwiperSlide>
+                <MedicinePage medicine={medicineData} />
+              </SwiperSlide>
+            )}
+            {treatData && (
+              <SwiperSlide>
+                <TreatmentPage treatData={treatData} />
+              </SwiperSlide>
+            )}
           </Swiper>
           {modal && (
             <ModalContainer setModal={setModal}>
