@@ -9,7 +9,7 @@ import DiagnosisLoading from "./components/loading/DiagnosisLoading";
 import ResultLoading from "./components/loading/ResultLoading";
 import { useEffect } from "react";
 import HomeLoading from "./components/loading/HomeLoading";
-import SelectSymptomPage from "./pages/SelectSymptomPage";
+import SymptomTypePage from "./pages/SymptomTypePage";
 
 function App() {
   const handleResize = () => {
@@ -38,7 +38,7 @@ function App() {
         <Route path="/diag-loading" element={<DiagnosisLoading />} />
         <Route path="/result-loading" element={<ResultLoading />} />
         <Route path="/loading" element={<HomeLoading />} />
-        <Route path="/select-symptom" element={<SelectSymptomPage />} />
+        <Route path="/symptom-type" element={<SymptomTypePage />} />
       </Routes>
     </section>
   );
