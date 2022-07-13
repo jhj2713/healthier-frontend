@@ -100,21 +100,23 @@ const AnswerButtons = ({
       </AnswersContainer>
 
       {isMultiple && (
-        <NextButton onClick={handleNext}>
-          <RoundButton
-            outline="none"
-            backgroundColor={
-              selectedAnswer.length === 0
-                ? theme.color.grey_650
-                : theme.color.blue
-            }
-            color={
-              selectedAnswer.length === 0
-                ? theme.color.grey_400
-                : theme.color.grey_100
-            }
-            text="다음 단계"
-          />
+        <NextButton>
+          <section onClick={handleNext}>
+            <RoundButton
+              outline="none"
+              backgroundColor={
+                selectedAnswer.length === 0
+                  ? theme.color.grey_650
+                  : theme.color.blue
+              }
+              color={
+                selectedAnswer.length === 0
+                  ? theme.color.grey_400
+                  : theme.color.grey_100
+              }
+              text="다음 단계"
+            />
+          </section>
         </NextButton>
       )}
     </Container>

@@ -67,7 +67,12 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
         `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
       .then((res) => {
-        navigate("/result", { state: res.data });
+        navigate("/result", {
+          state: {
+            type: "result",
+            diagnostic_result: res.data.diagnostic_result,
+          },
+        });
       });
   };
 

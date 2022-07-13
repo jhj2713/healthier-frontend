@@ -1,6 +1,6 @@
 export interface IDiagnosticResult {
   state: {
-    is_result?: number;
+    type: string;
     diagnostic_result: {
       id: string;
       illustration: string;

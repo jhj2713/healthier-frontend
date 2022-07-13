@@ -117,7 +117,7 @@ const DiagnosisList = () => {
         </>
       )}
       <ButtonBox>
-        <section onClick={() => navigate("/diagnosis")}>
+        <section onClick={() => navigate("/info")}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}

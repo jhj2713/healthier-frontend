@@ -83,13 +83,15 @@ const Information = () => {
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
       </Contents>
-      <ButtonBox onClick={handleProceed}>
-        <RoundButton
-          outline="none"
-          backgroundColor={active ? theme.color.blue : theme.color.grey_750}
-          color={active ? theme.color.grey_100 : theme.color.grey_600}
-          text="증상 진단하러 가기"
-        />
+      <ButtonBox>
+        <section onClick={handleProceed}>
+          <RoundButton
+            outline="none"
+            backgroundColor={active ? theme.color.blue : theme.color.grey_750}
+            color={active ? theme.color.grey_100 : theme.color.grey_600}
+            text="증상 진단하러 가기"
+          />
+        </section>
       </ButtonBox>
     </Container>
   );
