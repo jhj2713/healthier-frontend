@@ -1,5 +1,10 @@
 import { Dispatch } from "react";
 
+export interface IContentHeader {
+  text: string;
+  back: boolean;
+}
+
 export interface IButton {
   outline: string;
   backgroundColor: string;
@@ -21,19 +26,14 @@ export interface IListComponent {
   };
 }
 
-export interface IModal {
-  children: JSX.Element;
-  setModal: Dispatch<boolean>;
-}
-
-export interface IResultModal {
-  setModal: Dispatch<boolean>;
-  setLoading: Dispatch<boolean>;
-}
-
 export interface IDiagnosisList {
   result_log_id: string;
   name: string;
   date: string;
   photo: string;
+}
+
+export interface ISymptomTypeComponent {
+  selected: boolean;
+  title: string;
 }

@@ -18,7 +18,7 @@ const DescriptionBox = styled.section<{ top: number; bottom: number }>`
 `;
 
 const DefinitionPage = ({
-  defineData: { title, definition, cause, cause_detail },
+  defineData: { title, definition, tag_flag, cause, cause_detail },
 }: {
   defineData: IDefinePageProps;
 }) => {
@@ -27,12 +27,22 @@ const DefinitionPage = ({
       <Contents>
         <Title text={`${title}란?`} />
         <DescriptionBox top={2} bottom={8}>
-          <Description text={definition} />
+          {definition.map((text, idx) => (
+            <section key={idx}>
+              <Description text={text} />
+            </section>
+          ))}
         </DescriptionBox>
         <Title text="원인이 무엇인가요?" />
-        <CauseBox cause_1={cause[0]} cause_2={cause[1]} />
-        <DescriptionBox top={1.6} bottom={0}>
-          <Description text={cause_detail} />
+        {cause?.length === 2 && (
+          <CauseBox cause_1={cause[0]} cause_2={cause[1]} />
+        )}
+        <DescriptionBox top={tag_flag === 1 ? 1.6 : 2} bottom={0}>
+          {cause_detail.map((text, idx) => (
+            <section key={idx}>
+              <Description text={text} />
+            </section>
+          ))}
         </DescriptionBox>
       </Contents>
     </Container>

@@ -11,8 +11,6 @@ const Icon = styled.section`
   margin-top: 2.1rem;
   margin-left: 2.4rem;
 
-  //width: 2.3rem;
-  //height: 3.3rem;
   font-size: 2.3rem;
 `;
 const Contents = styled.section`
@@ -32,7 +30,9 @@ const Title = styled.section`
 const LifeComponent = ({ idx, icon, title, content }: ILifeComponent) => {
   return (
     <Background idx={idx}>
-      <Icon>{icon}</Icon>
+      <Icon>
+        <img alt="icon" src={icon} width={23} height={23} />
+      </Icon>
       <Contents>
         <Title>{title}</Title>
         <Description text={content} />

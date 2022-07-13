@@ -4,7 +4,7 @@ export interface IQuestion {
   id: string;
   question: string;
   answers: IAnswer[];
-  is_multiple: boolean;
+  is_multiple: number;
 }
 
 export interface IAnswer {
@@ -19,7 +19,7 @@ export interface IAnswerButtonProps {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
-  isMultiple: boolean;
+  isMultiple: number;
   sleepScore: number;
   setSleepScore: Dispatch<number>;
 }

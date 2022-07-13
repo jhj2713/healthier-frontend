@@ -21,9 +21,10 @@ export interface ICoverPageProps {
 
 export interface IDefinePageProps {
   title: string;
-  definition: string;
-  cause: { cause: string; details: string[] }[];
-  cause_detail: string;
+  definition: string[];
+  tag_flag: number;
+  cause?: { cause: string; details: string[] }[];
+  cause_detail: string[];
 }
 
 export interface ICauseBox {

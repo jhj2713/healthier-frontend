@@ -51,13 +51,15 @@ const BottomBar = ({
       {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
-        <BottomButton onClick={handleSave}>
-          <RoundButton
-            outline="none"
-            backgroundColor={theme.color.blue}
-            color={theme.color.grey_100}
-            text="나의 진단기록장에 저장하기"
-          />
+        <BottomButton>
+          <section onClick={handleSave}>
+            <RoundButton
+              outline="none"
+              backgroundColor={theme.color.blue}
+              color={theme.color.grey_100}
+              text="나의 진단기록장에 저장하기"
+            />
+          </section>
         </BottomButton>
       )}
     </BottomContainer>
