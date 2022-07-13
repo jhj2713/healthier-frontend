@@ -5,7 +5,7 @@ import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { Heading_3 } from "../lib/fontStyle";
-import { first_questions } from "../store/diagnosis";
+import { sleepdisorder_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector } from "../state";
@@ -38,7 +38,7 @@ const Question = styled(Heading_3)`
 `;
 
 const Diagnosis = () => {
-  const { state } = useLocation();
+  const { state } = useLocation() as { state: string };
 
   const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
@@ -56,13 +56,17 @@ const Diagnosis = () => {
 
   useEffect(() => {
     if (curIndex <= 5) {
-      setCurQuestion(first_questions[curIndex]);
+      let question = {} as IQuestion;
+      if (state === "sleepdisorder") {
+        question = sleepdisorder_questions[curIndex];
+      }
+      setCurQuestion(question);
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
         if (selectedAnswer[0].answer_id === 1) {
           /* axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, {
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, {
               answer: "y",
             })
             .then((res) => {
@@ -103,7 +107,7 @@ const Diagnosis = () => {
           setLoading(true);
           let state = {};
           axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, 
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, 
               data,
             )
             .then((res) => {
@@ -132,7 +136,7 @@ const Diagnosis = () => {
           let state = {};
           axios
             .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/decisive`,
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
               data
             )
             .then((res) => {
@@ -152,7 +156,7 @@ const Diagnosis = () => {
           };
           axios
             .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder`,
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}`,
               data
             )
             .then((res) => {
@@ -164,6 +168,9 @@ const Diagnosis = () => {
       }
     }
   }, [curIndex]);
+  useEffect(() => {
+    console.log(state);
+  }, []);
 
   const handleNext = () => {
     setCurIndex(curIndex + 1);
