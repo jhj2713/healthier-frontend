@@ -21,8 +21,6 @@ const MedicineImg = styled.section<{ selected: boolean }>`
     selected && `0.15rem solid ${theme.color.grey_300}`};
   box-sizing: border-box;
 
-  font-size: 3.2rem;
-
   opacity: ${({ selected }) => !selected && 0.5};
 `;
 const MedicineBox = styled.section`
@@ -46,7 +44,9 @@ const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {
     <Container>
       {medicine.map((med, idx) => (
         <MedicineBox key={idx} onClick={() => setSelected(idx + 1)}>
-          <MedicineImg selected={selected === idx + 1}>💊</MedicineImg>
+          <MedicineImg selected={selected === idx + 1}>
+            <img alt="medicine" src={med.image} width={32} height={32} />;
+          </MedicineImg>
           <MedicineText selected={selected === idx + 1}>
             {med.name}
           </MedicineText>

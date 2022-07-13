@@ -7,7 +7,6 @@ import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
 import TreatmentPage from "../components/resultPage/treatmentPage/TreatmentPage";
 import BottomBar from "../components/resultPage/common/BottomBar";
 import ResultHeader from "../components/header/ResultHeader";
-import diagnosis_result from "../store/diagnosis_result.json";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
 
@@ -20,22 +19,22 @@ const ResultPage = () => {
   const { state } = useLocation() as IDiagnosticResult;
   const [curIndex, setCurIndex] = useState(1);
   const coverData = {
-    illustration: state.illustration,
-    highlight: state.h1,
-    title: state.title,
-    description: state.h2,
-    severity: state.severity,
+    illustration: state.diagnostic_result.illustration,
+    highlight: state.diagnostic_result.h1,
+    title: state.diagnostic_result.title,
+    description: state.diagnostic_result.h2,
+    severity: state.diagnostic_result.severity,
   };
   const defineData = {
-    title: state.title,
-    definition: state.explanation,
-    tag_flag: state.cause.tag_flag,
-    cause: state.cause.tags,
-    cause_detail: state.cause.detail,
+    title: state.diagnostic_result.title,
+    definition: state.diagnostic_result.explanation,
+    tag_flag: state.diagnostic_result.cause.tag_flag,
+    cause: state.diagnostic_result.cause.tags,
+    cause_detail: state.diagnostic_result.cause.detail,
   };
-  const lifeData = state.solutions;
-  const medicineData = state.medicines;
-  const treatData = state.treatments;
+  const lifeData = state.diagnostic_result.solutions;
+  const medicineData = state.diagnostic_result.medicines;
+  const treatData = state.diagnostic_result.treatments;
 
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
@@ -43,7 +42,7 @@ const ResultPage = () => {
 
   useEffect(() => {
     console.log(state);
-    if (!diagnosis_result.is_result) {
+    if (state.is_result) {
       setIsSaved(true);
     }
   }, [state]);
@@ -55,7 +54,16 @@ const ResultPage = () => {
     setCurIndex(swiper.activeIndex + 1);
   };
 
-  const setTotalCount = () => {};
+  const setTotalCount = (): number => {
+    let total = 5;
+    if (!medicineData) {
+      total--;
+    }
+    if (!treatData) {
+      total--;
+    }
+    return total;
+  };
 
   return (
     <>
@@ -92,7 +100,7 @@ const ResultPage = () => {
           )}
           <BottomBar
             curIndex={curIndex}
-            totalCount={5}
+            totalCount={setTotalCount()}
             setModal={setModal}
             setLoading={setLoading}
             isSaved={isSaved}
