@@ -5,8 +5,10 @@ import ResultPage from "./pages/ResultPage";
 import Diagnosis from "./pages/Diagnosis";
 import DiagnosisList from "./pages/DiagnosisList";
 import SymptomPage from "./pages/SymptomPage";
-import Loading from "./pages/Loading";
+import DiagnosisLoading from "./components/loading/DiagnosisLoading";
+import ResultLoading from "./components/loading/ResultLoading";
 import { useEffect } from "react";
+import HomeLoading from "./components/loading/HomeLoading";
 
 function App() {
   const handleResize = () => {
@@ -32,7 +34,9 @@ function App() {
         <Route path="/diagnosis" element={<Diagnosis />} />
         <Route path="/diagnosisList" element={<DiagnosisList />} />
         <Route path="/symptom" element={<SymptomPage />} />
-        <Route path="/loading" element={<Loading />} />
+        <Route path="/diagLoading" element={<DiagnosisLoading />} />
+        <Route path="/resultLoading" element={<ResultLoading />} />
+        <Route path="/loading" element={<HomeLoading />} />
       </Routes>
     </section>
   );

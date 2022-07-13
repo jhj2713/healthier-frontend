@@ -10,10 +10,10 @@ import ResultHeader from "../components/header/ResultHeader";
 import diagnosis_result from "../store/diagnosis_result.json";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
-import Loading from "./Loading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import ResultLoading from "../components/loading/ResultLoading";
 
 const ResultPage = () => {
   const { state } = useLocation();
@@ -58,7 +58,7 @@ const ResultPage = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <ResultLoading />
       ) : (
         <>
           <ResultHeader isCover={curIndex === 1} />

@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IResultModal } from "../../interfaces/component";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
@@ -64,6 +65,8 @@ const LoginButton = styled.img`
 `;
 
 const ResultModal = ({ setModal, setLoading }: IResultModal) => {
+  const navigate = useNavigate();
+
   const handleLogin = () => {
     console.log("로그인");
     // setModal(false);
@@ -95,7 +98,7 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
             src="images/login/kakao_login_large_wide.png"
           />
         </section>
-        <Continue onClick={() => setModal(false)}>
+        <Continue onClick={() => navigate("/loading")}>
           괜찮아요, 다음에 할게요
         </Continue>
       </BottomButtons>

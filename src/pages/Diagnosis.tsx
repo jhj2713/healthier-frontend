@@ -6,7 +6,7 @@ import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { Heading_3 } from "../lib/fontStyle";
 import { first_questions } from "../store/diagnosis";
-import Loading from "./Loading";
+import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector } from "../state";
 
@@ -133,7 +133,7 @@ const Diagnosis = () => {
   return (
     <>
       {loading ? (
-        <Loading />
+        <DiagnosisLoading />
       ) : (
         <>
           <ContentHeader text="자가 진단" />
