@@ -6,6 +6,12 @@ import { Body_1 } from "../../lib/fontStyle";
 
 const Container = styled.section``;
 const AnswersContainer = styled.section<{ ansCount: number }>`
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   margin-top: ${({ ansCount }) =>
     ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
@@ -36,10 +42,17 @@ const Button = styled(Body_1)<{ selected: boolean }>`
   text-align: center;
 `;
 const NextButton = styled.section`
-  position: fixed;
-  bottom: 3rem;
+  width: 100%;
 
-  width: calc(100vw - 4rem);
+  display: flex;
+  justify-content: center;
+
+  position: fixed;
+
+  padding-top: 10.4rem;
+  padding-bottom: 3rem;
+
+  background: linear-gradient(180deg, rgba(40, 46, 91, 0) 0%, #272d5a 100%);
 `;
 
 const AnswerButtons = ({
@@ -83,6 +96,7 @@ const AnswerButtons = ({
           </ButtonBox>
         ))}
       </AnswersContainer>
+
       {isMultiple && (
         <NextButton onClick={handleNext}>
           <RoundButton
