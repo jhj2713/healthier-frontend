@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { IResultModal } from "../../interfaces/component";
+import { IResultModal } from "../../interfaces/modal";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 
 const Container = styled.section`

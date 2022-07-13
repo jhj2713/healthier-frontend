@@ -55,7 +55,7 @@ const Information = () => {
         .filter((item) => item.selected)
         .map((item) => item.id);
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
-      navigate("/symptom");
+      navigate("/select-symptom");
     }
   };
 
@@ -73,7 +73,7 @@ const Information = () => {
 
   return (
     <Container>
-      <ContentHeader text="정보 수집" />
+      <ContentHeader text="정보 수집" back={false} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해

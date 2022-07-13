@@ -145,7 +145,7 @@ const Diagnosis = () => {
         <DiagnosisLoading />
       ) : (
         <>
-          <ContentHeader text="자가 진단" />
+          <ContentHeader text="자가 진단" back={false} />
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons
