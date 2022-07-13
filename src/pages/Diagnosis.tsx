@@ -70,12 +70,12 @@ const Diagnosis = () => {
               is_multiple: 0,
               answers: [
                 {
-                  answer_id: 0,
+                  answer_id: 1,
                   answer: "잠드는 것이 어려워요",
                   is_decisive: 0,
                 },
                 {
-                  answer_id: 1,
+                  answer_id: 2,
                   answer: "자는 도중 중간에 자꾸 깨요",
                   is_decisive: 0,
                 },
@@ -128,8 +128,14 @@ const Diagnosis = () => {
             answer_id: selectedAnswer[0].answer_id,
           };
           axios
-            .post("http://localhost:3000/api/diagnose/sleepdisorder", data)
-            .then((res) => console.log(res));
+            .post(
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder`,
+              data
+            )
+            .then((res) => {
+              console.log(res.data);
+              setCurQuestion(res.data.question);
+            });
         }
       }
     }
