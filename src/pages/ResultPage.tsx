@@ -42,7 +42,7 @@ const ResultPage = () => {
 
   useEffect(() => {
     console.log(state);
-    if (state.is_result) {
+    if (!state.is_result) {
       setIsSaved(true);
     }
   }, [state]);

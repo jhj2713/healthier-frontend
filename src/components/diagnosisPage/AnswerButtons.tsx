@@ -4,7 +4,9 @@ import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
 import { Body_1 } from "../../lib/fontStyle";
 
-const Container = styled.section``;
+const Container = styled.section`
+  background: transparent;
+`;
 const AnswersContainer = styled.section<{ ansCount: number }>`
   width: 100vw;
 

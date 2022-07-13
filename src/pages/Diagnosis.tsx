@@ -18,6 +18,10 @@ const Container = styled.section`
       rgba(52, 62, 135, 0) 100%
     )
     #131416;
+  background-attachment: fixed;
+
+  overflow: scroll;
+
   display: flex;
   flex-direction: column;
   align-items: center;
