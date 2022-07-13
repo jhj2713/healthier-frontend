@@ -66,8 +66,8 @@ const LoginButton = styled.img`
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   const handleLogin = () => {
     console.log("로그인");
-    // 로그인 api 호출
     // setModal(false);
+    // 로그인 api 호출
   };
 
   return (

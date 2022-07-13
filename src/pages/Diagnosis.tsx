@@ -65,7 +65,10 @@ const Diagnosis = () => {
             .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, {
               answer: "y",
             })
-            .then(); */
+            .then((res) => {
+              setCurQuestion(res.data.qustion);
+              setSelectedAnswer([]);
+            }); */
           const response = {
             is_result: 0,
             question: {
@@ -96,14 +99,22 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /* axios
+          /* 
+          setLoading(true);
+          let state = {};
+          axios
             .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, 
               data,
             )
-            .then(); */
-          console.log(data);
-          // setLoading(true);
-          // navigate("/result");
+            .then((res) => {
+              state = {
+                type: "",
+                diagnostic_result: res.data.diagnostic_result,
+              }
+            });
+          setTimeout(() => navigate("/result", {
+              state: state
+            }), 3000); */
         }
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
@@ -116,15 +127,23 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /*axios
+          /*
+          setLoading(true);
+          let state = {};
+          axios
             .post(
               `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/decisive`,
               data
             )
-            .then(); */
-          // setLoading(true);
-          // navigate("/result");
-          console.log(data);
+            .then((res) => {
+              state = {
+                type: "",
+                diagnostic_result: res.data.diagnostic_result,
+              }
+            }); 
+            setTimeout(() => navigate("/result", {
+              state: state
+            }), 3000); */
         } else {
           // 진단응답 api 호출
           const data = {
@@ -139,6 +158,7 @@ const Diagnosis = () => {
             .then((res) => {
               console.log(res.data);
               setCurQuestion(res.data.question);
+              setSelectedAnswer([]);
             });
         }
       }

@@ -16,7 +16,7 @@ import ResultLoading from "../components/loading/ResultLoading";
 import { IDiagnosticResult } from "../interfaces/diagnosticResult";
 
 const ResultPage = () => {
-  const { state } = useLocation() as IDiagnosticResult;
+  const { state } = useLocation() as { state: IDiagnosticResult };
   const [curIndex, setCurIndex] = useState(1);
   const coverData = {
     illustration: state.diagnostic_result.illustration,
