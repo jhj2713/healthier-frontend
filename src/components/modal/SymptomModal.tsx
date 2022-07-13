@@ -1,7 +1,7 @@
-import { Dispatch, useRef } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
-import { symptom_list } from "../../store/symptom_type";
+import { symptom_type } from "../../store/symptom_type";
 import { useNavigate } from "react-router-dom";
 import { ISymptomModal } from "../../interfaces/modal";
 
@@ -130,7 +130,7 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
           <Title>
             현재 진단 가능한 증상은
             <br />
-            <Highlight>{symptom_list[select].detail}</Highlight>입니다
+            <Highlight>{symptom_type[select].detail}</Highlight>입니다
           </Title>
         </Contents>
         <ButtonContainer onClick={handleNavigate}>
