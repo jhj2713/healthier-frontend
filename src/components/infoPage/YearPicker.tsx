@@ -36,8 +36,9 @@ const SelectBox = styled.select<{ year: number }>`
 
   :focus {
     border: 0.1rem solid ${({ theme }) => theme.color.blue};
+    color: ${({ theme }) => theme.color.blue};
 
-    background-image: url("/images/informationPage/dropdown.svg");
+    background-image: url("/images/informationPage/dropdown_active.svg");
     background-position: right 1.6rem center;
     background-repeat: no-repeat;
   }
