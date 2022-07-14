@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
@@ -38,6 +38,7 @@ const Question = styled(Heading_3)`
 `;
 
 const Diagnosis = () => {
+  const navigate = useNavigate();
   const { state } = useLocation() as { state: string };
 
   const [sleepScore, setSleepScore] = useState(0);
@@ -54,6 +55,11 @@ const Diagnosis = () => {
     (state) => state.user
   );
 
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, []);
   useEffect(() => {
     if (curIndex <= 5) {
       let question = {} as IQuestion;
@@ -168,9 +174,6 @@ const Diagnosis = () => {
       }
     }
   }, [curIndex]);
-  useEffect(() => {
-    console.log(state);
-  }, []);
 
   const handleNext = () => {
     setCurIndex(curIndex + 1);

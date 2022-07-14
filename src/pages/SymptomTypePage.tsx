@@ -5,6 +5,7 @@ import SymptomTypeComponent from "../components/symptomTypePage/SymptomTypeCompo
 import { Heading_3 } from "../lib/fontStyle";
 import { symptom_type } from "../store/symptom_type";
 import SymptomModal from "../components/modal/SymptomModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -37,6 +38,9 @@ const SymptomContainer = styled.section`
 `;
 
 const SymptomTypePage = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   const [select, setSelect] = useState(-1);
   const [modal, setModal] = useState(false);
 
@@ -46,6 +50,9 @@ const SymptomTypePage = () => {
   };
 
   useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
     if (!modal) {
       setSelect(-1);
     }

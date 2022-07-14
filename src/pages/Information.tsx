@@ -55,7 +55,7 @@ const Information = () => {
         .filter((item) => item.selected)
         .map((item) => item.id);
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
-      navigate("/symptom-type");
+      navigate("/symptom-type", { state: "info" });
     }
   };
 

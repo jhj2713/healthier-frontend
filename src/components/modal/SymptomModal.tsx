@@ -121,7 +121,7 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
     if (select === 0) {
       navigate("/diagnosis", { state: "sleepdisorder" });
     } else {
-      navigate("/symptom");
+      navigate("/symptom", { state: "symptom" });
     }
   };
 
