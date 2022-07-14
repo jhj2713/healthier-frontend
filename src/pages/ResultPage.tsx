@@ -35,7 +35,7 @@ const ResultPage = () => {
     illustration: "",
     highlight: "",
     title: "",
-    description: "",
+    description: [],
     severity: 0,
   });
   const [defineData, setDefineData] = useState<IDefinePageProps>({

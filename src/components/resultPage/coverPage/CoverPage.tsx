@@ -46,7 +46,9 @@ const CoverPage = ({
       <Contents>
         <SeverityText>{highlight}</SeverityText>
         <Title>{title}</Title>
-        <Description>{description}</Description>
+        {description.map((des, idx) => (
+          <Description key={idx}>{des}</Description>
+        ))}
       </Contents>
       <SeverityBar severity={severity} />
     </Container>
