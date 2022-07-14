@@ -42,7 +42,7 @@ const CoverPage = ({
   return (
     <Container>
       <CoverImage>
-        <img alt="cover" src={illustration} />
+        <img alt="cover" src={illustration} height={363} />
       </CoverImage>
       <Contents>
         <SeverityText>{highlight}</SeverityText>

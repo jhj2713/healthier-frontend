@@ -6,7 +6,8 @@ import axios from "axios";
 
 const Container = styled.section<{ photo: string }>`
   height: 16rem;
-  background-image: ${({ photo }) => `url(${photo})`};
+  background: ${({ photo }) => `url(${photo})`},
+    ${({ theme }) => theme.color.blue};
   background-size: cover;
 
   border-radius: 0.8rem;
