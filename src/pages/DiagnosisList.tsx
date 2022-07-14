@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
 import MainHeader from "../components/header/MainHeader";
@@ -6,7 +6,6 @@ import ListComponent from "../components/diagnosisListPage/ListComponent";
 import theme from "../lib/theme";
 import { useNavigate } from "react-router-dom";
 import { Description, Heading_3 } from "../lib/fontStyle";
-import { useEffect } from "react";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
 import EmptyPage from "../components/diagnosisListPage/EmptyPage";

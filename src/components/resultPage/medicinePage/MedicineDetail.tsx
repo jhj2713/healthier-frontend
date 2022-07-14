@@ -3,7 +3,6 @@ import { IMedicineDetail } from "../../../interfaces/resultPage";
 import { Body_2 } from "../../../lib/fontStyle";
 import Description from "../common/Description";
 
-const Container = styled.section``;
 const Contents = styled.section`
   margin-top: 2.2rem;
 `;
@@ -45,7 +44,7 @@ const Tag = styled.section`
 
 const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
   return (
-    <Container>
+    <>
       <Contents>
         <SubTitle>효능•효과</SubTitle>
         <Description text={medicine[selected - 1].efficacy} />
@@ -63,7 +62,7 @@ const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
           ))}
         </Tags>
       </Contents>
-    </Container>
+    </>
   );
 };
 

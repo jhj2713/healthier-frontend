@@ -1,8 +1,5 @@
 import styled from "styled-components";
 
-const Container = styled.section`
-  margin-top: 2.4rem;
-`;
 const TextBox = styled.section`
   display: flex;
   justify-content: space-between;
@@ -62,7 +59,7 @@ const SeverityBar = ({ severity }: { severity: number }) => {
   };
 
   return (
-    <Container>
+    <>
       <TextBox>
         <Text type={1} severity={severity}>
           정상
@@ -80,7 +77,7 @@ const SeverityBar = ({ severity }: { severity: number }) => {
       <Background>
         <Highlight severity={setBackgroundPercent(severity)}></Highlight>
       </Background>
-    </Container>
+    </>
   );
 };
 

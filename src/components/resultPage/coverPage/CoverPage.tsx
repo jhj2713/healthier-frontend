@@ -28,10 +28,11 @@ const Title = styled(Heading_1)`
 `;
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
-
   text-align: center;
 
   width: 20rem;
+
+  margin-bottom: 2.4rem;
 `;
 
 const CoverPage = ({
@@ -42,7 +43,7 @@ const CoverPage = ({
   return (
     <Container>
       <CoverImage>
-        <img alt="cover" src={illustration} height={363} />
+        <img loading="lazy" alt="cover" src={illustration} height={363} />
       </CoverImage>
       <Contents>
         <SeverityText>{highlight}</SeverityText>
