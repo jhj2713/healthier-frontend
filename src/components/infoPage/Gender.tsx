@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import RectButton from "../buttons/RectButton";
 import { IGenderProps } from "../../interfaces/informationPage";
 import { Body_4 } from "../../lib/fontStyle";
 
