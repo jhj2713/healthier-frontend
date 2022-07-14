@@ -1,11 +1,22 @@
 import styled from "styled-components";
 
+const Container = styled.section`
+  position: fixed;
+
+  bottom: 12.1rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const TextBox = styled.section`
   display: flex;
   justify-content: space-between;
 
   font-weight: 100;
   letter-spacing: -0.05rem;
+
+  margin-left: 4.3rem;
 `;
 const Text = styled.section<{ type: number; severity: number }>`
   font-size: 1.4rem;
@@ -24,11 +35,12 @@ const Text = styled.section<{ type: number; severity: number }>`
 `;
 const Background = styled.section`
   margin-top: 1rem;
+  margin-left: 4.3rem;
 
   background: rgba(84, 100, 242, 0.33);
   border-radius: 10rem;
 
-  width: 27.4rem;
+  width: calc(100vw - 8.6rem);
   height: 0.5rem;
 `;
 const Highlight = styled.section<{ severity: number }>`
@@ -59,7 +71,7 @@ const SeverityBar = ({ severity }: { severity: number }) => {
   };
 
   return (
-    <>
+    <Container>
       <TextBox>
         <Text type={1} severity={severity}>
           정상
@@ -77,7 +89,7 @@ const SeverityBar = ({ severity }: { severity: number }) => {
       <Background>
         <Highlight severity={setBackgroundPercent(severity)}></Highlight>
       </Background>
-    </>
+    </Container>
   );
 };
 

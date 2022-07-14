@@ -8,7 +8,7 @@ import { Body_3 } from "../../../lib/fontStyle";
 
 const Container = styled.section`
   padding-top: 9.6rem;
-  padding-bottom: 12rem;
+  padding-bottom: 13rem;
 `;
 const Contents = styled.section`
   margin: 2rem 2.4rem 0 2.4rem;

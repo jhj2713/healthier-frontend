@@ -5,7 +5,7 @@ import { ITreatPageProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
-  padding-bottom: 12rem;
+  padding-bottom: 13rem;
   margin: 0 2.4rem;
 `;
 const TitleBox = styled.section`

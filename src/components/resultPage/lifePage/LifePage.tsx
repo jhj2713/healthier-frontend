@@ -5,7 +5,7 @@ import { ILifeProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
-  padding-bottom: 12rem;
+  padding-bottom: 13rem;
 `;
 const TitleBox = styled.section`
   margin: 2rem 2.4rem;

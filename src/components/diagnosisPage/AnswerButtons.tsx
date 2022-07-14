@@ -6,6 +6,8 @@ import { Body_1 } from "../../lib/fontStyle";
 
 const Container = styled.section`
   background: transparent;
+
+  margin-bottom: 13rem;
 `;
 const AnswersContainer = styled.section<{ ansCount: number }>`
   width: 100vw;

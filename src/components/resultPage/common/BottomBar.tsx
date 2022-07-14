@@ -4,7 +4,7 @@ import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
 
-const BottomContainer = styled.section`
+const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
 
   position: fixed;
@@ -14,12 +14,9 @@ const BottomContainer = styled.section`
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: linear-gradient(
-    180deg,
-    rgba(19, 20, 22, 0) 0%,
-    rgba(19, 20, 22, 0.947917) 78.12%,
-    #131416 100%
-  );
+  background: ${({ curIndex }) =>
+    curIndex !== 1 &&
+    "linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%"};
 `;
 const BottomButton = styled.section`
   z-index: 5;
@@ -47,7 +44,7 @@ const BottomBar = ({
   };
 
   return (
-    <BottomContainer>
+    <BottomContainer curIndex={curIndex}>
       {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
