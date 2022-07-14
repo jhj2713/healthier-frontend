@@ -65,6 +65,17 @@ const Contents = styled.section`
   height: 100%;
   width: 100%;
 `;
+const NoteImage = styled.section`
+  height: 20rem;
+  width: 26rem;
+  margin-top: 1.6rem;
+`;
+const Image = styled.section`
+  height: 100%;
+  width: 100%;
+  background: ${({ theme }) => theme.color.grey_900};
+  opacity: 0.5;
+`;
 const ButtonContainer = styled.section`
   position: absolute;
   bottom: 2rem;
@@ -132,6 +143,9 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
             <br />
             <Highlight>{symptom_type[select].detail}</Highlight>입니다
           </Title>
+          <NoteImage>
+            <Image></Image>
+          </NoteImage>
         </Contents>
         <ButtonContainer onClick={handleNavigate}>
           <BottomButton>

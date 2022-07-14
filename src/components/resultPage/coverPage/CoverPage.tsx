@@ -6,7 +6,9 @@ import SeverityBar from "./SeverityBar";
 const Container = styled.section`
   padding-bottom: 12rem;
 `;
-const CoverImage = styled.section``;
+const CoverImage = styled.section`
+  height: 36.3rem;
+`;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
