@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { Heading_3 } from "../lib/fontStyle";
-import { first_questions } from "../store/diagnosis";
+import { sleepdisorder_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector } from "../state";
@@ -38,7 +38,8 @@ const Question = styled(Heading_3)`
 `;
 
 const Diagnosis = () => {
-  const { state } = useLocation();
+  const navigate = useNavigate();
+  const { state } = useLocation() as { state: string };
 
   const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
@@ -55,17 +56,29 @@ const Diagnosis = () => {
   );
 
   useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, []);
+  useEffect(() => {
     if (curIndex <= 5) {
-      setCurQuestion(first_questions[curIndex]);
+      let question = {} as IQuestion;
+      if (state === "sleepdisorder") {
+        question = sleepdisorder_questions[curIndex];
+      }
+      setCurQuestion(question);
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
         if (selectedAnswer[0].answer_id === 1) {
           /* axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, {
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, {
               answer: "y",
             })
-            .then(); */
+            .then((res) => {
+              setCurQuestion(res.data.qustion);
+              setSelectedAnswer([]);
+            }); */
           const response = {
             is_result: 0,
             question: {
@@ -96,14 +109,22 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /* axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/first`, 
+          /* 
+          setLoading(true);
+          let state = {};
+          axios
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, 
               data,
             )
-            .then(); */
-          console.log(data);
-          // setLoading(true);
-          // navigate("/result");
+            .then((res) => {
+              state = {
+                type: "",
+                diagnostic_result: res.data.diagnostic_result,
+              }
+            });
+          setTimeout(() => navigate("/result", {
+              state: state
+            }), 3000); */
         }
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
@@ -116,15 +137,23 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /*axios
+          /*
+          setLoading(true);
+          let state = {};
+          axios
             .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder/decisive`,
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
               data
             )
-            .then(); */
-          // setLoading(true);
-          // navigate("/result");
-          console.log(data);
+            .then((res) => {
+              state = {
+                type: "",
+                diagnostic_result: res.data.diagnostic_result,
+              }
+            }); 
+            setTimeout(() => navigate("/result", {
+              state: state
+            }), 3000); */
         } else {
           // 진단응답 api 호출
           const data = {
@@ -133,12 +162,13 @@ const Diagnosis = () => {
           };
           axios
             .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/sleepdisorder`,
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}`,
               data
             )
             .then((res) => {
               console.log(res.data);
               setCurQuestion(res.data.question);
+              setSelectedAnswer([]);
             });
         }
       }

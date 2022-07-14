@@ -1,4 +1,4 @@
-export const first_questions = [
+export const sleepdisorder_questions = [
   {
     id: "1",
     question: "언제부터 잠이 안오기 시작했나요?",

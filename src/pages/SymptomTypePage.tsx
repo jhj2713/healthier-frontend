@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import ContentHeader from "../components/header/ContentHeader";
-import SymptomTypeComponent from "../components/selectSymptomPage/SymptomTypeComponent";
+import SymptomTypeComponent from "../components/symptomTypePage/SymptomTypeComponent";
 import { Heading_3 } from "../lib/fontStyle";
 import { symptom_type } from "../store/symptom_type";
 import SymptomModal from "../components/modal/SymptomModal";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -36,7 +37,10 @@ const SymptomContainer = styled.section`
   }
 `;
 
-const SelectSymptomPage = () => {
+const SymptomTypePage = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   const [select, setSelect] = useState(-1);
   const [modal, setModal] = useState(false);
 
@@ -46,6 +50,9 @@ const SelectSymptomPage = () => {
   };
 
   useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
     if (!modal) {
       setSelect(-1);
     }
@@ -70,4 +77,4 @@ const SelectSymptomPage = () => {
   );
 };
 
-export default SelectSymptomPage;
+export default SymptomTypePage;
