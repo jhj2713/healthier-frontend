@@ -4,9 +4,10 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
 import { Mesh } from "three";
 import theme from "../../lib/theme";
-import { LayerMaterial, Noise } from "lamina";
+import { LayerMaterial, Color } from "lamina";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "./CharacterLine";
+import { ICharacterProps } from "../../interfaces/symptomPage";
 
 extend({ Point });
 
@@ -34,11 +35,12 @@ const hCord = [
 const vec = new THREE.Vector3();
 let geometry = new THREE.BufferGeometry();
 
-const Character = ({ view, menu }: { view: number; menu: number }) => {
+const Character = ({ view, menu }: ICharacterProps) => {
   const character = useLoader(OBJLoader, "models/character.obj", (loader) => {
     // material.preload();
     // loader.setMaterials(material);
   });
+
   //@ts-ignore
   geometry = character.children[0].geometry;
   const modelRef = useRef<Mesh>(null!);
