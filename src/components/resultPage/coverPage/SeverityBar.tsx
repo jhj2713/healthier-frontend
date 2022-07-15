@@ -2,9 +2,9 @@ import styled from "styled-components";
 
 const Container = styled.section`
   z-index: 5;
-  position: fixed;
+  //position: fixed;
 
-  bottom: 12.1rem;
+  //bottom: 12.1rem;
 
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@ const Container = styled.section`
 const TextBox = styled.section`
   display: flex;
   justify-content: space-between;
+  width: calc(100vw - 8.6rem);
 
   font-weight: 100;
   letter-spacing: -0.05rem;

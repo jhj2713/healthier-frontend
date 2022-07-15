@@ -14,7 +14,7 @@ const Contents = styled.section`
   flex-direction: column;
   align-items: center;
 
-  margin: 4.7rem 3.2rem 0 3.2rem;
+  margin: 4.5rem 3.2rem 2.3rem 3.2rem;
 `;
 const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
@@ -29,8 +29,6 @@ const Title = styled(Heading_1)`
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
   text-align: center;
-
-  margin-bottom: 2.4rem;
 `;
 
 const CoverPage = ({

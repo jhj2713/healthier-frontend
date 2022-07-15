@@ -47,7 +47,7 @@ const Highlight = styled.span<{ type: string }>`
     type === "title" ? theme.color.green : theme.color.sub_green};
 `;
 const List = styled.section`
-  margin: 0 2.4rem 10rem 2.4rem;
+  margin: 0 2.4rem 13rem 2.4rem;
 `;
 
 const DiagnosisList = () => {

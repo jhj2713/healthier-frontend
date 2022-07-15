@@ -70,37 +70,19 @@ const Diagnosis = () => {
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
+        // 첫번째 진단 응답 api 호출
         if (selectedAnswer[0].answer_id === 1) {
-          /* axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, {
-              answer: "y",
-            })
+          axios
+            .post(
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
+              {
+                answer: "y",
+              }
+            )
             .then((res) => {
               setCurQuestion(res.data.qustion);
               setSelectedAnswer([]);
-            }); */
-          const response = {
-            is_result: 0,
-            question: {
-              id: "62ca4918705b0e3bdeefc746",
-              question: "자신을 가장 잘 설명하는 증상을 골라주세요",
-              is_multiple: 0,
-              answers: [
-                {
-                  answer_id: 1,
-                  answer: "잠드는 것이 어려워요",
-                  is_decisive: 0,
-                },
-                {
-                  answer_id: 2,
-                  answer: "자는 도중 중간에 자꾸 깨요",
-                  is_decisive: 0,
-                },
-              ],
-            },
-          };
-          setCurQuestion(response.question);
-          setSelectedAnswer([]);
+            });
         } else {
           const data = {
             answer: "n",
@@ -109,22 +91,26 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /* 
           setLoading(true);
           let state = {};
           axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, 
-              data,
+            .post(
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
+              data
             )
             .then((res) => {
               state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
-              }
+              };
             });
-          setTimeout(() => navigate("/result", {
-              state: state
-            }), 3000); */
+          setTimeout(
+            () =>
+              navigate("/result", {
+                state: state,
+              }),
+            3000
+          );
         }
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
@@ -166,7 +152,6 @@ const Diagnosis = () => {
               data
             )
             .then((res) => {
-              console.log(res.data);
               setCurQuestion(res.data.question);
               setSelectedAnswer([]);
             });
