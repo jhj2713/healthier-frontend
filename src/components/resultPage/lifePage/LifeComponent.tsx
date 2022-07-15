@@ -30,9 +30,7 @@ const Title = styled.section`
 const LifeComponent = ({ idx, icon, title, content }: ILifeComponent) => {
   return (
     <Background idx={idx}>
-      <Icon>
-        <img alt="icon" src={icon} width={23} height={23} />
-      </Icon>
+      <Icon>{icon}</Icon>
       <Contents>
         <Title>{title}</Title>
         <Description text={content} />

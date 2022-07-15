@@ -7,7 +7,7 @@ export interface IDiagnosticResult {
     title: string;
     h2: string[];
     severity: number;
-    explanation: string[];
+    explanation: { title: string; details: string[] };
     cause: {
       tag_flag: number;
       tags?: { cause: string; details: string[] }[];

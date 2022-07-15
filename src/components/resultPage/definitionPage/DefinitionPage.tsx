@@ -25,7 +25,7 @@ const DefinitionPage = ({
   return (
     <Container>
       <Contents>
-        <Title text={`${title}란?`} />
+        <Title text={title} />
         <DescriptionBox top={2} bottom={8}>
           {definition.map((text, idx) => (
             <section key={idx}>

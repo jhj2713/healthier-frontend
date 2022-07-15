@@ -62,8 +62,8 @@ const ResultPage = () => {
         severity: state.diagnostic_result.severity,
       });
       setDefineData({
-        title: state.diagnostic_result.title,
-        definition: state.diagnostic_result.explanation,
+        title: state.diagnostic_result.explanation.title,
+        definition: state.diagnostic_result.explanation.details,
         tag_flag: state.diagnostic_result.cause.tag_flag,
         cause: state.diagnostic_result.cause.tags,
         cause_detail: state.diagnostic_result.cause.detail,
