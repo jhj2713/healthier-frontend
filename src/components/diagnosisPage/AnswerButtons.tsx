@@ -3,6 +3,7 @@ import { IAnswerButtonProps } from "../../interfaces/diagnosisPage";
 import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
 import { Body_1 } from "../../lib/fontStyle";
+import { useEffect } from "react";
 
 const Container = styled.section`
   background: transparent;
@@ -52,6 +53,7 @@ const NextButton = styled.section`
   justify-content: center;
 
   position: fixed;
+  bottom: 0;
 
   padding-top: 10.4rem;
   padding-bottom: 3rem;
@@ -68,17 +70,17 @@ const AnswerButtons = ({
   sleepScore,
   setSleepScore,
 }: IAnswerButtonProps) => {
-  const handleSelect = (idx: number) => {
-    let filtered = selectedAnswer.filter(
-      (ans) => ans.answer_id !== answers[idx].answer_id
-    );
+  const handleSelect = (id: number) => {
+    let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
+
     if (filtered.length !== selectedAnswer.length) {
       setSelectedAnswer(filtered);
     } else {
-      setSelectedAnswer([...selectedAnswer, answers[idx]]);
+      let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+      setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
 
-      if (answers[idx]?.score) {
-        setSleepScore(sleepScore + (answers[idx].score || 0));
+      if (answers[filtered_idx]?.score) {
+        setSleepScore(sleepScore + (answers[filtered_idx].score || 0));
       }
     }
     if (isMultiple === 0) {
@@ -91,17 +93,24 @@ const AnswerButtons = ({
     return false;
   };
 
+  useEffect(() => {
+    selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
+  }, [selectedAnswer]);
+
   return (
     <Container>
       <AnswersContainer ansCount={answers.length}>
-        {answers.map((ans, idx) => (
-          <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
-            <Button selected={handleActive(ans.answer_id)}>{ans.answer}</Button>
-          </ButtonBox>
-        ))}
+        {answers.length !== 0 &&
+          answers.map((ans, idx) => (
+            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)}>
+              <Button selected={handleActive(ans.answer_id)}>
+                {ans.answer}
+              </Button>
+            </ButtonBox>
+          ))}
       </AnswersContainer>
 
-      {isMultiple && (
+      {isMultiple === 1 && (
         <NextButton>
           <section onClick={handleNext}>
             <RoundButton

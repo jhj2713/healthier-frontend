@@ -48,7 +48,6 @@ const CoverPage = ({
           <Description key={idx}>{des}</Description>
         ))}
       </Contents>
-      <SeverityBar severity={severity} />
     </Container>
   );
 };

@@ -74,8 +74,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
             diagnostic_result: res.data.diagnostic_result,
           },
         });
-      });
-    /*
+      }); /*
     navigate("/result", {
       state: {
         type: "result",

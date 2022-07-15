@@ -4,7 +4,7 @@ const Container = styled.section`
   z-index: 5;
   //position: fixed;
 
-  //bottom: 12.1rem;
+  bottom: 5.5rem;
 
   display: flex;
   flex-direction: column;

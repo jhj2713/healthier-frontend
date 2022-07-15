@@ -80,7 +80,7 @@ const Diagnosis = () => {
               }
             )
             .then((res) => {
-              setCurQuestion(res.data.qustion);
+              setCurQuestion(res.data.question);
               setSelectedAnswer([]);
             });
         } else {
@@ -92,14 +92,14 @@ const Diagnosis = () => {
             interests,
           };
           setLoading(true);
-          let state = {};
+          let response_state = {};
           axios
             .post(
               `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
               data
             )
             .then((res) => {
-              state = {
+              response_state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
               };
@@ -107,7 +107,7 @@ const Diagnosis = () => {
           setTimeout(
             () =>
               navigate("/result", {
-                state: state,
+                state: response_state,
               }),
             3000
           );
@@ -125,20 +125,20 @@ const Diagnosis = () => {
           };
           /*
           setLoading(true);
-          let state = {};
+          let response_state = {};
           axios
             .post(
               `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
               data
             )
             .then((res) => {
-              state = {
+              response_state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
               }
             }); 
             setTimeout(() => navigate("/result", {
-              state: state
+              state: response_state
             }), 3000); */
         } else {
           // 진단응답 api 호출

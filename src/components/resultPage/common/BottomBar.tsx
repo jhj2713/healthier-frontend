@@ -3,6 +3,7 @@ import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
+import SeverityBar from "../coverPage/SeverityBar";
 
 const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
@@ -45,6 +46,7 @@ const BottomBar = ({
 
   return (
     <BottomContainer curIndex={curIndex}>
+      {curIndex === 1 && <SeverityBar severity={1} />}
       {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
