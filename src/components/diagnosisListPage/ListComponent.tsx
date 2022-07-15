@@ -63,7 +63,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
     "일";
 
   const handleNavigate = () => {
-    /*axios
+    axios
       .get(
         `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
@@ -74,7 +74,8 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
             diagnostic_result: res.data.diagnostic_result,
           },
         });
-      });*/
+      });
+    /*
     navigate("/result", {
       state: {
         type: "result",
@@ -199,7 +200,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
           ],
         },
       },
-    });
+    });*/
   };
 
   return (
