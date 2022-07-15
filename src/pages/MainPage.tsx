@@ -21,10 +21,15 @@ const Strong = styled.span`
 `;
 const MainImage = styled.section`
   height: calc(100% - 15.3rem - 17.6rem);
-  margin: 2rem 5rem 0 5rem;
+  margin-top: 2rem;
+
+  display: flex;
+  justify-content: center;
 `;
 const Image = styled.section`
+  width: 26rem;
   height: 100%;
+
   background: ${({ theme }) => theme.color.blue};
   opacity: 0.5;
 `;
