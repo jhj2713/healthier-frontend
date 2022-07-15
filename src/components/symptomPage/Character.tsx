@@ -19,6 +19,7 @@ declare global {
 }
 
 const hCord = [
+  // x, y, z 좌표 + inner radius, outer radius
   [0.0, 2.9, 1.01, 1.0, 1.7], // 머리 전체
   [0.0, 2.9, 1.0, 0.7, 0.8], // 뒷머리
   [0.0, 1.7, 0.5, 0.3, 0.4], // 목 뒤
@@ -147,15 +148,6 @@ const Character = ({ view, menu }: { view: number; menu: number }) => {
             near={0}
             far={0}
             origin={[0, 5, 0]}
-          />
-          <Noise
-            mapping="local"
-            type="white"
-            scale={1000}
-            colorA="white"
-            colorB={theme.color.blue}
-            mode="subtract"
-            alpha={0.2}
           />
         </LayerMaterial>
       </mesh>

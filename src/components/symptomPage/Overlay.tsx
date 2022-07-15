@@ -252,6 +252,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           toggle={view === 0}
           onClick={() => {
             setView(0);
+            setMenu(0);
           }}
         >
           앞

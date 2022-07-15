@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import ContentHeader from "../components/header/ContentHeader";
 import styled from "styled-components";
@@ -29,8 +29,8 @@ const CanvasSection = styled.div`
 export const regions = [
   "",
   "머리 전체",
-  "여긴 어디",
-  "나는 누구",
+  "뒷머리",
+  "뒷목",
   "눈 주위",
   "이마의 띠",
   "관자놀이",
