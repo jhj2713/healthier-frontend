@@ -9,6 +9,7 @@ import { Description, Heading_3 } from "../lib/fontStyle";
 import { useEffect } from "react";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
+import EmptyPage from "../components/diagnosisListPage/EmptyPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
@@ -55,10 +56,10 @@ const DiagnosisList = () => {
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
 
   useEffect(() => {
-    // axios.get("http://localhost:3000/api/diagnosis/sleepdisorder/list").then();
+    // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
     setDiagnosisList([
       {
-        result_log_id: "1",
+        result_log_id: "62cd703fe49face142d9cffe",
         name: "일주기 리듬 수면 장애",
         date: "6/25",
         photo: "/images/list_component.png",
@@ -81,20 +82,26 @@ const DiagnosisList = () => {
   return (
     <Container>
       <MainHeader />
-      <Title>
-        <Highlight type="title">홍길동님</Highlight>이 저장한
-        <br /> 진단 내역이에요
-      </Title>
-      <DescriptionBox>
-        <Highlight type="description">3개</Highlight>의 진단내역
-      </DescriptionBox>
-      <List>
-        {diagnosisList.map((diag) => (
-          <ListComponent key={diag.result_log_id} diagnosis={diag} />
-        ))}
-      </List>
+      {diagnosisList.length === 0 ? (
+        <EmptyPage />
+      ) : (
+        <>
+          <Title>
+            <Highlight type="title">홍길동님</Highlight>이 저장한
+            <br /> 진단 내역이에요
+          </Title>
+          <DescriptionBox>
+            <Highlight type="description">3개</Highlight>의 진단내역
+          </DescriptionBox>
+          <List>
+            {diagnosisList.map((diag) => (
+              <ListComponent key={diag.result_log_id} diagnosis={diag} />
+            ))}
+          </List>
+        </>
+      )}
       <ButtonBox>
-        <section onClick={() => navigate("/diagnosis")}>
+        <section onClick={() => navigate("/info")}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}

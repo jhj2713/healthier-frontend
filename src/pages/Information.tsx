@@ -55,7 +55,7 @@ const Information = () => {
         .filter((item) => item.selected)
         .map((item) => item.id);
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
-      navigate("/symptom");
+      navigate("/symptom-type", { state: "info" });
     }
   };
 
@@ -73,7 +73,7 @@ const Information = () => {
 
   return (
     <Container>
-      <ContentHeader text="정보 수집" />
+      <ContentHeader text="정보 수집" back={false} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해
@@ -83,13 +83,15 @@ const Information = () => {
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
       </Contents>
-      <ButtonBox onClick={handleProceed}>
-        <RoundButton
-          outline="none"
-          backgroundColor={active ? theme.color.blue : theme.color.grey_750}
-          color={active ? theme.color.grey_100 : theme.color.grey_600}
-          text="증상 진단하러 가기"
-        />
+      <ButtonBox>
+        <section onClick={handleProceed}>
+          <RoundButton
+            outline="none"
+            backgroundColor={active ? theme.color.blue : theme.color.grey_750}
+            color={active ? theme.color.grey_100 : theme.color.grey_600}
+            text="증상 진단하러 가기"
+          />
+        </section>
       </ButtonBox>
     </Container>
   );

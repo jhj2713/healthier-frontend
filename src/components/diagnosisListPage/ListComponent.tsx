@@ -62,12 +62,18 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
     "일";
 
   const handleNavigate = () => {
-    /* axios
+    axios
       .get(
-        `http://localhost:3000/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
+        `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
-      .then(); */
-    navigate("/result");
+      .then((res) => {
+        navigate("/result", {
+          state: {
+            type: "result",
+            diagnostic_result: res.data.diagnostic_result,
+          },
+        });
+      });
   };
 
   return (

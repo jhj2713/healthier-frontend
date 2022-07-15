@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CoverPage from "../components/resultPage/coverPage/CoverPage";
 import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPage";
 import LifePage from "../components/resultPage/lifePage/LifePage";
@@ -7,42 +7,72 @@ import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
 import TreatmentPage from "../components/resultPage/treatmentPage/TreatmentPage";
 import BottomBar from "../components/resultPage/common/BottomBar";
 import ResultHeader from "../components/header/ResultHeader";
-import diagnosis_result from "../store/diagnosis_result.json";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
-import Loading from "./Loading";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import ResultLoading from "../components/loading/ResultLoading";
+import { IDiagnosticResult } from "../interfaces/diagnosticResult";
+import {
+  ICoverPageProps,
+  IDefinePageProps,
+  ILifeProps,
+  IMedicine,
+  ITreatPageProps,
+} from "../interfaces/resultPage";
 
 const ResultPage = () => {
-  const { state } = useLocation();
-  const [curIndex, setCurIndex] = useState(1);
-  const coverData = {
-    illustration: diagnosis_result.diagnostic_result.illustration,
-    highlight: diagnosis_result.diagnostic_result.h1,
-    title: diagnosis_result.diagnostic_result.title,
-    description: diagnosis_result.diagnostic_result.h2,
-    severity: diagnosis_result.diagnostic_result.severity,
-  };
-  const defineData = {
-    title: diagnosis_result.diagnostic_result.title,
-    definition: diagnosis_result.diagnostic_result.explanation,
-    cause: diagnosis_result.diagnostic_result.cause.tags,
-    cause_detail: diagnosis_result.diagnostic_result.cause.detail,
-  };
-  const lifeData = diagnosis_result.diagnostic_result.solutions;
-  const medicineData = diagnosis_result.diagnostic_result.medicines;
-  const treatData = diagnosis_result.diagnostic_result.treatments;
+  const navigate = useNavigate();
+  const { state } = useLocation() as { state: IDiagnosticResult };
 
+  const [curIndex, setCurIndex] = useState(1);
   const [loading, setLoading] = useState(false);
   const [modal, setModal] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
+  const [coverData, setCoverData] = useState<ICoverPageProps>({
+    illustration: "",
+    highlight: "",
+    title: "",
+    description: "",
+    severity: 0,
+  });
+  const [defineData, setDefineData] = useState<IDefinePageProps>({
+    title: "",
+    definition: [],
+    tag_flag: 0,
+    cause_detail: [],
+  });
+  const [lifeData, setLifeData] = useState<ILifeProps[]>([]);
+  const [medicineData, setMedicineData] = useState<IMedicine[] | undefined>();
+  const [treatData, setTreatData] = useState<ITreatPageProps[] | undefined>();
+
   useEffect(() => {
-    console.log(state);
-    if (!diagnosis_result.is_result) {
-      setIsSaved(true);
+    if (!state) {
+      navigate("/");
+    } else {
+      setCoverData({
+        illustration: state.diagnostic_result.illustration,
+        highlight: state.diagnostic_result.h1,
+        title: state.diagnostic_result.title,
+        description: state.diagnostic_result.h2,
+        severity: state.diagnostic_result.severity,
+      });
+      setDefineData({
+        title: state.diagnostic_result.title,
+        definition: state.diagnostic_result.explanation,
+        tag_flag: state.diagnostic_result.cause.tag_flag,
+        cause: state.diagnostic_result.cause.tags,
+        cause_detail: state.diagnostic_result.cause.detail,
+      });
+      setLifeData(state.diagnostic_result.solutions);
+      setMedicineData(state.diagnostic_result.medicines);
+      setTreatData(state.diagnostic_result.treatments);
+
+      if (state.type === "result") {
+        setIsSaved(true);
+      }
     }
   }, [state]);
   useEffect(() => {
@@ -53,12 +83,21 @@ const ResultPage = () => {
     setCurIndex(swiper.activeIndex + 1);
   };
 
-  const setTotalCount = () => {};
+  const setTotalCount = (): number => {
+    let total = 5;
+    if (!medicineData) {
+      total--;
+    }
+    if (!treatData) {
+      total--;
+    }
+    return total;
+  };
 
   return (
     <>
       {loading ? (
-        <Loading />
+        <ResultLoading />
       ) : (
         <>
           <ResultHeader isCover={curIndex === 1} />
@@ -72,12 +111,16 @@ const ResultPage = () => {
             <SwiperSlide>
               <LifePage lifestyle={lifeData} />
             </SwiperSlide>
-            <SwiperSlide>
-              <MedicinePage medicine={medicineData} />
-            </SwiperSlide>
-            <SwiperSlide>
-              <TreatmentPage treatData={treatData} />
-            </SwiperSlide>
+            {medicineData && (
+              <SwiperSlide>
+                <MedicinePage medicine={medicineData} />
+              </SwiperSlide>
+            )}
+            {treatData && (
+              <SwiperSlide>
+                <TreatmentPage treatData={treatData} />
+              </SwiperSlide>
+            )}
           </Swiper>
           {modal && (
             <ModalContainer setModal={setModal}>
@@ -86,7 +129,7 @@ const ResultPage = () => {
           )}
           <BottomBar
             curIndex={curIndex}
-            totalCount={5}
+            totalCount={setTotalCount()}
             setModal={setModal}
             setLoading={setLoading}
             isSaved={isSaved}

@@ -1,4 +1,4 @@
-export const first_questions = [
+export const sleepdisorder_questions = [
   {
     id: "1",
     question: "언제부터 잠이 안오기 시작했나요?",
@@ -8,7 +8,7 @@ export const first_questions = [
       { answer_id: 3, answer: "한달 전", score: 3, is_decisive: 0 },
       { answer_id: 4, answer: "3개월 전", score: 4, is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
   {
     id: "2",
@@ -17,7 +17,7 @@ export const first_questions = [
       { answer_id: 1, answer: "주 1~2회", score: 0, is_decisive: 0 },
       { answer_id: 2, answer: "주 3회 이상", score: 0, is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
   {
     id: "3",
@@ -32,7 +32,7 @@ export const first_questions = [
       { answer_id: 2, answer: "주 2~3회", score: 1, is_decisive: 0 },
       { answer_id: 3, answer: "주 4회 이상", score: 2, is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
   {
     id: "4",
@@ -47,7 +47,7 @@ export const first_questions = [
       { answer_id: 2, answer: "주 2~3회", score: 1, is_decisive: 0 },
       { answer_id: 3, answer: "주 4회 이상", score: 2, is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
   {
     id: "5",
@@ -111,7 +111,7 @@ export const first_questions = [
       },
       { answer_id: 10, answer: "낮잠을 자주 자요", score: 2, is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
   {
     id: "6",
@@ -120,6 +120,6 @@ export const first_questions = [
       { answer_id: 1, answer: "예", is_decisive: 0 },
       { answer_id: 2, answer: "아니요", is_decisive: 0 },
     ],
-    is_multiple: false,
+    is_multiple: 0,
   },
 ];

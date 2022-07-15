@@ -1,12 +1,10 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import RoundButton from "../components/buttons/RoundButton";
 import LoginModal from "../components/modal/LoginModal";
-import theme from "../lib/theme";
 import { useState } from "react";
 import ModalContainer from "../components/modal/ModalContainer";
 import MainHeader from "../components/header/MainHeader";
 import { Heading_3 } from "../lib/fontStyle";
+import BottomButtons from "../components/mainPage/BottomButtons";
 
 const Container = styled.main`
   padding-top: 9.6rem;
@@ -20,20 +18,6 @@ const Title = styled(Heading_3)`
 `;
 const Strong = styled.span`
   font-weight: 500;
-`;
-const Buttons = styled.section`
-  position: fixed;
-  bottom: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  margin: 3rem 2rem;
-`;
-const ButtonBox = styled.section`
-  & + & {
-    margin-top: 1.2rem;
-  }
 `;
 const MainImage = styled.section`
   height: calc(100% - 15.3rem - 17.6rem);
@@ -60,7 +44,6 @@ const Highlight = styled.span`
 `;
 
 const MainPage = () => {
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
 
   return (
@@ -79,28 +62,7 @@ const MainPage = () => {
         <MainImage>
           <Image></Image>
         </MainImage>
-        <Buttons>
-          <ButtonBox onClick={() => navigate("/info")}>
-            <RoundButton
-              outline="none"
-              backgroundColor={theme.color.green}
-              color={theme.color.grey_800}
-              text={"빠른 진단 시작하기"}
-            />
-          </ButtonBox>
-          <ButtonBox
-            onClick={() => {
-              setModal(true);
-            }}
-          >
-            <RoundButton
-              outline="none"
-              backgroundColor={theme.color.blue}
-              color={theme.color.grey_100}
-              text={"로그인 후 진단기록장 보기"}
-            />
-          </ButtonBox>
-        </Buttons>
+        <BottomButtons setModal={setModal} />
         {modal && (
           <ModalContainer setModal={setModal}>
             <LoginModal setModal={setModal} />

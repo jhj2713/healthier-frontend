@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
 import Overlay from "../components/symptomPage/Overlay";
 import SymptomHeader from "../components/header/SymptomHeader";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.section`
   width: 100vw;
@@ -40,8 +41,17 @@ export const regions = [
 ];
 
 const Symptom = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+
   const [menu, setMenu] = useState(0);
   const [view, setView] = useState(0);
+
+  useEffect(() => {
+    if (!state) {
+      navigate("/");
+    }
+  }, []);
 
   return (
     <Container>
