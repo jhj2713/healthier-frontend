@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import ContentHeader from "../components/header/ContentHeader";
 import styled from "styled-components";
@@ -30,8 +30,8 @@ const CanvasSection = styled.div`
 export const regions = [
   "",
   "머리 전체",
-  "여긴 어디",
-  "나는 누구",
+  "뒷머리",
+  "뒷목",
   "눈 주위",
   "이마의 띠",
   "관자놀이",
@@ -61,12 +61,12 @@ const Symptom = () => {
             <ambientLight intensity={0.2} />
             <directionalLight
               color="white"
-              position={[0, 100, 100]}
+              position={[0, 200, 0]}
               intensity={0.4}
             />
             <directionalLight
               color="white"
-              position={[-100, 100, 100]}
+              position={[-100, 100, 50]}
               intensity={0.5}
             />
             <Character view={view} menu={menu} />

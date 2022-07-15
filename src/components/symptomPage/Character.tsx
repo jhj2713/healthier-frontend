@@ -4,9 +4,10 @@ import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
 import { Mesh } from "three";
 import theme from "../../lib/theme";
-import { LayerMaterial, Noise } from "lamina";
+import { LayerMaterial, Color } from "lamina";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "./CharacterLine";
+import { ICharacterProps } from "../../interfaces/symptomPage";
 
 extend({ Point });
 
@@ -19,6 +20,7 @@ declare global {
 }
 
 const hCord = [
+  // x, y, z 좌표 + inner radius, outer radius
   [0.0, 2.9, 1.01, 1.0, 1.7], // 머리 전체
   [0.0, 2.9, 1.0, 0.7, 0.8], // 뒷머리
   [0.0, 1.7, 0.5, 0.3, 0.4], // 목 뒤
@@ -33,11 +35,12 @@ const hCord = [
 const vec = new THREE.Vector3();
 let geometry = new THREE.BufferGeometry();
 
-const Character = ({ view, menu }: { view: number; menu: number }) => {
+const Character = ({ view, menu }: ICharacterProps) => {
   const character = useLoader(OBJLoader, "models/character.obj", (loader) => {
     // material.preload();
     // loader.setMaterials(material);
   });
+
   //@ts-ignore
   geometry = character.children[0].geometry;
   const modelRef = useRef<Mesh>(null!);
@@ -147,15 +150,6 @@ const Character = ({ view, menu }: { view: number; menu: number }) => {
             near={0}
             far={0}
             origin={[0, 5, 0]}
-          />
-          <Noise
-            mapping="local"
-            type="white"
-            scale={1000}
-            colorA="white"
-            colorB={theme.color.blue}
-            mode="subtract"
-            alpha={0.2}
           />
         </LayerMaterial>
       </mesh>
