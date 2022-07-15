@@ -51,12 +51,12 @@ const Symptom = () => {
             <ambientLight intensity={0.2} />
             <directionalLight
               color="white"
-              position={[0, 100, 100]}
+              position={[0, 200, 0]}
               intensity={0.4}
             />
             <directionalLight
               color="white"
-              position={[-100, 100, 100]}
+              position={[-100, 100, 50]}
               intensity={0.5}
             />
             <Character view={view} menu={menu} />
