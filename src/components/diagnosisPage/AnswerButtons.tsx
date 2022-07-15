@@ -38,7 +38,7 @@ const Button = styled(Body_1)<{ selected: boolean }>`
     selected ? theme.color.blue : theme.color.grey_300};
 
   border: ${({ selected, theme }) =>
-    selected ? "none" : "0.1rem solid " + theme.color.grey_650};
+    !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
   box-sizing: border-box;
 

@@ -16,7 +16,7 @@ const BottomContainer = styled.section<{ curIndex: number }>`
 
   background: ${({ curIndex }) =>
     curIndex !== 1 &&
-    "linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%"};
+    "linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%)"};
 `;
 const BottomButton = styled.section`
   z-index: 5;
