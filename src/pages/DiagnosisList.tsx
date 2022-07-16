@@ -53,9 +53,11 @@ const List = styled.section`
 const DiagnosisList = () => {
   const navigate = useNavigate();
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
+    setName("홍길동");
     setDiagnosisList([
       {
         result_log_id: "62cd703fe49face142d9cffe",
@@ -96,11 +98,12 @@ const DiagnosisList = () => {
       ) : (
         <>
           <Title>
-            <Highlight type="title">홍길동님</Highlight>이 저장한
+            <Highlight type="title">{name}님</Highlight>이 저장한
             <br /> 진단 내역이에요
           </Title>
           <DescriptionBox>
-            <Highlight type="description">3개</Highlight>의 진단내역
+            <Highlight type="description">{diagnosisList.length}개</Highlight>의
+            진단내역
           </DescriptionBox>
           <List>
             {diagnosisList.map((diag) => (
