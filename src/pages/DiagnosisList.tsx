@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
 import MainHeader from "../components/header/MainHeader";
@@ -6,7 +6,6 @@ import ListComponent from "../components/diagnosisListPage/ListComponent";
 import theme from "../lib/theme";
 import { useNavigate } from "react-router-dom";
 import { Description, Heading_3 } from "../lib/fontStyle";
-import { useEffect } from "react";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
 import EmptyPage from "../components/diagnosisListPage/EmptyPage";
@@ -48,7 +47,7 @@ const Highlight = styled.span<{ type: string }>`
     type === "title" ? theme.color.green : theme.color.sub_green};
 `;
 const List = styled.section`
-  margin: 0 2.4rem 10rem 2.4rem;
+  margin: 0 2.4rem 13rem 2.4rem;
 `;
 
 const DiagnosisList = () => {
@@ -60,21 +59,31 @@ const DiagnosisList = () => {
     setDiagnosisList([
       {
         result_log_id: "62cd703fe49face142d9cffe",
-        name: "일주기 리듬 수면 장애",
+        name: "주기성 사지운동증",
         date: "6/25",
         photo: "/images/list_component.png",
+        severity: 3,
       },
       {
-        result_log_id: "2",
-        name: "일주기 리듬 수면 장애",
+        result_log_id: "62d121d11dc40a851fd99fb7",
+        name: "경미한 수면무호흡증",
         date: "6/27",
         photo: "/images/list_component.png",
+        severity: 1,
       },
       {
-        result_log_id: "3",
-        name: "일주기 리듬 수면 장애",
+        result_log_id: "62ce900456e36933184b0fba",
+        name: "수면습관 경고",
         date: "7/5",
         photo: "/images/list_component.png",
+        severity: 0,
+      },
+      {
+        result_log_id: "62d16679f68f2b673e721200",
+        name: "기면증",
+        date: "7/5",
+        photo: "/images/list_component.png",
+        severity: 2,
       },
     ]);
   }, []);
@@ -101,7 +110,7 @@ const DiagnosisList = () => {
         </>
       )}
       <ButtonBox>
-        <section onClick={() => navigate("/info")}>
+        <section onClick={() => navigate("/symptom-type", { state: "login" })}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}

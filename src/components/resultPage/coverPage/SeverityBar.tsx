@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
 const Container = styled.section`
-  margin-top: 2.4rem;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 const TextBox = styled.section`
   display: flex;
   justify-content: space-between;
+  width: calc(100vw - 8.6rem);
 
   font-weight: 100;
   letter-spacing: -0.05rem;
+
+  margin-left: 4.3rem;
 `;
 const Text = styled.section<{ type: number; severity: number }>`
   font-size: 1.4rem;
@@ -16,22 +23,23 @@ const Text = styled.section<{ type: number; severity: number }>`
   color: ${({ theme, type, severity }) =>
     type !== severity
       ? theme.color.grey_400
-      : type === 4
-      ? theme.color.red
       : type === 3
-      ? "#8A5FD0"
+      ? theme.color.red
       : type === 2
+      ? "#8A5FD0"
+      : type === 1
       ? theme.color.blue
       : theme.color.grey_400};
   font-weight: ${({ type, severity }) => type === severity && 300};
 `;
 const Background = styled.section`
   margin-top: 1rem;
+  margin-left: 4.3rem;
 
   background: rgba(84, 100, 242, 0.33);
   border-radius: 10rem;
 
-  width: 27.4rem;
+  width: calc(100vw - 8.6rem);
   height: 0.5rem;
 `;
 const Highlight = styled.section<{ severity: number }>`
@@ -50,11 +58,11 @@ const Highlight = styled.section<{ severity: number }>`
 const SeverityBar = ({ severity }: { severity: number }) => {
   const setBackgroundPercent = (severity: number): number => {
     switch (severity) {
-      case 1:
+      case 0:
         return 5;
-      case 2:
+      case 1:
         return 35;
-      case 3:
+      case 2:
         return 65;
       default:
         return 100;
@@ -64,16 +72,16 @@ const SeverityBar = ({ severity }: { severity: number }) => {
   return (
     <Container>
       <TextBox>
-        <Text type={1} severity={severity}>
+        <Text type={0} severity={severity}>
           정상
         </Text>
-        <Text type={2} severity={severity}>
+        <Text type={1} severity={severity}>
           경미
         </Text>
-        <Text type={3} severity={severity}>
-          보통
+        <Text type={2} severity={severity}>
+          주의
         </Text>
-        <Text type={4} severity={severity}>
+        <Text type={3} severity={severity}>
           심각
         </Text>
       </TextBox>

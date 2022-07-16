@@ -8,7 +8,13 @@ import { Heading_3 } from "../lib/fontStyle";
 import { sleepdisorder_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
-import { useAppSelector } from "../state";
+import { useAppSelector, useAppDispatch } from "../state";
+import {
+  savePeriod,
+  saveCycle,
+  saveSleepScore,
+  saveAnswer,
+} from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -41,7 +47,6 @@ const Diagnosis = () => {
   const navigate = useNavigate();
   const { state } = useLocation() as { state: string };
 
-  const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
     id: "",
@@ -54,6 +59,11 @@ const Diagnosis = () => {
   const { gender, birth_year, interests } = useAppSelector(
     (state) => state.user
   );
+  const { period, cycle, sleepScore, answers } = useAppSelector(
+    (state) => state.answer
+  );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!state) {
@@ -62,45 +72,41 @@ const Diagnosis = () => {
   }, []);
   useEffect(() => {
     if (curIndex <= 5) {
+      if (curIndex === 1) {
+        dispatch(savePeriod(selectedAnswer[0].score || 0));
+      } else if (curIndex === 2) {
+        dispatch(saveCycle(selectedAnswer[0].score || 0));
+      } else if (curIndex >= 3) {
+        const sum = selectedAnswer.reduce(
+          (acc, val) => acc + (val.score || 0),
+          0
+        );
+        dispatch(saveSleepScore(sum));
+      }
+
       let question = {} as IQuestion;
       if (state === "sleepdisorder") {
         question = sleepdisorder_questions[curIndex];
       }
+
       setCurQuestion(question);
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
+        console.log(period, cycle, sleepScore);
+        // 첫번째 진단 응답 api 호출
         if (selectedAnswer[0].answer_id === 1) {
-          /* axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, {
-              answer: "y",
-            })
+          axios
+            .post(
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
+              {
+                answer: "y",
+              }
+            )
             .then((res) => {
-              setCurQuestion(res.data.qustion);
+              setCurQuestion(res.data.question);
               setSelectedAnswer([]);
-            }); */
-          const response = {
-            is_result: 0,
-            question: {
-              id: "62ca4918705b0e3bdeefc746",
-              question: "자신을 가장 잘 설명하는 증상을 골라주세요",
-              is_multiple: 0,
-              answers: [
-                {
-                  answer_id: 1,
-                  answer: "잠드는 것이 어려워요",
-                  is_decisive: 0,
-                },
-                {
-                  answer_id: 2,
-                  answer: "자는 도중 중간에 자꾸 깨요",
-                  is_decisive: 0,
-                },
-              ],
-            },
-          };
-          setCurQuestion(response.question);
-          setSelectedAnswer([]);
+            });
         } else {
           const data = {
             answer: "n",
@@ -109,29 +115,38 @@ const Diagnosis = () => {
             birth_year,
             interests,
           };
-          /* 
           setLoading(true);
-          let state = {};
+          let response_state = {};
           axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, 
-              data,
+            .post(
+              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
+              data
             )
             .then((res) => {
-              state = {
+              response_state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
-              }
+              };
             });
-          setTimeout(() => navigate("/result", {
-              state: state
-            }), 3000); */
+          setTimeout(
+            () =>
+              navigate("/result", {
+                state: response_state,
+              }),
+            3000
+          );
         }
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
           // 결정적응답 api 호출
+          console.log(answers);
+
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
+            answers,
+            period,
+            cycle,
             sleep_hygiene_score: sleepScore,
             gender,
             birth_year,
@@ -139,23 +154,25 @@ const Diagnosis = () => {
           };
           /*
           setLoading(true);
-          let state = {};
+          let response_state = {};
           axios
             .post(
               `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
               data
             )
             .then((res) => {
-              state = {
+              response_state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
               }
             }); 
             setTimeout(() => navigate("/result", {
-              state: state
+              state: response_state
             }), 3000); */
         } else {
           // 진단응답 api 호출
+          console.log(answers);
+
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
@@ -166,7 +183,6 @@ const Diagnosis = () => {
               data
             )
             .then((res) => {
-              console.log(res.data);
               setCurQuestion(res.data.question);
               setSelectedAnswer([]);
             });
@@ -189,13 +205,10 @@ const Diagnosis = () => {
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons
-              answers={curQuestion.answers}
+              question={curQuestion}
               selectedAnswer={selectedAnswer}
               setSelectedAnswer={setSelectedAnswer}
               handleNext={handleNext}
-              isMultiple={curQuestion.is_multiple}
-              sleepScore={sleepScore}
-              setSleepScore={setSleepScore}
             />
           </Container>
         </>

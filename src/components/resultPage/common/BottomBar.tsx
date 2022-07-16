@@ -4,7 +4,7 @@ import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
 
-const BottomContainer = styled.section`
+const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
 
   position: fixed;
@@ -47,7 +47,7 @@ const BottomBar = ({
   };
 
   return (
-    <BottomContainer>
+    <BottomContainer curIndex={curIndex}>
       {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (

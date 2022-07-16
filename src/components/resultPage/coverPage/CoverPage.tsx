@@ -4,17 +4,21 @@ import { Body_2, Body_4, Heading_1 } from "../../../lib/fontStyle";
 import SeverityBar from "./SeverityBar";
 
 const Container = styled.section`
-  padding-bottom: 12rem;
+  padding-bottom: 13rem;
+
+  display: flex;
+  flex-direction: column;
 `;
-const CoverImage = styled.section`
-  height: 36.3rem;
+const CoverImage = styled.img`
+  width: 100%;
+  height: calc(38rem);
 `;
 const Contents = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  margin-top: 4.7rem;
+  margin: 4.5rem 3.2rem 4rem 3.2rem;
 `;
 const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
@@ -28,10 +32,7 @@ const Title = styled(Heading_1)`
 `;
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
-
   text-align: center;
-
-  width: 20rem;
 `;
 
 const CoverPage = ({
@@ -41,15 +42,16 @@ const CoverPage = ({
 }) => {
   return (
     <Container>
-      <CoverImage>
-        <img alt="cover" src={illustration} />
-      </CoverImage>
+      <CoverImage loading="lazy" alt="cover" src={illustration} />
+
       <Contents>
         <SeverityText>{highlight}</SeverityText>
         <Title>{title}</Title>
-        <Description>{description}</Description>
-        <SeverityBar severity={severity} />
+        {description.map((des, idx) => (
+          <Description key={idx}>{des}</Description>
+        ))}
       </Contents>
+      <SeverityBar severity={severity} />
     </Container>
   );
 };

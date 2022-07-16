@@ -6,7 +6,8 @@ import axios from "axios";
 
 const Container = styled.section<{ photo: string }>`
   height: 16rem;
-  background-image: ${({ photo }) => `url(${photo})`};
+  background: ${({ photo }) => `url(${photo})`},
+    ${({ theme }) => theme.color.blue};
   background-size: cover;
 
   border-radius: 0.8rem;
@@ -21,26 +22,36 @@ const Box = styled.section`
 
   padding: 1.4rem 1.2rem 1.2rem 1.4rem;
 `;
-const Title = styled(Heading_5)`
-  color: ${({ theme }) => theme.color.grey_200};
+const Title = styled(Heading_5)<{ severity: number }>`
+  color: ${({ theme, severity }) =>
+    severity === 3 ? theme.color.blue_800 : theme.color.grey_200};
+
+  width: 5rem;
 `;
-const Date = styled.section`
+const Date = styled.section<{ severity: number }>`
   font-size: 1rem;
   font-weight: 200;
   line-height: 130%;
   letter-spacing: -0.05rem;
 
-  color: ${({ theme }) => theme.color.sub_blue};
+  color: ${({ theme, severity }) =>
+    severity === 3 ? theme.color.blue_700 : theme.color.sub_blue};
 
   margin-top: 0.4rem;
 `;
-const Tag = styled.section`
+const Tag = styled.section<{ severity: number }>`
   position: absolute;
   bottom: 0;
   display: inline;
 
-  background-color: ${({ theme }) => theme.color.sub_blue};
-  color: ${({ theme }) => theme.color.blue};
+  background-color: ${({ theme, severity }) =>
+    severity === 3
+      ? theme.color.blue
+      : severity === 2
+      ? "#2745a9"
+      : theme.color.sub_blue};
+  color: ${({ theme, severity }) =>
+    severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue};
 
   font-weight: 300;
   font-size: 1rem;
@@ -51,6 +62,13 @@ const Tag = styled.section`
   margin-bottom: 1.2rem;
   border-radius: 3rem;
 `;
+
+const severity_map = [
+  "상태가 양호해요",
+  "관리가 필요해요",
+  "병원에 가야해요",
+  "병원에 가야해요",
+];
 
 const ListComponent = ({ diagnosis }: IListComponent) => {
   const navigate = useNavigate();
@@ -67,6 +85,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
         `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
       .then((res) => {
+        console.log(res.data.diagnostic_result);
         navigate("/result", {
           state: {
             type: "result",
@@ -79,12 +98,11 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   return (
     <Container photo={diagnosis.photo} onClick={handleNavigate}>
       <Box>
-        <Title>
-          일주기 리듬 <br />
-          수면 장애
-        </Title>
-        <Date>{diag_date}</Date>
-        <Tag>#수면장애</Tag>
+        <Title severity={diagnosis.severity}>{diagnosis.name}</Title>
+        <Date severity={diagnosis.severity}>{diag_date}</Date>
+        <Tag severity={diagnosis.severity}>
+          {severity_map[diagnosis.severity]}
+        </Tag>
       </Box>
     </Container>
   );

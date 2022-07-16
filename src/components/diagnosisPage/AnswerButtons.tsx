@@ -3,9 +3,14 @@ import { IAnswerButtonProps } from "../../interfaces/diagnosisPage";
 import RoundButton from "../buttons/RoundButton";
 import theme from "../../lib/theme";
 import { Body_1 } from "../../lib/fontStyle";
+import { useEffect } from "react";
+import { saveAnswer } from "../../state/answerSlice";
+import { useAppDispatch } from "../../state";
 
 const Container = styled.section`
   background: transparent;
+
+  margin-bottom: 13rem;
 `;
 const AnswersContainer = styled.section<{ ansCount: number }>`
   width: 100vw;
@@ -36,7 +41,7 @@ const Button = styled(Body_1)<{ selected: boolean }>`
     selected ? theme.color.blue : theme.color.grey_300};
 
   border: ${({ selected, theme }) =>
-    selected ? "none" : "0.1rem solid " + theme.color.grey_650};
+    !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
   box-sizing: border-box;
 
@@ -50,37 +55,50 @@ const NextButton = styled.section`
   justify-content: center;
 
   position: fixed;
-
-  padding-top: 10.4rem;
+  bottom: 0;
   padding-bottom: 3rem;
 
-  background: linear-gradient(180deg, rgba(40, 46, 91, 0) 0%, #272d5a 100%);
+  background: linear-gradient(180deg, rgba(31, 37, 79, 0) 0%, #23284b 50%);
 `;
 
 const AnswerButtons = ({
-  answers,
+  question,
   selectedAnswer,
   setSelectedAnswer,
   handleNext,
-  isMultiple,
-  sleepScore,
-  setSleepScore,
 }: IAnswerButtonProps) => {
-  const handleSelect = (idx: number) => {
-    let filtered = selectedAnswer.filter(
-      (ans) => ans.answer_id !== answers[idx].answer_id
-    );
-    if (filtered.length !== selectedAnswer.length) {
-      setSelectedAnswer(filtered);
-    } else {
-      setSelectedAnswer([...selectedAnswer, answers[idx]]);
+  const answers = question.answers;
+  const isMultiple = question.is_multiple;
 
-      if (answers[idx]?.score) {
-        setSleepScore(sleepScore + (answers[idx].score || 0));
+  const dispatch = useAppDispatch();
+
+  const handleSelect = (id: number) => {
+    if (isMultiple === 1) {
+      let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
+
+      if (filtered.length !== selectedAnswer.length) {
+        setSelectedAnswer(filtered);
+      } else {
+        let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+        setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
       }
     }
     if (isMultiple === 0) {
-      handleNext();
+      let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+      setSelectedAnswer([answers[filtered_idx]]);
+
+      const check = /^[0-9]+$/;
+      if (!check.test(question.id)) {
+        // 초기 진단응답이 아닌 경우
+        dispatch(
+          saveAnswer({
+            question_id: question.id,
+            answer_id: [answers[filtered_idx].answer_id],
+          })
+        );
+      }
+
+      setTimeout(() => handleNext(), 200);
     }
   };
   const handleActive = (id: number): boolean => {
@@ -88,35 +106,54 @@ const AnswerButtons = ({
     if (idx !== -1) return true;
     return false;
   };
+  const handleMultipleAnswer = () => {
+    const check = /^[0-9]+$/;
+    if (!check.test(question.id)) {
+      const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
+      dispatch(
+        saveAnswer({
+          question_id: question.id,
+          answer_id: selected_answers,
+        })
+      );
+    }
+
+    handleNext();
+  };
+
+  useEffect(() => {
+    selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
+  }, [selectedAnswer]);
 
   return (
     <Container>
       <AnswersContainer ansCount={answers.length}>
-        {answers.map((ans, idx) => (
-          <ButtonBox key={idx} onClick={() => handleSelect(idx)}>
-            <Button selected={handleActive(ans.answer_id)}>{ans.answer}</Button>
-          </ButtonBox>
-        ))}
+        {answers.length !== 0 &&
+          answers.map((ans, idx) => (
+            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)}>
+              <Button selected={handleActive(ans.answer_id)}>
+                {ans.answer}
+              </Button>
+            </ButtonBox>
+          ))}
       </AnswersContainer>
 
-      {isMultiple && (
-        <NextButton>
-          <section onClick={handleNext}>
-            <RoundButton
-              outline="none"
-              backgroundColor={
-                selectedAnswer.length === 0
-                  ? theme.color.grey_650
-                  : theme.color.blue
-              }
-              color={
-                selectedAnswer.length === 0
-                  ? theme.color.grey_400
-                  : theme.color.grey_100
-              }
-              text="다음 단계"
-            />
-          </section>
+      {isMultiple === 1 && (
+        <NextButton onClick={handleMultipleAnswer}>
+          <RoundButton
+            outline="none"
+            backgroundColor={
+              selectedAnswer.length === 0
+                ? theme.color.grey_650
+                : theme.color.blue
+            }
+            color={
+              selectedAnswer.length === 0
+                ? theme.color.grey_400
+                : theme.color.grey_100
+            }
+            text="다음 단계"
+          />
         </NextButton>
       )}
     </Container>

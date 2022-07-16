@@ -18,12 +18,7 @@ export interface ITag {
 }
 
 export interface IListComponent {
-  diagnosis: {
-    result_log_id: string;
-    name: string;
-    date: string;
-    photo: string;
-  };
+  diagnosis: IDiagnosisList;
 }
 
 export interface IDiagnosisList {
@@ -31,6 +26,7 @@ export interface IDiagnosisList {
   name: string;
   date: string;
   photo: string;
+  severity: number;
 }
 
 export interface ISymptomTypeComponent {

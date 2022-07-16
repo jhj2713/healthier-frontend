@@ -6,7 +6,7 @@ import { IDefinePageProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
   padding-top: 9.6rem;
-  padding-bottom: 12rem;
+  padding-bottom: 13rem;
 `;
 const Contents = styled.section`
   margin: 2rem 2.4rem 0 2.4rem;
@@ -25,11 +25,11 @@ const DefinitionPage = ({
   return (
     <Container>
       <Contents>
-        <Title text={`${title}란?`} />
+        <Title text={title} />
         <DescriptionBox top={2} bottom={8}>
           {definition.map((text, idx) => (
             <section key={idx}>
-              <Description text={text} />
+              {text ? <Description text={text} /> : <br />}
             </section>
           ))}
         </DescriptionBox>
