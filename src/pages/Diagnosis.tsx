@@ -41,6 +41,8 @@ const Diagnosis = () => {
   const navigate = useNavigate();
   const { state } = useLocation() as { state: string };
 
+  const [period, setPeriod] = useState(0);
+  const [cycle, setCycle] = useState(-1);
   const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
@@ -66,10 +68,18 @@ const Diagnosis = () => {
       if (state === "sleepdisorder") {
         question = sleepdisorder_questions[curIndex];
       }
+
+      if (curIndex === 1) {
+        setPeriod(selectedAnswer[0].score || 0);
+      } else if (curIndex === 2) {
+        setCycle(selectedAnswer[0].score || 0);
+      }
+
       setCurQuestion(question);
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
+        console.log(period, cycle, sleepScore);
         // 첫번째 진단 응답 api 호출
         if (selectedAnswer[0].answer_id === 1) {
           axios

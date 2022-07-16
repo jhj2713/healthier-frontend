@@ -45,7 +45,7 @@ const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {
       {medicine.map((med, idx) => (
         <MedicineBox key={idx} onClick={() => setSelected(idx + 1)}>
           <MedicineImg selected={selected === idx + 1}>
-            <img alt="medicine" src={med.image} width={32} height={32} />;
+            <img alt="medicine" src={med.image} width={32} height={32} />
           </MedicineImg>
           <MedicineText selected={selected === idx + 1}>
             {med.name}

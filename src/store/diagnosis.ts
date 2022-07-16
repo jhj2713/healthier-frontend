@@ -15,7 +15,7 @@ export const sleepdisorder_questions = [
     question: "일주일에 몇 번 정도 잠을 잘 못 주무시나요?",
     answers: [
       { answer_id: 1, answer: "주 1~2회", score: 0, is_decisive: 0 },
-      { answer_id: 2, answer: "주 3회 이상", score: 0, is_decisive: 0 },
+      { answer_id: 2, answer: "주 3회 이상", score: 1, is_decisive: 0 },
     ],
     is_multiple: 0,
   },

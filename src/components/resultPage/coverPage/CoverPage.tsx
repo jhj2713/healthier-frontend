@@ -5,9 +5,13 @@ import SeverityBar from "./SeverityBar";
 
 const Container = styled.section`
   padding-bottom: 13rem;
+
+  display: flex;
+  flex-direction: column;
 `;
-const CoverImage = styled.section`
-  height: 36.3rem;
+const CoverImage = styled.img`
+  width: 100%;
+  height: calc(38rem);
 `;
 const Contents = styled.section`
   display: flex;
@@ -38,9 +42,8 @@ const CoverPage = ({
 }) => {
   return (
     <Container>
-      <CoverImage>
-        <img loading="lazy" alt="cover" src={illustration} height={363} />
-      </CoverImage>
+      <CoverImage loading="lazy" alt="cover" src={illustration} />
+
       <Contents>
         <SeverityText>{highlight}</SeverityText>
         <Title>{title}</Title>
