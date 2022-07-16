@@ -144,6 +144,7 @@ const Diagnosis = () => {
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
+            answers,
             period,
             cycle,
             sleep_hygiene_score: sleepScore,
