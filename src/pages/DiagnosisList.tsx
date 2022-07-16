@@ -62,14 +62,14 @@ const DiagnosisList = () => {
         name: "주기성 사지운동증",
         date: "6/25",
         photo: "/images/list_component.png",
-        severity: 1,
+        severity: 3,
       },
       {
         result_log_id: "62d121d11dc40a851fd99fb7",
         name: "경미한 수면무호흡증",
         date: "6/27",
         photo: "/images/list_component.png",
-        severity: 2,
+        severity: 1,
       },
       {
         result_log_id: "62ce900456e36933184b0fba",
@@ -83,7 +83,7 @@ const DiagnosisList = () => {
         name: "기면증",
         date: "7/5",
         photo: "/images/list_component.png",
-        severity: 3,
+        severity: 2,
       },
     ]);
   }, []);

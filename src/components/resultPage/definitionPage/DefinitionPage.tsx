@@ -40,7 +40,7 @@ const DefinitionPage = ({
         <DescriptionBox top={tag_flag === 1 ? 1.6 : 2} bottom={0}>
           {cause_detail.map((text, idx) => (
             <section key={idx}>
-              {text ? <Description text={text} /> : <br />}
+              <Description text={text} />
             </section>
           ))}
         </DescriptionBox>

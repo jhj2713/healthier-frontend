@@ -79,7 +79,7 @@ const SeverityBar = ({ severity }: { severity: number }) => {
           경미
         </Text>
         <Text type={2} severity={severity}>
-          보통
+          주의
         </Text>
         <Text type={3} severity={severity}>
           심각
