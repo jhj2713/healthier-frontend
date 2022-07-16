@@ -24,7 +24,7 @@ const Box = styled.section`
 `;
 const Title = styled(Heading_5)<{ severity: number }>`
   color: ${({ theme, severity }) =>
-    severity === 0 ? theme.color.grey_600 : theme.color.grey_200};
+    severity === 3 ? theme.color.blue_800 : theme.color.grey_200};
 
   width: 5rem;
 `;
@@ -35,7 +35,7 @@ const Date = styled.section<{ severity: number }>`
   letter-spacing: -0.05rem;
 
   color: ${({ theme, severity }) =>
-    severity === 0 ? theme.color.grey_650 : theme.color.sub_blue};
+    severity === 3 ? theme.color.blue_700 : theme.color.sub_blue};
 
   margin-top: 0.4rem;
 `;
@@ -45,9 +45,13 @@ const Tag = styled.section<{ severity: number }>`
   display: inline;
 
   background-color: ${({ theme, severity }) =>
-    severity === 0 ? theme.color.blue : theme.color.sub_blue};
+    severity === 3
+      ? theme.color.blue
+      : severity === 2
+      ? "#2745a9"
+      : theme.color.sub_blue};
   color: ${({ theme, severity }) =>
-    severity === 0 ? theme.color.grey_200 : theme.color.blue};
+    severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue};
 
   font-weight: 300;
   font-size: 1rem;

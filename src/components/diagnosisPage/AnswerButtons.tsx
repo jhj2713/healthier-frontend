@@ -107,13 +107,16 @@ const AnswerButtons = ({
     return false;
   };
   const handleMultipleAnswer = () => {
-    const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
-    dispatch(
-      saveAnswer({
-        question_id: question.id,
-        answer_id: selected_answers,
-      })
-    );
+    const check = /^[0-9]+$/;
+    if (!check.test(question.id)) {
+      const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
+      dispatch(
+        saveAnswer({
+          question_id: question.id,
+          answer_id: selected_answers,
+        })
+      );
+    }
 
     handleNext();
   };
