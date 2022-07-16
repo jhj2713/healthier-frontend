@@ -18,7 +18,7 @@ const Contents = styled.section`
   flex-direction: column;
   align-items: center;
 
-  margin: 4.5rem 3.2rem 2.3rem 3.2rem;
+  margin: 4.5rem 3.2rem 4rem 3.2rem;
 `;
 const SeverityText = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
@@ -51,6 +51,7 @@ const CoverPage = ({
           <Description key={idx}>{des}</Description>
         ))}
       </Contents>
+      <SeverityBar severity={severity} />
     </Container>
   );
 };

@@ -3,7 +3,6 @@ import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
 import RoundButton from "../../buttons/RoundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
-import SeverityBar from "../coverPage/SeverityBar";
 
 const BottomContainer = styled.section<{ curIndex: number }>`
   z-index: 5;
@@ -15,9 +14,12 @@ const BottomContainer = styled.section<{ curIndex: number }>`
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: ${({ curIndex }) =>
-    curIndex !== 1 &&
-    "linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%)"};
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 `;
 const BottomButton = styled.section`
   z-index: 5;
@@ -46,7 +48,6 @@ const BottomBar = ({
 
   return (
     <BottomContainer curIndex={curIndex}>
-      {curIndex === 1 && <SeverityBar severity={1} />}
       {curIndex !== totalCount || isSaved ? (
         <BottomNumber curIndex={curIndex} totalCount={totalCount} />
       ) : (
