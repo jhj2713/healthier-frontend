@@ -14,8 +14,8 @@ export const sleepdisorder_questions = [
     id: "2",
     question: "일주일에 몇 번 정도 잠을 잘 못 주무시나요?",
     answers: [
-      { answer_id: 1, answer: "주 1~2회", score: 0, is_decisive: 0 },
-      { answer_id: 2, answer: "주 3회 이상", score: 1, is_decisive: 0 },
+      { answer_id: 1, answer: "주 1~2회", score: 1, is_decisive: 0 },
+      { answer_id: 2, answer: "주 3회 이상", score: 2, is_decisive: 0 },
     ],
     is_multiple: 0,
   },
@@ -51,7 +51,7 @@ export const sleepdisorder_questions = [
   },
   {
     id: "5",
-    question: "자신에게 해당하는 것을 고르세요",
+    question: "자신에게 해당하는 것을 모두 고르세요",
     answers: [
       {
         answer_id: 1,
@@ -111,7 +111,7 @@ export const sleepdisorder_questions = [
       },
       { answer_id: 10, answer: "낮잠을 자주 자요", score: 2, is_decisive: 0 },
     ],
-    is_multiple: 0,
+    is_multiple: 1,
   },
   {
     id: "6",

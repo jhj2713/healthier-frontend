@@ -8,7 +8,13 @@ import { Heading_3 } from "../lib/fontStyle";
 import { sleepdisorder_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
-import { useAppSelector } from "../state";
+import { useAppSelector, useAppDispatch } from "../state";
+import {
+  savePeriod,
+  saveCycle,
+  saveSleepScore,
+  saveAnswer,
+} from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -41,9 +47,6 @@ const Diagnosis = () => {
   const navigate = useNavigate();
   const { state } = useLocation() as { state: string };
 
-  const [period, setPeriod] = useState(0);
-  const [cycle, setCycle] = useState(-1);
-  const [sleepScore, setSleepScore] = useState(0);
   const [curIndex, setCurIndex] = useState(0);
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
     id: "",
@@ -56,6 +59,11 @@ const Diagnosis = () => {
   const { gender, birth_year, interests } = useAppSelector(
     (state) => state.user
   );
+  const { period, cycle, sleepScore, answers } = useAppSelector(
+    (state) => state.answer
+  );
+
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!state) {
@@ -64,15 +72,21 @@ const Diagnosis = () => {
   }, []);
   useEffect(() => {
     if (curIndex <= 5) {
+      if (curIndex === 1) {
+        dispatch(savePeriod(selectedAnswer[0].score || 0));
+      } else if (curIndex === 2) {
+        dispatch(saveCycle(selectedAnswer[0].score || 0));
+      } else if (curIndex >= 3) {
+        const sum = selectedAnswer.reduce(
+          (acc, val) => acc + (val.score || 0),
+          0
+        );
+        dispatch(saveSleepScore(sum));
+      }
+
       let question = {} as IQuestion;
       if (state === "sleepdisorder") {
         question = sleepdisorder_questions[curIndex];
-      }
-
-      if (curIndex === 1) {
-        setPeriod(selectedAnswer[0].score || 0);
-      } else if (curIndex === 2) {
-        setCycle(selectedAnswer[0].score || 0);
       }
 
       setCurQuestion(question);
@@ -125,9 +139,13 @@ const Diagnosis = () => {
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
           // 결정적응답 api 호출
+          console.log(answers);
+
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
+            period,
+            cycle,
             sleep_hygiene_score: sleepScore,
             gender,
             birth_year,
@@ -152,6 +170,8 @@ const Diagnosis = () => {
             }), 3000); */
         } else {
           // 진단응답 api 호출
+          console.log(answers);
+
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
@@ -184,13 +204,10 @@ const Diagnosis = () => {
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons
-              answers={curQuestion.answers}
+              question={curQuestion}
               selectedAnswer={selectedAnswer}
               setSelectedAnswer={setSelectedAnswer}
               handleNext={handleNext}
-              isMultiple={curQuestion.is_multiple}
-              sleepScore={sleepScore}
-              setSleepScore={setSleepScore}
             />
           </Container>
         </>
