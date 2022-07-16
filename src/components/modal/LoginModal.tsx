@@ -59,8 +59,25 @@ const Continue = styled(Body_4)`
 
   margin-top: 1.4rem;
 `;
-const LoginButton = styled.img`
+const LoginButton = styled.button`
   width: calc(100vw - 6.8rem);
+  height: 4.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #fee500;
+
+  font-size: 1.5rem;
+`;
+const LoginImg = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 30px;
 `;
 
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
@@ -87,10 +104,10 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
       </Contents>
       <BottomButtons>
         <section onClick={handleLogin}>
-          <LoginButton
-            alt="kakao_login"
-            src="images/login/kakao_login_large_wide.png"
-          />
+          <LoginButton>
+            <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+            카카오 로그인
+          </LoginButton>
         </section>
         <Continue onClick={() => setModal(false)}>
           괜찮아요, 비회원으로 이용할게요
