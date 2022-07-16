@@ -59,21 +59,31 @@ const DiagnosisList = () => {
     setDiagnosisList([
       {
         result_log_id: "62cd703fe49face142d9cffe",
-        name: "일주기 리듬 수면 장애",
+        name: "주기성 사지운동증",
         date: "6/25",
         photo: "/images/list_component.png",
+        severity: 1,
       },
       {
-        result_log_id: "2",
-        name: "일주기 리듬 수면 장애",
+        result_log_id: "62d121d11dc40a851fd99fb7",
+        name: "경미한 수면무호흡증",
         date: "6/27",
         photo: "/images/list_component.png",
+        severity: 2,
       },
       {
-        result_log_id: "3",
-        name: "일주기 리듬 수면 장애",
+        result_log_id: "62ce900456e36933184b0fba",
+        name: "수면습관 경고",
         date: "7/5",
         photo: "/images/list_component.png",
+        severity: 0,
+      },
+      {
+        result_log_id: "62d16679f68f2b673e721200",
+        name: "기면증",
+        date: "7/5",
+        photo: "/images/list_component.png",
+        severity: 3,
       },
     ]);
   }, []);

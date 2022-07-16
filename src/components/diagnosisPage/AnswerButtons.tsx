@@ -53,12 +53,7 @@ const NextButton = styled.section`
   justify-content: center;
 
   position: fixed;
-  bottom: 0;
-
-  padding-top: 10.4rem;
-  padding-bottom: 3rem;
-
-  background: linear-gradient(180deg, rgba(40, 46, 91, 0) 0%, #272d5a 100%);
+  bottom: 3rem;
 `;
 
 const AnswerButtons = ({
@@ -84,7 +79,7 @@ const AnswerButtons = ({
       }
     }
     if (isMultiple === 0) {
-      handleNext();
+      setTimeout(() => handleNext(), 200);
     }
   };
   const handleActive = (id: number): boolean => {
