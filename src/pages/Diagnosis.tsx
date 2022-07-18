@@ -13,7 +13,6 @@ import {
   savePeriod,
   saveCycle,
   saveSleepScore,
-  saveAnswer,
 } from "../state/answerSlice";
 
 const Container = styled.section`
@@ -93,7 +92,6 @@ const Diagnosis = () => {
       setSelectedAnswer([]);
     } else {
       if (curIndex === 6) {
-        console.log(period, cycle, sleepScore);
         // 첫번째 진단 응답 api 호출
         if (selectedAnswer[0].answer_id === 1) {
           axios
@@ -138,21 +136,18 @@ const Diagnosis = () => {
         }
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
-          // 결정적응답 api 호출
-          console.log(answers);
-
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
-            answers,
             period,
-            cycle,
-            sleep_hygiene_score: sleepScore,
+            score_b: sleepScore,
             gender,
             birth_year,
             interests,
+            //answers,
+            //cycle,
           };
-          /*
+          
           setLoading(true);
           let response_state = {};
           axios
@@ -168,11 +163,9 @@ const Diagnosis = () => {
             }); 
             setTimeout(() => navigate("/result", {
               state: response_state
-            }), 3000); */
+            }), 3000); 
         } else {
           // 진단응답 api 호출
-          console.log(answers);
-
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
