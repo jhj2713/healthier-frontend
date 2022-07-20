@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import CoverPage from "../components/resultPage/coverPage/CoverPage";
-import DefinitionPage from "../components/resultPage/definitionPage/DefinitionPage";
-import LifePage from "../components/resultPage/lifePage/LifePage";
-import MedicinePage from "../components/resultPage/medicinePage/MedicinePage";
-import TreatmentPage from "../components/resultPage/treatmentPage/TreatmentPage";
-import BottomBar from "../components/resultPage/common/BottomBar";
+import {
+  BottomBar,
+  CoverPage,
+  DefinitionPage,
+  LifePage,
+  MedicinePage,
+  TreatmentPage,
+} from "../components/resultPage";
 import ResultHeader from "../components/header/ResultHeader";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
@@ -35,7 +37,7 @@ const ResultPage = () => {
     illustration: "",
     highlight: "",
     title: "",
-    description: "",
+    description: [],
     severity: 0,
   });
   const [defineData, setDefineData] = useState<IDefinePageProps>({
@@ -60,8 +62,8 @@ const ResultPage = () => {
         severity: state.diagnostic_result.severity,
       });
       setDefineData({
-        title: state.diagnostic_result.title,
-        definition: state.diagnostic_result.explanation,
+        title: state.diagnostic_result.explanation.title,
+        definition: state.diagnostic_result.explanation.details,
         tag_flag: state.diagnostic_result.cause.tag_flag,
         cause: state.diagnostic_result.cause.tags,
         cause_detail: state.diagnostic_result.cause.detail,

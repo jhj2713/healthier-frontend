@@ -15,7 +15,7 @@ export interface ICoverPageProps {
   illustration: string;
   highlight: string;
   title: string;
-  description: string;
+  description: string[];
   severity: number;
 }
 

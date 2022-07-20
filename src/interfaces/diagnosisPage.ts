@@ -15,11 +15,8 @@ export interface IAnswer {
 }
 
 export interface IAnswerButtonProps {
-  answers: IAnswer[];
+  question: IQuestion;
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
-  isMultiple: number;
-  sleepScore: number;
-  setSleepScore: Dispatch<number>;
 }

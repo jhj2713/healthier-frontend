@@ -14,7 +14,7 @@ const Container = styled.section<{
 
   background-color: ${({ backgroundColor }) => backgroundColor};
 
-  border: ${({ outline }) => outline !== "none" && "0.1rem solid " + outline};
+  border: ${({ outline }) => outline !== "none" && `0.1rem solid ${outline}`};
   border-radius: 3rem;
   box-sizing: border-box;
   cursor: pointer;

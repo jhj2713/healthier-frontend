@@ -1,6 +1,5 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import ContentHeader from "../components/header/ContentHeader";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
 import Overlay from "../components/symptomPage/Overlay";

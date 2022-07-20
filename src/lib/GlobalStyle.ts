@@ -4,6 +4,7 @@ const GlobalStyle = createGlobalStyle`
     html {
         font-size: 62.5%;
         font-family: "Spoqa Han Sans";
+        font-display: swap;
         letter-spacing: -0.03rem;
     }
     body {
