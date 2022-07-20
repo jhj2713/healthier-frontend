@@ -9,11 +9,7 @@ import { sleepdisorder_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../state";
-import {
-  savePeriod,
-  saveCycle,
-  saveSleepScore,
-} from "../state/answerSlice";
+import { savePeriod, saveCycle, saveSleepScore } from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -147,7 +143,7 @@ const Diagnosis = () => {
             //answers,
             //cycle,
           };
-          
+
           setLoading(true);
           let response_state = {};
           axios
@@ -159,11 +155,15 @@ const Diagnosis = () => {
               response_state = {
                 type: "",
                 diagnostic_result: res.data.diagnostic_result,
-              }
-            }); 
-            setTimeout(() => navigate("/result", {
-              state: response_state
-            }), 3000); 
+              };
+            });
+          setTimeout(
+            () =>
+              navigate("/result", {
+                state: response_state,
+              }),
+            3000
+          );
         } else {
           // 진단응답 api 호출
           const data = {

@@ -23,6 +23,7 @@ const AnswersContainer = styled.section<{ ansCount: number }>`
     ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
 const ButtonBox = styled.section`
+  width: calc(100vw - 4rem);
   & + & {
     margin-top: 1.2rem;
   }
@@ -32,8 +33,7 @@ const Button = styled(Body_1)<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
 
-  width: calc(100vw - 4rem);
-  padding: 1.4rem 2.3rem;
+  padding: ${({ selected }) => (selected ? "1.4rem 2.3rem" : "1.3rem 2.3rem")};
 
   background-color: ${({ selected, theme }) =>
     selected ? theme.color.sub_blue : "transparent"};
@@ -43,7 +43,6 @@ const Button = styled(Body_1)<{ selected: boolean }>`
   border: ${({ selected, theme }) =>
     !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
-  box-sizing: border-box;
 
   font-weight: 200;
   text-align: center;
