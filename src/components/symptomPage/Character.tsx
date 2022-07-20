@@ -2,9 +2,9 @@ import React, { useRef, useEffect } from "react";
 import { useFrame, extend, useLoader, Node } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
-import { Mesh } from "three";
+import { Mesh, TextureLoader } from "three";
 import theme from "../../lib/theme";
-import { LayerMaterial, Color } from "lamina";
+import { LayerMaterial, Color, Texture } from "lamina";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "./CharacterLine";
 import { ICharacterProps } from "../../interfaces/symptomPage";
@@ -22,14 +22,14 @@ declare global {
 const hCord = [
   // x, y, z 좌표 + inner radius, outer radius
   [0.0, 2.9, 1.01, 1.0, 1.7], // 머리 전체
-  [0.0, 2.9, 1.0, 0.7, 0.8], // 뒷머리
-  [0.0, 1.7, 0.5, 0.3, 0.4], // 목 뒤
-  [0.4, 2.8, 0.51, 0.6, 0.7], // 눈 주위
-  [0, 5, 0, 2.1, 2.2], // 이마의 띄
-  [1.7, 2.8, 1.0, 1.0, 1.1], // 관자놀이
-  [0.5, 2.7, 1.0, 0.3, 0.4], // 눈
-  [0, 1.6, 0.89, 0.5, 0.6], // 턱
-  [0, 2.5, 0.89, 0.2, 0.3], // 코 주위
+  [0.0, 2.9, 1.0, 0.5, 0.8], // 뒷머리
+  [0.0, 1.7, 0.5, 0.1, 0.4], // 목 뒤
+  [0.4, 2.8, 0.51, 0.4, 0.7], // 눈 주위
+  [0, 5, 0, 1.9, 2.2], // 이마의 띄
+  [1.6, 2.8, 1.0, 0.8, 1.1], // 관자놀이
+  [0.5, 2.7, 1.0, 0.1, 0.4], // 눈
+  [0, 1.6, 0.89, 0.3, 0.6], // 턱
+  [0, 2.5, 0.89, 0.0, 0.3], // 코 주위
 ];
 
 const vec = new THREE.Vector3();
@@ -40,7 +40,6 @@ const Character = ({ view, menu }: ICharacterProps) => {
     // material.preload();
     // loader.setMaterials(material);
   });
-
   //@ts-ignore
   geometry = character.children[0].geometry;
   const modelRef = useRef<Mesh>(null!);
@@ -79,8 +78,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
       );
       layerRef.current.layers[0].near = hCord[menu - 1][3];
       layerRef.current.layers[0].far = hCord[menu - 1][4];
-      layerRef.current.layers[0].colorA = theme.color.blue;
-      layerRef.current.layers[0].colorB = theme.color.blue;
+      layerRef.current.layers[0].colorA = theme.color.blue_700;
+      layerRef.current.layers[0].colorB = theme.color.blue_700;
       // 우측 영역의 하이라이트
 
       // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
@@ -100,14 +99,14 @@ const Character = ({ view, menu }: ICharacterProps) => {
 
       layerRef.current.layers[1].near = hCord[menu - 1][3];
       layerRef.current.layers[1].far = hCord[menu - 1][4];
-      layerRef.current.layers[1].colorA = theme.color.blue;
-      layerRef.current.layers[1].colorB = theme.color.blue;
+      layerRef.current.layers[1].colorA = theme.color.blue_700;
+      layerRef.current.layers[1].colorB = theme.color.blue_700;
     }
     if (menu === 5) {
-      layerRef.current.layers[1].near = 1.7;
+      layerRef.current.layers[1].near = 1.4;
       layerRef.current.layers[1].far = 1.8;
-      layerRef.current.layers[1].colorA = "white";
-      layerRef.current.layers[1].colorB = "white";
+      layerRef.current.layers[1].colorA = theme.color.blue_100;
+      layerRef.current.layers[1].colorB = theme.color.blue_100;
     }
 
     state.camera.position.lerp(vec.set(0, 0, 19), 0.2);
@@ -126,13 +125,14 @@ const Character = ({ view, menu }: ICharacterProps) => {
         <LayerMaterial
           ref={layerRef}
           toneMapped={false}
-          alpha={0.7}
+          alpha={1.0}
           lighting="physical"
+          color={theme.color.blue_70}
         >
           <point
             //@ts-ignore
-            colorA={theme.color.blue}
-            colorB={theme.color.blue}
+            colorA={theme.color.blue_700}
+            colorB={theme.color.blue_700}
             colorAalpha={1.0}
             colorBalpha={0}
             mode="add"
@@ -142,8 +142,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
           />
           <point
             //@ts-ignore
-            colorA={theme.color.blue}
-            colorB={theme.color.blue}
+            colorA={theme.color.blue_700}
+            colorB={theme.color.blue_700}
             colorAalpha={1.0}
             colorBalpha={0}
             mode="add"
