@@ -44,12 +44,12 @@ const PartAnimation = keyframes`
   }
 `;
 
-// 화면 조정 시 3D 모형과 인터페이스가 조절이 불일치하는 문제가 존재
-
 const PartDiv = styled.div`
-  height: 45vh;
+  height: 35vh;
   width: 45vh;
-  padding-top: calc(1vmax + 1vh);
+
+  position: absolute;
+  bottom: 33vh;
 
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
@@ -58,9 +58,11 @@ const PartDiv = styled.div`
   justify-items: center;
   align-items: center;
 
-  padding-bottom: 2rem;
-
   animation: ${PartAnimation} 0.6s ease-in-out both;
+`;
+
+const PlaceHolderDiv = styled.div`
+  height: 45vh;
 `;
 
 const TitleDiv = styled.div`
@@ -118,6 +120,10 @@ const PartButton = styled.button<{ toggle: boolean }>`
   border-color: ${theme.color.blue};
   border-radius: 4rem;
 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   font-size: 1.5rem;
 `;
 
@@ -145,6 +151,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </>
         )}
       </TitleDiv>
+      <PlaceHolderDiv />
       {view ? (
         <PartDiv>
           <div></div>
