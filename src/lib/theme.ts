@@ -25,6 +25,7 @@ const color = {
   blue_400: "#8591f2",
   blue_300: "#9da7f2",
   blue_100: "#ced2f2",
+  blue_70: "#dfe0f0",
   blue_50: "#e6e7f2",
   green_500: "#d9fa7d",
   green_400: "#dffa96",
