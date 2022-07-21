@@ -5,14 +5,14 @@ interface AnswerState {
   answers: { question_id: string; answer_id: number[] }[];
   period: number;
   cycle: number;
-  sleepScore: number;
+  score: number;
 }
 
 const initialState: AnswerState = {
   answers: [],
   period: 0,
   cycle: 0,
-  sleepScore: 0,
+  score: 0,
 };
 
 export const answerSlice = createSlice({
@@ -25,8 +25,8 @@ export const answerSlice = createSlice({
     saveCycle: (state, action: PayloadAction<number>) => {
       state.cycle = action.payload;
     },
-    saveSleepScore: (state, action: PayloadAction<number>) => {
-      state.sleepScore += action.payload;
+    saveScore: (state, action: PayloadAction<number>) => {
+      state.score += action.payload;
     },
     saveAnswer: (
       state,
@@ -37,7 +37,7 @@ export const answerSlice = createSlice({
   },
 });
 
-export const { savePeriod, saveCycle, saveSleepScore, saveAnswer } =
+export const { savePeriod, saveCycle, saveScore, saveAnswer } =
   answerSlice.actions;
 
 export default answerSlice.reducer;
