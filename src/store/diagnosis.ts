@@ -123,3 +123,64 @@ export const sleepdisorder_questions = [
     is_multiple: 0,
   },
 ];
+
+export const headache_questions = [
+  {
+    id: "1",
+    question: "언제부터 통증이 시작되었나요?",
+    answers: [
+      { answer_id: 1, answer: "1주 전", is_decisive: 0 },
+      { answer_id: 2, answer: "2주 전", is_decisive: 0 },
+      { answer_id: 3, answer: "한달 전", is_decisive: 0 },
+      { answer_id: 4, answer: "3개월 전", is_decisive: 0 },
+    ],
+    is_multiple: 0,
+  },
+  {
+    id: "2",
+    question: "1달에 15일 이상 두통 증상이 있나요?",
+    answers: [
+      { answer_id: 1, answer: "예", is_decisive: 0 },
+      { answer_id: 2, answer: "아니요", is_decisive: 0 },
+    ],
+    is_multiple: 0,
+  },
+  {
+    id: "3",
+    question: "통증의 정도가 어떻게 되나요?",
+    answers: [
+      {
+        answer_id: 1,
+        answer: "약간의 통증이 있지만 일상생활에는 문제가 없어요",
+        score: 1,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 2,
+        answer: "중간정도의 통증이고 일상생활에 조금 영향이 있지만 참을 만해요",
+        score: 2,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 3,
+        answer: "꽤 통증이 심하고 일상생활에 지장을 줘요",
+        score: 3,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 4,
+        answer: "통증이 심각해서 일상생활이 어려워요",
+        score: 4,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 5,
+        answer:
+          "태어나서 한 번도 경험해보지 못한 통증으로 벼락 맞은 듯이 아파요",
+        score: 5,
+        is_decisive: 0,
+      },
+    ],
+    is_multiple: 0,
+  },
+];

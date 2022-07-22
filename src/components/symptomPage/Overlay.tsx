@@ -3,6 +3,7 @@ import theme from "../../lib/theme";
 import RoundButton from "../buttons/RoundButton";
 import { IOverlayProps } from "../../interfaces/symptomPage";
 import { regions } from "../../pages/SymptomPage";
+import { useNavigate } from "react-router-dom";
 
 const OverlaySection = styled.div`
   width: 100vw;
@@ -116,7 +117,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   color: ${({ toggle }) => (toggle ? "white" : theme.color.blue)};
   background-color: ${({ toggle }) => (toggle ? theme.color.blue : "black")};
 
-  border: solid;
+  border: solid 0.1rem;
   border-color: ${theme.color.blue};
   border-radius: 4rem;
 
@@ -130,6 +131,8 @@ const PartButton = styled.button<{ toggle: boolean }>`
 const particles = ["", "를", "를", "를", "를", "를", "를", "을", "을", "를"];
 
 const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
+  const navigate = useNavigate();
+
   return (
     <OverlaySection>
       <TitleDiv>
@@ -273,12 +276,16 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         >
           뒤
         </RotateButton>
-        <RoundButton
-          outline="none"
-          backgroundColor={menu ? theme.color.green : theme.color.grey_750}
-          color={menu ? theme.color.grey_900 : theme.color.grey_500}
-          text={"진단 시작하기"}
-        />
+        <section
+          onClick={() => menu && navigate("/diagnosis", { state: "headache" })}
+        >
+          <RoundButton
+            outline="none"
+            backgroundColor={menu ? theme.color.green : theme.color.grey_750}
+            color={menu ? theme.color.grey_900 : theme.color.grey_500}
+            text={"진단 시작하기"}
+          />
+        </section>
       </ButtonDiv>
     </OverlaySection>
   );

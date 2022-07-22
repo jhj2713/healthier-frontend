@@ -17,6 +17,7 @@ const LifePage = ({ lifestyle }: { lifestyle: ILifeProps[] }) => {
   return (
     <Container>
       <TitleBox>
+        {/* 뇌증상은 예방으로 수정 */}
         <Title text={"생활습관으로\n증상을 개선해보아요"} />
       </TitleBox>
       {lifestyle.map((life, idx) => (
