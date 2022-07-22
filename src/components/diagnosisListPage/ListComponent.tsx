@@ -4,10 +4,17 @@ import { IListComponent } from "../../interfaces/component";
 import { Heading_5 } from "../../lib/fontStyle";
 import axios from "axios";
 
-const Container = styled.section<{ photo: string }>`
+const Container = styled.section<{ severity: number }>`
+  position: relative;
   height: 16rem;
-  background: ${({ photo }) => `url(${photo})`},
-    ${({ theme }) => theme.color.blue};
+  background: ${({ theme, severity }) =>
+    severity === 3
+      ? theme.color.sub_blue
+      : severity === 2
+      ? theme.color.blue_500
+      : severity === 1
+      ? theme.color.blue_700
+      : theme.color.blue_800};
   background-size: cover;
 
   border-radius: 0.8rem;
@@ -17,10 +24,7 @@ const Container = styled.section<{ photo: string }>`
   }
 `;
 const Box = styled.section`
-  position: relative;
-  height: calc(100% - 2.6rem);
-
-  padding: 1.4rem 1.2rem 1.2rem 1.4rem;
+  padding: 1.4rem 1.2rem 0 1.4rem;
 `;
 const Title = styled(Heading_5)<{ severity: number }>`
   color: ${({ theme, severity }) =>
@@ -62,11 +66,15 @@ const Tag = styled.section<{ severity: number }>`
   margin-bottom: 1.2rem;
   border-radius: 3rem;
 `;
+const BannerImg = styled.section`
+  position: absolute;
+  right: 0;
+`;
 
 const severity_map = [
   "상태가 양호해요",
   "관리가 필요해요",
-  "병원에 가야해요",
+  "관리가 필요해요",
   "병원에 가야해요",
 ];
 
@@ -96,7 +104,10 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   };
 
   return (
-    <Container photo={diagnosis.photo} onClick={handleNavigate}>
+    <Container severity={diagnosis.severity} onClick={handleNavigate}>
+      <BannerImg>
+        <img alt="banner" src="/images/list_component.svg" height={160} />
+      </BannerImg>
       <Box>
         <Title severity={diagnosis.severity}>{diagnosis.name}</Title>
         <Date severity={diagnosis.severity}>{diag_date}</Date>
