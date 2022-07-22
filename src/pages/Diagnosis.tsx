@@ -194,10 +194,7 @@ const Diagnosis = () => {
             answer_id: selectedAnswer[0].answer_id,
           };
           axios
-            .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}`,
-              data
-            )
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data)
             .then((res) => {
               setCurQuestion(res.data.question);
               setSelectedAnswer([]);
