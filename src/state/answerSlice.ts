@@ -34,10 +34,13 @@ export const answerSlice = createSlice({
     ) => {
       state.answers = [...state.answers, action.payload];
     },
+    resetAnswer: (state) => {
+      state.answers = new Array();
+    },
   },
 });
 
-export const { savePeriod, saveCycle, saveScore, saveAnswer } =
+export const { savePeriod, saveCycle, saveScore, saveAnswer, resetAnswer } =
   answerSlice.actions;
 
 export default answerSlice.reducer;

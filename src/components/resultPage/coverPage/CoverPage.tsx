@@ -8,6 +8,8 @@ const Container = styled.section`
 
   display: flex;
   flex-direction: column;
+
+  height: calc(100vw + 27.4rem);
 `;
 const CoverImage = styled.img`
   width: 100vw;

@@ -12,7 +12,12 @@ import {
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../state";
-import { savePeriod, saveCycle, saveScore } from "../state/answerSlice";
+import {
+  savePeriod,
+  saveCycle,
+  saveScore,
+  resetAnswer,
+} from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -65,6 +70,7 @@ const Diagnosis = () => {
 
   useEffect(() => {
     console.log(gender, birth_year, interests);
+    dispatch(resetAnswer());
     if (!state) {
       navigate("/");
     }
@@ -161,6 +167,7 @@ const Diagnosis = () => {
           });
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
+          console.log(answers);
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
