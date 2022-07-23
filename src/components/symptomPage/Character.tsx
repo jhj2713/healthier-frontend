@@ -25,7 +25,7 @@ const hCord = [
   [0.0, 2.9, 1.0, 0.5, 0.8], // 뒷머리
   [0.0, 1.7, 0.5, 0.1, 0.4], // 목 뒤
   [0.4, 2.8, 0.51, 0.4, 0.7], // 눈 주위
-  [0, 5, 0, 1.9, 2.2], // 이마의 띄
+  [0, 5, 0, 2.0, 2.2], // 이마의 띄
   [1.6, 2.8, 1.0, 0.8, 1.1], // 관자놀이
   [0.5, 2.7, 1.0, 0.1, 0.4], // 눈
   [0, 1.6, 0.89, 0.3, 0.6], // 턱
@@ -127,7 +127,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
           toneMapped={false}
           alpha={1.0}
           lighting="physical"
-          color={theme.color.blue_70}
+          color={theme.color.blue_100}
         >
           <point
             //@ts-ignore
