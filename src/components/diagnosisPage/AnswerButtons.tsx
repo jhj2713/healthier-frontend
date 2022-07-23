@@ -23,17 +23,17 @@ const AnswersContainer = styled.section<{ ansCount: number }>`
     ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
 `;
 const ButtonBox = styled.section`
+  width: calc(100vw - 4rem);
   & + & {
     margin-top: 1.2rem;
   }
 `;
-const Button = styled(Body_1)<{ selected: boolean }>`
+const Button = styled.section<{ selected: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
 
-  width: calc(100vw - 4rem);
-  padding: 1.4rem 2.3rem;
+  padding: ${({ selected }) => (selected ? "1.4rem 2.3rem" : "1.3rem 2.3rem")};
 
   background-color: ${({ selected, theme }) =>
     selected ? theme.color.sub_blue : "transparent"};
@@ -43,10 +43,12 @@ const Button = styled(Body_1)<{ selected: boolean }>`
   border: ${({ selected, theme }) =>
     !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
-  box-sizing: border-box;
-
+`;
+const ButtonText = styled(Body_1)`
   font-weight: 200;
   text-align: center;
+
+  width: 26rem;
 `;
 const NextButton = styled.section`
   width: 100%;
@@ -57,6 +59,7 @@ const NextButton = styled.section`
   position: fixed;
   bottom: 0;
   padding-bottom: 3rem;
+  padding-top: 0.6rem;
 
   background: linear-gradient(180deg, rgba(31, 37, 79, 0) 0%, #23284b 50%);
 `;
@@ -132,7 +135,7 @@ const AnswerButtons = ({
           answers.map((ans, idx) => (
             <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)}>
               <Button selected={handleActive(ans.answer_id)}>
-                {ans.answer}
+                <ButtonText>{ans.answer}</ButtonText>
               </Button>
             </ButtonBox>
           ))}

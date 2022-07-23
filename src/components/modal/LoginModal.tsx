@@ -24,7 +24,7 @@ const Title = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
   text-align: center;
 
-  margin-top: 2.4rem;
+  margin-top: 1.2rem;
 `;
 const Contents = styled.section`
   display: flex;

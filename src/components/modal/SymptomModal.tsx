@@ -46,7 +46,7 @@ const QuitImage = styled.section`
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
-  margin-top: 2.4rem;
+  margin-top: 1.2rem;
 `;
 const Highlight = styled.span`
   color: ${({ theme }) => theme.color.green};
@@ -66,7 +66,7 @@ const Contents = styled.section`
   width: 100%;
 `;
 const NoteImage = styled.section`
-  height: 20rem;
+  height: 21.7rem;
   width: 26rem;
   margin-top: 1.6rem;
 `;

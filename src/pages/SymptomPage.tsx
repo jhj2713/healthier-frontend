@@ -29,15 +29,15 @@ const CanvasSection = styled.div`
 
 export const regions = [
   "",
-  "머리 전체",
-  "뒷머리",
-  "뒷목",
-  "눈 주위",
-  "이마의 띠",
   "관자놀이",
+  "이마의 띠",
   "눈",
-  "턱",
+  "눈 주위",
   "코 주위",
+  "턱",
+  "뒷머리",
+  "머리 전체",
+  "뒷목",
 ];
 
 const Symptom = () => {

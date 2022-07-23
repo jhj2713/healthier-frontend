@@ -8,10 +8,12 @@ const Container = styled.section`
 
   display: flex;
   flex-direction: column;
+
+  height: calc(100vw + 27.4rem);
 `;
 const CoverImage = styled.img`
-  width: 100%;
-  height: calc(38rem);
+  width: 100vw;
+  height: 100vw;
 `;
 const Contents = styled.section`
   display: flex;

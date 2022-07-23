@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.section`
   padding-top: 9.6rem;
 `;
-const ButtonBox = styled.section`
+const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;
   margin: 0 2rem;
@@ -30,6 +30,11 @@ const ButtonBox = styled.section`
     rgba(19, 20, 22, 0.947917) 78.12%,
     #131416 100%
   );
+
+  pointer-events: none;
+`;
+const ButtonBox = styled.section`
+  pointer-events: auto;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
@@ -37,7 +42,7 @@ const Title = styled(Heading_3)`
   margin-top: 4rem;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem 15rem 2.4rem;
+  margin: 0 2.4rem 13rem 2.4rem;
 `;
 
 const Information = () => {
@@ -83,16 +88,16 @@ const Information = () => {
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
       </Contents>
-      <ButtonBox>
-        <section onClick={handleProceed}>
+      <ButtonBackground>
+        <ButtonBox onClick={handleProceed}>
           <RoundButton
             outline="none"
             backgroundColor={active ? theme.color.blue : theme.color.grey_750}
             color={active ? theme.color.grey_100 : theme.color.grey_600}
             text="증상 진단하러 가기"
           />
-        </section>
-      </ButtonBox>
+        </ButtonBox>
+      </ButtonBackground>
     </Container>
   );
 };

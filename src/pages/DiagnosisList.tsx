@@ -13,7 +13,7 @@ import EmptyPage from "../components/diagnosisListPage/EmptyPage";
 const Container = styled.section`
   padding-top: 9.6rem;
 `;
-const ButtonBox = styled.section`
+const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;
 
@@ -28,6 +28,10 @@ const ButtonBox = styled.section`
     rgba(19, 20, 22, 0.947917) 78.12%,
     #131416 100%
   );
+  pointer-events: none;
+`;
+const ButtonBox = styled.section`
+  pointer-events: auto;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
@@ -59,7 +63,7 @@ const DiagnosisList = () => {
     // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
     setName("홍길동");
     setDiagnosisList([
-      {
+      /*{
         result_log_id: "62cd703fe49face142d9cffe",
         name: "주기성 사지운동증",
         date: "6/25",
@@ -86,7 +90,7 @@ const DiagnosisList = () => {
         date: "7/5",
         photo: "/images/list_component.png",
         severity: 2,
-      },
+      },*/
     ]);
   }, []);
 
@@ -112,16 +116,16 @@ const DiagnosisList = () => {
           </List>
         </>
       )}
-      <ButtonBox>
-        <section onClick={() => navigate("/symptom-type", { state: "login" })}>
+      <ButtonBackground>
+        <ButtonBox onClick={() => navigate("/info")}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}
             color={theme.color.grey_900}
             text="빠른 진단 시작하기"
           />
-        </section>
-      </ButtonBox>
+        </ButtonBox>
+      </ButtonBackground>
     </Container>
   );
 };

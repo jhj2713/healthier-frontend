@@ -15,6 +15,7 @@ export interface UserState {
   gender: string;
   birth_year: number;
   interests: number[];
+  site: number;
 }
 
 export interface fillInfoAction {
