@@ -1,8 +1,4 @@
-import {
-  combineReducers,
-  configureStore,
-  getDefaultMiddleware,
-} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import exampleReducer from "./exampleSlice";
 import userReducer from "./userSlice";
 import answerReducer from "./answerSlice";

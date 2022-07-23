@@ -52,7 +52,7 @@ const Tag = styled.section<{ severity: number }>`
     severity === 3
       ? theme.color.blue
       : severity === 2
-      ? "#2745a9"
+      ? theme.color.blue_700
       : theme.color.sub_blue};
   color: ${({ theme, severity }) =>
     severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue};

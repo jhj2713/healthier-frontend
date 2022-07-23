@@ -13,12 +13,24 @@ const TitleBox = styled.section`
   width: calc(100vw - 4.8rem);
 `;
 
-const LifePage = ({ lifestyle }: { lifestyle: ILifeProps[] }) => {
+// 뇌증상
+const selectedType = [""];
+
+const LifePage = ({
+  lifestyle,
+  type,
+}: {
+  lifestyle: ILifeProps[];
+  type: string;
+}) => {
   return (
     <Container>
       <TitleBox>
-        {/* 뇌증상은 예방으로 수정 */}
-        <Title text={"생활습관으로\n증상을 개선해보아요"} />
+        <Title
+          text={`생활습관으로\n증상을 ${
+            selectedType.includes(type) ? "예방" : "개선"
+          }해보아요`}
+        />
       </TitleBox>
       {lifestyle.map((life, idx) => (
         <LifeComponent
