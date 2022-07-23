@@ -40,6 +40,15 @@ export const regions = [
   "뒷목",
 ];
 
+const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
+  return (
+    <mesh position={[x, y, z]}>
+      <sphereBufferGeometry args={[0.03, 40, 40]} attach="geometry" />
+      <meshBasicMaterial color={theme.color.blue} attach="material" />
+    </mesh>
+  );
+};
+
 const Symptom = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
@@ -75,6 +84,16 @@ const Symptom = () => {
               intensity={0.5}
             />
             <Character view={view} menu={menu} />
+
+            {view ? (
+              <></>
+            ) : (
+              <>
+                <Point x={-0.56} y={0.05} z={1.0} />
+                <Point x={0.5} y={-0.35} z={0.95} />
+                <Point x={0.0} y={-0.5} z={1.3} />
+              </>
+            )}
           </Suspense>
         </Canvas>
       </CanvasSection>
