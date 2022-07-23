@@ -150,7 +150,11 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               증상 부위를 <br />
               선택해주세요
             </Title>
-            <SubTitle>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+            <SubTitle
+              onClick={() => navigate("/diagnosis", { state: "headache" })}
+            >
+              어디가 아픈지 모르겠다면 &#62;
+            </SubTitle>
           </>
         )}
       </TitleDiv>

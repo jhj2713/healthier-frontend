@@ -148,7 +148,12 @@ const Diagnosis = () => {
       } else if (state === "headache" && curIndex === 3) {
         dispatch(saveScore(selectedAnswer[0].score || 0));
         axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/${1}`)
+          .post(
+            `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
+            {
+              site_id: 1,
+            }
+          )
           .then((res) => {
             setCurQuestion(res.data.question);
             setSelectedAnswer([]);

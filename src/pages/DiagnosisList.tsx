@@ -13,7 +13,7 @@ import EmptyPage from "../components/diagnosisListPage/EmptyPage";
 const Container = styled.section`
   padding-top: 9.6rem;
 `;
-const ButtonBox = styled.section`
+const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;
 
@@ -28,6 +28,10 @@ const ButtonBox = styled.section`
     rgba(19, 20, 22, 0.947917) 78.12%,
     #131416 100%
   );
+  pointer-events: none;
+`;
+const ButtonBox = styled.section`
+  pointer-events: auto;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
@@ -112,16 +116,18 @@ const DiagnosisList = () => {
           </List>
         </>
       )}
-      <ButtonBox>
-        <section onClick={() => navigate("/symptom-type", { state: "login" })}>
+      <ButtonBackground>
+        <ButtonBox
+          onClick={() => navigate("/symptom-type", { state: "login" })}
+        >
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}
             color={theme.color.grey_900}
             text="빠른 진단 시작하기"
           />
-        </section>
-      </ButtonBox>
+        </ButtonBox>
+      </ButtonBackground>
     </Container>
   );
 };
