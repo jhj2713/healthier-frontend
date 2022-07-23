@@ -130,7 +130,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   font-size: 1.5rem;
 `;
 
-const particles = ["", "를", "를", "를", "를", "를", "를", "을", "을", "를"];
+const particles = ["", "를", "를", "을", "를", "를", "을", "를", "를", "을"];
 
 const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
   const navigate = useNavigate();

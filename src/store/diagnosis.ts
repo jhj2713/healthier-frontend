@@ -147,6 +147,19 @@ export const headache_questions = [
   },
   {
     id: "3",
+    question: "",
+    answers: [
+      {
+        answer_id: 1,
+        answer: "약간의 통증이 있지만 일상생활에는 문제가 없어요",
+        score: 1,
+        is_decisive: 0,
+      },
+    ],
+    is_multiple: 0,
+  },
+  {
+    id: "4",
     question: "통증의 정도가 어떻게 되나요?",
     answers: [
       {
