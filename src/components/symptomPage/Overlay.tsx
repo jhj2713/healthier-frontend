@@ -4,6 +4,8 @@ import RoundButton from "../buttons/RoundButton";
 import { IOverlayProps } from "../../interfaces/symptomPage";
 import { regions } from "../../pages/SymptomPage";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../state";
+import { setSite } from "../../state/userSlice";
 
 const OverlaySection = styled.div`
   width: 100vw;
@@ -132,6 +134,12 @@ const particles = ["", "를", "를", "를", "를", "를", "를", "을", "을", "
 
 const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleNext = (site: number) => {
+    dispatch(setSite(site));
+    navigate("/diagnosis", { state: "headache" });
+  };
 
   return (
     <OverlaySection>
@@ -150,7 +158,9 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               증상 부위를 <br />
               선택해주세요
             </Title>
-            <SubTitle>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+            <SubTitle onClick={() => handleNext(8)}>
+              어디가 아픈지 모르겠다면 &#62;
+            </SubTitle>
           </>
         )}
       </TitleDiv>
@@ -159,18 +169,18 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu === 1}
+            toggle={menu === 8}
             onClick={() => {
-              setMenu(1);
+              setMenu(8);
             }}
           >
             머리 전체
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 2}
+            toggle={menu === 7}
             onClick={() => {
-              setMenu(2);
+              setMenu(7);
             }}
           >
             뒷머리
@@ -183,9 +193,9 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           <div></div>
           <div></div>
           <PartButton
-            toggle={menu === 3}
+            toggle={menu === 9}
             onClick={() => {
-              setMenu(3);
+              setMenu(9);
             }}
           >
             뒷목
@@ -195,9 +205,9 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu === 1}
+            toggle={menu === 8}
             onClick={() => {
-              setMenu(1);
+              setMenu(8);
             }}
           >
             머리 전체
@@ -213,12 +223,29 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 5}
+            toggle={menu === 2}
             onClick={() => {
-              setMenu(5);
+              setMenu(2);
             }}
           >
             이마의 띠
+          </PartButton>
+          <PartButton
+            toggle={menu === 1}
+            onClick={() => {
+              setMenu(1);
+            }}
+          >
+            관자놀이
+          </PartButton>
+          <div></div>
+          <PartButton
+            toggle={menu === 3}
+            onClick={() => {
+              setMenu(3);
+            }}
+          >
+            눈
           </PartButton>
           <PartButton
             toggle={menu === 6}
@@ -226,30 +253,13 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               setMenu(6);
             }}
           >
-            관자놀이
-          </PartButton>
-          <div></div>
-          <PartButton
-            toggle={menu === 7}
-            onClick={() => {
-              setMenu(7);
-            }}
-          >
-            눈
-          </PartButton>
-          <PartButton
-            toggle={menu === 8}
-            onClick={() => {
-              setMenu(8);
-            }}
-          >
             턱
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 9}
+            toggle={menu === 5}
             onClick={() => {
-              setMenu(9);
+              setMenu(5);
             }}
           >
             코 주위
@@ -276,9 +286,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         >
           뒤
         </RotateButton>
-        <section
-          onClick={() => menu && navigate("/diagnosis", { state: "headache" })}
-        >
+        <section onClick={() => menu && handleNext(menu)}>
           <RoundButton
             outline="none"
             backgroundColor={menu ? theme.color.green : theme.color.grey_750}

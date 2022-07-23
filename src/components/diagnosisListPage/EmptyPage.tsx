@@ -6,6 +6,9 @@ const Title = styled(Heading_3)`
 
   margin: 4rem 2.4rem 0 2.4rem;
 `;
+const Highlight = styled.span`
+  font-weight: 500;
+`;
 const EmptyContainer = styled.section`
   padding-top: 12.5rem;
 `;
@@ -18,8 +21,8 @@ const EmptyPage = () => {
   return (
     <>
       <Title>
-        빠른 진단으로
-        <br /> 내 몸의 정확한 증상을
+        <Highlight>빠른 진단</Highlight>으로
+        <br /> 내 몸의 <Highlight>정확한 증상</Highlight>을
         <br />
         알아보세요!
       </Title>

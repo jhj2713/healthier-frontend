@@ -12,7 +12,12 @@ import {
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../state";
-import { savePeriod, saveCycle, saveScore } from "../state/answerSlice";
+import {
+  savePeriod,
+  saveCycle,
+  saveScore,
+  resetAnswer,
+} from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
@@ -54,7 +59,7 @@ const Diagnosis = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
   const [loading, setLoading] = useState(false);
-  const { gender, birth_year, interests } = useAppSelector(
+  const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
   const { period, cycle, score, answers } = useAppSelector(
@@ -64,6 +69,8 @@ const Diagnosis = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log(gender, birth_year, interests);
+    dispatch(resetAnswer());
     if (!state) {
       navigate("/");
     }
@@ -148,13 +155,19 @@ const Diagnosis = () => {
       } else if (state === "headache" && curIndex === 3) {
         dispatch(saveScore(selectedAnswer[0].score || 0));
         axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/${1}`)
+          .post(
+            `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
+            {
+              site_id: site,
+            }
+          )
           .then((res) => {
             setCurQuestion(res.data.question);
             setSelectedAnswer([]);
           });
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
+          console.log(answers);
           const data = {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
@@ -194,10 +207,7 @@ const Diagnosis = () => {
             answer_id: selectedAnswer[0].answer_id,
           };
           axios
-            .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}`,
-              data
-            )
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data)
             .then((res) => {
               setCurQuestion(res.data.question);
               setSelectedAnswer([]);

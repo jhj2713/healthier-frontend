@@ -70,6 +70,10 @@ export interface IMedicineDetail {
   medicine: IMedicine[];
 }
 
+export interface IMedicineTag {
+  tags: { name: string; emoji: string }[];
+}
+
 export interface ITreatPageProps {
   title: string;
   detail: string;

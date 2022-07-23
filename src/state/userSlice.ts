@@ -9,6 +9,7 @@ const initialState: UserState = {
   gender: "",
   birth_year: 0,
   interests: [],
+  site: 0,
 };
 
 export const userSlice = createSlice({
@@ -20,8 +21,11 @@ export const userSlice = createSlice({
       state.birth_year = action.payload.birth_year;
       state.interests = [...action.payload.interests];
     },
+    setSite: (state, action: PayloadAction<number>) => {
+      state.site = action.payload;
+    },
   },
 });
 
-export const { userSubmit } = userSlice.actions;
+export const { userSubmit, setSite } = userSlice.actions;
 export default userSlice.reducer;

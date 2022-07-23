@@ -56,7 +56,7 @@ export const sleepdisorder_questions = [
       {
         answer_id: 1,
         answer:
-          "침대에 있는 동안 생각하기, 계획하기, 회상하기 등 수면을 방해 활동을 지속해요",
+          "누워있는 동안 생각하기, 계획하기, 회상하기 등 수면 방해 활동을 지속해요",
         score: 1,
         is_decisive: 0,
       },
@@ -69,7 +69,7 @@ export const sleepdisorder_questions = [
       {
         answer_id: 3,
         answer:
-          "수면과 관련되지 않은 활동(TV 시청, 독서, 간식 등) 을 위해 침대를 사용해요",
+          "수면과 관련되지 않은 활동(TV 시청, 독서 등)을 위해 침대를 사용해요",
         score: 1,
         is_decisive: 0,
       },

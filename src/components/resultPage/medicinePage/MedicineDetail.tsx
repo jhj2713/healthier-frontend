@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { IMedicineDetail } from "../../../interfaces/resultPage";
 import { Body_2 } from "../../../lib/fontStyle";
 import Description from "../common/Description";
+import MedicineTag from "./MedicineTag";
 
 const Contents = styled.section`
   margin-top: 2.2rem;
@@ -18,29 +19,6 @@ const SubTitle = styled.section`
 const Highlight = styled(Body_2)`
   color: ${({ theme }) => theme.color.green};
 `;
-const Tags = styled.section`
-  display: -webkit-flexbox;
-  display: -ms-flexbox;
-  display: flex;
-  flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
-  -ms-flex-wrap: wrap;
-`;
-const Tag = styled.section`
-  background-color: ${({ theme }) => theme.color.grey_750};
-  color: ${({ theme }) => theme.color.grey_300};
-
-  padding: 0.8rem 1.4rem;
-
-  border-radius: 6rem;
-
-  font-size: 1.2rem;
-  font-weight: 300;
-  letter-spacing: 0;
-
-  margin-right: 0.8rem;
-  margin-top: 0.8rem;
-`;
 
 const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
   return (
@@ -50,17 +28,17 @@ const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
         <Description text={medicine[selected - 1].efficacy} />
       </Contents>
       <Contents>
+        <SubTitle>용량 및 용법</SubTitle>
+        <MedicineTag tags={medicine[selected - 1].sideeffects} />
+      </Contents>
+      <Contents>
         <SubTitle>복용 시 주의해주세요</SubTitle>
         <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
         <Description text={medicine[selected - 1].caution.h2} />
       </Contents>
       <Contents>
         <SubTitle>부작용</SubTitle>
-        <Tags>
-          {medicine[selected - 1].sideeffects.map((tag, idx) => (
-            <Tag key={idx}>{tag.emoji + " " + tag.name}</Tag>
-          ))}
-        </Tags>
+        <MedicineTag tags={medicine[selected - 1].sideeffects} />
       </Contents>
     </>
   );
