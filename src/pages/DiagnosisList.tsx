@@ -117,9 +117,7 @@ const DiagnosisList = () => {
         </>
       )}
       <ButtonBackground>
-        <ButtonBox
-          onClick={() => navigate("/symptom-type", { state: "login" })}
-        >
+        <ButtonBox onClick={() => navigate("/info")}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}

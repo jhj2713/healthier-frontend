@@ -14,7 +14,7 @@ const TitleBox = styled.section`
 `;
 
 // 뇌증상
-const selectedType = [""];
+const selectedType = ["62cd703fe49face142d9cffe"];
 
 const LifePage = ({
   lifestyle,
