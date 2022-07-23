@@ -64,6 +64,7 @@ const Diagnosis = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    console.log(gender, birth_year, interests);
     if (!state) {
       navigate("/");
     }
