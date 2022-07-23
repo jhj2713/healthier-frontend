@@ -106,11 +106,14 @@ const RotateButton = styled.button<{ toggle: boolean }>`
   color: ${({ toggle, theme }) =>
     toggle ? theme.color.blue : theme.color.grey_500};
   border: ${({ toggle }) => (toggle ? "none" : "solid")};
-  border-width: 0.1rem;
+  border-width: 1px;
   border-color: ${({ theme }) => theme.color.grey_500};
 
   border-radius: 100%;
   cursor: pointer;
+
+  font-size: 1.6rem;
+  font-weight: ${({ toggle }) => (toggle ? "600" : "300")};
 `;
 
 const PartButton = styled.button<{ toggle: boolean }>`
@@ -123,6 +126,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   border: solid 0.1rem;
   border-color: ${({ theme }) => theme.color.blue};
   border-radius: 4rem;
+  border-width: 1px;
 
   white-space: nowrap;
   overflow: hidden;
@@ -147,7 +151,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
       <TitleDiv>
         {menu ? (
           <Title>
-            <span style={{ color: theme.color.green }}>머리 어깨</span>에서
+            <span style={{ color: theme.color.green }}>머리</span>에서
             <br />{" "}
             <span style={{ color: theme.color.green }}>{regions[menu]}</span>
             {particles[menu] + " "}

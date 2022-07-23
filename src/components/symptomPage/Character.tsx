@@ -127,7 +127,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
           toneMapped={false}
           alpha={1.0}
           lighting="physical"
-          color={theme.color.blue_70}
+          color={theme.color.blue_100}
         >
           <point
             //@ts-ignore
