@@ -106,7 +106,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   return (
     <Container severity={diagnosis.severity} onClick={handleNavigate}>
       <BannerImg>
-        <img alt="banner" src="/images/list_component.svg" height={160} />
+        <img alt="banner" src="/images/banner.png" height={160} />
       </BannerImg>
       <Box>
         <Title severity={diagnosis.severity}>{diagnosis.name}</Title>
