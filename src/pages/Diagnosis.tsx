@@ -59,7 +59,7 @@ const Diagnosis = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
   const [loading, setLoading] = useState(false);
-  const { gender, birth_year, interests } = useAppSelector(
+  const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
   const { period, cycle, score, answers } = useAppSelector(
@@ -158,7 +158,7 @@ const Diagnosis = () => {
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
             {
-              site_id: 1,
+              site_id: site,
             }
           )
           .then((res) => {
