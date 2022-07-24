@@ -78,7 +78,7 @@ const Diagnosis = () => {
   useEffect(() => {
     if (
       (state === "sleepdisorder" && curIndex <= 5) ||
-      (state === "headache" && curIndex <= 2)
+      (state === "headache" && curIndex <= 3)
     ) {
       if (state === "sleepdisorder" && curIndex === 1) {
         dispatch(savePeriod(selectedAnswer[0].score || 0));
@@ -90,6 +90,8 @@ const Diagnosis = () => {
           0
         );
         dispatch(saveScore(sum));
+      } else if (state === "headache" && curIndex === 3) {
+        dispatch(saveScore(selectedAnswer[0].score || 0));
       }
 
       if (
@@ -152,8 +154,8 @@ const Diagnosis = () => {
             3000
           );
         }
-      } else if (state === "headache" && curIndex === 3) {
-        dispatch(saveScore(selectedAnswer[0].score || 0));
+      } else if (state === "headache" && curIndex === 4) {
+        console.log(score, site);
         axios
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,

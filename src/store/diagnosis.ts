@@ -147,19 +147,6 @@ export const headache_questions = [
   },
   {
     id: "3",
-    question: "",
-    answers: [
-      {
-        answer_id: 1,
-        answer: "약간의 통증이 있지만 일상생활에는 문제가 없어요",
-        score: 1,
-        is_decisive: 0,
-      },
-    ],
-    is_multiple: 0,
-  },
-  {
-    id: "4",
     question: "통증의 정도가 어떻게 되나요?",
     answers: [
       {
@@ -191,6 +178,25 @@ export const headache_questions = [
         answer:
           "태어나서 한 번도 경험해보지 못한 통증으로 벼락 맞은 듯이 아파요",
         score: 5,
+        is_decisive: 0,
+      },
+    ],
+    is_multiple: 0,
+  },
+  {
+    id: "4",
+    question: "한 달에 15일 이상 진통제 등의 약물을 지속적으로 복용했나요?",
+    answers: [
+      {
+        answer_id: 1,
+        answer: "예",
+        score: 0,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 2,
+        answer: "아니요",
+        score: 0,
         is_decisive: 0,
       },
     ],
