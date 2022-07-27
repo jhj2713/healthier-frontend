@@ -49,11 +49,11 @@ const PartAnimation = keyframes`
 `;
 
 const PartDiv = styled.div`
-  height: calc(var(--vh, 1vh) * 35);
+  height: 35vh;
   width: 45vh;
 
   position: absolute;
-  bottom: 33vh;
+  bottom: calc(var(--vh, 1vh) * 33);
 
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
