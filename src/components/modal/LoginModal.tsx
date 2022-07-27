@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
+import axios from "axios";
 
 const Container = styled.section`
   position: absolute;
@@ -80,11 +81,35 @@ const LoginImg = styled.img`
   left: 30px;
 `;
 
+const Kakao = (window as any).Kakao;
+const kakaoLogin = () => {
+  Kakao.Auth.login({
+    success: async function (authObj: any) {
+      console.log(authObj);
+      const res = await axios.post(
+        `${process.env.REACT_APP_LOGIN_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
+      );
+      // axios
+      //   .post(
+      //     `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
+      //   )
+      //   .then((res) => {
+      //     console.log(res);
+      //   });
+      console.log(res);
+    },
+    fail: function (err: any) {
+      console.log(err);
+    },
+  });
+};
+
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
-  const handleLogin = () => {
+  const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     console.log("로그인");
-    // setModal(false);
-    // 로그인 api 호출
+    setModal(false);
+    kakaoLogin();
   };
 
   return (
@@ -103,8 +128,8 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <section onClick={handleLogin}>
-          <LoginButton>
+        <section>
+          <LoginButton onClick={handleLoginClick}>
             <LoginImg alt="kakao_login" src="images/login/kakao.png" />
             카카오 로그인
           </LoginButton>
