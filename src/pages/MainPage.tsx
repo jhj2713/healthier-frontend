@@ -7,7 +7,7 @@ import { Heading_3 } from "../lib/fontStyle";
 import BottomButtons from "../components/mainPage/BottomButtons";
 
 const Container = styled.main`
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
   height: calc(var(--vh, 1vh) * 100 - 9.6rem);
 
   color: ${({ theme }) => theme.color.grey_100};

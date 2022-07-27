@@ -20,6 +20,8 @@ const BottomContainer = styled.section<{ curIndex: number }>`
     rgba(19, 20, 22, 0.947917) 78.12%,
     #131416 100%
   );
+
+  pointer-events: none;
 `;
 const BottomButton = styled.section`
   z-index: 5;

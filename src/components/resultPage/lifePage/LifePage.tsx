@@ -4,7 +4,7 @@ import Title from "../common/Title";
 import { ILifeProps } from "../../../interfaces/resultPage";
 
 const Container = styled.section`
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
   padding-bottom: 13rem;
 `;
 const TitleBox = styled.section`
