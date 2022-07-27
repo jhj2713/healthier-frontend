@@ -16,6 +16,7 @@ import {
   savePeriod,
   saveCycle,
   saveScore,
+  saveMedicine,
   resetAnswer,
 } from "../state/answerSlice";
 
@@ -62,7 +63,7 @@ const Diagnosis = () => {
   const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
-  const { period, cycle, score, answers } = useAppSelector(
+  const { period, cycle, score, answers, is_taking_medicine } = useAppSelector(
     (state) => state.answer
   );
 
@@ -155,7 +156,7 @@ const Diagnosis = () => {
           );
         }
       } else if (state === "headache" && curIndex === 4) {
-        console.log(score, site);
+        dispatch(saveMedicine(selectedAnswer[0].score || 0));
         axios
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
@@ -187,6 +188,7 @@ const Diagnosis = () => {
                   period,
                   cycle,
                   pain_level: score,
+                  is_taking_medicine,
                   gender,
                   birth_year,
                   interests,

@@ -35,8 +35,14 @@ const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
       )}
       <Contents>
         <SubTitle>복용 시 주의해주세요</SubTitle>
-        <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
-        <Description text={medicine[selected - 1].caution.h2} />
+        {!medicine[selected - 1].caution.is_colored[0] ? (
+          <Description text={medicine[selected - 1].caution.h1} />
+        ) : (
+          <>
+            <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
+            <Description text={medicine[selected - 1].caution.h2} />
+          </>
+        )}
       </Contents>
       <Contents>
         <SubTitle>부작용</SubTitle>
