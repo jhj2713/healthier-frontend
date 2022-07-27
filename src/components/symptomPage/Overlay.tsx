@@ -73,7 +73,7 @@ const TitleDiv = styled.div`
   width: 100vw;
   height: 20vh;
 
-  padding-top: 12rem;
+  padding-top: 8rem;
 
   display: flex;
   flex-direction: column;

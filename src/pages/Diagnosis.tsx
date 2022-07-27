@@ -16,11 +16,12 @@ import {
   savePeriod,
   saveCycle,
   saveScore,
+  saveMedicine,
   resetAnswer,
 } from "../state/answerSlice";
 
 const Container = styled.section`
-  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 5.6rem);
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,
       rgba(84, 100, 242, 0.9) 0%,
@@ -35,7 +36,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
 `;
 const Question = styled(Heading_3)`
   text-align: center;
@@ -62,9 +63,8 @@ const Diagnosis = () => {
   const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
-  const { period, cycle, score, answers } = useAppSelector(
-    (state) => state.answer
-  );
+  const { period, cycle, score, answers, is_taking_medication } =
+    useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
 
@@ -155,7 +155,7 @@ const Diagnosis = () => {
           );
         }
       } else if (state === "headache" && curIndex === 4) {
-        console.log(score, site);
+        dispatch(saveMedicine(selectedAnswer[0].score || 0));
         axios
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
@@ -179,7 +179,7 @@ const Diagnosis = () => {
                   gender,
                   birth_year,
                   interests,
-                  track: answers,
+                  tracks: answers,
                 }
               : {
                   question_id: curQuestion.id,
@@ -187,10 +187,11 @@ const Diagnosis = () => {
                   period,
                   cycle,
                   pain_level: score,
+                  is_taking_medication,
                   gender,
                   birth_year,
                   interests,
-                  track: answers,
+                  tracks: answers,
                 };
           console.log(data);
 

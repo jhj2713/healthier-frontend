@@ -13,10 +13,10 @@ const Container = styled.section<{ selected: boolean }>`
           color: ${({ theme }) => theme.color.grey_300};
         `}
 
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 6rem;
 
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 300;
   cursor: pointer;
 `;

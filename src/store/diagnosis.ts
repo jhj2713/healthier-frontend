@@ -190,7 +190,7 @@ export const headache_questions = [
       {
         answer_id: 1,
         answer: "예",
-        score: 0,
+        score: 1,
         is_decisive: 0,
       },
       {

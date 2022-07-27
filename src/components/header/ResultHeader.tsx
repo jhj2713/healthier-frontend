@@ -4,7 +4,7 @@ import styled from "styled-components";
 const HeaderContainer = styled.header<{ isCover: boolean }>`
   position: fixed;
 
-  height: 9.6rem;
+  height: 5.6rem;
   width: 100%;
   letter-spacing: 0.015rem;
 

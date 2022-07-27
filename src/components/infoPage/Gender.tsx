@@ -1,21 +1,19 @@
 import styled, { css } from "styled-components";
 import { IGenderProps } from "../../interfaces/informationPage";
-import { Body_4 } from "../../lib/fontStyle";
+import { Body_2, Body_4 } from "../../lib/fontStyle";
 
 const Container = styled.section`
   margin-top: 3.2rem;
 `;
 const GenderContainer = styled.section`
   display: flex;
-
-  font-size: 1.3rem;
 `;
 const Title = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_300};
 
   margin-bottom: 0.8rem;
 `;
-const GenderButton = styled(Body_4)<{
+const GenderButton = styled(Body_2)<{
   selected: boolean;
 }>`
   display: flex;
