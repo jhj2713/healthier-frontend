@@ -105,8 +105,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
     if (menu === 2) {
       layerRef.current.layers[1].near = 1.4;
       layerRef.current.layers[1].far = 1.8;
-      layerRef.current.layers[1].colorA = theme.color.blue_500;
-      layerRef.current.layers[1].colorB = theme.color.blue_500;
+      layerRef.current.layers[1].colorA = theme.color.blue_600;
+      layerRef.current.layers[1].colorB = theme.color.blue_600;
     }
 
     state.camera.position.lerp(vec.set(0, 0, 19), 0.2);
