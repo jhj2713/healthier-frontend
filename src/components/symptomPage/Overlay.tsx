@@ -49,7 +49,7 @@ const PartAnimation = keyframes`
 `;
 
 const PartDiv = styled.div`
-  height: 35vh;
+  height: calc(var(--vh, 1vh) * 35);
   width: 45vh;
 
   position: absolute;
