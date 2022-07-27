@@ -27,7 +27,6 @@ const SelectBox = styled.select<{ year: number }>`
   appearance: none;
 
   font-size: 1.5rem;
-  font-weight: 200;
   line-height: 150%;
 
   background-image: url("/images/informationPage/dropdown.svg");
