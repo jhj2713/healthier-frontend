@@ -26,8 +26,8 @@ const SelectBox = styled.select<{ year: number }>`
     year !== 0 ? theme.color.grey_300 : theme.color.grey_600};
   appearance: none;
 
-  font-size: 1.3rem;
-  font-weight: 100;
+  font-size: 1.5rem;
+  font-weight: 200;
   line-height: 150%;
 
   background-image: url("/images/informationPage/dropdown.svg");

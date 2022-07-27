@@ -30,10 +30,12 @@ const Title = styled(Heading_5)<{ severity: number }>`
   color: ${({ theme, severity }) =>
     severity === 3 ? theme.color.blue_800 : theme.color.grey_200};
 
-  width: 5rem;
+  width: 12rem;
+
+  font-size: 2rem;
 `;
 const Date = styled.section<{ severity: number }>`
-  font-size: 1rem;
+  font-size: 1.3rem;
   font-weight: 200;
   line-height: 130%;
   letter-spacing: -0.05rem;
@@ -58,11 +60,11 @@ const Tag = styled.section<{ severity: number }>`
     severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue};
 
   font-weight: 300;
-  font-size: 1rem;
+  font-size: 1.3rem;
   line-height: 130%;
   letter-spacing: -0.05rem;
 
-  padding: 0.4rem 0.6rem;
+  padding: 0.6rem 1rem;
   margin-bottom: 1.2rem;
   border-radius: 3rem;
 `;

@@ -45,6 +45,8 @@ const DescriptionBox = styled(Description)`
 
   margin-bottom: 1.2rem;
   margin-right: 2.4rem;
+
+  font-size: 1.3rem;
 `;
 const Highlight = styled.span<{ type: string }>`
   color: ${({ theme, type }) =>
@@ -65,14 +67,14 @@ const DiagnosisList = () => {
     setDiagnosisList([
       {
         result_log_id: "62cd703fe49face142d9cffe",
-        name: "주기성 사지운동증",
+        name: "외상으로 인한 일시적통증",
         date: "6/25",
         photo: "/images/list_component.png",
         severity: 3,
       },
       {
         result_log_id: "62d121d11dc40a851fd99fb7",
-        name: "경미한 수면무호흡증",
+        name: "일주기 리듬 수면 장애",
         date: "6/27",
         photo: "/images/list_component.png",
         severity: 1,

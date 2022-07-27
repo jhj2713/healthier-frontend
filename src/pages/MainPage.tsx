@@ -20,7 +20,7 @@ const Strong = styled.span`
   font-weight: 500;
 `;
 const MainImage = styled.section`
-  height: calc(100% - 15.3rem - 17.6rem);
+  height: calc(100% - 28.9rem);
   margin-top: 2rem;
 
   display: flex;
@@ -37,7 +37,7 @@ const GuideText = styled.section`
   margin-top: 0.8rem;
   margin-left: 2.5rem;
 
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   font-weight: 200;
   line-height: 150%;
   letter-spacing: 0.015rem;

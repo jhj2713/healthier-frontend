@@ -29,6 +29,8 @@ const BottomButton = styled.section`
   position: fixed;
   margin: 0 2rem;
   bottom: 3rem;
+
+  pointer-events: auto;
 `;
 
 const BottomBar = ({

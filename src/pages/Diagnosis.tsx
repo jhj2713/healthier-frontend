@@ -63,9 +63,8 @@ const Diagnosis = () => {
   const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
-  const { period, cycle, score, answers, is_taking_medicine } = useAppSelector(
-    (state) => state.answer
-  );
+  const { period, cycle, score, answers, is_taking_medication } =
+    useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
 
@@ -180,7 +179,7 @@ const Diagnosis = () => {
                   gender,
                   birth_year,
                   interests,
-                  track: answers,
+                  tracks: answers,
                 }
               : {
                   question_id: curQuestion.id,
@@ -188,11 +187,11 @@ const Diagnosis = () => {
                   period,
                   cycle,
                   pain_level: score,
-                  is_taking_medicine,
+                  is_taking_medication,
                   gender,
                   birth_year,
                   interests,
-                  track: answers,
+                  tracks: answers,
                 };
           console.log(data);
 

@@ -22,7 +22,7 @@ const Title = styled.section`
   font-size: 1.6rem;
   font-weight: 300;
 
-  color: ${({ theme }) => theme.color.grey_300};
+  color: ${({ theme }) => theme.color.grey_200};
 
   margin-bottom: 0.2rem;
 `;
