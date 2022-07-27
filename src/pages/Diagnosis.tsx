@@ -78,11 +78,11 @@ const Diagnosis = () => {
   useEffect(() => {
     if (
       (state === "sleepdisorder" && curIndex <= 5) ||
-      (state === "headache" && curIndex <= 2)
+      (state === "headache" && curIndex <= 3)
     ) {
-      if (state === "sleepdisorder" && curIndex === 1) {
+      if (curIndex === 1) {
         dispatch(savePeriod(selectedAnswer[0].score || 0));
-      } else if (state === "sleepdisorder" && curIndex === 2) {
+      } else if (curIndex === 2) {
         dispatch(saveCycle(selectedAnswer[0].score || 0));
       } else if (state === "sleepdisorder" && curIndex >= 3) {
         const sum = selectedAnswer.reduce(
@@ -90,6 +90,8 @@ const Diagnosis = () => {
           0
         );
         dispatch(saveScore(sum));
+      } else if (state === "headache" && curIndex === 3) {
+        dispatch(saveScore(selectedAnswer[0].score || 0));
       }
 
       if (
@@ -152,8 +154,8 @@ const Diagnosis = () => {
             3000
           );
         }
-      } else if (state === "headache" && curIndex === 3) {
-        dispatch(saveScore(selectedAnswer[0].score || 0));
+      } else if (state === "headache" && curIndex === 4) {
+        console.log(score, site);
         axios
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
@@ -167,18 +169,30 @@ const Diagnosis = () => {
           });
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
-          console.log(answers);
-          const data = {
-            question_id: curQuestion.id,
-            answer_id: selectedAnswer[0].answer_id,
-            period,
-            score_b: score,
-            gender,
-            birth_year,
-            interests,
-            //answers,
-            //cycle,
-          };
+          const data =
+            state === "sleepdisorder"
+              ? {
+                  question_id: curQuestion.id,
+                  answer_id: selectedAnswer[0].answer_id,
+                  period,
+                  score_b: score,
+                  gender,
+                  birth_year,
+                  interests,
+                  track: answers,
+                }
+              : {
+                  question_id: curQuestion.id,
+                  answer_id: selectedAnswer[0].answer_id,
+                  period,
+                  cycle,
+                  pain_level: score,
+                  gender,
+                  birth_year,
+                  interests,
+                  track: answers,
+                };
+          console.log(data);
 
           setLoading(true);
           let response_state = {};

@@ -36,6 +36,9 @@ export const answerSlice = createSlice({
     },
     resetAnswer: (state) => {
       state.answers = new Array();
+      state.period = 0;
+      state.cycle = 0;
+      state.score = 0;
     },
   },
 });
