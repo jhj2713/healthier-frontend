@@ -78,8 +78,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
       );
       layerRef.current.layers[0].near = hCord[menu - 1][3];
       layerRef.current.layers[0].far = hCord[menu - 1][4];
-      layerRef.current.layers[0].colorA = theme.color.blue_700;
-      layerRef.current.layers[0].colorB = theme.color.blue_700;
+      layerRef.current.layers[0].colorA = theme.color.blue_3d;
+      layerRef.current.layers[0].colorB = theme.color.blue_3d;
       // 우측 영역의 하이라이트
 
       // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
@@ -99,8 +99,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
 
       layerRef.current.layers[1].near = hCord[menu - 1][3];
       layerRef.current.layers[1].far = hCord[menu - 1][4];
-      layerRef.current.layers[1].colorA = theme.color.blue_700;
-      layerRef.current.layers[1].colorB = theme.color.blue_700;
+      layerRef.current.layers[1].colorA = theme.color.blue_3d;
+      layerRef.current.layers[1].colorB = theme.color.blue_3d;
     }
     if (menu === 2) {
       layerRef.current.layers[1].near = 1.4;
@@ -131,8 +131,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
         >
           <point
             //@ts-ignore
-            colorA={theme.color.blue_700}
-            colorB={theme.color.blue_700}
+            colorA={theme.color.blue_3d}
+            colorB={theme.color.blue_3d}
             colorAalpha={1.0}
             colorBalpha={0}
             mode="add"
@@ -142,8 +142,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
           />
           <point
             //@ts-ignore
-            colorA={theme.color.blue_700}
-            colorB={theme.color.blue_700}
+            colorA={theme.color.blue_3d}
+            colorB={theme.color.blue_3d}
             colorAalpha={1.0}
             colorBalpha={0}
             mode="add"
