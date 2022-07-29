@@ -44,7 +44,7 @@ const CoverPage = ({
 }) => {
   return (
     <Container>
-      <CoverImage loading="lazy" alt="cover" src={illustration} />
+      <CoverImage loading="eager" alt="cover" src={illustration} />
 
       <Contents>
         <SeverityText>{highlight}</SeverityText>

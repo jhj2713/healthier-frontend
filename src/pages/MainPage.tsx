@@ -20,18 +20,17 @@ const Strong = styled.span`
   font-weight: 500;
 `;
 const MainImage = styled.section`
-  height: calc(100% - 28.9rem);
-  margin-top: 2rem;
+  position: relative;
+  margin-top: 5rem;
 
   display: flex;
   justify-content: center;
-`;
-const Image = styled.section`
-  width: 26rem;
-  height: 100%;
 
-  background: ${({ theme }) => theme.color.blue};
-  opacity: 0.5;
+  overflow: scroll;
+`;
+const Image = styled.img`
+  //height: calc(100% - 28.9rem);
+  width: calc(100vw - 8rem);
 `;
 const GuideText = styled.section`
   margin-top: 0.8rem;
@@ -65,7 +64,7 @@ const MainPage = () => {
           진단이 가능해요!
         </GuideText>
         <MainImage>
-          <Image></Image>
+          <Image alt="main" src="/images/mainPage/MainImage.png"></Image>
         </MainImage>
         <BottomButtons setModal={setModal} />
         {modal && (

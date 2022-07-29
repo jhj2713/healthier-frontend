@@ -95,7 +95,6 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
         `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
       .then((res) => {
-        console.log(res.data.diagnostic_result);
         navigate("/result", {
           state: {
             type: "result",
