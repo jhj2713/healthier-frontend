@@ -29,13 +29,14 @@ const OverlaySection = styled.div`
 
 const ButtonDiv = styled.div`
   width: calc(100vw - 4rem);
-  height: calc(var(--vh, 1vh) * 31);
+  height: 31.3vh;
 
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-end;
 
+  overflow: visible;
   padding-bottom: 2rem;
 `;
 
