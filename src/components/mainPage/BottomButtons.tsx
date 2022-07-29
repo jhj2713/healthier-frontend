@@ -41,7 +41,7 @@ const BottomButtons = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           outline="none"
           backgroundColor={theme.color.blue}
           color={theme.color.grey_100}
-          text={"로그인 후 진단기록장 보기"}
+          text={"나의 진단기록장 보기"}
         />
       </ButtonBox>
     </Buttons>

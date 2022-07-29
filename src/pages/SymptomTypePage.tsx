@@ -8,7 +8,7 @@ import SymptomModal from "../components/modal/SymptomModal";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Container = styled.section`
-  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 5.6rem);
 
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,
@@ -21,7 +21,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  padding: 9.6rem 2rem 0 2rem;
+  padding: 5.6rem 2rem 0 2rem;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};

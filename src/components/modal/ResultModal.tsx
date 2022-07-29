@@ -26,6 +26,8 @@ const Title = styled(Heading_5)`
   text-align: center;
 
   margin-top: 0.4rem;
+
+  font-size: 2.2rem;
 `;
 const Contents = styled.section`
   display: flex;
@@ -38,7 +40,7 @@ const Contents = styled.section`
 const NoteImage = styled.section`
   height: 21.7rem;
   width: 26rem;
-  margin-top: 1.6rem;
+  margin-top: 1rem;
 `;
 const Image = styled.section`
   height: 100%;

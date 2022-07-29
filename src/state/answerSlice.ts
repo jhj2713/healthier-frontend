@@ -5,14 +5,16 @@ interface AnswerState {
   answers: { question_id: string; answer_id: number[] }[];
   period: number;
   cycle: number;
-  sleepScore: number;
+  score: number;
+  is_taking_medication: number;
 }
 
 const initialState: AnswerState = {
   answers: [],
   period: 0,
   cycle: 0,
-  sleepScore: 0,
+  score: 0,
+  is_taking_medication: 0,
 };
 
 export const answerSlice = createSlice({
@@ -25,8 +27,8 @@ export const answerSlice = createSlice({
     saveCycle: (state, action: PayloadAction<number>) => {
       state.cycle = action.payload;
     },
-    saveSleepScore: (state, action: PayloadAction<number>) => {
-      state.sleepScore += action.payload;
+    saveScore: (state, action: PayloadAction<number>) => {
+      state.score += action.payload;
     },
     saveAnswer: (
       state,
@@ -34,10 +36,26 @@ export const answerSlice = createSlice({
     ) => {
       state.answers = [...state.answers, action.payload];
     },
+    saveMedicine: (state, action: PayloadAction<number>) => {
+      state.is_taking_medication = action.payload;
+    },
+    resetAnswer: (state) => {
+      state.answers = new Array();
+      state.period = 0;
+      state.cycle = 0;
+      state.score = 0;
+      state.is_taking_medication = 0;
+    },
   },
 });
 
-export const { savePeriod, saveCycle, saveSleepScore, saveAnswer } =
-  answerSlice.actions;
+export const {
+  savePeriod,
+  saveCycle,
+  saveScore,
+  saveAnswer,
+  saveMedicine,
+  resetAnswer,
+} = answerSlice.actions;
 
 export default answerSlice.reducer;

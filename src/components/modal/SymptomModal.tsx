@@ -46,7 +46,7 @@ const QuitImage = styled.section`
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
-  margin-top: 2.4rem;
+  margin-top: 1.2rem;
 `;
 const Highlight = styled.span`
   color: ${({ theme }) => theme.color.green};
@@ -56,6 +56,8 @@ const Title = styled(Heading_5)`
   text-align: center;
 
   margin-top: 0.4rem;
+
+  font-size: 2.2rem;
 `;
 const Contents = styled.section`
   display: flex;
@@ -66,9 +68,9 @@ const Contents = styled.section`
   width: 100%;
 `;
 const NoteImage = styled.section`
-  height: 20rem;
+  height: 19.6rem;
   width: 26rem;
-  margin-top: 1.6rem;
+  margin-top: 1rem;
 `;
 const Image = styled.section`
   height: 100%;

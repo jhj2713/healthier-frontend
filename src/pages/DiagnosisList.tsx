@@ -11,9 +11,9 @@ import { IDiagnosisList } from "../interfaces/component";
 import EmptyPage from "../components/diagnosisListPage/EmptyPage";
 
 const Container = styled.section`
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
 `;
-const ButtonBox = styled.section`
+const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;
 
@@ -28,6 +28,10 @@ const ButtonBox = styled.section`
     rgba(19, 20, 22, 0.947917) 78.12%,
     #131416 100%
   );
+  pointer-events: none;
+`;
+const ButtonBox = styled.section`
+  pointer-events: auto;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
@@ -41,6 +45,8 @@ const DescriptionBox = styled(Description)`
 
   margin-bottom: 1.2rem;
   margin-right: 2.4rem;
+
+  font-size: 1.3rem;
 `;
 const Highlight = styled.span<{ type: string }>`
   color: ${({ theme, type }) =>
@@ -53,20 +59,22 @@ const List = styled.section`
 const DiagnosisList = () => {
   const navigate = useNavigate();
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
+  const [name, setName] = useState("");
 
   useEffect(() => {
     // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
+    setName("홍길동");
     setDiagnosisList([
       {
         result_log_id: "62cd703fe49face142d9cffe",
-        name: "주기성 사지운동증",
+        name: "외상으로 인한 일시적통증",
         date: "6/25",
         photo: "/images/list_component.png",
         severity: 3,
       },
       {
         result_log_id: "62d121d11dc40a851fd99fb7",
-        name: "경미한 수면무호흡증",
+        name: "일주기 리듬 수면 장애",
         date: "6/27",
         photo: "/images/list_component.png",
         severity: 1,
@@ -96,11 +104,12 @@ const DiagnosisList = () => {
       ) : (
         <>
           <Title>
-            <Highlight type="title">홍길동님</Highlight>이 저장한
+            <Highlight type="title">{name}님</Highlight>이 저장한
             <br /> 진단 내역이에요
           </Title>
           <DescriptionBox>
-            <Highlight type="description">3개</Highlight>의 진단내역
+            <Highlight type="description">{diagnosisList.length}개</Highlight>의
+            진단내역
           </DescriptionBox>
           <List>
             {diagnosisList.map((diag) => (
@@ -109,16 +118,16 @@ const DiagnosisList = () => {
           </List>
         </>
       )}
-      <ButtonBox>
-        <section onClick={() => navigate("/symptom-type", { state: "login" })}>
+      <ButtonBackground>
+        <ButtonBox onClick={() => navigate("/info")}>
           <RoundButton
             outline="none"
             backgroundColor={theme.color.green}
             color={theme.color.grey_900}
             text="빠른 진단 시작하기"
           />
-        </section>
-      </ButtonBox>
+        </ButtonBox>
+      </ButtonBackground>
     </Container>
   );
 };

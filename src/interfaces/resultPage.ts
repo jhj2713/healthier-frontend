@@ -55,6 +55,7 @@ export interface IMedicine {
   image: string;
   name: string;
   efficacy: string;
+  dosage_and_uses?: { name: string; emoji: string }[];
   caution: { h1: string; h2: string; is_colored: string[] };
   sideeffects: { name: string; emoji: string }[];
 }
@@ -68,6 +69,10 @@ export interface IMedicineProps {
 export interface IMedicineDetail {
   selected: number;
   medicine: IMedicine[];
+}
+
+export interface IMedicineTag {
+  tags: { name: string; emoji: string }[];
 }
 
 export interface ITreatPageProps {
