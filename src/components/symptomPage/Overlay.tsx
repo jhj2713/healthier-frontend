@@ -66,12 +66,12 @@ const PartDiv = styled.div`
 `;
 
 const PlaceHolderDiv = styled.div`
-  height: 45vh;
+  bottom: calc(var(--vh, 1vh) * 45);
 `;
 
 const TitleDiv = styled.div`
   width: 100vw;
-  height: 20vh;
+  bottom: calc(var(--vh, 1vh) * 20);
 
   padding-top: 8rem;
 
@@ -123,7 +123,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   background-color: ${({ toggle, theme }) =>
     toggle ? theme.color.blue : theme.color.grey_900};
 
-  border: solid 0.1rem;
+  border: solid 0.15rem;
   border-color: ${({ theme }) => theme.color.blue};
   border-radius: 4rem;
   border-width: 1px;
@@ -133,6 +133,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   text-overflow: ellipsis;
 
   font-size: 1.3rem;
+  font-weight: 400;
 `;
 
 const particles = ["", "를", "를", "을", "를", "를", "을", "를", "를", "을"];
