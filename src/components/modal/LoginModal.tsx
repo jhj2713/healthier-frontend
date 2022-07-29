@@ -1,6 +1,7 @@
 import { Dispatch } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
+import axios from "axios";
 
 const Container = styled.section`
   position: absolute;
@@ -63,21 +64,56 @@ const Continue = styled(Body_4)`
 
   margin-top: 1.4rem;
 `;
-const LoginButton = styled.section`
+const LoginButton = styled.button`
   width: calc(100vw - 6.8rem);
-
-  background-color: #fee500;
-  border-radius: 0.6rem;
+  height: 4.5rem;
 
   display: flex;
   justify-content: center;
+  align-items: center;
+
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #fee500;
+
+  font-size: 1.5rem;
+`;
+const LoginImg = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 30px;
 `;
 
+const Kakao = (window as any).Kakao;
+const kakaoLogin = () => {
+  Kakao.Auth.login({
+    success: async function (authObj: any) {
+      console.log(authObj);
+      const res = await axios.post(
+        `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
+      );
+      // axios
+      //   .post(
+      //     `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
+      //   )
+      //   .then((res) => {
+      //     console.log(res);
+      //   });
+      console.log(res);
+    },
+    fail: function (err: any) {
+      console.log(err);
+    },
+  });
+};
+
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
-  const handleLogin = () => {
+  const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     console.log("로그인");
-    // setModal(false);
-    // 로그인 api 호출
+    setModal(false);
+    kakaoLogin();
   };
 
   return (
@@ -96,14 +132,12 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <LoginButton onClick={handleLogin}>
-          <img
-            alt="kakao_login"
-            src="images/login/kakao_login_large_wide.png"
-            height={45}
-            width={292}
-          />
-        </LoginButton>
+        <section>
+          <LoginButton onClick={handleLoginClick}>
+            <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+            카카오 로그인
+          </LoginButton>
+        </section>
         <Continue onClick={() => setModal(false)}>
           괜찮아요, 비회원으로 이용할게요
         </Continue>
