@@ -13,7 +13,7 @@ import { Heading_3 } from "../lib/fontStyle";
 import { useNavigate } from "react-router-dom";
 
 const Container = styled.section`
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
 `;
 const ButtonBackground = styled.section`
   position: fixed;

@@ -6,6 +6,7 @@ interface AnswerState {
   period: number;
   cycle: number;
   score: number;
+  is_taking_medication: number;
 }
 
 const initialState: AnswerState = {
@@ -13,6 +14,7 @@ const initialState: AnswerState = {
   period: 0,
   cycle: 0,
   score: 0,
+  is_taking_medication: 0,
 };
 
 export const answerSlice = createSlice({
@@ -34,13 +36,26 @@ export const answerSlice = createSlice({
     ) => {
       state.answers = [...state.answers, action.payload];
     },
+    saveMedicine: (state, action: PayloadAction<number>) => {
+      state.is_taking_medication = action.payload;
+    },
     resetAnswer: (state) => {
       state.answers = new Array();
+      state.period = 0;
+      state.cycle = 0;
+      state.score = 0;
+      state.is_taking_medication = 0;
     },
   },
 });
 
-export const { savePeriod, saveCycle, saveScore, saveAnswer, resetAnswer } =
-  answerSlice.actions;
+export const {
+  savePeriod,
+  saveCycle,
+  saveScore,
+  saveAnswer,
+  saveMedicine,
+  resetAnswer,
+} = answerSlice.actions;
 
 export default answerSlice.reducer;

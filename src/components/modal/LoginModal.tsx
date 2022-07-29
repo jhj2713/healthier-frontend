@@ -25,6 +25,10 @@ const Title = styled(Heading_5)`
   text-align: center;
 
   margin-top: 1.2rem;
+
+  font-size: 2rem;
+
+  margin: 1.2rem 3rem 0 3rem;
 `;
 const Contents = styled.section`
   display: flex;
@@ -35,7 +39,7 @@ const Contents = styled.section`
   width: 100%;
 `;
 const NoteImage = styled.section`
-  height: 21.7rem;
+  height: 19.6rem;
   width: 26rem;
   margin-top: 1.6rem;
 `;
@@ -59,8 +63,14 @@ const Continue = styled(Body_4)`
 
   margin-top: 1.4rem;
 `;
-const LoginButton = styled.img`
+const LoginButton = styled.section`
   width: calc(100vw - 6.8rem);
+
+  background-color: #fee500;
+  border-radius: 0.6rem;
+
+  display: flex;
+  justify-content: center;
 `;
 
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
@@ -86,12 +96,14 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <section onClick={handleLogin}>
-          <LoginButton
+        <LoginButton onClick={handleLogin}>
+          <img
             alt="kakao_login"
             src="images/login/kakao_login_large_wide.png"
+            height={45}
+            width={292}
           />
-        </section>
+        </LoginButton>
         <Continue onClick={() => setModal(false)}>
           괜찮아요, 비회원으로 이용할게요
         </Continue>

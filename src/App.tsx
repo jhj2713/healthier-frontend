@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Information from "./pages/Information";
 import MainPage from "./pages/MainPage";
 import ResultPage from "./pages/ResultPage";
@@ -39,6 +39,7 @@ function App() {
         <Route path="/result-loading" element={<ResultLoading />} />
         <Route path="/loading" element={<HomeLoading />} />
         <Route path="/symptom-type" element={<SymptomTypePage />} />
+        <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
     </section>
   );

@@ -23,8 +23,9 @@ const TagBox = styled.section`
   margin-right: 0.8rem;
 `;
 const DescriptionBox = styled(Description)`
-  color: ${({ theme }) => theme.color.grey_600};
+  color: ${({ theme }) => theme.color.grey_500};
 
+  font-size: 1.4rem;
   margin-top: 1.6rem;
 `;
 

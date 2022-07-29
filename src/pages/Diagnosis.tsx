@@ -16,11 +16,12 @@ import {
   savePeriod,
   saveCycle,
   saveScore,
+  saveMedicine,
   resetAnswer,
 } from "../state/answerSlice";
 
 const Container = styled.section`
-  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
+  height: calc(var(--vh, 1vh) * 100 - 5.6rem);
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,
       rgba(84, 100, 242, 0.9) 0%,
@@ -35,7 +36,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
 `;
 const Question = styled(Heading_3)`
   text-align: center;
@@ -62,9 +63,8 @@ const Diagnosis = () => {
   const { gender, birth_year, interests, site } = useAppSelector(
     (state) => state.user
   );
-  const { period, cycle, score, answers } = useAppSelector(
-    (state) => state.answer
-  );
+  const { period, cycle, score, answers, is_taking_medication } =
+    useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
 
@@ -78,11 +78,11 @@ const Diagnosis = () => {
   useEffect(() => {
     if (
       (state === "sleepdisorder" && curIndex <= 5) ||
-      (state === "headache" && curIndex <= 2)
+      (state === "headache" && curIndex <= 3)
     ) {
-      if (state === "sleepdisorder" && curIndex === 1) {
+      if (curIndex === 1) {
         dispatch(savePeriod(selectedAnswer[0].score || 0));
-      } else if (state === "sleepdisorder" && curIndex === 2) {
+      } else if (curIndex === 2) {
         dispatch(saveCycle(selectedAnswer[0].score || 0));
       } else if (state === "sleepdisorder" && curIndex >= 3) {
         const sum = selectedAnswer.reduce(
@@ -90,6 +90,8 @@ const Diagnosis = () => {
           0
         );
         dispatch(saveScore(sum));
+      } else if (state === "headache" && curIndex === 3) {
+        dispatch(saveScore(selectedAnswer[0].score || 0));
       }
 
       if (
@@ -152,8 +154,8 @@ const Diagnosis = () => {
             3000
           );
         }
-      } else if (state === "headache" && curIndex === 3) {
-        dispatch(saveScore(selectedAnswer[0].score || 0));
+      } else if (state === "headache" && curIndex === 4) {
+        dispatch(saveMedicine(selectedAnswer[0].score || 0));
         axios
           .post(
             `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
@@ -167,18 +169,31 @@ const Diagnosis = () => {
           });
       } else {
         if (selectedAnswer[0].is_decisive === 1) {
-          console.log(answers);
-          const data = {
-            question_id: curQuestion.id,
-            answer_id: selectedAnswer[0].answer_id,
-            period,
-            score_b: score,
-            gender,
-            birth_year,
-            interests,
-            //answers,
-            //cycle,
-          };
+          const data =
+            state === "sleepdisorder"
+              ? {
+                  question_id: curQuestion.id,
+                  answer_id: selectedAnswer[0].answer_id,
+                  period,
+                  score_b: score,
+                  gender,
+                  birth_year,
+                  interests,
+                  tracks: answers,
+                }
+              : {
+                  question_id: curQuestion.id,
+                  answer_id: selectedAnswer[0].answer_id,
+                  period,
+                  cycle,
+                  pain_level: score,
+                  is_taking_medication,
+                  gender,
+                  birth_year,
+                  interests,
+                  tracks: answers,
+                };
+          console.log(data);
 
           setLoading(true);
           let response_state = {};

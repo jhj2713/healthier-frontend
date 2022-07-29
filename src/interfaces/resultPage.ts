@@ -55,6 +55,7 @@ export interface IMedicine {
   image: string;
   name: string;
   efficacy: string;
+  dosage_and_uses?: { name: string; emoji: string }[];
   caution: { h1: string; h2: string; is_colored: string[] };
   sideeffects: { name: string; emoji: string }[];
 }
