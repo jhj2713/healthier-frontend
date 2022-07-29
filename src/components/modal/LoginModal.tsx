@@ -87,7 +87,7 @@ const kakaoLogin = () => {
     success: async function (authObj: any) {
       console.log(authObj);
       const res = await axios.post(
-        `${process.env.REACT_APP_LOGIN_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
+        `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
       );
       // axios
       //   .post(
