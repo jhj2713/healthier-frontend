@@ -29,7 +29,7 @@ const OverlaySection = styled.div`
 
 const ButtonDiv = styled.div`
   width: calc(100vw - 4rem);
-  height: calc(var(--vh, 1vh) * 35);
+  height: calc(var(--vh, 1vh) * 31);
 
   display: flex;
   flex-direction: column;
@@ -52,9 +52,6 @@ const PartDiv = styled.div`
   width: 45vh;
   height: calc(var(--vh, 1vh) * 35);
 
-  position: absolute;
-  bottom: calc(var(--vh, 1vh) * 33);
-
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
@@ -65,15 +62,9 @@ const PartDiv = styled.div`
   animation: ${PartAnimation} 0.6s ease-in-out both;
 `;
 
-const PlaceHolderDiv = styled.div`
-  height: calc(var(--vh, 1vh) * 45);
-`;
-
 const TitleDiv = styled.div`
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 20);
-
-  padding-top: 8rem;
+  height: 15vh;
 
   display: flex;
   flex-direction: column;
@@ -170,7 +161,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           </>
         )}
       </TitleDiv>
-      <PlaceHolderDiv />
+      {/* <PlaceHolderDiv /> */}
       {view ? (
         <PartDiv>
           <div></div>
