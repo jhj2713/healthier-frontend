@@ -13,7 +13,7 @@ export const Heading_2 = styled.section`
 `;
 
 export const Heading_3 = styled.section`
-  font-size: 2.2rem;
+  font-size: 2.4rem;
   font-weight: 300;
   line-height: 140%;
 `;
@@ -32,30 +32,30 @@ export const Heading_5 = styled.section`
 
 export const Body_1 = styled.section`
   font-size: 1.6rem;
-  font-weight: 100;
+  font-weight: 200;
   line-height: 150%;
 `;
 
 export const Body_2 = styled.section`
   font-size: 1.5rem;
-  font-weight: 100;
+  font-weight: 200;
   line-height: 150%;
 `;
 
 export const Body_3 = styled.section`
   font-size: 1.4rem;
-  font-weight: 100;
+  font-weight: 200;
   line-height: 150%;
 `;
 
 export const Body_4 = styled.section`
-  font-size: 1.3rem;
-  font-weight: 100;
+  font-size: 1.4rem;
+  font-weight: 200;
   line-height: 150%;
 `;
 
 export const Description = styled.section`
   font-size: 1.2rem;
-  font-weight: 100;
+  font-weight: 200;
   line-height: 150%;
 `;

@@ -7,7 +7,7 @@ import { IMedicine } from "../../../interfaces/resultPage";
 import { Body_3 } from "../../../lib/fontStyle";
 
 const Container = styled.section`
-  padding-top: 9.6rem;
+  padding-top: 5.6rem;
   padding-bottom: 13rem;
 `;
 const Contents = styled.section`

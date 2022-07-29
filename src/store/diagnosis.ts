@@ -3,10 +3,10 @@ export const sleepdisorder_questions = [
     id: "1",
     question: "언제부터 잠이 안오기 시작했나요?",
     answers: [
-      { answer_id: 1, answer: "1주 전", score: 1, is_decisive: 0 },
-      { answer_id: 2, answer: "2주 전", score: 2, is_decisive: 0 },
-      { answer_id: 3, answer: "한달 전", score: 3, is_decisive: 0 },
-      { answer_id: 4, answer: "3개월 전", score: 4, is_decisive: 0 },
+      { answer_id: 1, answer: "1주 전", score: 0, is_decisive: 0 },
+      { answer_id: 2, answer: "2주 전", score: 1, is_decisive: 0 },
+      { answer_id: 3, answer: "한달 전", score: 2, is_decisive: 0 },
+      { answer_id: 4, answer: "3개월 전", score: 3, is_decisive: 0 },
     ],
     is_multiple: 0,
   },
@@ -14,8 +14,8 @@ export const sleepdisorder_questions = [
     id: "2",
     question: "일주일에 몇 번 정도 잠을 잘 못 주무시나요?",
     answers: [
-      { answer_id: 1, answer: "주 1~2회", score: 1, is_decisive: 0 },
-      { answer_id: 2, answer: "주 3회 이상", score: 2, is_decisive: 0 },
+      { answer_id: 1, answer: "주 1~2회", score: 0, is_decisive: 0 },
+      { answer_id: 2, answer: "주 3회 이상", score: 1, is_decisive: 0 },
     ],
     is_multiple: 0,
   },
@@ -129,10 +129,10 @@ export const headache_questions = [
     id: "1",
     question: "언제부터 통증이 시작되었나요?",
     answers: [
-      { answer_id: 1, answer: "1주 전", is_decisive: 0 },
-      { answer_id: 2, answer: "2주 전", is_decisive: 0 },
-      { answer_id: 3, answer: "한달 전", is_decisive: 0 },
-      { answer_id: 4, answer: "3개월 전", is_decisive: 0 },
+      { answer_id: 1, answer: "1주 전", score: 0, is_decisive: 0 },
+      { answer_id: 2, answer: "2주 전", score: 1, is_decisive: 0 },
+      { answer_id: 3, answer: "한달 전", score: 2, is_decisive: 0 },
+      { answer_id: 4, answer: "3개월 전", score: 3, is_decisive: 0 },
     ],
     is_multiple: 0,
   },
@@ -140,26 +140,13 @@ export const headache_questions = [
     id: "2",
     question: "1달에 15일 이상 두통 증상이 있나요?",
     answers: [
-      { answer_id: 1, answer: "예", is_decisive: 0 },
-      { answer_id: 2, answer: "아니요", is_decisive: 0 },
+      { answer_id: 1, answer: "예", score: 1, is_decisive: 0 },
+      { answer_id: 2, answer: "아니요", score: 0, is_decisive: 0 },
     ],
     is_multiple: 0,
   },
   {
     id: "3",
-    question: "",
-    answers: [
-      {
-        answer_id: 1,
-        answer: "약간의 통증이 있지만 일상생활에는 문제가 없어요",
-        score: 1,
-        is_decisive: 0,
-      },
-    ],
-    is_multiple: 0,
-  },
-  {
-    id: "4",
     question: "통증의 정도가 어떻게 되나요?",
     answers: [
       {
@@ -191,6 +178,25 @@ export const headache_questions = [
         answer:
           "태어나서 한 번도 경험해보지 못한 통증으로 벼락 맞은 듯이 아파요",
         score: 5,
+        is_decisive: 0,
+      },
+    ],
+    is_multiple: 0,
+  },
+  {
+    id: "4",
+    question: "한 달에 15일 이상 진통제 등의 약물을 지속적으로 복용했나요?",
+    answers: [
+      {
+        answer_id: 1,
+        answer: "예",
+        score: 1,
+        is_decisive: 0,
+      },
+      {
+        answer_id: 2,
+        answer: "아니요",
+        score: 0,
         is_decisive: 0,
       },
     ],

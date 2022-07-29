@@ -54,6 +54,7 @@ const ResultPage = () => {
     if (!state) {
       navigate("/");
     } else {
+      console.log(state.diagnostic_result);
       setCoverData({
         illustration: state.diagnostic_result.illustration,
         highlight: state.diagnostic_result.h1,

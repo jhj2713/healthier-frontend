@@ -27,14 +27,22 @@ const MedicineDetail = ({ selected, medicine }: IMedicineDetail) => {
         <SubTitle>효능•효과</SubTitle>
         <Description text={medicine[selected - 1].efficacy} />
       </Contents>
-      <Contents>
-        <SubTitle>용량 및 용법</SubTitle>
-        <MedicineTag tags={medicine[selected - 1].sideeffects} />
-      </Contents>
+      {medicine[selected - 1].dosage_and_uses && (
+        <Contents>
+          <SubTitle>용량 및 용법</SubTitle>
+          <MedicineTag tags={medicine[selected - 1].dosage_and_uses || []} />
+        </Contents>
+      )}
       <Contents>
         <SubTitle>복용 시 주의해주세요</SubTitle>
-        <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
-        <Description text={medicine[selected - 1].caution.h2} />
+        {!medicine[selected - 1].caution.is_colored[0] ? (
+          <Description text={medicine[selected - 1].caution.h1} />
+        ) : (
+          <>
+            <Highlight>{medicine[selected - 1].caution.h1}</Highlight>
+            <Description text={medicine[selected - 1].caution.h2} />
+          </>
+        )}
       </Contents>
       <Contents>
         <SubTitle>부작용</SubTitle>

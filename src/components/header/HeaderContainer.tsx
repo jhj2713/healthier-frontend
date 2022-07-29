@@ -5,7 +5,7 @@ const Container = styled.header`
   width: 100vw;
   top: 0;
 
-  height: 9.6rem;
+  height: 5.6rem;
   letter-spacing: 0.015rem;
 
   border-bottom: 0.05rem solid ${({ theme }) => theme.color.grey_800};
