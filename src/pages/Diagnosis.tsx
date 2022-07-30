@@ -69,7 +69,6 @@ const Diagnosis = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    console.log(gender, birth_year, interests);
     dispatch(resetAnswer());
     if (!state) {
       navigate("/");
@@ -193,7 +192,6 @@ const Diagnosis = () => {
                   interests,
                   tracks: answers,
                 };
-          console.log(data);
 
           setLoading(true);
           let response_state = {};

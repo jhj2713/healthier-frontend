@@ -22,9 +22,6 @@ const Icon = styled.section`
   width: 26rem;
   height: 24rem;
 
-  background: ${({ theme }) => theme.color.blue};
-  opacity: 0.5;
-
   margin: 2rem 5rem 1.2rem 5rem;
 `;
 
@@ -49,7 +46,13 @@ const HomeLoading = () => {
         <Description>
           다음에 더 <Highlight>다양한 진단</Highlight>으로 만나요!
         </Description>
-        <Icon></Icon>
+        <Icon>
+          <img
+            alt="icon"
+            src="/images/loading/MainLoadingImage.png"
+            width={260}
+          />
+        </Icon>
         <LoadingBox />
       </>
     </LoadingContainer>

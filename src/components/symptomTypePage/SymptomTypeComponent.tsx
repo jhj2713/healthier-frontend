@@ -5,9 +5,6 @@ const Container = styled.section<{ select: boolean }>`
   height: 13.5rem;
   width: 100%;
 
-  display: flex;
-  justify-content: center;
-
   background: ${({ select, theme }) =>
     select ? theme.color.sub_blue : "transparent"};
 
@@ -15,6 +12,8 @@ const Container = styled.section<{ select: boolean }>`
     !select && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 1rem;
   box-sizing: border-box;
+
+  position: relative;
 `;
 const Title = styled.section<{ select: boolean }>`
   font-size: 1.6rem;
@@ -23,12 +22,25 @@ const Title = styled.section<{ select: boolean }>`
     select ? theme.color.blue : theme.color.grey_300};
 
   margin-top: 2rem;
+  margin-left: 2rem;
+
+  position: absolute;
+`;
+const TypeImage = styled.section`
+  height: 13.5rem;
+  width: 13.5rem;
+
+  background: ${({ theme }) => theme.color.blue};
+
+  position: absolute;
+  right: 0;
 `;
 
 const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
   return (
     <Container select={selected}>
       <Title select={selected}>{title}</Title>
+      <TypeImage></TypeImage>
     </Container>
   );
 };

@@ -38,15 +38,15 @@ const Contents = styled.section`
   width: 100%;
 `;
 const NoteImage = styled.section`
-  height: 21.7rem;
-  width: 26rem;
-  margin-top: 1rem;
+  height: 19.6rem;
+
+  margin-top: 1.6rem;
+
+  display: flex;
+  justify-content: center;
 `;
-const Image = styled.section`
+const Image = styled.img`
   height: 100%;
-  width: 100%;
-  background: ${({ theme }) => theme.color.grey_900};
-  opacity: 0.5;
 `;
 const BottomButtons = styled.section`
   position: absolute;
@@ -62,17 +62,36 @@ const Continue = styled(Body_4)`
 
   margin-top: 1.4rem;
 `;
-const LoginButton = styled.img`
+const LoginButton = styled.button`
   width: calc(100vw - 6.8rem);
+  height: 4.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #fee500;
+
+  font-size: 1.5rem;
+
+  color: #000000;
+`;
+const LoginImg = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 30px;
 `;
 
 const ResultModal = ({ setModal, setLoading }: IResultModal) => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    console.log("로그인");
-    // setModal(false);
-    // setLoading(true);
+  const handleLoginClick = () => {
+    setModal(false);
+    setLoading(true);
+
     // 로그인 api 호출 후 저장 api 호출
     // 시간 지나면 navigate("/");
   };
@@ -90,16 +109,14 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
           홈화면에서 볼 수 있어요
         </Title>
         <NoteImage>
-          <Image></Image>
+          <Image alt="login" src="/images/modal/LoginModalImage.png" />
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <section onClick={handleLogin}>
-          <LoginButton
-            alt="kakao_login"
-            src="images/login/kakao_login_large_wide.png"
-          />
-        </section>
+        <LoginButton onClick={handleLoginClick}>
+          <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+          카카오 로그인
+        </LoginButton>
         <Continue onClick={() => navigate("/loading")}>
           괜찮아요, 다음에 할게요
         </Continue>

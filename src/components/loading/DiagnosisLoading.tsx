@@ -6,8 +6,6 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 const Title = styled(Heading_3)`
-  width: 27rem;
-
   font-weight: 200;
   text-align: center;
   word-break: keep-all;
@@ -16,9 +14,6 @@ const Title = styled(Heading_3)`
 const Icon = styled.section`
   width: 26rem;
   height: 24.8rem;
-
-  background: ${({ theme }) => theme.color.blue};
-  opacity: 0.5;
 
   margin: 2rem 5rem 1.2rem 5rem;
 `;
@@ -43,10 +38,16 @@ const DiagnosisLoading = () => {
     <LoadingContainer>
       <>
         <Title>
-          <Highlight>정확한 증상 진단</Highlight>을 위해 헬시어가 증상을
-          분석중이에요
+          <Highlight>정확한 증상 진단</Highlight>을 위해
+          <br /> 헬시어가 증상을 분석중이에요
         </Title>
-        <Icon></Icon>
+        <Icon>
+          <img
+            alt="icon"
+            src="/images/loading/DiagnosisImage.gif"
+            width={260}
+          />
+        </Icon>
         <BottomTextBox>
           <Tips>Tips</Tips>
           <Description>로그인을 하면 진단내역을 모아 볼 수 있어요!</Description>

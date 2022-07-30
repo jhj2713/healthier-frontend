@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
   BottomBar,
@@ -50,11 +50,10 @@ const ResultPage = () => {
   const [medicineData, setMedicineData] = useState<IMedicine[] | undefined>();
   const [treatData, setTreatData] = useState<ITreatPageProps[] | undefined>();
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!state) {
       navigate("/");
     } else {
-      console.log(state.diagnostic_result);
       setCoverData({
         illustration: state.diagnostic_result.illustration,
         highlight: state.diagnostic_result.h1,
@@ -78,7 +77,7 @@ const ResultPage = () => {
       }
     }
   }, [state]);
-  useEffect(() => {
+  useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, [curIndex]);
 
@@ -139,6 +138,7 @@ const ResultPage = () => {
             setModal={setModal}
             setLoading={setLoading}
             isSaved={isSaved}
+            resultId={state.diagnostic_result.id}
           />
         </>
       )}

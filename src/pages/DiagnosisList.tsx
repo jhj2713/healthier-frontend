@@ -65,7 +65,7 @@ const DiagnosisList = () => {
     // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
     setName("홍길동");
     setDiagnosisList([
-      {
+      /*{
         result_log_id: "62cd703fe49face142d9cffe",
         name: "외상으로 인한 일시적통증",
         date: "6/25",
@@ -92,7 +92,7 @@ const DiagnosisList = () => {
         date: "7/5",
         photo: "/images/list_component.png",
         severity: 2,
-      },
+      },*/
     ]);
   }, []);
 

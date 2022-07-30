@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import { symptom_type } from "../../store/symptom_type";
@@ -69,14 +69,10 @@ const Contents = styled.section`
 `;
 const NoteImage = styled.section`
   height: 19.6rem;
-  width: 26rem;
   margin-top: 1rem;
 `;
-const Image = styled.section`
+const Image = styled.img`
   height: 100%;
-  width: 100%;
-  background: ${({ theme }) => theme.color.grey_900};
-  opacity: 0.5;
 `;
 const ButtonContainer = styled.section`
   position: absolute;
@@ -114,6 +110,16 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
 
+  const [imageSrc, setImageSrc] = useState("");
+
+  useLayoutEffect(() => {
+    setImageSrc(
+      select === 0
+        ? "/images/modal/SleepdisorderModalImage.png"
+        : "/images/modal/HeadacheModalImage.png"
+    );
+  }, []);
+
   const handleModalClose = (e: React.MouseEvent) => {
     if (wrapperRef.current === e.target) {
       setModal(false);
@@ -146,7 +152,7 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
             <Highlight>{symptom_type[select].detail}</Highlight>입니다
           </Title>
           <NoteImage>
-            <Image></Image>
+            <Image alt="icon" src={imageSrc} />
           </NoteImage>
         </Contents>
         <ButtonContainer onClick={handleNavigate}>

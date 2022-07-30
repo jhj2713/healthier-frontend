@@ -10,21 +10,31 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 const EmptyContainer = styled.section`
-  padding-top: 12.5rem;
+  padding-top: 2rem;
+
+  height: calc((100vw - 10rem) * 1.096);
 
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-const EmptyImage = styled.img`
-  width: 10rem;
-  height: 10rem;
 
-  background-color: white;
+  position: relative;
+`;
+const ImageBox = styled.section`
+  position: absolute;
+
+  width: calc(100vw - 10rem);
+`;
+const Image = styled.img`
+  width: 100%;
 `;
 const EmptyText = styled(Body_2)`
-  margin-top: 1.2rem;
   color: ${({ theme }) => theme.color.grey_400};
+
+  position: absolute;
+
+  bottom: 0;
+  margin-bottom: 6.4rem;
 `;
 
 const EmptyPage = () => {
@@ -37,7 +47,9 @@ const EmptyPage = () => {
         알아보세요!
       </Title>
       <EmptyContainer>
-        <EmptyImage alt="empty" src="" />
+        <ImageBox>
+          <Image alt="empty" src="/images/mainPage/EmptyImage.png" />
+        </ImageBox>
         <EmptyText>진단 내역이 없어요</EmptyText>
       </EmptyContainer>
     </>
