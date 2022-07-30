@@ -23,3 +23,9 @@ export interface fillInfoAction {
   birth_year: number;
   interests: number[];
 }
+
+export interface AuthState {
+  authenticated: boolean;
+  accessToken: any;
+  expireTime: any;
+}
