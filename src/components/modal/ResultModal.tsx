@@ -109,7 +109,7 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
           홈화면에서 볼 수 있어요
         </Title>
         <NoteImage>
-          <Image alt="login" src="/images/modal/LoginModalImage.png" />
+          <Image alt="login" src="/images/modal/LoginModalImage.webp" />
         </NoteImage>
       </Contents>
       <BottomButtons>

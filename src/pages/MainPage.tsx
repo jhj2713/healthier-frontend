@@ -64,7 +64,7 @@ const MainPage = () => {
           진단이 가능해요!
         </GuideText>
         <MainImage>
-          <Image alt="main" src="/images/mainPage/MainImage.png"></Image>
+          <Image alt="main" src="/images/mainPage/MainImage.webp"></Image>
         </MainImage>
         <BottomButtons setModal={setModal} />
         {modal && (
