@@ -39,6 +39,8 @@ function App() {
         <Route path="/result-loading" element={<ResultLoading />} />
         <Route path="/loading" element={<HomeLoading />} />
         <Route path="/symptom-type" element={<SymptomTypePage />} />
+        <Route path="/d-loading" element={<DiagnosisLoading />} />
+        <Route path="/r-loading" element={<ResultLoading />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
     </section>

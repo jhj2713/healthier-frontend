@@ -38,15 +38,15 @@ const Contents = styled.section`
   width: 100%;
 `;
 const NoteImage = styled.section`
-  height: 21.7rem;
-  width: 26rem;
-  margin-top: 1rem;
+  height: 19.6rem;
+
+  margin-top: 1.6rem;
+
+  display: flex;
+  justify-content: center;
 `;
-const Image = styled.section`
+const Image = styled.img`
   height: 100%;
-  width: 100%;
-  background: ${({ theme }) => theme.color.grey_900};
-  opacity: 0.5;
 `;
 const BottomButtons = styled.section`
   position: absolute;
@@ -90,7 +90,7 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
           홈화면에서 볼 수 있어요
         </Title>
         <NoteImage>
-          <Image></Image>
+          <Image alt="login" src="/images/modal/LoginModalImage.png" />
         </NoteImage>
       </Contents>
       <BottomButtons>

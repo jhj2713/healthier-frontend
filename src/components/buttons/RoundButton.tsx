@@ -12,7 +12,7 @@ const Container = styled.section<{
   width: calc(100vw - 4rem);
   height: 5.2rem;
 
-  background-color: ${({ backgroundColor }) => backgroundColor};
+  background: ${({ backgroundColor }) => backgroundColor};
 
   border: ${({ outline }) => outline !== "none" && `0.1rem solid ${outline}`};
   border-radius: 3rem;

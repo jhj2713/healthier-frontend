@@ -95,6 +95,10 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
         `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
       )
       .then((res) => {
+        /* 이미지 미리 로딩,,,
+        const image = new Image();
+        image.src = res.data.diagnostic_result.illustration;
+        console.log(image);*/
         navigate("/result", {
           state: {
             type: "result",
