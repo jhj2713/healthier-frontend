@@ -70,9 +70,9 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    console.log("로그인");
-    // setModal(false);
-    // setLoading(true);
+    setModal(false);
+    setLoading(true);
+
     // 로그인 api 호출 후 저장 api 호출
     // 시간 지나면 navigate("/");
   };

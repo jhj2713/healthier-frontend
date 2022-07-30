@@ -10,8 +10,11 @@ import ResultLoading from "./components/loading/ResultLoading";
 import { useEffect } from "react";
 import HomeLoading from "./components/loading/HomeLoading";
 import SymptomTypePage from "./pages/SymptomTypePage";
+import { useAppSelector } from "./state";
 
 function App() {
+  const { authenticated } = useAppSelector((state) => state.auth);
+
   const handleResize = () => {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
@@ -28,12 +31,13 @@ function App() {
   return (
     <section>
       <Routes>
-        {/* / route는 로그인되어있는 경우 List, 되어있지 않은 경우 Main */}
-        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/"
+          element={authenticated ? <DiagnosisList /> : <MainPage />}
+        />
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
-        <Route path="/diagnosis-list" element={<DiagnosisList />} />
         <Route path="/symptom" element={<SymptomPage />} />
         <Route path="/diag-loading" element={<DiagnosisLoading />} />
         <Route path="/result-loading" element={<ResultLoading />} />

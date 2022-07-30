@@ -138,6 +138,7 @@ const ResultPage = () => {
             setModal={setModal}
             setLoading={setLoading}
             isSaved={isSaved}
+            resultId={state.diagnostic_result.id}
           />
         </>
       )}
