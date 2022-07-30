@@ -11,8 +11,9 @@ const Buttons = styled.section`
   display: flex;
   flex-direction: column;
 
-  margin: 0 2rem 3rem 2rem;
+  margin: 0 2rem;
   padding-top: 6.8rem;
+  padding-bottom: 3rem;
 
   background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, #131416 49.48%);
 `;

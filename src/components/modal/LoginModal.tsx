@@ -132,12 +132,12 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           <Highlight>나의 진단 기록장</Highlight>을 이용할 수 있어요
         </Title>
         <NoteImage>
-          <Image alt="login" src="/images/modal/LoginModalImage.png" />
+          <Image alt="login" src="/images/modal/LoginModalImage.webp" />
         </NoteImage>
       </Contents>
       <BottomButtons>
         <LoginButton onClick={handleLoginClick}>
-          <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+          <LoginImg alt="kakao_login" src="images/login/kakao.webp" />
           카카오 로그인
         </LoginButton>
         <Continue onClick={() => setModal(false)}>

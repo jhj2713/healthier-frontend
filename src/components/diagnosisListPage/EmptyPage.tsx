@@ -48,7 +48,7 @@ const EmptyPage = () => {
       </Title>
       <EmptyContainer>
         <ImageBox>
-          <Image alt="empty" src="/images/mainPage/EmptyImage.png" />
+          <Image alt="empty" src="/images/mainPage/EmptyImage.webp" />
         </ImageBox>
         <EmptyText>진단 내역이 없어요</EmptyText>
       </EmptyContainer>

@@ -115,8 +115,8 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
   useLayoutEffect(() => {
     setImageSrc(
       select === 0
-        ? "/images/modal/SleepdisorderModalImage.png"
-        : "/images/modal/HeadacheModalImage.png"
+        ? "/images/modal/SleepdisorderModalImage.webp"
+        : "/images/modal/HeadacheModalImage.webp"
     );
   }, []);
 

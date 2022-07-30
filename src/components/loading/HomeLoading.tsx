@@ -49,7 +49,7 @@ const HomeLoading = () => {
         <Icon>
           <img
             alt="icon"
-            src="/images/loading/MainLoadingImage.png"
+            src="/images/loading/MainLoadingImage.webp"
             width={260}
           />
         </Icon>
