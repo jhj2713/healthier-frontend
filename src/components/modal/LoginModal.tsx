@@ -2,6 +2,9 @@ import { Dispatch } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import axios from "axios";
+import { AppDispatch } from "../../state/store";
+import { SET_TOKEN, DELETE_TOKEN } from "../../state/authSlice";
+import { useAppDispatch } from "../../state";
 
 const Container = styled.section`
   position: absolute;
@@ -86,29 +89,27 @@ const LoginImg = styled.img`
 `;
 
 const Kakao = (window as any).Kakao;
-const kakaoLogin = () => {
-  Kakao.Auth.login({
-    success: async function (authObj: any) {
-      console.log(authObj);
-      const res = await axios.post(
-        `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
-      );
-      // axios
-      //   .post(
-      //     `${process.env.REACT_APP_SERVER_URL}/api/login/oauth/kakao?code=${authObj.access_token}`
-      //   )
-      //   .then((res) => {
-      //     console.log(res);
-      //   });
-      console.log(res);
-    },
-    fail: function (err: any) {
-      console.log(err);
-    },
-  });
-};
 
 const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
+  const dispatch = useAppDispatch();
+
+  const kakaoLogin = () => {
+    Kakao.Auth.login({
+      success: async function (authObj: any) {
+        console.log(authObj);
+        const res = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
+        );
+        const token = res.headers.authorization.slice(7);
+        dispatch(DELETE_TOKEN);
+        dispatch(SET_TOKEN(token));
+      },
+      fail: function (err: any) {
+        console.log(err);
+      },
+    });
+  };
+
   const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("로그인");
