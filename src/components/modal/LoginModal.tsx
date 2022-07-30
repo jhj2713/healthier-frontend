@@ -137,7 +137,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
       </Contents>
       <BottomButtons>
         <LoginButton onClick={handleLoginClick}>
-          <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+          <LoginImg alt="kakao_login" src="images/login/kakao.webp" />
           카카오 로그인
         </LoginButton>
         <Continue onClick={() => setModal(false)}>
