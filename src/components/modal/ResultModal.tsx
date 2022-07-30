@@ -62,14 +62,33 @@ const Continue = styled(Body_4)`
 
   margin-top: 1.4rem;
 `;
-const LoginButton = styled.img`
+const LoginButton = styled.button`
   width: calc(100vw - 6.8rem);
+  height: 4.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.6rem;
+  border: none;
+  background-color: #fee500;
+
+  font-size: 1.5rem;
+
+  color: #000000;
+`;
+const LoginImg = styled.img`
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 30px;
 `;
 
 const ResultModal = ({ setModal, setLoading }: IResultModal) => {
   const navigate = useNavigate();
 
-  const handleLogin = () => {
+  const handleLoginClick = () => {
     setModal(false);
     setLoading(true);
 
@@ -94,12 +113,10 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <section onClick={handleLogin}>
-          <LoginButton
-            alt="kakao_login"
-            src="images/login/kakao_login_large_wide.png"
-          />
-        </section>
+        <LoginButton onClick={handleLoginClick}>
+          <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+          카카오 로그인
+        </LoginButton>
         <Continue onClick={() => navigate("/loading")}>
           괜찮아요, 다음에 할게요
         </Continue>

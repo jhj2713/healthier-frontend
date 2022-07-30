@@ -53,11 +53,11 @@ const BottomBar = ({
       setLoading(true);
 
       // 저장 api 호출
+      console.log(resultId);
       axios
-        .patch(
-          `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results`,
-          { diagnosis_id: resultId }
-        )
+        .patch(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
+          diagnosis_id: resultId,
+        })
         .then(() => {
           setTimeout(() => navigate("/"), 3000);
         });

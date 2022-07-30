@@ -6,8 +6,6 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 const Title = styled(Heading_3)`
-  width: 26.5rem;
-
   font-weight: 200;
   text-align: center;
   word-break: keep-all;

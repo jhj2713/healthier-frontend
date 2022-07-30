@@ -81,6 +81,8 @@ const LoginButton = styled.button`
   background-color: #fee500;
 
   font-size: 1.5rem;
+
+  color: #000000;
 `;
 const LoginImg = styled.img`
   width: 1.5rem;
@@ -104,6 +106,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         const token = res.headers.authorization.slice(7);
         dispatch(DELETE_TOKEN);
         dispatch(SET_TOKEN(token));
+        setModal(false);
       },
       fail: function (err: any) {
         console.log(err);
@@ -114,7 +117,6 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     console.log("로그인");
-    setModal(false);
     kakaoLogin();
   };
 
@@ -134,12 +136,10 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
         </NoteImage>
       </Contents>
       <BottomButtons>
-        <section>
-          <LoginButton onClick={handleLoginClick}>
-            <LoginImg alt="kakao_login" src="images/login/kakao.png" />
-            카카오 로그인
-          </LoginButton>
-        </section>
+        <LoginButton onClick={handleLoginClick}>
+          <LoginImg alt="kakao_login" src="images/login/kakao.png" />
+          카카오 로그인
+        </LoginButton>
         <Continue onClick={() => setModal(false)}>
           괜찮아요, 비회원으로 이용할게요
         </Continue>

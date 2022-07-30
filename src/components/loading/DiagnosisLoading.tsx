@@ -6,8 +6,6 @@ const Highlight = styled.span`
   font-weight: 500;
 `;
 const Title = styled(Heading_3)`
-  width: 27rem;
-
   font-weight: 200;
   text-align: center;
   word-break: keep-all;
@@ -40,8 +38,8 @@ const DiagnosisLoading = () => {
     <LoadingContainer>
       <>
         <Title>
-          <Highlight>정확한 증상 진단</Highlight>을 위해 헬시어가 증상을
-          분석중이에요
+          <Highlight>정확한 증상 진단</Highlight>을 위해
+          <br /> 헬시어가 증상을 분석중이에요
         </Title>
         <Icon>
           <img
