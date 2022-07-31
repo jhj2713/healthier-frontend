@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IResultModal } from "../../interfaces/modal";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
+import axios from "axios";
 
 const Container = styled.section`
   position: absolute;
@@ -85,7 +86,7 @@ const LoginImg = styled.img`
   left: 30px;
 `;
 
-const ResultModal = ({ setModal, setLoading }: IResultModal) => {
+const ResultModal = ({ setModal, setLoading, resultId }: IResultModal) => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -93,7 +94,13 @@ const ResultModal = ({ setModal, setLoading }: IResultModal) => {
     setModal(false);
     setLoading(true);
 
-    // 시간 지나면 navigate("/");
+    axios
+      .patch(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
+        diagnosis_id: resultId,
+      })
+      .then(() => {
+        setTimeout(() => navigate("/"), 3000);
+      });
   };
 
   return (

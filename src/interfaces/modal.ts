@@ -8,6 +8,7 @@ export interface IModal {
 export interface IResultModal {
   setModal: Dispatch<boolean>;
   setLoading: Dispatch<boolean>;
+  resultId: string;
 }
 
 export interface ISymptomModal {

@@ -83,16 +83,14 @@ const severity_map = [
 const ListComponent = ({ diagnosis }: IListComponent) => {
   const navigate = useNavigate();
 
-  const diag_date =
-    diagnosis.date.split("/")[0].padStart(2, "0") +
-    "월 " +
-    diagnosis.date.split("/")[1].padStart(2, "0") +
-    "일";
+  const diag_date = `${diagnosis.record.is_created.split("-")[1]}월 ${
+    diagnosis.record.is_created.split("-")[2].split("T")[0]
+  }일`;
 
   const handleNavigate = () => {
     axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/results/${diagnosis.result_log_id}`
+        `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/result/${diagnosis.record.diagnosis_id}`
       )
       .then((res) => {
         navigate("/result", {
@@ -105,15 +103,17 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   };
 
   return (
-    <Container severity={diagnosis.severity} onClick={handleNavigate}>
+    <Container severity={diagnosis.record.severity} onClick={handleNavigate}>
       <BannerImg>
-        <img alt="banner" src="/images/banner.png" height={160} />
+        <img alt="banner" src={diagnosis.banner_illustration} height={160} />
       </BannerImg>
       <Box>
-        <Title severity={diagnosis.severity}>{diagnosis.name}</Title>
-        <Date severity={diagnosis.severity}>{diag_date}</Date>
-        <Tag severity={diagnosis.severity}>
-          {severity_map[diagnosis.severity]}
+        <Title severity={diagnosis.record.severity}>
+          {diagnosis.record.title}
+        </Title>
+        <Date severity={diagnosis.record.severity}>{diag_date}</Date>
+        <Tag severity={diagnosis.record.severity}>
+          {severity_map[diagnosis.record.severity]}
         </Tag>
       </Box>
     </Container>
