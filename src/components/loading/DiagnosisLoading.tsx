@@ -44,7 +44,7 @@ const DiagnosisLoading = () => {
         <Icon>
           <img
             alt="icon"
-            src="/images/loading/DiagnosisImage.gif"
+            src="/images/loading/DiagnosisImage.webp"
             width={260}
           />
         </Icon>
