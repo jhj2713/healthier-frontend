@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import { symptom_type } from "../../store/symptom_type";

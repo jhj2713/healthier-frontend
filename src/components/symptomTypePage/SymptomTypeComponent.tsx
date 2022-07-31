@@ -33,7 +33,8 @@ const TypeImage = styled.section`
   background: ${({ theme }) => theme.color.blue};
 
   position: absolute;
-  right: 0;
+  right: -0.1rem;
+  top: -0.1rem;
 `;
 
 const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
