@@ -90,7 +90,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   const handleNavigate = () => {
     axios
       .get(
-        `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/result/${diagnosis.record.diagnosis_id}`
+        `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results/${diagnosis.record.diagnosis_id}`
       )
       .then((res) => {
         navigate("/result", {

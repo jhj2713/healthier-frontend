@@ -65,7 +65,7 @@ const DiagnosisList = () => {
     // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`).then();
     setName("홍길동");
     setDiagnosisList([
-      {
+      /*{
         banner_illustration: "",
         record: {
           diagnosis_id: "62cd703fe49face142d9cffe",
@@ -100,7 +100,7 @@ const DiagnosisList = () => {
           is_created: "2022-07-31T22:12:10.047",
           severity: 2,
         },
-      },
+      },*/
     ]);
   }, []);
 
