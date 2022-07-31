@@ -32,7 +32,7 @@ const ResultLoading = () => {
           차곡차곡 저장중이에요
         </Title>
         <Icon>
-          <img alt="icon" src="/images/loading/SaveImage.gif" width={260} />
+          <img alt="icon" src="/images/loading/SaveImage.webp" width={260} />
         </Icon>
         <LoadingBox />
       </>
