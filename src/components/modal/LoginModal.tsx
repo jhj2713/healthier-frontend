@@ -132,7 +132,10 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           <Highlight>나의 진단 기록장</Highlight>을 이용할 수 있어요
         </Title>
         <NoteImage>
-          <Image alt="login" src="/images/modal/LoginModalImage.webp" />
+          <Image
+            alt="login"
+            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%EC%A7%84%EB%8B%A8%EA%B8%B0%EB%A1%9D_%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EB%AA%A8%EB%8B%AC.png"
+          />
         </NoteImage>
       </Contents>
       <BottomButtons>

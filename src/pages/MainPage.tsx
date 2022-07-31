@@ -64,7 +64,10 @@ const MainPage = () => {
           진단이 가능해요!
         </GuideText>
         <MainImage>
-          <Image alt="main" src="/images/mainPage/MainImage.webp"></Image>
+          <Image
+            alt="main"
+            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%99%88+%EC%B2%AD%EC%A7%84%EA%B8%B0.png"
+          ></Image>
         </MainImage>
         <BottomButtons setModal={setModal} />
         {modal && (

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import { symptom_type } from "../../store/symptom_type";
@@ -110,16 +110,6 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
   const wrapperRef = useRef(null);
   const navigate = useNavigate();
 
-  const [imageSrc, setImageSrc] = useState("");
-
-  useLayoutEffect(() => {
-    setImageSrc(
-      select === 0
-        ? "/images/modal/SleepdisorderModalImage.webp"
-        : "/images/modal/HeadacheModalImage.webp"
-    );
-  }, []);
-
   const handleModalClose = (e: React.MouseEvent) => {
     if (wrapperRef.current === e.target) {
       setModal(false);
@@ -152,7 +142,10 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
             <Highlight>{symptom_type[select].detail}</Highlight>입니다
           </Title>
           <NoteImage>
-            <Image alt="icon" src={imageSrc} />
+            <Image
+              alt="icon"
+              src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%8C%9D%EC%97%85-%EC%A7%84%EB%8B%A8+%EA%B0%80%EB%8A%A5%ED%95%9C+%EC%A6%9D%EC%83%81-%EC%88%98%EB%A9%B4%EC%9E%A5%EC%95%A0.png"
+            />
           </NoteImage>
         </Contents>
         <ButtonContainer onClick={handleNavigate}>

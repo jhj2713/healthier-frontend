@@ -48,7 +48,10 @@ const EmptyPage = () => {
       </Title>
       <EmptyContainer>
         <ImageBox>
-          <Image alt="empty" src="/images/mainPage/EmptyImage.webp" />
+          <Image
+            alt="empty"
+            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%EC%A7%84%EB%8B%A8+%EB%82%B4%EC%97%AD%EC%9D%B4+%EC%97%86%EC%96%B4%EC%9A%94.png"
+          />
         </ImageBox>
         <EmptyText>진단 내역이 없어요</EmptyText>
       </EmptyContainer>
