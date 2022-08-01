@@ -8,7 +8,7 @@ const Wrapper = styled.section`
   left: 0;
 
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
 
   background-color: rgba(0, 0, 0, 0.6);
 
