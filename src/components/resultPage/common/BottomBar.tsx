@@ -44,7 +44,7 @@ const BottomBar = ({
   isSaved,
   resultId,
 }: IBottomBar) => {
-  const { authenticated } = useAppSelector((state) => state.auth);
+  const { authenticated, accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
   const handleSave = () => {
@@ -53,11 +53,18 @@ const BottomBar = ({
       setLoading(true);
 
       // 저장 api 호출
-      console.log(resultId);
       axios
-        .patch(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
-          diagnosis_id: resultId,
-        })
+        .patch(
+          `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
+          {
+            diagnosis_id: resultId,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
         .then(() => {
           setTimeout(() => navigate("/"), 3000);
         });

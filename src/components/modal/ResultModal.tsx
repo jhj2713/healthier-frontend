@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { IResultModal } from "../../interfaces/modal";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import axios from "axios";
+import { useAppDispatch } from "../../state";
+import { SET_TOKEN, DELETE_TOKEN } from "../../state/authSlice";
 
 const Container = styled.section`
   position: absolute;
@@ -86,21 +88,49 @@ const LoginImg = styled.img`
   left: 30px;
 `;
 
+const Kakao = (window as any).Kakao;
+
 const ResultModal = ({ setModal, setLoading, resultId }: IResultModal) => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const kakaoLogin = () => {
+    Kakao.Auth.login({
+      success: async function (authObj: any) {
+        const res = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
+        );
+        const token = res.headers.authorization.slice(7);
+        dispatch(DELETE_TOKEN);
+        dispatch(SET_TOKEN(token));
+        setModal(false);
+        setLoading(true);
+
+        axios
+          .patch(
+            `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
+            {
+              diagnosis_id: resultId,
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          )
+          .then(() => {
+            setTimeout(() => navigate("/"), 3000);
+          });
+      },
+      fail: function (err: any) {
+        console.log(err);
+      },
+    });
+  };
 
   const handleLoginClick = () => {
     // 로그인 api 호출 후 저장 api 호출
-    setModal(false);
-    setLoading(true);
-
-    axios
-      .patch(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
-        diagnosis_id: resultId,
-      })
-      .then(() => {
-        setTimeout(() => navigate("/"), 3000);
-      });
+    kakaoLogin();
   };
 
   return (
