@@ -50,7 +50,9 @@ const SymptomTypePage = () => {
 
   const handleSelect = (idx: number) => {
     setSelect(idx);
-    setModal(true);
+    setTimeout(() => {
+      setModal(true);
+    }, 200);
   };
 
   useEffect(() => {

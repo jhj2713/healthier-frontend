@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.section`
   width: 100vw;
-  height: calc(var(--vh, 1vh) * 100);
+  height: 100vh;
 
   background: radial-gradient(
       300.02% 130.63% at 164.62% 165.58%,

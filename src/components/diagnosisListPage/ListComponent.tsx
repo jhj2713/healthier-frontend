@@ -72,6 +72,9 @@ const BannerImg = styled.section`
   position: absolute;
   right: 0;
 `;
+const Image = styled.img`
+  border-radius: 0 0.8rem 0.8rem 0;
+`;
 
 const severity_map = [
   "상태가 양호해요",
@@ -105,7 +108,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   return (
     <Container severity={diagnosis.record.severity} onClick={handleNavigate}>
       <BannerImg>
-        <img alt="banner" src={diagnosis.banner_illustration} height={160} />
+        <Image alt="banner" src={diagnosis.banner_illustration} height={160} />
       </BannerImg>
       <Box>
         <Title severity={diagnosis.record.severity}>

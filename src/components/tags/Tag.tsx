@@ -5,11 +5,11 @@ const Container = styled.section<{ selected: boolean }>`
   ${({ selected }) =>
     selected
       ? css`
-          background-color: ${({ theme }) => theme.color.sub_blue};
+          background: ${({ theme }) => theme.color.sub_blue};
           color: ${({ theme }) => theme.color.blue};
         `
       : css`
-          background-color: ${({ theme }) => theme.color.grey_750};
+          background: ${({ theme }) => theme.color.grey_750};
           color: ${({ theme }) => theme.color.grey_300};
         `}
 
