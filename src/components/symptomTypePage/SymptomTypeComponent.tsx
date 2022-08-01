@@ -3,7 +3,7 @@ import { ISymptomTypeComponent } from "../../interfaces/component";
 
 const Container = styled.section<{ select: boolean }>`
   height: 14.4rem;
-  width: 32rem;
+  width: 100%;
 
   background: ${({ select, theme }) =>
     select ? theme.color.sub_blue : "transparent"};

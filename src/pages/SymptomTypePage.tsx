@@ -21,7 +21,7 @@ const Container = styled.section`
   flex-direction: column;
   align-items: center;
 
-  padding-top: 5.6rem;
+  padding: 5.6rem 2rem 0 2rem;
 `;
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
