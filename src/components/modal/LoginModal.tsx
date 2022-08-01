@@ -99,7 +99,6 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   const kakaoLogin = () => {
     Kakao.Auth.login({
       success: async function (authObj: any) {
-        console.log(authObj);
         const res = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
         );

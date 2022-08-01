@@ -9,6 +9,7 @@ import { Description, Heading_3 } from "../lib/fontStyle";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
 import EmptyPage from "../components/diagnosisListPage/EmptyPage";
+import { useAppSelector } from "../state";
 
 const Container = styled.section`
   padding-top: 5.6rem;
@@ -60,48 +61,30 @@ const DiagnosisList = () => {
   const navigate = useNavigate();
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
   const [name, setName] = useState("");
+  const { accessToken } = useAppSelector((state) => state.auth.accessToken);
 
   useEffect(() => {
-    // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`).then();
-    setName("홍길동");
-    setDiagnosisList([
-      /*{
-        banner_illustration: "",
-        record: {
-          diagnosis_id: "62cd703fe49face142d9cffe",
-          title: "외상으로 인한 일시적통증",
-          is_created: "2022-07-20T22:12:10.047",
-          severity: 3,
-        },
-      },
-      {
-        banner_illustration: "",
-        record: {
-          diagnosis_id: "62d121d11dc40a851fd99fb7",
-          title: "일주기 리듬 수면 장애",
-          is_created: "2022-07-29T22:12:10.047",
-          severity: 1,
-        },
-      },
-      {
-        banner_illustration: "",
-        record: {
-          diagnosis_id: "62ce900456e36933184b0fba",
-          title: "수면습관 경고",
-          is_created: "2022-07-31T22:12:10.047",
-          severity: 0,
-        },
-      },
-      {
-        banner_illustration: "",
-        record: {
-          diagnosis_id: "62d16679f68f2b673e721200",
-          title: "기면증",
-          is_created: "2022-07-31T22:12:10.047",
-          severity: 2,
-        },
-      },*/
-    ]);
+    const getList = async () => {
+      try {
+        const res = await axios.get<IDiagnosisList>(
+          `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
+          {
+            headers: {
+              Authorization: accessToken,
+            },
+          }
+        );
+        if (res.status !== 204) {
+          setName("홍길동");
+          setDiagnosisList([res.data]);
+        }
+      } catch (error) {
+        console.log(error);
+        alert("진단목록 로딩 실패");
+      }
+    };
+
+    getList();
   }, []);
 
   return (
