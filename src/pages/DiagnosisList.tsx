@@ -62,36 +62,44 @@ const DiagnosisList = () => {
   const [name, setName] = useState("");
 
   useEffect(() => {
-    // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/sleepdisorder/list`).then();
+    // axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`).then();
     setName("홍길동");
     setDiagnosisList([
       /*{
-        result_log_id: "62cd703fe49face142d9cffe",
-        name: "외상으로 인한 일시적통증",
-        date: "6/25",
-        photo: "/images/list_component.png",
-        severity: 3,
+        banner_illustration: "",
+        record: {
+          diagnosis_id: "62cd703fe49face142d9cffe",
+          title: "외상으로 인한 일시적통증",
+          is_created: "2022-07-20T22:12:10.047",
+          severity: 3,
+        },
       },
       {
-        result_log_id: "62d121d11dc40a851fd99fb7",
-        name: "일주기 리듬 수면 장애",
-        date: "6/27",
-        photo: "/images/list_component.png",
-        severity: 1,
+        banner_illustration: "",
+        record: {
+          diagnosis_id: "62d121d11dc40a851fd99fb7",
+          title: "일주기 리듬 수면 장애",
+          is_created: "2022-07-29T22:12:10.047",
+          severity: 1,
+        },
       },
       {
-        result_log_id: "62ce900456e36933184b0fba",
-        name: "수면습관 경고",
-        date: "7/5",
-        photo: "/images/list_component.png",
-        severity: 0,
+        banner_illustration: "",
+        record: {
+          diagnosis_id: "62ce900456e36933184b0fba",
+          title: "수면습관 경고",
+          is_created: "2022-07-31T22:12:10.047",
+          severity: 0,
+        },
       },
       {
-        result_log_id: "62d16679f68f2b673e721200",
-        name: "기면증",
-        date: "7/5",
-        photo: "/images/list_component.png",
-        severity: 2,
+        banner_illustration: "",
+        record: {
+          diagnosis_id: "62d16679f68f2b673e721200",
+          title: "기면증",
+          is_created: "2022-07-31T22:12:10.047",
+          severity: 2,
+        },
       },*/
     ]);
   }, []);
@@ -113,7 +121,7 @@ const DiagnosisList = () => {
           </DescriptionBox>
           <List>
             {diagnosisList.map((diag) => (
-              <ListComponent key={diag.result_log_id} diagnosis={diag} />
+              <ListComponent key={diag.record.diagnosis_id} diagnosis={diag} />
             ))}
           </List>
         </>

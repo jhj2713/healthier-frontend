@@ -22,11 +22,13 @@ export interface IListComponent {
 }
 
 export interface IDiagnosisList {
-  result_log_id: string;
-  name: string;
-  date: string;
-  photo: string;
-  severity: number;
+  banner_illustration: string;
+  record: {
+    diagnosis_id: string;
+    title: string;
+    is_created: string;
+    severity: number;
+  };
 }
 
 export interface ISymptomTypeComponent {

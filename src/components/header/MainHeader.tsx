@@ -6,20 +6,19 @@ const Container = styled.section`
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
 
   font-size: 3rem;
   color: ${({ theme }) => theme.color.grey_100};
 `;
-const Logo = styled.section`
-  margin-bottom: 2.1rem;
+const Logo = styled.img`
+  margin-top: 1.6rem;
 `;
 
 const MainHeader = () => {
   return (
     <HeaderContainer>
       <Container>
-        <Logo>Healthier</Logo>
+        <Logo alt="logo" src="/images/Logo.png" height={24} />
       </Container>
     </HeaderContainer>
   );

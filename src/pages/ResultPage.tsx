@@ -129,7 +129,11 @@ const ResultPage = () => {
           </Swiper>
           {modal && (
             <ModalContainer setModal={setModal}>
-              <ResultModal setModal={setModal} setLoading={setLoading} />
+              <ResultModal
+                setModal={setModal}
+                setLoading={setLoading}
+                resultId={state.diagnostic_result.id}
+              />
             </ModalContainer>
           )}
           <BottomBar

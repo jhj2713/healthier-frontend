@@ -5,8 +5,6 @@ import ResultPage from "./pages/ResultPage";
 import Diagnosis from "./pages/Diagnosis";
 import DiagnosisList from "./pages/DiagnosisList";
 import SymptomPage from "./pages/SymptomPage";
-import DiagnosisLoading from "./components/loading/DiagnosisLoading";
-import ResultLoading from "./components/loading/ResultLoading";
 import { useEffect } from "react";
 import HomeLoading from "./components/loading/HomeLoading";
 import SymptomTypePage from "./pages/SymptomTypePage";
@@ -39,12 +37,8 @@ function App() {
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />
         <Route path="/symptom" element={<SymptomPage />} />
-        <Route path="/diag-loading" element={<DiagnosisLoading />} />
-        <Route path="/result-loading" element={<ResultLoading />} />
         <Route path="/loading" element={<HomeLoading />} />
         <Route path="/symptom-type" element={<SymptomTypePage />} />
-        <Route path="/d-loading" element={<DiagnosisLoading />} />
-        <Route path="/r-loading" element={<ResultLoading />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
     </section>
