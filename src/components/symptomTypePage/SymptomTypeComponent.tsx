@@ -27,21 +27,26 @@ const Title = styled.section<{ select: boolean }>`
   position: absolute;
 `;
 const TypeImage = styled.section`
-  height: 13.5rem;
-  width: 13.5rem;
-
-  background: ${({ theme }) => theme.color.blue};
-
   position: absolute;
-  right: -0.1rem;
-  top: -0.1rem;
+  top: 0;
+  right: 0;
 `;
 
 const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
   return (
     <Container select={selected}>
       <Title select={selected}>{title}</Title>
-      <TypeImage></TypeImage>
+      <TypeImage>
+        <img
+          alt="icon"
+          src={
+            title === "신체 건강"
+              ? "https://healthier.s3.ap-northeast-2.amazonaws.com/client/body.png"
+              : "https://healthier.s3.ap-northeast-2.amazonaws.com/client/mental.png"
+          }
+          height={133}
+        />
+      </TypeImage>
     </Container>
   );
 };
