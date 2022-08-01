@@ -61,22 +61,23 @@ const DiagnosisList = () => {
   const navigate = useNavigate();
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
   const [name, setName] = useState("");
-  const { accessToken } = useAppSelector((state) => state.auth.accessToken);
+  const { accessToken } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     const getList = async () => {
       try {
-        const res = await axios.get<IDiagnosisList>(
+        const res = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
           {
             headers: {
-              Authorization: accessToken,
+              Authorization: `Bearer ${accessToken}`,
             },
           }
         );
         if (res.status !== 204) {
           setName("홍길동");
-          setDiagnosisList([res.data]);
+          console.log(res);
+          setDiagnosisList(res.data.diagnosis.reverse());
         }
       } catch (error) {
         console.log(error);
@@ -103,8 +104,8 @@ const DiagnosisList = () => {
             진단내역
           </DescriptionBox>
           <List>
-            {diagnosisList.map((diag) => (
-              <ListComponent key={diag.record.diagnosis_id} diagnosis={diag} />
+            {diagnosisList.map((diag, idx) => (
+              <ListComponent key={idx} diagnosis={diag} />
             ))}
           </List>
         </>

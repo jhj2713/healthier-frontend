@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ISymptomTypeComponent } from "../../interfaces/component";
 
 const Container = styled.section<{ select: boolean }>`
-  height: 13.5rem;
+  height: 14.4rem;
   width: 100%;
 
   background: ${({ select, theme }) =>
@@ -44,7 +44,7 @@ const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
               ? "https://healthier.s3.ap-northeast-2.amazonaws.com/client/body.png"
               : "https://healthier.s3.ap-northeast-2.amazonaws.com/client/mental.png"
           }
-          height={133}
+          height={142}
         />
       </TypeImage>
     </Container>

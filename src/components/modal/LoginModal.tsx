@@ -2,7 +2,6 @@ import { Dispatch } from "react";
 import styled from "styled-components";
 import { Body_4, Heading_5 } from "../../lib/fontStyle";
 import axios from "axios";
-import { AppDispatch } from "../../state/store";
 import { SET_TOKEN, DELETE_TOKEN } from "../../state/authSlice";
 import { useAppDispatch } from "../../state";
 
@@ -115,7 +114,6 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
 
   const handleLoginClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log("로그인");
     kakaoLogin();
   };
 

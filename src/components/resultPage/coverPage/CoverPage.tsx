@@ -14,6 +14,8 @@ const Container = styled.section`
 const CoverImage = styled.img`
   width: 100vw;
   height: 100vw;
+
+  border: 0;
 `;
 const Contents = styled.section`
   display: flex;
