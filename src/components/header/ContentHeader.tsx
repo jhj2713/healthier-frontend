@@ -39,7 +39,7 @@ const ContentHeader = ({ text, back }: IContentHeader) => {
   return (
     <HeaderContainer>
       <Container>
-        <BackButton back={back} onClick={() => navigate(-1)}>
+        <BackButton back={back} onClick={() => back && navigate(-1)}>
           <img
             alt="back"
             src="/images/header/back.svg"
