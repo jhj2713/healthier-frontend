@@ -98,16 +98,23 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   const kakaoLogin = () => {
     Kakao.Auth.login({
       success: async function (authObj: any) {
-        const res = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
-        );
-        const token = res.headers.authorization.slice(7);
-        dispatch(DELETE_TOKEN);
-        dispatch(SET_TOKEN(token));
-        setModal(false);
+        try {
+          const res = await axios.get(
+            `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
+          );
+          const token = res.headers.authorization.slice(7);
+          dispatch(DELETE_TOKEN);
+          dispatch(SET_TOKEN(token));
+        } catch (err) {
+          console.log(err);
+          alert("내부 서버 오류, 다시 시도해주세요");
+        } finally {
+          setModal(false);
+        }
       },
       fail: function (err: any) {
         console.log(err);
+        alert("로그인 에러, 다시 시도해주세요");
       },
     });
   };

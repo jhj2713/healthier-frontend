@@ -76,12 +76,11 @@ const DiagnosisList = () => {
         );
         if (res.status !== 204) {
           setName("홍길동");
-          console.log(res);
           setDiagnosisList(res.data.diagnosis.reverse());
         }
       } catch (error) {
         console.log(error);
-        alert("진단목록 로딩 실패");
+        alert("진단목록 로딩 실패, 다시 시도해주세요");
       }
     };
 
