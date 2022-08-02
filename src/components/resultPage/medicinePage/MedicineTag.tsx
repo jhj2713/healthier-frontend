@@ -17,7 +17,7 @@ const Tag = styled.section`
 
   border-radius: 6rem;
 
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 300;
   letter-spacing: 0;
 

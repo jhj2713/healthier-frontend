@@ -101,7 +101,7 @@ const AnswerButtons = ({
         );
       }
 
-      setTimeout(() => handleNext(), 200);
+      setTimeout(() => handleNext(), 300);
     }
   };
   const handleActive = (id: number): boolean => {

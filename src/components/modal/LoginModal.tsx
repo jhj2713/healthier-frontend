@@ -87,7 +87,7 @@ const LoginImg = styled.img`
   width: 1.5rem;
   height: 1.5rem;
   position: absolute;
-  left: 30px;
+  left: 3rem;
 `;
 
 const Kakao = (window as any).Kakao;

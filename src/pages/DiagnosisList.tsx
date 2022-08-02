@@ -75,8 +75,8 @@ const DiagnosisList = () => {
           }
         );
         if (res.status !== 204) {
-          setName(res.data.nickname);
           setDiagnosisList(res.data.diagnosis.reverse());
+          setName(res.data.nickname);
         }
       } catch (error) {
         console.log(error);
