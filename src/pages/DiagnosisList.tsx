@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import styled from "styled-components";
 import RoundButton from "../components/buttons/RoundButton";
 import MainHeader from "../components/header/MainHeader";
@@ -63,7 +63,7 @@ const DiagnosisList = () => {
   const [name, setName] = useState("");
   const { accessToken } = useAppSelector((state) => state.auth);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const getList = async () => {
       try {
         const res = await axios.get(
@@ -75,7 +75,7 @@ const DiagnosisList = () => {
           }
         );
         if (res.status !== 204) {
-          setName("홍길동");
+          setName(res.data.nickname);
           setDiagnosisList(res.data.diagnosis.reverse());
         }
       } catch (error) {

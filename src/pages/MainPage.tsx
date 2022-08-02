@@ -30,7 +30,7 @@ const MainImage = styled.section`
 `;
 const Image = styled.img`
   //height: calc(100% - 28.9rem);
-  width: calc(100vw - 8rem);
+  width: calc(100vw - 11rem);
 `;
 const GuideText = styled.section`
   margin-top: 0.8rem;
