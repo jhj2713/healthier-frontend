@@ -33,6 +33,7 @@ const ResultLoading = () => {
         </Title>
         <Icon>
           <img
+            loading="eager"
             alt="icon"
             src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%E1%84%8C%E1%85%A5%E1%84%8C%E1%85%A1%E1%86%BC%E1%84%8C%E1%85%AE%E1%86%BC.gif"
             width={260}
