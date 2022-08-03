@@ -9,7 +9,8 @@ import { Description, Heading_3 } from "../lib/fontStyle";
 import axios from "axios";
 import { IDiagnosisList } from "../interfaces/component";
 import EmptyPage from "../components/diagnosisListPage/EmptyPage";
-import { useAppSelector } from "../state";
+import { useAppSelector, useAppDispatch } from "../state";
+import { DELETE_TOKEN } from "../state/authSlice";
 
 const Container = styled.section`
   padding-top: 5.6rem;
@@ -62,6 +63,7 @@ const DiagnosisList = () => {
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
   const [name, setName] = useState("");
   const { accessToken } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
 
   useLayoutEffect(() => {
     const getList = async () => {
@@ -74,7 +76,10 @@ const DiagnosisList = () => {
             },
           }
         );
-        if (res.status !== 204) {
+        if (res.status === 404) {
+          dispatch(DELETE_TOKEN);
+          alert("로그인 만료, 다시 로그인해주세요");
+        } else if (res.status !== 204) {
           setDiagnosisList(res.data.diagnosis.reverse());
           setName(res.data.nickname);
         }
