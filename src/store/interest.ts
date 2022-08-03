@@ -8,4 +8,5 @@ export const health_interest = [
   { id: 6, name: "영양제", selected: false },
   { id: 7, name: "건강검진", selected: false },
   { id: 8, name: "미용", selected: false },
+  { id: 9, name: "없음", selected: false },
 ];
