@@ -61,6 +61,7 @@ const DiagnosisList = () => {
   const navigate = useNavigate();
   const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
   const [name, setName] = useState("");
+  const [loading, setLoading] = useState(true);
   const { accessToken } = useAppSelector((state) => state.auth);
 
   useLayoutEffect(() => {
@@ -77,6 +78,7 @@ const DiagnosisList = () => {
         if (res.status !== 204) {
           setDiagnosisList(res.data.diagnosis.reverse());
           setName(res.data.nickname);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
@@ -90,23 +92,29 @@ const DiagnosisList = () => {
   return (
     <Container>
       <MainHeader />
-      {diagnosisList.length === 0 ? (
-        <EmptyPage />
-      ) : (
+      {loading || (
         <>
-          <Title>
-            <Highlight type="title">{name}님</Highlight>이 저장한
-            <br /> 진단 내역이에요
-          </Title>
-          <DescriptionBox>
-            <Highlight type="description">{diagnosisList.length}개</Highlight>의
-            진단내역
-          </DescriptionBox>
-          <List>
-            {diagnosisList.map((diag, idx) => (
-              <ListComponent key={idx} diagnosis={diag} />
-            ))}
-          </List>
+          {diagnosisList.length === 0 ? (
+            <EmptyPage />
+          ) : (
+            <>
+              <Title>
+                <Highlight type="title">{name}님</Highlight>이 저장한
+                <br /> 진단 내역이에요
+              </Title>
+              <DescriptionBox>
+                <Highlight type="description">
+                  {diagnosisList.length}개
+                </Highlight>
+                의 진단내역
+              </DescriptionBox>
+              <List>
+                {diagnosisList.map((diag, idx) => (
+                  <ListComponent key={idx} diagnosis={diag} />
+                ))}
+              </List>
+            </>
+          )}
         </>
       )}
       <ButtonBackground>
