@@ -97,6 +97,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
 
   const kakaoLogin = () => {
     Kakao.Auth.login({
+      scope: "account_email",
       success: async function (authObj: any) {
         try {
           const res = await axios.get(
@@ -105,7 +106,11 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           const token = res.headers.authorization.slice(7);
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
-        } catch (err) {
+        } catch (err: any) {
+          if (err.code === "ERR_BAD_REQUEST") {
+            alert("이메일 사용 동의가 필요합니다");
+          } else {
+          }
           console.log(err);
           alert("내부 서버 오류, 다시 시도해주세요");
         } finally {
