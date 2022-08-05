@@ -52,7 +52,7 @@ const SymptomTypePage = () => {
     setSelect(idx);
     setTimeout(() => {
       setModal(true);
-    }, 600);
+    }, 500);
   };
 
   useEffect(() => {
