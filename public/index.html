@@ -24,7 +24,7 @@
       property="og:description"
       content="빠른 진단으로 내 몸의 정확한 증상을 알아보세요!"
     />
-    <!--<meta property="og:image" content="" />-->
+    <meta property="og:image" content="%PUBLIC_URL%/images/homepage.png" />
 
     <title>Healthier</title>
     <style>
@@ -69,15 +69,14 @@
           url("fonts/SpoqaHanSansNeo-Light.ttf") format("truetype");
       }
     </style>
-
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
-      <!-- //// Kakao Login Related Part //// -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-    <script Type="text/javascript">
-      Kakao.init(`%REACT_APP_KAKAO_APP_KEY%`);
-    </script>
+  <!-- //// Kakao Login Related Part //// -->
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script type="text/javascript">
+    Kakao.init(`%REACT_APP_KAKAO_APP_KEY%`);
+  </script>
 </html>
