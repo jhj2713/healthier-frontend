@@ -6,24 +6,15 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
-    <meta
-      name="viewport"
-      content="initial-scale=1.0 minimum-scale=1.0, width=device-width"
-    />
+    <meta name="viewport" content="initial-scale=1.0 minimum-scale=1.0, width=device-width" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="theme-color" content="#131416" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Web site created using create-react-app" />
 
     <meta property="og:title" content="Healthier" />
-    <meta
-      property="og:description"
-      content="빠른 진단으로 내 몸의 정확한 증상을 알아보세요!"
-    />
+    <meta property="og:description" content="빠른 진단으로 내 몸의 정확한 증상을 알아보세요!" />
     <meta property="og:image" content="%PUBLIC_URL%/images/homepage.png" />
 
     <title>Healthier</title>
@@ -32,41 +23,29 @@
         font-family: "Spoqa Han Sans";
         font-weight: 500;
         src: url("fonts/SpoqaHanSansNeo-Bold.eot");
-        src: url("fonts/SpoqaHanSansNeo-Bold.eot?#iefix")
-            format("embedded-opentype"),
-          url("fonts/SpoqaHanSansNeo-Bold.woff2") format("woff2"),
-          url("fonts/SpoqaHanSansNeo-Bold.woff") format("woff"),
-          url("fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
+        src: url("fonts/SpoqaHanSansNeo-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/SpoqaHanSansNeo-Bold.woff2") format("woff2"),
+          url("fonts/SpoqaHanSansNeo-Bold.woff") format("woff"), url("fonts/SpoqaHanSansNeo-Bold.ttf") format("truetype");
       }
       @font-face {
         font-family: "Spoqa Han Sans";
         font-weight: 300;
         src: url("fonts/SpoqaHanSansNeo-Medium.eot");
-        src: url("fonts/SpoqaHanSansNeo-Medium.eot?#iefix")
-            format("embedded-opentype"),
-          url("fonts/SpoqaHanSansNeo-Medium.woff2") format("woff2"),
-          url("fonts/SpoqaHanSansNeo-Medium.woff") format("woff"),
-          url("fonts/SpoqaHanSansNeo-Medium.ttf") format("truetype");
+        src: url("fonts/SpoqaHanSansNeo-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/SpoqaHanSansNeo-Medium.woff2") format("woff2"),
+          url("fonts/SpoqaHanSansNeo-Medium.woff") format("woff"), url("fonts/SpoqaHanSansNeo-Medium.ttf") format("truetype");
       }
       @font-face {
         font-family: "Spoqa Han Sans";
         font-weight: 200;
         src: url("fonts/SpoqaHanSansNeo-Regular.eot");
-        src: url("fonts/SpoqaHanSansNeo-Regular.eot?#iefix")
-            format("embedded-opentype"),
-          url("fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2"),
-          url("fonts/SpoqaHanSansNeo-Regular.woff") format("woff"),
-          url("fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
+        src: url("fonts/SpoqaHanSansNeo-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/SpoqaHanSansNeo-Regular.woff2") format("woff2"),
+          url("fonts/SpoqaHanSansNeo-Regular.woff") format("woff"), url("fonts/SpoqaHanSansNeo-Regular.ttf") format("truetype");
       }
       @font-face {
         font-family: "Spoqa Han Sans";
         font-weight: 100;
         src: url("fonts/SpoqaHanSansNeo-Light.eot");
-        src: url("fonts/SpoqaHanSansNeo-Light.eot?#iefix")
-            format("embedded-opentype"),
-          url("fonts/SpoqaHanSansNeo-Light.woff2") format("woff2"),
-          url("fonts/SpoqaHanSansNeo-Light.woff") format("woff"),
-          url("fonts/SpoqaHanSansNeo-Light.ttf") format("truetype");
+        src: url("fonts/SpoqaHanSansNeo-Light.eot?#iefix") format("embedded-opentype"), url("fonts/SpoqaHanSansNeo-Light.woff2") format("woff2"),
+          url("fonts/SpoqaHanSansNeo-Light.woff") format("woff"), url("fonts/SpoqaHanSansNeo-Light.ttf") format("truetype");
       }
     </style>
   </head>
@@ -78,5 +57,16 @@
   <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
   <script type="text/javascript">
     Kakao.init(`%REACT_APP_KAKAO_APP_KEY%`);
+  </script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6W188QT9CE"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-6W188QT9CE");
   </script>
 </html>
