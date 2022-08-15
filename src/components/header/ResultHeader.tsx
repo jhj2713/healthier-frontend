@@ -42,6 +42,8 @@ const BackButton = styled.section`
 const QuitButton = styled.section`
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;
+
+  cursor: pointer;
 `;
 
 const ResultHeader = ({ isCover }: { isCover: boolean }) => {

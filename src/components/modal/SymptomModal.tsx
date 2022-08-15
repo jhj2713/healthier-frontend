@@ -37,6 +37,8 @@ const QuitImage = styled.section`
 
   margin-top: 1.4rem;
   margin-right: 1.4rem;
+
+  cursor: pointer;
 `;
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};

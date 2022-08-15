@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
@@ -26,8 +26,6 @@ const CanvasSection = styled.div`
   z-index: 0;
   position: absolute;
 `;
-
-export const regions = ["", "관자놀이", "이마의 띠", "눈", "눈 주위", "코 주위", "턱", "뒷머리", "머리 전체", "뒷목"];
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
   return (

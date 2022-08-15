@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { ISymptomTypeComponent } from "../../interfaces/component";
 
 const Container = styled.section<{ select: boolean }>`
+  cursor: pointer;
+
   height: 14.4rem;
   width: 100%;
 

@@ -28,10 +28,14 @@ const Container = styled.section`
 const BackButton = styled.section`
   margin-left: 1.5rem;
   margin-bottom: 0.9rem;
+
+  cursor: pointer;
 `;
 const QuitButton = styled.section`
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;
+
+  cursor: pointer;
 `;
 
 const SymptomHeader = () => {

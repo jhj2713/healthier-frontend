@@ -12,6 +12,7 @@ const Title = styled(Body_4)`
   margin-bottom: 0.8rem;
 `;
 const SelectBox = styled.select<{ year: number }>`
+  cursor: pointer;
   background: transparent;
 
   width: calc(100vw - 4.8rem);

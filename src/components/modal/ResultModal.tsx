@@ -18,6 +18,8 @@ const QuitImage = styled.section`
 
   margin-top: 1.4rem;
   margin-right: 1.4rem;
+
+  cursor: pointer;
 `;
 const Description = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
@@ -64,6 +66,8 @@ const Continue = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-top: 1.4rem;
+
+  cursor: pointer;
 `;
 const LoginButton = styled.button`
   width: calc(100vw - 6.8rem);
@@ -80,6 +84,8 @@ const LoginButton = styled.button`
   font-size: 1.5rem;
 
   color: #000000;
+
+  cursor: pointer;
 `;
 const LoginImg = styled.img`
   width: 1.5rem;

@@ -27,10 +27,14 @@ const BackButton = styled.section<{ back: boolean }>`
 
   margin-left: 1.5rem;
   margin-bottom: 0.9rem;
+
+  cursor: pointer;
 `;
 const QuitButton = styled.section`
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;
+
+  cursor: pointer;
 `;
 
 const ContentHeader = ({ text, back }: IContentHeader) => {

@@ -39,6 +39,8 @@ const Button = styled.section<{ selected: boolean }>`
 
   border: ${({ selected, theme }) => !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
+
+  cursor: pointer;
 `;
 const ButtonText = styled(Body_1)`
   font-weight: 200;
