@@ -15,10 +15,8 @@ const Number = styled.section<{ curNum: number; num: number }>`
   width: 2.6rem;
   height: 2.6rem;
 
-  background-color: ${({ theme, curNum, num }) =>
-    curNum === num ? theme.color.sub_blue : theme.color.grey_650};
-  color: ${({ theme, curNum, num }) =>
-    curNum === num ? theme.color.blue : theme.color.grey_300};
+  background-color: ${({ theme, curNum, num }) => (curNum === num ? theme.color.sub_blue : theme.color.grey_650)};
+  color: ${({ theme, curNum, num }) => (curNum === num ? theme.color.blue : theme.color.grey_300)};
 
   font-size: 1.2rem;
   font-weight: 200;

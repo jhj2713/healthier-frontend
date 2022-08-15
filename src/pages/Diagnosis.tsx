@@ -5,29 +5,15 @@ import AnswerButtons from "../components/diagnosisPage/AnswerButtons";
 import ContentHeader from "../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../interfaces/diagnosisPage";
 import { Heading_3 } from "../lib/fontStyle";
-import {
-  sleepdisorder_questions,
-  headache_questions,
-} from "../store/diagnosis";
+import { sleepdisorder_questions, headache_questions } from "../store/diagnosis";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../state";
-import {
-  savePeriod,
-  saveCycle,
-  saveScore,
-  saveMedicine,
-  resetAnswer,
-} from "../state/answerSlice";
+import { savePeriod, saveCycle, saveScore, saveMedicine, resetAnswer } from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(100vh - 5.6rem);
-  background: radial-gradient(
-      300.02% 130.63% at 164.62% 165.58%,
-      rgba(84, 100, 242, 0.9) 0%,
-      rgba(52, 62, 135, 0) 100%
-    )
-    #131416;
+  background: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%) #131416;
   background-attachment: fixed;
 
   overflow: scroll;
@@ -60,11 +46,8 @@ const Diagnosis = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
   const [loading, setLoading] = useState(false);
-  const { gender, birth_year, interests, site } = useAppSelector(
-    (state) => state.user
-  );
-  const { period, cycle, score, answers, is_taking_medication } =
-    useAppSelector((state) => state.answer);
+  const { gender, birth_year, interests, site } = useAppSelector((state) => state.user);
+  const { period, cycle, score, answers, is_taking_medication } = useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
 
@@ -75,29 +58,19 @@ const Diagnosis = () => {
     }
   }, []);
   useEffect(() => {
-    if (
-      (state === "sleepdisorder" && curIndex <= 5) ||
-      (state === "headache" && curIndex <= 3)
-    ) {
+    if ((state === "sleepdisorder" && curIndex <= 5) || (state === "headache" && curIndex <= 3)) {
       if (curIndex === 1) {
         dispatch(savePeriod(selectedAnswer[0].score || 0));
       } else if (curIndex === 2) {
         dispatch(saveCycle(selectedAnswer[0].score || 0));
       } else if (state === "sleepdisorder" && curIndex >= 3) {
-        const sum = selectedAnswer.reduce(
-          (acc, val) => acc + (val.score || 0),
-          0
-        );
+        const sum = selectedAnswer.reduce((acc, val) => acc + (val.score || 0), 0);
         dispatch(saveScore(sum));
       } else if (state === "headache" && curIndex === 3) {
         dispatch(saveScore(selectedAnswer[0].score || 0));
       }
 
-      if (
-        state === "headache" &&
-        curIndex === 1 &&
-        (selectedAnswer[0].answer_id === 1 || selectedAnswer[0].answer_id === 2)
-      ) {
+      if (state === "headache" && curIndex === 1 && (selectedAnswer[0].answer_id === 1 || selectedAnswer[0].answer_id === 2)) {
         setCurIndex(curIndex + 1);
       } else {
         let question = {} as IQuestion;
@@ -114,12 +87,9 @@ const Diagnosis = () => {
         // 첫번째 진단 응답 api 호출
         if (selectedAnswer[0].answer_id === 1) {
           axios
-            .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
-              {
-                answer: "y",
-              }
-            )
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, {
+              answer: "y",
+            })
             .then((res) => {
               setCurQuestion(res.data.question);
               setSelectedAnswer([]);
@@ -134,17 +104,12 @@ const Diagnosis = () => {
           };
           setLoading(true);
           let response_state = {};
-          axios
-            .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`,
-              data
-            )
-            .then((res) => {
-              response_state = {
-                type: "",
-                diagnostic_result: res.data.diagnostic_result,
-              };
-            });
+          axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`, data).then((res) => {
+            response_state = {
+              type: "",
+              diagnostic_result: res.data.diagnostic_result,
+            };
+          });
           setTimeout(
             () =>
               navigate("/result", {
@@ -156,12 +121,9 @@ const Diagnosis = () => {
       } else if (state === "headache" && curIndex === 4) {
         dispatch(saveMedicine(selectedAnswer[0].score || 0));
         axios
-          .post(
-            `${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`,
-            {
-              site_id: site,
-            }
-          )
+          .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/headache/first`, {
+            site_id: site,
+          })
           .then((res) => {
             setCurQuestion(res.data.question);
             setSelectedAnswer([]);
@@ -195,17 +157,12 @@ const Diagnosis = () => {
 
           setLoading(true);
           let response_state = {};
-          axios
-            .post(
-              `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
-              data
-            )
-            .then((res) => {
-              response_state = {
-                type: "",
-                diagnostic_result: res.data.diagnostic_result,
-              };
-            });
+          axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`, data).then((res) => {
+            response_state = {
+              type: "",
+              diagnostic_result: res.data.diagnostic_result,
+            };
+          });
           setTimeout(
             () =>
               navigate("/result", {
@@ -219,12 +176,10 @@ const Diagnosis = () => {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
           };
-          axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data)
-            .then((res) => {
-              setCurQuestion(res.data.question);
-              setSelectedAnswer([]);
-            });
+          axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data).then((res) => {
+            setCurQuestion(res.data.question);
+            setSelectedAnswer([]);
+          });
         }
       }
     }
@@ -243,12 +198,7 @@ const Diagnosis = () => {
           <ContentHeader text="자가 진단" back={false} />
           <Container>
             <Question>{curQuestion.question}</Question>
-            <AnswerButtons
-              question={curQuestion}
-              selectedAnswer={selectedAnswer}
-              setSelectedAnswer={setSelectedAnswer}
-              handleNext={handleNext}
-            />
+            <AnswerButtons question={curQuestion} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
           </Container>
         </>
       )}

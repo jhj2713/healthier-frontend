@@ -22,8 +22,7 @@ const SelectBox = styled.select<{ year: number }>`
 
   padding: 1.4rem 1.6rem;
 
-  color: ${({ theme, year }) =>
-    year !== 0 ? theme.color.grey_300 : theme.color.grey_600};
+  color: ${({ theme, year }) => (year !== 0 ? theme.color.grey_300 : theme.color.grey_600)};
   appearance: none;
 
   font-size: 1.5rem;

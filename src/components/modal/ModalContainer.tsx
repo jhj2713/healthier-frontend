@@ -26,12 +26,7 @@ const Container = styled.section`
 
   border-radius: 0.8rem;
 
-  background: radial-gradient(
-      181.28% 184.02% at -58.92% 120.58%,
-      rgba(210, 250, 100, 0.9) 0%,
-      rgba(84, 100, 243, 0) 100%
-    ),
-    #5464f2;
+  background: radial-gradient(181.28% 184.02% at -58.92% 120.58%, rgba(210, 250, 100, 0.9) 0%, rgba(84, 100, 243, 0) 100%), #5464f2;
 `;
 
 const ModalContainer = ({ children, setModal }: IModal) => {

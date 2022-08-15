@@ -41,21 +41,11 @@ const SymptomHeader = () => {
     <Wrapper>
       <Container>
         <BackButton onClick={() => navigate(-1)}>
-          <img
-            alt="back"
-            src="/images/header/back.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="back" src="/images/header/back.svg" width={32} height={32} />
         </BackButton>
         <section></section>
         <QuitButton onClick={() => navigate("/")}>
-          <img
-            alt="quit"
-            src="/images/header/quit.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
         </QuitButton>
       </Container>
     </Wrapper>

@@ -1,13 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
-import Information from "./pages/Information";
-import MainPage from "./pages/MainPage";
-import ResultPage from "./pages/ResultPage";
-import Diagnosis from "./pages/Diagnosis";
-import DiagnosisList from "./pages/DiagnosisList";
-import SymptomPage from "./pages/SymptomPage";
 import { useEffect } from "react";
+import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
 import HomeLoading from "./components/loading/HomeLoading";
-import SymptomTypePage from "./pages/SymptomTypePage";
 import { useAppSelector } from "./state";
 
 function App() {
@@ -29,10 +23,7 @@ function App() {
   return (
     <section>
       <Routes>
-        <Route
-          path="/"
-          element={authenticated ? <DiagnosisList /> : <MainPage />}
-        />
+        <Route path="/" element={authenticated ? <DiagnosisList /> : <MainPage />} />
         <Route path="/info" element={<Information />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/diagnosis" element={<Diagnosis />} />

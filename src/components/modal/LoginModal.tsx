@@ -100,9 +100,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
       scope: "account_email",
       success: async function (authObj: any) {
         try {
-          const res = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
-          );
+          const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
           const token = res.headers.authorization.slice(7);
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
@@ -152,9 +150,7 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           <LoginImg alt="kakao_login" src="images/login/kakao.webp" />
           카카오 로그인
         </LoginButton>
-        <Continue onClick={() => setModal(false)}>
-          괜찮아요, 비회원으로 이용할게요
-        </Continue>
+        <Continue onClick={() => setModal(false)}>괜찮아요, 비회원으로 이용할게요</Continue>
       </BottomButtons>
     </Container>
   );

@@ -1,13 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import {
-  BottomBar,
-  CoverPage,
-  DefinitionPage,
-  LifePage,
-  MedicinePage,
-  TreatmentPage,
-} from "../components/resultPage";
+import { BottomBar, CoverPage, DefinitionPage, LifePage, MedicinePage, TreatmentPage } from "../components/resultPage";
 import ResultHeader from "../components/header/ResultHeader";
 import ModalContainer from "../components/modal/ModalContainer";
 import ResultModal from "../components/modal/ResultModal";
@@ -16,13 +9,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ResultLoading from "../components/loading/ResultLoading";
 import { IDiagnosticResult } from "../interfaces/diagnosticResult";
-import {
-  ICoverPageProps,
-  IDefinePageProps,
-  ILifeProps,
-  IMedicine,
-  ITreatPageProps,
-} from "../interfaces/resultPage";
+import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "../interfaces/resultPage";
 
 const ResultPage = () => {
   const navigate = useNavigate();
@@ -111,10 +98,7 @@ const ResultPage = () => {
               <DefinitionPage defineData={defineData} />
             </SwiperSlide>
             <SwiperSlide>
-              <LifePage
-                lifestyle={lifeData}
-                type={state.diagnostic_result.id}
-              />
+              <LifePage lifestyle={lifeData} type={state.diagnostic_result.id} />
             </SwiperSlide>
             {medicineData && (
               <SwiperSlide>
@@ -129,11 +113,7 @@ const ResultPage = () => {
           </Swiper>
           {modal && (
             <ModalContainer setModal={setModal}>
-              <ResultModal
-                setModal={setModal}
-                setLoading={setLoading}
-                resultId={state.diagnostic_result.id}
-              />
+              <ResultModal setModal={setModal} setLoading={setLoading} resultId={state.diagnostic_result.id} />
             </ModalContainer>
           )}
           <BottomBar

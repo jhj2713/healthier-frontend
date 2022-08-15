@@ -8,13 +8,11 @@ const HeaderContainer = styled.header<{ isCover: boolean }>`
   width: 100%;
   letter-spacing: 0.015rem;
 
-  border-bottom: ${({ isCover, theme }) =>
-    !isCover && `0.05rem solid ${theme.color.grey_800}`};
+  border-bottom: ${({ isCover, theme }) => !isCover && `0.05rem solid ${theme.color.grey_800}`};
 
   z-index: 3;
 
-  background-color: ${({ isCover, theme }) =>
-    isCover ? "transparent" : theme.color.grey_900};
+  background-color: ${({ isCover, theme }) => (isCover ? "transparent" : theme.color.grey_900)};
 `;
 const Container = styled.section`
   height: inherit;
@@ -55,12 +53,7 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
         <BackButton />
         <Title isCover={isCover}>진단결과</Title>
         <QuitButton onClick={() => navigate("/")}>
-          <img
-            alt="quit"
-            src="/images/header/quit.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
         </QuitButton>
       </Container>
     </HeaderContainer>

@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { useFrame, extend, useLoader, Node } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
-import { Mesh, TextureLoader } from "three";
+import { Mesh } from "three";
 import theme from "../../lib/theme";
-import { LayerMaterial, Color, Texture } from "lamina";
+import { LayerMaterial } from "lamina";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "./CharacterLine";
 import { ICharacterProps } from "../../interfaces/symptomPage";
@@ -61,8 +61,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
   useFrame((state) => {
     if (view === 1) {
       if (modelRef.current.rotation.y < Math.PI) {
-        modelRef.current.rotation.y +=
-          (Math.PI - modelRef.current.rotation.y) * 0.1;
+        modelRef.current.rotation.y += (Math.PI - modelRef.current.rotation.y) * 0.1;
       }
     } else {
       if (modelRef.current.rotation.y > 0) {
@@ -71,11 +70,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
     }
     if (menu && layerRef.current) {
       // 좌측 영역의 하이라이트
-      layerRef.current.layers[0].origin.set(
-        hCord[menu - 1][0],
-        hCord[menu - 1][1],
-        hCord[menu - 1][2]
-      );
+      layerRef.current.layers[0].origin.set(hCord[menu - 1][0], hCord[menu - 1][1], hCord[menu - 1][2]);
       layerRef.current.layers[0].near = hCord[menu - 1][3];
       layerRef.current.layers[0].far = hCord[menu - 1][4];
       layerRef.current.layers[0].colorA = theme.color.blue_3d;
@@ -84,17 +79,9 @@ const Character = ({ view, menu }: ICharacterProps) => {
 
       // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
       if (view === 1) {
-        layerRef.current.layers[1].origin.set(
-          -hCord[menu - 1][0] + 0.1,
-          hCord[menu - 1][1],
-          hCord[menu - 1][2]
-        );
+        layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] + 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);
       } else {
-        layerRef.current.layers[1].origin.set(
-          -hCord[menu - 1][0] - 0.1,
-          hCord[menu - 1][1],
-          hCord[menu - 1][2]
-        );
+        layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] - 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);
       }
 
       layerRef.current.layers[1].near = hCord[menu - 1][3];
@@ -116,19 +103,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
 
   return (
     <>
-      <mesh
-        ref={modelRef}
-        geometry={geometry}
-        scale={0.1}
-        position={[0, -3, 0]}
-      >
-        <LayerMaterial
-          ref={layerRef}
-          toneMapped={false}
-          alpha={1.0}
-          lighting="physical"
-          color={theme.color.blue_100}
-        >
+      <mesh ref={modelRef} geometry={geometry} scale={0.1} position={[0, -3, 0]}>
+        <LayerMaterial ref={layerRef} toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
           <point
             //@ts-ignore
             colorA={theme.color.blue_3d}

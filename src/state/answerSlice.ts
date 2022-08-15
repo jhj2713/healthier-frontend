@@ -30,10 +30,7 @@ export const answerSlice = createSlice({
     saveScore: (state, action: PayloadAction<number>) => {
       state.score += action.payload;
     },
-    saveAnswer: (
-      state,
-      action: PayloadAction<{ question_id: string; answer_id: number[] }>
-    ) => {
+    saveAnswer: (state, action: PayloadAction<{ question_id: string; answer_id: number[] }>) => {
       state.answers = [...state.answers, action.payload];
     },
     saveMedicine: (state, action: PayloadAction<number>) => {
@@ -49,13 +46,6 @@ export const answerSlice = createSlice({
   },
 });
 
-export const {
-  savePeriod,
-  saveCycle,
-  saveScore,
-  saveAnswer,
-  saveMedicine,
-  resetAnswer,
-} = answerSlice.actions;
+export const { savePeriod, saveCycle, saveScore, saveAnswer, saveMedicine, resetAnswer } = answerSlice.actions;
 
 export default answerSlice.reducer;

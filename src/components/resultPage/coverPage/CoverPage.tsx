@@ -39,11 +39,7 @@ const Description = styled(Body_4)`
   text-align: center;
 `;
 
-const CoverPage = ({
-  coverData: { illustration, highlight, title, description, severity },
-}: {
-  coverData: ICoverPageProps;
-}) => {
+const CoverPage = ({ coverData: { illustration, highlight, title, description, severity } }: { coverData: ICoverPageProps }) => {
   return (
     <Container>
       <CoverImage loading="eager" alt="cover" src={illustration} />

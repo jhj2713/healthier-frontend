@@ -24,12 +24,7 @@ const ButtonBackground = styled.section`
   padding-top: 10.4rem;
   padding-bottom: 3rem;
 
-  background: linear-gradient(
-    180deg,
-    rgba(19, 20, 22, 0) 0%,
-    rgba(19, 20, 22, 0.947917) 78.12%,
-    #131416 100%
-  );
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
 
   pointer-events: none;
 `;
@@ -56,20 +51,14 @@ const Information = () => {
 
   const handleProceed = () => {
     if (active) {
-      const healthId = health
-        .filter((item) => item.selected)
-        .map((item) => item.id);
+      const healthId = health.filter((item) => item.selected).map((item) => item.id);
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
       navigate("/symptom-type", { state: "info" });
     }
   };
 
   useEffect(() => {
-    if (
-      year !== 0 &&
-      health.filter((item) => item.selected).length !== 0 &&
-      gender
-    ) {
+    if (year !== 0 && health.filter((item) => item.selected).length !== 0 && gender) {
       setActive(true);
     } else {
       setActive(false);

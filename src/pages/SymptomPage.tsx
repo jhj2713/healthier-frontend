@@ -27,18 +27,7 @@ const CanvasSection = styled.div`
   position: absolute;
 `;
 
-export const regions = [
-  "",
-  "관자놀이",
-  "이마의 띠",
-  "눈",
-  "눈 주위",
-  "코 주위",
-  "턱",
-  "뒷머리",
-  "머리 전체",
-  "뒷목",
-];
+export const regions = ["", "관자놀이", "이마의 띠", "눈", "눈 주위", "코 주위", "턱", "뒷머리", "머리 전체", "뒷목"];
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
   return (
@@ -68,21 +57,9 @@ const Symptom = () => {
         <Canvas camera={{ position: [0, 0, 25], fov: 30, near: 1, far: 1000 }}>
           <Suspense>
             <ambientLight intensity={0.1} color={theme.color.white} />
-            <directionalLight
-              color={theme.color.white}
-              position={[0, 200, 50]}
-              intensity={0.4}
-            />
-            <directionalLight
-              color={theme.color.white}
-              position={[-100, 100, 0]}
-              intensity={0.8}
-            />
-            <directionalLight
-              color={theme.color.white}
-              position={[0, 0, 100]}
-              intensity={0.5}
-            />
+            <directionalLight color={theme.color.white} position={[0, 200, 50]} intensity={0.4} />
+            <directionalLight color={theme.color.white} position={[-100, 100, 0]} intensity={0.8} />
+            <directionalLight color={theme.color.white} position={[0, 0, 100]} intensity={0.5} />
             <Character view={view} menu={menu} />
 
             {view ? (

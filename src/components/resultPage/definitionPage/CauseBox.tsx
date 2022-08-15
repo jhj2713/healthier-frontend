@@ -22,8 +22,7 @@ const Tag = styled.section<{ num: number }>`
   margin-top: 1.4rem;
   padding: 0.8rem 1rem;
 
-  background-color: ${({ num, theme }) =>
-    num % 2 === 0 ? theme.color.blue : theme.color.sub_blue_2};
+  background-color: ${({ num, theme }) => (num % 2 === 0 ? theme.color.blue : theme.color.sub_blue_2)};
   color: ${({ theme }) => theme.color.grey_200};
 
   border-radius: 10rem;

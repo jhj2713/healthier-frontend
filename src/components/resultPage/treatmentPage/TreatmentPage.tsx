@@ -19,11 +19,7 @@ const TreatmentPage = ({ treatData }: { treatData: ITreatPageProps[] }) => {
         <Title text={"병원에 가면\n이런 치료를 받아요"} />
       </TitleBox>
       {treatData.map((treat, idx) => (
-        <TreatmentBox
-          key={idx}
-          title={treat.title}
-          description={treat.detail}
-        />
+        <TreatmentBox key={idx} title={treat.title} description={treat.detail} />
       ))}
     </Container>
   );

@@ -19,8 +19,7 @@ const AnswersContainer = styled.section<{ ansCount: number }>`
   flex-direction: column;
   align-items: center;
 
-  margin-top: ${({ ansCount }) =>
-    ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7}rem;
+  margin-top: ${({ ansCount }) => (ansCount === 2 ? 13.4 : ansCount === 3 ? 10.2 : 7)}rem;
 `;
 const ButtonBox = styled.section`
   width: calc(100vw - 4rem);
@@ -35,13 +34,10 @@ const Button = styled.section<{ selected: boolean }>`
 
   padding: ${({ selected }) => (selected ? "1.4rem 2.3rem" : "1.3rem 2.3rem")};
 
-  background-color: ${({ selected, theme }) =>
-    selected ? theme.color.sub_blue : "transparent"};
-  color: ${({ selected, theme }) =>
-    selected ? theme.color.blue : theme.color.grey_300};
+  background-color: ${({ selected, theme }) => (selected ? theme.color.sub_blue : "transparent")};
+  color: ${({ selected, theme }) => (selected ? theme.color.blue : theme.color.grey_300)};
 
-  border: ${({ selected, theme }) =>
-    !selected && `0.1rem solid ${theme.color.grey_650}`};
+  border: ${({ selected, theme }) => !selected && `0.1rem solid ${theme.color.grey_650}`};
   border-radius: 9rem;
 `;
 const ButtonText = styled(Body_1)`
@@ -64,12 +60,7 @@ const NextButton = styled.section`
   background: linear-gradient(180deg, rgba(31, 37, 79, 0) 0%, #23284b 50%);
 `;
 
-const AnswerButtons = ({
-  question,
-  selectedAnswer,
-  setSelectedAnswer,
-  handleNext,
-}: IAnswerButtonProps) => {
+const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const answers = question.answers;
   const isMultiple = question.is_multiple;
 
@@ -145,16 +136,8 @@ const AnswerButtons = ({
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
             outline="none"
-            backgroundColor={
-              selectedAnswer.length === 0
-                ? theme.color.grey_650
-                : theme.color.blue
-            }
-            color={
-              selectedAnswer.length === 0
-                ? theme.color.grey_400
-                : theme.color.grey_100
-            }
+            backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
+            color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
             text="다음 단계"
           />
         </NextButton>

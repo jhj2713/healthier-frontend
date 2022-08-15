@@ -32,11 +32,7 @@ const DescriptionBox = styled(Description)`
 const Tags = ({ health, setHealth }: ITagsProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    let newHealthArr = health.map((health) =>
-      health.name === target.innerHTML
-        ? { ...health, selected: !health.selected }
-        : health
-    );
+    let newHealthArr = health.map((health) => (health.name === target.innerHTML ? { ...health, selected: !health.selected } : health));
     let count = newHealthArr.filter((health) => health.selected).length;
     if (count > 3) newHealthArr = health;
     setHealth(newHealthArr);

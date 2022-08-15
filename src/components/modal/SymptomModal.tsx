@@ -29,12 +29,7 @@ const Container = styled.section`
 
   border-radius: 0.8rem;
 
-  background: radial-gradient(
-      181.28% 184.02% at -58.92% 120.58%,
-      rgba(210, 250, 100, 0.9) 0%,
-      rgba(84, 100, 243, 0) 100%
-    ),
-    #5464f2;
+  background: radial-gradient(181.28% 184.02% at -58.92% 120.58%, rgba(210, 250, 100, 0.9) 0%, rgba(84, 100, 243, 0) 100%), #5464f2;
 `;
 const QuitImage = styled.section`
   display: flex;
@@ -127,12 +122,7 @@ const SymptomModal = ({ setModal, select }: ISymptomModal) => {
     <Wrapper ref={wrapperRef} onClick={handleModalClose}>
       <Container>
         <QuitImage onClick={() => setModal(false)}>
-          <img
-            alt="quit"
-            src="/images/header/quit.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
         </QuitImage>
         <Contents>
           <Description>헬시어가 증상 진단을 준비중이에요!</Description>

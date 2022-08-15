@@ -40,21 +40,11 @@ const ContentHeader = ({ text, back }: IContentHeader) => {
     <HeaderContainer>
       <Container>
         <BackButton back={back} onClick={() => back && navigate(-1)}>
-          <img
-            alt="back"
-            src="/images/header/back.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="back" src="/images/header/back.svg" width={32} height={32} />
         </BackButton>
         <Title>{text}</Title>
         <QuitButton onClick={() => navigate("/")}>
-          <img
-            alt="quit"
-            src="/images/header/quit.svg"
-            width={32}
-            height={32}
-          />
+          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
         </QuitButton>
       </Container>
     </HeaderContainer>

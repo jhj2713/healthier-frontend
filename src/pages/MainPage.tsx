@@ -60,14 +60,10 @@ const MainPage = () => {
           <Strong>정확한 증상</Strong>을 알아보세요!
         </Title>
         <GuideText>
-          현재 <Highlight>두통</Highlight>과 <Highlight>수면장애</Highlight>{" "}
-          진단이 가능해요!
+          현재 <Highlight>두통</Highlight>과 <Highlight>수면장애</Highlight> 진단이 가능해요!
         </GuideText>
         <MainImage>
-          <Image
-            alt="main"
-            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%99%88+%EC%B2%AD%EC%A7%84%EA%B8%B0.png"
-          ></Image>
+          <Image alt="main" src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%99%88+%EC%B2%AD%EC%A7%84%EA%B8%B0.png"></Image>
         </MainImage>
         <BottomButtons setModal={setModal} />
         {modal && (

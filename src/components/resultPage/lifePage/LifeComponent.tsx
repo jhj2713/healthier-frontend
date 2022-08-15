@@ -4,8 +4,7 @@ import Description from "../common/Description";
 
 const Background = styled.section<{ idx: number }>`
   display: flex;
-  background-color: ${({ theme, idx }) =>
-    idx % 2 === 0 ? theme.color.grey_800 : "transparent"};
+  background-color: ${({ theme, idx }) => (idx % 2 === 0 ? theme.color.grey_800 : "transparent")};
 `;
 const Icon = styled.section`
   margin-top: 2.1rem;

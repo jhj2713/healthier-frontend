@@ -24,12 +24,7 @@ const ButtonBackground = styled.section`
 
   padding: 10.4rem 2rem 3rem 2rem;
 
-  background: linear-gradient(
-    180deg,
-    rgba(19, 20, 22, 0) 0%,
-    rgba(19, 20, 22, 0.947917) 78.12%,
-    #131416 100%
-  );
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
   pointer-events: none;
 `;
 const ButtonBox = styled.section`
@@ -51,8 +46,7 @@ const DescriptionBox = styled(Description)`
   font-size: 1.3rem;
 `;
 const Highlight = styled.span<{ type: string }>`
-  color: ${({ theme, type }) =>
-    type === "title" ? theme.color.green : theme.color.sub_green};
+  color: ${({ theme, type }) => (type === "title" ? theme.color.green : theme.color.sub_green)};
 `;
 const List = styled.section`
   margin: 0 2.4rem 13rem 2.4rem;
@@ -69,14 +63,11 @@ const DiagnosisList = () => {
   useLayoutEffect(() => {
     const getList = async () => {
       try {
-        const res = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
-          {
-            headers: {
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
         if (res.status === 404) {
           dispatch(DELETE_TOKEN);
           alert("로그인 만료, 다시 로그인해주세요");
@@ -108,10 +99,7 @@ const DiagnosisList = () => {
                 <br /> 진단 내역이에요
               </Title>
               <DescriptionBox>
-                <Highlight type="description">
-                  {diagnosisList.length}개
-                </Highlight>
-                의 진단내역
+                <Highlight type="description">{diagnosisList.length}개</Highlight>의 진단내역
               </DescriptionBox>
               <List>
                 {diagnosisList.map((diag, idx) => (
@@ -124,12 +112,7 @@ const DiagnosisList = () => {
       )}
       <ButtonBackground>
         <ButtonBox onClick={() => navigate("/symptom-type", { state: "list" })}>
-          <RoundButton
-            outline="none"
-            backgroundColor={theme.color.green}
-            color={theme.color.grey_900}
-            text="빠른 진단 시작하기"
-          />
+          <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_900} text="빠른 진단 시작하기" />
         </ButtonBox>
       </ButtonBackground>
     </Container>

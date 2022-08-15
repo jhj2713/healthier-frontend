@@ -17,8 +17,7 @@ const MedicineImg = styled.section<{ selected: boolean }>`
 
   background-color: rgba(84, 100, 242, 0.5);
   border-radius: 50%;
-  border: ${({ selected, theme }) =>
-    selected && `0.15rem solid ${theme.color.grey_300}`};
+  border: ${({ selected, theme }) => selected && `0.15rem solid ${theme.color.grey_300}`};
   box-sizing: border-box;
 
   opacity: ${({ selected }) => !selected && 0.5};
@@ -33,8 +32,7 @@ const MedicineBox = styled.section`
   }
 `;
 const MedicineText = styled(Description)<{ selected: boolean }>`
-  color: ${({ theme, selected }) =>
-    selected ? theme.color.grey_300 : theme.color.grey_600};
+  color: ${({ theme, selected }) => (selected ? theme.color.grey_300 : theme.color.grey_600)};
 
   margin-top: 0.7rem;
 `;
@@ -47,9 +45,7 @@ const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {
           <MedicineImg selected={selected === idx + 1}>
             <img alt="medicine" src={med.image} width={64} height={64} />
           </MedicineImg>
-          <MedicineText selected={selected === idx + 1}>
-            {med.name}
-          </MedicineText>
+          <MedicineText selected={selected === idx + 1}>{med.name}</MedicineText>
         </MedicineBox>
       ))}
     </Container>
