@@ -43,7 +43,7 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
       <Title>관심 건강분야</Title>
       <TagContainer>
         {health.map((health) => (
-          <TagBox key={health.id} onClick={handleClick}>
+          <TagBox className={health.id.toString()} key={health.id} onClick={handleClick}>
             <Tag text={health.name} selected={health.selected} />
           </TagBox>
         ))}
