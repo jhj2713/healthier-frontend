@@ -3,12 +3,13 @@ import { useEffect } from "react";
 import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
 import HomeLoading from "./components/loading/HomeLoading";
 import { useAppSelector } from "./state";
+import styled from "styled-components";
 
 function App() {
   const { authenticated } = useAppSelector((state) => state.auth);
 
   const handleResize = () => {
-    let vh = window.innerHeight * 0.01;
+    const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   };
 
@@ -21,7 +22,7 @@ function App() {
   });
 
   return (
-    <section>
+    <main>
       <Routes>
         <Route path="/" element={authenticated ? <DiagnosisList /> : <MainPage />} />
         <Route path="/info" element={<Information />} />
@@ -32,7 +33,7 @@ function App() {
         <Route path="/symptom-type" element={<SymptomTypePage />} />
         <Route path="/*" element={<Navigate to="/" replace />} />
       </Routes>
-    </section>
+    </main>
   );
 }
 
