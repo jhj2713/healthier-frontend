@@ -29,24 +29,14 @@ const BottomButtons = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   return (
     <Buttons>
       <ButtonBox onClick={() => navigate("/info")}>
-        <RoundButton
-          outline="none"
-          backgroundColor={theme.color.green}
-          color={theme.color.grey_800}
-          text={"빠른 진단 시작하기"}
-        />
+        <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_800} text={"빠른 진단 시작하기"} />
       </ButtonBox>
       <ButtonBox
         onClick={() => {
           setModal(true);
         }}
       >
-        <RoundButton
-          outline="none"
-          backgroundColor={theme.color.blue}
-          color={theme.color.grey_100}
-          text={"나의 진단기록장 보기"}
-        />
+        <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100} text={"나의 진단기록장 보기"} />
       </ButtonBox>
     </Buttons>
   );

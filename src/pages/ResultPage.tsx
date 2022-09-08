@@ -59,9 +59,7 @@ const ResultPage = () => {
       setMedicineData(state.diagnostic_result.medicines);
       setTreatData(state.diagnostic_result.treatments);
 
-      if (state.type === "result") {
-        setIsSaved(true);
-      }
+      if (state.type === "result") setIsSaved(true);
     }
   }, [state]);
   useLayoutEffect(() => {
@@ -74,12 +72,9 @@ const ResultPage = () => {
 
   const setTotalCount = (): number => {
     let total = 5;
-    if (!medicineData) {
-      total--;
-    }
-    if (!treatData) {
-      total--;
-    }
+    if (!medicineData) total--;
+    if (!treatData) total--;
+
     return total;
   };
 

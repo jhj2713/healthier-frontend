@@ -110,13 +110,17 @@ const Diagnosis = () => {
               diagnostic_result: res.data.diagnostic_result,
             };
           });
-          setTimeout(
-            () =>
-              navigate("/result", {
-                state: response_state,
-              }),
-            3000
-          );
+          new Promise((resolve) => {
+            setTimeout(
+              () =>
+                resolve(
+                  navigate("/result", {
+                    state: response_state,
+                  })
+                ),
+              3000
+            );
+          });
         }
       } else if (state === "headache" && curIndex === 4) {
         dispatch(saveMedicine(selectedAnswer[0].score || 0));
@@ -163,13 +167,17 @@ const Diagnosis = () => {
               diagnostic_result: res.data.diagnostic_result,
             };
           });
-          setTimeout(
-            () =>
-              navigate("/result", {
-                state: response_state,
-              }),
-            3000
-          );
+          new Promise((resolve) => {
+            setTimeout(
+              () =>
+                resolve(
+                  navigate("/result", {
+                    state: response_state,
+                  })
+                ),
+              3000
+            );
+          });
         } else {
           // 진단응답 api 호출
           const data = {
