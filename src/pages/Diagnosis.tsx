@@ -45,7 +45,7 @@ const Diagnosis = () => {
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
   const { gender, birth_year, interests, site } = useAppSelector((state) => state.user);
-  const { answers, score } = useAppSelector((state) => state.answer);
+  const { answers } = useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
 
@@ -54,11 +54,10 @@ const Diagnosis = () => {
     if (!state) {
       navigate("/");
     }
-    /*
+
     axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
       setCurQuestion(res.data);
     });
-    */
   }, []);
 
   const handleNext = () => {
@@ -98,7 +97,7 @@ const Diagnosis = () => {
         answer_id: selectedAnswer[0].answer_id,
       };
 
-      // 두통 site 보내달라는 표시 있으면 { site_id: site } 함께 전송
+      // is_last_default - { site_id: site } 함께 전송
 
       axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data).then((res) => {
         setCurQuestion(res.data.question);

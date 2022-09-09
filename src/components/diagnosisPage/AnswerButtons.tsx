@@ -78,41 +78,33 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
         setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
       }
-    }
-    if (isMultiple === 0) {
+    } else {
       let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
       setSelectedAnswer([answers[filtered_idx]]);
+      dispatch(
+        saveAnswer({
+          question_id: question.id,
+          answer_id: [answers[filtered_idx].answer_id],
+        })
+      );
 
-      const check = /^[0-9]+$/;
-      if (!check.test(question.id)) {
-        // 초기 진단응답이 아닌 경우
-        dispatch(
-          saveAnswer({
-            question_id: question.id,
-            answer_id: [answers[filtered_idx].answer_id],
-          })
-        );
-      }
-
-      setTimeout(() => handleNext(), 300);
+      new Promise((resolve) => {
+        setTimeout(() => resolve(handleNext()), 300);
+      });
     }
   };
   const handleActive = (id: number): boolean => {
     let idx = selectedAnswer.findIndex((ans) => ans.answer_id === id);
-    if (idx !== -1) return true;
-    return false;
+    return idx !== -1;
   };
   const handleMultipleAnswer = () => {
-    const check = /^[0-9]+$/;
-    if (!check.test(question.id)) {
-      const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
-      dispatch(
-        saveAnswer({
-          question_id: question.id,
-          answer_id: selected_answers,
-        })
-      );
-    }
+    const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
+    dispatch(
+      saveAnswer({
+        question_id: question.id,
+        answer_id: selected_answers,
+      })
+    );
 
     handleNext();
   };
