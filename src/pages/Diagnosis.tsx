@@ -55,7 +55,7 @@ const Diagnosis = () => {
       navigate("/");
     }
 
-    axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
+    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
       setCurQuestion(res.data);
     });
   }, []);
@@ -91,7 +91,6 @@ const Diagnosis = () => {
         );
       });
     } else {
-      // 진단응답 api 호출
       const data = curQuestion.is_last_default
         ? { site_id: site }
         : {
@@ -109,15 +108,20 @@ const Diagnosis = () => {
   const handleBack = () => {
     if (answers.length === 1) {
       dispatch(back());
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
+      axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
         setCurQuestion(res.data);
       });
     } else if (answers.length !== 0) {
       dispatch(back());
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, answers[answers.length - 2]).then((res) => {
-        setCurQuestion(res.data.question);
-        setSelectedAnswer([]);
-      });
+      axios
+        .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, {
+          question_id: answers[answers.length - 2].question_id,
+          answer_id: answers[answers.length - 2].answer_id[0],
+        })
+        .then((res) => {
+          setCurQuestion(res.data.question);
+          setSelectedAnswer([]);
+        });
     }
   };
 

@@ -94,15 +94,13 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     }
   };
   const handleActive = (id: number): boolean => {
-    let idx = selectedAnswer.findIndex((ans) => ans.answer_id === id);
-    return idx !== -1;
+    return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
   };
   const handleMultipleAnswer = () => {
-    const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
     dispatch(
       saveAnswer({
         question_id: question.id,
-        answer_id: selected_answers,
+        answer_id: selectedAnswer.map((ans) => ans.answer_id),
       })
     );
 

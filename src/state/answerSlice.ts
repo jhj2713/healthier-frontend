@@ -17,7 +17,7 @@ export const answerSlice = createSlice({
       state.answers.pop();
     },
     saveAnswer: (state, action: PayloadAction<{ question_id: string; answer_id: number[] }>) => {
-      state.answers = [...state.answers.filter((answer) => answer.question_id !== action.payload.question_id), action.payload];
+      state.answers = [...state.answers, action.payload];
     },
     resetAnswer: (state) => {
       state.answers = new Array();
