@@ -3,12 +3,10 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AnswerState {
   answers: { question_id: string; answer_id: number[] }[];
-  is_taking_medication: number;
 }
 
 const initialState: AnswerState = {
   answers: [],
-  is_taking_medication: 0,
 };
 
 export const answerSlice = createSlice({
@@ -21,16 +19,12 @@ export const answerSlice = createSlice({
     saveAnswer: (state, action: PayloadAction<{ question_id: string; answer_id: number[] }>) => {
       state.answers = [...state.answers.filter((answer) => answer.question_id !== action.payload.question_id), action.payload];
     },
-    saveMedicine: (state, action: PayloadAction<number>) => {
-      state.is_taking_medication = action.payload;
-    },
     resetAnswer: (state) => {
       state.answers = new Array();
-      state.is_taking_medication = 0;
     },
   },
 });
 
-export const { back, saveAnswer, saveMedicine, resetAnswer } = answerSlice.actions;
+export const { back, saveAnswer, resetAnswer } = answerSlice.actions;
 
 export default answerSlice.reducer;
