@@ -64,7 +64,7 @@ const SymptomTypePage = () => {
   return (
     <>
       {modal && <SymptomModal setModal={setModal} select={select} />}
-      <ContentHeader text="증상 유형 선택" back={true} />
+      <ContentHeader text="증상 유형 선택" back={true} callback={() => navigate(-1)} />
       <Container>
         <Title>
           증상 유형을

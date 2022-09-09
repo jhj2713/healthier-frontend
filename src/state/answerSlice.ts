@@ -3,16 +3,12 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AnswerState {
   answers: { question_id: string; answer_id: number[] }[];
-  period: number;
-  cycle: number;
   score: number;
   is_taking_medication: number;
 }
 
 const initialState: AnswerState = {
   answers: [],
-  period: 0,
-  cycle: 0,
   score: 0,
   is_taking_medication: 0,
 };
@@ -21,31 +17,25 @@ export const answerSlice = createSlice({
   name: "answer",
   initialState,
   reducers: {
-    savePeriod: (state, action: PayloadAction<number>) => {
-      state.period = action.payload;
-    },
-    saveCycle: (state, action: PayloadAction<number>) => {
-      state.cycle = action.payload;
+    back: (state) => {
+      state.answers.pop();
     },
     saveScore: (state, action: PayloadAction<number>) => {
-      state.score += action.payload;
+      state.score = action.payload;
     },
     saveAnswer: (state, action: PayloadAction<{ question_id: string; answer_id: number[] }>) => {
-      state.answers = [...state.answers, action.payload];
+      state.answers = [...state.answers.filter((answer) => answer.question_id !== action.payload.question_id), action.payload];
     },
     saveMedicine: (state, action: PayloadAction<number>) => {
       state.is_taking_medication = action.payload;
     },
     resetAnswer: (state) => {
       state.answers = new Array();
-      state.period = 0;
-      state.cycle = 0;
-      state.score = 0;
       state.is_taking_medication = 0;
     },
   },
 });
 
-export const { savePeriod, saveCycle, saveScore, saveAnswer, saveMedicine, resetAnswer } = answerSlice.actions;
+export const { back, saveScore, saveAnswer, saveMedicine, resetAnswer } = answerSlice.actions;
 
 export default answerSlice.reducer;

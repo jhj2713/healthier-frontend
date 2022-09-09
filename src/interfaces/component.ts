@@ -3,6 +3,7 @@ import { Dispatch } from "react";
 export interface IContentHeader {
   text: string;
   back: boolean;
+  callback: () => void;
 }
 
 export interface IButton {
