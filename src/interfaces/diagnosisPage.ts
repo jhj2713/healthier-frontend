@@ -5,6 +5,7 @@ export interface IQuestion {
   question: string;
   answers: IAnswer[];
   is_multiple: number;
+  is_last_default?: number;
 }
 
 export interface IAnswer {

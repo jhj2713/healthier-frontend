@@ -92,12 +92,13 @@ const Diagnosis = () => {
       });
     } else {
       // 진단응답 api 호출
-      const data = {
-        question_id: curQuestion.id,
-        answer_id: selectedAnswer[0].answer_id,
-      };
-
-      // is_last_default - { site_id: site } 함께 전송
+      const data =
+        curQuestion.is_last_default === 1
+          ? { site_id: site }
+          : {
+              question_id: curQuestion.id,
+              answer_id: selectedAnswer[0].answer_id,
+            };
 
       axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data).then((res) => {
         setCurQuestion(res.data.question);
