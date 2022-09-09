@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
 import HomeLoading from "./components/loading/HomeLoading";
 import { useAppSelector } from "./state";
-import styled from "styled-components";
 
 function App() {
   const { authenticated } = useAppSelector((state) => state.auth);

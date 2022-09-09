@@ -20,20 +20,9 @@ const ResultPage = () => {
   const [modal, setModal] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
-  const [coverData, setCoverData] = useState<ICoverPageProps>({
-    illustration: "",
-    highlight: "",
-    title: "",
-    description: [],
-    severity: 0,
-  });
-  const [defineData, setDefineData] = useState<IDefinePageProps>({
-    title: "",
-    definition: [],
-    tag_flag: 0,
-    cause_detail: [],
-  });
-  const [lifeData, setLifeData] = useState<ILifeProps[]>([]);
+  const [coverData, setCoverData] = useState({} as ICoverPageProps);
+  const [defineData, setDefineData] = useState({} as IDefinePageProps);
+  const [lifeData, setLifeData] = useState([] as ILifeProps[]);
   const [medicineData, setMedicineData] = useState<IMedicine[] | undefined>();
   const [treatData, setTreatData] = useState<ITreatPageProps[] | undefined>();
 

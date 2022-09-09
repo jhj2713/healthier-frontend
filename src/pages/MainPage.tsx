@@ -29,7 +29,6 @@ const MainImage = styled.section`
   overflow: scroll;
 `;
 const Image = styled.img`
-  //height: calc(100% - 28.9rem);
   width: calc(100vw - 12rem);
 `;
 const GuideText = styled.section`

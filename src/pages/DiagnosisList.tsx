@@ -54,7 +54,7 @@ const List = styled.section`
 
 const DiagnosisList = () => {
   const navigate = useNavigate();
-  const [diagnosisList, setDiagnosisList] = useState<IDiagnosisList[]>([]);
+  const [diagnosisList, setDiagnosisList] = useState([] as IDiagnosisList[]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const { accessToken } = useAppSelector((state) => state.auth);

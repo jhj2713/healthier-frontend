@@ -38,13 +38,8 @@ const Diagnosis = () => {
   const { state } = useLocation() as { state: string };
 
   const [curIndex, setCurIndex] = useState(0);
-  const [curQuestion, setCurQuestion] = useState<IQuestion>({
-    id: "",
-    question: "",
-    answers: [],
-    is_multiple: 0,
-  });
-  const [selectedAnswer, setSelectedAnswer] = useState<IAnswer[]>([]);
+  const [curQuestion, setCurQuestion] = useState({} as IQuestion);
+  const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
   const { gender, birth_year, interests, site } = useAppSelector((state) => state.user);
   const { period, cycle, score, answers, is_taking_medication } = useAppSelector((state) => state.answer);
