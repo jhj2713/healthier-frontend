@@ -110,6 +110,7 @@ const Diagnosis = () => {
       dispatch(back());
       axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
         setCurQuestion(res.data);
+        setSelectedAnswer([]);
       });
     } else if (answers.length !== 0) {
       dispatch(back());
@@ -122,6 +123,8 @@ const Diagnosis = () => {
           setCurQuestion(res.data.question);
           setSelectedAnswer([]);
         });
+    } else {
+      navigate(-1);
     }
   };
 
