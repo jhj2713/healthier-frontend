@@ -29,8 +29,7 @@ const MainImage = styled.section`
 
   display: flex;
   justify-content: center;
-
-  overflow: scroll;
+  overflow: hidden;
 `;
 const Image = styled.img`
   width: calc(100vw - 12rem);
