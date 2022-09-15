@@ -99,7 +99,7 @@ const Diagnosis = () => {
           }
         : { site_id: site };
 
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data).then((res) => {
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose${nextQuestion ? "" : "/headache/last_default"}`, data).then((res) => {
         setCurQuestion(res.data.question);
         setSelectedAnswer([]);
       });
