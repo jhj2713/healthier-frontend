@@ -91,12 +91,13 @@ const Diagnosis = () => {
         );
       });
     } else {
-      const data = curQuestion.is_last_default
-        ? { site_id: site }
-        : {
+      const nextQuestion = state === "sleepdisorder" || (state === "headache" && !curQuestion.is_last_default);
+      const data = nextQuestion
+        ? {
             question_id: curQuestion.id,
             answer_id: selectedAnswer[0].answer_id,
-          };
+          }
+        : { site_id: site };
 
       axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, data).then((res) => {
         setCurQuestion(res.data.question);

@@ -68,6 +68,14 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (isMultiple !== 1 && selectedAnswer.length !== 0) {
+      new Promise((resolve) => {
+        setTimeout(() => resolve(handleNext()), 300);
+      });
+    }
+  }, [selectedAnswer]);
+
   const handleSelect = (id: number) => {
     if (isMultiple === 1) {
       let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -87,10 +95,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
           answer_id: [answers[filtered_idx].answer_id],
         })
       );
-
-      new Promise((resolve) => {
-        setTimeout(() => resolve(handleNext()), 300);
-      });
     }
   };
   const handleActive = (id: number): boolean => {
