@@ -15,7 +15,7 @@ const Container = styled.section`
   background: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%) #131416;
   background-attachment: fixed;
 
-  overflow: scroll;
+  overflow: auto;
 
   display: flex;
   flex-direction: column;
@@ -99,7 +99,7 @@ const Diagnosis = () => {
           }
         : { site_id: site };
 
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose${nextQuestion ? "" : "/headache/last_default"}`, data).then((res) => {
+      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose${nextQuestion ? "" : "/headache/last-default"}`, data).then((res) => {
         setCurQuestion(res.data.question);
         setSelectedAnswer([]);
       });
