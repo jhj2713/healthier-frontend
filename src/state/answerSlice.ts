@@ -13,7 +13,7 @@ export const answerSlice = createSlice({
   name: "answer",
   initialState,
   reducers: {
-    back: (state) => {
+    popAnswer: (state) => {
       state.answers.pop();
     },
     saveAnswer: (state, action: PayloadAction<{ question_id: string; answer_id: number[] }>) => {
@@ -25,6 +25,6 @@ export const answerSlice = createSlice({
   },
 });
 
-export const { back, saveAnswer, resetAnswer } = answerSlice.actions;
+export const { popAnswer, saveAnswer, resetAnswer } = answerSlice.actions;
 
 export default answerSlice.reducer;

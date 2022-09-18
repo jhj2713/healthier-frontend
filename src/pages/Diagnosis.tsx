@@ -8,7 +8,7 @@ import { Heading_3 } from "../lib/fontStyle";
 import DiagnosisLoading from "../components/loading/DiagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../state";
-import { resetAnswer, back } from "../state/answerSlice";
+import { resetAnswer, popAnswer } from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(100vh - 5.6rem);
@@ -108,13 +108,13 @@ const Diagnosis = () => {
 
   const handleBack = () => {
     if (answers.length === 1) {
-      dispatch(back());
+      dispatch(popAnswer());
       axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
         setCurQuestion(res.data);
         setSelectedAnswer([]);
       });
     } else if (answers.length !== 0) {
-      dispatch(back());
+      dispatch(popAnswer());
       axios
         .post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose`, {
           question_id: answers[answers.length - 2].question_id,
