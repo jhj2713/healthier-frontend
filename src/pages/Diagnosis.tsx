@@ -21,12 +21,17 @@ const Container = styled.section`
   background-attachment: fixed;
 
   overflow: auto;
+  overflow-y: overlay;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   padding-top: 5.6rem;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
 `;
 const Question = styled(Heading_3)`
   text-align: center;
