@@ -25,6 +25,10 @@ import {
 } from "../interfaces/resultPage";
 import styled from "styled-components";
 
+const Container = styled.div`
+  width: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vh, 1vh) * 100);
+`;
 
 const ResultPage = () => {
   const navigate = useNavigate();
@@ -94,7 +98,7 @@ const ResultPage = () => {
   };
 
   return (
-    <>
+    <Container>
       {loading ? (
         <ResultLoading />
       ) : (
@@ -143,7 +147,7 @@ const ResultPage = () => {
           />
         </>
       )}
-    </>
+    </Container>
   );
 };
 
