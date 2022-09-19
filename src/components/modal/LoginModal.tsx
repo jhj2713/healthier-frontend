@@ -8,7 +8,7 @@ import { useAppDispatch } from "../../state";
 const Container = styled.section`
   position: absolute;
 
-  width: calc(100vw - 4rem);
+  width: calc(var(--vw, 1vw) * 100 - 4rem);
   height: 48.2rem;
 `;
 const QuitImage = styled.section`
@@ -72,7 +72,7 @@ const Continue = styled(Body_4)`
   cursor: pointer;
 `;
 const LoginButton = styled.button`
-  width: calc(100vw - 6.8rem);
+  width: calc(var(--vw, 1vw) * 100 - 6.8rem);
   height: 4.5rem;
 
   display: flex;
@@ -106,7 +106,9 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
       scope: "account_email",
       success: async function (authObj: any) {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
+          const res = await axios.get(
+            `${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`
+          );
           const token = res.headers.authorization.slice(7);
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
@@ -156,7 +158,9 @@ const LoginModal = ({ setModal }: { setModal: Dispatch<boolean> }) => {
           <LoginImg alt="kakao_login" src="images/login/kakao.webp" />
           카카오 로그인
         </LoginButton>
-        <Continue onClick={() => setModal(false)}>괜찮아요, 비회원으로 이용할게요</Continue>
+        <Continue onClick={() => setModal(false)}>
+          괜찮아요, 비회원으로 이용할게요
+        </Continue>
       </BottomButtons>
     </Container>
   );

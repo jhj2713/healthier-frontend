@@ -12,12 +12,17 @@ const BottomContainer = styled.section<{ curIndex: number }>`
 
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: calc(var(--vw, 1vw) * 100);
 
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(19, 20, 22, 0) 0%,
+    rgba(19, 20, 22, 0.947917) 78.12%,
+    #131416 100%
+  );
 
   pointer-events: none;
 `;
@@ -31,7 +36,14 @@ const BottomButton = styled.section`
   pointer-events: auto;
 `;
 
-const BottomBar = ({ curIndex, totalCount, setModal, setLoading, isSaved, resultId }: IBottomBar) => {
+const BottomBar = ({
+  curIndex,
+  totalCount,
+  setModal,
+  setLoading,
+  isSaved,
+  resultId,
+}: IBottomBar) => {
   const { authenticated, accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -69,7 +81,12 @@ const BottomBar = ({ curIndex, totalCount, setModal, setLoading, isSaved, result
       ) : (
         <BottomButton>
           <section onClick={handleSave}>
-            <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100} text="나의 진단기록장에 저장하기" />
+            <RoundButton
+              outline="none"
+              backgroundColor={theme.color.blue}
+              color={theme.color.grey_100}
+              text="나의 진단기록장에 저장하기"
+            />
           </section>
         </BottomButton>
       )}

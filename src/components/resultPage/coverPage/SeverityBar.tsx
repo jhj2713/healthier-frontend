@@ -10,7 +10,7 @@ const Container = styled.section`
 const TextBox = styled.section`
   display: flex;
   justify-content: space-between;
-  width: calc(100vw - 8.6rem);
+  width: calc(var(--vw, 1vw) * 100 - 8.6rem);
 
   font-weight: 100;
   letter-spacing: -0.05rem;
@@ -39,7 +39,7 @@ const Background = styled.section`
   background: rgba(84, 100, 242, 0.33);
   border-radius: 10rem;
 
-  width: calc(100vw - 8.6rem);
+  width: calc(var(--vw, 1vw) * 100 - 8.6rem);
   height: 0.5rem;
 `;
 const Highlight = styled.section<{ severity: number }>`

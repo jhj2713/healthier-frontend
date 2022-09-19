@@ -9,11 +9,11 @@ const Container = styled.section`
   display: flex;
   flex-direction: column;
 
-  height: calc(100vw + 27.4rem);
+  height: calc(var(--vw, 1vw) * 100 + 27.4rem);
 `;
 const CoverImage = styled.img`
-  width: 100vw;
-  height: 100vw;
+  width: calc(var(--vw, 1vw)) * 100;
+  height: calc(var(--vw, 1vw)) * 100;
 
   border: 0;
 `;
@@ -39,7 +39,11 @@ const Description = styled(Body_4)`
   text-align: center;
 `;
 
-const CoverPage = ({ coverData: { illustration, highlight, title, description, severity } }: { coverData: ICoverPageProps }) => {
+const CoverPage = ({
+  coverData: { illustration, highlight, title, description, severity },
+}: {
+  coverData: ICoverPageProps;
+}) => {
   return (
     <Container>
       <CoverImage loading="eager" alt="cover" src={illustration} />

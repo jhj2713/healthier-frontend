@@ -12,7 +12,7 @@ const Highlight = styled.span`
 const EmptyContainer = styled.section`
   padding-top: 2rem;
 
-  height: calc((100vw - 10rem) * 1.096);
+  height: calc((var(--vw, 1vw) * 100 - 10rem) * 1.096);
 
   display: flex;
   flex-direction: column;
@@ -23,7 +23,7 @@ const EmptyContainer = styled.section`
 const ImageBox = styled.section`
   position: absolute;
 
-  width: calc(100vw - 10rem);
+  width: calc(var(--vw, 1vw) * 100 - 10rem);
 `;
 const Image = styled.img`
   width: 100%;

@@ -8,7 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../lib/theme";
 
 const Container = styled.section`
-  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   height: calc(var(--vh, 1vh) * 100);
 
   background: #0c0d10;
@@ -20,7 +20,7 @@ const Container = styled.section`
 `;
 
 const CanvasSection = styled.div`
-  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   height: calc(var(--vh, 1vh) * 100);
 
   z-index: 0;
@@ -55,9 +55,21 @@ const Symptom = () => {
         <Canvas camera={{ position: [0, 0, 25], fov: 30, near: 1, far: 1000 }}>
           <Suspense>
             <ambientLight intensity={0.1} color={theme.color.white} />
-            <directionalLight color={theme.color.white} position={[0, 200, 50]} intensity={0.4} />
-            <directionalLight color={theme.color.white} position={[-100, 100, 0]} intensity={0.8} />
-            <directionalLight color={theme.color.white} position={[0, 0, 100]} intensity={0.5} />
+            <directionalLight
+              color={theme.color.white}
+              position={[0, 200, 50]}
+              intensity={0.4}
+            />
+            <directionalLight
+              color={theme.color.white}
+              position={[-100, 100, 0]}
+              intensity={0.8}
+            />
+            <directionalLight
+              color={theme.color.white}
+              position={[0, 0, 100]}
+              intensity={0.5}
+            />
             <Character view={view} menu={menu} />
 
             {view ? (

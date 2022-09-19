@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Wrapper = styled.header`
   position: fixed;
-  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   top: 0;
 
   height: 5.6rem;
@@ -45,11 +45,21 @@ const SymptomHeader = () => {
     <Wrapper>
       <Container>
         <BackButton onClick={() => navigate(-1)}>
-          <img alt="back" src="/images/header/back.svg" width={32} height={32} />
+          <img
+            alt="back"
+            src="/images/header/back.svg"
+            width={32}
+            height={32}
+          />
         </BackButton>
         <section></section>
         <QuitButton onClick={() => navigate("/")}>
-          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
+          <img
+            alt="quit"
+            src="/images/header/quit.svg"
+            width={32}
+            height={32}
+          />
         </QuitButton>
       </Container>
     </Wrapper>

@@ -21,12 +21,17 @@ const Wrapper = styled.section`
 const Container = styled.section`
   position: relative;
 
-  width: calc(100vw - 4rem);
+  width: calc(var(--vw, 1vw) * 100 - 4rem);
   height: 48.2rem;
 
   border-radius: 0.8rem;
 
-  background: radial-gradient(181.28% 184.02% at -58.92% 120.58%, rgba(210, 250, 100, 0.9) 0%, rgba(84, 100, 243, 0) 100%), #5464f2;
+  background: radial-gradient(
+      181.28% 184.02% at -58.92% 120.58%,
+      rgba(210, 250, 100, 0.9) 0%,
+      rgba(84, 100, 243, 0) 100%
+    ),
+    #5464f2;
 `;
 
 const ModalContainer = ({ children, setModal }: IModal) => {

@@ -21,7 +21,7 @@ const GenderButton = styled(Body_2)<{
   align-items: center;
 
   height: 4.8rem;
-  width: calc(100vw - 5.8rem);
+  width: calc(var(--vw, 1vw) * 100 - 5.8rem);
   font-weight: 200;
 
   cursor: pointer;
@@ -51,10 +51,18 @@ const Gender = ({ gender, setGender }: IGenderProps) => {
     <Container>
       <Title>성별</Title>
       <GenderContainer>
-        <GenderButton className="male" onClick={() => setGender("m")} selected={gender === "m"}>
+        <GenderButton
+          className="male"
+          onClick={() => setGender("m")}
+          selected={gender === "m"}
+        >
           남성
         </GenderButton>
-        <GenderButton className="female" onClick={() => setGender("f")} selected={gender === "f"}>
+        <GenderButton
+          className="female"
+          onClick={() => setGender("f")}
+          selected={gender === "f"}
+        >
           여성
         </GenderButton>
       </GenderContainer>
