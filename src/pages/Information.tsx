@@ -67,7 +67,7 @@ const Information = () => {
 
   return (
     <Container>
-      <ContentHeader text="정보 수집" back={false} />
+      <ContentHeader text="정보 수집" back={false} callback={() => {}} />
       <Contents>
         <Title>
           잠깐! <br />더 나은 진단 서비스를 위해

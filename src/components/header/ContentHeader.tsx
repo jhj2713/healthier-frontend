@@ -37,13 +37,13 @@ const QuitButton = styled.section`
   cursor: pointer;
 `;
 
-const ContentHeader = ({ text, back }: IContentHeader) => {
+const ContentHeader = ({ text, back, callback }: IContentHeader) => {
   const navigate = useNavigate();
 
   return (
     <HeaderContainer>
       <Container>
-        <BackButton back={back} onClick={() => back && navigate(-1)}>
+        <BackButton back={back} onClick={() => back && callback()}>
           <img alt="back" src="/images/header/back.svg" width={32} height={32} />
         </BackButton>
         <Title>{text}</Title>

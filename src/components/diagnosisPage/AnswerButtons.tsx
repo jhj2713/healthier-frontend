@@ -68,6 +68,14 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    if (isMultiple !== 1 && selectedAnswer.length !== 0) {
+      new Promise((resolve) => {
+        setTimeout(() => resolve(handleNext()), 300);
+      });
+    }
+  }, [selectedAnswer]);
+
   const handleSelect = (id: number) => {
     if (isMultiple === 1) {
       let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -78,41 +86,27 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
         setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
       }
-    }
-    if (isMultiple === 0) {
+    } else {
       let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
       setSelectedAnswer([answers[filtered_idx]]);
-
-      const check = /^[0-9]+$/;
-      if (!check.test(question.id)) {
-        // 초기 진단응답이 아닌 경우
-        dispatch(
-          saveAnswer({
-            question_id: question.id,
-            answer_id: [answers[filtered_idx].answer_id],
-          })
-        );
-      }
-
-      setTimeout(() => handleNext(), 300);
-    }
-  };
-  const handleActive = (id: number): boolean => {
-    let idx = selectedAnswer.findIndex((ans) => ans.answer_id === id);
-    if (idx !== -1) return true;
-    return false;
-  };
-  const handleMultipleAnswer = () => {
-    const check = /^[0-9]+$/;
-    if (!check.test(question.id)) {
-      const selected_answers = selectedAnswer.map((ans) => ans.answer_id);
       dispatch(
         saveAnswer({
           question_id: question.id,
-          answer_id: selected_answers,
+          answer_id: [answers[filtered_idx].answer_id],
         })
       );
     }
+  };
+  const handleActive = (id: number): boolean => {
+    return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
+  };
+  const handleMultipleAnswer = () => {
+    dispatch(
+      saveAnswer({
+        question_id: question.id,
+        answer_id: selectedAnswer.map((ans) => ans.answer_id),
+      })
+    );
 
     handleNext();
   };
