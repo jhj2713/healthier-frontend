@@ -12,6 +12,16 @@ import {
 import HomeLoading from "./components/loading/HomeLoading";
 import { useAppSelector } from "./state";
 import styled from "styled-components";
+
+const handleResize = () => {
+  const screenRatio = 0.8;
+  const vh = window.innerHeight * 0.01;
+  const vw = Math.min(window.innerWidth * 0.01, vh * screenRatio);
+
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty("--vw", `${vw}px`);
+};
+
 const Main = styled.main`
   width: 100vw;
   height: 100vh;
