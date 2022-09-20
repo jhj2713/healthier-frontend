@@ -4,7 +4,8 @@ import Description from "../common/Description";
 
 const Background = styled.section<{ idx: number }>`
   display: flex;
-  background-color: ${({ theme, idx }) => (idx % 2 === 0 ? theme.color.grey_800 : "transparent")};
+  background-color: ${({ theme, idx }) =>
+    idx % 2 === 0 ? theme.color.grey_800 : "transparent"};
 `;
 const Icon = styled.section`
   margin-top: 2.1rem;
@@ -14,7 +15,7 @@ const Icon = styled.section`
 `;
 const Contents = styled.section`
   padding: 1.6rem 2.4rem 1.6rem 1.6rem;
-  width: calc(100vw - 4.8rem);
+  width: calc(var(--vw, 1vw) * 100 - 4.8rem);
 `;
 const Title = styled.section`
   line-height: 150%;

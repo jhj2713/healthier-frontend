@@ -32,7 +32,7 @@ const MainImage = styled.section`
   overflow: hidden;
 `;
 const Image = styled.img`
-  width: calc(100vw - 12rem);
+  width: calc(var(--vw, 1vw) * 100 - 12rem);
   object-fit: contain;
 `;
 const GuideText = styled.section`

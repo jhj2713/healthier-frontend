@@ -12,16 +12,26 @@ import { resetAnswer, popAnswer } from "../state/answerSlice";
 
 const Container = styled.section`
   height: calc(100vh - 5.6rem);
-  background: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%) #131416;
+  background: radial-gradient(
+      300.02% 130.63% at 164.62% 165.58%,
+      rgba(84, 100, 242, 0.9) 0%,
+      rgba(52, 62, 135, 0) 100%
+    )
+    #131416;
   background-attachment: fixed;
 
   overflow: auto;
+  overflow-y: overlay;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
   padding-top: 5.6rem;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
 `;
 const Question = styled(Heading_3)`
   text-align: center;
@@ -44,7 +54,9 @@ const Diagnosis = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
-  const { gender, birth_year, interests, site } = useAppSelector((state) => state.user);
+  const { gender, birth_year, interests, site } = useAppSelector(
+    (state) => state.user
+  );
   const { answers } = useAppSelector((state) => state.answer);
 
   const dispatch = useAppDispatch();
@@ -55,9 +67,11 @@ const Diagnosis = () => {
       navigate("/");
     }
 
-    axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
-      setCurQuestion(res.data);
-    });
+    axios
+      .get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`)
+      .then((res) => {
+        setCurQuestion(res.data);
+      });
   }, []);
 
   const handleNext = () => {
@@ -73,12 +87,17 @@ const Diagnosis = () => {
 
       setLoading(true);
       let response_state = {};
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`, data).then((res) => {
-        response_state = {
-          type: "",
-          diagnostic_result: res.data.diagnostic_result,
-        };
-      });
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/decisive`,
+          data
+        )
+        .then((res) => {
+          response_state = {
+            type: "",
+            diagnostic_result: res.data.diagnostic_result,
+          };
+        });
       new Promise((resolve) => {
         setTimeout(
           () =>
@@ -91,7 +110,9 @@ const Diagnosis = () => {
         );
       });
     } else {
-      const nextQuestion = state === "sleepdisorder" || (state === "headache" && !curQuestion.is_last_default);
+      const nextQuestion =
+        state === "sleepdisorder" ||
+        (state === "headache" && !curQuestion.is_last_default);
       const data = nextQuestion
         ? {
             question_id: curQuestion.id,
@@ -99,20 +120,29 @@ const Diagnosis = () => {
           }
         : { site_id: site };
 
-      axios.post(`${process.env.REACT_APP_SERVER_URL}/api/diagnose${nextQuestion ? "" : "/headache/last-default"}`, data).then((res) => {
-        setCurQuestion(res.data.question);
-        setSelectedAnswer([]);
-      });
+      axios
+        .post(
+          `${process.env.REACT_APP_SERVER_URL}/api/diagnose${
+            nextQuestion ? "" : "/headache/last-default"
+          }`,
+          data
+        )
+        .then((res) => {
+          setCurQuestion(res.data.question);
+          setSelectedAnswer([]);
+        });
     }
   };
 
   const handleBack = () => {
     if (answers.length === 1) {
       dispatch(popAnswer());
-      axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`).then((res) => {
-        setCurQuestion(res.data);
-        setSelectedAnswer([]);
-      });
+      axios
+        .get(`${process.env.REACT_APP_SERVER_URL}/api/diagnose/${state}/first`)
+        .then((res) => {
+          setCurQuestion(res.data);
+          setSelectedAnswer([]);
+        });
     } else if (answers.length !== 0) {
       dispatch(popAnswer());
       axios
@@ -138,7 +168,12 @@ const Diagnosis = () => {
           <ContentHeader text="자가 진단" back={true} callback={handleBack} />
           <Container>
             <Question>{curQuestion.question}</Question>
-            <AnswerButtons question={curQuestion} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
+            <AnswerButtons
+              question={curQuestion}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
+              handleNext={handleNext}
+            />
           </Container>
         </>
       )}

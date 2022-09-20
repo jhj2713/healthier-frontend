@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const Container = styled.header`
   position: fixed;
-  width: 100vw;
+  width: calc(var(--vw, 1vw) * 100);
   top: 0;
 
   height: 5.6rem;

@@ -1,16 +1,48 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
+import {
+  Diagnosis,
+  DiagnosisList,
+  Information,
+  MainPage,
+  ResultPage,
+  SymptomPage,
+  SymptomTypePage,
+} from "./pages";
 import HomeLoading from "./components/loading/HomeLoading";
 import { useAppSelector } from "./state";
+import styled from "styled-components";
+
+const handleResize = () => {
+  const screenRatio = 0.8;
+  const vh = window.innerHeight * 0.01;
+  const vw = Math.min(window.innerWidth * 0.01, vh * screenRatio);
+
+  document.documentElement.style.setProperty("--vh", `${vh}px`);
+  document.documentElement.style.setProperty("--vw", `${vw}px`);
+};
+
+const Main = styled.main`
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+`;
+
+const Container = styled.div`
+  width: calc(var(--vw, 1vw) * 100);
+  height: (var(--vh, 1vh) * 100);
+`;
 
 function App() {
   const { authenticated } = useAppSelector((state) => state.auth);
-
-  const handleResize = () => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
-  };
 
   useEffect(() => {
     handleResize();
@@ -21,18 +53,23 @@ function App() {
   });
 
   return (
-    <main>
-      <Routes>
-        <Route path="/" element={authenticated ? <DiagnosisList /> : <MainPage />} />
-        <Route path="/info" element={<Information />} />
-        <Route path="/result" element={<ResultPage />} />
-        <Route path="/diagnosis" element={<Diagnosis />} />
-        <Route path="/symptom" element={<SymptomPage />} />
-        <Route path="/loading" element={<HomeLoading />} />
-        <Route path="/symptom-type" element={<SymptomTypePage />} />
-        <Route path="/*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </main>
+    <Main>
+      <Container>
+        <Routes>
+          <Route
+            path="/"
+            element={authenticated ? <DiagnosisList /> : <MainPage />}
+          />
+          <Route path="/info" element={<Information />} />
+          <Route path="/result" element={<ResultPage />} />
+          <Route path="/diagnosis" element={<Diagnosis />} />
+          <Route path="/symptom" element={<SymptomPage />} />
+          <Route path="/loading" element={<HomeLoading />} />
+          <Route path="/symptom-type" element={<SymptomTypePage />} />
+          <Route path="/*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Container>
+    </Main>
   );
 }
 

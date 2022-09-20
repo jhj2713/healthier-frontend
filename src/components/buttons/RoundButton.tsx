@@ -9,7 +9,7 @@ const Container = styled.section<{
   justify-content: center;
   align-items: center;
 
-  width: calc(100vw - 4rem);
+  width: calc(var(--vw, 1vw) * 100 - 4rem);
   height: 5.2rem;
 
   background: ${({ backgroundColor }) => backgroundColor};
