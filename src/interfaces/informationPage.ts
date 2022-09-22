@@ -1,3 +1,5 @@
+import { Dispatch } from "react";
+
 export interface IGenderProps {
   gender: string;
   setGender: (gender: string) => void;
@@ -17,4 +19,14 @@ export interface ITag {
 export interface IYearPickerProps {
   year: number;
   setYear: (year: number) => void;
+}
+
+export interface IAgreement {
+  member: boolean;
+  information: boolean;
+}
+
+export interface IAgreementProps {
+  agree: IAgreement;
+  setAgree: Dispatch<IAgreement>;
 }

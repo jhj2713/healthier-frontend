@@ -12,6 +12,7 @@ import { health_interest } from "../store/interest";
 import ContentHeader from "../components/header/ContentHeader";
 import { Heading_3 } from "../lib/fontStyle";
 import { useNavigate } from "react-router-dom";
+import { IAgreement } from "../interfaces/informationPage";
 
 const ButtonBackground = styled.section`
   position: fixed;
@@ -46,6 +47,7 @@ const Information = () => {
   const [year, setYear] = useState(0);
   const [health, setHealth] = useState(health_interest);
   const [gender, setGender] = useState("");
+  const [agree, setAgree] = useState<IAgreement>({ member: false, information: false });
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -58,13 +60,17 @@ const Information = () => {
     }
   };
 
+  const isSelected = (): boolean => {
+    return year !== 0 && health.filter((item) => item.selected).length !== 0 && gender !== "" && agree.information && agree.member;
+  };
+
   useEffect(() => {
-    if (year !== 0 && health.filter((item) => item.selected).length !== 0 && gender) {
+    if (isSelected()) {
       setActive(true);
     } else {
       setActive(false);
     }
-  }, [year, health, gender]);
+  }, [year, health, gender, agree]);
 
   return (
     <>
@@ -77,7 +83,7 @@ const Information = () => {
         <YearPicker year={year} setYear={setYear} />
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
-        <Agreement />
+        <Agreement agree={agree} setAgree={setAgree} />
       </Contents>
       <ButtonBackground>
         <ButtonBox onClick={handleProceed}>
