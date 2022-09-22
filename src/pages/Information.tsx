@@ -74,6 +74,9 @@ const Information = () => {
       setActive(false);
     }
   }, [year, health, gender, agree]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [agreementDetail]);
 
   return (
     <>
