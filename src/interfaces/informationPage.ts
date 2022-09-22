@@ -29,4 +29,5 @@ export interface IAgreement {
 export interface IAgreementProps {
   agree: IAgreement;
   setAgree: Dispatch<IAgreement>;
+  setAgreementDetail: Dispatch<number>;
 }

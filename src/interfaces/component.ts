@@ -1,8 +1,11 @@
-import { Dispatch } from "react";
-
 export interface IContentHeader {
   text: string;
   back: boolean;
+  callback: () => void;
+}
+
+export interface IAgreementHeader {
+  text: string;
   callback: () => void;
 }
 

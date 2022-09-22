@@ -42,7 +42,7 @@ const AgreementDetail = styled.section`
   cursor: pointer;
 `;
 
-const Agreement = ({ agree, setAgree }: IAgreementProps) => {
+const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => {
   const handleAgree = (e: React.MouseEvent): void => {
     const target = e.target as HTMLElement;
     if (target.id === "member") setAgree({ ...agree, member: !agree.member });
@@ -76,7 +76,7 @@ const Agreement = ({ agree, setAgree }: IAgreementProps) => {
             />
             <CheckText>회원 이용약관에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
-          <AgreementDetail>내용보기</AgreementDetail>
+          <AgreementDetail onClick={() => setAgreementDetail(1)}>내용보기</AgreementDetail>
         </AgreementBox>
         <AgreementBox>
           <AgreementCheck>
@@ -88,7 +88,7 @@ const Agreement = ({ agree, setAgree }: IAgreementProps) => {
             />
             <CheckText>개인정보 수집 및 이용에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
-          <AgreementDetail>내용보기</AgreementDetail>
+          <AgreementDetail onClick={() => setAgreementDetail(2)}>내용보기</AgreementDetail>
         </AgreementBox>
       </AgreementList>
     </Container>

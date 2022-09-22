@@ -13,6 +13,8 @@ import ContentHeader from "../components/header/ContentHeader";
 import { Heading_3 } from "../lib/fontStyle";
 import { useNavigate } from "react-router-dom";
 import { IAgreement } from "../interfaces/informationPage";
+import MemberAgreement from "../components/infoPage/MemberAgreement";
+import InformationAgreement from "../components/infoPage/InformationAgreement";
 
 const ButtonBackground = styled.section`
   position: fixed;
@@ -48,6 +50,7 @@ const Information = () => {
   const [health, setHealth] = useState(health_interest);
   const [gender, setGender] = useState("");
   const [agree, setAgree] = useState<IAgreement>({ member: false, information: false });
+  const [agreementDetail, setAgreementDetail] = useState(0);
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -74,27 +77,35 @@ const Information = () => {
 
   return (
     <>
-      <ContentHeader text="정보 수집" back={false} callback={() => {}} />
-      <Contents>
-        <Title>
-          잠깐! <br />더 나은 진단 서비스를 위해
-          <br /> 간단한 정보가 필요해요
-        </Title>
-        <YearPicker year={year} setYear={setYear} />
-        <Gender gender={gender} setGender={setGender} />
-        <Tags health={health} setHealth={setHealth} />
-        <Agreement agree={agree} setAgree={setAgree} />
-      </Contents>
-      <ButtonBackground>
-        <ButtonBox onClick={handleProceed}>
-          <RoundButton
-            outline="none"
-            backgroundColor={active ? theme.color.blue : theme.color.grey_750}
-            color={active ? theme.color.grey_100 : theme.color.grey_600}
-            text="증상 진단하러 가기"
-          />
-        </ButtonBox>
-      </ButtonBackground>
+      {agreementDetail === 0 ? (
+        <>
+          <ContentHeader text="정보 수집" back={false} callback={() => {}} />
+          <Contents>
+            <Title>
+              잠깐! <br />더 나은 진단 서비스를 위해
+              <br /> 간단한 정보가 필요해요
+            </Title>
+            <YearPicker year={year} setYear={setYear} />
+            <Gender gender={gender} setGender={setGender} />
+            <Tags health={health} setHealth={setHealth} />
+            <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
+          </Contents>
+          <ButtonBackground>
+            <ButtonBox onClick={handleProceed}>
+              <RoundButton
+                outline="none"
+                backgroundColor={active ? theme.color.blue : theme.color.grey_750}
+                color={active ? theme.color.grey_100 : theme.color.grey_600}
+                text="증상 진단하러 가기"
+              />
+            </ButtonBox>
+          </ButtonBackground>
+        </>
+      ) : agreementDetail === 1 ? (
+        <MemberAgreement setAgreementDetail={setAgreementDetail} />
+      ) : (
+        <InformationAgreement setAgreementDetail={setAgreementDetail} />
+      )}
     </>
   );
 };
