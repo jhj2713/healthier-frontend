@@ -5,6 +5,7 @@ import RoundButton from "../components/buttons/RoundButton";
 import theme from "../lib/theme";
 import Tags from "../components/infoPage/Tags";
 import YearPicker from "../components/infoPage/YearPicker";
+import Agreement from "../components/infoPage/Agreement";
 import { useAppDispatch } from "../state";
 import { userSubmit } from "../state/userSlice";
 import { health_interest } from "../store/interest";
@@ -12,9 +13,6 @@ import ContentHeader from "../components/header/ContentHeader";
 import { Heading_3 } from "../lib/fontStyle";
 import { useNavigate } from "react-router-dom";
 
-const Container = styled.section`
-  padding-top: 5.6rem;
-`;
 const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;
@@ -34,10 +32,13 @@ const ButtonBox = styled.section`
 const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 
-  margin-top: 4rem;
+  padding-top: 4rem;
 `;
 const Contents = styled.section`
-  margin: 0 2.4rem 13rem 2.4rem;
+  margin: 0 2.4rem 15rem 2.4rem;
+  padding-top: 5.6rem;
+
+  height: (var(--vh, 1vh) * 100);
 `;
 
 const Information = () => {
@@ -66,7 +67,7 @@ const Information = () => {
   }, [year, health, gender]);
 
   return (
-    <Container>
+    <>
       <ContentHeader text="정보 수집" back={false} callback={() => {}} />
       <Contents>
         <Title>
@@ -76,6 +77,7 @@ const Information = () => {
         <YearPicker year={year} setYear={setYear} />
         <Gender gender={gender} setGender={setGender} />
         <Tags health={health} setHealth={setHealth} />
+        <Agreement />
       </Contents>
       <ButtonBackground>
         <ButtonBox onClick={handleProceed}>
@@ -87,7 +89,7 @@ const Information = () => {
           />
         </ButtonBox>
       </ButtonBackground>
-    </Container>
+    </>
   );
 };
 
