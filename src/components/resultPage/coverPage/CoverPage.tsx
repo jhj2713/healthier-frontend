@@ -12,9 +12,8 @@ const Container = styled.section`
   height: calc(var(--vw, 1vw) * 100 + 27.4rem);
 `;
 const CoverImage = styled.img`
-  width: calc(var(--vw, 1vw)) * 100;
-  height: calc(var(--vw, 1vw)) * 100;
-
+  width: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vw, 1vw) * 100);
   border: 0;
 `;
 const Contents = styled.section`
