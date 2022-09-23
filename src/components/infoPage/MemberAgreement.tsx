@@ -44,6 +44,8 @@ const Table = styled.section`
 
   display: flex;
 
+  word-break: keep-all;
+
   color: ${({ theme }) => theme.color.grey_300};
   & + & {
     margin-top: 0.1rem;
@@ -51,16 +53,15 @@ const Table = styled.section`
 `;
 const TableTitle = styled.section`
   width: 6.6rem;
-  height: 3.5rem;
+  padding: 1rem;
 
   background: ${({ theme }) => theme.color.grey_800};
-
-  padding: 1rem 0 1rem 1rem;
-
-  word-break: keep-all;
 `;
 const TableDescription = styled.section`
-  height: 3.5rem;
+  width: 100%;
+  padding: 1rem 1.2rem;
+
+  background: ${({ theme }) => theme.color.grey_850};
 `;
 
 const MemberAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<number> }) => {
