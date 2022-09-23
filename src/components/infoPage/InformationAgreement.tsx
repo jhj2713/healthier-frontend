@@ -54,12 +54,18 @@ const InformationAgreement = ({ setAgreementDetail }: { setAgreementDetail: Disp
           {information_agreement.map((item, idx) => (
             <AgreementItem key={idx}>
               <Subtitle>{item.title}</Subtitle>
-              <Text>{item.description}</Text>
-              {item.sub_description.map((subItem) => (
-                <SubDescriptionBox key={subItem.title}>
-                  <Subtitle>{subItem.title}</Subtitle>
-                  <Text>{subItem.description}</Text>
-                </SubDescriptionBox>
+              {item.description.map((description) => (
+                <>
+                  <Text key={description.sub_title}>{description.sub_title}</Text>
+                  {description.sub_description.map((subItem) => (
+                    <SubDescriptionBox key={subItem.title}>
+                      <Subtitle>{subItem.title}</Subtitle>
+                      {subItem.description.map((subDescription) => (
+                        <Text key={subDescription}>{subDescription}</Text>
+                      ))}
+                    </SubDescriptionBox>
+                  ))}
+                </>
               ))}
             </AgreementItem>
           ))}

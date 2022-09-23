@@ -27,6 +27,41 @@ const Subtitle = styled.section`
 const Text = styled(Description)`
   margin-top: 0.6rem;
 `;
+const SubText = styled(Text)`
+  margin-left: 1.6rem;
+
+  & + & {
+    margin-top: 0.2rem;
+  }
+`;
+const Table = styled.section`
+  margin-top: 0.6rem;
+  margin-left: 0.9rem;
+
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 150%;
+
+  display: flex;
+
+  color: ${({ theme }) => theme.color.grey_300};
+  & + & {
+    margin-top: 0.1rem;
+  }
+`;
+const TableTitle = styled.section`
+  width: 6.6rem;
+  height: 3.5rem;
+
+  background: ${({ theme }) => theme.color.grey_800};
+
+  padding: 1rem 0 1rem 1rem;
+
+  word-break: keep-all;
+`;
+const TableDescription = styled.section`
+  height: 3.5rem;
+`;
 
 const MemberAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<number> }) => {
   return (
@@ -38,7 +73,21 @@ const MemberAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<
           {member_agreement.map((item, idx) => (
             <section key={idx}>
               <Subtitle>{item.title}</Subtitle>
-              <Text>{item.description}</Text>
+              {item.description.map((subItem) => (
+                <section key={subItem.sub_title}>
+                  <Text>{subItem.sub_title}</Text>
+                  {subItem.sub_table &&
+                    subItem.sub_table.map((table) => (
+                      <Table key={table.title}>
+                        <TableTitle>{table.title}</TableTitle>
+                        <TableDescription>{table.description}</TableDescription>
+                      </Table>
+                    ))}
+                  {subItem.sub_description.map((subDescription) => (
+                    <SubText key={subDescription}>{subDescription}</SubText>
+                  ))}
+                </section>
+              ))}
             </section>
           ))}
         </Contents>
