@@ -75,11 +75,11 @@ const MemberAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<
             <section key={idx}>
               <Subtitle>{item.title}</Subtitle>
               {item.description.map((subItem) => (
-                <section key={subItem.sub_title}>
+                <section key={subItem.id}>
                   <Text>{subItem.sub_title}</Text>
                   {subItem.sub_table &&
                     subItem.sub_table.map((table) => (
-                      <Table key={table.title}>
+                      <Table key={table.id}>
                         <TableTitle>{table.title}</TableTitle>
                         <TableDescription>{table.description}</TableDescription>
                       </Table>

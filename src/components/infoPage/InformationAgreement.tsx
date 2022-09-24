@@ -35,6 +35,51 @@ const Text = styled(Description)`
 const AgreementItem = styled.section`
   margin-top: 2rem;
 `;
+const Reference = styled.section<{ tab: number }>`
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 150%;
+
+  color: ${({ theme }) => theme.color.grey_400};
+
+  margin-top: 0.6rem;
+
+  margin-left: ${({ tab }) => tab}rem;
+`;
+const Table = styled.section`
+  margin-top: 0.7rem;
+
+  font-size: 1rem;
+  font-weight: 200;
+  line-height: 150%;
+
+  word-break: keep-all;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
+  color: ${({ theme }) => theme.color.grey_300};
+`;
+const TableTitle = styled.section`
+  padding: 1.6rem 0.8rem;
+  background: ${({ theme }) => theme.color.grey_800};
+
+  text-align: center;
+
+  & + & {
+    margin-left: 0.1rem;
+  }
+`;
+const TableDescription = styled.section`
+  padding: 1.2rem 0.8rem;
+  background: ${({ theme }) => theme.color.grey_850};
+
+  text-align: center;
+
+  & + & {
+    margin-left: 0.1rem;
+  }
+`;
 
 const InformationAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<number> }) => {
   return (
@@ -47,7 +92,7 @@ const InformationAgreement = ({ setAgreementDetail }: { setAgreementDetail: Disp
             &lt; 헬시어 Healthier &gt;('https://healthier.cf/'이하 '헬시어 Healthier')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를
             보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다. <br />
             <br />
-            &bull; 이 개인정보처리방침은 2022년 8월 8부터 적용됩니다.
+            &bull; 이 개인정보처리방침은 2022년 8월 8일부터 적용됩니다.
             <br />
             <br />
           </Prefix>
@@ -55,17 +100,30 @@ const InformationAgreement = ({ setAgreementDetail }: { setAgreementDetail: Disp
             <AgreementItem key={idx}>
               <Subtitle>{item.title}</Subtitle>
               {item.description.map((description) => (
-                <>
-                  <Text key={description.sub_title}>{description.sub_title}</Text>
+                <section key={description.id}>
+                  <Text>{description.sub_title}</Text>
                   {description.sub_description.map((subItem) => (
-                    <SubDescriptionBox key={subItem.title}>
+                    <SubDescriptionBox key={subItem.id}>
                       <Subtitle>{subItem.title}</Subtitle>
                       {subItem.description.map((subDescription) => (
                         <Text key={subDescription}>{subDescription}</Text>
                       ))}
                     </SubDescriptionBox>
                   ))}
-                </>
+                  {description.sub_reference.length > 1 && (
+                    <Reference tab={Number(description.sub_reference[1])}>{description.sub_reference[0]}</Reference>
+                  )}
+                  {description.sub_table.length > 1 && (
+                    <Table>
+                      {description.sub_table[0].map((title) => (
+                        <TableTitle key={title}>{title}</TableTitle>
+                      ))}
+                      {description.sub_table[1].map((description) => (
+                        <TableDescription key={description}>{description}</TableDescription>
+                      ))}
+                    </Table>
+                  )}
+                </section>
               ))}
             </AgreementItem>
           ))}
