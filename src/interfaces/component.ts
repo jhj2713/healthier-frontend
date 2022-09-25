@@ -1,5 +1,3 @@
-import { Dispatch } from "react";
-
 export interface IContentHeader {
   text: string;
   back: boolean;
