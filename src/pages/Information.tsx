@@ -74,9 +74,6 @@ const Information = () => {
       setActive(false);
     }
   }, [year, health, gender, agree]);
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [agreementDetail]);
 
   return (
     <>
@@ -105,9 +102,9 @@ const Information = () => {
           </ButtonBackground>
         </>
       ) : agreementDetail === 1 ? (
-        <MemberAgreement setAgreementDetail={setAgreementDetail} />
+        <MemberAgreement agreementDetail={agreementDetail} setAgreementDetail={setAgreementDetail} />
       ) : (
-        <InformationAgreement setAgreementDetail={setAgreementDetail} />
+        <InformationAgreement agreementDetail={agreementDetail} setAgreementDetail={setAgreementDetail} />
       )}
     </>
   );

@@ -31,3 +31,13 @@ export interface IAgreementProps {
   setAgree: Dispatch<IAgreement>;
   setAgreementDetail: Dispatch<number>;
 }
+
+export interface IAgreementHeader {
+  text: string;
+  callback: () => void;
+}
+
+export interface IAgreementComponentProps {
+  agreementDetail: number;
+  setAgreementDetail: Dispatch<number>;
+}

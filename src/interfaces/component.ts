@@ -4,11 +4,6 @@ export interface IContentHeader {
   callback: () => void;
 }
 
-export interface IAgreementHeader {
-  text: string;
-  callback: () => void;
-}
-
 export interface IButton {
   outline: string;
   backgroundColor: string;

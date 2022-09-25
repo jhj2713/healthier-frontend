@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import HeaderContainer from "./HeaderContainer";
-import { useNavigate } from "react-router-dom";
-import { IAgreementHeader, IContentHeader } from "../../interfaces/component";
+import { IAgreementHeader } from "../../interfaces/informationPage";
 
 const Container = styled.section`
   color: ${({ theme }) => theme.color.grey_200};

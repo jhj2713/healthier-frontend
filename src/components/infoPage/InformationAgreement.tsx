@@ -1,16 +1,19 @@
-import { Dispatch } from "react";
 import styled from "styled-components";
 import { Description } from "../../lib/fontStyle";
 import AgreementHeader from "../header/AgreementHeader";
 import Title from "../resultPage/common/Title";
 import { information_agreement } from "../../store/information_agreement";
+import { IAgreementComponentProps } from "../../interfaces/informationPage";
 
-const Container = styled.article`
+const Container = styled.article<{ agreementDetail: number }>`
   margin-top: 5.6rem;
   padding: 2rem 2.4rem;
 
   word-break: break-all;
   white-space: pre-line;
+
+  height: calc(100vh - 9.6rem);
+  overflow: ${({ agreementDetail }) => (agreementDetail === 2 ? "auto" : "hidden")};
 `;
 const Contents = styled.section`
   margin-top: 0.4rem;
@@ -81,11 +84,11 @@ const TableDescription = styled.section`
   }
 `;
 
-const InformationAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<number> }) => {
+const InformationAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
       <AgreementHeader text="개인정보 처리방침" callback={() => setAgreementDetail(0)} />
-      <Container>
+      <Container agreementDetail={agreementDetail}>
         <Title text="개인정보 처리방침" />
         <Contents>
           <Prefix>

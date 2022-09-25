@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import AgreementHeader from "../header/AgreementHeader";
 import Title from "../resultPage/common/Title";
-import { Dispatch } from "react";
 import { Description } from "../../lib/fontStyle";
 import { member_agreement } from "../../store/member_agreement";
+import { IAgreementComponentProps } from "../../interfaces/informationPage";
 
-const Container = styled.article`
+const Container = styled.article<{ agreementDetail: number }>`
   margin-top: 5.6rem;
   padding: 2rem 2.4rem;
 
   word-break: break-all;
   white-space: pre-line;
+
+  height: calc(100vh - 9.6rem);
+  overflow: ${({ agreementDetail }) => (agreementDetail === 1 ? "auto" : "hidden")};
 `;
 const Contents = styled.section`
   margin-top: 0.4rem;
@@ -64,11 +67,11 @@ const TableDescription = styled.section`
   background: ${({ theme }) => theme.color.grey_850};
 `;
 
-const MemberAgreement = ({ setAgreementDetail }: { setAgreementDetail: Dispatch<number> }) => {
+const MemberAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
       <AgreementHeader text="회원 이용약관" callback={() => setAgreementDetail(0)} />
-      <Container>
+      <Container agreementDetail={agreementDetail}>
         <Title text="헬시어 회원 이용약관" />
         <Contents>
           {member_agreement.map((item, idx) => (
