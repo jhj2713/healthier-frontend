@@ -25,14 +25,15 @@ const AgreementCheck = styled.section`
   cursor: pointer;
 `;
 const CheckText = styled(Description)`
+  font-size: 1.4rem;
   color: ${({ theme }) => theme.color.grey_300};
   margin-left: 0.9rem;
 `;
 const TotalCheckText = styled(CheckText)`
-  font-size: 1.3rem;
+  font-size: 1.6rem;
 `;
 const AgreementDetail = styled.section`
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 200;
   line-height: 1.8rem;
 
