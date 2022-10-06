@@ -25,7 +25,7 @@ const TagBox = styled.section`
 const DescriptionBox = styled(Description)`
   color: ${({ theme }) => theme.color.grey_500};
 
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-top: 1.6rem;
 `;
 

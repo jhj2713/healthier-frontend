@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Description } from "../../lib/fontStyle";
-import AgreementHeader from "../header/AgreementHeader";
+import ContentHeader from "../header/ContentHeader";
 import Title from "../resultPage/common/Title";
 import { information_agreement } from "../../store/information_agreement";
 import { IAgreementComponentProps } from "../../interfaces/informationPage";
@@ -87,7 +87,7 @@ const TableDescription = styled.section`
 const InformationAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
-      <AgreementHeader text="개인정보 처리방침" callback={() => setAgreementDetail(0)} />
+      <ContentHeader text={"개인정보 처리방침"} back={false} exit={true} backCallback={() => {}} exitCallback={() => setAgreementDetail(0)} />
       <Container agreementDetail={agreementDetail}>
         <Title text="개인정보 처리방침" />
         <Contents>

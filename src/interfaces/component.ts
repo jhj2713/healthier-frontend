@@ -1,7 +1,9 @@
 export interface IContentHeader {
   text: string;
   back: boolean;
-  callback: () => void;
+  exit: boolean;
+  backCallback: () => void;
+  exitCallback: () => void;
 }
 
 export interface IButton {

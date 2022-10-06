@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import AgreementHeader from "../header/AgreementHeader";
 import Title from "../resultPage/common/Title";
 import { Description } from "../../lib/fontStyle";
 import { member_agreement } from "../../store/member_agreement";
 import { IAgreementComponentProps } from "../../interfaces/informationPage";
+import ContentHeader from "../header/ContentHeader";
 
 const Container = styled.article<{ agreementDetail: number }>`
   margin-top: 5.6rem;
@@ -70,7 +70,7 @@ const TableDescription = styled.section`
 const MemberAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
-      <AgreementHeader text="회원 이용약관" callback={() => setAgreementDetail(0)} />
+      <ContentHeader text={"회원 이용약관"} back={false} exit={true} backCallback={() => {}} exitCallback={() => setAgreementDetail(0)} />
       <Container agreementDetail={agreementDetail}>
         <Title text="헬시어 회원 이용약관" />
         <Contents>
