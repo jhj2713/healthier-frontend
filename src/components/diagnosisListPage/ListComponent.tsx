@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { IListComponent } from "../../interfaces/component";
 import { Heading_5 } from "../../lib/fontStyle";
+import severityTypes from "../../store/severity_types";
 import axios from "axios";
 
 const Container = styled.section<{ severity: number }>`
@@ -62,8 +63,6 @@ const Image = styled.img`
   border-radius: 0 0.8rem 0.8rem 0;
 `;
 
-const severity_map = ["상태가 양호해요", "관리가 필요해요", "관리가 필요해요", "병원에 가야해요"];
-
 const ListComponent = ({ diagnosis }: IListComponent) => {
   const navigate = useNavigate();
 
@@ -88,7 +87,7 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
       <Box>
         <Title severity={diagnosis.record.severity}>{diagnosis.record.title}</Title>
         <Date severity={diagnosis.record.severity}>{diag_date}</Date>
-        <Tag severity={diagnosis.record.severity}>{severity_map[diagnosis.record.severity]}</Tag>
+        <Tag severity={diagnosis.record.severity}>{severityTypes[diagnosis.record.severity]}</Tag>
       </Box>
     </Container>
   );

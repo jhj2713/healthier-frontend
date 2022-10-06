@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../state";
 import { setSite } from "../../state/userSlice";
 import { Body_3, Heading_3 } from "../../lib/fontStyle";
+import { regions, particles } from "../../store/symptom_data";
 
 const OverlaySection = styled.div`
   width: calc(var(--vw, 1vw) * 100);
@@ -18,12 +19,7 @@ const OverlaySection = styled.div`
   align-items: center;
   justify-content: flex-end;
 
-  background: linear-gradient(
-    180deg,
-    rgba(19, 20, 22, 0) 0%,
-    rgba(19, 20, 22, 0) 78.12%,
-    #131416 100%
-  );
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0) 78.12%, #131416 100%);
 `;
 
 const ButtonDiv = styled.div`
@@ -91,10 +87,8 @@ const RotateButton = styled.button<{ toggle: boolean }>`
 
   margin-bottom: 2rem;
 
-  background-color: ${({ toggle, theme }) =>
-    toggle ? theme.color.sub_blue : "rgba(0, 0, 0, 0)"};
-  color: ${({ toggle, theme }) =>
-    toggle ? theme.color.blue : theme.color.grey_500};
+  background-color: ${({ toggle, theme }) => (toggle ? theme.color.sub_blue : "rgba(0, 0, 0, 0)")};
+  color: ${({ toggle, theme }) => (toggle ? theme.color.blue : theme.color.grey_500)};
   border: ${({ toggle }) => (toggle ? "none" : "solid")};
   border-width: 1px;
   border-color: ${({ theme }) => theme.color.grey_500};
@@ -110,8 +104,7 @@ const PartButton = styled.button<{ toggle: boolean }>`
   padding: 0.6rem 1rem;
 
   color: ${({ toggle, theme }) => (toggle ? "white" : theme.color.blue)};
-  background-color: ${({ toggle, theme }) =>
-    toggle ? theme.color.blue : theme.color.grey_900};
+  background-color: ${({ toggle, theme }) => (toggle ? theme.color.blue : theme.color.grey_900)};
 
   border: solid 0.15rem;
   border-color: ${({ theme }) => theme.color.blue};
@@ -128,20 +121,6 @@ const PartButton = styled.button<{ toggle: boolean }>`
   cursor: pointer;
 `;
 
-const regions = [
-  "",
-  "관자놀이",
-  "이마의 띠",
-  "눈",
-  "눈 주위",
-  "코 주위",
-  "턱",
-  "뒷머리",
-  "머리 전체",
-  "뒷목",
-];
-const particles = ["", "를", "를", "을", "를", "를", "을", "를", "를", "을"];
-
 const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -157,8 +136,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         {menu ? (
           <Title>
             <span style={{ color: theme.color.green }}>머리</span>에서
-            <br />{" "}
-            <span style={{ color: theme.color.green }}>{regions[menu]}</span>
+            <br /> <span style={{ color: theme.color.green }}>{regions[menu]}</span>
             {particles[menu] + " "}
             선택했어요
           </Title>
@@ -168,9 +146,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               증상 부위를 <br />
               선택해주세요
             </Title>
-            <SubTitle onClick={() => handleNext(8)}>
-              어디가 아픈지 모르겠다면 &#62;
-            </SubTitle>
+            <SubTitle onClick={() => handleNext(8)}>어디가 아픈지 모르겠다면 &#62;</SubTitle>
           </>
         )}
       </TitleDiv>

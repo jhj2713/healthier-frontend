@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
 
-        background-color: #131416;
+        background: #131416;
 
         word-break: keep-all;
     }
