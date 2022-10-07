@@ -38,11 +38,7 @@ const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
       <TypeImage>
         <img
           alt="icon"
-          src={
-            title === "신체 건강"
-              ? "https://healthier.s3.ap-northeast-2.amazonaws.com/client/body.png"
-              : "https://healthier.s3.ap-northeast-2.amazonaws.com/client/mental.png"
-          }
+          src={`https://healthier.s3.ap-northeast-2.amazonaws.com/client/${title === "신체 건강" ? "body" : "mental"}.png`}
           height={142}
         />
       </TypeImage>

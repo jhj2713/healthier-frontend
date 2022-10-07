@@ -3,9 +3,9 @@ import { Canvas } from "@react-three/fiber";
 import styled from "styled-components";
 import Character from "../components/symptomPage/Character";
 import Overlay from "../components/symptomPage/Overlay";
-import SymptomHeader from "../components/header/SymptomHeader";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../lib/theme";
+import ContentHeader from "../components/header/ContentHeader";
 
 const Container = styled.section`
   width: calc(var(--vw, 1vw) * 100);
@@ -25,6 +25,8 @@ const CanvasSection = styled.div`
 
   z-index: 0;
   position: absolute;
+
+  background: ${({ theme }) => theme.color.grey_900};
 `;
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
@@ -55,21 +57,9 @@ const Symptom = () => {
         <Canvas camera={{ position: [0, 0, 25], fov: 30, near: 1, far: 1000 }}>
           <Suspense>
             <ambientLight intensity={0.1} color={theme.color.white} />
-            <directionalLight
-              color={theme.color.white}
-              position={[0, 200, 50]}
-              intensity={0.4}
-            />
-            <directionalLight
-              color={theme.color.white}
-              position={[-100, 100, 0]}
-              intensity={0.8}
-            />
-            <directionalLight
-              color={theme.color.white}
-              position={[0, 0, 100]}
-              intensity={0.5}
-            />
+            <directionalLight color={theme.color.white} position={[0, 200, 50]} intensity={0.4} />
+            <directionalLight color={theme.color.white} position={[-100, 100, 0]} intensity={0.8} />
+            <directionalLight color={theme.color.white} position={[0, 0, 100]} intensity={0.5} />
             <Character view={view} menu={menu} />
 
             {view ? (
@@ -84,7 +74,7 @@ const Symptom = () => {
           </Suspense>
         </Canvas>
       </CanvasSection>
-      <SymptomHeader />
+      <ContentHeader text="" back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")} />
       <Overlay menu={menu} setMenu={setMenu} view={view} setView={setView} />
     </Container>
   );

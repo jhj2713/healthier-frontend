@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import HeaderContainer from "./HeaderContainer";
-import { useNavigate } from "react-router-dom";
 import { IContentHeader } from "../../interfaces/component";
 
 const Container = styled.section`
@@ -30,35 +29,25 @@ const BackButton = styled.section<{ back: boolean }>`
 
   cursor: pointer;
 `;
-const QuitButton = styled.section`
+const QuitButton = styled.section<{ exit: boolean }>`
+  opacity: ${({ exit }) => (exit ? 1 : 0)};
+
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;
 
   cursor: pointer;
 `;
 
-const ContentHeader = ({ text, back, callback }: IContentHeader) => {
-  const navigate = useNavigate();
-
+const ContentHeader = ({ text, back, exit, backCallback, exitCallback }: IContentHeader) => {
   return (
     <HeaderContainer>
       <Container>
-        <BackButton back={back} onClick={() => back && callback()}>
-          <img
-            alt="back"
-            src="/images/header/back.svg"
-            width={32}
-            height={32}
-          />
+        <BackButton back={back} onClick={() => back && backCallback()}>
+          <img alt="back" src="/images/header/back.svg" width={32} height={32} />
         </BackButton>
         <Title>{text}</Title>
-        <QuitButton onClick={() => navigate("/")}>
-          <img
-            alt="quit"
-            src="/images/header/quit.svg"
-            width={32}
-            height={32}
-          />
+        <QuitButton exit={exit} onClick={() => exit && exitCallback()}>
+          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
         </QuitButton>
       </Container>
     </HeaderContainer>
