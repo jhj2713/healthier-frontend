@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { ISymptomTypeComponent } from "../../../interfaces/component";
 import { Container, Title, TypeImage } from "./index.style";
 
@@ -16,4 +17,4 @@ const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
   );
 };
 
-export default SymptomTypeComponent;
+export default memo(SymptomTypeComponent);

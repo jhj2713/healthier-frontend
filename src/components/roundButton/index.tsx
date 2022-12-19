@@ -1,5 +1,6 @@
 import { Container, ButtonText } from "./index.style";
 import { IRoundButton } from "../../interfaces/component";
+import { memo } from "react";
 
 const RoundButton = ({ outline, backgroundColor, color, children }: IRoundButton) => {
   return (
@@ -9,4 +10,4 @@ const RoundButton = ({ outline, backgroundColor, color, children }: IRoundButton
   );
 };
 
-export default RoundButton;
+export default memo(RoundButton);

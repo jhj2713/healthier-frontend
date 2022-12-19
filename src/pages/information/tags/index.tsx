@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Tag from "../../../components/tags";
 import { ITagsProps } from "../../../interfaces/informationPage";
 import { Container, TagContainer, TagBox, Title, DescriptionBox } from "./index.style";
@@ -27,4 +27,4 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
   );
 };
 
-export default Tags;
+export default memo(Tags);

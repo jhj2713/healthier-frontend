@@ -26,6 +26,14 @@ const Information = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    if (isSelected()) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  }, [year, health, gender, agree]);
+
   const handleProceed = () => {
     if (active) {
       const healthId = health.filter((item) => item.selected).map((item) => item.id);
@@ -37,14 +45,6 @@ const Information = () => {
   const isSelected = (): boolean => {
     return year !== 0 && health.filter((item) => item.selected).length !== 0 && gender !== "" && agree.information && agree.member;
   };
-
-  useEffect(() => {
-    if (isSelected()) {
-      setActive(true);
-    } else {
-      setActive(false);
-    }
-  }, [year, health, gender, agree]);
 
   return (
     <>

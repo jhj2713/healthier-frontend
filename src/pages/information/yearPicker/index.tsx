@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { IYearPickerProps } from "../../../interfaces/informationPage";
 import { Container, Title, SelectBox } from "./index.style";
 
@@ -29,4 +29,4 @@ function YearPicker({ year, setYear }: IYearPickerProps) {
   );
 }
 
-export default YearPicker;
+export default memo(YearPicker);
