@@ -1,6 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import theme from "../../lib/theme";
-import RoundButton from "../buttons/RoundButton";
+import RoundButton from "../roundButton";
 import { IOverlayProps } from "../../interfaces/symptomPage";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../state";
@@ -277,8 +277,9 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             outline="none"
             backgroundColor={menu ? theme.color.green : theme.color.grey_750}
             color={menu ? theme.color.grey_900 : theme.color.grey_500}
-            text={"진단 시작하기"}
-          />
+          >
+            진단 시작하기
+          </RoundButton>
         </section>
       </ButtonDiv>
     </OverlaySection>

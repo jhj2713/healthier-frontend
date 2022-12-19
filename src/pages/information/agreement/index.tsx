@@ -1,47 +1,5 @@
-import styled from "styled-components";
-import { IAgreementProps } from "../../interfaces/informationPage";
-import { Body_4, Description } from "../../lib/fontStyle";
-
-const Container = styled.article`
-  margin-top: 3.2rem;
-`;
-const Title = styled(Body_4)`
-  color: ${({ theme }) => theme.color.grey_300};
-`;
-const AgreementList = styled.section`
-  margin-top: 1.2rem;
-`;
-const AgreementBox = styled.section`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  margin-top: 1.6rem;
-`;
-const AgreementCheck = styled.section`
-  display: flex;
-  align-items: center;
-
-  cursor: pointer;
-`;
-const CheckText = styled(Description)`
-  font-size: 1.4rem;
-  color: ${({ theme }) => theme.color.grey_300};
-  margin-left: 0.9rem;
-`;
-const TotalCheckText = styled(CheckText)`
-  font-size: 1.6rem;
-`;
-const AgreementDetail = styled.section`
-  font-size: 1.3rem;
-  font-weight: 200;
-  line-height: 1.8rem;
-
-  color: ${({ theme }) => theme.color.sub_blue};
-  text-decoration-line: underline;
-
-  cursor: pointer;
-`;
+import { IAgreementProps } from "../../../interfaces/informationPage";
+import { Container, Title, AgreementList, AgreementCheck, TotalCheckText, AgreementBox, CheckText } from "./index.style";
 
 const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => {
   const handleAgree = (e: React.MouseEvent): void => {
@@ -72,7 +30,9 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
             <img alt="member check" id="member" src={`/images/informationPage/check-${agree.member ? "" : "in"}active.svg`} onClick={handleAgree} />
             <CheckText>회원 이용약관에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
-          <AgreementDetail onClick={() => setAgreementDetail(1)}>내용보기</AgreementDetail>
+          <section className="agreement-detail" onClick={() => setAgreementDetail(1)}>
+            내용보기
+          </section>
         </AgreementBox>
         <AgreementBox>
           <AgreementCheck>
@@ -84,7 +44,9 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
             />
             <CheckText>개인정보 수집 및 이용에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
-          <AgreementDetail onClick={() => setAgreementDetail(2)}>내용보기</AgreementDetail>
+          <section className="agreement-detail" onClick={() => setAgreementDetail(2)}>
+            내용보기
+          </section>
         </AgreementBox>
       </AgreementList>
     </Container>

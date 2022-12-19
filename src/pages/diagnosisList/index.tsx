@@ -1,5 +1,5 @@
 import { useLayoutEffect, useState } from "react";
-import RoundButton from "../../components/buttons/RoundButton";
+import RoundButton from "../../components/roundButton";
 import MainHeader from "../../components/header/MainHeader";
 import ListComponent from "../../components/diagnosisListPage/ListComponent";
 import theme from "../../lib/theme";
@@ -72,7 +72,9 @@ const DiagnosisList = () => {
       )}
       <ButtonBackground>
         <section className="button-box" onClick={() => navigate("/symptom-type", { state: "list" })}>
-          <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_900} text="빠른 진단 시작하기" />
+          <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_900}>
+            빠른 진단 시작하기
+          </RoundButton>
         </section>
       </ButtonBackground>
     </Container>

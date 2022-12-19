@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { IButton } from "../../interfaces/component";
+import { IRoundButton } from "../../interfaces/component";
 
 const Container = styled.section<{
   backgroundColor: string;
@@ -29,10 +29,10 @@ const ButtonText = styled.section<{ color: string }>`
   text-align: center;
 `;
 
-const RoundButton = ({ outline, backgroundColor, color, text }: IButton) => {
+const RoundButton = ({ outline, backgroundColor, color, children }: IRoundButton) => {
   return (
     <Container backgroundColor={backgroundColor} outline={outline}>
-      <ButtonText color={color}>{text}</ButtonText>
+      <ButtonText color={color}>{children}</ButtonText>
     </Container>
   );
 };

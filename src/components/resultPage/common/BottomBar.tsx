@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import theme from "../../../lib/theme";
 import BottomNumber from "./BottomNumber";
-import RoundButton from "../../buttons/RoundButton";
+import RoundButton from "../../roundButton";
 import { IBottomBar } from "../../../interfaces/resultPage";
 import { useAppSelector } from "../../../state";
 import { useNavigate } from "react-router-dom";
@@ -17,12 +17,7 @@ const BottomContainer = styled.section<{ curIndex: number }>`
   padding-top: 12rem;
   padding-bottom: 4rem;
 
-  background: linear-gradient(
-    180deg,
-    rgba(19, 20, 22, 0) 0%,
-    rgba(19, 20, 22, 0.947917) 78.12%,
-    #131416 100%
-  );
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
 
   pointer-events: none;
 `;
@@ -36,14 +31,7 @@ const BottomButton = styled.section`
   pointer-events: auto;
 `;
 
-const BottomBar = ({
-  curIndex,
-  totalCount,
-  setModal,
-  setLoading,
-  isSaved,
-  resultId,
-}: IBottomBar) => {
+const BottomBar = ({ curIndex, totalCount, setModal, setLoading, isSaved, resultId }: IBottomBar) => {
   const { authenticated, accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -81,12 +69,9 @@ const BottomBar = ({
       ) : (
         <BottomButton>
           <section onClick={handleSave}>
-            <RoundButton
-              outline="none"
-              backgroundColor={theme.color.blue}
-              color={theme.color.grey_100}
-              text="나의 진단기록장에 저장하기"
-            />
+            <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
+              나의 진단기록장에 저장하기
+            </RoundButton>
           </section>
         </BottomButton>
       )}

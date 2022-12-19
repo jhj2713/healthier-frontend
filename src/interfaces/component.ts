@@ -1,3 +1,5 @@
+import { ReactElement } from "react";
+
 export interface IContentHeader {
   text: string;
   back: boolean;
@@ -6,11 +8,16 @@ export interface IContentHeader {
   exitCallback: () => void;
 }
 
-export interface IButton {
+export interface IRoundButton {
   outline: string;
   backgroundColor: string;
   color: string;
-  text: string;
+  children: string;
+}
+
+export interface IButton {
+  selected: boolean;
+  children: string;
 }
 
 export interface ITag {

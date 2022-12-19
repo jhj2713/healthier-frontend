@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ContentHeader from "../../components/header/ContentHeader";
-import SymptomTypeComponent from "../../components/symptomTypePage/SymptomTypeComponent";
+import SymptomTypeComponent from "./symptomTypeComponent";
 import { symptom_type } from "../../store/symptom_type";
 import SymptomModal from "../../components/modal/SymptomModal";
 import { useLocation, useNavigate } from "react-router-dom";

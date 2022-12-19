@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import Gender from "../../components/infoPage/Gender";
-import RoundButton from "../../components/buttons/RoundButton";
+import Gender from "./gender";
+import RoundButton from "../../components/roundButton";
 import theme from "../../lib/theme";
-import Tags from "../../components/infoPage/Tags";
-import YearPicker from "../../components/infoPage/YearPicker";
-import Agreement from "../../components/infoPage/Agreement";
+import Tags from "./tags";
+import YearPicker from "./yearPicker";
+import Agreement from "./agreement";
 import { useAppDispatch } from "../../state";
 import { userSubmit } from "../../state/userSlice";
 import { health_interest } from "../../store/interest";
 import ContentHeader from "../../components/header/ContentHeader";
 import { useNavigate } from "react-router-dom";
 import { IAgreement } from "../../interfaces/informationPage";
-import MemberAgreement from "../../components/infoPage/MemberAgreement";
-import InformationAgreement from "../../components/infoPage/InformationAgreement";
+import MemberAgreement from "./memberAgreement";
+import InformationAgreement from "./informationAgreement";
 import { Contents, Title, ButtonBackground } from "./index.style";
 
 const Information = () => {
@@ -67,8 +67,9 @@ const Information = () => {
                 outline="none"
                 backgroundColor={active ? theme.color.blue : theme.color.grey_750}
                 color={active ? theme.color.grey_100 : theme.color.grey_600}
-                text="증상 진단하러 가기"
-              />
+              >
+                증상 진단하러 가기
+              </RoundButton>
             </section>
           </ButtonBackground>
         </>
