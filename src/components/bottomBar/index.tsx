@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BottomContainer, BottomButton } from "./index.style";
 
-const BottomBar = ({ curIndex, totalCount, setModal, setLoading, isSaved, resultId }: IBottomBar) => {
+const BottomBar = ({ curIndex, totalCount, openModal, setLoading, isSaved, resultId }: IBottomBar) => {
   const { authenticated, accessToken } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
@@ -34,7 +34,7 @@ const BottomBar = ({ curIndex, totalCount, setModal, setLoading, isSaved, result
         });
     } else {
       // 로그인되지 않은 경우
-      setModal(true);
+      openModal();
     }
   };
 

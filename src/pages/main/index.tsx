@@ -1,12 +1,11 @@
-import LoginModal from "../../components/modal/LoginModal";
-import { useState } from "react";
-import ModalContainer from "../../components/modal/ModalContainer";
+import LoginModal from "./loginModal";
 import MainHeader from "../../components/mainHeader";
 import BottomButtons from "./bottomButtons";
 import { Container, GuideText, Title, MainImage } from "./index.style";
+import useModal from "../../hooks/useModal";
 
 const MainPage = () => {
-  const [modal, setModal] = useState(false);
+  const { isOpenModal, modalRef, openModal, closeModal } = useModal();
 
   return (
     <>
@@ -27,12 +26,8 @@ const MainPage = () => {
             src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%99%88+%EC%B2%AD%EC%A7%84%EA%B8%B0.png"
           ></img>
         </MainImage>
-        <BottomButtons setModal={setModal} />
-        {modal && (
-          <ModalContainer setModal={setModal}>
-            <LoginModal setModal={setModal} />
-          </ModalContainer>
-        )}
+        <BottomButtons openModal={openModal} />
+        {isOpenModal && <LoginModal ref={modalRef} closeModal={closeModal} />}
       </Container>
     </>
   );

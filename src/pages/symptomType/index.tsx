@@ -2,22 +2,23 @@ import { useEffect, useState } from "react";
 import ContentHeader from "../../components/contentHeader";
 import SymptomTypeComponent from "./symptomTypeComponent";
 import { symptom_type } from "../../store/symptom_type";
-import SymptomModal from "../../components/modal/SymptomModal";
+import SymptomTypeModal from "./symptomTypeModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Title, SymptomContainer } from "./index.style";
+import useModal from "../../hooks/useModal";
 
 const SymptomTypePage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [select, setSelect] = useState(-1);
-  const [modal, setModal] = useState(false);
+  const { modalRef, isOpenModal, openModal, closeModal } = useModal();
 
   const handleSelect = (idx: number) => {
     setSelect(idx);
     new Promise((resolve) => {
       setTimeout(() => {
-        resolve(setModal(true));
+        resolve(openModal());
       }, 500);
     });
   };
@@ -26,14 +27,14 @@ const SymptomTypePage = () => {
     if (!state) {
       navigate("/");
     }
-    if (!modal) {
+    if (!isOpenModal) {
       setSelect(-1);
     }
-  }, [modal]);
+  }, [isOpenModal]);
 
   return (
     <>
-      {modal && <SymptomModal setModal={setModal} select={select} />}
+      {isOpenModal && <SymptomTypeModal ref={modalRef} closeModal={closeModal} select={select} />}
       <ContentHeader text="증상 유형 선택" back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")} />
       <Container>
         <Title>

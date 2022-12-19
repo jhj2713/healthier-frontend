@@ -2,8 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ResultHeader from "./resultHeader";
 import ResultLoading from "./resultLoading";
-import ModalContainer from "../../components/modal/ModalContainer";
-import ResultModal from "../../components/modal/ResultModal";
+import ResultModal from "./resultModal";
 import BottomBar from "../../components/bottomBar";
 import CoverPage from "./coverPage";
 import DefinitionPage from "./definitionPage";
@@ -16,14 +15,15 @@ import "swiper/css";
 import { IDiagnosticResult } from "../../interfaces/diagnosticResult";
 import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "../../interfaces/resultPage";
 import { Container } from "./index.style";
+import useModal from "../../hooks/useModal";
 
 const ResultPage = () => {
   const navigate = useNavigate();
   const { state } = useLocation() as { state: IDiagnosticResult };
+  const { isOpenModal, modalRef, openModal, closeModal } = useModal();
 
   const [curIndex, setCurIndex] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [modal, setModal] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
   const [coverData, setCoverData] = useState<ICoverPageProps>({
@@ -112,15 +112,11 @@ const ResultPage = () => {
               </SwiperSlide>
             )}
           </Swiper>
-          {modal && (
-            <ModalContainer setModal={setModal}>
-              <ResultModal setModal={setModal} setLoading={setLoading} resultId={state.diagnostic_result.id} />
-            </ModalContainer>
-          )}
+          {isOpenModal && <ResultModal ref={modalRef} closeModal={closeModal} setLoading={setLoading} resultId={state.diagnostic_result.id} />}
           <BottomBar
             curIndex={curIndex}
             totalCount={setTotalCount()}
-            setModal={setModal}
+            openModal={openModal}
             setLoading={setLoading}
             isSaved={isSaved}
             resultId={state.diagnostic_result.id}
