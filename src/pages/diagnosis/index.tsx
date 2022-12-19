@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnswerButtons from "./answerButtons";
-import ContentHeader from "../../components/contentHeader";
-import { IAnswer, IQuestion } from "../../interfaces/diagnosisPage";
+import ContentHeader from "src/components/contentHeader";
+import { IAnswer, IQuestion } from "src/interfaces/diagnosisPage";
 import DiagnosisLoading from "./diagnosisLoading";
 import axios from "axios";
-import { useAppSelector, useAppDispatch } from "../../state";
-import { resetAnswer, popAnswer } from "../../state/answerSlice";
+import { useAppSelector, useAppDispatch } from "src/state";
+import { resetAnswer, popAnswer } from "src/state/answerSlice";
 import { Container, Question } from "./index.style";
 
 const Diagnosis = () => {

@@ -3,7 +3,7 @@ import { extend, Object3DNode, MaterialNode, BufferGeometryNode } from "@react-t
 import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
 import { Line2 } from "three/examples/jsm/lines/Line2";
-import theme from "../../../lib/theme";
+import theme from "src/lib/theme";
 
 extend({ LineMaterial, LineGeometry, Line2 });
 

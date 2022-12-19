@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { IAgreementProps } from "../../../interfaces/informationPage";
+import { IAgreementProps } from "src/interfaces/informationPage";
 import { Container, Title, AgreementList, AgreementCheck, TotalCheckText, AgreementBox, CheckText } from "./index.style";
 
 const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => {

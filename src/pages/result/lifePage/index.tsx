@@ -1,7 +1,7 @@
 import LifeComponent from "../lifeComponent";
-import Title from "../../../components/title";
-import { ILifeProps } from "../../../interfaces/resultPage";
-import preventionTypes from "../../../store/prevention_types";
+import Title from "src/components/title";
+import { ILifeProps } from "src/interfaces/resultPage";
+import preventionTypes from "src/data/prevention_types";
 import { Container } from "./index.style";
 
 const LifePage = ({ lifestyle, type }: { lifestyle: ILifeProps[]; type: string }) => {

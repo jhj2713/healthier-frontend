@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading_3 } from "../../lib/fontStyle";
+import { Heading_3 } from "src/lib/fontStyle";
 
 export const Line = styled.section`
   width: 2.4rem;

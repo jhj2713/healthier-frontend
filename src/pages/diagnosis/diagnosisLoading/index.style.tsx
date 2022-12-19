@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading_3, Body_1, Body_3 } from "../../../lib/fontStyle";
+import { Heading_3, Body_1, Body_3 } from "src/lib/fontStyle";
 
 export const Title = styled(Heading_3)`
   font-weight: 200;

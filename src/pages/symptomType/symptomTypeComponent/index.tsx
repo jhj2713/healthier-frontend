@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { ISymptomTypeComponent } from "../../../interfaces/component";
+import { ISymptomTypeComponent } from "src/interfaces/component";
 import { Container, Title, TypeImage } from "./index.style";
 
 const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {

@@ -1,4 +1,4 @@
-import { IMedicineTag } from "../../../interfaces/resultPage";
+import { IMedicineTag } from "src/interfaces/resultPage";
 import { Tags, Tag } from "./index.style";
 
 const MedicineTag = ({ tags }: IMedicineTag) => {

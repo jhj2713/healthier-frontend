@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { IResultModal } from "../../../interfaces/modal";
+import { IResultModal } from "src/interfaces/modal";
 import axios from "axios";
-import { useAppDispatch } from "../../../state";
-import { SET_TOKEN, DELETE_TOKEN } from "../../../state/authSlice";
-import ModalContainer from "../../../components/modalContainer";
+import { useAppDispatch } from "src/state";
+import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
+import ModalContainer from "src/components/modalContainer";
 import { forwardRef } from "react";
 import { Container, Title, Description, Continue, NoteImage, BottomButtons } from "./index.style";
 

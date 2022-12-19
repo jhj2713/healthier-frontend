@@ -1,4 +1,4 @@
-import { ICauseBox } from "../../../interfaces/resultPage";
+import { ICauseBox } from "src/interfaces/resultPage";
 import { Container, Tag, Description } from "./index.style";
 
 const CauseBox = ({ cause_1, cause_2 }: ICauseBox) => {

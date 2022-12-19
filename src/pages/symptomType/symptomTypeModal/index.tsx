@@ -1,7 +1,7 @@
 import { forwardRef } from "react";
-import { symptom_type } from "../../../store/symptom_type";
+import { symptom_type } from "src/data/symptom_type";
 import { useNavigate } from "react-router-dom";
-import { ISymptomModal } from "../../../interfaces/modal";
+import { ISymptomModal } from "src/interfaces/modal";
 import { Wrapper, Container, Contents, Description, Title, NoteImage, ButtonContainer } from "./index.style";
 
 const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, select }, ref) => {

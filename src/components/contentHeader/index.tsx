@@ -1,5 +1,5 @@
 import HeaderContainer from "../headerContainer";
-import { IContentHeader } from "../../interfaces/component";
+import { IContentHeader } from "src/interfaces/component";
 import { Container, BackButton, QuitButton } from "./index.style";
 
 const ContentHeader = ({ text, back, exit, backCallback, exitCallback }: IContentHeader) => {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading_3 } from "../../lib/fontStyle";
+import { Heading_3 } from "src/lib/fontStyle";
 
 export const Container = styled.main`
   padding-top: 5.6rem;

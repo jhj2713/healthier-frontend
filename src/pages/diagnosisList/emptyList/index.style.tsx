@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading_3, Body_2 } from "../../../lib/fontStyle";
+import { Heading_3, Body_2 } from "src/lib/fontStyle";
 
 export const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};

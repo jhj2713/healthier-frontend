@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_2, Heading_1, Body_4 } from "../../../lib/fontStyle";
+import { Body_2, Heading_1, Body_4 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   padding-bottom: 13rem;

@@ -1,4 +1,4 @@
-import { ITag } from "../../interfaces/component";
+import { ITag } from "src/interfaces/component";
 import { Container } from "./index.style";
 
 const Tag = ({ text, selected }: ITag) => {

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Title from "../../../components/title";
+import Title from "src/components/title";
 import Medicine from "../medicine";
 import MedicineDetail from "../medicineDetail";
-import { IMedicine } from "../../../interfaces/resultPage";
+import { IMedicine } from "src/interfaces/resultPage";
 import { Container, Description } from "./index.style";
 
 const MedicinePage = ({ medicine }: { medicine: IMedicine[] }) => {

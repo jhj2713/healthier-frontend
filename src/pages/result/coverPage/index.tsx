@@ -1,4 +1,4 @@
-import { ICoverPageProps } from "../../../interfaces/resultPage";
+import { ICoverPageProps } from "src/interfaces/resultPage";
 import SeverityBar from "../severityBar";
 import { Container, CoverImage, Contents, SeverityText, Title, Description } from "./index.style";
 

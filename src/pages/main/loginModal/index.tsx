@@ -1,8 +1,8 @@
 import axios from "axios";
-import { SET_TOKEN, DELETE_TOKEN } from "../../../state/authSlice";
-import { useAppDispatch } from "../../../state";
-import ModalContainer from "../../../components/modalContainer";
-import { ILoginModal } from "../../../interfaces/modal";
+import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
+import { useAppDispatch } from "src/state";
+import ModalContainer from "src/components/modalContainer";
+import { ILoginModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Container, Title, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
 

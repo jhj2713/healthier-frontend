@@ -1,14 +1,14 @@
 import { useLayoutEffect, useState } from "react";
-import RoundButton from "../../components/roundButton";
-import MainHeader from "../../components/mainHeader";
+import RoundButton from "src/components/roundButton";
+import MainHeader from "src/components/mainHeader";
 import ListComponent from "./listComponent";
-import theme from "../../lib/theme";
+import theme from "src/lib/theme";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { IDiagnosisList } from "../../interfaces/component";
+import { IDiagnosisList } from "src/interfaces/component";
 import EmptyPage from "./emptyList";
-import { useAppSelector, useAppDispatch } from "../../state";
-import { DELETE_TOKEN } from "../../state/authSlice";
+import { useAppSelector, useAppDispatch } from "src/state";
+import { DELETE_TOKEN } from "src/state/authSlice";
 import { Container, Title, DescriptionBox, List, ButtonBackground } from "./index.style";
 
 const DiagnosisList = () => {

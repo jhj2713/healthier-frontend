@@ -1,7 +1,7 @@
-import ContentHeader from "../../../components/contentHeader";
-import Title from "../../../components/title";
-import { information_agreement } from "../../../store/information_agreement";
-import { IAgreementComponentProps } from "../../../interfaces/informationPage";
+import ContentHeader from "src/components/contentHeader";
+import Title from "src/components/title";
+import { information_agreement } from "src/data/information_agreement";
+import { IAgreementComponentProps } from "src/interfaces/informationPage";
 import { Container, Contents, Prefix, AgreementItem, Text, Table, Reference } from "./index.style";
 
 const InformationAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {

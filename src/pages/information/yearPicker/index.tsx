@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { IYearPickerProps } from "../../../interfaces/informationPage";
+import { IYearPickerProps } from "src/interfaces/informationPage";
 import { Container, Title, SelectBox } from "./index.style";
 
 const years = Array.from(Array(92).keys())

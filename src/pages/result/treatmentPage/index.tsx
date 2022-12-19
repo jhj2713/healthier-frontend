@@ -1,6 +1,6 @@
-import Title from "../../../components/title";
+import Title from "src/components/title";
 import TreatmentBox from "../treatmentBox";
-import { ITreatPageProps } from "../../../interfaces/resultPage";
+import { ITreatPageProps } from "src/interfaces/resultPage";
 import { Container } from "./index.style";
 
 const TreatmentPage = ({ treatData }: { treatData: ITreatPageProps[] }) => {

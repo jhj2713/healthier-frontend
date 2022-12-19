@@ -1,9 +1,9 @@
-import { IAnswerButtonProps } from "../../../interfaces/diagnosisPage";
-import RoundButton from "../../../components/roundButton";
-import theme from "../../../lib/theme";
+import { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
+import RoundButton from "src/components/roundButton";
+import theme from "src/lib/theme";
 import { useEffect } from "react";
-import { saveAnswer } from "../../../state/answerSlice";
-import { useAppDispatch } from "../../../state";
+import { saveAnswer } from "src/state/answerSlice";
+import { useAppDispatch } from "src/state";
 import { Container, AnswersContainer, ButtonBox, ButtonText, NextButton } from "./index.style";
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {

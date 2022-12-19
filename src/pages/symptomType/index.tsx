@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import ContentHeader from "../../components/contentHeader";
+import ContentHeader from "src/components/contentHeader";
 import SymptomTypeComponent from "./symptomTypeComponent";
-import { symptom_type } from "../../store/symptom_type";
+import { symptom_type } from "src/data/symptom_type";
 import SymptomTypeModal from "./symptomTypeModal";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Title, SymptomContainer } from "./index.style";
-import useModal from "../../hooks/useModal";
+import useModal from "src/hooks/useModal";
 
 const SymptomTypePage = () => {
   const navigate = useNavigate();

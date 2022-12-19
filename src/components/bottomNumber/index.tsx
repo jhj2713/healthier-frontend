@@ -1,4 +1,4 @@
-import { IBottomNumber } from "../../interfaces/resultPage";
+import { IBottomNumber } from "src/interfaces/resultPage";
 import { Container, Number } from "./index.style";
 
 const BottomNumber = ({ curIndex, totalCount }: IBottomNumber) => {

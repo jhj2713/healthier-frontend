@@ -1,5 +1,5 @@
-import theme from "../../../lib/theme";
-import RoundButton from "../../../components/roundButton";
+import theme from "src/lib/theme";
+import RoundButton from "src/components/roundButton";
 import { useNavigate } from "react-router-dom";
 import { Buttons, ButtonBox } from "./index.style";
 

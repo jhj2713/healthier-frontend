@@ -1,4 +1,4 @@
-import { IMedicineProps } from "../../../interfaces/resultPage";
+import { IMedicineProps } from "src/interfaces/resultPage";
 import { Container, MedicineBox, MedicineImg, MedicineText } from "./index.style";
 
 const Medicine = ({ selected, setSelected, medicine }: IMedicineProps) => {

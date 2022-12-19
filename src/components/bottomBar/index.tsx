@@ -1,8 +1,8 @@
-import theme from "../../lib/theme";
+import theme from "src/lib/theme";
 import BottomNumber from "../bottomNumber";
 import RoundButton from "../roundButton";
-import { IBottomBar } from "../../interfaces/resultPage";
-import { useAppSelector } from "../../state";
+import { IBottomBar } from "src/interfaces/resultPage";
+import { useAppSelector } from "src/state";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BottomContainer, BottomButton } from "./index.style";

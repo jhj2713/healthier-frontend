@@ -3,11 +3,11 @@ import { useFrame, extend, useLoader, Node } from "@react-three/fiber";
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import * as THREE from "three";
 import { Mesh } from "three";
-import theme from "../../../lib/theme";
+import theme from "src/lib/theme";
 import { LayerMaterial } from "lamina";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "../characterLine";
-import { ICharacterProps } from "../../../interfaces/symptomPage";
+import { ICharacterProps } from "src/interfaces/symptomPage";
 
 extend({ Point });
 

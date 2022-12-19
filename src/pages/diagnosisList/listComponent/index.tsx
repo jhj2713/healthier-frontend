@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { IListComponent } from "../../../interfaces/component";
-import severityTypes from "../../../store/severity_types";
+import { IListComponent } from "src/interfaces/component";
+import severityTypes from "src/data/severity_types";
 import axios from "axios";
 import { Container, BannerImg, Box, Title, Date, Tag } from "./index.style";
 

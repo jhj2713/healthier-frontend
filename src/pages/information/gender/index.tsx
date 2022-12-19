@@ -1,6 +1,6 @@
 import { memo } from "react";
-import Button from "../../../components/button";
-import { IGenderProps } from "../../../interfaces/informationPage";
+import Button from "src/components/button";
+import { IGenderProps } from "src/interfaces/informationPage";
 import { Container, Title } from "./index.style";
 
 const Gender = ({ gender, setGender }: IGenderProps) => {

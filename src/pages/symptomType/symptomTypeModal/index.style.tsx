@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_4, Heading_5 } from "../../../lib/fontStyle";
+import { Body_4, Heading_5 } from "src/lib/fontStyle";
 
 export const Wrapper = styled.section`
   position: fixed;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_4 } from "../../../lib/fontStyle";
+import { Body_4 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   margin-top: 4.6rem;

@@ -1,4 +1,4 @@
-import { ITreatBoxProps } from "../../../interfaces/resultPage";
+import { ITreatBoxProps } from "src/interfaces/resultPage";
 import Description from "../description";
 import { Container, Title } from "./index.style";
 

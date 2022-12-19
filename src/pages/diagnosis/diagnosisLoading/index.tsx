@@ -1,4 +1,4 @@
-import LoadingContainer from "../../../components/loadingContainer";
+import LoadingContainer from "src/components/loadingContainer";
 import { Title, Icon, BottomTextBox, Tips, Description } from "./index.style";
 
 const DiagnosisLoading = () => {

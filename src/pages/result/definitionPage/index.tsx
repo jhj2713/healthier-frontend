@@ -1,7 +1,7 @@
-import Title from "../../../components/title";
+import Title from "src/components/title";
 import Description from "../description";
 import CauseBox from "../causeBox";
-import { IDefinePageProps } from "../../../interfaces/resultPage";
+import { IDefinePageProps } from "src/interfaces/resultPage";
 import { Container, DescriptionBox } from "./index.style";
 
 const DefinitionPage = ({ defineData: { title, definition, tag_flag, cause, cause_detail } }: { defineData: IDefinePageProps }) => {

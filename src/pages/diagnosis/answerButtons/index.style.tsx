@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_1 } from "../../../lib/fontStyle";
+import { Body_1 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   background: transparent;

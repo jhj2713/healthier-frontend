@@ -1,4 +1,4 @@
-import { ILifeComponent } from "../../../interfaces/resultPage";
+import { ILifeComponent } from "src/interfaces/resultPage";
 import Description from "../description";
 import { Background, Contents } from "./index.style";
 

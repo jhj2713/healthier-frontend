@@ -1,12 +1,12 @@
 import styled, { keyframes } from "styled-components";
-import theme from "../../../lib/theme";
-import RoundButton from "../../../components/roundButton";
-import { IOverlayProps } from "../../../interfaces/symptomPage";
+import theme from "src/lib/theme";
+import RoundButton from "src/components/roundButton";
+import { IOverlayProps } from "src/interfaces/symptomPage";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../state";
-import { setSite } from "../../../state/userSlice";
-import { Body_3, Heading_3 } from "../../../lib/fontStyle";
-import { regions, particles } from "../../../store/symptom_data";
+import { useAppDispatch } from "src/state";
+import { setSite } from "src/state/userSlice";
+import { Body_3, Heading_3 } from "src/lib/fontStyle";
+import { regions, particles } from "src/data/symptom_data";
 
 const OverlaySection = styled.div`
   width: calc(var(--vw, 1vw) * 100);

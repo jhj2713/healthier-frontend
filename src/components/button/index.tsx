@@ -1,4 +1,4 @@
-import { IButton } from "../../interfaces/component";
+import { IButton } from "src/interfaces/component";
 import { Container } from "./index.style";
 
 function Button({ selected, children }: IButton) {

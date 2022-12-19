@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading_3, Heading_5 } from "../../lib/fontStyle";
+import { Heading_3, Heading_5 } from "src/lib/fontStyle";
 
 export const Highlight = styled.span`
   font-weight: 500;

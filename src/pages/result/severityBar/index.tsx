@@ -1,19 +1,19 @@
 import { Container, Text, SeverityBackground } from "./index.style";
 
-const SeverityBar = ({ severity }: { severity: number }) => {
-  const setBackgroundPercent = (severity: number): number => {
-    switch (severity) {
-      case 0:
-        return 5;
-      case 1:
-        return 35;
-      case 2:
-        return 65;
-      default:
-        return 100;
-    }
-  };
+const setBackgroundPercent = (severity: number): number => {
+  switch (severity) {
+    case 0:
+      return 5;
+    case 1:
+      return 35;
+    case 2:
+      return 65;
+    default:
+      return 100;
+  }
+};
 
+const SeverityBar = ({ severity }: { severity: number }) => {
   return (
     <Container>
       <section className="text-box">

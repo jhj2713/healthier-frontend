@@ -1,4 +1,4 @@
-import { IMedicineDetail } from "../../../interfaces/resultPage";
+import { IMedicineDetail } from "src/interfaces/resultPage";
 import Description from "../description";
 import MedicineTag from "../medicineTag";
 import { Contents, Highlight } from "./index.style";

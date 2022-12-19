@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ResultHeader from "./resultHeader";
 import ResultLoading from "./resultLoading";
 import ResultModal from "./resultModal";
-import BottomBar from "../../components/bottomBar";
+import BottomBar from "src/components/bottomBar";
 import CoverPage from "./coverPage";
 import DefinitionPage from "./definitionPage";
 import LifePage from "./lifePage";
@@ -12,10 +12,10 @@ import TreatmentPage from "./treatmentPage";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { IDiagnosticResult } from "../../interfaces/diagnosticResult";
-import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "../../interfaces/resultPage";
+import { IDiagnosticResult } from "src/interfaces/diagnosticResult";
+import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "src/interfaces/resultPage";
 import { Container } from "./index.style";
-import useModal from "../../hooks/useModal";
+import useModal from "src/hooks/useModal";
 
 const ResultPage = () => {
   const navigate = useNavigate();

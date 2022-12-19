@@ -1,6 +1,6 @@
 import React, { memo } from "react";
-import Tag from "../../../components/tags";
-import { ITagsProps } from "../../../interfaces/informationPage";
+import Tag from "src/components/tags";
+import { ITagsProps } from "src/interfaces/informationPage";
 import { Container, TagContainer, TagBox, Title, DescriptionBox } from "./index.style";
 
 const Tags = ({ health, setHealth }: ITagsProps) => {
