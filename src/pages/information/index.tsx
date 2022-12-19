@@ -1,48 +1,19 @@
 import { useEffect, useState } from "react";
-import styled from "styled-components";
-import Gender from "../components/infoPage/Gender";
-import RoundButton from "../components/buttons/RoundButton";
-import theme from "../lib/theme";
-import Tags from "../components/infoPage/Tags";
-import YearPicker from "../components/infoPage/YearPicker";
-import Agreement from "../components/infoPage/Agreement";
-import { useAppDispatch } from "../state";
-import { userSubmit } from "../state/userSlice";
-import { health_interest } from "../store/interest";
-import ContentHeader from "../components/header/ContentHeader";
-import { Heading_3 } from "../lib/fontStyle";
+import Gender from "../../components/infoPage/Gender";
+import RoundButton from "../../components/buttons/RoundButton";
+import theme from "../../lib/theme";
+import Tags from "../../components/infoPage/Tags";
+import YearPicker from "../../components/infoPage/YearPicker";
+import Agreement from "../../components/infoPage/Agreement";
+import { useAppDispatch } from "../../state";
+import { userSubmit } from "../../state/userSlice";
+import { health_interest } from "../../store/interest";
+import ContentHeader from "../../components/header/ContentHeader";
 import { useNavigate } from "react-router-dom";
-import { IAgreement } from "../interfaces/informationPage";
-import MemberAgreement from "../components/infoPage/MemberAgreement";
-import InformationAgreement from "../components/infoPage/InformationAgreement";
-
-const ButtonBackground = styled.section`
-  position: fixed;
-  bottom: 0;
-  margin: 0 2rem;
-  font-size: 1.3rem;
-
-  padding-top: 10.4rem;
-  padding-bottom: 3rem;
-
-  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
-
-  pointer-events: none;
-`;
-const ButtonBox = styled.section`
-  pointer-events: auto;
-`;
-const Title = styled(Heading_3)`
-  color: ${({ theme }) => theme.color.grey_200};
-
-  padding-top: 4rem;
-`;
-const Contents = styled.section`
-  margin: 0 2.4rem 15rem 2.4rem;
-  padding-top: 5.6rem;
-
-  height: (var(--vh, 1vh) * 100);
-`;
+import { IAgreement } from "../../interfaces/informationPage";
+import MemberAgreement from "../../components/infoPage/MemberAgreement";
+import InformationAgreement from "../../components/infoPage/InformationAgreement";
+import { Contents, Title, ButtonBackground } from "./index.style";
 
 const Information = () => {
   const [active, setActive] = useState(false);
@@ -91,14 +62,14 @@ const Information = () => {
             <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
           </Contents>
           <ButtonBackground>
-            <ButtonBox onClick={handleProceed}>
+            <section className="button-box" onClick={handleProceed}>
               <RoundButton
                 outline="none"
                 backgroundColor={active ? theme.color.blue : theme.color.grey_750}
                 color={active ? theme.color.grey_100 : theme.color.grey_600}
                 text="증상 진단하러 가기"
               />
-            </ButtonBox>
+            </section>
           </ButtonBackground>
         </>
       ) : agreementDetail === 1 ? (

@@ -1,56 +1,15 @@
 import { useLayoutEffect, useState } from "react";
-import styled from "styled-components";
-import RoundButton from "../components/buttons/RoundButton";
-import MainHeader from "../components/header/MainHeader";
-import ListComponent from "../components/diagnosisListPage/ListComponent";
-import theme from "../lib/theme";
+import RoundButton from "../../components/buttons/RoundButton";
+import MainHeader from "../../components/header/MainHeader";
+import ListComponent from "../../components/diagnosisListPage/ListComponent";
+import theme from "../../lib/theme";
 import { useNavigate } from "react-router-dom";
-import { Description, Heading_3 } from "../lib/fontStyle";
 import axios from "axios";
-import { IDiagnosisList } from "../interfaces/component";
-import EmptyPage from "../components/diagnosisListPage/EmptyPage";
-import { useAppSelector, useAppDispatch } from "../state";
-import { DELETE_TOKEN } from "../state/authSlice";
-
-const Container = styled.section`
-  padding-top: 5.6rem;
-`;
-const ButtonBackground = styled.section`
-  position: fixed;
-  bottom: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  padding: 10.4rem 2rem 3rem 2rem;
-
-  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, rgba(19, 20, 22, 0.947917) 78.12%, #131416 100%);
-  pointer-events: none;
-`;
-const ButtonBox = styled.section`
-  pointer-events: auto;
-`;
-const Title = styled(Heading_3)`
-  color: ${({ theme }) => theme.color.grey_200};
-
-  margin: 4rem 2.4rem 0 2.4rem;
-`;
-const DescriptionBox = styled(Description)`
-  text-align: end;
-
-  color: ${({ theme }) => theme.color.grey_500};
-
-  margin-bottom: 1.2rem;
-  margin-right: 2.4rem;
-
-  font-size: 1.3rem;
-`;
-const Highlight = styled.span<{ type: string }>`
-  color: ${({ theme, type }) => (type === "title" ? theme.color.green : theme.color.sub_green)};
-`;
-const List = styled.section`
-  margin: 0 2.4rem 13rem 2.4rem;
-`;
+import { IDiagnosisList } from "../../interfaces/component";
+import EmptyPage from "../../components/diagnosisListPage/EmptyPage";
+import { useAppSelector, useAppDispatch } from "../../state";
+import { DELETE_TOKEN } from "../../state/authSlice";
+import { Container, Title, DescriptionBox, List, ButtonBackground } from "./index.style";
 
 const DiagnosisList = () => {
   const navigate = useNavigate();
@@ -95,11 +54,12 @@ const DiagnosisList = () => {
           ) : (
             <>
               <Title>
-                <Highlight type="title">{name}님</Highlight>이 저장한
+                <span className="highlight">{name}님</span>
+                이 저장한
                 <br /> 진단 내역이에요
               </Title>
               <DescriptionBox>
-                <Highlight type="description">{diagnosisList.length}개</Highlight>의 진단내역
+                <span className="highlight">{diagnosisList.length}개</span>의 진단내역
               </DescriptionBox>
               <List>
                 {diagnosisList.map((diag, idx) => (
@@ -111,9 +71,9 @@ const DiagnosisList = () => {
         </>
       )}
       <ButtonBackground>
-        <ButtonBox onClick={() => navigate("/symptom-type", { state: "list" })}>
+        <section className="button-box" onClick={() => navigate("/symptom-type", { state: "list" })}>
           <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_900} text="빠른 진단 시작하기" />
-        </ButtonBox>
+        </section>
       </ButtonBackground>
     </Container>
   );
