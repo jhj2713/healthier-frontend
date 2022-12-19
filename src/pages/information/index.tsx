@@ -8,7 +8,7 @@ import Agreement from "./agreement";
 import { useAppDispatch } from "../../state";
 import { userSubmit } from "../../state/userSlice";
 import { health_interest } from "../../store/interest";
-import ContentHeader from "../../components/header/ContentHeader";
+import ContentHeader from "../../components/contentHeader";
 import { useNavigate } from "react-router-dom";
 import { IAgreement } from "../../interfaces/informationPage";
 import MemberAgreement from "./memberAgreement";

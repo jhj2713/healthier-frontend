@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import ResultHeader from "../../components/header/ResultHeader";
+import ResultHeader from "./resultHeader";
+import ResultLoading from "./resultLoading";
 import ModalContainer from "../../components/modal/ModalContainer";
 import ResultModal from "../../components/modal/ResultModal";
 import BottomBar from "../../components/bottomBar";
@@ -12,7 +13,6 @@ import TreatmentPage from "./treatmentPage";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import ResultLoading from "../../components/loading/ResultLoading";
 import { IDiagnosticResult } from "../../interfaces/diagnosticResult";
 import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "../../interfaces/resultPage";
 import { Container } from "./index.style";

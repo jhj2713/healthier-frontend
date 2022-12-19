@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import RoundButton from "../../components/roundButton";
-import MainHeader from "../../components/header/MainHeader";
+import MainHeader from "../../components/mainHeader";
 import ListComponent from "./listComponent";
 import theme from "../../lib/theme";
 import { useNavigate } from "react-router-dom";

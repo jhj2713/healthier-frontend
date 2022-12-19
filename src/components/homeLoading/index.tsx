@@ -1,33 +1,7 @@
-import styled from "styled-components";
-import LoadingContainer from "./LoadingContainer";
-import { Heading_3, Heading_5 } from "../../lib/fontStyle";
+import LoadingContainer from "../loadingContainer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
-const Highlight = styled.span`
-  font-weight: 500;
-`;
-const Title = styled(Heading_3)`
-  font-weight: 200;
-  text-align: center;
-  color: ${({ theme }) => theme.color.grey_200};
-`;
-const Description = styled(Heading_5)`
-  font-weight: 200;
-  color: ${({ theme }) => theme.color.grey_200};
-
-  margin-top: 0.6rem;
-`;
-const Icon = styled.section`
-  width: 26rem;
-  height: 24rem;
-
-  margin: 2rem 5rem 1.2rem 5rem;
-`;
-
-const LoadingBox = styled.section`
-  height: 7.7rem;
-`;
+import { Title, Description, Highlight, Icon } from "./index.style";
 
 const HomeLoading = () => {
   const navigate = useNavigate();
@@ -54,7 +28,6 @@ const HomeLoading = () => {
             width={260}
           />
         </Icon>
-        <LoadingBox />
       </>
     </LoadingContainer>
   );

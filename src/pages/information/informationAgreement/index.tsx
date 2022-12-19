@@ -1,4 +1,4 @@
-import ContentHeader from "../../../components/header/ContentHeader";
+import ContentHeader from "../../../components/contentHeader";
 import Title from "../../../components/title";
 import { information_agreement } from "../../../store/information_agreement";
 import { IAgreementComponentProps } from "../../../interfaces/informationPage";

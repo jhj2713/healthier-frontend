@@ -4,7 +4,7 @@ import Character from "./character";
 import Overlay from "./overlay";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../lib/theme";
-import ContentHeader from "../../components/header/ContentHeader";
+import ContentHeader from "../../components/contentHeader";
 import { Container, CanvasSection } from "./index.style";
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {

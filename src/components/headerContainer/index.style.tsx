@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Container = styled.header`
+export const Container = styled.header`
   position: fixed;
   width: calc(var(--vw, 1vw) * 100);
   top: 0;
@@ -14,9 +14,3 @@ const Container = styled.header`
 
   z-index: 3;
 `;
-
-const HeaderContainer = ({ children }: { children: JSX.Element }) => {
-  return <Container>{children}</Container>;
-};
-
-export default HeaderContainer;

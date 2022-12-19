@@ -1,7 +1,7 @@
 import Title from "../../../components/title";
 import { member_agreement } from "../../../store/member_agreement";
 import { IAgreementComponentProps } from "../../../interfaces/informationPage";
-import ContentHeader from "../../../components/header/ContentHeader";
+import ContentHeader from "../../../components/contentHeader";
 import { Container, Contents, Text, SubText, Table } from "./index.style";
 
 const MemberAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {

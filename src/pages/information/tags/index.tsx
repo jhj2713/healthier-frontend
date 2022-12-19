@@ -1,5 +1,5 @@
 import React from "react";
-import Tag from "../../../components/tags/Tag";
+import Tag from "../../../components/tags";
 import { ITagsProps } from "../../../interfaces/informationPage";
 import { Container, TagContainer, TagBox, Title, DescriptionBox } from "./index.style";
 

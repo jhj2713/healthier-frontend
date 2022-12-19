@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import AnswerButtons from "./answerButtons";
-import ContentHeader from "../../components/header/ContentHeader";
+import ContentHeader from "../../components/contentHeader";
 import { IAnswer, IQuestion } from "../../interfaces/diagnosisPage";
-import DiagnosisLoading from "../../components/loading/DiagnosisLoading";
+import DiagnosisLoading from "./diagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "../../state";
 import { resetAnswer, popAnswer } from "../../state/answerSlice";

@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
 import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
-import HomeLoading from "./components/loading/HomeLoading";
+import HomeLoading from "./components/homeLoading";
 import { useAppSelector } from "./state";
 import styled from "styled-components";
 

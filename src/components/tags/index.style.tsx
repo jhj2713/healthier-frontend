@@ -1,7 +1,6 @@
 import styled, { css } from "styled-components";
-import { ITag } from "../../interfaces/component";
 
-const Container = styled.section<{ selected: boolean }>`
+export const Container = styled.section<{ selected: boolean }>`
   ${({ selected }) =>
     selected
       ? css`
@@ -20,9 +19,3 @@ const Container = styled.section<{ selected: boolean }>`
   font-weight: 300;
   cursor: pointer;
 `;
-
-const Tag = ({ text, selected }: ITag) => {
-  return <Container selected={selected}>{text}</Container>;
-};
-
-export default Tag;
