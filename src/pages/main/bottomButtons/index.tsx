@@ -1,27 +1,8 @@
 import { Dispatch } from "react";
-import styled from "styled-components";
-import theme from "../../lib/theme";
-import RoundButton from "../roundButton";
+import theme from "../../../lib/theme";
+import RoundButton from "../../../components/roundButton";
 import { useNavigate } from "react-router-dom";
-
-const Buttons = styled.section`
-  position: fixed;
-  bottom: 0;
-
-  display: flex;
-  flex-direction: column;
-
-  margin: 0 2rem;
-  padding-top: 6.8rem;
-  padding-bottom: 3rem;
-
-  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, #131416 49.48%);
-`;
-const ButtonBox = styled.section`
-  & + & {
-    margin-top: 1.2rem;
-  }
-`;
+import { Buttons, ButtonBox } from "./index.style";
 
 const BottomButtons = ({ setModal }: { setModal: Dispatch<boolean> }) => {
   const navigate = useNavigate();

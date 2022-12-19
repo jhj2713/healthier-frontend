@@ -2,7 +2,7 @@ import LoginModal from "../../components/modal/LoginModal";
 import { useState } from "react";
 import ModalContainer from "../../components/modal/ModalContainer";
 import MainHeader from "../../components/header/MainHeader";
-import BottomButtons from "../../components/mainPage/BottomButtons";
+import BottomButtons from "./bottomButtons";
 import { Container, GuideText, Title, MainImage } from "./index.style";
 
 const MainPage = () => {

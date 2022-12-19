@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import AnswerButtons from "../../components/diagnosisPage/AnswerButtons";
+import AnswerButtons from "./answerButtons";
 import ContentHeader from "../../components/header/ContentHeader";
 import { IAnswer, IQuestion } from "../../interfaces/diagnosisPage";
 import DiagnosisLoading from "../../components/loading/DiagnosisLoading";
