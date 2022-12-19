@@ -1,9 +1,14 @@
 import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { BottomBar, CoverPage, DefinitionPage, LifePage, MedicinePage, TreatmentPage } from "../../components/resultPage";
 import ResultHeader from "../../components/header/ResultHeader";
 import ModalContainer from "../../components/modal/ModalContainer";
 import ResultModal from "../../components/modal/ResultModal";
+import BottomBar from "../../components/bottomBar";
+import CoverPage from "./coverPage";
+import DefinitionPage from "./definitionPage";
+import LifePage from "./lifePage";
+import MedicinePage from "./medicinePage";
+import TreatmentPage from "./treatmentPage";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

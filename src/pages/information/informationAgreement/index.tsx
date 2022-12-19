@@ -1,5 +1,5 @@
 import ContentHeader from "../../../components/header/ContentHeader";
-import Title from "../../../components/resultPage/common/Title";
+import Title from "../../../components/title";
 import { information_agreement } from "../../../store/information_agreement";
 import { IAgreementComponentProps } from "../../../interfaces/informationPage";
 import { Container, Contents, Prefix, AgreementItem, Text, Table, Reference } from "./index.style";

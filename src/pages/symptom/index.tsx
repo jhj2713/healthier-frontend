@@ -1,7 +1,7 @@
 import { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import Character from "../../components/symptomPage/Character";
-import Overlay from "../../components/symptomPage/Overlay";
+import Character from "./character";
+import Overlay from "./overlay";
 import { useLocation, useNavigate } from "react-router-dom";
 import theme from "../../lib/theme";
 import ContentHeader from "../../components/header/ContentHeader";

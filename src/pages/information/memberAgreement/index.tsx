@@ -1,4 +1,4 @@
-import Title from "../../../components/resultPage/common/Title";
+import Title from "../../../components/title";
 import { member_agreement } from "../../../store/member_agreement";
 import { IAgreementComponentProps } from "../../../interfaces/informationPage";
 import ContentHeader from "../../../components/header/ContentHeader";
