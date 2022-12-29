@@ -27,7 +27,7 @@ export const Title = styled(Heading_5)<{ severity: number }>`
   font-size: 2rem;
 `;
 
-export const Date = styled.section<{ severity: number }>`
+export const DateItem = styled.section<{ severity: number }>`
   font-size: 1.3rem;
   font-weight: 200;
   line-height: 130%;
@@ -43,7 +43,8 @@ export const Tag = styled.section<{ severity: number }>`
   bottom: 0;
   display: inline;
 
-  background-color: ${({ theme, severity }) => (severity === 3 ? theme.color.blue : severity === 2 ? theme.color.blue_700 : theme.color.sub_blue)};
+  background-color: ${({ theme, severity }) =>
+    (severity === 3 && theme.color.blue) || (severity === 2 && theme.color.blue_700) || (severity <= 1 && theme.color.sub_blue)};
   color: ${({ theme, severity }) => (severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue)};
 
   font-weight: 300;

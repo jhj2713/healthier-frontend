@@ -18,8 +18,8 @@ export const Container = styled.section`
   }
 `;
 
-export const BackButton = styled.section<{ back: boolean }>`
-  opacity: ${({ back }) => (back ? 1 : 0)};
+export const BackButton = styled.section<{ visible: boolean }>`
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
 
   width: 3.2rem;
   height: 3.2rem;
@@ -30,8 +30,8 @@ export const BackButton = styled.section<{ back: boolean }>`
   cursor: pointer;
 `;
 
-export const QuitButton = styled.section<{ exit: boolean }>`
-  opacity: ${({ exit }) => (exit ? 1 : 0)};
+export const ExitButton = styled.section<{ visible: boolean }>`
+  opacity: ${({ visible }) => (visible ? 1 : 0)};
 
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;

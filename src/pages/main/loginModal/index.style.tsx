@@ -7,7 +7,7 @@ export const Container = styled.section`
   width: calc(var(--vw, 1vw) * 100 - 4rem);
   height: 48.2rem;
 
-  .quit-image {
+  .exit-image {
     display: flex;
     justify-content: flex-end;
 

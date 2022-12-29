@@ -8,12 +8,12 @@ import { Container, AnswersContainer, ButtonBox, ButtonText, NextButton } from "
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const answers = question.answers;
-  const isMultiple = question.is_multiple;
+  const isMultiple = question.is_multiple === 1;
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isMultiple !== 1 && selectedAnswer.length !== 0) {
+    if (!isMultiple && selectedAnswer.length !== 0) {
       new Promise((resolve) => {
         setTimeout(() => resolve(handleNext()), 300);
       });
@@ -21,7 +21,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   }, [selectedAnswer]);
 
   const handleSelect = (id: number) => {
-    if (isMultiple === 1) {
+    if (isMultiple) {
       let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
 
       if (filtered.length !== selectedAnswer.length) {
@@ -72,7 +72,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
           ))}
       </AnswersContainer>
 
-      {isMultiple === 1 && (
+      {isMultiple && (
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
             outline="none"

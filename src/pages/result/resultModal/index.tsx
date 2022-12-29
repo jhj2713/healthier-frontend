@@ -53,8 +53,8 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
   return (
     <ModalContainer>
       <Container ref={ref}>
-        <section className="quit-image" onClick={closeModal}>
-          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
+        <section className="exit-image" onClick={closeModal}>
+          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
         </section>
         <section className="contents">
           <Description>해당 진단결과를 다시 보고 싶나요?</Description>

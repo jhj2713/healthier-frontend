@@ -9,8 +9,8 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
       <Container>
         <section className="back-button" />
         <Title isCover={isCover}>진단결과</Title>
-        <section className="quit-button" onClick={() => navigate("/")}>
-          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
+        <section className="exit-button" onClick={() => navigate("/")}>
+          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
         </section>
       </Container>
     </HeaderContainer>

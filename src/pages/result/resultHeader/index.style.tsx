@@ -31,7 +31,7 @@ export const Container = styled.section`
     margin-bottom: 0.9rem;
   }
 
-  .quit-button {
+  .exit-button {
     margin-bottom: 0.9rem;
     margin-right: 1.5rem;
 

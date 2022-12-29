@@ -18,8 +18,8 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
   return (
     <Wrapper>
       <Container ref={ref}>
-        <section className="quit-image" onClick={closeModal}>
-          <img alt="quit" src="/images/header/quit.svg" width={32} height={32} />
+        <section className="exit-image" onClick={closeModal}>
+          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
         </section>
         <Contents>
           <Description>헬시어가 증상 진단을 준비중이에요!</Description>
