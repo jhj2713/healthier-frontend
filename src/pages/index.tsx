@@ -1,9 +1,10 @@
-import DiagnosisList from "./DiagnosisList";
-import Diagnosis from "./Diagnosis";
-import Information from "./Information";
-import MainPage from "./MainPage";
-import ResultPage from "./ResultPage";
-import SymptomTypePage from "./SymptomTypePage";
-import SymptomPage from "./SymptomPage";
+import DiagnosisList from "./diagnosisList";
+import Diagnosis from "./diagnosis";
+import Information from "./information";
+import MainPage from "./main";
+import ResultPage from "./result";
+import SymptomTypePage from "./symptomType";
+import SymptomPage from "./symptom";
+import HomeLoading from "./homeLoading";
 
-export { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage };
+export { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, HomeLoading };

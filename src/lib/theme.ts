@@ -42,6 +42,7 @@ const color = {
   red_200: "#ffd1c4",
   red_100: "#ffe5de",
   red_50: "#fff9f7",
+  kakao_logo: "#fee500",
 };
 
 export default { color };
