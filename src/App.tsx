@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage } from "./pages";
-import HomeLoading from "./components/homeLoading";
+import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, HomeLoading } from "./pages";
 import { useAppSelector } from "./state";
 import styled from "styled-components";
 

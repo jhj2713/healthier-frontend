@@ -1,7 +1,7 @@
-import { Dispatch } from "react";
+import { Dispatch, ReactNode } from "react";
 
 export interface IModal {
-  children: JSX.Element;
+  children: ReactNode;
 }
 
 export interface IResultModal {
