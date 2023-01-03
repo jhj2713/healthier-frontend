@@ -5,6 +5,7 @@ import * as THREE from "three";
 import { Mesh } from "three";
 import theme from "src/lib/theme";
 import { LayerMaterial } from "lamina";
+import { IPointShader } from "src/interfaces/symptomPage";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "../characterLine";
 import { ICharacterProps } from "src/interfaces/symptomPage";
@@ -43,7 +44,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
   //@ts-ignore
   geometry = character.children[0].geometry;
   const modelRef = useRef<Mesh>(null!);
-  const layerRef = useRef<any>(null!);
+  const layerRef = useRef<IPointShader>(null!);
 
   useEffect(() => {
     geometry.center();
