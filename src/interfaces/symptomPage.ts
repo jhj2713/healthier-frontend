@@ -13,7 +13,7 @@ export interface ICharacterProps {
   menu: number;
 }
 
-export interface PointAbstract extends Abstract {
+export interface IPointAbstract extends Abstract {
   origin: Vector3;
   near: number;
   far: number;
@@ -22,5 +22,5 @@ export interface PointAbstract extends Abstract {
 }
 
 export interface IPointShader extends LayerMaterial {
-  layers: PointAbstract[];
+  layers: IPointAbstract[];
 }

@@ -9,6 +9,7 @@ import { IPointShader } from "src/interfaces/symptomPage";
 import Point from "./PointShader";
 import { FrontLines, BackLines } from "../characterLine";
 import { ICharacterProps } from "src/interfaces/symptomPage";
+import { LayerProps } from "lamina/types";
 
 extend({ Point });
 
@@ -41,8 +42,8 @@ const Character = ({ view, menu }: ICharacterProps) => {
     // material.preload();
     // loader.setMaterials(material);
   });
-  //@ts-ignore
-  geometry = character.children[0].geometry;
+  // https://stackoverflow.com/questions/66818245/three-js-property-material-does-not-exist-on-type-object3d-error-when-get
+  geometry = (character.children[0] as Mesh).geometry;
   const modelRef = useRef<Mesh>(null!);
   const layerRef = useRef<IPointShader>(null!);
 
@@ -107,7 +108,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
       <mesh ref={modelRef} geometry={geometry} scale={0.1} position={[0, -3, 0]}>
         <LayerMaterial ref={layerRef} toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
           <point
-            //@ts-ignore
+            // @ts-ignore
             colorA={theme.color.blue_3d}
             colorB={theme.color.blue_3d}
             colorAalpha={1.0}

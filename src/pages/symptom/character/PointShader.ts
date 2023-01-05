@@ -1,5 +1,16 @@
 import { Vector3 } from "three";
 import { Abstract } from "lamina/vanilla";
+import { LayerProps } from "lamina/types";
+
+export interface IPointLayerProps extends LayerProps {
+  colorA: string;
+  colorB: string;
+  colorAalpha: number;
+  colorBalpha: number;
+  near: number;
+  far: number;
+  origin: Vector3[];
+}
 
 export default class Point extends Abstract {
   static u_near = 2;
@@ -42,7 +53,7 @@ export default class Point extends Abstract {
     }
   `;
 
-  constructor(props: any) {
+  constructor(props: IPointLayerProps) {
     //@ts-ignore
     super(Point, {
       name: "Point",
