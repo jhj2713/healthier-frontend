@@ -3,6 +3,7 @@ import { symptom_type } from "src/data/symptom_type";
 import { useNavigate } from "react-router-dom";
 import { ISymptomModal } from "src/interfaces/modal";
 import { Wrapper, Container, Contents, Description, Title, NoteImage, ButtonContainer } from "./index.style";
+import imageUrl from "src/data/image_url";
 
 const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, select }, ref) => {
   const navigate = useNavigate();
@@ -29,11 +30,7 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
             <span className="highlight">{symptom_type[select].detail}</span>입니다
           </Title>
           <NoteImage>
-            <img
-              className="image"
-              alt="icon"
-              src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%8C%9D%EC%97%85-%EC%A7%84%EB%8B%A8+%EA%B0%80%EB%8A%A5%ED%95%9C+%EC%A6%9D%EC%83%81-%EC%88%98%EB%A9%B4%EC%9E%A5%EC%95%A0.png"
-            />
+            <img className="image" alt="icon" src={imageUrl.symptom_modal} />
           </NoteImage>
         </Contents>
         <ButtonContainer onClick={handleNavigate}>
