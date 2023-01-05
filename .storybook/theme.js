@@ -11,7 +11,7 @@ export default create({
   appBg: theme.color.grey_900,
   appContentBg: theme.color.grey_900,
   appBorderColor: theme.color.grey_500,
-  appBorderRadius: 4,
+  appBorderRadius: 10,
 
   // Typography
   fontBase: "Spoqa Han Sans",
@@ -34,6 +34,4 @@ export default create({
   brandTitle: "Healthier",
   brandUrl: "https://healthier.cf",
   brandImage: logoLarge,
-
-  docs: theme.color.grey_900,
 });
