@@ -5,7 +5,13 @@ export const Container = styled.section<{ severity: number }>`
   position: relative;
   height: 16rem;
   background: ${({ theme, severity }) =>
-    severity === 3 ? theme.color.sub_blue : severity === 2 ? theme.color.blue_500 : severity === 1 ? theme.color.blue_700 : theme.color.blue_800};
+    severity === 3
+      ? theme.color.sub_blue
+      : severity === 2
+      ? theme.color.blue_500
+      : severity === 1
+      ? theme.color.blue_700
+      : theme.color.blue_800};
   background-size: cover;
 
   border-radius: 0.8rem;

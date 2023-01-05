@@ -22,16 +22,16 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   const handleSelect = (id: number) => {
     if (isMultiple) {
-      let filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
+      const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
 
       if (filtered.length !== selectedAnswer.length) {
         setSelectedAnswer(filtered);
       } else {
-        let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+        const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
         setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
       }
     } else {
-      let filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+      const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
       setSelectedAnswer([answers[filtered_idx]]);
       dispatch(
         saveAnswer({

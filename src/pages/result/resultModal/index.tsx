@@ -82,5 +82,6 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
     </ModalContainer>
   );
 });
+ResultModal.displayName = "ResultModal";
 
 export default ResultModal;

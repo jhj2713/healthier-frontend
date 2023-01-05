@@ -23,7 +23,6 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
         } catch (err: any) {
           if (err.code === "ERR_BAD_REQUEST") {
             alert("이메일 사용 동의가 필요합니다");
-          } else {
           }
           console.log(err);
           alert("내부 서버 오류, 다시 시도해주세요");
@@ -74,5 +73,6 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
     </ModalContainer>
   );
 });
+LoginModal.displayName = "LoginModal";
 
 export default LoginModal;

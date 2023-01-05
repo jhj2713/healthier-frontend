@@ -45,5 +45,6 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
     </Wrapper>
   );
 });
+SymptomModal.displayName = "SymptomModal";
 
 export default SymptomModal;

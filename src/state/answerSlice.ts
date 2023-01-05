@@ -20,7 +20,7 @@ export const answerSlice = createSlice({
       state.answers = [...state.answers, action.payload];
     },
     resetAnswer: (state) => {
-      state.answers = new Array();
+      state.answers = [];
     },
   },
 });

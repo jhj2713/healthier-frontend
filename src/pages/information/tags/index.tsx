@@ -6,8 +6,8 @@ import { Container, TagContainer, TagBox, Title, DescriptionBox } from "./index.
 const Tags = ({ health, setHealth }: ITagsProps) => {
   const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     const target = e.target as HTMLElement;
-    let newHealthArr = health.map((health) => (health.name === target.innerHTML ? { ...health, selected: !health.selected } : health));
-    let count = newHealthArr.filter((health) => health.selected).length;
+    let newHealthArr = health.map((heal) => (heal.name === target.innerHTML ? { ...heal, selected: !heal.selected } : heal));
+    const count = newHealthArr.filter((heal) => heal.selected).length;
     if (count > 3) newHealthArr = health;
     setHealth(newHealthArr);
   };
@@ -16,9 +16,9 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
     <Container>
       <Title>관심 건강분야</Title>
       <TagContainer>
-        {health.map((health) => (
-          <TagBox className={health.id.toString()} key={health.id} onClick={handleClick}>
-            <Tag text={health.name} selected={health.selected} />
+        {health.map((heal) => (
+          <TagBox className={heal.id.toString()} key={heal.id} onClick={handleClick}>
+            <Tag text={heal.name} selected={heal.selected} />
           </TagBox>
         ))}
       </TagContainer>
