@@ -7,6 +7,7 @@ module.exports = {
   core: {
     builder: "@storybook/builder-webpack5",
   },
+  staticDirs: ["../public"],
   webpackFinal: async (config) => {
     config.resolve.modules.push(path.resolve(__dirname, "../"));
 
