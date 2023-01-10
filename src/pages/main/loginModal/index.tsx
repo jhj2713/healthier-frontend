@@ -5,6 +5,7 @@ import ModalContainer from "src/components/modalContainer";
 import { ILoginModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Container, Title, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
+import imageUrl from "src/data/image_url";
 
 const Kakao = (window as any).Kakao;
 
@@ -23,7 +24,6 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
         } catch (err: any) {
           if (err.code === "ERR_BAD_REQUEST") {
             alert("이메일 사용 동의가 필요합니다");
-          } else {
           }
           console.log(err);
           alert("내부 서버 오류, 다시 시도해주세요");
@@ -56,11 +56,7 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
             <span className="highlight">나의 진단 기록장</span>을 이용할 수 있어요
           </Title>
           <NoteImage>
-            <img
-              className="image"
-              alt="login"
-              src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%EC%A7%84%EB%8B%A8%EA%B8%B0%EB%A1%9D_%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EB%AA%A8%EB%8B%AC.png"
-            />
+            <img className="image" alt="login" src={imageUrl.login_modal} />
           </NoteImage>
         </Contents>
         <BottomButtons>
@@ -74,5 +70,6 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
     </ModalContainer>
   );
 });
+LoginModal.displayName = "LoginModal";
 
 export default LoginModal;

@@ -6,6 +6,7 @@ import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
 import ModalContainer from "src/components/modalContainer";
 import { forwardRef } from "react";
 import { Container, Title, Description, Continue, NoteImage, BottomButtons } from "./index.style";
+import imageUrl from "src/data/image_url";
 
 const Kakao = (window as any).Kakao;
 
@@ -64,11 +65,7 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
             홈화면에서 볼 수 있어요
           </Title>
           <NoteImage>
-            <img
-              className="image"
-              alt="login"
-              src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%EC%A7%84%EB%8B%A8%EA%B8%B0%EB%A1%9D_%EB%A1%9C%EA%B7%B8%EC%9D%B8+%EB%AA%A8%EB%8B%AC.png"
-            />
+            <img className="image" alt="login" src={imageUrl.login_modal} />
           </NoteImage>
         </section>
         <BottomButtons>
@@ -82,5 +79,6 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
     </ModalContainer>
   );
 });
+ResultModal.displayName = "ResultModal";
 
 export default ResultModal;

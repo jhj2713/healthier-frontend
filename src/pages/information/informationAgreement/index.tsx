@@ -7,13 +7,14 @@ import { Container, Contents, Prefix, AgreementItem, Text, Table, Reference } fr
 const InformationAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
-      <ContentHeader text={"개인정보 처리방침"} back={false} exit={true} backCallback={() => {}} exitCallback={() => setAgreementDetail(0)} />
+      <ContentHeader text={"개인정보 처리방침"} back={false} exit={true} exitCallback={() => setAgreementDetail(0)} />
       <Container agreementDetail={agreementDetail}>
         <Title text="개인정보 처리방침" />
         <Contents>
           <Prefix>
-            &lt; 헬시어 Healthier &gt;('https://healthier.cf/'이하 '헬시어 Healthier')은(는) 「개인정보 보호법」 제30조에 따라 정보주체의 개인정보를
-            보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다. <br />
+            &lt; 헬시어 Healthier &gt;(&apos;https://healthier.cf/&apos;이하 &apos;헬시어 Healthier&apos;)은(는) 「개인정보 보호법」
+            제30조에 따라 정보주체의 개인정보를 보호하고 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이
+            개인정보 처리방침을 수립·공개합니다. <br />
             <br />
             &bull; 이 개인정보처리방침은 2022년 8월 8일부터 적용됩니다.
             <br />
@@ -43,9 +44,9 @@ const InformationAgreement = ({ agreementDetail, setAgreementDetail }: IAgreemen
                           {title}
                         </section>
                       ))}
-                      {description.sub_table[1].map((description) => (
-                        <section className="table-description" key={description}>
-                          {description}
+                      {description.sub_table[1].map((desc) => (
+                        <section className="table-description" key={desc}>
+                          {desc}
                         </section>
                       ))}
                     </Table>

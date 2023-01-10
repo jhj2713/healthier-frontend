@@ -1,3 +1,4 @@
+import imageUrl from "src/data/image_url";
 import { Title, EmptyContainer, ImageBox, EmptyText } from "./index.style";
 
 const EmptyPage = () => {
@@ -11,10 +12,7 @@ const EmptyPage = () => {
       </Title>
       <EmptyContainer>
         <ImageBox>
-          <img
-            alt="empty"
-            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%EC%A7%84%EB%8B%A8+%EB%82%B4%EC%97%AD%EC%9D%B4+%EC%97%86%EC%96%B4%EC%9A%94.png"
-          />
+          <img alt="empty" src={imageUrl.empty} />
         </ImageBox>
         <EmptyText>진단 내역이 없어요</EmptyText>
       </EmptyContainer>

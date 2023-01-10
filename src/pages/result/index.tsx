@@ -112,7 +112,9 @@ const ResultPage = () => {
               </SwiperSlide>
             )}
           </Swiper>
-          {isOpenModal && <ResultModal ref={modalRef} closeModal={closeModal} setLoading={setLoading} resultId={state.diagnostic_result.id} />}
+          {isOpenModal && (
+            <ResultModal ref={modalRef} closeModal={closeModal} setLoading={setLoading} resultId={state.diagnostic_result.id} />
+          )}
           <BottomBar
             curIndex={curIndex}
             totalCount={setTotalCount()}
