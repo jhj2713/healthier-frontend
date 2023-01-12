@@ -112,7 +112,9 @@ const Diagnosis = () => {
         <DiagnosisLoading />
       ) : (
         <>
-          <ContentHeader text="자가 진단" back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")} />
+          <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>
+            자가 진단
+          </ContentHeader>
           <Container>
             <Question>{curQuestion.question}</Question>
             <AnswerButtons

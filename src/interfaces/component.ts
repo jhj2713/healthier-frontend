@@ -1,5 +1,5 @@
 export interface IContentHeader {
-  text: string;
+  children: string;
   back: boolean;
   exit: boolean;
   backCallback?: () => void;
