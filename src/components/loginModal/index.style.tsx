@@ -42,7 +42,7 @@ export const Contents = styled.section`
 
   height: calc(100% - 5rem);
   width: 100%;
-  margin-top: 1.6rem;
+  margin-top: 1.2rem;
 `;
 
 export const NoteImage = styled.section`

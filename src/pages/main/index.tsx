@@ -1,4 +1,4 @@
-import LoginModal from "./loginModal";
+import MainModal from "./mainModal";
 import MainHeader from "src/components/mainHeader";
 import BottomButtons from "./bottomButtons";
 import { Container, GuideText, Title, MainImage } from "./index.style";
@@ -24,7 +24,7 @@ const MainPage = () => {
           <img className="image" alt="main" src={imageUrl.main_page}></img>
         </MainImage>
         <BottomButtons openModal={openModal} />
-        {isOpenModal && <LoginModal ref={modalRef} closeModal={closeModal} />}
+        {isOpenModal && <MainModal ref={modalRef} closeModal={closeModal} />}
       </Container>
     </>
   );

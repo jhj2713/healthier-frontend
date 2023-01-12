@@ -3,10 +3,9 @@ import { IResultModal } from "src/interfaces/modal";
 import axios from "axios";
 import { useAppDispatch } from "src/state";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
-import ModalContainer from "src/components/modalContainer";
 import { forwardRef } from "react";
-import { Container, Title, Description, Continue, NoteImage, BottomButtons } from "./index.style";
-import imageUrl from "src/data/image_url";
+import { Title, Description } from "./index.style";
+import LoginModal from "src/components/loginModal";
 
 const Kakao = (window as any).Kakao;
 
@@ -46,37 +45,24 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
     });
   };
 
-  const handleLoginClick = () => {
-    // 로그인 api 호출 후 저장 api 호출
-    kakaoLogin();
-  };
-
   return (
-    <ModalContainer>
-      <Container ref={ref}>
-        <section className="exit-image" onClick={closeModal}>
-          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
-        </section>
-        <section className="contents">
+    <LoginModal
+      ref={ref}
+      title={
+        <>
           <Description>해당 진단결과를 다시 보고 싶나요?</Description>
           <Title>
             진단기록은 로그인 후
             <br />
             홈화면에서 볼 수 있어요
           </Title>
-          <NoteImage>
-            <img className="image" alt="login" src={imageUrl.login_modal} />
-          </NoteImage>
-        </section>
-        <BottomButtons>
-          <button className="login-button" onClick={handleLoginClick}>
-            <img className="login-image" alt="kakao_login" src="images/login/kakao.webp" />
-            카카오 로그인
-          </button>
-          <Continue onClick={() => navigate("/loading")}>괜찮아요, 다음에 할게요</Continue>
-        </BottomButtons>
-      </Container>
-    </ModalContainer>
+        </>
+      }
+      continueText="괜찮아요, 다음에 할게요"
+      handleLogin={kakaoLogin}
+      closeModal={closeModal}
+      handleContinue={() => navigate("/loading")}
+    />
   );
 });
 ResultModal.displayName = "ResultModal";
