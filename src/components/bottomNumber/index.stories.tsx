@@ -6,11 +6,11 @@ export default {
   component: SwiperPageNumber,
   title: "SwiperPageNumber",
   argTypes: {
-    selected: {
-      description: "선택 여부",
+    curIndex: {
+      description: "현재 페이지 번호",
     },
-    children: {
-      description: "버튼 텍스트",
+    totalCount: {
+      description: "전체 페이지 번호",
     },
   },
 } as Meta;

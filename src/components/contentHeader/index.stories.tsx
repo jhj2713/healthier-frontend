@@ -6,11 +6,14 @@ export default {
   component: ContentHeader,
   title: "ContentHeader",
   argTypes: {
-    selected: {
-      description: "선택 여부",
+    back: {
+      description: "뒤로가기 버튼 유무",
+    },
+    exit: {
+      description: "exit 버튼 유무",
     },
     children: {
-      description: "버튼 텍스트",
+      description: "헤더 타이틀 텍스트",
     },
   },
 } as Meta;
