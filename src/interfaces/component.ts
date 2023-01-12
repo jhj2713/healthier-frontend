@@ -19,7 +19,7 @@ export interface IButton {
 }
 
 export interface ITag {
-  text: string;
+  children: string;
   selected: boolean;
 }
 

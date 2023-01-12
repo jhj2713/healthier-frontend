@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import Tag from "src/components/tags";
+import Tag from "src/components/tag";
 import { ITagsProps } from "src/interfaces/informationPage";
 import { Container, TagContainer, TagBox, Title, DescriptionBox } from "./index.style";
 
@@ -18,7 +18,7 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
       <TagContainer>
         {health.map((heal) => (
           <TagBox className={heal.id.toString()} key={heal.id} onClick={handleClick}>
-            <Tag text={heal.name} selected={heal.selected} />
+            <Tag selected={heal.selected}>{heal.name}</Tag>
           </TagBox>
         ))}
       </TagContainer>
