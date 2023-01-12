@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface IContentHeader {
   children: string;
   back: boolean;
@@ -21,6 +23,13 @@ export interface IButton {
 export interface ITag {
   children: string;
   selected: boolean;
+}
+
+export interface IDropdown {
+  title: string;
+  isSelected: boolean;
+  options: string[];
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface IListComponent {
