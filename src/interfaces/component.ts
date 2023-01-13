@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, ReactNode } from "react";
 
 export interface IContentHeader {
   children: string;
@@ -49,4 +49,9 @@ export interface IDiagnosisList {
 export interface ISymptomTypeComponent {
   selected: boolean;
   title: string;
+}
+
+export interface ILoading {
+  title: ReactNode;
+  icon: ReactNode;
 }

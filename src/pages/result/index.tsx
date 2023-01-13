@@ -1,7 +1,6 @@
 import { useLayoutEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ResultHeader from "./resultHeader";
-import ResultLoading from "./resultLoading";
 import ResultModal from "./resultModal";
 import BottomBar from "src/components/bottomBar";
 import CoverPage from "./coverPage";
@@ -14,8 +13,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { IDiagnosticResult } from "src/interfaces/diagnosticResult";
 import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "src/interfaces/resultPage";
-import { Container } from "./index.style";
+import { Container, LoadingIcon, LoadingTitle } from "./index.style";
 import useModal from "src/hooks/useModal";
+import Loading from "src/components/loading";
+import imageUrl from "src/data/image_url";
 
 const ResultPage = () => {
   const navigate = useNavigate();
@@ -87,7 +88,16 @@ const ResultPage = () => {
   return (
     <Container>
       {loading ? (
-        <ResultLoading />
+        <Loading
+          title={
+            <LoadingTitle>
+              <span className="highlight">진단 결과</span>를 다시 볼 수 있도록
+              <br />
+              차곡차곡 저장중이에요
+            </LoadingTitle>
+          }
+          icon={<LoadingIcon loading="eager" alt="icon" src={imageUrl.result_loading} />}
+        />
       ) : (
         <>
           <ResultHeader isCover={curIndex === 1} />

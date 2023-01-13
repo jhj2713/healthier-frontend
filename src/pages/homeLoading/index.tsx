@@ -1,8 +1,8 @@
-import LoadingContainer from "src/components/loadingContainer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Title, Description, Highlight, Icon } from "./index.style";
+import { Title, Description, Icon } from "./index.style";
 import imageUrl from "src/data/image_url";
+import Loading from "src/components/loading";
 
 const HomeLoading = () => {
   const navigate = useNavigate();
@@ -13,17 +13,19 @@ const HomeLoading = () => {
   }, []);
 
   return (
-    <LoadingContainer>
-      <Title>
-        <Highlight>홈으로 이동중이에요</Highlight>
-      </Title>
-      <Description>
-        다음에 더 <Highlight>다양한 진단</Highlight>으로 만나요!
-      </Description>
-      <Icon>
-        <img loading="eager" alt="icon" src={imageUrl.home_loading} width={260} />
-      </Icon>
-    </LoadingContainer>
+    <Loading
+      title={
+        <>
+          <Title>
+            <span className="highlight">홈으로 이동중이에요</span>
+          </Title>
+          <Description>
+            다음에 더 <span className="highlight">다양한 진단</span>으로 만나요!
+          </Description>
+        </>
+      }
+      icon={<Icon loading="eager" alt="icon" src={imageUrl.home_loading} />}
+    />
   );
 };
 
