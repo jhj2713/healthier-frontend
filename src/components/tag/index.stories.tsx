@@ -10,7 +10,7 @@ export default {
       description: "선택 여부",
     },
     children: {
-      description: "버튼 텍스트",
+      description: "태그 텍스트",
     },
   },
 } as Meta;
