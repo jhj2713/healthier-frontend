@@ -1,13 +1,13 @@
-import LoadingContainer from "src/components/loadingContainer";
 import { ILoading } from "src/interfaces/component";
-import { IconContainer } from "./index.style";
+import { Container, IconContainer } from "./index.style";
 
-const Loading = ({ title, icon }: ILoading) => {
+const Loading = ({ title, icon, bottomInformation }: ILoading) => {
   return (
-    <LoadingContainer>
+    <Container>
       {title}
-      <IconContainer>{icon}</IconContainer>
-    </LoadingContainer>
+      <IconContainer marginBottom={bottomInformation ? 1.2 : 8.9}>{icon}</IconContainer>
+      {bottomInformation ? bottomInformation : null}
+    </Container>
   );
 };
 

@@ -3,11 +3,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import AnswerButtons from "./answerButtons";
 import ContentHeader from "src/components/contentHeader";
 import { IAnswer, IQuestion } from "src/interfaces/diagnosisPage";
-import DiagnosisLoading from "./diagnosisLoading";
 import axios from "axios";
 import { useAppSelector, useAppDispatch } from "src/state";
 import { resetAnswer, popAnswer } from "src/state/answerSlice";
-import { Container, Question } from "./index.style";
+import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
+import Loading from "src/components/loading";
+import imageUrl from "src/data/image_url";
 
 const Diagnosis = () => {
   const navigate = useNavigate();
@@ -109,7 +110,21 @@ const Diagnosis = () => {
   return (
     <>
       {loading ? (
-        <DiagnosisLoading />
+        <Loading
+          title={
+            <LoadingTitle>
+              <span className="highlight">정확한 증상 진단</span>을 위해
+              <br /> 헬시어가 증상을 분석중이에요
+            </LoadingTitle>
+          }
+          icon={<LoadingIcon loading="eager" alt="icon" src={imageUrl.diagnosis_loading} />}
+          bottomInformation={
+            <LoadingBottomText>
+              <Tips>Tips</Tips>
+              <Description>로그인을 하면 진단내역을 모아 볼 수 있어요!</Description>
+            </LoadingBottomText>
+          }
+        />
       ) : (
         <>
           <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>

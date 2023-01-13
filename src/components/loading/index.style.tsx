@@ -1,8 +1,17 @@
 import styled from "styled-components";
 
-export const IconContainer = styled.section`
-  width: 26rem;
-  height: 24rem;
+export const Container = styled.section`
+  width: var(--vw, 1vw) * 100;
+  height: 100vh;
 
-  margin: 2rem 5rem 8.9rem 5rem;
+  background: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%), #131416;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const IconContainer = styled.section<{ marginBottom: number }>`
+  margin: 2rem 5rem ${({ marginBottom }) => marginBottom}rem 5rem;
 `;

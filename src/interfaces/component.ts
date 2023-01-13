@@ -54,4 +54,5 @@ export interface ISymptomTypeComponent {
 export interface ILoading {
   title: ReactNode;
   icon: ReactNode;
+  bottomInformation?: ReactNode;
 }
