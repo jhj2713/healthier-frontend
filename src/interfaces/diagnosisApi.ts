@@ -1,3 +1,5 @@
+import { IAnswer } from "./diagnosisPage";
+
 export interface IDiagnosisPatchData {
   diagnosis_id: string;
 }
@@ -43,4 +45,38 @@ export interface IDiagnosisResult {
     treatment_flag: number;
     treatments?: { title: string; detail: string }[];
   };
+}
+
+export interface IQuestion {
+  id: string;
+  question: string;
+  answers: IAnswer[];
+  is_multiple: number;
+  is_last_default?: number;
+}
+
+export interface IDecisiveDate {
+  question_id: string;
+  answer_id: number;
+  gender: string;
+  birth_year: number;
+  interests: number[];
+  tracks: {
+    question_id: string;
+    answer_id: number[];
+  }[];
+}
+
+export interface IDiagnoseResponse {
+  is_result: number;
+  question: IQuestion;
+}
+
+export interface IDiagnoseAnswer {
+  question_id: string;
+  answer_id: number;
+}
+
+export interface ISiteDiagnose {
+  site_id: number;
 }

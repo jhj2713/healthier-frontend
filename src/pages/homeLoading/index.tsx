@@ -7,10 +7,10 @@ import Loading from "src/components/loading";
 const HomeLoading = () => {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => navigate("/"), 3000);
-  //   return () => clearTimeout(timer);
-  // }, []);
+  useEffect(() => {
+    const timer = setTimeout(() => navigate("/"), 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <Loading
