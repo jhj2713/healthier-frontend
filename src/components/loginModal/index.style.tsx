@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_4, Heading_5 } from "src/lib/fontStyle";
+import { Body_4 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   position: absolute;
@@ -15,23 +15,6 @@ export const Container = styled.section`
     margin-right: 1.4rem;
 
     cursor: pointer;
-  }
-`;
-
-export const Title = styled(Heading_5)`
-  color: ${({ theme }) => theme.color.grey_200};
-  text-align: center;
-
-  margin-top: 1.2rem;
-
-  font-size: 2rem;
-
-  margin: 1.2rem 3rem 0 3rem;
-
-  .highlight {
-    font-weight: 500;
-
-    color: ${({ theme }) => theme.color.green};
   }
 `;
 
