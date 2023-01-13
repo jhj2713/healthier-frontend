@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode } from "react";
 
-export interface IModal {
+export interface IModalContainer {
   children: ReactNode;
 }
 

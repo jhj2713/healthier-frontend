@@ -4,7 +4,8 @@ import { Container, Title, AgreementList, AgreementCheck, TotalCheckText, Agreem
 
 const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => {
   const handleAgree = (e: React.MouseEvent): void => {
-    const target = e.target as HTMLElement;
+    const target = e.currentTarget as HTMLElement;
+
     if (target.id === "member") setAgree({ ...agree, member: !agree.member });
     else if (target.id === "information") setAgree({ ...agree, information: !agree.information });
     else {
@@ -17,23 +18,13 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
     <Container>
       <Title>약관 동의</Title>
       <AgreementList>
-        <AgreementCheck>
-          <img
-            alt="total check"
-            id="total"
-            src={`/images/informationPage/check-${agree.member && agree.information ? "" : "in"}active.svg`}
-            onClick={handleAgree}
-          />
+        <AgreementCheck id="total" onClick={handleAgree}>
+          <img alt="total check" src={`/images/informationPage/check-${agree.member && agree.information ? "" : "in"}active.svg`} />
           <TotalCheckText>전체 동의합니다</TotalCheckText>
         </AgreementCheck>
         <AgreementBox>
-          <AgreementCheck>
-            <img
-              alt="member check"
-              id="member"
-              src={`/images/informationPage/check-${agree.member ? "" : "in"}active.svg`}
-              onClick={handleAgree}
-            />
+          <AgreementCheck id="member" onClick={handleAgree}>
+            <img alt="member check" src={`/images/informationPage/check-${agree.member ? "" : "in"}active.svg`} />
             <CheckText>회원 이용약관에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
           <section className="agreement-detail" onClick={() => setAgreementDetail(1)}>
@@ -41,13 +32,8 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
           </section>
         </AgreementBox>
         <AgreementBox>
-          <AgreementCheck>
-            <img
-              alt="information check"
-              id="information"
-              src={`/images/informationPage/check-${agree.information ? "" : "in"}active.svg`}
-              onClick={handleAgree}
-            />
+          <AgreementCheck id="information" onClick={handleAgree}>
+            <img alt="information check" src={`/images/informationPage/check-${agree.information ? "" : "in"}active.svg`} />
             <CheckText>개인정보 수집 및 이용에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
           <section className="agreement-detail" onClick={() => setAgreementDetail(2)}>
