@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { IResultModal } from "src/interfaces/modal";
-import axios from "axios";
 import { useAppDispatch } from "src/state";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
 import { forwardRef } from "react";
 import { Title, Description } from "./index.style";
 import LoginModal from "src/components/loginModal";
+import { Auth } from "src/api/auth";
+import { Diagnosis } from "src/api/diagnosis";
 
 const Kakao = (window as any).Kakao;
 
@@ -16,28 +17,21 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
   const kakaoLogin = () => {
     Kakao.Auth.login({
       success: async function (authObj: any) {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
-        const token = res.headers.authorization.slice(7);
+        const headers = await Auth.login(authObj.access_token);
+        const token = headers.authorization.slice(7);
+
         dispatch(DELETE_TOKEN);
         dispatch(SET_TOKEN(token));
+
         closeModal();
         setLoading(true);
 
-        axios
-          .patch(
-            `${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`,
-            {
-              diagnosis_id: resultId,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          )
-          .then(() => {
-            setTimeout(() => navigate("/"), 3000);
-          });
+        await Diagnosis.patchDiagnosis({ diagnosis_id: resultId }, token);
+
+        const timer = setTimeout(() => {
+          navigate("/");
+          clearTimeout(timer);
+        }, 3000);
       },
       fail: function (err: any) {
         console.log(err);

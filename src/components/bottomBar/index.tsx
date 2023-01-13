@@ -4,7 +4,6 @@ import RoundButton from "../roundButton";
 import { IBottomBar } from "src/interfaces/resultPage";
 import { useAppSelector } from "src/state";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { BottomContainer, BottomButton } from "./index.style";
 import { Diagnosis } from "src/api/diagnosis";
 

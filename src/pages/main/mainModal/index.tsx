@@ -1,10 +1,10 @@
-import axios from "axios";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
 import { useAppDispatch } from "src/state";
 import { IMainModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Title } from "./index.style";
 import LoginModal from "src/components/loginModal";
+import { Auth } from "src/api/auth";
 
 const Kakao = (window as any).Kakao;
 
@@ -16,8 +16,9 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
       scope: "account_email",
       success: async function (authObj: any) {
         try {
-          const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
-          const token = res.headers.authorization.slice(7);
+          const headers = await Auth.login(authObj.access_token);
+          const token = headers.authorization.slice(7);
+
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
         } catch (err: any) {
