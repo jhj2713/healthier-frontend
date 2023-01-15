@@ -6,7 +6,13 @@ import { ILoginModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Container, Title, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
 
-const Kakao = (window as any).Kakao;
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
+const Kakao = window.Kakao;
 
 const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref) => {
   const dispatch = useAppDispatch();
@@ -16,6 +22,7 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
       scope: "account_email",
       success: async function (authObj: any) {
         try {
+          console.log(authObj);
           const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
           const token = res.headers.authorization.slice(7);
           dispatch(DELETE_TOKEN);
