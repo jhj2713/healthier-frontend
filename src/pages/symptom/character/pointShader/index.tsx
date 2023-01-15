@@ -64,10 +64,10 @@ declare global {
 }
 
 // react-three-fiber에 pointLayer_를 사용가능한 레이어로 선언합니다.
-extend({ pointLayer_: PointLayer });
+extend({ PointLayer_: PointLayer });
 
 // ref를 사용할 수 있도록 보조하는 로직입니다.
-const PointLayerComponent = forwardRef<PointLayer, IPointLayerProps>((props, ref) => {
+const PointLayerComponent = forwardRef<PointLayer, IPointLayerProps>(function PointLayerComponent(props, ref) {
   return <pointLayer_ ref={ref} {...props} />;
 }) as React.ForwardRefExoticComponent<IPointLayerProps & React.RefAttributes<PointLayer>>;
 
