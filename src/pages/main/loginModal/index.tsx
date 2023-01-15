@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
 import { useAppDispatch } from "src/state";
 import ModalContainer from "src/components/modalContainer";
-import { ILoginModal } from "src/interfaces/modal";
+import { ILoginModal, IKakaoToken } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Container, Title, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
 import imageUrl from "src/data/image_url";
@@ -21,25 +21,25 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ closeModal }, ref)
   const kakaoLogin = () => {
     Kakao.Auth.login({
       scope: "account_email",
-      success: async function (authObj: any) {
+      success: async function (resToken: IKakaoToken) {
         try {
-          console.log(authObj);
-          const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
+          const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${resToken.access_token}`);
           const token = res.headers.authorization.slice(7);
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
-        } catch (err: any) {
-          if (err.code === "ERR_BAD_REQUEST") {
+        } catch (err: Error | AxiosError | unknown) {
+          console.error(err);
+          if (axios.isAxiosError(err) && err.code === "ERR_BAD_REQUEST") {
             alert("이메일 사용 동의가 필요합니다");
+          } else {
+            alert("내부 서버 오류, 다시 시도해주세요");
           }
-          console.log(err);
-          alert("내부 서버 오류, 다시 시도해주세요");
         } finally {
           closeModal();
         }
       },
-      fail: function (err: any) {
-        console.log(err);
+      fail: function (err: Error) {
+        console.error(err);
         alert("로그인 에러, 다시 시도해주세요");
       },
     });
