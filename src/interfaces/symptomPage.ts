@@ -1,4 +1,5 @@
 import { Abstract, LayerMaterial } from "lamina/vanilla";
+import { LayerProps } from "lamina/types";
 import { Vector3 } from "three";
 
 export interface IOverlayProps {
@@ -23,4 +24,14 @@ export interface IPointAbstract extends Abstract {
 
 export interface IPointShader extends LayerMaterial {
   layers: IPointAbstract[];
+}
+
+export interface IPointLayerProps extends LayerProps {
+  colorA: string;
+  colorB: string;
+  colorAalpha: number;
+  colorBalpha: number;
+  near: number;
+  far: number;
+  origin: number[];
 }
