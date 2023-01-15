@@ -6,11 +6,11 @@ const ContentHeader = ({ text, back, exit, backCallback, exitCallback }: IConten
   return (
     <HeaderContainer>
       <Container>
-        <BackButton visible={back} onClick={() => back && backCallback()}>
+        <BackButton visible={back} onClick={() => backCallback && backCallback()}>
           <img alt="back" src="/images/header/back.svg" width={32} height={32} />
         </BackButton>
         <section className="title">{text}</section>
-        <ExitButton visible={exit} onClick={() => exit && exitCallback()}>
+        <ExitButton visible={exit} onClick={() => exitCallback && exitCallback()}>
           <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
         </ExitButton>
       </Container>

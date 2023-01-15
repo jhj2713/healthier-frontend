@@ -21,8 +21,8 @@ const Diagnosis = () => {
   });
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
-  const { gender, birth_year, interests, site } = useAppSelector((state) => state.user);
-  const { answers } = useAppSelector((state) => state.answer);
+  const { gender, birth_year, interests, site } = useAppSelector((store) => store.user);
+  const { answers } = useAppSelector((store) => store.answer);
 
   const dispatch = useAppDispatch();
 
@@ -115,7 +115,12 @@ const Diagnosis = () => {
           <ContentHeader text="자가 진단" back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")} />
           <Container>
             <Question>{curQuestion.question}</Question>
-            <AnswerButtons question={curQuestion} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
+            <AnswerButtons
+              question={curQuestion}
+              selectedAnswer={selectedAnswer}
+              setSelectedAnswer={setSelectedAnswer}
+              handleNext={handleNext}
+            />
           </Container>
         </>
       )}

@@ -28,7 +28,12 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
         </AgreementCheck>
         <AgreementBox>
           <AgreementCheck>
-            <img alt="member check" id="member" src={`/images/informationPage/check-${agree.member ? "" : "in"}active.svg`} onClick={handleAgree} />
+            <img
+              alt="member check"
+              id="member"
+              src={`/images/informationPage/check-${agree.member ? "" : "in"}active.svg`}
+              onClick={handleAgree}
+            />
             <CheckText>회원 이용약관에 동의합니다 (필수)</CheckText>
           </AgreementCheck>
           <section className="agreement-detail" onClick={() => setAgreementDetail(1)}>

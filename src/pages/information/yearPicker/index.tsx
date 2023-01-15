@@ -19,9 +19,9 @@ function YearPicker({ year, setYear }: IYearPickerProps) {
         <option hidden disabled value="">
           선택해주세요
         </option>
-        {years.map((year) => (
-          <option key={year} value={year}>
-            {year}년
+        {years.map((currentYear) => (
+          <option key={currentYear} value={currentYear}>
+            {currentYear}년
           </option>
         ))}
       </SelectBox>

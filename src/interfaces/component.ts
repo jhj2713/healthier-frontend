@@ -2,8 +2,8 @@ export interface IContentHeader {
   text: string;
   back: boolean;
   exit: boolean;
-  backCallback: () => void;
-  exitCallback: () => void;
+  backCallback?: () => void;
+  exitCallback?: () => void;
 }
 
 export interface IRoundButton {

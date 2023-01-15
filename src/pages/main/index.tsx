@@ -3,6 +3,7 @@ import MainHeader from "src/components/mainHeader";
 import BottomButtons from "./bottomButtons";
 import { Container, GuideText, Title, MainImage } from "./index.style";
 import useModal from "src/hooks/useModal";
+import imageUrl from "src/data/image_url";
 
 const MainPage = () => {
   const { isOpenModal, modalRef, openModal, closeModal } = useModal();
@@ -20,11 +21,7 @@ const MainPage = () => {
           현재 <span className="highlight">두통</span>과 <span className="highlight">수면장애</span> 진단이 가능해요!
         </GuideText>
         <MainImage>
-          <img
-            className="image"
-            alt="main"
-            src="https://healthier.s3.ap-northeast-2.amazonaws.com/client/%ED%99%88+%EC%B2%AD%EC%A7%84%EA%B8%B0.png"
-          ></img>
+          <img className="image" alt="main" src={imageUrl.main_page}></img>
         </MainImage>
         <BottomButtons openModal={openModal} />
         {isOpenModal && <LoginModal ref={modalRef} closeModal={closeModal} />}
