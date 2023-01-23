@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { IResultModal } from "src/interfaces/modal";
+import { IKakaoToken, IResultModal } from "src/interfaces/modal";
 import axios from "axios";
 import { useAppDispatch } from "src/state";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
@@ -16,8 +16,8 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
 
   const kakaoLogin = () => {
     Kakao.Auth.login({
-      success: async function (authObj: any) {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${authObj.access_token}`);
+      success: async function (resToken: IKakaoToken) {
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/oauth/kakao?access_token=${resToken.access_token}`);
         const token = res.headers.authorization.slice(7);
         dispatch(DELETE_TOKEN);
         dispatch(SET_TOKEN(token));
@@ -40,7 +40,7 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
             setTimeout(() => navigate("/"), 3000);
           });
       },
-      fail: function (err: any) {
+      fail: function (err: Error) {
         console.log(err);
       },
     });
