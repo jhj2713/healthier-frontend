@@ -1,5 +1,7 @@
+import { ChangeEvent, ReactNode } from "react";
+
 export interface IContentHeader {
-  text: string;
+  children: string;
   back: boolean;
   exit: boolean;
   backCallback?: () => void;
@@ -19,8 +21,15 @@ export interface IButton {
 }
 
 export interface ITag {
-  text: string;
+  children: string;
   selected: boolean;
+}
+
+export interface IDropdown {
+  title: string;
+  isSelected: boolean;
+  options: string[];
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
 }
 
 export interface IListComponent {
@@ -40,4 +49,10 @@ export interface IDiagnosisList {
 export interface ISymptomTypeComponent {
   selected: boolean;
   title: string;
+}
+
+export interface ILoading {
+  title: ReactNode;
+  icon: ReactNode;
+  bottomInformation?: ReactNode;
 }

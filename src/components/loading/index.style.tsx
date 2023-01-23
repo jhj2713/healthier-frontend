@@ -11,3 +11,7 @@ export const Container = styled.section`
   align-items: center;
   justify-content: center;
 `;
+
+export const IconContainer = styled.section<{ marginBottom: number }>`
+  margin: 2rem 5rem ${({ marginBottom }) => marginBottom}rem 5rem;
+`;

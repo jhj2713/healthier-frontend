@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { Heading_3, Heading_5 } from "src/lib/fontStyle";
 
-export const Highlight = styled.span`
-  font-weight: 500;
-`;
-
 export const Title = styled(Heading_3)`
   font-weight: 200;
   text-align: center;
   color: ${({ theme }) => theme.color.grey_200};
+
+  .highlight {
+    font-weight: 500;
+  }
 `;
 
 export const Description = styled(Heading_5)`
@@ -16,11 +16,13 @@ export const Description = styled(Heading_5)`
   color: ${({ theme }) => theme.color.grey_200};
 
   margin-top: 0.6rem;
+
+  .highlight {
+    font-weight: 500;
+  }
 `;
 
-export const Icon = styled.section`
+export const Icon = styled.img`
   width: 26rem;
   height: 24rem;
-
-  margin: 2rem 5rem 8.9rem 5rem;
 `;

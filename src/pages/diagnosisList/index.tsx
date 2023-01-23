@@ -4,12 +4,12 @@ import MainHeader from "src/components/mainHeader";
 import ListComponent from "./listComponent";
 import theme from "src/lib/theme";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { IDiagnosisList } from "src/interfaces/component";
 import EmptyPage from "./emptyList";
 import { useAppSelector, useAppDispatch } from "src/state";
 import { DELETE_TOKEN } from "src/state/authSlice";
 import { Container, Title, DescriptionBox, List, ButtonBackground } from "./index.style";
+import { Diagnosis } from "src/api/diagnosis";
 
 const DiagnosisList = () => {
   const navigate = useNavigate();
@@ -22,21 +22,13 @@ const DiagnosisList = () => {
   useLayoutEffect(() => {
     const getList = async () => {
       try {
-        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/api/diagnosis/results`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
-        if (res.status === 404) {
-          dispatch(DELETE_TOKEN);
-          alert("로그인 만료, 다시 로그인해주세요");
-        } else if (res.status !== 204) {
-          setDiagnosisList(res.data.diagnosis.reverse());
-          setName(res.data.nickname);
-          setLoading(false);
-        }
+        const res = await Diagnosis.getDiagnosis(accessToken);
+
+        setDiagnosisList(res.diagnosis.reverse());
+        setName(res.nickname);
+        setLoading(false);
       } catch (error) {
-        console.log(error);
+        dispatch(DELETE_TOKEN);
         alert("진단목록 로딩 실패, 다시 시도해주세요");
       }
     };

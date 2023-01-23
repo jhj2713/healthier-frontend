@@ -7,7 +7,9 @@ import { Container, Contents, Text, SubText, Table } from "./index.style";
 const MemberAgreement = ({ agreementDetail, setAgreementDetail }: IAgreementComponentProps) => {
   return (
     <>
-      <ContentHeader text={"회원 이용약관"} back={false} exit={true} exitCallback={() => setAgreementDetail(0)} />
+      <ContentHeader back={false} exit={true} exitCallback={() => setAgreementDetail(0)}>
+        회원 이용약관
+      </ContentHeader>
       <Container agreementDetail={agreementDetail}>
         <Title text="헬시어 회원 이용약관" />
         <Contents>
