@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosResponseHeaders } from "axios";
+import { IKakaoToken } from "src/interfaces/modal";
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/api/oauth`,

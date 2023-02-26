@@ -1,10 +1,11 @@
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
 import { useAppDispatch } from "src/state";
-import { IMainModal } from "src/interfaces/modal";
+import { IKakaoToken, IMainModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
 import { Title } from "./index.style";
 import LoginModal from "src/components/loginModal";
 import { Auth } from "src/api/auth";
+import { Axios, AxiosError } from "axios";
 
 const Kakao = (window as any).Kakao;
 
@@ -14,25 +15,24 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
   const kakaoLogin = () => {
     Kakao.Auth.login({
       scope: "account_email",
-      success: async function (authObj: any) {
+      success: async function (resToken: IKakaoToken) {
         try {
-          const headers = await Auth.login(authObj.access_token);
+          const headers = await Auth.login(resToken.access_token);
           const token = headers.authorization.slice(7);
 
           dispatch(DELETE_TOKEN);
           dispatch(SET_TOKEN(token));
-        } catch (err: any) {
-          if (err.code === "ERR_BAD_REQUEST") {
+        } catch (error) {
+          if ((error as AxiosError).code === "ERR_BAD_REQUEST") {
             alert("이메일 사용 동의가 필요합니다");
+          } else {
+            alert("내부 서버 오류, 다시 시도해주세요");
           }
-          console.log(err);
-          alert("내부 서버 오류, 다시 시도해주세요");
         } finally {
           closeModal();
         }
       },
-      fail: function (err: any) {
-        console.log(err);
+      fail: function () {
         alert("로그인 에러, 다시 시도해주세요");
       },
     });
