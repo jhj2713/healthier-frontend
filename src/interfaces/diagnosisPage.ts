@@ -21,3 +21,8 @@ export interface IAnswerButtonProps {
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
 }
+
+export interface IHeadacheResult {
+  id: number;
+  content: string;
+}
