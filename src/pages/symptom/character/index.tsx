@@ -1,24 +1,15 @@
 import { useRef, useEffect } from "react";
-import { useFrame, extend, useLoader, Node } from "@react-three/fiber";
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
+import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
-import { Mesh } from "three";
-import theme from "src/lib/theme";
+
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { LayerMaterial } from "lamina";
 import { IPointShader } from "src/interfaces/symptomPage";
-import Point from "./PointShader";
-import { FrontLines, BackLines } from "../characterLine";
 import { ICharacterProps } from "src/interfaces/symptomPage";
 
-extend({ Point });
-
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      point: Node<Point, typeof Point>;
-    }
-  }
-}
+import theme from "src/lib/theme";
+import { FrontLines, BackLines } from "../characterLine";
+import PointLayerComponent from "./pointShader";
 
 const hCord = [
   // x, y, z 좌표 + inner radius, outer radius
@@ -34,16 +25,16 @@ const hCord = [
 ];
 
 const vec = new THREE.Vector3();
-let geometry = new THREE.BufferGeometry();
 
 const Character = ({ view, menu }: ICharacterProps) => {
-  const character = useLoader(OBJLoader, "models/character.obj", (loader) => {
+  const [character] = useLoader(OBJLoader, "models/character.obj", (loader) => {
     // material.preload();
     // loader.setMaterials(material);
-  });
-  //@ts-ignore
-  geometry = character.children[0].geometry;
-  const modelRef = useRef<Mesh>(null!);
+  }).children;
+  // https://stackoverflow.com/questions/66818245/three-js-property-material-does-not-exist-on-type-object3d-error-when-get
+
+  const geometry = (character as THREE.Mesh).geometry;
+  const modelRef = useRef<THREE.Mesh>(null!);
   const layerRef = useRef<IPointShader>(null!);
 
   useEffect(() => {
@@ -100,14 +91,11 @@ const Character = ({ view, menu }: ICharacterProps) => {
     state.camera.position.lerp(vec.set(0, 0, 19), 0.2);
   });
 
-  // point 커스텀 jsx 항목에서 attribute을 ts가 제대로 인식하지 못하는 이슈 존재
-
   return (
     <>
       <mesh ref={modelRef} geometry={geometry} scale={0.1} position={[0, -3, 0]}>
         <LayerMaterial ref={layerRef} toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
-          <point
-            //@ts-ignore
+          <PointLayerComponent
             colorA={theme.color.blue_3d}
             colorB={theme.color.blue_3d}
             colorAalpha={1.0}
@@ -117,8 +105,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
             far={0}
             origin={[0, 5, 0]}
           />
-          <point
-            //@ts-ignore
+          <PointLayerComponent
             colorA={theme.color.blue_3d}
             colorB={theme.color.blue_3d}
             colorAalpha={1.0}

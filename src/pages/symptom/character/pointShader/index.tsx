@@ -1,7 +1,11 @@
+import React, { forwardRef } from "react";
+
 import { Vector3 } from "three";
 import { Abstract } from "lamina/vanilla";
+import { Node, extend } from "@react-three/fiber";
+import { IPointLayerProps } from "src/interfaces/symptomPage";
 
-export default class Point extends Abstract {
+class PointLayer extends Abstract {
   static u_near = 2;
   static u_far = 10;
   static u_origin = new Vector3(0, 0, 0);
@@ -42,11 +46,29 @@ export default class Point extends Abstract {
     }
   `;
 
-  constructor(props: any) {
-    //@ts-ignore
-    super(Point, {
-      name: "Point",
+  constructor(props?: IPointLayerProps) {
+    super(PointLayer, {
+      name: "PointLayer",
       ...props,
     });
   }
 }
+
+// 글로벌 네임스페이스에 접근하여 pointLayer_ JSX 컴포넌트를 선언합니다.
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      pointLayer_: Node<PointLayer, typeof PointLayer>;
+    }
+  }
+}
+
+// react-three-fiber에 pointLayer_를 사용가능한 레이어로 선언합니다.
+extend({ PointLayer_: PointLayer });
+
+// ref를 사용할 수 있도록 보조하는 로직입니다.
+const PointLayerComponent = forwardRef<PointLayer, IPointLayerProps>(function PointLayerComponent(props, ref) {
+  return <pointLayer_ ref={ref} {...props} />;
+}) as React.ForwardRefExoticComponent<IPointLayerProps & React.RefAttributes<PointLayer>>;
+
+export default PointLayerComponent;
