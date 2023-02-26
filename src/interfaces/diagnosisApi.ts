@@ -73,7 +73,7 @@ export interface IDiagnoseResponse {
 }
 
 export interface IDiagnoseAnswer {
-  question_id: string;
+  question_id: string | number;
   answer_id: number;
 }
 

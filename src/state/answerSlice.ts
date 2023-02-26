@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 interface AnswerState {
-  answers: { question_id: string; answer_id: number[] }[];
+  answers: { question_id: string | number; answer_id: number[] }[];
 }
 
 const initialState: AnswerState = {
