@@ -11,7 +11,7 @@ export default create({
   appBg: theme.color.grey_900,
   appContentBg: theme.color.grey_900,
   appBorderColor: theme.color.grey_500,
-  appBorderRadius: 10,
+  appBorderRadius: 6,
 
   // Typography
   fontBase: "Spoqa Han Sans",

@@ -1,7 +1,6 @@
 import { useLayoutEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import ResultHeader from "./resultHeader";
-import ResultLoading from "./resultLoading";
 import ResultModal from "./resultModal";
 import BottomBar from "src/components/bottomBar";
 import CoverPage from "./coverPage";
@@ -13,61 +12,21 @@ import TreatmentPage from "./treatmentPage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { IDiagnosticResult } from "src/interfaces/diagnosticResult";
-import { ICoverPageProps, IDefinePageProps, ILifeProps, IMedicine, ITreatPageProps } from "src/interfaces/resultPage";
-import { Container } from "./index.style";
+import { Container, LoadingIcon, LoadingTitle } from "./index.style";
 import useModal from "src/hooks/useModal";
+import Loading from "src/components/loading";
+import imageUrl from "src/data/image_url";
+import useDiagnosisResult from "src/hooks/useDiagnosisResult";
 
 const ResultPage = () => {
-  const navigate = useNavigate();
   const { state } = useLocation() as { state: IDiagnosticResult };
   const { isOpenModal, modalRef, openModal, closeModal } = useModal();
 
   const [curIndex, setCurIndex] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [isSaved, setIsSaved] = useState(false);
 
-  const [coverData, setCoverData] = useState<ICoverPageProps>({
-    illustration: "",
-    highlight: "",
-    title: "",
-    description: [],
-    severity: 0,
-  });
-  const [defineData, setDefineData] = useState<IDefinePageProps>({
-    title: "",
-    definition: [],
-    tag_flag: 0,
-    cause_detail: [],
-  });
-  const [lifeData, setLifeData] = useState([] as ILifeProps[]);
-  const [medicineData, setMedicineData] = useState<IMedicine[] | undefined>();
-  const [treatData, setTreatData] = useState<ITreatPageProps[] | undefined>();
+  const { coverData, defineData, lifeData, medicineData, treatData, isSaved } = useDiagnosisResult(state);
 
-  useLayoutEffect(() => {
-    if (!state) {
-      navigate("/");
-    } else {
-      setCoverData({
-        illustration: state.diagnostic_result.illustration,
-        highlight: state.diagnostic_result.h1,
-        title: state.diagnostic_result.title,
-        description: state.diagnostic_result.h2,
-        severity: state.diagnostic_result.severity,
-      });
-      setDefineData({
-        title: state.diagnostic_result.explanation.title,
-        definition: state.diagnostic_result.explanation.details,
-        tag_flag: state.diagnostic_result.cause.tag_flag,
-        cause: state.diagnostic_result.cause.tags,
-        cause_detail: state.diagnostic_result.cause.detail,
-      });
-      setLifeData(state.diagnostic_result.solutions);
-      setMedicineData(state.diagnostic_result.medicines);
-      setTreatData(state.diagnostic_result.treatments);
-
-      if (state.type === "result") setIsSaved(true);
-    }
-  }, [state]);
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
   }, [curIndex]);
@@ -87,7 +46,16 @@ const ResultPage = () => {
   return (
     <Container>
       {loading ? (
-        <ResultLoading />
+        <Loading
+          title={
+            <LoadingTitle>
+              <span className="highlight">진단 결과</span>를 다시 볼 수 있도록
+              <br />
+              차곡차곡 저장중이에요
+            </LoadingTitle>
+          }
+          icon={<LoadingIcon loading="eager" alt="icon" src={imageUrl.result_loading} />}
+        />
       ) : (
         <>
           <ResultHeader isCover={curIndex === 1} />

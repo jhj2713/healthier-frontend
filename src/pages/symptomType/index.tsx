@@ -35,7 +35,9 @@ const SymptomTypePage = () => {
   return (
     <>
       {isOpenModal && <SymptomTypeModal ref={modalRef} closeModal={closeModal} select={select} />}
-      <ContentHeader text="증상 유형 선택" back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")} />
+      <ContentHeader back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")}>
+        증상 유형 선택
+      </ContentHeader>
       <Container>
         <Title>
           증상 유형을

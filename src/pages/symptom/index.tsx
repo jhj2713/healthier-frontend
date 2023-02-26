@@ -52,7 +52,9 @@ const Symptom = () => {
           </Suspense>
         </Canvas>
       </CanvasSection>
-      <ContentHeader text="" back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")} />
+      <ContentHeader back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")}>
+        {""}
+      </ContentHeader>
       <Overlay menu={menu} setMenu={setMenu} view={view} setView={setView} />
     </Container>
   );

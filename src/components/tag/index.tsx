@@ -1,8 +1,8 @@
 import { ITag } from "src/interfaces/component";
 import { Container } from "./index.style";
 
-const Tag = ({ text, selected }: ITag) => {
-  return <Container selected={selected}>{text}</Container>;
+const Tag = ({ children, selected }: ITag) => {
+  return <Container selected={selected}>{children}</Container>;
 };
 
 export default Tag;

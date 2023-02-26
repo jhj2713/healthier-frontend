@@ -1,11 +1,11 @@
-import Button from ".";
+import RoundButton from ".";
 import { IRoundButton } from "src/interfaces/component";
 import { Meta, Story } from "@storybook/react";
 import theme from "src/lib/theme";
 
 export default {
-  component: Button,
-  title: "Button",
+  component: RoundButton,
+  title: "RoundButton",
   argTypes: {
     outline: {
       description: "버튼 outline 색상",
@@ -22,7 +22,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IRoundButton> = (args) => <Button {...args} />;
+const Template: Story<IRoundButton> = (args) => <RoundButton {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

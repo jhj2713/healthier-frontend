@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_4, Description } from "src/lib/fontStyle";
+import { Body_4 } from "src/lib/fontStyle";
 
 export const Container = styled.article`
   margin-top: 3.2rem;
@@ -39,8 +39,11 @@ export const AgreementCheck = styled.section`
   cursor: pointer;
 `;
 
-export const CheckText = styled(Description)`
+export const CheckText = styled.section`
   font-size: 1.4rem;
+  font-weight: 200;
+  line-height: 150%;
+
   color: ${({ theme }) => theme.color.grey_300};
   margin-left: 0.9rem;
 `;

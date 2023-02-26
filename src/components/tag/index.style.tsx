@@ -12,6 +12,8 @@ export const Container = styled.section<{ selected: boolean }>`
           color: ${({ theme }) => theme.color.grey_300};
         `}
 
+  display: inline-block;
+
   padding: 0.8rem 1.2rem;
   border-radius: 6rem;
 

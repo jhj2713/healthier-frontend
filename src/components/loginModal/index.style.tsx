@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_4, Heading_5 } from "src/lib/fontStyle";
+import { Body_4 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   position: absolute;
@@ -18,23 +18,6 @@ export const Container = styled.section`
   }
 `;
 
-export const Title = styled(Heading_5)`
-  color: ${({ theme }) => theme.color.grey_200};
-  text-align: center;
-
-  margin-top: 1.2rem;
-
-  font-size: 2rem;
-
-  margin: 1.2rem 3rem 0 3rem;
-
-  .highlight {
-    font-weight: 500;
-
-    color: ${({ theme }) => theme.color.green};
-  }
-`;
-
 export const Contents = styled.section`
   display: flex;
   flex-direction: column;
@@ -42,7 +25,7 @@ export const Contents = styled.section`
 
   height: calc(100% - 5rem);
   width: 100%;
-  margin-top: 1.6rem;
+  margin-top: 1.2rem;
 `;
 
 export const NoteImage = styled.section`

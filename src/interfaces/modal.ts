@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode } from "react";
 
-export interface IModal {
+export interface IModalContainer {
   children: ReactNode;
 }
 
@@ -15,7 +15,7 @@ export interface ISymptomModal {
   select: number;
 }
 
-export interface ILoginModal {
+export interface IMainModal {
   closeModal: () => void;
 }
 
@@ -26,4 +26,11 @@ export interface IKakaoToken {
   refresh_token_expires_in: number;
   scope: string;
   token_type: string;
+}
+export interface ILoginModal {
+  handleLogin: () => void;
+  closeModal: () => void;
+  handleContinue: () => void;
+  title: ReactNode;
+  continueText: string;
 }

@@ -1,32 +1,18 @@
 import React, { memo } from "react";
+import Dropdown from "src/components/dropdown";
 import { IYearPickerProps } from "src/interfaces/informationPage";
-import { Container, Title, SelectBox } from "./index.style";
 
 const years = Array.from(Array(92).keys())
-  .map((y) => y + 1930)
+  .map((y) => `${y + 1930}년`)
   .reverse();
 
 function YearPicker({ year, setYear }: IYearPickerProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
-    setYear(Number(target.value));
+    setYear(Number(target.value.slice(0, -1)));
   };
 
-  return (
-    <Container>
-      <Title>출생연도</Title>
-      <SelectBox onChange={handleChange} defaultValue="" year={year}>
-        <option hidden disabled value="">
-          선택해주세요
-        </option>
-        {years.map((currentYear) => (
-          <option key={currentYear} value={currentYear}>
-            {currentYear}년
-          </option>
-        ))}
-      </SelectBox>
-    </Container>
-  );
+  return <Dropdown title="출생연도" options={years} handleChange={handleChange} isSelected={year !== 0} />;
 }
 
 export default memo(YearPicker);
