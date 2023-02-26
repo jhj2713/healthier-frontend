@@ -25,15 +25,15 @@ const hCord = [
 ];
 
 const vec = new THREE.Vector3();
-let geometry = new THREE.BufferGeometry();
 
 const Character = ({ view, menu }: ICharacterProps) => {
-  const character = useLoader(OBJLoader, "models/character.obj", (loader) => {
+  const [character] = useLoader(OBJLoader, "models/character.obj", (loader) => {
     // material.preload();
     // loader.setMaterials(material);
-  });
+  }).children;
   // https://stackoverflow.com/questions/66818245/three-js-property-material-does-not-exist-on-type-object3d-error-when-get
-  geometry = (character.children[0] as THREE.Mesh).geometry;
+
+  const geometry = (character as THREE.Mesh).geometry;
   const modelRef = useRef<THREE.Mesh>(null!);
   const layerRef = useRef<IPointShader>(null!);
 
