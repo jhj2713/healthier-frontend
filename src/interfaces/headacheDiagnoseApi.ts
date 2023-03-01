@@ -1,10 +1,11 @@
 export interface IHeadacheQuestion {
   id: number | string;
-  content: string;
+  question: string;
+  type: string;
   is_multiple: boolean;
   answers: {
     id: number;
-    content: string;
+    answer: string;
   }[];
 }
 
@@ -23,8 +24,7 @@ export interface IHeadacheQuestions {
 }
 
 export interface IBasicAnswers {
-  basic: IHeadacheAnswer[];
-  red_flag_sign: IHeadacheAnswer[];
+  questions: IHeadacheAnswer[];
 }
 
 export interface ICaseQuestion {
