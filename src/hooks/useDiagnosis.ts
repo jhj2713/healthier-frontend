@@ -5,22 +5,7 @@ import { useAppDispatch, useAppSelector } from "src/state";
 import { resetAnswer, popAnswer } from "src/state/answerSlice";
 import { SleepDisorderDiagnose, HeadacheDiagnose } from "src/api/diagnose";
 import { IHeadacheQuestion, IPainArea } from "src/interfaces/headacheDiagnoseApi";
-
-const isHeadache = (state: string) => {
-  return state === "headache";
-};
-
-const typeMapping = (curQuestion: IHeadacheQuestion) => {
-  return {
-    ...curQuestion,
-    answers: curQuestion.answers.map((ans) => {
-      return { ...ans, answer_id: ans.id };
-    }),
-    is_multiple: curQuestion.is_multiple ? 1 : 0,
-  };
-};
-
-const PAIN_AREA_MAP = ["", "관자놀이", "이마의 띠", "눈", "눈주위", "코주위", "턱", "뒷머리", "머리 전체", "뒷목"];
+import { isHeadache, typeMapping, PAIN_AREA_MAP } from "src/utils/diagnosis";
 
 function useDiagnosis(state: string) {
   const navigate = useNavigate();
@@ -68,6 +53,14 @@ function useDiagnosis(state: string) {
     getFirstQuestion();
   }, []);
 
+  const setQuestion = (questions: IHeadacheQuestion[]) => {
+    prevQuestionList.current.push(questions);
+    curQuestionList.current = questions;
+    curQuestionIndex.current = 0;
+    setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
+    setSelectedAnswer([]);
+  };
+
   const handleNext = async () => {
     if (isHeadache(state)) {
       if (curQuestionIndex.current < curQuestionList.current.length) {
@@ -75,22 +68,13 @@ function useDiagnosis(state: string) {
         setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
       } else if (curQuestion.type === "basic") {
         const { questions } = await HeadacheDiagnose.getRedFlagSign();
-
-        prevQuestionList.current.push(questions);
-        curQuestionList.current = questions;
-        curQuestionIndex.current = 0;
-        setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-        setSelectedAnswer([]);
+        setQuestion(questions);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
         const { case: caseNum, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers });
 
         if (caseNum === 2 || caseNum === 3) {
-          prevQuestionList.current.push(questions);
-          curQuestionList.current = questions;
-          curQuestionIndex.current = 0;
-          setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-          setSelectedAnswer([]);
+          setQuestion(questions);
           isPassPrimaryQuestion.current = true;
           curCase.current = caseNum;
         } else if (caseNum === 4) {
@@ -99,11 +83,7 @@ function useDiagnosis(state: string) {
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
 
-          prevQuestionList.current.push([{ ...siteQuestions[0], type: "first_site" }]);
-          curQuestionList.current = siteQuestions;
-          curQuestionIndex.current = 0;
-          setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-          setSelectedAnswer([]);
+          setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
         }
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
@@ -113,12 +93,7 @@ function useDiagnosis(state: string) {
         };
 
         const { questions } = await HeadacheDiagnose.postPrimaryHeadache(primaryQuestions);
-
-        prevQuestionList.current.push(questions);
-        curQuestionList.current = questions;
-        curQuestionIndex.current = 0;
-        setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-        setSelectedAnswer([]);
+        setQuestion(questions);
       } else if (curQuestion.type === "primary_answer") {
         // 일차성 두통 응답
         const primaryAnswer = {
@@ -133,30 +108,17 @@ function useDiagnosis(state: string) {
 
           if (curSiteIndex.current === site.length) {
             const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-
-            prevQuestionList.current.push(additionalQuestion);
-            curQuestionList.current = additionalQuestion;
-            curQuestionIndex.current = 0;
-            setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-            setSelectedAnswer([]);
+            setQuestion(additionalQuestion);
           } else {
             curSiteIndex.current++;
             const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
               pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
             });
 
-            prevQuestionList.current.push([{ ...siteQuestions[0], type: "first_site" }]);
-            curQuestionList.current = siteQuestions;
-            curQuestionIndex.current = 0;
-            setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-            setSelectedAnswer([]);
+            setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
           }
         } else {
-          prevQuestionList.current.push(questions);
-          curQuestionList.current = questions;
-          curQuestionIndex.current = 0;
-          setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-          setSelectedAnswer([]);
+          setQuestion(questions);
         }
       } else if (curQuestion.type === "site") {
         const answer = {
@@ -166,11 +128,7 @@ function useDiagnosis(state: string) {
 
         const { case: caseNum, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
         if (caseNum === 1) {
-          prevQuestionList.current.push(questions);
-          curQuestionList.current = questions;
-          curQuestionIndex.current = 0;
-          setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-          setSelectedAnswer([]);
+          setQuestion(questions);
         } else if (caseNum === 2) {
           if (!result) return;
 
@@ -178,23 +136,14 @@ function useDiagnosis(state: string) {
 
           if (curSiteIndex.current === site.length) {
             const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-
-            prevQuestionList.current.push(additionalQuestion);
-            curQuestionList.current = additionalQuestion;
-            curQuestionIndex.current = 0;
-            setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-            setSelectedAnswer([]);
+            setQuestion(additionalQuestion);
           } else {
             curSiteIndex.current++;
             const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
               pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
             });
 
-            prevQuestionList.current.push([{ ...siteQuestions[0], type: "first_site" }]);
-            curQuestionList.current = siteQuestions;
-            curQuestionIndex.current = 0;
-            setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-            setSelectedAnswer([]);
+            setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
           }
         }
       } else if (curQuestion.type === "additional") {
