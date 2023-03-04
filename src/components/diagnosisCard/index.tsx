@@ -4,7 +4,7 @@ import severityTypes from "src/data/severity_types";
 import { Container, BannerImg, Box, Title, DateItem, Tag } from "./index.style";
 import { Diagnosis } from "src/api/diagnosis";
 
-const ListComponent = ({ diagnosis }: IListComponent) => {
+const DiagnosisCard = ({ diagnosis }: IListComponent) => {
   const navigate = useNavigate();
 
   const diag_date = new Date(diagnosis.record.is_created);
@@ -34,4 +34,4 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   );
 };
 
-export default ListComponent;
+export default DiagnosisCard;
