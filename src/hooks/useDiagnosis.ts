@@ -71,7 +71,7 @@ function useDiagnosis(state: string) {
         setQuestion(questions);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
-        const { case: caseNum, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers });
+        const { case: caseNum, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers }); // 중복답안
 
         if (caseNum === 2 || caseNum === 3) {
           setQuestion(questions);
@@ -89,7 +89,9 @@ function useDiagnosis(state: string) {
         // 일차성 두통 마지막 질문
         const primaryQuestions = {
           case: curCase.current,
-          questions: answers.slice(9, 13), // index 확인
+          questions: answers.slice(9, 13).map((ans) => {
+            return { question_id: ans.question_id, answer_id: ans.answer_id[0] };
+          }), // index 확인
         };
 
         const { questions } = await HeadacheDiagnose.postPrimaryHeadache(primaryQuestions);
@@ -98,7 +100,7 @@ function useDiagnosis(state: string) {
         // 일차성 두통 응답
         const primaryAnswer = {
           question_id: curQuestion.id,
-          answer_id: selectedAnswer.map((ans) => ans.answer_id),
+          answer_id: selectedAnswer[0].answer_id,
         };
 
         const { case: caseNum, questions, result } = await HeadacheDiagnose.postNextPrimaryHeadache(primaryAnswer);
@@ -123,7 +125,7 @@ function useDiagnosis(state: string) {
       } else if (curQuestion.type === "site") {
         const answer = {
           question_id: curQuestion.id,
-          answer_id: selectedAnswer.map((ans) => ans.answer_id),
+          answer_id: selectedAnswer[0].answer_id,
         };
 
         const { case: caseNum, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
