@@ -9,7 +9,7 @@ const initialState: UserState = {
   gender: "",
   birth_year: 0,
   interests: [],
-  site: 0,
+  site: [],
 };
 
 export const userSlice = createSlice({
@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.interests = [...action.payload.interests];
     },
     setSite: (state, action: PayloadAction<number>) => {
-      state.site = action.payload;
+      state.site = [...state.site, action.payload];
     },
   },
 });
