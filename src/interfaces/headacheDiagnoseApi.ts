@@ -9,9 +9,14 @@ export interface IHeadacheQuestion {
   }[];
 }
 
-export interface IHeadacheAnswer {
+export interface IHeadacheAnswers {
   question_id: number | string;
   answer_id: number[];
+}
+
+export interface IHeadacheAnswer {
+  question_id: number | string;
+  answer_id: number;
 }
 
 interface IHeadacheResult {
@@ -24,7 +29,7 @@ export interface IHeadacheQuestions {
 }
 
 export interface IBasicAnswers {
-  questions: IHeadacheAnswer[];
+  questions: IHeadacheAnswers[];
 }
 
 export interface ICaseQuestion {

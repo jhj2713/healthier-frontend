@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { IDecisiveDate, IDiagnoseAnswer, IDiagnoseResponse, IDiagnosisResult, IQuestion, ISiteDiagnose } from "src/interfaces/diagnosisApi";
 import {
   IHeadacheAnswer,
+  IHeadacheAnswers,
   IBasicAnswers,
   ICaseQuestion,
   IFinalResult,
