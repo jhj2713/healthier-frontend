@@ -83,7 +83,7 @@ function useDiagnosis(state: string) {
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
 
-          setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
+          setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
         }
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
@@ -117,7 +117,7 @@ function useDiagnosis(state: string) {
               pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
             });
 
-            setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
+            setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
           }
         } else {
           setQuestion(questions);
@@ -145,7 +145,7 @@ function useDiagnosis(state: string) {
               pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
             });
 
-            setQuestion([{ ...siteQuestions[0], type: "first_site" }]);
+            setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
           }
         }
       } else if (curQuestion.type === "additional") {
