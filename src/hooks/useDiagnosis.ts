@@ -26,7 +26,7 @@ function useDiagnosis(state: string) {
   const curQuestionIndex = useRef<number>(0); // 질문 묶음에서 현재 질문 index
   const isPassPrimaryQuestion = useRef<boolean>(false); // 1차성 두통 질문을 거쳤는가
   const curSiteIndex = useRef<number>(0); // 다중 site 선택
-  const curCase = useRef<number>(0); // 일차성 두통 위한 case 값
+  const curType = useRef<number>(0); // 일차성 두통 위한 case 값
   const results = useRef<IHeadacheResult[]>([]); // 진단 결과 id들
 
   const dispatch = useAppDispatch();
@@ -71,13 +71,13 @@ function useDiagnosis(state: string) {
         setQuestion(questions);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
-        const { case: caseNum, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers }); // 중복답안
+        const { type, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers }); // 중복답안
 
-        if (caseNum === 2 || caseNum === 3) {
+        if (type === 2 || type === 3) {
           setQuestion(questions);
           isPassPrimaryQuestion.current = true;
-          curCase.current = caseNum;
-        } else if (caseNum === 4) {
+          curType.current = type;
+        } else if (type === 4) {
           curSiteIndex.current++;
           const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
@@ -88,7 +88,7 @@ function useDiagnosis(state: string) {
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
         const primaryQuestions = {
-          case: curCase.current,
+          type: curType.current,
           questions: answers.slice(9, 13).map((ans) => {
             return { question_id: ans.question_id, answer_id: ans.answer_id[0] };
           }), // index 확인
@@ -103,9 +103,9 @@ function useDiagnosis(state: string) {
           answer_id: selectedAnswer[0].answer_id,
         };
 
-        const { case: caseNum, questions, result } = await HeadacheDiagnose.postNextPrimaryHeadache(primaryAnswer);
+        const { type, questions, result } = await HeadacheDiagnose.postNextPrimaryHeadache(primaryAnswer);
 
-        if (caseNum === 2 && result) {
+        if (type === 2 && result) {
           results.current.push(result);
 
           if (curSiteIndex.current === site.length) {
@@ -128,10 +128,11 @@ function useDiagnosis(state: string) {
           answer_id: selectedAnswer[0].answer_id,
         };
 
-        const { case: caseNum, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
-        if (caseNum === 1) {
+        const { type, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
+
+        if (type === 1) {
           setQuestion(questions);
-        } else if (caseNum === 2) {
+        } else if (type === 2) {
           if (!result) return;
 
           results.current.push(result);
