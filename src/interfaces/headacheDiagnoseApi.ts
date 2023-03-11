@@ -33,14 +33,14 @@ export interface IBasicAnswers {
 }
 
 export interface ICaseQuestion {
-  case: number;
+  type: number;
   message: string;
   questions: IHeadacheQuestion[];
   result?: null | IHeadacheResult;
 }
 
 export interface IPrimaryAnswers {
-  case: number;
+  type: number;
   questions: IHeadacheAnswer[];
 }
 
@@ -61,7 +61,7 @@ interface IResultCard {
 }
 
 export interface IFinalResult {
-  case: number;
+  type: number;
   results: {
     most_likely: IResultCard | null;
     suspicious: IResultCard[] | null;
