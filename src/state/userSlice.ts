@@ -22,7 +22,7 @@ export const userSlice = createSlice({
       state.interests = [...action.payload.interests];
     },
     setSite: (state, action: PayloadAction<number>) => {
-      state.site = [...state.site, action.payload];
+      state.site = [action.payload];
     },
   },
 });
