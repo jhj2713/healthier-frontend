@@ -12,7 +12,7 @@ import TreatmentPage from "./treatmentPage";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { IDiagnosticResult } from "src/interfaces/diagnosticResult";
-import { Container, LoadingIcon, LoadingTitle } from "./index.style";
+import { Container, Description, LoadingIcon, LoadingTitle } from "./index.style";
 import useModal from "src/hooks/useModal";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
@@ -23,7 +23,7 @@ const ResultPage = () => {
   const { isOpenModal, modalRef, openModal, closeModal } = useModal();
 
   const [curIndex, setCurIndex] = useState(1);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState("");
 
   const { coverData, defineData, lifeData, medicineData, treatData, isSaved } = useDiagnosisResult(state);
 
@@ -45,7 +45,7 @@ const ResultPage = () => {
 
   return (
     <Container>
-      {loading ? (
+      {loading === "result" ? (
         <Loading
           title={
             <LoadingTitle>
@@ -55,6 +55,20 @@ const ResultPage = () => {
             </LoadingTitle>
           }
           icon={<LoadingIcon loading="eager" alt="icon" src={imageUrl.result_loading} />}
+        />
+      ) : loading === "home" ? (
+        <Loading
+          title={
+            <>
+              <LoadingTitle>
+                <span className="highlight">홈으로 이동중이에요</span>
+              </LoadingTitle>
+              <Description>
+                다음에 더 <span className="highlight">다양한 진단</span>으로 만나요!
+              </Description>
+            </>
+          }
+          icon={<LoadingIcon loading="eager" alt="icon" src={imageUrl.home_loading} />}
         />
       ) : (
         <>

@@ -7,7 +7,7 @@ export interface IBottomNumber {
 
 export interface IBottomBar extends IBottomNumber {
   openModal: () => void;
-  setLoading: Dispatch<boolean>;
+  setLoading: Dispatch<string>;
   isSaved: boolean;
   resultId: string;
 }

@@ -216,7 +216,9 @@ function useDiagnosis(state: string) {
   };
 
   const handleBack = async () => {
-    if (answers.length === 1) {
+    if (answers.length === 0) {
+      navigate(-1);
+    } else if (answers.length === 1) {
       dispatch(popAnswer());
 
       if (isHeadache(state)) {
@@ -229,7 +231,7 @@ function useDiagnosis(state: string) {
         setCurQuestion(question);
         setSelectedAnswer([]);
       }
-    } else if (answers.length !== 0) {
+    } else if (answers.length >= 2) {
       dispatch(popAnswer());
 
       if (isHeadache(state)) {
@@ -265,8 +267,6 @@ function useDiagnosis(state: string) {
         setCurQuestion(res.question);
         setSelectedAnswer([]);
       }
-    } else {
-      navigate(-1);
     }
   };
 

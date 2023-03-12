@@ -14,7 +14,7 @@ const BottomBar = ({ curIndex, totalCount, openModal, setLoading, isSaved, resul
   const handleSave = async () => {
     if (authenticated) {
       // 로그인된 경우
-      setLoading(true);
+      setLoading("result");
 
       // 저장 api 호출
       await Diagnosis.patchDiagnosis({ diagnosis_id: resultId }, accessToken);
