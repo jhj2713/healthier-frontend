@@ -7,6 +7,49 @@ import { SleepDisorderDiagnose, HeadacheDiagnose } from "src/api/diagnose";
 import { IHeadacheQuestion, IPainArea } from "src/interfaces/headacheDiagnoseApi";
 import { isHeadache, typeMapping, PAIN_AREA_MAP } from "src/utils/diagnosis";
 
+const mockData = {
+  most_likely: [
+    {
+      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce90a556e36933184b0fbf.png",
+      record: {
+        diagnosis_id: "62ce90a556e36933184b0fbf",
+        is_created: "2023-01-13T20:59:45.055",
+        severity: 2,
+        title: "정신생리적 불면증",
+      },
+    },
+    {
+      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce900456e36933184b0fba.png",
+      record: {
+        diagnosis_id: "62ce908856e36933184b0fbd",
+        is_created: "2023-01-13T20:59:45.055",
+        severity: 0,
+        title: "수면장애가 아니에요",
+      },
+    },
+  ],
+  suspicious: [
+    {
+      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/headache/62e5281ee39eaf5b29f8adf1.png",
+      record: {
+        diagnosis_id: "62e5281ee39eaf5b29f8adf1",
+        is_created: "2023-01-13T20:59:45.055",
+        severity: 1,
+        title: "경추성 두통",
+      },
+    },
+    {
+      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce90a556e36933184b0fbf.png",
+      record: {
+        diagnosis_id: "62ce90a556e36933184b0fbf",
+        is_created: "2023-01-13T20:59:45.055",
+        severity: 2,
+        title: "정신생리적 불면증",
+      },
+    },
+  ],
+};
+
 function useDiagnosis(state: string) {
   const navigate = useNavigate();
 
@@ -168,7 +211,12 @@ function useDiagnosis(state: string) {
             return { id: s.id };
           }),
         });
-        // 결과화면
+
+        navigate("/diagnosis-list", {
+          state: {
+            dataList: mockData,
+          },
+        });
       }
     } else {
       if (selectedAnswer[0].is_decisive === 1) {
