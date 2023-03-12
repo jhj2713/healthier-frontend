@@ -71,9 +71,15 @@ function useDiagnosis(state: string) {
         setQuestion(questions);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
-        const { type, questions } = await HeadacheDiagnose.postRedFlagSign({ questions: answers }); // 중복답안
+        const { type, questions } = await HeadacheDiagnose.postRedFlagSign({
+          questions: answers,
+          pain_area: site.map((s) => PAIN_AREA_MAP[s]),
+        }); // 중복답안
 
-        if (type === 2 || type === 3) {
+        if (type === 1) {
+          // red flag 진단 결과 저장
+          // results.current.push(result);
+        } else if (type === 2 || type === 3) {
           setQuestion(questions);
           isPassPrimaryQuestion.current = true;
           curType.current = type;
@@ -122,7 +128,7 @@ function useDiagnosis(state: string) {
         } else {
           setQuestion(questions);
         }
-      } else if (curQuestion.type === "site") {
+      } else if (curQuestion.type === "site_first" || curQuestion.type === "site") {
         const answer = {
           question_id: curQuestion.id,
           answer_id: selectedAnswer[0].answer_id,
@@ -150,7 +156,14 @@ function useDiagnosis(state: string) {
           }
         }
       } else if (curQuestion.type === "additional") {
-        const result = await HeadacheDiagnose.postResult({
+        const answer = {
+          question_id: curQuestion.id,
+          answer_id: selectedAnswer.map((ans) => ans.answer_id),
+        };
+        const { result } = await HeadacheDiagnose.postAdditionalQuestion(answer);
+        results.current.push(result);
+
+        const resultList = await HeadacheDiagnose.postResult({
           results: results.current.map((s) => {
             return { id: s.id };
           }),
