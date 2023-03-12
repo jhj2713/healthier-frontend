@@ -117,7 +117,7 @@ function useDiagnosis(state: string) {
         const { type, questions } = await HeadacheDiagnose.postRedFlagSign({
           questions: answers,
           pain_area: site.map((s) => PAIN_AREA_MAP[s]),
-        }); // 중복답안
+        }); // 중복 답안 허용
 
         if (type === 1) {
           // red flag 진단 결과 저장
@@ -140,7 +140,7 @@ function useDiagnosis(state: string) {
           type: curType.current,
           questions: answers.slice(9, 13).map((ans) => {
             return { question_id: ans.question_id, answer_id: ans.answer_id[0] };
-          }), // index 확인
+          }),
         };
 
         const { questions } = await HeadacheDiagnose.postPrimaryHeadache(primaryQuestions);
@@ -202,7 +202,7 @@ function useDiagnosis(state: string) {
         const answer = {
           question_id: curQuestion.id,
           answer_id: selectedAnswer.map((ans) => ans.answer_id),
-        };
+        }; // 중복 답안 허용
         const { result } = await HeadacheDiagnose.postAdditionalQuestion(answer);
         results.current.push(result);
 
