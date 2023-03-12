@@ -30,6 +30,7 @@ export interface IHeadacheQuestions {
 
 export interface IBasicAnswers {
   questions: IHeadacheAnswers[];
+  pain_area: string[];
 }
 
 export interface ICaseQuestion {
