@@ -5,7 +5,6 @@ import MainPage from "./main";
 import ResultPage from "./result";
 import SymptomTypePage from "./symptomType";
 import SymptomPage from "./symptom";
-import HomeLoading from "./homeLoading";
 import DiagnosisList from "./diagnosisList";
 
-export { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, HomeLoading, DiagnosisList };
+export { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList };
