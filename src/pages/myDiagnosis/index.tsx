@@ -36,6 +36,17 @@ const MyDiagnosis = () => {
     getList();
   }, []);
 
+  const handleNavigate = async (diag: IDiagnosisList) => {
+    const diagnosisResult = await Diagnosis.getDiagnosisDetail(diag.record.diagnosis_id);
+
+    navigate("/result", {
+      state: {
+        type: "result",
+        diagnostic_result: diagnosisResult.diagnostic_result,
+      },
+    });
+  };
+
   return (
     <Container>
       <MainHeader />
@@ -55,7 +66,7 @@ const MyDiagnosis = () => {
               </DescriptionBox>
               <List>
                 {diagnosisList.map((diag, idx) => (
-                  <DiagnosisCard key={idx} diagnosis={diag} />
+                  <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
                 ))}
               </List>
             </>

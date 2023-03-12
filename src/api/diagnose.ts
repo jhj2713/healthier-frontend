@@ -18,7 +18,7 @@ const sleepDisorderInstance = axios.create({
   timeout: 15000,
 });
 const headacheInstance = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/v2/diagnose/headache`,
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/v2/diagnose`,
   timeout: 15000,
 });
 
@@ -40,14 +40,17 @@ export const SleepDisorderDiagnose = {
 };
 
 export const HeadacheDiagnose = {
-  getBasicQuestion: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/basic`),
-  getRedFlagSign: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/red-flag-sign`),
-  postRedFlagSign: (body: IBasicAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/red-flag-sign`, body),
-  postPrimaryHeadache: (body: IPrimaryAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/primary-headache`, body),
-  postNextPrimaryHeadache: (body: IHeadacheAnswer): Promise<ICaseQuestion> => headacheRequests.post(`/primary-headache/next`, body),
-  postFirstHeadacheQuestion: (body: IPainAreaRequest): Promise<IHeadacheQuestions> => headacheRequests.post(`/pain-area/first`, body),
-  postHeadacheQuestion: (body: IHeadacheAnswer): Promise<ICaseQuestion> => headacheRequests.post(`/pain-area/next`, body),
-  getAdditionalQuestion: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/additional-factor`),
-  postAdditionalQuestion: (body: IHeadacheAnswers): Promise<IResultResponse> => headacheRequests.post(`/additional-factor`, body),
-  postResult: (body: IResultRequest): Promise<IFinalResult> => headacheRequests.post(`/result`, body),
+  getBasicQuestion: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/basic`),
+  getRedFlagSign: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/red-flag-sign`),
+  postRedFlagSign: (body: IBasicAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/red-flag-sign`, body),
+  postPrimaryHeadache: (body: IPrimaryAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/primary-headache`, body),
+  postNextPrimaryHeadache: (body: IHeadacheAnswer): Promise<ICaseQuestion> =>
+    headacheRequests.post(`/headache/primary-headache/next`, body),
+  postFirstHeadacheQuestion: (body: IPainAreaRequest): Promise<IHeadacheQuestions> =>
+    headacheRequests.post(`/headache/pain-area/first`, body),
+  postHeadacheQuestion: (body: IHeadacheAnswer): Promise<ICaseQuestion> => headacheRequests.post(`/headache/pain-area/next`, body),
+  getAdditionalQuestion: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/additional-factor`),
+  postAdditionalQuestion: (body: IHeadacheAnswers): Promise<IResultResponse> => headacheRequests.post(`/headache/additional-factor`, body),
+  postResult: (body: IResultRequest): Promise<IFinalResult> => headacheRequests.post(`/headache/result`, body),
+  postResultDetail: (id: number): Promise<IDiagnosisResult> => headacheRequests.get(`/results/${id}`),
 };
