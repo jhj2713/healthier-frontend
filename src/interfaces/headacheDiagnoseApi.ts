@@ -1,7 +1,7 @@
 export interface IHeadacheQuestion {
   id: number | string;
   question: string;
-  type: string;
+  type?: string;
   is_multiple: boolean;
   answers: {
     id: number;

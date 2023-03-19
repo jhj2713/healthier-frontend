@@ -180,7 +180,7 @@ function useDiagnosis(state: string) {
         const { type, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
 
         if (type === 1) {
-          setQuestion(questions);
+          setQuestion([{ ...questions[0], type: "site" }]);
         } else if (type === 2) {
           if (!result) return;
 
@@ -188,7 +188,7 @@ function useDiagnosis(state: string) {
 
           if (curSiteIndex.current === site.length) {
             const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-            setQuestion(additionalQuestion);
+            setQuestion([{ ...additionalQuestion[0], type: "additional" }]);
           } else {
             curSiteIndex.current++;
             const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
