@@ -7,49 +7,6 @@ import { SleepDisorderDiagnose, HeadacheDiagnose } from "src/api/diagnose";
 import { IHeadacheQuestion, IPainArea } from "src/interfaces/headacheDiagnoseApi";
 import { isHeadache, typeMapping, PAIN_AREA_MAP, insertType } from "src/utils/diagnosis";
 
-const mockData = {
-  most_likely: [
-    {
-      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce90a556e36933184b0fbf.png",
-      record: {
-        diagnosis_id: "62ce90a556e36933184b0fbf",
-        is_created: "2023-01-13T20:59:45.055",
-        severity: 2,
-        title: "정신생리적 불면증",
-      },
-    },
-    {
-      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce900456e36933184b0fba.png",
-      record: {
-        diagnosis_id: "62ce908856e36933184b0fbd",
-        is_created: "2023-01-13T20:59:45.055",
-        severity: 0,
-        title: "수면장애가 아니에요",
-      },
-    },
-  ],
-  suspicious: [
-    {
-      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/headache/62e5281ee39eaf5b29f8adf1.png",
-      record: {
-        diagnosis_id: "62e5281ee39eaf5b29f8adf1",
-        is_created: "2023-01-13T20:59:45.055",
-        severity: 1,
-        title: "경추성 두통",
-      },
-    },
-    {
-      banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/sleepdisorder/62ce90a556e36933184b0fbf.png",
-      record: {
-        diagnosis_id: "62ce90a556e36933184b0fbf",
-        is_created: "2023-01-13T20:59:45.055",
-        severity: 2,
-        title: "정신생리적 불면증",
-      },
-    },
-  ],
-};
-
 function useDiagnosis(state: string) {
   const navigate = useNavigate();
 
@@ -119,19 +76,20 @@ function useDiagnosis(state: string) {
         setSelectedAnswer([]);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
-        console.log("red flag", {
-          questions: [...answers, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }],
-          pain_area: site.map((s) => PAIN_AREA_MAP[s]),
-        });
-        const { type, questions } = await HeadacheDiagnose.postRedFlagSign({
+        const { type, questions, result } = await HeadacheDiagnose.postRedFlagSign({
           questions: [...answers, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }],
           pain_area: site.map((s) => PAIN_AREA_MAP[s]),
         }); // 중복 답안 허용
         console.log("red_flag", questions);
 
-        if (type === 1) {
-          // red flag 진단 결과 저장
-          // results.current.push(result);
+        if (type === 1 && result) {
+          results.current.push(result);
+          curSiteIndex.current++;
+          const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
+            pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
+          });
+
+          setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
         } else if (type === 2 || type === 3) {
           const typedQuestion = insertType(questions, "primary_question");
           setQuestion(typedQuestion);

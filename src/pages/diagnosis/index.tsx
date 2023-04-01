@@ -36,7 +36,11 @@ const Diagnosis = () => {
             감별진단
           </ContentHeader>
           <Container>
-            <Question>{curQuestion.question}</Question>
+            <Question>
+              {curQuestion.question.split("\\n").map((text: string, idx: number) => (
+                <div key={idx}>{text}</div>
+              ))}
+            </Question>
             <AnswerButtons
               question={curQuestion}
               selectedAnswer={selectedAnswer}
