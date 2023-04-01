@@ -64,7 +64,7 @@ const ResultPage = () => {
                 <span className="highlight">홈으로 이동중이에요</span>
               </LoadingTitle>
               <Description>
-                다음에 더 <span className="highlight">다양한 진단</span>으로 만나요!
+                다음에 더 <span className="highlight">다양한 증상감별</span>로 만나요!
               </Description>
             </>
           }

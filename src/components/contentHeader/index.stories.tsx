@@ -24,19 +24,19 @@ export const Default = Template.bind({});
 Default.args = {
   back: true,
   exit: true,
-  children: "감별 진단",
+  children: "감별 결과",
 };
 
 export const BackHeader = Template.bind({});
 BackHeader.args = {
   back: true,
   exit: false,
-  children: "감별 진단",
+  children: "감별 결과",
 };
 
 export const ExitHeader = Template.bind({});
 ExitHeader.args = {
   back: false,
   exit: true,
-  children: "감별 진단",
+  children: "감별 결과",
 };

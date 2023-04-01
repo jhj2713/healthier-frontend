@@ -33,7 +33,7 @@ const Diagnosis = () => {
       ) : (
         <>
           <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>
-            감별 진단
+            감별진단
           </ContentHeader>
           <Container>
             <Question>{curQuestion.question}</Question>
