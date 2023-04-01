@@ -1,19 +1,31 @@
 import { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
-import { useEffect } from "react";
+import { ChangeEvent, useEffect } from "react";
 import { saveAnswer } from "src/state/answerSlice";
 import { useAppDispatch } from "src/state";
-import { Container, AnswersContainer, ButtonBox, ButtonText, NextButton } from "./index.style";
+import {
+  Container,
+  AnswersContainer,
+  ButtonBox,
+  ButtonText,
+  NextButton,
+  RangeAnswerContainer,
+  RangeContainer,
+  RangeInput,
+  RangeAnswers,
+  RangeAnswer,
+} from "./index.style";
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const answers = question.answers;
   const isMultiple = question.is_multiple === 1;
+  const isSliderQuestion = question.question.includes("통증의 정도");
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (!isMultiple && selectedAnswer.length !== 0) {
+    if (!isMultiple && !isSliderQuestion && selectedAnswer.length !== 0) {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -55,6 +67,10 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
     handleNext();
   };
+  const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    const selectedIdx = Number(e.target.value);
+    setSelectedAnswer([{ answer_id: question.answers[selectedIdx].answer_id, answer: question.answers[selectedIdx].answer }]);
+  };
 
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
@@ -62,18 +78,34 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   return (
     <Container>
-      <AnswersContainer ansCount={answers.length}>
-        {answers.length !== 0 &&
-          answers.map((ans, idx) => (
-            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
-              <section className="button">
-                <ButtonText>{ans.answer}</ButtonText>
-              </section>
-            </ButtonBox>
-          ))}
-      </AnswersContainer>
+      {isSliderQuestion ? (
+        <RangeAnswerContainer>
+          <RangeAnswers>
+            {answers.length !== 0 &&
+              answers.map((ans, idx) => (
+                <RangeAnswer key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+                  {ans.answer}
+                </RangeAnswer>
+              ))}
+          </RangeAnswers>
+          <RangeContainer>
+            <RangeInput type="range" min={0} max={5} onChange={handleRangeInput} />
+          </RangeContainer>
+        </RangeAnswerContainer>
+      ) : (
+        <AnswersContainer ansCount={answers.length}>
+          {answers.length !== 0 &&
+            answers.map((ans, idx) => (
+              <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+                <section className="button">
+                  <ButtonText>{ans.answer}</ButtonText>
+                </section>
+              </ButtonBox>
+            ))}
+        </AnswersContainer>
+      )}
 
-      {isMultiple && (
+      {(isMultiple || isSliderQuestion) && (
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
             outline="none"
