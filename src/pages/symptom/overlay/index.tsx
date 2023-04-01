@@ -164,7 +164,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
             backgroundColor={menu ? theme.color.green : theme.color.grey_750}
             color={menu ? theme.color.grey_900 : theme.color.grey_500}
           >
-            진단 시작하기
+            증상 감별 시작하기
           </RoundButton>
         </section>
       </ButtonDiv>

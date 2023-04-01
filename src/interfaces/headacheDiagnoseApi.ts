@@ -4,7 +4,7 @@ export interface IHeadacheQuestion {
   type?: string;
   is_multiple: boolean;
   answers: {
-    id: number;
+    answer_id: number;
     answer: string;
   }[];
 }
@@ -71,5 +71,9 @@ export interface IFinalResult {
 }
 
 export interface IResultRequest {
-  results: { id: number }[];
+  results: { result_id: number; result: string }[];
+  tracks: { question_id: string | number; answer_id: number[] }[];
+  interests: number[];
+  birth_year: number;
+  gender: string;
 }

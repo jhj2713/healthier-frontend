@@ -37,7 +37,7 @@ const BottomBar = ({ curIndex, totalCount, openModal, setLoading, isSaved, resul
         <BottomButton>
           <section onClick={handleSave}>
             <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
-              나의 진단기록장에 저장하기
+              나의 건강기록장에 저장하기
             </RoundButton>
           </section>
         </BottomButton>

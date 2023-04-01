@@ -49,7 +49,7 @@ const ResultPage = () => {
         <Loading
           title={
             <LoadingTitle>
-              <span className="highlight">진단 결과</span>를 다시 볼 수 있도록
+              <span className="highlight">감별 결과</span>를 다시 볼 수 있도록
               <br />
               차곡차곡 저장중이에요
             </LoadingTitle>
@@ -64,7 +64,7 @@ const ResultPage = () => {
                 <span className="highlight">홈으로 이동중이에요</span>
               </LoadingTitle>
               <Description>
-                다음에 더 <span className="highlight">다양한 진단</span>으로 만나요!
+                다음에 더 <span className="highlight">다양한 증상감별</span>로 만나요!
               </Description>
             </>
           }

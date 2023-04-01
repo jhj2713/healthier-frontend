@@ -23,9 +23,9 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
           <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
         </section>
         <Contents>
-          <Description>헬시어가 증상 진단을 준비중이에요!</Description>
+          <Description>헬시어가 증상 감별을 준비중이에요!</Description>
           <Title>
-            현재 진단 가능한 증상은
+            현재 감별 가능한 증상은
             <br />
             <span className="highlight">{symptom_type[select].detail}</span>입니다
           </Title>

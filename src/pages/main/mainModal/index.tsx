@@ -45,7 +45,7 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
         <Title>
           로그인을 하면
           <br />
-          <span className="highlight">나의 진단 기록장</span>을 이용할 수 있어요
+          <span className="highlight">나의 건강기록장</span>을 이용할 수 있어요
         </Title>
       }
       continueText="괜찮아요, 비회원으로 이용할게요"
