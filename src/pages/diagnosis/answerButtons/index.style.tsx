@@ -65,3 +65,44 @@ export const NextButton = styled.section`
 
   background: linear-gradient(180deg, rgba(31, 37, 79, 0) 0%, #23284b 50%);
 `;
+
+export const RangeAnswerContainer = styled.div`
+  display: flex;
+`;
+
+export const RangeAnswers = styled.div`
+  flex: 4;
+`;
+
+export const RangeAnswer = styled(Body_1)<{ selected: boolean }>`
+  width: 23.1rem;
+  height: 5rem;
+  color: ${({ theme, selected }) => (selected ? theme.color.grey_200 : theme.color.grey_400)};
+`;
+
+export const RangeContainer = styled.div`
+  flex: 1;
+  position: relative;
+
+  height: 0.6rem;
+  width: 36.7rem;
+  background: rgba(84, 100, 242, 0.33);
+  border-radius: 0.1rem;
+  transform: rotate(90deg);
+`;
+
+export const RangeInput = styled.input`
+  position: absolute;
+  height: 0.6rem;
+  width: 36.7rem;
+  -webkit-appearance: none;
+  background: none;
+
+  &::-webkit-slider-thumb {
+    height: 1.2rem;
+    width: 1.2rem;
+    border-radius: 50%;
+    background-color: #5e6df3;
+    -webkit-appearance: none;
+  }
+`;
