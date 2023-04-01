@@ -16,11 +16,11 @@ const SymptomTypePage = () => {
 
   const handleSelect = (idx: number) => {
     setSelect(idx);
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(openModal());
-      }, 500);
-    });
+
+    const timer = setTimeout(() => {
+      openModal();
+      clearTimeout(timer);
+    }, 500);
   };
 
   useEffect(() => {
