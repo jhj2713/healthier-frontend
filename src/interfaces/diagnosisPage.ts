@@ -24,6 +24,6 @@ export interface IAnswerButtonProps {
 }
 
 export interface IHeadacheResult {
-  id: number;
-  content: string;
+  result_id: number;
+  result: string;
 }

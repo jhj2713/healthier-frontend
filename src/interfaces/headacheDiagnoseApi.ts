@@ -20,8 +20,8 @@ export interface IHeadacheAnswer {
 }
 
 interface IHeadacheResult {
-  id: number;
-  content: string;
+  result_id: number;
+  result: string;
 }
 
 export interface IHeadacheQuestions {

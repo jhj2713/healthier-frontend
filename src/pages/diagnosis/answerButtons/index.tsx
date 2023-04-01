@@ -14,9 +14,10 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   useEffect(() => {
     if (!isMultiple && selectedAnswer.length !== 0) {
-      new Promise((resolve) => {
-        setTimeout(() => resolve(handleNext()), 300);
-      });
+      const timer = setTimeout(() => {
+        handleNext();
+        clearTimeout(timer);
+      }, 300);
     }
   }, [selectedAnswer]);
 

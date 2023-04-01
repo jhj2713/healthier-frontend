@@ -48,7 +48,6 @@ function useDiagnosis(state: string) {
         curQuestionList.current = typedQuestion;
         curQuestionIndex.current = 0;
         setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
-        console.log(questions);
       }
     }
 
@@ -89,7 +88,7 @@ function useDiagnosis(state: string) {
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
 
-          setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
+          setQuestion(insertType(siteQuestions, "site_first"));
         } else if (type === 2 || type === 3) {
           const typedQuestion = insertType(questions, "primary_question");
           setQuestion(typedQuestion);
@@ -101,7 +100,7 @@ function useDiagnosis(state: string) {
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
 
-          setQuestion([{ ...siteQuestions[0], type: "site_first" }]);
+          setQuestion(insertType(siteQuestions, "site_first"));
         }
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
@@ -181,6 +180,8 @@ function useDiagnosis(state: string) {
           }
         }
       } else if (curQuestion.type === "additional") {
+        setLoading(true);
+
         const answer = {
           question_id: curQuestion.id,
           answer_id: selectedAnswer.map((ans) => ans.answer_id),
@@ -189,20 +190,21 @@ function useDiagnosis(state: string) {
         results.current.push(result);
 
         const resultList = await HeadacheDiagnose.postResult({
-          results: results.current.map((s) => {
-            return { result_id: s.id, result: s.content };
-          }),
+          results: results.current,
           tracks: [...answers, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }],
           gender,
           birth_year,
           interests,
         });
 
-        navigate("/diagnosis-list", {
-          state: {
-            dataList: resultList,
-          },
-        });
+        const timer = setTimeout(() => {
+          navigate("/diagnosis-list", {
+            state: {
+              dataList: resultList,
+            },
+          });
+          clearTimeout(timer);
+        }, 3000);
       }
     } else {
       if (selectedAnswer[0].is_decisive === 1) {
@@ -224,17 +226,12 @@ function useDiagnosis(state: string) {
           diagnostic_result: decisive.diagnostic_result,
         };
 
-        new Promise((resolve) => {
-          setTimeout(
-            () =>
-              resolve(
-                navigate("/result", {
-                  state: response_state,
-                })
-              ),
-            3000
-          );
-        });
+        const timer = setTimeout(() => {
+          navigate("/result", {
+            state: response_state,
+          });
+          clearTimeout(timer);
+        }, 3000);
       } else {
         const data = {
           question_id: curQuestion.id,
