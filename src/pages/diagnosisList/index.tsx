@@ -35,24 +35,42 @@ const DiagnosisList = () => {
       <DescriptionText style={{ marginTop: "0.8rem" }}>
         <span className="highlight">예상질환</span>을 클릭하면 자세한 설명을 확인할 수 있어요!
       </DescriptionText>
-      <DescriptionText style={{ marginTop: "2.4rem" }}>
-        <span className="highlight">가장 가능성 높은 질환</span>
-      </DescriptionText>
-      <List>
-        {state &&
-          state.dataList.most_likely.map((diag, idx) => (
-            <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
-          ))}
-      </List>
-      <DescriptionText style={{ marginTop: "2.4rem" }}>
-        <span className="highlight">다음 질환도 의심되어요!</span>
-      </DescriptionText>
-      <List>
-        {state &&
-          state.dataList.suspicious.map((diag, idx) => (
-            <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
-          ))}
-      </List>
+      {state && state.dataList.results.likely && (
+        <>
+          <DescriptionText style={{ marginTop: "2.4rem" }}>
+            <span className="highlight">가장 가능성 높은 질환</span>
+          </DescriptionText>
+          <List>
+            {state.dataList.results.likely.map((diag, idx) => (
+              <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
+            ))}
+          </List>
+        </>
+      )}
+      {state && state.dataList.results.predicted && (
+        <>
+          <DescriptionText style={{ marginTop: "2.4rem" }}>
+            <span className="highlight">예상질환이에요</span>
+          </DescriptionText>
+          <List>
+            {state.dataList.results.predicted.map((diag, idx) => (
+              <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
+            ))}
+          </List>
+        </>
+      )}
+      {state && state.dataList.results.suspicious && (
+        <>
+          <DescriptionText style={{ marginTop: "2.4rem" }}>
+            <span className="highlight">다음 질환도 의심되어요!</span>
+          </DescriptionText>
+          <List>
+            {state.dataList.results.suspicious.map((diag, idx) => (
+              <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
+            ))}
+          </List>
+        </>
+      )}
     </Container>
   );
 };

@@ -32,7 +32,10 @@ export interface IDiagnosticResult {
 
 export interface IDiagnosisResultList {
   dataList: {
-    most_likely: IDiagnosisList[];
-    suspicious: IDiagnosisList[];
+    results: {
+      predicted: IDiagnosisList[] | null;
+      suspicious: IDiagnosisList[] | null;
+      likely: IDiagnosisList[] | null;
+    };
   };
 }
