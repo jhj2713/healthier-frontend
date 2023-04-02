@@ -99,10 +99,22 @@ export const RangeInput = styled.input`
   background: none;
 
   &::-webkit-slider-thumb {
+    position: relative;
     height: 1.2rem;
     width: 1.2rem;
     border-radius: 50%;
     background-color: #5e6df3;
+    -webkit-appearance: none;
+  }
+  &::-webkit-slider-thumb::after {
+    content: "";
+    position: absolute;
+    top: -1.8rem;
+    left: -1.8rem;
+    height: 1.8rem;
+    width: 1.8rem;
+    border-radius: 50%;
+    background: rgba(183, 190, 255, 0.1);
     -webkit-appearance: none;
   }
 `;
