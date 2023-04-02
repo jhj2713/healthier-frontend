@@ -58,6 +58,8 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
   };
   const handleMultipleAnswer = () => {
+    if (selectedAnswer.length === 0) return;
+
     dispatch(
       saveAnswer({
         question_id: question.id,
