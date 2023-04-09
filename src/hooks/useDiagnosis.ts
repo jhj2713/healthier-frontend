@@ -82,6 +82,7 @@ function useDiagnosis(state: string) {
 
         if (type === 1 && result) {
           results.current.push(result);
+
           const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
@@ -94,6 +95,13 @@ function useDiagnosis(state: string) {
           isPassPrimaryQuestion.current = true;
           curType.current = type;
         } else if (type === 4) {
+          while (
+            curSiteIndex.current < site.length &&
+            (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
+          ) {
+            curSiteIndex.current += 1;
+          }
+
           const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
             pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
           });
@@ -125,6 +133,13 @@ function useDiagnosis(state: string) {
         const { type, questions, result } = await HeadacheDiagnose.postNextPrimaryHeadache(primaryAnswer);
         if (type === 2 && result) {
           results.current.push(result);
+
+          while (
+            curSiteIndex.current < site.length &&
+            (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
+          ) {
+            curSiteIndex.current += 1;
+          }
 
           if (curSiteIndex.current === site.length) {
             const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
@@ -160,6 +175,13 @@ function useDiagnosis(state: string) {
 
           results.current.push(result);
 
+          while (
+            curSiteIndex.current < site.length &&
+            (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
+          ) {
+            curSiteIndex.current += 1;
+          }
+
           if (curSiteIndex.current === site.length) {
             const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
             const typedQuestion = insertType(additionalQuestion, "additional");
@@ -182,7 +204,8 @@ function useDiagnosis(state: string) {
           answer_id: selectedAnswer.map((ans) => ans.answer_id),
         }; // 중복 답안 허용
         const { result } = await HeadacheDiagnose.postAdditionalQuestion(answer);
-        results.current.push(result);
+
+        if (result) results.current.push(result);
 
         const resultList = await HeadacheDiagnose.postResult({
           results: results.current,
