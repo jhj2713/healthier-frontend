@@ -17,4 +17,4 @@ export const insertType = (questions: IHeadacheQuestion[], type: string) => {
   });
 };
 
-export const PAIN_AREA_MAP = ["", "관자놀이", "이마의 띠", "눈", "눈주위", "코 주위", "턱", "뒷머리", "머리 전체", "뒷목"];
+export const PAIN_AREA_MAP = ["", "관자놀이", "이마의 띠", "눈", "눈 주위", "코 주위", "턱", "뒷머리", "머리 전체", "뒷목"];
