@@ -13,18 +13,25 @@ import {
   RangeAnswerContainer,
   RangeContainer,
   RangeInput,
-  RangeAnswers,
   RangeAnswer,
+  RangeNumber,
+  RangeBackground,
 } from "./index.style";
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  const answers = question.answers;
   const isMultiple = question.is_multiple === 1;
   const isSliderQuestion = question.question.includes("통증의 정도");
+  const answers = question.answers;
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
+    if (isSliderQuestion) {
+      setSelectedAnswer([answers[2]]);
+    }
+  }, []);
+  useEffect(() => {
+    selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
     if (!isMultiple && !isSliderQuestion && selectedAnswer.length !== 0) {
       const timer = setTimeout(() => {
         handleNext();
@@ -74,25 +81,33 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     setSelectedAnswer([{ answer_id: question.answers[selectedIdx].answer_id, answer: question.answers[selectedIdx].answer }]);
   };
 
-  useEffect(() => {
-    selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-  }, [selectedAnswer]);
-
   return (
     <Container>
       {isSliderQuestion ? (
         <RangeAnswerContainer>
-          <RangeAnswers>
+          <div className="range-answers">
             {answers.length !== 0 &&
               answers.map((ans, idx) => (
-                <RangeAnswer key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+                <RangeAnswer key={idx} selected={handleActive(ans.answer_id)}>
                   {ans.answer}
                 </RangeAnswer>
               ))}
-          </RangeAnswers>
+          </div>
           <RangeContainer>
-            <RangeInput type="range" min={0} max={5} onChange={handleRangeInput} />
+            <RangeBackground />
+            <RangeInput
+              type="range"
+              min={0}
+              max={5}
+              value={selectedAnswer.length >= 1 ? selectedAnswer[0].answer_id : 2}
+              onChange={handleRangeInput}
+            />
           </RangeContainer>
+          <div className="range-numbers">
+            {[100, 50, 0].map((num) => (
+              <RangeNumber key={num}>{num}</RangeNumber>
+            ))}
+          </div>
         </RangeAnswerContainer>
       ) : (
         <AnswersContainer ansCount={answers.length}>

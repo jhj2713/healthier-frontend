@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body_1 } from "src/lib/fontStyle";
+import { Body_1, Body_3 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
   background: transparent;
@@ -42,8 +42,6 @@ export const ButtonBox = styled.section<{ selected: boolean }>`
   }
 `;
 
-export const Button = styled.section``;
-
 export const ButtonText = styled(Body_1)`
   font-weight: 200;
   text-align: center;
@@ -68,15 +66,30 @@ export const NextButton = styled.section`
 
 export const RangeAnswerContainer = styled.div`
   display: flex;
+  position: relative;
+  margin: 6.7rem 4.5rem 2.4rem 4.5rem;
+
+  .range-answers {
+    width: 23.2rem;
+  }
+
+  .range-numbers {
+    width: 2.6rem;
+    height: 36.7rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
-export const RangeAnswers = styled.div`
-  flex: 4;
+export const RangeNumber = styled(Body_3)`
+  color: ${({ theme }) => theme.color.grey_400};
 `;
 
 export const RangeAnswer = styled(Body_1)<{ selected: boolean }>`
   width: 23.1rem;
-  height: 5rem;
+  height: 7rem;
   color: ${({ theme, selected }) => (selected ? theme.color.grey_200 : theme.color.grey_400)};
 `;
 
@@ -86,9 +99,17 @@ export const RangeContainer = styled.div`
 
   height: 0.6rem;
   width: 36.7rem;
-  background: rgba(84, 100, 242, 0.33);
+  transform: rotate(90deg) translate(50%, 0);
+`;
+
+export const RangeBackground = styled.div`
+  position: absolute;
+  top: 0.2rem;
+
+  height: 0.6rem;
+  width: 36.7rem;
   border-radius: 0.1rem;
-  transform: rotate(90deg);
+  background: rgba(84, 100, 242, 0.33);
 `;
 
 export const RangeInput = styled.input`
@@ -102,19 +123,9 @@ export const RangeInput = styled.input`
     position: relative;
     height: 1.2rem;
     width: 1.2rem;
-    border-radius: 50%;
+    border-radius: 100%;
+    box-shadow: 0 0 0 1.8rem rgba(183, 190, 255, 0.1);
     background-color: #5e6df3;
-    -webkit-appearance: none;
-  }
-  &::-webkit-slider-thumb::after {
-    content: "";
-    position: absolute;
-    top: -1.8rem;
-    left: -1.8rem;
-    height: 1.8rem;
-    width: 1.8rem;
-    border-radius: 50%;
-    background: rgba(183, 190, 255, 0.1);
     -webkit-appearance: none;
   }
 `;
