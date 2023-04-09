@@ -124,7 +124,7 @@ export const RangeInput = styled.input`
     height: 1.2rem;
     width: 1.2rem;
     border-radius: 100%;
-    box-shadow: 0 0 0 1.8rem rgba(183, 190, 255, 0.1);
+    box-shadow: 0 0 0 1.6rem rgba(183, 190, 255, 0.1);
     background-color: #5e6df3;
     -webkit-appearance: none;
   }

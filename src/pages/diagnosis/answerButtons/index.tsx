@@ -1,7 +1,7 @@
 import { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
-import { ChangeEvent, useEffect } from "react";
+import { ChangeEvent, useEffect, useMemo } from "react";
 import { saveAnswer } from "src/state/answerSlice";
 import { useAppDispatch } from "src/state";
 import {
@@ -21,7 +21,7 @@ import {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const isMultiple = question.is_multiple === 1;
   const isSliderQuestion = question.question.includes("통증의 정도");
-  const answers = question.answers;
+  const answers = useMemo(() => (isSliderQuestion ? question.answers.reverse() : question.answers), [question]);
 
   const dispatch = useAppDispatch();
 
@@ -99,7 +99,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
               type="range"
               min={0}
               max={5}
-              value={selectedAnswer.length >= 1 ? selectedAnswer[0].answer_id : 2}
+              value={selectedAnswer.length >= 1 ? 5 - selectedAnswer[0].answer_id : 2}
               onChange={handleRangeInput}
             />
           </RangeContainer>
