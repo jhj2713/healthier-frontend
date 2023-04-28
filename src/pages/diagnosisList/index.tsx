@@ -29,7 +29,7 @@ const DiagnosisList = () => {
         setLoading(false);
       } catch (error) {
         dispatch(DELETE_TOKEN);
-        alert("진단목록 로딩 실패, 다시 시도해주세요");
+        alert("감별진단 목록 로딩 실패, 다시 시도해주세요");
       }
     };
 
@@ -48,10 +48,10 @@ const DiagnosisList = () => {
               <Title>
                 <span className="highlight">{name}님</span>
                 이 저장한
-                <br /> 진단 내역이에요
+                <br /> 증상 감별 내역이에요
               </Title>
               <DescriptionBox>
-                <span className="highlight">{diagnosisList.length}개</span>의 진단내역
+                <span className="highlight">{diagnosisList.length}개</span>의 증상 감별 내역
               </DescriptionBox>
               <List>
                 {diagnosisList.map((diag, idx) => (
@@ -65,7 +65,7 @@ const DiagnosisList = () => {
       <ButtonBackground>
         <section className="button-box" onClick={() => navigate("/symptom-type", { state: "list" })}>
           <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_900}>
-            빠른 진단 시작하기
+            빠른 증상 감별 시작하기
           </RoundButton>
         </section>
       </ButtonBackground>

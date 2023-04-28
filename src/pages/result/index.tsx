@@ -49,7 +49,7 @@ const ResultPage = () => {
         <Loading
           title={
             <LoadingTitle>
-              <span className="highlight">진단 결과</span>를 다시 볼 수 있도록
+              <span className="highlight">감별 결과</span>를 다시 볼 수 있도록
               <br />
               차곡차곡 저장중이에요
             </LoadingTitle>

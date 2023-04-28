@@ -44,9 +44,9 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
       ref={ref}
       title={
         <>
-          <Description>해당 진단결과를 다시 보고 싶나요?</Description>
+          <Description>해당 감별 결과를 다시 보고 싶나요?</Description>
           <Title>
-            진단기록은 로그인 후
+            감별진단 기록은 로그인 후
             <br />
             홈화면에서 볼 수 있어요
           </Title>

@@ -34,19 +34,3 @@ export const MainImage = styled.section`
     object-fit: contain;
   }
 `;
-
-export const GuideText = styled.section`
-  margin-top: 0.8rem;
-  margin-left: 2.5rem;
-
-  font-size: 1.5rem;
-  font-weight: 200;
-  line-height: 150%;
-  letter-spacing: 0.015rem;
-
-  color: ${({ theme }) => theme.color.grey_300};
-
-  .highlight {
-    color: ${({ theme }) => theme.color.green};
-  }
-`;

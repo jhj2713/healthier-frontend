@@ -5,7 +5,7 @@ import { forwardRef } from "react";
 import { Title } from "./index.style";
 import LoginModal from "src/components/loginModal";
 import { Auth } from "src/api/auth";
-import { Axios, AxiosError } from "axios";
+import { AxiosError } from "axios";
 
 const Kakao = (window as any).Kakao;
 
@@ -45,7 +45,7 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
         <Title>
           로그인을 하면
           <br />
-          <span className="highlight">나의 진단 기록장</span>을 이용할 수 있어요
+          <span className="highlight">나의 건강기록장</span>을 이용할 수 있어요
         </Title>
       }
       continueText="괜찮아요, 비회원으로 이용할게요"

@@ -55,7 +55,7 @@ const Information = () => {
           </ContentHeader>
           <Contents>
             <Title>
-              잠깐! <br />더 나은 진단 서비스를 위해
+              잠깐! <br />더 나은 감별 서비스를 위해
               <br /> 간단한 정보가 필요해요
             </Title>
             <YearPicker year={year} setYear={setYear} />
@@ -70,7 +70,7 @@ const Information = () => {
                 backgroundColor={active ? theme.color.blue : theme.color.grey_750}
                 color={active ? theme.color.grey_100 : theme.color.grey_600}
               >
-                증상 진단하러 가기
+                증상 감별하러 가기
               </RoundButton>
             </section>
           </ButtonBackground>
