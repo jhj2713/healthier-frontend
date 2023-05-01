@@ -297,17 +297,10 @@ function useDiagnosis(state: string) {
           if (prevQuestion[0].type === "site_first") {
             curSiteIndex.current--;
           }
-<<<<<<< HEAD
 
           const nextQuestionList = prevQuestionList.current[prevQuestionList.current.length - 1];
           curQuestionList.current = nextQuestionList;
           curQuestionIndex.current = nextQuestionList.length - 1;
-=======
-          curQuestionList.current = prevQuestionList.current.pop() as IHeadacheQuestion[];
-          if (!curQuestionList.current) navigate(-1);
-
-          curQuestionIndex.current = curQuestionList.current.length - 1;
->>>>>>> 38f7c04fb7187037a9c0ce14438f308e0c1f8996
         }
         setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
         setSelectedAnswer([]);

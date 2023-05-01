@@ -18,11 +18,7 @@ const GlobalStyle = createGlobalStyle`
 
         word-break: keep-all;
     }
-<<<<<<< HEAD
     p, h1, h2, h3, h4, h5{
-=======
-    p, h1, h2,h3, h4 , h5{
->>>>>>> 38f7c04fb7187037a9c0ce14438f308e0c1f8996
         margin: 0;
         padding: 0;
     }
