@@ -64,7 +64,6 @@ function useDiagnosis(state: string) {
 
   const handleNext = async () => {
     if (isHeadache(state)) {
-      console.log(curQuestion);
       if (++curQuestionIndex.current < curQuestionList.current.length) {
         setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
         setSelectedAnswer([]);
@@ -298,10 +297,10 @@ function useDiagnosis(state: string) {
           if (prevQuestion[0].type === "site_first") {
             curSiteIndex.current--;
           }
-          curQuestionList.current = prevQuestionList.current.pop() as IHeadacheQuestion[];
-          if (!curQuestionList.current) navigate(-1);
 
-          curQuestionIndex.current = curQuestionList.current.length - 1;
+          const nextQuestionList = prevQuestionList.current[prevQuestionList.current.length - 1];
+          curQuestionList.current = nextQuestionList;
+          curQuestionIndex.current = nextQuestionList.length - 1;
         }
         setCurQuestion(typeMapping(curQuestionList.current[curQuestionIndex.current]));
         setSelectedAnswer([]);
