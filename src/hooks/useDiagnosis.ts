@@ -166,7 +166,8 @@ function useDiagnosis(state: string) {
 
         const { type, questions, result } = await HeadacheDiagnose.postHeadacheQuestion(answer);
 
-        if (type === 1) {
+        if (type === 1 || type === 3) {
+          // 다음 질문 or 통증 수치 질문 (눈, 눈주위)
           const typedQuestion = insertType(questions, "site");
           setQuestion(typedQuestion);
         } else if (type === 2) {
@@ -194,6 +195,13 @@ function useDiagnosis(state: string) {
 
             setQuestion(typedQuestion);
           }
+        } else if (type === 4) {
+          // 일차성 두통 질문 요청
+          const { questions: primaryQuestions } = await HeadacheDiagnose.getPrimaryHeadache();
+          const typedQuestion = insertType(primaryQuestions, "primary_question");
+          setQuestion(typedQuestion);
+          isPassPrimaryQuestion.current = true;
+          // 이미 일차성 두통을 거쳐온 경우 예외처리?
         }
       } else if (curQuestion.type === "additional") {
         setLoading(true);

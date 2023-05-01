@@ -43,6 +43,7 @@ export const HeadacheDiagnose = {
   getBasicQuestion: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/basic`),
   getRedFlagSign: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/red-flag-sign`),
   postRedFlagSign: (body: IBasicAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/red-flag-sign`, body),
+  getPrimaryHeadache: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/primary-headache`),
   postPrimaryHeadache: (body: IPrimaryAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/primary-headache`, body),
   postNextPrimaryHeadache: (body: IHeadacheAnswer): Promise<ICaseQuestion> =>
     headacheRequests.post(`/headache/primary-headache/next`, body),
