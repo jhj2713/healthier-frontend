@@ -38,10 +38,11 @@ export interface ICaseQuestion {
   message: string;
   questions: IHeadacheQuestion[];
   result?: null | IHeadacheResult;
+  is_chronic?: number;
 }
 
 export interface IPrimaryAnswers {
-  type: number;
+  is_chronic: number;
   questions: IHeadacheAnswer[];
 }
 

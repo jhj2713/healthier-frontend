@@ -26,8 +26,8 @@ function useDiagnosis(state: string) {
   const curQuestionIndex = useRef<number>(0); // 질문 묶음에서 현재 질문 index
   const isPassPrimaryQuestion = useRef<boolean>(false); // 1차성 두통 질문을 거쳤는가
   const curSiteIndex = useRef<number>(0); // 다중 site 선택
-  const curType = useRef<number>(0); // 일차성 두통 위한 case 값
   const results = useRef<IHeadacheResult[]>([]); // 진단 결과 id들
+  const isChronic = useRef<number>(0); // 만성 여부
 
   const dispatch = useAppDispatch();
 
@@ -74,11 +74,12 @@ function useDiagnosis(state: string) {
         setSelectedAnswer([]);
       } else if (curQuestion.type === "red_flag") {
         if (prevQuestionList.current.length !== 2) return;
-        const { type, questions, result } = await HeadacheDiagnose.postRedFlagSign({
+        const { type, questions, result, is_chronic } = await HeadacheDiagnose.postRedFlagSign({
           questions: [...answers, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }],
           pain_area: site.map((s) => PAIN_AREA_MAP[s]),
         }); // 중복 답안 허용
 
+        if (is_chronic) isChronic.current = is_chronic;
         if (type === 1 && result) {
           results.current.push(result);
 
@@ -88,12 +89,11 @@ function useDiagnosis(state: string) {
           curSiteIndex.current++;
 
           setQuestion(insertType(siteQuestions, "site_first"));
-        } else if (type === 2 || type === 3) {
+        } else if (type === 2) {
           const typedQuestion = insertType(questions, "primary_question");
           setQuestion(typedQuestion);
           isPassPrimaryQuestion.current = true;
-          curType.current = type;
-        } else if (type === 4) {
+        } else if (type === 3) {
           while (
             curSiteIndex.current < site.length &&
             (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
@@ -111,7 +111,7 @@ function useDiagnosis(state: string) {
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
         const primaryQuestions = {
-          type: curType.current,
+          is_chronic: isChronic.current,
           questions: [
             ...answers.slice(8).map((ans) => {
               return { question_id: ans.question_id, answer_id: ans.answer_id[0] };
