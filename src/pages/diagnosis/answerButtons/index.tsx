@@ -21,7 +21,7 @@ import {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const isMultiple = question.is_multiple === 1;
   const isSliderQuestion = question.question.includes("통증의 정도");
-  const answers = useMemo(() => (isSliderQuestion ? question.answers.reverse() : question.answers), [question]);
+  const answers = useMemo(() => (isSliderQuestion ? [...question.answers].reverse() : question.answers), [question]);
 
   const dispatch = useAppDispatch();
 
@@ -70,7 +70,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     dispatch(
       saveAnswer({
         question_id: question.id,
-        answer_id: selectedAnswer.map((ans) => ans.answer_id),
+        answer_id: selectedAnswer.map((ans) => (isSliderQuestion ? 5 - ans.answer_id : ans.answer_id)),
       })
     );
 
@@ -88,7 +88,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
           <div className="range-answers">
             {answers.length !== 0 &&
               answers.map((ans, idx) => (
-                <RangeAnswer key={idx} selected={handleActive(ans.answer_id)}>
+                <RangeAnswer key={idx} selected={handleActive(5 - ans.answer_id)}>
                   {ans.answer}
                 </RangeAnswer>
               ))}
@@ -99,7 +99,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
               type="range"
               min={0}
               max={5}
-              value={selectedAnswer.length >= 1 ? 5 - selectedAnswer[0].answer_id : 2}
+              value={selectedAnswer.length >= 1 ? selectedAnswer[0].answer_id : answers[3].answer_id}
               onChange={handleRangeInput}
             />
           </RangeContainer>
