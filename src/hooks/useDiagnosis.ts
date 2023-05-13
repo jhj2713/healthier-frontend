@@ -64,6 +64,30 @@ function useDiagnosis(state: string) {
     setSelectedAnswer([]);
   };
 
+  const getFirstQuestion = async () => {
+    while (
+      curSiteIndex.current < site.length &&
+      (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
+    ) {
+      curSiteIndex.current += 1;
+    }
+
+    if (curSiteIndex.current === site.length) {
+      const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
+      const typedQuestion = insertType(additionalQuestion, "additional");
+
+      setQuestion(typedQuestion);
+    } else {
+      const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
+        pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
+      });
+      curSiteIndex.current++;
+      const typedQuestion = insertType(siteQuestions, "site_first");
+
+      setQuestion(typedQuestion);
+    }
+  };
+
   const handleNext = async () => {
     if (isHeadache(state)) {
       if (++curQuestionIndex.current < curQuestionList.current.length) {
@@ -103,24 +127,14 @@ function useDiagnosis(state: string) {
             clearTimeout(timer);
           }, 3000);
         } else if (type === 2) {
+          // 일차성 두통 질문
           const typedQuestion = insertType(questions, "primary_question");
           setQuestion(typedQuestion);
           isPassPrimaryQuestion.current = true;
           isFirstPrimaryQuestion.current = true;
         } else if (type === 3) {
-          while (
-            curSiteIndex.current < site.length &&
-            (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
-          ) {
-            curSiteIndex.current += 1;
-          }
-
-          const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
-            pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
-          });
-          curSiteIndex.current++;
-
-          setQuestion(insertType(siteQuestions, "site_first"));
+          // 기타 부위 질문
+          await getFirstQuestion();
         }
       } else if (curQuestion.type === "primary_question") {
         // 일차성 두통 마지막 질문
@@ -154,27 +168,7 @@ function useDiagnosis(state: string) {
             const typedQuestion = insertType(additionalQuestion, "additional");
             setQuestion(typedQuestion);
           } else {
-            while (
-              curSiteIndex.current < site.length &&
-              (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
-            ) {
-              curSiteIndex.current += 1;
-            }
-
-            if (curSiteIndex.current === site.length) {
-              const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-              const typedQuestion = insertType(additionalQuestion, "additional");
-
-              setQuestion(typedQuestion);
-            } else {
-              const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
-                pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
-              });
-              curSiteIndex.current++;
-              const typedQuestion = insertType(siteQuestions, "site_first");
-
-              setQuestion(typedQuestion);
-            }
+            await getFirstQuestion();
           }
         } else {
           const typedQuestion = insertType(questions, "primary_answer");
@@ -199,50 +193,12 @@ function useDiagnosis(state: string) {
 
           results.current.push(result);
 
-          while (
-            curSiteIndex.current < site.length &&
-            (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
-          ) {
-            curSiteIndex.current += 1;
-          }
-
-          if (curSiteIndex.current === site.length) {
-            const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-            const typedQuestion = insertType(additionalQuestion, "additional");
-            setQuestion(typedQuestion);
-          } else {
-            const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
-              pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
-            });
-            curSiteIndex.current++;
-            const typedQuestion = insertType(siteQuestions, "site_first");
-
-            setQuestion(typedQuestion);
-          }
+          await getFirstQuestion();
         } else if (type === 4) {
           // 일차성 두통 공통 질문 요청
           if (isPassPrimaryQuestion.current) {
             // 이미 일차성 두통을 거친경우 다음 부위로
-            while (
-              curSiteIndex.current < site.length &&
-              (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
-            ) {
-              curSiteIndex.current += 1;
-            }
-
-            if (curSiteIndex.current === site.length) {
-              const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-              const typedQuestion = insertType(additionalQuestion, "additional");
-              setQuestion(typedQuestion);
-            } else {
-              const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
-                pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
-              });
-              curSiteIndex.current++;
-              const typedQuestion = insertType(siteQuestions, "site_first");
-
-              setQuestion(typedQuestion);
-            }
+            await getFirstQuestion();
           } else {
             const { questions: primaryQuestions } = await HeadacheDiagnose.getPrimaryHeadache();
             const typedQuestion = insertType(primaryQuestions, "primary_question");
@@ -253,26 +209,7 @@ function useDiagnosis(state: string) {
           // 긴장,군발 두통 로직 시작 질문 요청
           if (isPassPrimaryQuestion.current) {
             // 이미 일차성 두통을 거친경우 다음 부위로
-            while (
-              curSiteIndex.current < site.length &&
-              (PAIN_AREA_MAP[site[curSiteIndex.current]] === "머리 전체" || PAIN_AREA_MAP[site[curSiteIndex.current]] === "이마의 띠")
-            ) {
-              curSiteIndex.current += 1;
-            }
-
-            if (curSiteIndex.current === site.length) {
-              const { questions: additionalQuestion } = await HeadacheDiagnose.getAdditionalQuestion();
-              const typedQuestion = insertType(additionalQuestion, "additional");
-              setQuestion(typedQuestion);
-            } else {
-              const { questions: siteQuestions } = await HeadacheDiagnose.postFirstHeadacheQuestion({
-                pain_area: PAIN_AREA_MAP[site[curSiteIndex.current]] as IPainArea,
-              });
-              curSiteIndex.current++;
-              const typedQuestion = insertType(siteQuestions, "site_first");
-
-              setQuestion(typedQuestion);
-            }
+            await getFirstQuestion();
           } else {
             const { questions: primaryQuestions } = await HeadacheDiagnose.getTensionHeadache();
             const typedQuestion = insertType(primaryQuestions, "primary_answer");
