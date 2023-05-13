@@ -19,6 +19,12 @@ export interface IHeadacheAnswer {
   answer_id: number;
 }
 
+export interface IPrimaryHeadacheAnswer {
+  question_id: number | string;
+  answer_id: number;
+  unknown_emergency: number;
+}
+
 interface IHeadacheResult {
   result_id: number;
   result: string;
@@ -39,6 +45,7 @@ export interface ICaseQuestion {
   questions: IHeadacheQuestion[];
   result?: null | IHeadacheResult;
   is_chronic?: number;
+  unknownEmergency?: number;
 }
 
 export interface IPrimaryAnswers {

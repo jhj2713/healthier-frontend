@@ -11,6 +11,7 @@ import {
   IResultResponse,
   IResultRequest,
   IHeadacheAnswers,
+  IPrimaryHeadacheAnswer,
 } from "src/interfaces/headacheDiagnoseApi";
 
 const sleepDisorderInstance = axios.create({
@@ -44,8 +45,9 @@ export const HeadacheDiagnose = {
   getRedFlagSign: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/red-flag-sign`),
   postRedFlagSign: (body: IBasicAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/red-flag-sign`, body),
   getPrimaryHeadache: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/primary-headache`),
+  getTensionHeadache: (): Promise<IHeadacheQuestions> => headacheRequests.get(`/headache/tension-headache`),
   postPrimaryHeadache: (body: IPrimaryAnswers): Promise<ICaseQuestion> => headacheRequests.post(`/headache/primary-headache`, body),
-  postNextPrimaryHeadache: (body: IHeadacheAnswer): Promise<ICaseQuestion> =>
+  postNextPrimaryHeadache: (body: IPrimaryHeadacheAnswer): Promise<ICaseQuestion> =>
     headacheRequests.post(`/headache/primary-headache/next`, body),
   postFirstHeadacheQuestion: (body: IPainAreaRequest): Promise<IHeadacheQuestions> =>
     headacheRequests.post(`/headache/pain-area/first`, body),
