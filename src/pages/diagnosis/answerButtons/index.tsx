@@ -88,8 +88,9 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
           <div className="range-answers">
             {answers.length !== 0 &&
               answers.map((ans, idx) => (
-                <RangeAnswer key={idx} selected={handleActive(5 - ans.answer_id)}>
-                  {ans.answer}
+                <RangeAnswer key={idx} idx={idx} selected={handleActive(5 - ans.answer_id)}>
+                  <div className="answer-text">{ans.answer}</div>
+                  <div className="range-dots" />
                 </RangeAnswer>
               ))}
           </div>

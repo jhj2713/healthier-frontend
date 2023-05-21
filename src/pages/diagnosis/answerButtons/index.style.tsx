@@ -70,7 +70,7 @@ export const RangeAnswerContainer = styled.div`
   margin: 6.7rem 4.5rem 2.4rem 4.5rem;
 
   .range-answers {
-    width: 23.2rem;
+    width: calc(100% - 10rem);
   }
 
   .range-numbers {
@@ -87,10 +87,30 @@ export const RangeNumber = styled(Body_3)`
   color: ${({ theme }) => theme.color.grey_400};
 `;
 
-export const RangeAnswer = styled(Body_1)<{ selected: boolean }>`
-  width: 23.1rem;
+export const RangeAnswer = styled.div<{ selected: boolean; idx: number }>`
   height: 7rem;
-  color: ${({ theme, selected }) => (selected ? theme.color.grey_200 : theme.color.grey_400)};
+
+  display: flex;
+  align-items: center;
+
+  .answer-text {
+    width: 17rem;
+
+    margin: ${({ idx }) => (idx < 3 ? `0 0 ${4 - idx}rem 0` : `${idx}rem 0 0 0`)};
+
+    font-size: 1.6rem;
+    font-weight: 200;
+    line-height: 150%;
+    color: ${({ theme, selected }) => (selected ? theme.color.grey_200 : theme.color.grey_400)};
+  }
+
+  .range-dots {
+    width: calc(100% - 17rem);
+    height: 0;
+    border: 0.08rem dashed #3f444f;
+
+    margin: ${({ idx }) => (idx < 3 ? `0 0 ${4 - idx}rem 0` : `${idx}rem 0 0 0`)};
+  }
 `;
 
 export const RangeContainer = styled.div`
@@ -98,7 +118,7 @@ export const RangeContainer = styled.div`
   position: relative;
 
   height: 0.6rem;
-  width: 36.7rem;
+  width: 42rem;
   transform: rotate(90deg) translate(50%, 0);
 `;
 
@@ -107,7 +127,7 @@ export const RangeBackground = styled.div`
   top: 0.2rem;
 
   height: 0.6rem;
-  width: 36.7rem;
+  width: 42rem;
   border-radius: 0.1rem;
   background: rgba(84, 100, 242, 0.33);
 `;
@@ -115,7 +135,7 @@ export const RangeBackground = styled.div`
 export const RangeInput = styled.input`
   position: absolute;
   height: 0.6rem;
-  width: 36.7rem;
+  width: 42rem;
   -webkit-appearance: none;
   background: none;
 
