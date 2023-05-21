@@ -108,6 +108,7 @@ function useDiagnosis(state: string) {
         if (is_chronic) isChronic.current = is_chronic;
         if (type === 1 && result) {
           // red flag sign 질문에서 결과 발생 -> 로직 종료
+          setLoading(true);
           results.current.push(result);
 
           const resultList = await HeadacheDiagnose.postResult({
