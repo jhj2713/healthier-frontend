@@ -3,6 +3,9 @@ import { IHeadacheQuestion } from "src/interfaces/headacheDiagnoseApi";
 export const isHeadache = (state: string) => {
   return state === "headache";
 };
+export const isSleepDisorder = (state: string) => {
+  return state === "sleepdisorder";
+};
 
 export const typeMapping = (curQuestion: IHeadacheQuestion) => {
   return {
