@@ -25,7 +25,7 @@ Default.args = {
     <Title>
       로그인을 하면
       <br />
-      <span className="highlight">나의 진단 기록장</span>을 이용할 수 있어요
+      <span className="highlight">나의 건강 기록장</span>을 이용할 수 있어요
     </Title>
   ),
   continueText: "괜찮아요, 비회원으로 이용할게요",
@@ -35,9 +35,9 @@ export const ResultModal = Template.bind({});
 ResultModal.args = {
   title: (
     <>
-      <Description>해당 진단결과를 다시 보고 싶나요?</Description>
+      <Description>해당 감별 결과를 다시 보고 싶나요?</Description>
       <Title>
-        진단기록은 로그인 후
+        감별진단 기록은 로그인 후
         <br />
         홈화면에서 볼 수 있어요
       </Title>

@@ -34,6 +34,7 @@ export interface IDropdown {
 
 export interface IListComponent {
   diagnosis: IDiagnosisList;
+  handleNavigate: () => void;
 }
 
 export interface IDiagnosisList {

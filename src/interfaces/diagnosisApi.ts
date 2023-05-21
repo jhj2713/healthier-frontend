@@ -56,13 +56,13 @@ export interface IQuestion {
 }
 
 export interface IDecisiveDate {
-  question_id: string;
+  question_id: string | number;
   answer_id: number;
   gender: string;
   birth_year: number;
   interests: number[];
   tracks: {
-    question_id: string;
+    question_id: string | number;
     answer_id: number[];
   }[];
 }
@@ -73,7 +73,7 @@ export interface IDiagnoseResponse {
 }
 
 export interface IDiagnoseAnswer {
-  question_id: string;
+  question_id: string | number;
   answer_id: number;
 }
 

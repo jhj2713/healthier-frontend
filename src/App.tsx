@@ -1,6 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
-import { Diagnosis, DiagnosisList, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, HomeLoading } from "./pages";
+import { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList } from "./pages";
 import { useAppSelector } from "./state";
 import styled from "styled-components";
 
@@ -49,12 +49,12 @@ function App() {
     <Main>
       <Container>
         <Routes>
-          <Route path="/" element={authenticated ? <DiagnosisList /> : <MainPage />} />
+          <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
           <Route path="/info" element={<Information />} />
+          <Route path="/diagnosis-list" element={<DiagnosisList />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/diagnosis" element={<Diagnosis />} />
           <Route path="/symptom" element={<SymptomPage />} />
-          <Route path="/loading" element={<HomeLoading />} />
           <Route path="/symptom-type" element={<SymptomTypePage />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>

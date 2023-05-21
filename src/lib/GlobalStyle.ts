@@ -18,8 +18,9 @@ const GlobalStyle = createGlobalStyle`
 
         word-break: keep-all;
     }
-    h1, h2, h3, h4, h5, p {
+    p, h1, h2, h3, h4, h5{
         margin: 0;
+        padding: 0;
     }
 `;
 

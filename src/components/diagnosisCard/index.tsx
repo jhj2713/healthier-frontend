@@ -1,24 +1,9 @@
-import { useNavigate } from "react-router-dom";
 import { IListComponent } from "src/interfaces/component";
 import severityTypes from "src/data/severity_types";
 import { Container, BannerImg, Box, Title, DateItem, Tag } from "./index.style";
-import { Diagnosis } from "src/api/diagnosis";
 
-const ListComponent = ({ diagnosis }: IListComponent) => {
-  const navigate = useNavigate();
-
+const DiagnosisCard = ({ diagnosis, handleNavigate }: IListComponent) => {
   const diag_date = new Date(diagnosis.record.is_created);
-
-  const handleNavigate = async () => {
-    const diagnosisResult = await Diagnosis.getDiagnosisDetail(diagnosis.record.diagnosis_id);
-
-    navigate("/result", {
-      state: {
-        type: "result",
-        diagnostic_result: diagnosisResult.diagnostic_result,
-      },
-    });
-  };
 
   return (
     <Container severity={diagnosis.record.severity} onClick={handleNavigate}>
@@ -34,4 +19,4 @@ const ListComponent = ({ diagnosis }: IListComponent) => {
   );
 };
 
-export default ListComponent;
+export default DiagnosisCard;

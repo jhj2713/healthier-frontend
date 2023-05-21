@@ -27,6 +27,8 @@ export const Question = styled(Heading_3)`
 
   margin-top: 7rem;
   padding: 0 5rem;
+
+  white-space: pre-line;
 `;
 
 export const LoadingTitle = styled(Heading_3)`

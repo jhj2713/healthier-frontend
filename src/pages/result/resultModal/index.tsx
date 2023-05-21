@@ -24,7 +24,7 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
         dispatch(SET_TOKEN(token));
 
         closeModal();
-        setLoading(true);
+        setLoading("result");
 
         await Diagnosis.patchDiagnosis({ diagnosis_id: resultId }, token);
 
@@ -37,6 +37,16 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
         console.log(err);
       },
     });
+  };
+
+  const handleHome = () => {
+    closeModal();
+    setLoading("home");
+
+    const timer = setTimeout(() => {
+      navigate("/");
+      clearTimeout(timer);
+    }, 3000);
   };
 
   return (
@@ -55,7 +65,7 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
       continueText="괜찮아요, 다음에 할게요"
       handleLogin={kakaoLogin}
       closeModal={closeModal}
-      handleContinue={() => navigate("/loading")}
+      handleContinue={handleHome}
     />
   );
 });

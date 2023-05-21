@@ -6,7 +6,7 @@ export interface IModalContainer {
 
 export interface IResultModal {
   closeModal: () => void;
-  setLoading: Dispatch<boolean>;
+  setLoading: Dispatch<string>;
   resultId: string;
 }
 

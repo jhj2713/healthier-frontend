@@ -1,3 +1,5 @@
+import { IDiagnosisList } from "./component";
+
 export interface IDiagnosticResult {
   type: string;
   diagnostic_result: {
@@ -25,5 +27,15 @@ export interface IDiagnosticResult {
     }[];
     treatment_flag: number;
     treatments?: { title: string; detail: string }[];
+  };
+}
+
+export interface IDiagnosisResultList {
+  dataList: {
+    results: {
+      predicted: IDiagnosisList[] | null;
+      suspicious: IDiagnosisList[] | null;
+      likely: IDiagnosisList[] | null;
+    };
   };
 }

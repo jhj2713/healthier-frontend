@@ -1,8 +1,9 @@
 import { Dispatch } from "react";
 
 export interface IQuestion {
-  id: string;
+  id: string | number;
   question: string;
+  type?: string;
   answers: IAnswer[];
   is_multiple: number;
   is_last_default?: number;
@@ -12,7 +13,7 @@ export interface IAnswer {
   answer_id: number;
   answer: string;
   score?: number;
-  is_decisive: number;
+  is_decisive?: number;
 }
 
 export interface IAnswerButtonProps {
@@ -20,4 +21,9 @@ export interface IAnswerButtonProps {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
+}
+
+export interface IHeadacheResult {
+  result_id: number;
+  result: string;
 }
