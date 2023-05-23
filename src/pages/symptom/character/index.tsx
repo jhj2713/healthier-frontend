@@ -117,7 +117,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
           />
         </LayerMaterial>
       </mesh>
-      {view ? <BackLines /> : <FrontLines />}
+      {view === ViewPoint.REAR ? <BackLines /> : <FrontLines />}
     </>
   );
 };

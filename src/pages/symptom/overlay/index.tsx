@@ -37,7 +37,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         )}
       </TitleDiv>
       {/* <PlaceHolderDiv /> */}
-      {view ? (
+      {view === ViewPoint.REAR ? (
         <PartDiv>
           <div></div>
           <PartButton
