@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import theme from "src/lib/theme";
 import ContentHeader from "src/components/contentHeader";
 import { Container, CanvasSection } from "./index.style";
+import { ViewPoint } from "src/interfaces/symptomPage";
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
   return (
@@ -21,7 +22,7 @@ const Symptom = () => {
   const { state } = useLocation();
 
   const [menu, setMenu] = useState(0);
-  const [view, setView] = useState(0);
+  const [view, setView] = useState<ViewPoint>(ViewPoint.FRONT);
 
   useEffect(() => {
     if (!state) {

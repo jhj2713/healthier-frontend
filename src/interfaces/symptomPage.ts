@@ -3,14 +3,14 @@ import { LayerProps } from "lamina/types";
 import { Vector3 } from "three";
 
 export interface IOverlayProps {
-  view: number;
-  setView: (view: number) => void;
+  view: ViewPoint;
+  setView: (view: ViewPoint) => void;
   menu: number;
   setMenu: (menu: number) => void;
 }
 
 export interface ICharacterProps {
-  view: number;
+  view: ViewPoint;
   menu: number;
 }
 
@@ -34,4 +34,9 @@ export interface IPointLayerProps extends LayerProps {
   near: number;
   far: number;
   origin: number[];
+}
+
+export enum ViewPoint {
+  FRONT = "FRONT",
+  REAR = "REAR",
 }

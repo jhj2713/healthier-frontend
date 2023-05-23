@@ -4,7 +4,7 @@ import * as THREE from "three";
 
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { LayerMaterial } from "lamina";
-import { IPointShader } from "src/interfaces/symptomPage";
+import { IPointShader, ViewPoint } from "src/interfaces/symptomPage";
 import { ICharacterProps } from "src/interfaces/symptomPage";
 
 import theme from "src/lib/theme";
@@ -51,7 +51,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
   }, [view]);
 
   useFrame((state) => {
-    if (view === 1) {
+    if (view === ViewPoint.REAR) {
       if (modelRef.current.rotation.y < Math.PI) {
         modelRef.current.rotation.y += (Math.PI - modelRef.current.rotation.y) * 0.1;
       }
@@ -70,7 +70,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
       // 우측 영역의 하이라이트
 
       // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
-      if (view === 1) {
+      if (view === ViewPoint.REAR) {
         layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] + 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);
       } else {
         layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] - 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);

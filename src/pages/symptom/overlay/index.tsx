@@ -1,6 +1,6 @@
 import theme from "src/lib/theme";
 import RoundButton from "src/components/roundButton";
-import { IOverlayProps } from "src/interfaces/symptomPage";
+import { IOverlayProps, ViewPoint } from "src/interfaces/symptomPage";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "src/state";
 import { setSite } from "src/state/userSlice";
@@ -141,18 +141,18 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
 
       <ButtonDiv>
         <RotateButton
-          toggle={view === 0}
+          toggle={view === ViewPoint.FRONT}
           onClick={() => {
-            setView(0);
+            setView(ViewPoint.FRONT);
             setMenu(0);
           }}
         >
           앞
         </RotateButton>
         <RotateButton
-          toggle={view === 1}
+          toggle={view === ViewPoint.REAR}
           onClick={() => {
-            setView(1);
+            setView(ViewPoint.REAR);
             setMenu(0);
           }}
         >
