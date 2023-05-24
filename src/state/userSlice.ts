@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { UserState, fillInfoAction } from "./index";
+import { BodyPart } from "src/interfaces/symptomPage";
 
 const initialState: UserState = {
   id: 0,
@@ -21,11 +22,11 @@ export const userSlice = createSlice({
       state.birth_year = action.payload.birth_year;
       state.interests = [...action.payload.interests];
     },
-    setSite: (state, action: PayloadAction<number>) => {
-      state.site = [action.payload];
+    addSite: (state, action: PayloadAction<BodyPart>) => {
+      state.site.push(action.payload);
     },
   },
 });
 
-export const { userSubmit, setSite } = userSlice.actions;
+export const { userSubmit, addSite } = userSlice.actions;
 export default userSlice.reducer;

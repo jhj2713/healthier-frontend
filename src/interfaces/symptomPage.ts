@@ -5,13 +5,13 @@ import { Vector3 } from "three";
 export interface IOverlayProps {
   view: ViewPoint;
   setView: (view: ViewPoint) => void;
-  menu: number;
-  setMenu: (menu: number) => void;
+  menu: BodyPart;
+  setMenu: (menu: BodyPart) => void;
 }
 
 export interface ICharacterProps {
   view: ViewPoint;
-  menu: number;
+  menu: BodyPart;
 }
 
 export interface IPointAbstract extends Abstract {
@@ -39,4 +39,17 @@ export interface IPointLayerProps extends LayerProps {
 export enum ViewPoint {
   FRONT = "FRONT",
   REAR = "REAR",
+}
+
+export enum BodyPart {
+  NONE = "NONE",
+  TEMPLE = "TEMPLE",
+  FOREHEAD = "FOREHEAD",
+  EYE = "EYE",
+  NEAREYE = "NEAREYE",
+  NEARNOSE = "NEARNOSE",
+  CHIN = "CHIN",
+  REARHEAD = "REARHEAD",
+  HEAD = "HEAD",
+  BACKNECK = "BACKNECK",
 }

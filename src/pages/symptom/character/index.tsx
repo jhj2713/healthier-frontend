@@ -4,25 +4,26 @@ import * as THREE from "three";
 
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { LayerMaterial } from "lamina";
-import { IPointShader, ViewPoint } from "src/interfaces/symptomPage";
+import { BodyPart, IPointShader, ViewPoint } from "src/interfaces/symptomPage";
 import { ICharacterProps } from "src/interfaces/symptomPage";
 
 import theme from "src/lib/theme";
 import { FrontLines, BackLines } from "../characterLine";
 import PointLayerComponent from "./pointShader";
 
-const hCord = [
-  // x, y, z 좌표 + inner radius, outer radius
-  [1.6, 2.8, 1.0, 0.8, 1.1], // 관자놀이
-  [0, 4.8, 0, 1.9, 2.2], // 이마의 띄
-  [0.5, 2.7, 1.0, 0.1, 0.4], // 눈
-  [0.4, 2.8, 0.51, 0.4, 0.7], // 눈 주위
-  [0, 2.5, 0.89, 0.0, 0.3], // 코 주위
-  [0.2, 1.7, 0.89, 0.3, 0.7], // 턱
-  [0.0, 2.9, 1.0, 0.5, 1.0], // 뒷머리
-  [0.0, 2.9, 1.01, 1.0, 1.7], // 머리 전체
-  [0.0, 1.7, 0.5, 0.1, 0.4], // 목 뒤
-];
+const layerProps = {
+  // [origin x, origin y, origin z, near, far]
+  [BodyPart.TEMPLE]: [1.6, 2.8, 1.0, 0.8, 1.1],
+  [BodyPart.FOREHEAD]: [0, 4.8, 0, 1.9, 2.2],
+  [BodyPart.EYE]: [0.5, 2.7, 1.0, 0.1, 0.4],
+  [BodyPart.NEAREYE]: [0.4, 2.8, 0.51, 0.4, 0.7],
+  [BodyPart.NEARNOSE]: [0, 2.5, 0.89, 0.0, 0.3],
+  [BodyPart.CHIN]: [0.2, 1.7, 0.89, 0.3, 0.7],
+  [BodyPart.REARHEAD]: [0.0, 2.9, 1.0, 0.5, 1.0],
+  [BodyPart.HEAD]: [0.0, 2.9, 1.01, 1.0, 1.7],
+  [BodyPart.BACKNECK]: [0.0, 1.7, 0.5, 0.1, 0.4],
+  [BodyPart.NONE]: [0, 0, 0, 0, 0],
+};
 
 const vec = new THREE.Vector3();
 
@@ -62,26 +63,26 @@ const Character = ({ view, menu }: ICharacterProps) => {
     }
     if (menu && layerRef.current) {
       // 좌측 영역의 하이라이트
-      layerRef.current.layers[0].origin.set(hCord[menu - 1][0], hCord[menu - 1][1], hCord[menu - 1][2]);
-      layerRef.current.layers[0].near = hCord[menu - 1][3];
-      layerRef.current.layers[0].far = hCord[menu - 1][4];
+      layerRef.current.layers[0].origin.set(layerProps[menu][0], layerProps[menu][1], layerProps[menu][2]);
+      layerRef.current.layers[0].near = layerProps[menu][3];
+      layerRef.current.layers[0].far = layerProps[menu][4];
       layerRef.current.layers[0].colorA = theme.color.blue_3d;
       layerRef.current.layers[0].colorB = theme.color.blue_3d;
       // 우측 영역의 하이라이트
 
       // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
       if (view === ViewPoint.REAR) {
-        layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] + 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);
+        layerRef.current.layers[1].origin.set(-layerProps[menu][0] + 0.1, layerProps[menu][1], layerProps[menu][2]);
       } else {
-        layerRef.current.layers[1].origin.set(-hCord[menu - 1][0] - 0.1, hCord[menu - 1][1], hCord[menu - 1][2]);
+        layerRef.current.layers[1].origin.set(-layerProps[menu][0] - 0.1, layerProps[menu][1], layerProps[menu][2]);
       }
 
-      layerRef.current.layers[1].near = hCord[menu - 1][3];
-      layerRef.current.layers[1].far = hCord[menu - 1][4];
+      layerRef.current.layers[1].near = layerProps[menu][3];
+      layerRef.current.layers[1].far = layerProps[menu][4];
       layerRef.current.layers[1].colorA = theme.color.blue_3d;
       layerRef.current.layers[1].colorB = theme.color.blue_3d;
     }
-    if (menu === 2) {
+    if (menu === BodyPart.FOREHEAD) {
       layerRef.current.layers[1].near = 1.4;
       layerRef.current.layers[1].far = 1.8;
       layerRef.current.layers[1].colorA = theme.color.blue_600;

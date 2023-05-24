@@ -1,9 +1,9 @@
 import theme from "src/lib/theme";
 import RoundButton from "src/components/roundButton";
-import { IOverlayProps, ViewPoint } from "src/interfaces/symptomPage";
+import { BodyPart, IOverlayProps, ViewPoint } from "src/interfaces/symptomPage";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "src/state";
-import { setSite } from "src/state/userSlice";
+import { addSite } from "src/state/userSlice";
 import { regions, particles } from "src/data/symptom_data";
 import { OverlaySection, TitleDiv, Title, SubTitle, PartDiv, PartButton, ButtonDiv, RotateButton } from "./index.style";
 
@@ -11,8 +11,8 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleNext = (site: number) => {
-    dispatch(setSite(site));
+  const handleNext = (site: BodyPart) => {
+    dispatch(addSite(site));
     navigate("/diagnosis", { state: "headache" });
   };
 
@@ -22,9 +22,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         {menu ? (
           <Title>
             <span style={{ color: theme.color.green }}>머리</span>에서
-            <br /> <span style={{ color: theme.color.green }}>{regions[menu]}</span>
-            {particles[menu] + " "}
-            선택했어요
+            <br /> <span style={{ color: theme.color.green }}>{regions[menu]}</span> 선택했어요
           </Title>
         ) : (
           <>
@@ -32,7 +30,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               증상 부위를 <br />
               선택해주세요
             </Title>
-            <SubTitle onClick={() => handleNext(8)}>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+            <SubTitle onClick={() => handleNext(BodyPart.HEAD)}>어디가 아픈지 모르겠다면 &#62;</SubTitle>
           </>
         )}
       </TitleDiv>
@@ -41,18 +39,18 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu === 8}
+            toggle={menu === BodyPart.HEAD}
             onClick={() => {
-              setMenu(8);
+              setMenu(BodyPart.HEAD);
             }}
           >
             머리 전체
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 7}
+            toggle={menu === BodyPart.REARHEAD}
             onClick={() => {
-              setMenu(7);
+              setMenu(BodyPart.REARHEAD);
             }}
           >
             뒷머리
@@ -65,9 +63,9 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           <div></div>
           <div></div>
           <PartButton
-            toggle={menu === 9}
+            toggle={menu === BodyPart.BACKNECK}
             onClick={() => {
-              setMenu(9);
+              setMenu(BodyPart.BACKNECK);
             }}
           >
             뒷목
@@ -77,61 +75,61 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         <PartDiv>
           <div></div>
           <PartButton
-            toggle={menu === 8}
+            toggle={menu === BodyPart.HEAD}
             onClick={() => {
-              setMenu(8);
+              setMenu(BodyPart.HEAD);
             }}
           >
             머리 전체
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 4}
+            toggle={menu === BodyPart.NEAREYE}
             onClick={() => {
-              setMenu(4);
+              setMenu(BodyPart.NEAREYE);
             }}
           >
             눈 주위
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 2}
+            toggle={menu === BodyPart.FOREHEAD}
             onClick={() => {
-              setMenu(2);
+              setMenu(BodyPart.FOREHEAD);
             }}
           >
             이마의 띠
           </PartButton>
           <PartButton
-            toggle={menu === 1}
+            toggle={menu === BodyPart.TEMPLE}
             onClick={() => {
-              setMenu(1);
+              setMenu(BodyPart.TEMPLE);
             }}
           >
             관자놀이
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 3}
+            toggle={menu === BodyPart.EYE}
             onClick={() => {
-              setMenu(3);
+              setMenu(BodyPart.EYE);
             }}
           >
             눈
           </PartButton>
           <PartButton
-            toggle={menu === 6}
+            toggle={menu === BodyPart.CHIN}
             onClick={() => {
-              setMenu(6);
+              setMenu(BodyPart.CHIN);
             }}
           >
             턱
           </PartButton>
           <div></div>
           <PartButton
-            toggle={menu === 5}
+            toggle={menu === BodyPart.NEARNOSE}
             onClick={() => {
-              setMenu(5);
+              setMenu(BodyPart.NEARNOSE);
             }}
           >
             코 주위
@@ -144,7 +142,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           toggle={view === ViewPoint.FRONT}
           onClick={() => {
             setView(ViewPoint.FRONT);
-            setMenu(0);
+            setMenu(BodyPart.NONE);
           }}
         >
           앞
@@ -153,7 +151,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           toggle={view === ViewPoint.REAR}
           onClick={() => {
             setView(ViewPoint.REAR);
-            setMenu(0);
+            setMenu(BodyPart.NONE);
           }}
         >
           뒤
