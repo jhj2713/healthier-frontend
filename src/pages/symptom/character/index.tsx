@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import React, { useRef, useEffect } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -12,17 +12,17 @@ import { FrontLines, BackLines } from "../characterLine";
 import PointLayerComponent from "./pointShader";
 
 const layerProps = {
-  // [origin x, origin y, origin z, near, far]
-  [BodyPart.TEMPLE]: [1.6, 2.8, 1.0, 0.8, 1.1],
-  [BodyPart.FOREHEAD]: [0, 4.8, 0, 1.9, 2.2],
-  [BodyPart.EYE]: [0.5, 2.7, 1.0, 0.1, 0.4],
-  [BodyPart.NEAREYE]: [0.4, 2.8, 0.51, 0.4, 0.7],
-  [BodyPart.NEARNOSE]: [0, 2.5, 0.89, 0.0, 0.3],
-  [BodyPart.CHIN]: [0.2, 1.7, 0.89, 0.3, 0.7],
-  [BodyPart.REARHEAD]: [0.0, 2.9, 1.0, 0.5, 1.0],
-  [BodyPart.HEAD]: [0.0, 2.9, 1.01, 1.0, 1.7],
-  [BodyPart.BACKNECK]: [0.0, 1.7, 0.5, 0.1, 0.4],
-  [BodyPart.NONE]: [0, 0, 0, 0, 0],
+  // [origin x, origin y, origin z, near, far, color one, color two]
+  [BodyPart.TEMPLE]: { x: 1.6, y: 2.8, z: 1.0, near: 0.8, far: 1.1, group: [ViewPoint.FRONT] },
+  [BodyPart.FOREHEAD]: { x: 0, y: 4.8, z: 0, near: 1.9, far: 2.2, group: [ViewPoint.FRONT] },
+  [BodyPart.EYE]: { x: 0.5, y: 2.7, z: 1.0, near: 0.1, far: 0.4, group: [ViewPoint.FRONT] },
+  [BodyPart.NEAREYE]: { x: 0.4, y: 2.8, z: 0.51, near: 0.4, far: 0.7, group: [ViewPoint.FRONT] },
+  [BodyPart.NEARNOSE]: { x: 0, y: 2.5, z: 0.89, near: 0.0, far: 0.3, group: [ViewPoint.FRONT] },
+  [BodyPart.CHIN]: { x: 0.2, y: 1.7, z: 0.89, near: 0.3, far: 0.7, group: [ViewPoint.FRONT] },
+  [BodyPart.REARHEAD]: { x: 0.0, y: 2.9, z: 1.0, near: 0.5, far: 1.0, group: [ViewPoint.REAR] },
+  [BodyPart.BACKNECK]: { x: 0.0, y: 1.7, z: 0.5, near: 0.1, far: 0.4, group: [ViewPoint.REAR] },
+  [BodyPart.HEAD]: { x: 0.0, y: 2.9, z: 1.01, near: 1.0, far: 1.7, group: [ViewPoint.FRONT, ViewPoint.REAR] },
+  [BodyPart.NONE]: { x: 0, y: 0, z: 0, near: 0, far: 0, group: [ViewPoint.FRONT, ViewPoint.REAR] },
 };
 
 const vec = new THREE.Vector3();
@@ -35,23 +35,14 @@ const Character = ({ view, menu }: ICharacterProps) => {
   // https://stackoverflow.com/questions/66818245/three-js-property-material-does-not-exist-on-type-object3d-error-when-get
 
   const geometry = (character as THREE.Mesh).geometry;
-  const modelRef = useRef<THREE.Mesh>(null!);
-  const layerRef = useRef<IPointShader>(null!);
+  const modelRef = useRef<THREE.Mesh | null>(null);
 
   useEffect(() => {
     geometry.center();
   }, [character]);
 
-  useEffect(() => {
-    if (layerRef.current) {
-      layerRef.current.layers[0].near = 0;
-      layerRef.current.layers[0].far = 0;
-      layerRef.current.layers[1].near = 0;
-      layerRef.current.layers[1].far = 0;
-    }
-  }, [view]);
-
   useFrame((state) => {
+    if (!modelRef.current) return;
     if (view === ViewPoint.REAR) {
       if (modelRef.current.rotation.y < Math.PI) {
         modelRef.current.rotation.y += (Math.PI - modelRef.current.rotation.y) * 0.1;
@@ -61,61 +52,47 @@ const Character = ({ view, menu }: ICharacterProps) => {
         modelRef.current.rotation.y -= modelRef.current.rotation.y * 0.1;
       }
     }
-    // if (menu && layerRef.current) {
-    //   // 좌측 영역의 하이라이트
-    //   layerRef.current.layers[0].origin.set(layerProps[menu][0], layerProps[menu][1], layerProps[menu][2]);
-    //   layerRef.current.layers[0].near = layerProps[menu][3];
-    //   layerRef.current.layers[0].far = layerProps[menu][4];
-    //   layerRef.current.layers[0].colorA = theme.color.blue_3d;
-    //   layerRef.current.layers[0].colorB = theme.color.blue_3d;
-    //   // 우측 영역의 하이라이트
-
-    //   // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
-    //   if (view === ViewPoint.REAR) {
-    //     layerRef.current.layers[1].origin.set(-layerProps[menu][0] + 0.1, layerProps[menu][1], layerProps[menu][2]);
-    //   } else {
-    //     layerRef.current.layers[1].origin.set(-layerProps[menu][0] - 0.1, layerProps[menu][1], layerProps[menu][2]);
-    //   }
-
-    //   layerRef.current.layers[1].near = layerProps[menu][3];
-    //   layerRef.current.layers[1].far = layerProps[menu][4];
-    //   layerRef.current.layers[1].colorA = theme.color.blue_3d;
-    //   layerRef.current.layers[1].colorB = theme.color.blue_3d;
-    // }
-    // if (menu === BodyPart.FOREHEAD) {
-    //   layerRef.current.layers[1].near = 1.4;
-    //   layerRef.current.layers[1].far = 1.8;
-    //   layerRef.current.layers[1].colorA = theme.color.blue_600;
-    //   layerRef.current.layers[1].colorB = theme.color.blue_600;
-    // }
-
     state.camera.position.lerp(vec.set(0, 0, 19), 0.2);
   });
 
   return (
     <>
       <mesh ref={modelRef} geometry={geometry} scale={0.1} position={[0, -3, 0]}>
-        <LayerMaterial ref={layerRef} toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
-          <PointLayerComponent
-            colorA={theme.color.blue_3d}
-            colorB={theme.color.blue_3d}
-            colorAalpha={1.0}
-            colorBalpha={0}
-            mode="add"
-            near={0}
-            far={0}
-            origin={[0, 5, 0]}
-          />
-          <PointLayerComponent
-            colorA={theme.color.blue_3d}
-            colorB={theme.color.blue_3d}
-            colorAalpha={1.0}
-            colorBalpha={0}
-            mode="add"
-            near={0}
-            far={0}
-            origin={[0, 5, 0]}
-          />
+        <LayerMaterial toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
+          {menu.map((part, i) => {
+            const { x, y, z, near, far, group } = layerProps[part];
+            const mirrorWeight = view === ViewPoint.REAR ? 0.1 : -0.1;
+            const foreHeadMask = part === BodyPart.FOREHEAD ? theme.color.blue_300 : theme.color.blue_600;
+
+            if (!group.includes(view)) {
+              return <React.Fragment key={i}></React.Fragment>;
+            } else {
+              return (
+                <React.Fragment key={i}>
+                  <PointLayerComponent
+                    colorA={theme.color.blue_600}
+                    colorB={theme.color.blue_600}
+                    colorAalpha={1.0}
+                    colorBalpha={0}
+                    mode="add"
+                    near={near}
+                    far={far}
+                    origin={[x, y, z]}
+                  />
+                  <PointLayerComponent
+                    colorA={foreHeadMask}
+                    colorB={theme.color.blue_600}
+                    colorAalpha={1.0}
+                    colorBalpha={0}
+                    mode="add"
+                    near={near}
+                    far={far}
+                    origin={[-x + mirrorWeight, y, z]}
+                  />
+                </React.Fragment>
+              );
+            }
+          })}
         </LayerMaterial>
       </mesh>
       {view === ViewPoint.REAR ? <BackLines /> : <FrontLines />}
