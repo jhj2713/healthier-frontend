@@ -27,12 +27,11 @@ const layerProps = {
 
 const vec = new THREE.Vector3();
 
-const Character = ({ view, menu }: ICharacterProps) => {
+const Character = ({ view, selection }: ICharacterProps) => {
   const [character] = useLoader(OBJLoader, "models/character.obj", (loader) => {
     // material.preload();
     // loader.setMaterials(material);
   }).children;
-  // https://stackoverflow.com/questions/66818245/three-js-property-material-does-not-exist-on-type-object3d-error-when-get
 
   const geometry = (character as THREE.Mesh).geometry;
   const modelRef = useRef<THREE.Mesh | null>(null);
@@ -59,7 +58,7 @@ const Character = ({ view, menu }: ICharacterProps) => {
     <>
       <mesh ref={modelRef} geometry={geometry} scale={0.1} position={[0, -3, 0]}>
         <LayerMaterial toneMapped={false} alpha={1.0} lighting="physical" color={theme.color.blue_100}>
-          {menu.map((part, i) => {
+          {selection.map((part, i) => {
             const { x, y, z, near, far, group } = layerProps[part];
             const mirrorWeight = view === ViewPoint.REAR ? 0.1 : -0.1;
             const foreHeadMask = part === BodyPart.FOREHEAD ? theme.color.blue_300 : theme.color.blue_600;

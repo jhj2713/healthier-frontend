@@ -7,34 +7,34 @@ import { setSite } from "src/state/userSlice";
 import { regions, particles } from "src/data/symptom_data";
 import { OverlaySection, TitleDiv, Title, SubTitle, PartDiv, PartButton, ButtonDiv, RotateButton } from "./index.style";
 
-const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
+const Overlay = ({ view, setView, selection, setSelection }: IOverlayProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const handleNext = (sites: BodyPart[]) => {
+  const handleInitiate = (sites: BodyPart[]) => {
     dispatch(setSite(sites));
     navigate("/diagnosis", { state: "headache" });
   };
 
   const toggleMenu = (part: BodyPart) => {
-    const i = menu.indexOf(part);
+    const i = selection.indexOf(part);
     if (i === -1) {
-      setMenu([...menu, part]);
+      setSelection([...selection, part]);
     } else {
-      menu.splice(i, 1);
-      setMenu([...menu]);
+      selection.splice(i, 1);
+      setSelection([...selection]);
     }
   };
 
   return (
     <OverlaySection>
       <TitleDiv>
-        {menu.length ? (
+        {selection.length ? (
           <Title>
             <span style={{ color: theme.color.green }}>머리</span>에서
             <br />{" "}
             <span style={{ color: theme.color.green }}>
-              {menu.map((part, i, arr) => {
+              {selection.map((part, i, arr) => {
                 if (i === arr.length - 1) return regions[part] + particles[part];
                 else return regions[part] + ", ";
               })}
@@ -47,7 +47,7 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
               증상 부위를 <br />
               선택해주세요
             </Title>
-            <SubTitle onClick={() => handleNext([BodyPart.HEAD])}>어디가 아픈지 모르겠다면 &#62;</SubTitle>
+            <SubTitle onClick={() => handleInitiate([BodyPart.HEAD])}>어디가 아픈지 모르겠다면 &#62;</SubTitle>
           </>
         )}
       </TitleDiv>
@@ -55,11 +55,11 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
       {view === ViewPoint.REAR ? (
         <PartDiv>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.HEAD)} onClick={() => toggleMenu(BodyPart.HEAD)}>
+          <PartButton toggle={selection.includes(BodyPart.HEAD)} onClick={() => toggleMenu(BodyPart.HEAD)}>
             머리 전체
           </PartButton>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.REARHEAD)} onClick={() => toggleMenu(BodyPart.REARHEAD)}>
+          <PartButton toggle={selection.includes(BodyPart.REARHEAD)} onClick={() => toggleMenu(BodyPart.REARHEAD)}>
             뒷머리
           </PartButton>
           <div></div>
@@ -69,36 +69,36 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
           <div></div>
           <div></div>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.BACKNECK)} onClick={() => toggleMenu(BodyPart.BACKNECK)}>
+          <PartButton toggle={selection.includes(BodyPart.BACKNECK)} onClick={() => toggleMenu(BodyPart.BACKNECK)}>
             뒷목
           </PartButton>
         </PartDiv>
       ) : (
         <PartDiv>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.HEAD)} onClick={() => toggleMenu(BodyPart.HEAD)}>
+          <PartButton toggle={selection.includes(BodyPart.HEAD)} onClick={() => toggleMenu(BodyPart.HEAD)}>
             머리 전체
           </PartButton>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.NEAREYE)} onClick={() => toggleMenu(BodyPart.NEAREYE)}>
+          <PartButton toggle={selection.includes(BodyPart.NEAREYE)} onClick={() => toggleMenu(BodyPart.NEAREYE)}>
             눈 주위
           </PartButton>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.FOREHEAD)} onClick={() => toggleMenu(BodyPart.FOREHEAD)}>
+          <PartButton toggle={selection.includes(BodyPart.FOREHEAD)} onClick={() => toggleMenu(BodyPart.FOREHEAD)}>
             이마의 띠
           </PartButton>
-          <PartButton toggle={menu.includes(BodyPart.TEMPLE)} onClick={() => toggleMenu(BodyPart.TEMPLE)}>
+          <PartButton toggle={selection.includes(BodyPart.TEMPLE)} onClick={() => toggleMenu(BodyPart.TEMPLE)}>
             관자놀이
           </PartButton>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.EYE)} onClick={() => toggleMenu(BodyPart.EYE)}>
+          <PartButton toggle={selection.includes(BodyPart.EYE)} onClick={() => toggleMenu(BodyPart.EYE)}>
             눈
           </PartButton>
-          <PartButton toggle={menu.includes(BodyPart.CHIN)} onClick={() => toggleMenu(BodyPart.CHIN)}>
+          <PartButton toggle={selection.includes(BodyPart.CHIN)} onClick={() => toggleMenu(BodyPart.CHIN)}>
             턱
           </PartButton>
           <div></div>
-          <PartButton toggle={menu.includes(BodyPart.NEARNOSE)} onClick={() => toggleMenu(BodyPart.NEARNOSE)}>
+          <PartButton toggle={selection.includes(BodyPart.NEARNOSE)} onClick={() => toggleMenu(BodyPart.NEARNOSE)}>
             코 주위
           </PartButton>
         </PartDiv>
@@ -121,11 +121,11 @@ const Overlay = ({ view, setView, menu, setMenu }: IOverlayProps) => {
         >
           뒤
         </RotateButton>
-        <section onClick={() => menu && handleNext(menu)}>
+        <section onClick={() => selection && handleInitiate(selection)}>
           <RoundButton
             outline="none"
-            backgroundColor={menu ? theme.color.green : theme.color.grey_750}
-            color={menu ? theme.color.grey_900 : theme.color.grey_500}
+            backgroundColor={selection ? theme.color.green : theme.color.grey_750}
+            color={selection ? theme.color.grey_900 : theme.color.grey_500}
           >
             증상 감별 시작하기
           </RoundButton>
