@@ -21,7 +21,7 @@ const Symptom = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
-  const [menu, setMenu] = useState<BodyPart>(BodyPart.NONE);
+  const [menu, setMenu] = useState<BodyPart[]>([]);
   const [view, setView] = useState<ViewPoint>(ViewPoint.FRONT);
 
   useEffect(() => {

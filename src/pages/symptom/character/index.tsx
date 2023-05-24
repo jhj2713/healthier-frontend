@@ -61,33 +61,33 @@ const Character = ({ view, menu }: ICharacterProps) => {
         modelRef.current.rotation.y -= modelRef.current.rotation.y * 0.1;
       }
     }
-    if (menu && layerRef.current) {
-      // 좌측 영역의 하이라이트
-      layerRef.current.layers[0].origin.set(layerProps[menu][0], layerProps[menu][1], layerProps[menu][2]);
-      layerRef.current.layers[0].near = layerProps[menu][3];
-      layerRef.current.layers[0].far = layerProps[menu][4];
-      layerRef.current.layers[0].colorA = theme.color.blue_3d;
-      layerRef.current.layers[0].colorB = theme.color.blue_3d;
-      // 우측 영역의 하이라이트
+    // if (menu && layerRef.current) {
+    //   // 좌측 영역의 하이라이트
+    //   layerRef.current.layers[0].origin.set(layerProps[menu][0], layerProps[menu][1], layerProps[menu][2]);
+    //   layerRef.current.layers[0].near = layerProps[menu][3];
+    //   layerRef.current.layers[0].far = layerProps[menu][4];
+    //   layerRef.current.layers[0].colorA = theme.color.blue_3d;
+    //   layerRef.current.layers[0].colorB = theme.color.blue_3d;
+    //   // 우측 영역의 하이라이트
 
-      // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
-      if (view === ViewPoint.REAR) {
-        layerRef.current.layers[1].origin.set(-layerProps[menu][0] + 0.1, layerProps[menu][1], layerProps[menu][2]);
-      } else {
-        layerRef.current.layers[1].origin.set(-layerProps[menu][0] - 0.1, layerProps[menu][1], layerProps[menu][2]);
-      }
+    //   // [이슈] 알 수 없는 이유로 양쪽 균형이 맞지 않음
+    //   if (view === ViewPoint.REAR) {
+    //     layerRef.current.layers[1].origin.set(-layerProps[menu][0] + 0.1, layerProps[menu][1], layerProps[menu][2]);
+    //   } else {
+    //     layerRef.current.layers[1].origin.set(-layerProps[menu][0] - 0.1, layerProps[menu][1], layerProps[menu][2]);
+    //   }
 
-      layerRef.current.layers[1].near = layerProps[menu][3];
-      layerRef.current.layers[1].far = layerProps[menu][4];
-      layerRef.current.layers[1].colorA = theme.color.blue_3d;
-      layerRef.current.layers[1].colorB = theme.color.blue_3d;
-    }
-    if (menu === BodyPart.FOREHEAD) {
-      layerRef.current.layers[1].near = 1.4;
-      layerRef.current.layers[1].far = 1.8;
-      layerRef.current.layers[1].colorA = theme.color.blue_600;
-      layerRef.current.layers[1].colorB = theme.color.blue_600;
-    }
+    //   layerRef.current.layers[1].near = layerProps[menu][3];
+    //   layerRef.current.layers[1].far = layerProps[menu][4];
+    //   layerRef.current.layers[1].colorA = theme.color.blue_3d;
+    //   layerRef.current.layers[1].colorB = theme.color.blue_3d;
+    // }
+    // if (menu === BodyPart.FOREHEAD) {
+    //   layerRef.current.layers[1].near = 1.4;
+    //   layerRef.current.layers[1].far = 1.8;
+    //   layerRef.current.layers[1].colorA = theme.color.blue_600;
+    //   layerRef.current.layers[1].colorB = theme.color.blue_600;
+    // }
 
     state.camera.position.lerp(vec.set(0, 0, 19), 0.2);
   });

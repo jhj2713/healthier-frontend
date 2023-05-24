@@ -22,11 +22,11 @@ export const userSlice = createSlice({
       state.birth_year = action.payload.birth_year;
       state.interests = [...action.payload.interests];
     },
-    addSite: (state, action: PayloadAction<BodyPart>) => {
-      state.site.push(action.payload);
+    setSite: (state, action: PayloadAction<BodyPart[]>) => {
+      state.site = action.payload;
     },
   },
 });
 
-export const { userSubmit, addSite } = userSlice.actions;
+export const { userSubmit, setSite } = userSlice.actions;
 export default userSlice.reducer;

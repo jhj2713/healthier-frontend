@@ -5,13 +5,13 @@ import { Vector3 } from "three";
 export interface IOverlayProps {
   view: ViewPoint;
   setView: (view: ViewPoint) => void;
-  menu: BodyPart;
-  setMenu: (menu: BodyPart) => void;
+  menu: BodyPart[];
+  setMenu: (menu: BodyPart[]) => void;
 }
 
 export interface ICharacterProps {
   view: ViewPoint;
-  menu: BodyPart;
+  menu: BodyPart[];
 }
 
 export interface IPointAbstract extends Abstract {
