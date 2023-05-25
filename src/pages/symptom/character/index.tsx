@@ -4,7 +4,7 @@ import * as THREE from "three";
 
 import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { LayerMaterial } from "lamina";
-import { BodyPart, IPointShader, ViewPoint } from "src/interfaces/symptomPage";
+import { BodyPart, ViewPoint } from "src/interfaces/symptomPage";
 import { ICharacterProps } from "src/interfaces/symptomPage";
 
 import theme from "src/lib/theme";
