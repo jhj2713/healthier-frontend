@@ -7,8 +7,8 @@ assignees: ''
 
 ---
 
-### ⚒️ 리팩토링 개요
+## ⚒️ 리팩토링 개요
 
-### ✅ TODO
+## ✅ TODO
 - [ ] todo
 - [ ] todo
