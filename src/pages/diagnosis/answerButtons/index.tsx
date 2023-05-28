@@ -1,22 +1,11 @@
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
-import { ChangeEvent, Dispatch, useEffect, useMemo } from "react";
+import { Dispatch, useEffect } from "react";
 import { saveAnswer } from "src/state/answerSlice";
 import { useAppDispatch } from "src/state";
-import {
-  Container,
-  AnswersContainer,
-  ButtonBox,
-  ButtonText,
-  NextButton,
-  RangeAnswerContainer,
-  RangeContainer,
-  RangeInput,
-  RangeAnswer,
-  RangeNumber,
-  RangeBackground,
-} from "./index.style";
+import { Container, NextButton } from "./index.style";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import Buttons from "../buttons";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -26,19 +15,11 @@ interface IAnswerButtonProps {
 }
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  const isSliderQuestion = question.question.includes("통증의 정도");
-  const answers = useMemo(() => (isSliderQuestion ? [...question.answers].reverse() : question.answers), [question]);
-
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (isSliderQuestion) {
-      setSelectedAnswer([answers[2]]);
-    }
-  }, []);
-  useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (!question.is_multiple && !isSliderQuestion && selectedAnswer.length !== 0) {
+    if (!question.is_multiple && selectedAnswer.length !== 0) {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -46,27 +27,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     }
   }, [selectedAnswer]);
 
-  const handleSelect = (id: number) => {
-    if (question.is_multiple) {
-      const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
-
-      if (filtered.length !== selectedAnswer.length) {
-        setSelectedAnswer(filtered);
-      } else {
-        const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
-        setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
-      }
-    } else {
-      const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
-      setSelectedAnswer([answers[filtered_idx]]);
-      dispatch(
-        saveAnswer({
-          question_id: question.id,
-          answer_id: [answers[filtered_idx].answer_id],
-        })
-      );
-    }
-  };
   const handleActive = (id: number): boolean => {
     return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
   };
@@ -76,60 +36,25 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     dispatch(
       saveAnswer({
         question_id: question.id,
-        answer_id: selectedAnswer.map((ans) => (isSliderQuestion ? 5 - ans.answer_id : ans.answer_id)),
+        answer_id: selectedAnswer.map((ans) => ans.answer_id),
       })
     );
 
     handleNext();
   };
-  const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const selectedIdx = Number(e.target.value);
-    setSelectedAnswer([{ answer_id: question.answers[selectedIdx].answer_id, answer: question.answers[selectedIdx].answer }]);
-  };
 
   return (
     <Container>
-      {isSliderQuestion ? (
-        <RangeAnswerContainer>
-          <div className="range-answers">
-            {answers.length !== 0 &&
-              answers.map((ans, idx) => (
-                <RangeAnswer key={idx} idx={idx} selected={handleActive(5 - ans.answer_id)}>
-                  <div className="answer-text">{ans.answer}</div>
-                  <div className="range-dots" />
-                </RangeAnswer>
-              ))}
-          </div>
-          <RangeContainer>
-            <RangeBackground />
-            <RangeInput
-              type="range"
-              min={0}
-              max={5}
-              value={selectedAnswer.length >= 1 ? selectedAnswer[0].answer_id : answers[3].answer_id}
-              onChange={handleRangeInput}
-            />
-          </RangeContainer>
-          <div className="range-numbers">
-            {[100, 50, 0].map((num) => (
-              <RangeNumber key={num}>{num}</RangeNumber>
-            ))}
-          </div>
-        </RangeAnswerContainer>
-      ) : (
-        <AnswersContainer ansCount={answers.length}>
-          {answers.length !== 0 &&
-            answers.map((ans, idx) => (
-              <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
-                <section className="button">
-                  <ButtonText>{ans.answer}</ButtonText>
-                </section>
-              </ButtonBox>
-            ))}
-        </AnswersContainer>
-      )}
+      {/* 답변 유형에 따라 다른 컴포넌트 렌더링할 수 있도록 */}
+      <Buttons
+        answers={question.answers}
+        question={question}
+        selectedAnswer={selectedAnswer}
+        handleActive={handleActive}
+        setSelectedAnswer={setSelectedAnswer}
+      />
 
-      {(question.is_multiple || isSliderQuestion) && (
+      {question.is_multiple && (
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
             outline="none"
