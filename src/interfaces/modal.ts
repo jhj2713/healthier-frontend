@@ -7,7 +7,7 @@ export interface IModalContainer {
 export interface IResultModal {
   closeModal: () => void;
   setLoading: Dispatch<string>;
-  resultId: string;
+  resultId: number;
 }
 
 export interface ISymptomModal {

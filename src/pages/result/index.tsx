@@ -81,7 +81,7 @@ const ResultPage = () => {
               <DefinitionPage defineData={defineData} />
             </SwiperSlide>
             <SwiperSlide>
-              <LifePage lifestyle={lifeData} type={state.diagnostic_result.id} />
+              <LifePage lifestyle={lifeData} />
             </SwiperSlide>
             {medicineData && (
               <SwiperSlide>

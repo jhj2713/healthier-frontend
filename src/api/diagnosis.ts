@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IDiagnosisList, IDiagnosisPatchData, IDiagnosisResult } from "src/interfaces/diagnosisApi";
+import { IDiagnosisList, IDiagnosisPatchData, IDiagnosisResult } from "src/interfaces/diagnoseApi/diagnosis";
 
 export const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/api/diagnosis`,

@@ -9,7 +9,7 @@ export interface IBottomBar extends IBottomNumber {
   openModal: () => void;
   setLoading: Dispatch<string>;
   isSaved: boolean;
-  resultId: string;
+  resultId: number;
 }
 
 export interface ICoverPageProps {

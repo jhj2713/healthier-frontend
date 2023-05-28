@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { HeadacheDiagnose } from "src/api/diagnose";
 import DiagnosisCard from "src/components/diagnosisCard";
 import MainHeader from "src/components/mainHeader";
 import { IDiagnosisList } from "src/interfaces/component";
@@ -16,14 +15,13 @@ const DiagnosisList = () => {
   }, []);
 
   const handleNavigate = async (diag: IDiagnosisList) => {
-    const diagnosisResult = await HeadacheDiagnose.postResultDetail(Number(diag.record.diagnosis_id));
-
-    navigate("/result", {
-      state: {
-        type: "result",
-        diagnostic_result: diagnosisResult.diagnostic_result,
-      },
-    });
+    // TODO: 상세 페이지 이동
+    // navigate("/result", {
+    //   state: {
+    //     type: "result",
+    //     diagnostic_result: diagnosisResult.diagnostic_result,
+    //   },
+    // });
   };
 
   return (

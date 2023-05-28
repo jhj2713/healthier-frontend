@@ -3,7 +3,7 @@ import { IDiagnosisList } from "./component";
 export interface IDiagnosticResult {
   type: string;
   diagnostic_result: {
-    id: string;
+    id: number;
     illustration: string;
     h1: string;
     title: string;
