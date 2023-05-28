@@ -1,5 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "./store";
+import { BodyPart } from "src/interfaces/symptomPage";
 
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -15,7 +16,7 @@ export interface UserState {
   gender: string;
   birth_year: number;
   interests: number[];
-  site: number[];
+  site: BodyPart[];
 }
 
 export interface fillInfoAction {
