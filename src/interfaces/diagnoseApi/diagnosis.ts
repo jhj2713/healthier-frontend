@@ -1,5 +1,5 @@
 export interface IDiagnosisPatchData {
-  diagnosis_id: string;
+  diagnosis_id: number;
 }
 
 export interface IDiagnosisList {
@@ -18,7 +18,7 @@ export interface IDiagnosisList {
 export interface IDiagnosisResult {
   is_result: number;
   diagnostic_result: {
-    id: string;
+    id: number;
     illustration: string;
     h1: string;
     title: string;
@@ -58,13 +58,13 @@ export interface IQuestion {
 }
 
 export interface IDecisiveDate {
-  question_id: string | number;
+  question_id: number;
   answer_id: number;
   gender: string;
   birth_year: number;
   interests: number[];
   tracks: {
-    question_id: string | number;
+    question_id: number;
     answer_id: number[];
   }[];
 }
@@ -79,7 +79,7 @@ export interface IDiagnoseAnswers {
 }
 
 export interface IDiagnoseAnswer {
-  question_id: string;
+  question_id: number;
   answer_id: number;
 }
 
