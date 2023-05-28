@@ -3,15 +3,15 @@ import { LayerProps } from "lamina/types";
 import { Vector3 } from "three";
 
 export interface IOverlayProps {
-  view: number;
-  setView: (view: number) => void;
-  menu: number;
-  setMenu: (menu: number) => void;
+  view: ViewPoint;
+  setView: (view: ViewPoint) => void;
+  selection: BodyPart[];
+  setSelection: (selection: BodyPart[]) => void;
 }
 
 export interface ICharacterProps {
-  view: number;
-  menu: number;
+  view: ViewPoint;
+  selection: BodyPart[];
 }
 
 export interface IPointAbstract extends Abstract {
@@ -34,4 +34,22 @@ export interface IPointLayerProps extends LayerProps {
   near: number;
   far: number;
   origin: number[];
+}
+
+export enum ViewPoint {
+  FRONT = "FRONT",
+  REAR = "REAR",
+}
+
+export enum BodyPart {
+  NONE = "NONE",
+  TEMPLE = "TEMPLE",
+  FOREHEAD = "FOREHEAD",
+  EYE = "EYE",
+  NEAREYE = "NEAREYE",
+  NEARNOSE = "NEARNOSE",
+  CHIN = "CHIN",
+  REARHEAD = "REARHEAD",
+  HEAD = "HEAD",
+  BACKNECK = "BACKNECK",
 }

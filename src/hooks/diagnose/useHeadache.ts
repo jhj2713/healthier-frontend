@@ -25,6 +25,7 @@ function useHeadache({ state, curQuestion, setCurQuestion, selectedAnswer, setSe
   const curQuestionIndex = useRef<number>(0); // 질문 묶음에서 현재 질문 index
   const isPassPrimaryQuestion = useRef<boolean>(false); // 1차성 두통 질문을 거쳤는가
   const isFirstPrimaryQuestion = useRef<boolean>(false); // red flag sign에서 바로 일차성 두통 질문으로 갔는가
+  // [질문 영역] site 선택과 관련
   const curSiteIndex = useRef<number>(0); // 다중 site 선택
   const results = useRef<IHeadacheResult[]>([]); // 진단 결과 id들
   const isChronic = useRef<number>(0); // 만성 여부

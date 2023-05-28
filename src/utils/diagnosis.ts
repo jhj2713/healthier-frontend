@@ -1,4 +1,5 @@
 import { IHeadacheQuestion } from "src/interfaces/headacheDiagnoseApi";
+import { BodyPart } from "src/interfaces/symptomPage";
 
 export const isHeadache = (state: string) => {
   return state === "headache";
@@ -20,4 +21,15 @@ export const insertType = (questions: IHeadacheQuestion[], type: string) => {
   });
 };
 
-export const PAIN_AREA_MAP = ["", "관자놀이", "이마의 띠", "눈", "눈 주위", "코 주위", "턱", "뒷머리", "머리 전체", "뒷목"];
+export const PAIN_AREA_MAP = {
+  [BodyPart.NONE]: "",
+  [BodyPart.TEMPLE]: "관자놀이",
+  [BodyPart.FOREHEAD]: "이마의 띠",
+  [BodyPart.EYE]: "눈",
+  [BodyPart.NEAREYE]: "눈 주위",
+  [BodyPart.NEARNOSE]: "코 주위",
+  [BodyPart.CHIN]: "턱",
+  [BodyPart.REARHEAD]: "뒷머리",
+  [BodyPart.HEAD]: "머리 전체",
+  [BodyPart.BACKNECK]: "뒷목",
+};

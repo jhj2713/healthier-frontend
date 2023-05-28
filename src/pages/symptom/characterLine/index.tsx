@@ -18,10 +18,10 @@ declare global {
 }
 
 const Line = ({ start, end }: { start: number[]; end: number[] }) => {
-  const ref = useRef<LineGeometry>(null!);
+  const ref = useRef<LineGeometry | null>(null);
 
   useLayoutEffect(() => {
-    ref.current!.setPositions([...start, ...end]);
+    ref.current?.setPositions([...start, ...end]);
   }, [start, end]);
 
   return (
