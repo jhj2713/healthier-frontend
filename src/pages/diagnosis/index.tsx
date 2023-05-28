@@ -4,7 +4,7 @@ import ContentHeader from "src/components/contentHeader";
 import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
-import useDiagnosis from "src/hooks/useDiagnosis";
+import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
 
 const Diagnosis = () => {
   const navigate = useNavigate();
