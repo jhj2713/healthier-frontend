@@ -1,5 +1,3 @@
-import { IAnswer } from "./diagnosisPage";
-
 export interface IDiagnosisPatchData {
   diagnosis_id: string;
 }
@@ -47,12 +45,16 @@ export interface IDiagnosisResult {
   };
 }
 
+export interface IAnswer {
+  answer_id: number;
+  answer: string;
+}
+
 export interface IQuestion {
-  id: string;
+  id: number;
   question: string;
   answers: IAnswer[];
-  is_multiple: number;
-  is_last_default?: number;
+  is_multiple: boolean;
 }
 
 export interface IDecisiveDate {
@@ -68,12 +70,16 @@ export interface IDecisiveDate {
 }
 
 export interface IDiagnoseResponse {
-  is_result: number;
-  question: IQuestion;
+  questions: IQuestion;
+}
+
+export interface IDiagnoseAnswers {
+  question_id: number;
+  answer_id: number[];
 }
 
 export interface IDiagnoseAnswer {
-  question_id: string | number;
+  question_id: string;
   answer_id: number;
 }
 

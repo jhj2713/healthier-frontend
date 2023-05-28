@@ -1,24 +1,7 @@
-import { IHeadacheQuestion } from "src/interfaces/headacheDiagnoseApi";
 import { BodyPart } from "src/interfaces/symptomPage";
 
-export const isHeadache = (state: string) => {
-  return state === "headache";
-};
-export const isSleepDisorder = (state: string) => {
-  return state === "sleepdisorder";
-};
-
-export const typeMapping = (curQuestion: IHeadacheQuestion) => {
-  return {
-    ...curQuestion,
-    is_multiple: curQuestion.is_multiple ? 1 : 0,
-  };
-};
-
-export const insertType = (questions: IHeadacheQuestion[], type: string) => {
-  return questions.map((question) => {
-    return { ...question, type };
-  });
+export const DIAGNOSE_TYPE = {
+  stomache: "급성복통",
 };
 
 export const PAIN_AREA_MAP = {

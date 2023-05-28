@@ -1,7 +1,6 @@
-import { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
-import { ChangeEvent, useEffect, useMemo } from "react";
+import { ChangeEvent, Dispatch, useEffect, useMemo } from "react";
 import { saveAnswer } from "src/state/answerSlice";
 import { useAppDispatch } from "src/state";
 import {
@@ -17,9 +16,16 @@ import {
   RangeNumber,
   RangeBackground,
 } from "./index.style";
+import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+
+interface IAnswerButtonProps {
+  question: IQuestion;
+  selectedAnswer: IAnswer[];
+  setSelectedAnswer: Dispatch<IAnswer[]>;
+  handleNext: () => void;
+}
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  const isMultiple = question.is_multiple === 1;
   const isSliderQuestion = question.question.includes("통증의 정도");
   const answers = useMemo(() => (isSliderQuestion ? [...question.answers].reverse() : question.answers), [question]);
 
@@ -32,7 +38,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   }, []);
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (!isMultiple && !isSliderQuestion && selectedAnswer.length !== 0) {
+    if (!question.is_multiple && !isSliderQuestion && selectedAnswer.length !== 0) {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -41,7 +47,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   }, [selectedAnswer]);
 
   const handleSelect = (id: number) => {
-    if (isMultiple) {
+    if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
 
       if (filtered.length !== selectedAnswer.length) {
@@ -123,7 +129,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         </AnswersContainer>
       )}
 
-      {(isMultiple || isSliderQuestion) && (
+      {(question.is_multiple || isSliderQuestion) && (
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
             outline="none"
