@@ -47,7 +47,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     <Container>
       {/* 답변 유형에 따라 다른 컴포넌트 렌더링할 수 있도록 */}
       <Buttons
-        answers={question.answers}
+        answers={question.answers ?? []}
         question={question}
         selectedAnswer={selectedAnswer}
         handleActive={handleActive}

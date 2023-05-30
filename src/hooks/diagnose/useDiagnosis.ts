@@ -4,6 +4,7 @@ import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppDispatch } from "src/state";
 import { resetAnswer } from "src/state/answerSlice";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
+import { ANSWER_TYPE } from "src/data/answer_type";
 import useStomache from "./useStomache";
 
 function useDiagnosis(state: string) {
@@ -13,8 +14,10 @@ function useDiagnosis(state: string) {
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
     id: 0,
     question: "",
-    answers: [],
     is_multiple: false,
+    image_url: null,
+    answer_type: ANSWER_TYPE.DEF,
+    answers: null,
   });
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
