@@ -13,7 +13,13 @@ interface IRangeAnswer {
 const RangeAnswerButton = ({ answers, selectedAnswer, question, setSelectedAnswer, handleActive }: IRangeAnswer) => {
   const handleRangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const selectedIdx = Number(e.target.value);
-    setSelectedAnswer([{ answer_id: question.answers[selectedIdx].answer_id, answer: question.answers[selectedIdx].answer }]);
+    setSelectedAnswer([
+      {
+        answer_id: (question.answers ?? [])[selectedIdx].answer_id,
+        answer: (question.answers ?? [])[selectedIdx].answer,
+        next_question: (question.answers ?? [])[selectedIdx].next_question,
+      },
+    ]);
   };
 
   return (
