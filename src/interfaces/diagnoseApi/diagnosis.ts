@@ -1,3 +1,5 @@
+import { TAnswerType } from "./answer.type";
+
 export interface IDiagnosisPatchData {
   diagnosis_id: number;
 }
@@ -48,13 +50,16 @@ export interface IDiagnosisResult {
 export interface IAnswer {
   answer_id: number;
   answer: string;
+  next_question: IQuestion | null;
 }
 
 export interface IQuestion {
   id: number;
   question: string;
-  answers: IAnswer[];
   is_multiple: boolean;
+  image_url: string | null;
+  answer_type: TAnswerType;
+  answers: IAnswer[] | null;
 }
 
 export interface IDecisiveDate {
@@ -70,7 +75,8 @@ export interface IDecisiveDate {
 }
 
 export interface IDiagnoseResponse {
-  questions: IQuestion;
+  category: string;
+  question: IQuestion[];
 }
 
 export interface IDiagnoseAnswers {
