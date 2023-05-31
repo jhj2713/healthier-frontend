@@ -57,22 +57,15 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
     if (!curQuestion.answers) return;
     depthHistoryRef.current.push(depthIndex.current);
 
-    if (curQuestion.is_multiple) {
+    if (selectedAnswer[0].next_question) {
+      depthIndex.current += 1;
+      setCurQuestion(selectedAnswer[0].next_question);
+      setSelectedAnswer([]);
+    } else {
       depthIndex.current = 0;
       curIndex.current += 1;
       setCurQuestion(questionListRef.current[curIndex.current]);
       setSelectedAnswer([]);
-    } else {
-      if (!selectedAnswer[0].next_question) {
-        depthIndex.current = 0;
-        curIndex.current += 1;
-        setCurQuestion(questionListRef.current[curIndex.current]);
-        setSelectedAnswer([]);
-      } else {
-        depthIndex.current += 1;
-        setCurQuestion(selectedAnswer[0].next_question);
-        setSelectedAnswer([]);
-      }
     }
   };
 
