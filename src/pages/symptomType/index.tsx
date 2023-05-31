@@ -11,6 +11,7 @@ import theme from "src/lib/theme";
 const symptomTypes = [
   { state: DIAGNOSE_TYPE.stomach, text: "급성복통" },
   { state: DIAGNOSE_TYPE.backpain, text: "허리통증" },
+  { state: DIAGNOSE_TYPE.diarrhea, text: "배변이상/설사" },
 ];
 
 const SymptomTypePage = () => {

@@ -6,6 +6,7 @@ import { popAnswer } from "src/state/answerSlice";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { useDispatch } from "react-redux";
 import { DiarrheaDiagnose } from "src/api/diagnose/diarrhea";
+import { ANSWER_TYPE } from "src/data/answer_type";
 
 interface IUseStomach {
   state: string;
@@ -29,13 +30,350 @@ function useDiarrhea({ state, curQuestion, setCurQuestion, selectedAnswer, setSe
 
   useEffect(() => {
     async function getFirstQuestion() {
-      const res = await DiarrheaDiagnose.getDiarrhea();
+      const res = [
+        {
+          id: 2002,
+          question: "점점 심해지나요? 좋아졌다가 나빠지나요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "호전돼요",
+              next_question: null,
+            },
+            {
+              answer_id: 1,
+              answer: "악화돼요",
+              next_question: null,
+            },
+            {
+              answer_id: 2,
+              answer: "호전과 악화가 반복돼요",
+              next_question: null,
+            },
+          ],
+        },
+        {
+          id: 2009,
+          question: "지금 열이 나시거나 최근 열 나신 적 있나요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "예",
+              next_question: null,
+            },
+            {
+              answer_id: 1,
+              answer: "아니오",
+              next_question: null,
+            },
+          ],
+        },
+        {
+          id: 2010,
+          question: "몸살기운 같이 오한 있으신가요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "예",
+              next_question: null,
+            },
+            {
+              answer_id: 1,
+              answer: "아니오",
+              next_question: null,
+            },
+          ],
+        },
+        {
+          id: 2011,
+          question: "지난 6개월간 평상시 체중의 5% 이상 줄어들었나요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "예",
+              next_question: null,
+            },
+            {
+              answer_id: 1,
+              answer: "아니오",
+              next_question: null,
+            },
+          ],
+        },
+        {
+          id: 2012,
+          question: "복통 있으신가요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "예",
+              next_question: {
+                id: 2013,
+                question: "복통의 위치를 표시해주세요",
+                is_multiple: true,
+                answer_type: ANSWER_TYPE.IMG,
+                image_url: null,
+                answers: [
+                  {
+                    answer_id: 0,
+                    answer: "오른쪽윗배",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 1,
+                    answer: "명치",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 2,
+                    answer: "왼쪽윗배",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 3,
+                    answer: "오른쪽옆구리",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 4,
+                    answer: "배꼽주위",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 5,
+                    answer: "왼쪽옆구리",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 6,
+                    answer: "오른쪽아랫배",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 7,
+                    answer: "아랫배중앙",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                  {
+                    answer_id: 8,
+                    answer: "왼쪽아랫배",
+                    next_question: {
+                      id: 2014,
+                      question: "배변 후 복통 완화되나요?",
+                      is_multiple: false,
+                      answer_type: ANSWER_TYPE.DEF,
+                      image_url: null,
+                      answers: [
+                        {
+                          answer_id: 0,
+                          answer: "예",
+                          next_question: null,
+                        },
+                        {
+                          answer_id: 1,
+                          answer: "아니오",
+                          next_question: null,
+                        },
+                      ],
+                    },
+                  },
+                ],
+              },
+            },
+            {
+              answer_id: 1,
+              answer: "아니오",
+              next_question: null,
+            },
+          ],
+        },
+        {
+          id: 2015,
+          question: "배변 습관에 변화가 있으신가요?",
+          is_multiple: false,
+          answer_type: ANSWER_TYPE.DEF,
+          image_url: null,
+          answers: [
+            {
+              answer_id: 0,
+              answer: "예",
+              next_question: null,
+            },
+            {
+              answer_id: 1,
+              answer: "아니오",
+              next_question: null,
+            },
+          ],
+        },
+      ];
 
-      questionListRef.current = res.question;
+      //await DiarrheaDiagnose.getDiarrhea();
+
+      questionListRef.current = res;
       setCurQuestion(questionListRef.current[curIndex.current]);
     }
 
-    if (state === DIAGNOSE_TYPE.stomach) {
+    if (state === DIAGNOSE_TYPE.diarrhea) {
       getFirstQuestion();
     }
   }, []);
@@ -56,22 +394,20 @@ function useDiarrhea({ state, curQuestion, setCurQuestion, selectedAnswer, setSe
     if (!curQuestion.answers) return;
     depthHistoryRef.current.push(depthIndex.current);
 
-    if (curQuestion.is_multiple) {
+    if (!selectedAnswer[0].next_question) {
+      depthIndex.current = 0;
+      curIndex.current += 1;
+      setCurQuestion(questionListRef.current[curIndex.current]);
+      setSelectedAnswer([]);
+    } else if (curQuestion.is_multiple) {
       depthIndex.current = 0;
       curIndex.current += 1;
       setCurQuestion(questionListRef.current[curIndex.current]);
       setSelectedAnswer([]);
     } else {
-      if (!selectedAnswer[0].next_question) {
-        depthIndex.current = 0;
-        curIndex.current += 1;
-        setCurQuestion(questionListRef.current[curIndex.current]);
-        setSelectedAnswer([]);
-      } else {
-        depthIndex.current += 1;
-        setCurQuestion(selectedAnswer[0].next_question);
-        setSelectedAnswer([]);
-      }
+      depthIndex.current += 1;
+      setCurQuestion(selectedAnswer[0].next_question);
+      setSelectedAnswer([]);
     }
   };
 
