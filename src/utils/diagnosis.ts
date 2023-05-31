@@ -3,7 +3,8 @@ import { BodyPart } from "src/interfaces/symptomPage";
 export const DIAGNOSE_TYPE = {
   stomach: "급성복통",
   backpain: "허리통증",
-} as const;
+  diarrhea: "배변이상/설사",
+};
 
 export const PAIN_AREA_MAP = {
   [BodyPart.NONE]: "",
