@@ -5,7 +5,7 @@ import { useAppDispatch } from "src/state";
 import { resetAnswer } from "src/state/answerSlice";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
-import useStomache from "./useStomache";
+import useStomach from "./useStomach";
 import useBackpain from "./useBackpain";
 
 function useDiagnosis(state: string) {
@@ -23,7 +23,7 @@ function useDiagnosis(state: string) {
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
   const [loading, setLoading] = useState(false);
 
-  const { handleStomacheBackLogic, handleStomacheNextLogic } = useStomache({
+  const { handleStomachBackLogic, handleStomachNextLogic } = useStomach({
     state,
     curQuestion,
     setCurQuestion,
@@ -48,7 +48,7 @@ function useDiagnosis(state: string) {
 
   const handleNext = async () => {
     if (state === DIAGNOSE_TYPE.stomache) {
-      handleStomacheNextLogic();
+      handleStomachNextLogic();
     } else if (state === DIAGNOSE_TYPE.backpain) {
       handleBackpainNextLogic();
     }
@@ -56,7 +56,7 @@ function useDiagnosis(state: string) {
 
   const handleBack = async () => {
     if (state === DIAGNOSE_TYPE.stomache) {
-      handleStomacheBackLogic();
+      handleStomachBackLogic();
     } else if (state === DIAGNOSE_TYPE.backpain) {
       handleBackpainBackLogic();
     }

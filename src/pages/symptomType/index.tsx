@@ -9,7 +9,7 @@ import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
 
 const symptomTypes = [
-  { state: DIAGNOSE_TYPE.stomache, text: "급성복통" },
+  { state: DIAGNOSE_TYPE.stomach, text: "급성복통" },
   { state: DIAGNOSE_TYPE.backpain, text: "허리통증" },
 ];
 

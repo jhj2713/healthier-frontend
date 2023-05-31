@@ -1,7 +1,7 @@
 import { BodyPart } from "src/interfaces/symptomPage";
 
 export const DIAGNOSE_TYPE = {
-  stomache: "급성복통",
+  stomach: "급성복통",
   backpain: "허리통증",
 };
 

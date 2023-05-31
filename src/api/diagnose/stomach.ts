@@ -8,12 +8,11 @@ export const instance = axios.create({
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-const stomacheRequests = {
+const stomachRequests = {
   get: <T>(url: string) => instance.get<T>(url).then(responseBody),
   post: <T>(url: string, body: T) => instance.post<T>(url, body).then(responseBody),
 };
 
-export const StomacheDiagnose = {
-  getFemaleStomache: (): Promise<IDiagnoseResponse> => stomacheRequests.get(`/stomache-f`),
-  getMaleStomache: (): Promise<IDiagnoseResponse> => stomacheRequests.get(`/stomache-m`),
+export const StomachDiagnose = {
+  getStomach: (query: string): Promise<IDiagnoseResponse> => stomachRequests.get(`/stomach?gender=${query}`),
 };
