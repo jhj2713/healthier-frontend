@@ -10,4 +10,5 @@ export const ANSWER_TYPE = {
   NUMBER_7: "NUMBER_7",
   NUMBER_8: "NUMBER_8",
   DRAG_1: "DRAG_1",
+  STR: "STR",
 } as const;

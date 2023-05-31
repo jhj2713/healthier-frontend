@@ -33,6 +33,7 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
       const res = await StomachDiagnose.getStomach(gender === "m" ? "male" : "female");
 
       questionListRef.current = res.question;
+      setCurQuestion(questionListRef.current[curIndex.current]);
     }
 
     if (state === DIAGNOSE_TYPE.stomach) {
@@ -43,14 +44,27 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
   const handleStomachNextLogic = async () => {
     if (curIndex.current === questionListRef.current.length - 1) {
       // TODO: 진단 API 연동
+      setLoading(true);
+
+      const timer = setTimeout(() => {
+        navigate("/diagnosis-list");
+        clearTimeout(timer);
+      }, 3000);
+
       return;
     }
+
+    if (!curQuestion.answers) return;
+    depthHistoryRef.current.push(depthIndex.current);
+
     if (curQuestion.is_multiple) {
+      depthIndex.current = 0;
       curIndex.current += 1;
       setCurQuestion(questionListRef.current[curIndex.current]);
       setSelectedAnswer([]);
     } else {
       if (!selectedAnswer[0].next_question) {
+        depthIndex.current = 0;
         curIndex.current += 1;
         setCurQuestion(questionListRef.current[curIndex.current]);
         setSelectedAnswer([]);
@@ -60,9 +74,6 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
         setSelectedAnswer([]);
       }
     }
-
-    if (!curQuestion.answers) return;
-    depthHistoryRef.current.push(depthIndex.current);
   };
 
   const handleStomachBackLogic = () => {
@@ -71,10 +82,11 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
     } else {
       if (depthIndex.current !== 0) {
         // 최상위 depth에서부터 최근 question을 찾아나감
-        let prevQuestion = questionListRef.current[curIndex.current].answers?.find((ans) => ans.next_question)?.next_question as IQuestion;
+        let prevQuestion = questionListRef.current[curIndex.current] as IQuestion;
         for (let i = 0; i < depthIndex.current - 1; i++) {
           prevQuestion = prevQuestion.answers?.find((ans) => ans.next_question)?.next_question as IQuestion;
         }
+
         setCurQuestion(prevQuestion);
       } else {
         curIndex.current -= 1;
