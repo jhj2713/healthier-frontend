@@ -86,8 +86,7 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
 
         if (depthHistoryRef.current[depthHistoryRef.current.length - 1] !== 0) {
           // 이전 질문이 depth가 있는 경우
-          let prevQuestion = questionListRef.current[curIndex.current].answers?.find((ans) => ans.next_question)
-            ?.next_question as IQuestion;
+          let prevQuestion = questionListRef.current[curIndex.current] as IQuestion;
           for (let i = 0; i < depthIndex.current - 1; i++) {
             prevQuestion = prevQuestion.answers?.find((ans) => ans.next_question)?.next_question as IQuestion;
           }
