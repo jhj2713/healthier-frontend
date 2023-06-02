@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppDispatch } from "src/state";
-import { resetAnswer } from "src/state/answerSlice";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import useStomach from "./useStomach";
@@ -10,7 +9,6 @@ import useBackpain from "./useBackpain";
 
 function useDiagnosis(state: string) {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
     id: 0,
@@ -43,7 +41,6 @@ function useDiagnosis(state: string) {
 
   useEffect(() => {
     if (!state) navigate("/");
-    dispatch(resetAnswer());
   }, []);
 
   const handleNext = async () => {
