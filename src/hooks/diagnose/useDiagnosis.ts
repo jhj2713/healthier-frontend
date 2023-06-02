@@ -6,6 +6,7 @@ import { resetAnswer } from "src/state/answerSlice";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import useStomache from "./useStomache";
+import useBackpain from "./useBackpain";
 
 function useDiagnosis(state: string) {
   const navigate = useNavigate();
@@ -31,6 +32,15 @@ function useDiagnosis(state: string) {
     setLoading,
   });
 
+  const { handleBackpainBackLogic, handleBackpainNextLogic } = useBackpain({
+    state,
+    curQuestion,
+    setCurQuestion,
+    selectedAnswer,
+    setSelectedAnswer,
+    setLoading,
+  });
+
   useEffect(() => {
     if (!state) navigate("/");
     dispatch(resetAnswer());
@@ -39,12 +49,16 @@ function useDiagnosis(state: string) {
   const handleNext = async () => {
     if (state === DIAGNOSE_TYPE.stomache) {
       handleStomacheNextLogic();
+    } else if (state === DIAGNOSE_TYPE.backpain) {
+      handleBackpainNextLogic();
     }
   };
 
   const handleBack = async () => {
     if (state === DIAGNOSE_TYPE.stomache) {
       handleStomacheBackLogic();
+    } else if (state === DIAGNOSE_TYPE.backpain) {
+      handleBackpainBackLogic();
     }
   };
 
