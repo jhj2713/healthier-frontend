@@ -6,6 +6,9 @@ import { useAppDispatch } from "src/state";
 import { Container, NextButton } from "./index.style";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import Buttons from "../buttons";
+import NumberButtons from "../number";
+import RangeAnswerButton from "../rangeAnswerButton";
+import { ANSWER_TYPE } from "src/data/answer_type";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -19,7 +22,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (!question.is_multiple && selectedAnswer.length !== 0) {
+    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0) {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -30,6 +33,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   const handleActive = (id: number): boolean => {
     return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
   };
+
   const handleMultipleAnswer = () => {
     if (selectedAnswer.length === 0) return;
 
@@ -43,9 +47,24 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     handleNext();
   };
 
+  if (question.answer_type.startsWith("NUMBER")) {
+    return (
+      <NumberButtons question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
+    return (
+      <RangeAnswerButton
+        answers={question.answers ?? []}
+        selectedAnswer={selectedAnswer}
+        question={question}
+        handleActive={handleActive}
+        setSelectedAnswer={setSelectedAnswer}
+      />
+    );
+  }
+
   return (
     <Container>
-      {/* 답변 유형에 따라 다른 컴포넌트 렌더링할 수 있도록 */}
       <Buttons
         answers={question.answers ?? []}
         question={question}
@@ -53,7 +72,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         handleActive={handleActive}
         setSelectedAnswer={setSelectedAnswer}
       />
-
       {question.is_multiple && (
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
