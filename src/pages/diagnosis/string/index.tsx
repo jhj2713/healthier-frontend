@@ -5,13 +5,13 @@ import theme from "src/lib/theme";
 import { Container } from "../index.style";
 import { NextButton } from "../answerButtons/index.style";
 
-interface INumberButtonProps {
+interface IStringButtonProps {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleNext: () => void;
 }
 
-function StringButton({ selectedAnswer, setSelectedAnswer, handleNext }: INumberButtonProps) {
+function StringButton({ selectedAnswer, setSelectedAnswer, handleNext }: IStringButtonProps) {
   const handleNextButtonClick = () => {
     if (selectedAnswer.length === 0) return;
 
