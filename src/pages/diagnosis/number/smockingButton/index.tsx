@@ -5,7 +5,7 @@ import { ButtonBox, Container } from "./index.style";
 
 interface ISmockingNumberState {
   perDay: number;
-  perYear: number;
+  year: number;
 }
 interface ISmockingButtonProps {
   question: IQuestion;
@@ -14,7 +14,7 @@ interface ISmockingButtonProps {
 }
 
 function SmockingButton({ setSelectedAnswer }: ISmockingButtonProps) {
-  const [smockingNumber, setSmockingNumber] = useState<ISmockingNumberState>({ perDay: 0, perYear: 0 });
+  const [smockingNumber, setSmockingNumber] = useState<ISmockingNumberState>({ perDay: 0, year: 0 });
 
   useEffect(() => {
     setSelectedAnswer([
@@ -38,7 +38,7 @@ function SmockingButton({ setSelectedAnswer }: ISmockingButtonProps) {
         <input type="number" name="perDay" value={smockingNumber.perDay} onChange={handleChange} />갑
       </ButtonBox>
       <ButtonBox>
-        <input type="number" name="perYear" value={smockingNumber.perYear} onChange={handleChange} />년
+        <input type="number" name="perYear" value={smockingNumber.year} onChange={handleChange} />년 동안
       </ButtonBox>
     </Container>
   );

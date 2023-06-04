@@ -9,6 +9,8 @@ export const ANSWER_TYPE = {
   NUMBER_6: "NUMBER_6",
   NUMBER_7: "NUMBER_7",
   NUMBER_8: "NUMBER_8",
+  NUMBER_9: "NUMBER_9",
+  NUMBER_10: "NUMBER_10",
   DRAG_1: "DRAG_1",
   STR: "STR",
 } as const;
