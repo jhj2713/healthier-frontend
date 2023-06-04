@@ -4,6 +4,7 @@ export const DIAGNOSE_TYPE = {
   stomach: "급성복통",
   backpain: "허리통증",
   diarrhea: "배변이상/설사",
+  gum: "잇몸통증",
 };
 
 export const PAIN_AREA_MAP = {

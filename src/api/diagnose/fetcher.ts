@@ -23,6 +23,8 @@ export const diagnosisFetcher = {
       return fetcher.get(`/backpain`);
     } else if (diagnosisType === DIAGNOSE_TYPE.diarrhea) {
       return fetcher.get(`/diarrhea`);
+    } else if (diagnosisType === DIAGNOSE_TYPE.gum) {
+      return fetcher.get(`/gum`);
     }
 
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
