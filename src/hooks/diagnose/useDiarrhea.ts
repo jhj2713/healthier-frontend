@@ -1,14 +1,11 @@
 import { useEffect, Dispatch, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import { useAppSelector } from "src/state";
-import { popAnswer } from "src/state/answerSlice";
+import { IAnswer, IQuestion, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
-import { useDispatch } from "react-redux";
 import { DiarrheaDiagnose } from "src/api/diagnose/diarrhea";
-import { ANSWER_TYPE } from "src/data/answer_type";
+import { getNextQuestion } from "src/utils/diagnosisHook";
 
-interface IUseStomach {
+interface IUseDiarrhea {
   state: string;
   curQuestion: IQuestion;
   setCurQuestion: Dispatch<IQuestion>;
@@ -17,23 +14,19 @@ interface IUseStomach {
   setLoading: Dispatch<boolean>;
 }
 
-function useDiarrhea({ state, curQuestion, setCurQuestion, selectedAnswer, setSelectedAnswer, setLoading }: IUseStomach) {
+function useDiarrhea({ state, curQuestion, setCurQuestion, selectedAnswer, setSelectedAnswer, setLoading }: IUseDiarrhea) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
-  const { answers } = useAppSelector((store) => store.answer);
-
-  const questionListRef = useRef<IQuestion[]>([]); // 질문 목록
-  const depthHistoryRef = useRef<number[]>([]); // 지나온 질문들의 depth
-  const curIndex = useRef<number>(0); // 현재 질문 index
-  const depthIndex = useRef<number>(0); // 현재 질문 depth
+  const questions = useRef<IQuestion[]>([]);
+  const questionHistory = useRef<{ question: IQuestion; answer: IAnswer[] }[]>([]);
+  const answers = useRef<ITrackData[]>([]);
 
   useEffect(() => {
     async function getFirstQuestion() {
       const res = await DiarrheaDiagnose.getDiarrhea();
 
-      questionListRef.current = res.question;
-      setCurQuestion(questionListRef.current[curIndex.current]);
+      questions.current = res.question;
+      setCurQuestion(questions.current[0]);
     }
 
     if (state === DIAGNOSE_TYPE.diarrhea) {
@@ -42,66 +35,41 @@ function useDiarrhea({ state, curQuestion, setCurQuestion, selectedAnswer, setSe
   }, []);
 
   const handleDiarrheaNextLogic = async () => {
-    if (curIndex.current === questionListRef.current.length - 1) {
-      // TODO: 진단 API 연동
-      setLoading(true);
+    if (questionHistory.current === undefined || questions.current === undefined) {
+      return;
+    }
 
-      const timer = setTimeout(() => {
-        navigate("/diagnosis-list");
-        clearTimeout(timer);
-      }, 3000);
+    answers.current.push({ question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) });
+
+    questionHistory.current = [...questionHistory.current, { question: curQuestion, answer: selectedAnswer }];
+
+    const nextQuestion = getNextQuestion({
+      selectedAnswer,
+      curQuestion,
+      questions: questions.current,
+    });
+
+    if (nextQuestion) {
+      setCurQuestion(nextQuestion);
+    }
+    setSelectedAnswer([]);
+  };
+
+  const handleDiarrheaBackLogic = () => {
+    if (questionHistory.current === undefined || questions.current === undefined) {
+      return;
+    }
+
+    if (questionHistory.current.length === 0) {
+      navigate(-1);
 
       return;
     }
 
-    if (!curQuestion.answers) return;
-    depthHistoryRef.current.push(depthIndex.current);
+    const lastIdx = questionHistory.current.length - 1;
 
-    if (selectedAnswer[0].next_question) {
-      depthIndex.current += 1;
-      setCurQuestion(selectedAnswer[0].next_question);
-      setSelectedAnswer([]);
-    } else {
-      depthIndex.current = 0;
-      curIndex.current += 1;
-      setCurQuestion(questionListRef.current[curIndex.current]);
-      setSelectedAnswer([]);
-    }
-  };
-
-  const handleDiarrheaBackLogic = () => {
-    if (answers.length === 0) {
-      navigate(-1);
-    } else {
-      if (depthIndex.current !== 0) {
-        // 최상위 depth에서부터 최근 question을 찾아나감
-        let prevQuestion = questionListRef.current[curIndex.current] as IQuestion;
-        for (let i = 0; i < depthIndex.current - 1; i++) {
-          prevQuestion = prevQuestion.answers?.find((ans) => ans.next_question)?.next_question as IQuestion;
-        }
-
-        setCurQuestion(prevQuestion);
-      } else {
-        curIndex.current -= 1;
-
-        if (depthHistoryRef.current[depthHistoryRef.current.length - 1] !== 0) {
-          // 이전 질문이 depth가 있는 경우
-          let prevQuestion = questionListRef.current[curIndex.current] as IQuestion;
-          for (let i = 0; i < depthIndex.current - 1; i++) {
-            prevQuestion = prevQuestion.answers?.find((ans) => ans.next_question)?.next_question as IQuestion;
-          }
-          setCurQuestion(prevQuestion);
-        } else {
-          setCurQuestion(questionListRef.current[curIndex.current]);
-        }
-      }
-
-      if (depthHistoryRef.current.length < 1) return;
-      depthIndex.current = depthHistoryRef.current.pop() as number;
-
-      setSelectedAnswer([]);
-      dispatch(popAnswer());
-    }
+    setCurQuestion(questionHistory.current[lastIdx].question);
+    questionHistory.current = questionHistory.current.slice(0, lastIdx);
   };
 
   return { handleDiarrheaNextLogic, handleDiarrheaBackLogic };
