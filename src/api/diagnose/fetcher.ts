@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios";
 import { IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
 import { TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
+import { DIAGNOSE_TYPE } from "../../utils/diagnosis";
 
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/api/diagnose`,
@@ -16,10 +17,12 @@ export const fetcher = {
 
 export const diagnosisFetcher = {
   getQuestions(diagnosisType: TDiagnoseType, gender: string): Promise<IDiagnoseResponse> {
-    if (diagnosisType === "급성복통") {
+    if (diagnosisType === DIAGNOSE_TYPE.stomach) {
       return fetcher.get(`/stomach?gender=${gender === "f" ? "female" : "male"}`);
-    } else if (diagnosisType === "허리통증") {
+    } else if (diagnosisType === DIAGNOSE_TYPE.backpain) {
       return fetcher.get(`/backpain`);
+    } else if (diagnosisType === DIAGNOSE_TYPE.diarrhea) {
+      return fetcher.get(`/diarrhea`);
     }
 
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
