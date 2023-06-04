@@ -11,7 +11,7 @@ interface INumberAnswerButtonProps {
 }
 
 function NumberAnswerButton({ question, selectedAnswer, setSelectedAnswer }: INumberAnswerButtonProps) {
-  if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
+  if (question.answer_type === ANSWER_TYPE.NUMBER_1 || question.answer_type === ANSWER_TYPE.NUMBER_3) {
     return <DurationButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_2) {
     return <PreviousTimeButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
