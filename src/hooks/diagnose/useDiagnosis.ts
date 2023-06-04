@@ -29,10 +29,15 @@ function useDiagnosis(state: TDiagnoseType) {
     if (!state) navigate("/");
 
     const getFirstQuestion = async () => {
-      const { question: diagnosisQuestions } = await diagnosisFetcher.getQuestions(state, gender);
-      questions.current = diagnosisQuestions;
+      try {
+        const { question: diagnosisQuestions } = await diagnosisFetcher.getQuestions(state, gender);
+        questions.current = diagnosisQuestions;
 
-      setCurQuestion(diagnosisQuestions[0]);
+        setCurQuestion(diagnosisQuestions[0]);
+      } catch (err) {
+        alert("유효하지 않은 접근입니다");
+        navigate("/");
+      }
     };
 
     getFirstQuestion();
