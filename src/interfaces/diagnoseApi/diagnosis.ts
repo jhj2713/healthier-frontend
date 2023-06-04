@@ -1,4 +1,5 @@
 import { TAnswerType } from "./answer.type";
+import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 
 export interface IDiagnosisPatchData {
   diagnosis_id: number;
@@ -92,3 +93,6 @@ export interface IDiagnoseAnswer {
 export interface ISiteDiagnose {
   site_id: number;
 }
+
+type TDiagnoseTypeKey = keyof typeof DIAGNOSE_TYPE;
+export type TDiagnoseType = typeof DIAGNOSE_TYPE[TDiagnoseTypeKey];
