@@ -7,6 +7,7 @@ import Buttons from "../buttons";
 import NumberButtons from "../number";
 import RangeAnswerButton from "../rangeAnswerButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
+import StringButton from "../string";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -50,6 +51,8 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         setSelectedAnswer={setSelectedAnswer}
       />
     );
+  } else if (question.answer_type === ANSWER_TYPE.STR) {
+    return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
   }
 
   return (
