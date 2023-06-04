@@ -1,15 +1,13 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from "src/state";
-import { resetAnswer } from "src/state/answerSlice";
-import { IAnswer, IQuestion, TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
+import { useAppSelector } from "src/state";
+import { IAnswer, IQuestion, TDiagnoseType, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import { diagnosisFetcher } from "src/api/diagnose/fetcher";
 import { getNextQuestion } from "src/utils/diagnosisHook";
 
 function useDiagnosis(state: TDiagnoseType) {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const { gender } = useAppSelector((appState) => appState.user);
   const [curQuestion, setCurQuestion] = useState<IQuestion>({
@@ -25,6 +23,7 @@ function useDiagnosis(state: TDiagnoseType) {
 
   const questions = useRef<IQuestion[]>([]);
   const questionHistory = useRef<IQuestion[]>([]);
+  const answers = useRef<ITrackData[]>([]);
 
   useEffect(() => {
     if (!state) navigate("/");
@@ -33,18 +32,18 @@ function useDiagnosis(state: TDiagnoseType) {
       const { question: diagnosisQuestions } = await diagnosisFetcher.getQuestions(state, gender);
       questions.current = diagnosisQuestions;
 
-      console.log(diagnosisQuestions);
       setCurQuestion(diagnosisQuestions[0]);
     };
 
     getFirstQuestion();
-    dispatch(resetAnswer());
-  }, [dispatch, navigate, gender, state]);
+  }, [navigate, gender, state]);
 
   const handleNext = () => {
     if (questionHistory.current === undefined || questions.current === undefined) {
       return;
     }
+
+    answers.current = [...answers.current, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }];
 
     questionHistory.current = [...questionHistory.current, curQuestion];
 
@@ -75,6 +74,7 @@ function useDiagnosis(state: TDiagnoseType) {
 
     setCurQuestion(questionHistory.current[lastIdx]);
     questionHistory.current = questionHistory.current.slice(0, lastIdx);
+    answers.current = answers.current.slice(0, answers.current.length - 1);
   };
 
   return { loading, curQuestion, handleNext, handleBack, selectedAnswer, setSelectedAnswer };

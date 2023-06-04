@@ -5,6 +5,11 @@ export interface IDiagnosisPatchData {
   diagnosis_id: number;
 }
 
+export interface ITrackData {
+  question_id: number;
+  answer_id: number[];
+}
+
 export interface IDiagnosisList {
   nickname: string;
   diagnosis: {
@@ -69,10 +74,7 @@ export interface IDecisiveDate {
   gender: string;
   birth_year: number;
   interests: number[];
-  tracks: {
-    question_id: number;
-    answer_id: number[];
-  }[];
+  tracks: ITrackData[];
 }
 
 export interface IDiagnoseResponse {

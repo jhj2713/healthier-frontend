@@ -1,7 +1,5 @@
 import { Dispatch } from "react";
-import { useDispatch } from "react-redux";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import { saveAnswer } from "src/state/answerSlice";
 import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
 
 interface IButtons {
@@ -13,8 +11,6 @@ interface IButtons {
 }
 
 const Buttons = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive }: IButtons) => {
-  const dispatch = useDispatch();
-
   const handleSelect = (id: number) => {
     if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -28,12 +24,6 @@ const Buttons = ({ answers, question, selectedAnswer, setSelectedAnswer, handleA
     } else {
       const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
       setSelectedAnswer([answers[filtered_idx]]);
-      dispatch(
-        saveAnswer({
-          question_id: question.id,
-          answer_id: [answers[filtered_idx].answer_id],
-        })
-      );
     }
   };
 

@@ -1,14 +1,13 @@
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
 import { Dispatch, useEffect } from "react";
-import { saveAnswer } from "src/state/answerSlice";
-import { useAppDispatch } from "src/state";
 import { Container, NextButton } from "./index.style";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import Buttons from "../buttons";
 import NumberButtons from "../number";
 import RangeAnswerButton from "../rangeAnswerButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
+import StringButton from "../string";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -18,8 +17,6 @@ interface IAnswerButtonProps {
 }
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  const dispatch = useAppDispatch();
-
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
     if (question.answers && !question.is_multiple && selectedAnswer.length !== 0) {
@@ -36,13 +33,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   const handleMultipleAnswer = () => {
     if (selectedAnswer.length === 0) return;
-
-    dispatch(
-      saveAnswer({
-        question_id: question.id,
-        answer_id: selectedAnswer.map((ans) => ans.answer_id),
-      })
-    );
 
     handleNext();
   };
@@ -61,6 +51,8 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         setSelectedAnswer={setSelectedAnswer}
       />
     );
+  } else if (question.answer_type === ANSWER_TYPE.STR) {
+    return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
   }
 
   return (
