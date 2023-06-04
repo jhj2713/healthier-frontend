@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import { useAppDispatch } from "src/state";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import useStomach from "./useStomach";
@@ -44,7 +43,7 @@ function useDiagnosis(state: string) {
   }, []);
 
   const handleNext = async () => {
-    if (state === DIAGNOSE_TYPE.stomache) {
+    if (state === DIAGNOSE_TYPE.stomach) {
       handleStomachNextLogic();
     } else if (state === DIAGNOSE_TYPE.backpain) {
       handleBackpainNextLogic();
@@ -52,7 +51,7 @@ function useDiagnosis(state: string) {
   };
 
   const handleBack = async () => {
-    if (state === DIAGNOSE_TYPE.stomache) {
+    if (state === DIAGNOSE_TYPE.stomach) {
       handleStomachBackLogic();
     } else if (state === DIAGNOSE_TYPE.backpain) {
       handleBackpainBackLogic();

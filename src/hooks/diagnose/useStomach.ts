@@ -1,9 +1,10 @@
 import { useEffect, Dispatch, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { IAnswer, IQuestion, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppSelector } from "src/state";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { StomachDiagnose } from "src/api/diagnose/stomach";
+import { getNextQuestion } from "src/utils/diagnosisHook";
 
 interface IUseStomach {
   state: string;
@@ -21,6 +22,7 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
 
   const questions = useRef<IQuestion[]>([]);
   const questionHistory = useRef<{ question: IQuestion; answer: IAnswer[] }[]>([]);
+  const answers = useRef<ITrackData[]>([]);
 
   useEffect(() => {
     async function getFirstQuestion() {
@@ -40,14 +42,17 @@ function useStomach({ state, curQuestion, setCurQuestion, selectedAnswer, setSel
       return;
     }
 
+    answers.current.push({ question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) });
+
     questionHistory.current = [...questionHistory.current, { question: curQuestion, answer: selectedAnswer }];
 
-    const nextQuestion = {} as IQuestion;
-    // getNextQuestion({
-    //   selectedAnswer,
-    //   curQuestion,
-    //   questions: questions.current,
-    // });
+    const nextQuestion = getNextQuestion({
+      selectedAnswer,
+      curQuestion,
+      questions: questions.current,
+    });
+
+    // 마지막 질문에서 어떻게 하지
 
     if (nextQuestion) {
       setCurQuestion(nextQuestion);
