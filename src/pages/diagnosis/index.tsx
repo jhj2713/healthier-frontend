@@ -5,10 +5,11 @@ import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
+import { TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
 
 const Diagnosis = () => {
   const navigate = useNavigate();
-  const { state } = useLocation() as { state: string };
+  const { state } = useLocation() as { state: TDiagnoseType };
 
   const { loading, curQuestion, selectedAnswer, setSelectedAnswer, handleNext, handleBack } = useDiagnosis(state);
 
