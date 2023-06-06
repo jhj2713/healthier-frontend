@@ -6,6 +6,7 @@ export const Container = styled.section`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   height: calc(var(--vw, 1vw) * 100 + 27.4rem);
 `;
@@ -23,7 +24,7 @@ export const Contents = styled.section`
 
   width: 31rem;
 
-  margin: 3.2rem 0 6rem 0;
+  margin: 3.2rem 0 6.6rem 0;
 `;
 
 export const SeverityText = styled(Body_2)`
