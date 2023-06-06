@@ -23,15 +23,7 @@ export const Text = styled.section<{ type: number; severity: number }>`
   font-size: 1.4rem;
 
   color: ${({ theme, type, severity }) =>
-    type !== severity
-      ? theme.color.grey_400
-      : type === 3
-      ? theme.color.red
-      : type === 2
-      ? "#8A5FD0"
-      : type === 1
-      ? theme.color.blue
-      : theme.color.grey_400};
+    type !== severity ? theme.color.grey_400 : type === 2 ? theme.color.red : type === 1 ? "#8A5FD0" : theme.color.blue};
   font-weight: ${({ type, severity }) => type === severity && 300};
 `;
 
