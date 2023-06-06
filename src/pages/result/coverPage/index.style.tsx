@@ -7,8 +7,6 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  height: calc(var(--vw, 1vw) * 100 + 27.4rem);
 `;
 
 export const TagContainer = styled.section`
