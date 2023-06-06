@@ -11,6 +11,14 @@ export const Container = styled.section`
   height: calc(var(--vw, 1vw) * 100 + 27.4rem);
 `;
 
+export const TagContainer = styled.section`
+  margin-top: 2.8rem;
+
+  section + section {
+    margin-left: 0.8rem;
+  }
+`;
+
 export const CoverImage = styled.img`
   width: calc(var(--vw, 1vw) * 100);
   height: calc(var(--vw, 1vw) * 100);

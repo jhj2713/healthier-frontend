@@ -41,9 +41,9 @@ export const SeverityBackground = styled.section<{ severity: number }>`
     border-radius: 10rem;
     background: ${({ severity }) =>
       severity === 100
-        ? "linear-gradient(270deg, #E06122 0%, #5464F2 48.96%, #3F444F 100%);"
-        : severity === 65
-        ? "linear-gradient(270deg, #8A5FD0 0%, #4D5ABF 45.08%, #3F444F 100%);"
-        : "linear-gradient(270deg, #4A56A5 0%, #3F444F 100%);"};
+        ? "linear-gradient(270deg, #DF6225 0%, #8A5FD0 52.6%, #4D5ABF 100%);"
+        : severity === 48
+        ? "linear-gradient(270deg, #8A5FD0 0%, #4D5ABF 100%);"
+        : " #4D5ABF;"};
   }
 `;

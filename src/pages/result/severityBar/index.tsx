@@ -5,7 +5,7 @@ const setBackgroundPercent = (severity: number): number => {
     case 0:
       return 5;
     case 1:
-      return 55;
+      return 48;
     default:
       return 100;
   }

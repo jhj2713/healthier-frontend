@@ -26,8 +26,8 @@ const state = {
       "https://healthier.s3.ap-northeast-2.amazonaws.com/%EC%A7%84%EB%8B%A8%EA%B2%B0%EA%B3%BC/sleepdisorder/62e126cb1549f1a6fe9f58b1.jpg",
     h1: "진통제를 많이 먹어 두통이 생기는 당신은",
     title: "약물 과용 두통",
-    h2: ["과다 복용한 두통 약물을 중단하고',", "두통 유발인자를 피할 수 있도록 생활습관을 개선해보세요."],
-    severity: 2,
+    h2: ["과다 복용한 두통 약물을 중단하고,", "두통 유발인자를 피할 수 있도록 생활습관을 개선해보세요."],
+    severity: 0,
     explanation: {
       title: "약물 과용 두통이란?",
       details: ["편두통으로 진통제를 과다하게 복용하면 몸에서", "통증을 억제하는 기능이 망가져 발생할 수 있어요."],
