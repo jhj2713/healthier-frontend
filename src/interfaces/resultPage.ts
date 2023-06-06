@@ -24,7 +24,7 @@ export interface IDefinePageProps {
   title: string;
   definition: string[];
   tag_flag: number;
-  cause?: { cause: string; details: string[] }[];
+  cause: { cause: string; details: string[] }[] | null;
   cause_detail: string[];
 }
 

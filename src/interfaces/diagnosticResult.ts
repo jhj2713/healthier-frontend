@@ -12,19 +12,21 @@ export interface IDiagnosticResult {
     explanation: { title: string; details: string[] };
     cause: {
       tag_flag: number;
-      tags?: { cause: string; details: string[] }[];
+      tags: { cause: string; details: string[] }[] | null;
       detail: string[];
     };
     solutions: { title: string; detail: string; emoji: string }[];
     medicine_flag: number;
-    medicines?: {
-      image: string;
-      name: string;
-      efficacy: string;
-      dosage_and_uses?: { name: string; emoji: string }[];
-      caution: { h1: string; h2: string; is_colored: string[] };
-      sideeffects: { name: string; emoji: string }[];
-    }[];
+    medicines:
+      | {
+          image: string;
+          name: string;
+          efficacy: string;
+          dosage_and_uses?: { name: string; emoji: string }[];
+          caution: { h1: string; h2: string; is_colored: string[] };
+          sideeffects: { name: string; emoji: string }[];
+        }[]
+      | null;
     treatment_flag: number;
     treatments?: { title: string; detail: string }[];
   };
