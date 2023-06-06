@@ -17,7 +17,7 @@ export const DescriptionBox = styled.section<{ top: number; bottom: number }>`
 `;
 
 export const SymptomBox = styled.section`
-  margin-bottom: 6rem;
+  margin-bottom: 7.2rem;
 `;
 
 export const SymptomText = styled(Body_1)`
