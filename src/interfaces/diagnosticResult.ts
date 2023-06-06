@@ -1,4 +1,4 @@
-import { IDiagnosisList } from "./component";
+import { IDiagnosisList, ITreatmentType } from "./component";
 
 export interface IDiagnosticResult {
   type: string;
@@ -28,7 +28,7 @@ export interface IDiagnosticResult {
         }[]
       | null;
     treatment_flag: number;
-    treatments?: { title: string; detail: string }[];
+    treatments?: { title: string; detail: string; type: ITreatmentType }[];
   };
 }
 

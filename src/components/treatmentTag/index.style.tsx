@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 
 export const Container = styled.section<{ type: ITreatmentType }>`
   display: inline-block;
+  height: 100%;
   padding: 0.4rem 0.8rem;
   border-radius: 0.8rem;
 
