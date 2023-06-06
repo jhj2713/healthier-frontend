@@ -21,7 +21,9 @@ export const Contents = styled.section`
   flex-direction: column;
   align-items: center;
 
-  margin: 4.5rem 3.2rem 4rem 3.2rem;
+  width: 31rem;
+
+  margin: 3.2rem 0 6rem 0;
 `;
 
 export const SeverityText = styled(Body_2)`
