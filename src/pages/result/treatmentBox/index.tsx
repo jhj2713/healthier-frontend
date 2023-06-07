@@ -8,13 +8,13 @@ const TreatmentBox = ({ title, type, description }: ITreatBoxProps) => {
   const [toggle, setToggle] = useState(false);
 
   return (
-    <Container>
+    <Container onClick={() => setToggle(!toggle)}>
       <TitleContainer>
         <TitleBox>
           <Title>{title}</Title>
           <TreatmentTag type={type} />
         </TitleBox>
-        <DropdownIcon src="/images/informationPage/dropdown.svg" alt="dropdown icon" toggle={toggle} onClick={() => setToggle(!toggle)} />
+        <DropdownIcon src="/images/informationPage/dropdown.svg" alt="dropdown icon" toggle={toggle} />
       </TitleContainer>
       {toggle && <Description text={description} />}
     </Container>

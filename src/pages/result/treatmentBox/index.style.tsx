@@ -8,6 +8,8 @@ export const Container = styled.section`
 
   padding: 1.8rem 2rem;
 
+  cursor: pointer;
+
   & + & {
     margin-top: 1rem;
   }
@@ -36,6 +38,5 @@ export const Title = styled(Heading_5)`
 `;
 
 export const DropdownIcon = styled.img<{ toggle: boolean }>`
-  cursor: pointer;
   transform: ${({ toggle }) => (toggle ? "rotate(180deg)" : "rotate(0)")};
 `;
