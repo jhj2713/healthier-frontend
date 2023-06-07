@@ -66,8 +66,6 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleNext, handleAct
       return;
     }
 
-    // TODO: answer state 저장
-
     handleNext();
   };
 
