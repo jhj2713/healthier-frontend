@@ -6,8 +6,15 @@ export const Container = styled.section`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+`;
 
-  height: calc(var(--vw, 1vw) * 100 + 27.4rem);
+export const TagContainer = styled.section`
+  margin-top: 2.8rem;
+
+  section + section {
+    margin-left: 0.8rem;
+  }
 `;
 
 export const CoverImage = styled.img`
@@ -21,7 +28,9 @@ export const Contents = styled.section`
   flex-direction: column;
   align-items: center;
 
-  margin: 4.5rem 3.2rem 4rem 3.2rem;
+  width: 31rem;
+
+  margin: 3.2rem 0 6.6rem 0;
 `;
 
 export const SeverityText = styled(Body_2)`

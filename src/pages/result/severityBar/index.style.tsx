@@ -10,39 +10,28 @@ export const Container = styled.section`
   .text-box {
     display: flex;
     justify-content: space-between;
-    width: calc(var(--vw, 1vw) * 100 - 8.6rem);
+    width: calc(var(--vw, 1vw) * 100 - 6.8rem);
 
     font-weight: 100;
     letter-spacing: -0.05rem;
-
-    margin-left: 4.3rem;
   }
 `;
 
 export const Text = styled.section<{ type: number; severity: number }>`
   font-size: 1.4rem;
-
   color: ${({ theme, type, severity }) =>
-    type !== severity
-      ? theme.color.grey_400
-      : type === 3
-      ? theme.color.red
-      : type === 2
-      ? "#8A5FD0"
-      : type === 1
-      ? theme.color.blue
-      : theme.color.grey_400};
+    type !== severity ? theme.color.grey_400 : type === 2 ? theme.color.red : type === 1 ? "#8A5FD0" : theme.color.blue};
   font-weight: ${({ type, severity }) => type === severity && 300};
+  text-align: center;
 `;
 
 export const SeverityBackground = styled.section<{ severity: number }>`
   margin-top: 1rem;
-  margin-left: 4.3rem;
 
   background: rgba(84, 100, 242, 0.33);
   border-radius: 10rem;
 
-  width: calc(var(--vw, 1vw) * 100 - 8.6rem);
+  width: calc(var(--vw, 1vw) * 100 - 6.8rem);
   height: 0.5rem;
 
   .highlight {
@@ -52,9 +41,9 @@ export const SeverityBackground = styled.section<{ severity: number }>`
     border-radius: 10rem;
     background: ${({ severity }) =>
       severity === 100
-        ? "linear-gradient(270deg, #E06122 0%, #5464F2 48.96%, #3F444F 100%);"
-        : severity === 65
-        ? "linear-gradient(270deg, #8A5FD0 0%, #4D5ABF 45.08%, #3F444F 100%);"
-        : "linear-gradient(270deg, #4A56A5 0%, #3F444F 100%);"};
+        ? "linear-gradient(270deg, #DF6225 0%, #8A5FD0 52.6%, #4D5ABF 100%);"
+        : severity === 48
+        ? "linear-gradient(270deg, #8A5FD0 0%, #4D5ABF 100%);"
+        : " #4D5ABF;"};
   }
 `;

@@ -17,10 +17,11 @@ function useDiagnosisResult(state: IDiagnosticResult) {
     title: "",
     definition: [],
     tag_flag: 0,
+    cause: null,
     cause_detail: [],
   });
   const [lifeData, setLifeData] = useState([] as ILifeProps[]);
-  const [medicineData, setMedicineData] = useState<IMedicine[] | undefined>();
+  const [medicineData, setMedicineData] = useState<IMedicine[] | null>();
   const [treatData, setTreatData] = useState<ITreatPageProps[] | undefined>();
 
   const [isSaved, setIsSaved] = useState(false);

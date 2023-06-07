@@ -5,9 +5,7 @@ const setBackgroundPercent = (severity: number): number => {
     case 0:
       return 5;
     case 1:
-      return 35;
-    case 2:
-      return 65;
+      return 48;
     default:
       return 100;
   }
@@ -18,16 +16,18 @@ const SeverityBar = ({ severity }: { severity: number }) => {
     <Container>
       <section className="text-box">
         <Text type={0} severity={severity}>
-          정상
+          관리가
+          <br />
+          필요해요
         </Text>
         <Text type={1} severity={severity}>
-          경미
+          병원에 가는걸
+          <br />
+          추천해요
         </Text>
         <Text type={2} severity={severity}>
-          주의
-        </Text>
-        <Text type={3} severity={severity}>
-          심각
+          병원에
+          <br />꼭 가야해요
         </Text>
       </section>
       <SeverityBackground severity={setBackgroundPercent(severity)}>

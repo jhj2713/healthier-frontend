@@ -25,6 +25,11 @@ export interface ITag {
   selected: boolean;
 }
 
+export type ITreatmentType = "therapy" | "inspection";
+export interface ITreatmentTag {
+  type: ITreatmentType;
+}
+
 export interface IDropdown {
   title: string;
   isSelected: boolean;

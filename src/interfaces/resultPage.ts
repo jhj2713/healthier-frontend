@@ -1,4 +1,5 @@
 import { Dispatch } from "react";
+import { ITreatmentType } from "./component";
 
 export interface IBottomNumber {
   curIndex: number;
@@ -24,7 +25,7 @@ export interface IDefinePageProps {
   title: string;
   definition: string[];
   tag_flag: number;
-  cause?: { cause: string; details: string[] }[];
+  cause: { cause: string; details: string[] }[] | null;
   cause_detail: string[];
 }
 
@@ -79,9 +80,11 @@ export interface IMedicineTag {
 export interface ITreatPageProps {
   title: string;
   detail: string;
+  type: ITreatmentType;
 }
 
 export interface ITreatBoxProps {
   title: string;
   description: string;
+  type: ITreatmentType;
 }
