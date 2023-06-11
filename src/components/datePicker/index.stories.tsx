@@ -9,4 +9,7 @@ export default {
 const Template: Story<IDatePickerProps> = (args) => <DatePicker {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  value: new Date(),
+  setValue: (val) => console.log(val),
+};
