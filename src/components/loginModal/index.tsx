@@ -1,8 +1,8 @@
-import ModalContainer from "src/components/modalContainer";
-import { ILoginModal } from "src/interfaces/modal";
 import { forwardRef } from "react";
-import { Container, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
+import ModalContainer from "src/components/modalContainer";
 import imageUrl from "src/data/image_url";
+import { ILoginModal } from "src/interfaces/modal";
+import { Container, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
 
 const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ title, continueText, closeModal, handleContinue, handleLogin }, ref) => {
   return (
@@ -28,6 +28,7 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ title, continueTex
     </ModalContainer>
   );
 });
+
 LoginModal.displayName = "LoginModal";
 
 export default LoginModal;

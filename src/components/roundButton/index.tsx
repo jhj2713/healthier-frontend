@@ -1,5 +1,5 @@
-import { Container, ButtonText } from "./index.style";
 import { memo } from "react";
+import { Container, ButtonText } from "./index.style";
 
 export interface IRoundButton {
   outline: string;

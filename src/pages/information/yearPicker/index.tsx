@@ -9,6 +9,7 @@ const years = Array.from(Array(92).keys())
 function YearPicker({ year, setYear }: IYearPickerProps) {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const target = e.target as HTMLSelectElement;
+
     setYear(Number(target.value.slice(0, -1)));
   };
 

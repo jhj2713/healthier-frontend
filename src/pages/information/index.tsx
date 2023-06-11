@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import Gender from "./gender";
+import { useNavigate } from "react-router-dom";
+import ContentHeader from "src/components/contentHeader";
 import RoundButton from "src/components/roundButton";
+import { health_interest } from "src/data/interest";
+import { IAgreement } from "src/interfaces/informationPage";
 import theme from "src/lib/theme";
-import Tags from "./tags";
-import YearPicker from "./yearPicker";
-import Agreement from "./agreement";
 import { useAppDispatch } from "src/state";
 import { userSubmit } from "src/state/userSlice";
-import { health_interest } from "src/data/interest";
-import ContentHeader from "src/components/contentHeader";
-import { useNavigate } from "react-router-dom";
-import { IAgreement } from "src/interfaces/informationPage";
-import MemberAgreement from "./memberAgreement";
-import InformationAgreement from "./informationAgreement";
+import Agreement from "./agreement";
+import Gender from "./gender";
 import { Contents, Title, ButtonBackground } from "./index.style";
+import InformationAgreement from "./informationAgreement";
+import MemberAgreement from "./memberAgreement";
+import Tags from "./tags";
+import YearPicker from "./yearPicker";
 
 const Information = () => {
   const [active, setActive] = useState(false);
@@ -37,6 +37,7 @@ const Information = () => {
   const handleProceed = () => {
     if (active) {
       const healthId = health.filter((item) => item.selected).map((item) => item.id);
+
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
       navigate("/symptom-type", { state: "info" });
     }

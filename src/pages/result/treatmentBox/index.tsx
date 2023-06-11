@@ -1,8 +1,8 @@
+import { useState } from "react";
+import TreatmentTag from "src/components/treatmentTag";
 import { ITreatBoxProps } from "src/interfaces/resultPage";
 import Description from "../description";
 import { Container, Title, TitleContainer, DropdownIcon, TitleBox } from "./index.style";
-import TreatmentTag from "src/components/treatmentTag";
-import { useState } from "react";
 
 const TreatmentBox = ({ title, type, description }: ITreatBoxProps) => {
   const [toggle, setToggle] = useState(false);

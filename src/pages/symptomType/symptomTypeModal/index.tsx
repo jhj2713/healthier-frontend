@@ -1,9 +1,9 @@
 import { forwardRef } from "react";
-import { symptom_type } from "src/data/symptom_type";
 import { useNavigate } from "react-router-dom";
+import imageUrl from "src/data/image_url";
+import { symptom_type } from "src/data/symptom_type";
 import { ISymptomModal } from "src/interfaces/modal";
 import { Wrapper, Container, Contents, Description, Title, NoteImage, ButtonContainer } from "./index.style";
-import imageUrl from "src/data/image_url";
 
 const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, select }, ref) => {
   const navigate = useNavigate();
@@ -42,6 +42,7 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
     </Wrapper>
   );
 });
+
 SymptomModal.displayName = "SymptomModal";
 
 export default SymptomModal;

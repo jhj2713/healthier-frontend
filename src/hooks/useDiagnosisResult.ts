@@ -48,7 +48,9 @@ function useDiagnosisResult(state: IDiagnosticResult) {
       setMedicineData(state.diagnostic_result.medicines);
       setTreatData(state.diagnostic_result.treatments);
 
-      if (state.type === "result") setIsSaved(true);
+      if (state.type === "result") {
+        setIsSaved(true);
+      }
     }
   }, [state]);
 

@@ -6,11 +6,16 @@ const Agreement = ({ agree, setAgree, setAgreementDetail }: IAgreementProps) => 
   const handleAgree = (e: React.MouseEvent): void => {
     const target = e.currentTarget as HTMLElement;
 
-    if (target.id === "member") setAgree({ ...agree, member: !agree.member });
-    else if (target.id === "information") setAgree({ ...agree, information: !agree.information });
-    else {
-      if (agree.member && agree.information) setAgree({ member: false, information: false });
-      else setAgree({ member: true, information: true });
+    if (target.id === "member") {
+      setAgree({ ...agree, member: !agree.member });
+    } else if (target.id === "information") {
+      setAgree({ ...agree, information: !agree.information });
+    } else {
+      if (agree.member && agree.information) {
+        setAgree({ member: false, information: false });
+      } else {
+        setAgree({ member: true, information: true });
+      }
     }
   };
 

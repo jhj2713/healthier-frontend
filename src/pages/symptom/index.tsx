@@ -1,12 +1,12 @@
-import { Suspense, useState, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
-import Character from "./character";
-import Overlay from "./overlay";
+import { Suspense, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import theme from "src/lib/theme";
 import ContentHeader from "src/components/contentHeader";
-import { Container, CanvasSection } from "./index.style";
 import { BodyPart, ViewPoint } from "src/interfaces/symptomPage";
+import theme from "src/lib/theme";
+import Character from "./character";
+import { Container, CanvasSection } from "./index.style";
+import Overlay from "./overlay";
 
 const Point = ({ x, y, z }: { x: number; y: number; z: number }) => {
   return (

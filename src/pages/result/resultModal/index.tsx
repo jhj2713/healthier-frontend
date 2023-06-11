@@ -1,12 +1,12 @@
+import { forwardRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Auth } from "src/api/auth";
+import { Diagnosis } from "src/api/diagnosis";
+import LoginModal from "src/components/loginModal";
 import { IKakaoToken, IResultModal } from "src/interfaces/modal";
 import { useAppDispatch } from "src/state";
 import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
-import { forwardRef } from "react";
 import { Title, Description } from "./index.style";
-import LoginModal from "src/components/loginModal";
-import { Auth } from "src/api/auth";
-import { Diagnosis } from "src/api/diagnosis";
 
 const Kakao = (window as any).Kakao;
 
@@ -69,6 +69,7 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
     />
   );
 });
+
 ResultModal.displayName = "ResultModal";
 
 export default ResultModal;

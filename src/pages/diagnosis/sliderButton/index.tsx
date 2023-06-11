@@ -1,8 +1,8 @@
 import { Dispatch, useEffect } from "react";
+import RoundButton from "src/components/roundButton";
+import Slider from "src/components/slider";
 import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import Slider from "src/components/slider";
-import RoundButton from "src/components/roundButton";
 import { Container, NextButton } from "../answerButtons/index.style";
 
 const SLIDER_BUTTON_ANSWERS = [

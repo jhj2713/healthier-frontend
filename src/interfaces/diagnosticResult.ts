@@ -1,5 +1,5 @@
 import { IDiagnosisItem } from "src/components/diagnosisCard";
-import { ITreatmentType } from "src/components/treatmentTag";
+import { TTreatmentType } from "src/components/treatmentTag";
 
 export interface IDiagnosticResult {
   type: string;
@@ -29,7 +29,7 @@ export interface IDiagnosticResult {
         }[]
       | null;
     treatment_flag: number;
-    treatments?: { title: string; detail: string; type: ITreatmentType }[];
+    treatments?: { title: string; detail: string; type: TTreatmentType }[];
   };
 }
 

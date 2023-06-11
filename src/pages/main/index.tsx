@@ -1,9 +1,9 @@
-import MainModal from "./mainModal";
 import MainHeader from "src/components/mainHeader";
+import imageUrl from "src/data/image_url";
+import useModal from "src/hooks/useModal";
 import BottomButtons from "./bottomButtons";
 import { Container, Title, MainImage } from "./index.style";
-import useModal from "src/hooks/useModal";
-import imageUrl from "src/data/image_url";
+import MainModal from "./mainModal";
 
 const MainPage = () => {
   const { isOpenModal, modalRef, openModal, closeModal } = useModal();

@@ -1,9 +1,9 @@
-import Title from "src/components/title";
-import Description from "../description";
-import CauseBox from "../causeBox";
-import { IDefinePageProps } from "src/interfaces/resultPage";
-import { Container, DescriptionBox, SymptomBox, SymptomTags, SymptomText } from "./index.style";
 import Tag from "src/components/tag";
+import Title from "src/components/title";
+import { IDefinePageProps } from "src/interfaces/resultPage";
+import CauseBox from "../causeBox";
+import Description from "../description";
+import { Container, DescriptionBox, SymptomBox, SymptomTags, SymptomText } from "./index.style";
 
 const DefinitionPage = ({ defineData: { title, definition, tag_flag, cause, cause_detail } }: { defineData: IDefinePageProps }) => {
   const tags = ["피로감", "졸림", "불면증"];

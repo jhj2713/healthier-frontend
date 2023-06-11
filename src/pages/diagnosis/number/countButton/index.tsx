@@ -1,7 +1,7 @@
 import { Dispatch, useEffect, useState, ChangeEvent } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { ButtonBox, Container } from "./index.style";
 import { validateNumber } from "src/utils/inputValidator";
+import { ButtonBox, Container } from "./index.style";
 
 interface ICountButtonProps {
   question: IQuestion;
@@ -24,6 +24,7 @@ function CountButton({ setSelectedAnswer }: ICountButtonProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const number = validateNumber(e.target.value);
+
     setCount(number);
   };
 

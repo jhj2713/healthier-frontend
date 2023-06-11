@@ -1,9 +1,9 @@
-import { useRef, useLayoutEffect } from "react";
 import { extend, Object3DNode, MaterialNode, BufferGeometryNode } from "@react-three/fiber";
-import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
-import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
-import { Line2 } from "three/examples/jsm/lines/Line2";
+import { useRef, useLayoutEffect } from "react";
 import theme from "src/lib/theme";
+import { Line2 } from "three/examples/jsm/lines/Line2";
+import { LineGeometry } from "three/examples/jsm/lines/LineGeometry";
+import { LineMaterial } from "three/examples/jsm/lines/LineMaterial";
 
 extend({ LineMaterial, LineGeometry, Line2 });
 

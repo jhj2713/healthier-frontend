@@ -1,11 +1,11 @@
 import { Container } from "./index.style";
 
-export type ITreatmentType = "therapy" | "inspection";
-export interface ITreatmentTag {
-  type: ITreatmentType;
+export type TTreatmentType = "therapy" | "inspection";
+export interface TTreatmentTag {
+  type: TTreatmentType;
 }
 
-const TreatmentTag = ({ type }: ITreatmentTag) => {
+const TreatmentTag = ({ type }: TTreatmentTag) => {
   return <Container type={type}>{type === "therapy" ? "치료" : "검사"}</Container>;
 };
 
