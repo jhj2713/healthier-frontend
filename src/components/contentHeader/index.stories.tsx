@@ -1,6 +1,5 @@
-import ContentHeader from ".";
+import ContentHeader, { IContentHeader } from ".";
 import { Meta, Story } from "@storybook/react";
-import { IContentHeader } from "src/interfaces/component";
 
 export default {
   component: ContentHeader,

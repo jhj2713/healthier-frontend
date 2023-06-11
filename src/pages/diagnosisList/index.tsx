@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import DiagnosisCard from "src/components/diagnosisCard";
+import DiagnosisCard, { IDiagnosisItem } from "src/components/diagnosisCard";
 import MainHeader from "src/components/mainHeader";
-import { IDiagnosisList } from "src/interfaces/component";
 import { IDiagnosisResultList } from "src/interfaces/diagnosticResult";
 import { Container, DescriptionText, List, Title } from "./index.style";
 
@@ -14,7 +13,7 @@ const DiagnosisList = () => {
     if (!state) navigate("/");
   }, []);
 
-  const handleNavigate = async (diag: IDiagnosisList) => {
+  const handleNavigate = async (diag: IDiagnosisItem) => {
     // TODO: 상세 페이지 이동
     // navigate("/result", {
     //   state: {

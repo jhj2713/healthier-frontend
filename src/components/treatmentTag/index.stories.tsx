@@ -1,5 +1,4 @@
-import TreatmentTag from ".";
-import { ITreatmentTag } from "src/interfaces/component";
+import TreatmentTag, { ITreatmentTag } from ".";
 import { Meta, Story } from "@storybook/react";
 
 export default {

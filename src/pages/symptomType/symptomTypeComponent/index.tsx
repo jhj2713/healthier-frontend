@@ -1,7 +1,11 @@
 import { memo } from "react";
-import { ISymptomTypeComponent } from "src/interfaces/component";
 import { Container, Title, TypeImage } from "./index.style";
 import imageUrl from "src/data/image_url";
+
+export interface ISymptomTypeComponent {
+  selected: boolean;
+  title: string;
+}
 
 const SymptomTypeComponent = ({ selected, title }: ISymptomTypeComponent) => {
   return (

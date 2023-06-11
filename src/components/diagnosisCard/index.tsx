@@ -1,8 +1,21 @@
-import { IListComponent } from "src/interfaces/component";
 import severityTypes from "src/data/severity_types";
 import { Container, BannerImg, Box, Title, DateItem, Tag } from "./index.style";
 
-const DiagnosisCard = ({ diagnosis, handleNavigate }: IListComponent) => {
+export interface IDiagnosisItem {
+  banner_illustration: string;
+  record: {
+    diagnosis_id: string;
+    title: string;
+    is_created: string;
+    severity: number;
+  };
+}
+export interface IDiagnosisCard {
+  diagnosis: IDiagnosisItem;
+  handleNavigate: () => void;
+}
+
+const DiagnosisCard = ({ diagnosis, handleNavigate }: IDiagnosisCard) => {
   const diag_date = new Date(diagnosis.record.is_created);
 
   return (

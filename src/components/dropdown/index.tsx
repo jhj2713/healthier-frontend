@@ -1,6 +1,12 @@
-import { memo } from "react";
-import { IDropdown } from "src/interfaces/component";
+import { ChangeEvent, memo } from "react";
 import { Container, Title, SelectBox } from "./index.style";
+
+export interface IDropdown {
+  title: string;
+  isSelected: boolean;
+  options: string[];
+  handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+}
 
 function Dropdown({ title, isSelected, options, handleChange }: IDropdown) {
   return (
