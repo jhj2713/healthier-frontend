@@ -1,5 +1,6 @@
 import { TAnswerType } from "./answer.type";
 import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
+import { IDiagnosisItem } from "src/components/diagnosisCard";
 
 export interface IDiagnosisPatchData {
   diagnosis_id: number;
@@ -12,15 +13,7 @@ export interface ITrackData {
 
 export interface IDiagnosisList {
   nickname: string;
-  diagnosis: {
-    banner_illustration: string;
-    record: {
-      diagnosis_id: string;
-      is_created: string;
-      severity: number;
-      title: string;
-    };
-  }[];
+  diagnosis: IDiagnosisItem[];
 }
 
 export interface IDiagnosisResult {

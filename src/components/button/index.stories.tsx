@@ -1,5 +1,4 @@
-import Button from ".";
-import { IButton } from "src/interfaces/component";
+import Button, { IButton } from ".";
 import { Meta, Story } from "@storybook/react";
 
 export default {

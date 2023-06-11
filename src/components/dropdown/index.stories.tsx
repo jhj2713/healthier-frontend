@@ -1,5 +1,4 @@
-import Dropdown from ".";
-import { IDropdown } from "src/interfaces/component";
+import Dropdown, { IDropdown } from ".";
 import { Meta, Story } from "@storybook/react";
 
 export default {

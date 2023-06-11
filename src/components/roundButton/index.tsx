@@ -1,6 +1,12 @@
 import { Container, ButtonText } from "./index.style";
-import { IRoundButton } from "src/interfaces/component";
 import { memo } from "react";
+
+export interface IRoundButton {
+  outline: string;
+  backgroundColor: string;
+  color: string;
+  children: string;
+}
 
 const RoundButton = ({ outline, backgroundColor, color, children }: IRoundButton) => {
   return (
