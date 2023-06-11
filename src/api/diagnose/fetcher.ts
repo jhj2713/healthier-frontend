@@ -18,9 +18,9 @@ export const fetcher = {
 export const diagnosisFetcher = {
   getQuestions(diagnosisType: TDiagnoseType, gender: string): Promise<IDiagnoseResponse> {
     if (diagnosisType === DIAGNOSE_TYPE.stomach) {
-      return fetcher.get(`/stomach?gender=${gender === "f" ? "female" : "male"}`);
+      return fetcher.get(`/stomach?gender=${gender}`);
     } else if (diagnosisType === DIAGNOSE_TYPE.backpain) {
-      return fetcher.get(`/backpain`);
+      return fetcher.get(`/backpain?gender=${gender}`);
     } else if (diagnosisType === DIAGNOSE_TYPE.diarrhea) {
       return fetcher.get(`/diarrhea`);
     } else if (diagnosisType === DIAGNOSE_TYPE.bloodystool) {
@@ -28,7 +28,6 @@ export const diagnosisFetcher = {
     } else if (diagnosisType === DIAGNOSE_TYPE.gum) {
       return fetcher.get(`/gum`);
     } else if (diagnosisType === DIAGNOSE_TYPE.chestpain) {
-      //return fetcher.get(`/stomach?gender=${gender}`);
       return Promise.resolve({
         category: "CHESTPAIN",
         question: [
