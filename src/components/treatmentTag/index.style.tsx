@@ -1,5 +1,5 @@
-import { ITreatmentType } from "src/interfaces/component";
 import styled, { css } from "styled-components";
+import { ITreatmentType } from ".";
 
 export const Container = styled.section<{ type: ITreatmentType }>`
   display: inline-block;

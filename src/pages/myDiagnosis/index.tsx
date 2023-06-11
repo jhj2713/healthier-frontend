@@ -1,10 +1,9 @@
 import { useLayoutEffect, useState } from "react";
 import RoundButton from "src/components/roundButton";
 import MainHeader from "src/components/mainHeader";
-import DiagnosisCard from "src/components/diagnosisCard";
+import DiagnosisCard, { IDiagnosisItem } from "src/components/diagnosisCard";
 import theme from "src/lib/theme";
 import { useNavigate } from "react-router-dom";
-import { IDiagnosisList } from "src/interfaces/component";
 import EmptyPage from "./emptyList";
 import { useAppSelector, useAppDispatch } from "src/state";
 import { DELETE_TOKEN } from "src/state/authSlice";
@@ -13,7 +12,7 @@ import { Diagnosis } from "src/api/diagnosis";
 
 const MyDiagnosis = () => {
   const navigate = useNavigate();
-  const [diagnosisList, setDiagnosisList] = useState([] as IDiagnosisList[]);
+  const [diagnosisList, setDiagnosisList] = useState([] as IDiagnosisItem[]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const { accessToken } = useAppSelector((state) => state.auth);
@@ -36,7 +35,7 @@ const MyDiagnosis = () => {
     getList();
   }, []);
 
-  const handleNavigate = async (diag: IDiagnosisList) => {
+  const handleNavigate = async (diag: IDiagnosisItem) => {
     const diagnosisResult = await Diagnosis.getDiagnosisDetail(diag.record.diagnosis_id);
 
     navigate("/result", {

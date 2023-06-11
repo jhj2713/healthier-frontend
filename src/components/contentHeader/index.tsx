@@ -1,6 +1,13 @@
 import HeaderContainer from "../headerContainer";
-import { IContentHeader } from "src/interfaces/component";
 import { Container, BackButton, ExitButton } from "./index.style";
+
+export interface IContentHeader {
+  children: string;
+  back: boolean;
+  exit: boolean;
+  backCallback?: () => void;
+  exitCallback?: () => void;
+}
 
 const ContentHeader = ({ children, back, exit, backCallback, exitCallback }: IContentHeader) => {
   return (

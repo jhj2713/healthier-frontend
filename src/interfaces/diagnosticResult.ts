@@ -1,4 +1,5 @@
-import { IDiagnosisList, ITreatmentType } from "./component";
+import { IDiagnosisItem } from "src/components/diagnosisCard";
+import { ITreatmentType } from "src/components/treatmentTag";
 
 export interface IDiagnosticResult {
   type: string;
@@ -35,9 +36,9 @@ export interface IDiagnosticResult {
 export interface IDiagnosisResultList {
   dataList: {
     results: {
-      predicted: IDiagnosisList[] | null;
-      suspicious: IDiagnosisList[] | null;
-      likely: IDiagnosisList[] | null;
+      predicted: IDiagnosisItem[] | null;
+      suspicious: IDiagnosisItem[] | null;
+      likely: IDiagnosisItem[] | null;
     };
   };
 }

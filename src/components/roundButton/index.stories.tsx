@@ -1,5 +1,4 @@
-import RoundButton from ".";
-import { IRoundButton } from "src/interfaces/component";
+import RoundButton, { IRoundButton } from ".";
 import { Meta, Story } from "@storybook/react";
 import theme from "src/lib/theme";
 

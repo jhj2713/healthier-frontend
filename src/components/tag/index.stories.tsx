@@ -1,5 +1,4 @@
-import Tag from ".";
-import { ITag } from "src/interfaces/component";
+import Tag, { ITag } from ".";
 import { Meta, Story } from "@storybook/react";
 
 export default {
