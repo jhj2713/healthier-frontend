@@ -1,9 +1,9 @@
 import { Dispatch } from "react";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import RoundButton from "src/components/roundButton";
+import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import { Container } from "../index.style";
 import { NextButton } from "../answerButtons/index.style";
+import { Container } from "../index.style";
 import NumberAnswerButton from "./numberAnswerButton";
 
 interface INumberButtonProps {

@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import AnswerButtons from "./answerButtons";
 import ContentHeader from "src/components/contentHeader";
-import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
 import { TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
+import AnswerButtons from "./answerButtons";
+import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
 
 const Diagnosis = () => {
   const navigate = useNavigate();

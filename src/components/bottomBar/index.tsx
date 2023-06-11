@@ -1,11 +1,11 @@
+import { useNavigate } from "react-router-dom";
+import { Diagnosis } from "src/api/diagnosis";
+import { IBottomBar } from "src/interfaces/resultPage";
 import theme from "src/lib/theme";
+import { useAppSelector } from "src/state";
 import BottomNumber from "../bottomNumber";
 import RoundButton from "../roundButton";
-import { IBottomBar } from "src/interfaces/resultPage";
-import { useAppSelector } from "src/state";
-import { useNavigate } from "react-router-dom";
 import { BottomContainer, BottomButton } from "./index.style";
-import { Diagnosis } from "src/api/diagnosis";
 
 const BottomBar = ({ curIndex, totalCount, openModal, setLoading, isSaved, resultId }: IBottomBar) => {
   const { authenticated, accessToken } = useAppSelector((state) => state.auth);

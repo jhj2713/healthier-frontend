@@ -10,8 +10,10 @@ const DiagnosisList = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!state) navigate("/");
-  }, []);
+    if (!state) {
+      navigate("/");
+    }
+  }, [state, navigate]);
 
   const handleNavigate = async (diag: IDiagnosisItem) => {
     // TODO: 상세 페이지 이동

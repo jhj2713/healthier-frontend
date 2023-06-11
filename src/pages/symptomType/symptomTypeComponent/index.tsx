@@ -1,6 +1,6 @@
 import { memo } from "react";
-import { Container, Title, TypeImage } from "./index.style";
 import imageUrl from "src/data/image_url";
+import { Container, Title, TypeImage } from "./index.style";
 
 export interface ISymptomTypeComponent {
   selected: boolean;

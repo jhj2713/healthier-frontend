@@ -32,6 +32,44 @@
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-namespace": "off",
     "@typescript-eslint/ban-ts-comment": "off",
-    "react/no-unknown-property": ["off"]
+    "react/no-unknown-property": ["off"],
+    "semi": "error",
+    "curly": "error",
+    "eqeqeq": ["error", "smart"],
+    "no-unused-vars": ["off"],
+    "import/no-extraneous-dependencies": ["error"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "typeAlias",
+        "format": ["PascalCase"],
+        "prefix": ["T"]
+      }
+    ],
+    "@typescript-eslint/adjacent-overload-signatures": "error",
+    "import/order": [
+      "warn",
+      {
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "pathGroups": [
+          {
+            "pattern": "$*/**",
+            "group": "internal",
+            "position": "before"
+          }
+        ],
+
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "newlines-between": "never"
+      }
+    ],
+    "no-console": "warn",
+    "newline-before-return": "error",
+    "newline-after-var": "error",
+    "prefer-const": "error"
   }
 }

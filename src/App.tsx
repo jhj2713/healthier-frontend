@@ -1,8 +1,8 @@
-import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import styled from "styled-components";
 import { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList } from "./pages";
 import { useAppSelector } from "./state";
-import styled from "styled-components";
 
 const handleResize = () => {
   const screenRatio = 0.7;
@@ -40,6 +40,7 @@ function App() {
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };

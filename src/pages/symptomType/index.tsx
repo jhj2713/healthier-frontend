@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
-import ContentHeader from "src/components/contentHeader";
-import SymptomTypeModal from "./symptomTypeModal";
 import { useLocation, useNavigate } from "react-router-dom";
-import { Container, Title } from "./index.style";
-import useModal from "src/hooks/useModal";
-import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
+import ContentHeader from "src/components/contentHeader";
 import RoundButton from "src/components/roundButton";
+import useModal from "src/hooks/useModal";
 import theme from "src/lib/theme";
+import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
+import { Container, Title } from "./index.style";
+import SymptomTypeModal from "./symptomTypeModal";
 
 const symptomTypes = [
   { state: DIAGNOSE_TYPE.stomach, text: "급성복통" },

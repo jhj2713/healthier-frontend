@@ -26,7 +26,10 @@ function useModal() {
 
   const handleOutsideClick = (e: Event) => {
     const current = modalRef.current;
-    if (isOpenModal && current && !current.contains(e.target as Node)) setIsOpenModal(false);
+
+    if (isOpenModal && current && !current.contains(e.target as Node)) {
+      setIsOpenModal(false);
+    }
   };
 
   return { isOpenModal, modalRef, toggleOpenModal, closeModal, openModal };

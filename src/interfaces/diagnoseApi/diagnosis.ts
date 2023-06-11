@@ -1,6 +1,6 @@
-import { TAnswerType } from "./answer.type";
-import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { IDiagnosisItem } from "src/components/diagnosisCard";
+import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
+import { TAnswerType } from "./answer.type";
 
 export interface IDiagnosisPatchData {
   diagnosis_id: number;

@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
-import { ITreatmentType } from ".";
+import { TTreatmentType } from ".";
 
-export const Container = styled.section<{ type: ITreatmentType }>`
+export const Container = styled.section<{ type: TTreatmentType }>`
   display: inline-block;
   height: 100%;
   padding: 0.4rem 0.8rem;

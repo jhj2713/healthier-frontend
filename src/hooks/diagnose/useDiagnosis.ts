@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "src/state";
-import { IAnswer, IQuestion, TDiagnoseType, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
-import { ANSWER_TYPE } from "src/data/answer_type";
 import { diagnosisFetcher } from "src/api/diagnose/fetcher";
+import { ANSWER_TYPE } from "src/data/answer_type";
+import { IAnswer, IQuestion, TDiagnoseType, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
+import { useAppSelector } from "src/state";
 import { getNextQuestion } from "src/utils/diagnosisHook";
 
 function useDiagnosis(state: TDiagnoseType) {
@@ -26,11 +26,14 @@ function useDiagnosis(state: TDiagnoseType) {
   const answers = useRef<ITrackData[]>([]);
 
   useEffect(() => {
-    if (!state) navigate("/");
+    if (!state) {
+      navigate("/");
+    }
 
     const getFirstQuestion = async () => {
       try {
         const { question: diagnosisQuestions } = await diagnosisFetcher.getQuestions(state, gender);
+
         questions.current = diagnosisQuestions;
 
         setCurQuestion(diagnosisQuestions[0]);

@@ -1,5 +1,5 @@
-import { Abstract, LayerMaterial } from "lamina/vanilla";
 import { LayerProps } from "lamina/types";
+import { Abstract, LayerMaterial } from "lamina/vanilla";
 import { Vector3 } from "three";
 
 export interface IOverlayProps {

@@ -1,21 +1,20 @@
 import { useLayoutEffect, useState } from "react";
-import ResultHeader from "./resultHeader";
-import ResultModal from "./resultModal";
 import BottomBar from "src/components/bottomBar";
-import CoverPage from "./coverPage";
-import DefinitionPage from "./definitionPage";
-import LifePage from "./lifePage";
-import MedicinePage from "./medicinePage";
-import TreatmentPage from "./treatmentPage";
-
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import { Container, Description, LoadingIcon, LoadingTitle } from "./index.style";
-import useModal from "src/hooks/useModal";
 import Loading from "src/components/loading";
+import { TTreatmentType } from "src/components/treatmentTag";
 import imageUrl from "src/data/image_url";
 import useDiagnosisResult from "src/hooks/useDiagnosisResult";
-import { ITreatmentType } from "src/components/treatmentTag";
+import useModal from "src/hooks/useModal";
+import { Swiper, SwiperSlide } from "swiper/react";
+import CoverPage from "./coverPage";
+import DefinitionPage from "./definitionPage";
+import { Container, Description, LoadingIcon, LoadingTitle } from "./index.style";
+import LifePage from "./lifePage";
+import MedicinePage from "./medicinePage";
+import ResultHeader from "./resultHeader";
+import ResultModal from "./resultModal";
+import TreatmentPage from "./treatmentPage";
+import "swiper/css";
 
 const state = {
   type: "1",
@@ -72,12 +71,12 @@ const state = {
       {
         title: "구제 약물 처방",
         detail: "과다 복용한 약물을 중단한 후 발생하는 두통을 치료하는 데 사용되는 구제약물을 처방받을 수 있어요.",
-        type: "therapy" as ITreatmentType,
+        type: "therapy" as TTreatmentType,
       },
       {
         title: "인지행동치료",
         detail: "이완 훈련, 최면 및 스트레스 관리를 통해 환자가 건강한 생활습관으로 두통을 조절하거나 완화시킬 수 있는 방법을 배워요.",
-        type: "inspection" as ITreatmentType,
+        type: "inspection" as TTreatmentType,
       },
     ],
     banner_illustration: "https://healthier.s3.ap-northeast-2.amazonaws.com/banner/headache/62e126cb1549f1a6fe9f58b1.png",
@@ -104,8 +103,13 @@ const ResultPage = () => {
 
   const setTotalCount = (): number => {
     let total = 5;
-    if (!medicineData) total--;
-    if (!treatData) total--;
+
+    if (!medicineData) {
+      total--;
+    }
+    if (!treatData) {
+      total--;
+    }
 
     return total;
   };

@@ -1,7 +1,7 @@
 import { Dispatch, useState, useEffect } from "react";
-import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
-import { validateNumber } from "src/utils/inputValidator";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { validateNumber } from "src/utils/inputValidator";
+import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
 
 const SELECT_TYPES = [
   { value: "hour", text: "시간" },
@@ -28,6 +28,7 @@ function PreviousTimeButton({ setSelectedAnswer }: IPreviousTimeButtonProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: 최대 숫자 설정 필요
     const number = validateNumber(e.target.value);
+
     setPreviousTime({ ...previousTime, number: number });
   };
 
@@ -38,6 +39,7 @@ function PreviousTimeButton({ setSelectedAnswer }: IPreviousTimeButtonProps) {
   useEffect(() => {
     if (previousTime.number === 0) {
       setSelectedAnswer([]);
+
       return;
     }
 

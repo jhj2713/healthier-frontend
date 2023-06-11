@@ -8,7 +8,10 @@ const Tags = ({ health, setHealth }: ITagsProps) => {
     const target = e.target as HTMLElement;
     let newHealthArr = health.map((heal) => (heal.name === target.innerHTML ? { ...heal, selected: !heal.selected } : heal));
     const count = newHealthArr.filter((heal) => heal.selected).length;
-    if (count > 3) newHealthArr = health;
+
+    if (count > 3) {
+      newHealthArr = health;
+    }
     setHealth(newHealthArr);
   };
 

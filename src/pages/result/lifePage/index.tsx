@@ -1,6 +1,6 @@
-import LifeComponent from "../lifeComponent";
 import Title from "src/components/title";
 import { ILifeProps } from "src/interfaces/resultPage";
+import LifeComponent from "../lifeComponent";
 import { Container } from "./index.style";
 
 const LifePage = ({ lifestyle }: { lifestyle: ILifeProps[] }) => {

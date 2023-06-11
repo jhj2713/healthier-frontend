@@ -1,11 +1,11 @@
 import { Dispatch } from "react";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { ANSWER_TYPE } from "src/data/answer_type";
+import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import AlcoholButton from "../alcoholButton";
+import CountButton from "../countButton";
 import DurationButton from "../durationButton";
 import PreviousTimeButton from "../previousTimeButton";
-import AlcoholButton from "../alcoholButton";
 import SmockingButton from "../smockingButton";
-import CountButton from "../countButton";
 
 interface INumberAnswerButtonProps {
   question: IQuestion;

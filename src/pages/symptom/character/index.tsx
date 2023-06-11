@@ -1,13 +1,11 @@
-import React, { useRef, useEffect } from "react";
 import { useFrame, useLoader } from "@react-three/fiber";
-import * as THREE from "three";
-
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { LayerMaterial } from "lamina";
+import React, { useRef, useEffect } from "react";
 import { BodyPart, ViewPoint } from "src/interfaces/symptomPage";
 import { ICharacterProps } from "src/interfaces/symptomPage";
-
 import theme from "src/lib/theme";
+import * as THREE from "three";
+import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
 import { FrontLines, BackLines } from "../characterLine";
 import PointLayerComponent from "./pointShader";
 
@@ -41,7 +39,9 @@ const Character = ({ view, selection }: ICharacterProps) => {
   }, [character]);
 
   useFrame((state) => {
-    if (!modelRef.current) return;
+    if (!modelRef.current) {
+      return;
+    }
     if (view === ViewPoint.REAR) {
       if (modelRef.current.rotation.y < Math.PI) {
         modelRef.current.rotation.y += (Math.PI - modelRef.current.rotation.y) * 0.1;

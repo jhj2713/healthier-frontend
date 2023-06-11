@@ -1,7 +1,7 @@
 import { Dispatch, useEffect, useState, ChangeEvent } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { ButtonBox, Container } from "./index.style";
 import { validateNumber } from "src/utils/inputValidator";
+import { ButtonBox, Container } from "./index.style";
 
 interface IAlcoholNumberState {
   perWeek: number;
@@ -28,6 +28,7 @@ function AlcoholButton({ setSelectedAnswer }: IAlcoholButtonProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const number = validateNumber(e.target.value);
+
     setAlcoholNumber({ ...alcoholNumber, [e.target.name]: number });
   };
 

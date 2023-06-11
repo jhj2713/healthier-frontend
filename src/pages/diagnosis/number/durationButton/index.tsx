@@ -1,7 +1,7 @@
 import { Dispatch, useEffect, useState } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { DurationButtonContainer, DurationInput, DurationSelect, DurationText } from "./index.style";
 import { validateNumber } from "src/utils/inputValidator";
+import { DurationButtonContainer, DurationInput, DurationSelect, DurationText } from "./index.style";
 
 const SELECT_TYPES = [
   {
@@ -38,6 +38,7 @@ function DurationButton({ setSelectedAnswer }: IDurationButtonProps) {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     // TODO: 최대 숫자 설정 필요
     const number = validateNumber(e.target.value);
+
     setDuration({ ...duration, number: number });
   };
 
@@ -48,6 +49,7 @@ function DurationButton({ setSelectedAnswer }: IDurationButtonProps) {
   useEffect(() => {
     if (duration.number === 0) {
       setSelectedAnswer([]);
+
       return;
     }
 

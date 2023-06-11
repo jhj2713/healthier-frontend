@@ -1,10 +1,10 @@
-import theme from "src/lib/theme";
-import RoundButton from "src/components/roundButton";
-import { BodyPart, IOverlayProps, ViewPoint } from "src/interfaces/symptomPage";
 import { useNavigate } from "react-router-dom";
+import RoundButton from "src/components/roundButton";
+import { regions, particles } from "src/data/symptom_data";
+import { BodyPart, IOverlayProps, ViewPoint } from "src/interfaces/symptomPage";
+import theme from "src/lib/theme";
 import { useAppDispatch } from "src/state";
 import { setSite } from "src/state/userSlice";
-import { regions, particles } from "src/data/symptom_data";
 import { OverlaySection, TitleDiv, Title, SubTitle, PartDiv, PartButton, ButtonDiv, RotateButton } from "./index.style";
 
 const Overlay = ({ view, setView, selection, setSelection }: IOverlayProps) => {
@@ -18,6 +18,7 @@ const Overlay = ({ view, setView, selection, setSelection }: IOverlayProps) => {
 
   const toggleMenu = (part: BodyPart) => {
     const i = selection.indexOf(part);
+
     if (i === -1) {
       setSelection([...selection, part]);
     } else {
@@ -35,8 +36,11 @@ const Overlay = ({ view, setView, selection, setSelection }: IOverlayProps) => {
             <br />{" "}
             <span style={{ color: theme.color.green }}>
               {selection.map((part, i, arr) => {
-                if (i === arr.length - 1) return regions[part] + particles[part];
-                else return regions[part] + ", ";
+                if (i === arr.length - 1) {
+                  return regions[part] + particles[part];
+                } else {
+                  return regions[part] + ", ";
+                }
               })}
             </span>{" "}
             선택했어요

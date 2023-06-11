@@ -1,6 +1,6 @@
-import theme from "src/lib/theme";
-import RoundButton from "src/components/roundButton";
 import { useNavigate } from "react-router-dom";
+import RoundButton from "src/components/roundButton";
+import theme from "src/lib/theme";
 import { Buttons, ButtonBox } from "./index.style";
 
 const BottomButtons = ({ openModal }: { openModal: () => void }) => {

@@ -19,10 +19,12 @@ const Buttons = ({ answers, question, selectedAnswer, setSelectedAnswer, handleA
         setSelectedAnswer(filtered);
       } else {
         const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+
         setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
       }
     } else {
       const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
+
       setSelectedAnswer([answers[filtered_idx]]);
     }
   };

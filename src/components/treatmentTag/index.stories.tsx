@@ -1,4 +1,4 @@
-import TreatmentTag, { ITreatmentTag } from ".";
+import TreatmentTag, { TTreatmentTag } from ".";
 import { Meta, Story } from "@storybook/react";
 
 export default {
@@ -16,7 +16,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ITreatmentTag> = (args) => <TreatmentTag {...args} />;
+const Template: Story<TTreatmentTag> = (args) => <TreatmentTag {...args} />;
 
 export const Therapy = Template.bind({});
 Therapy.args = {

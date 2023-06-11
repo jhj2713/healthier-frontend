@@ -1,11 +1,11 @@
-import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
-import { useAppDispatch } from "src/state";
-import { IKakaoToken, IMainModal } from "src/interfaces/modal";
-import { forwardRef } from "react";
-import { Title } from "./index.style";
-import LoginModal from "src/components/loginModal";
-import { Auth } from "src/api/auth";
 import { AxiosError } from "axios";
+import { forwardRef } from "react";
+import { Auth } from "src/api/auth";
+import LoginModal from "src/components/loginModal";
+import { IKakaoToken, IMainModal } from "src/interfaces/modal";
+import { useAppDispatch } from "src/state";
+import { SET_TOKEN, DELETE_TOKEN } from "src/state/authSlice";
+import { Title } from "./index.style";
 
 const Kakao = (window as any).Kakao;
 
@@ -55,6 +55,7 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
     />
   );
 });
+
 MainModal.displayName = "MainModal";
 
 export default MainModal;

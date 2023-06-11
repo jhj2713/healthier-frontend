@@ -1,14 +1,14 @@
-import RoundButton from "src/components/roundButton";
-import theme from "src/lib/theme";
 import { Dispatch, useEffect } from "react";
-import { Container, NextButton } from "./index.style";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import RoundButton from "src/components/roundButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
+import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import theme from "src/lib/theme";
 import Buttons from "../buttons";
+import EtcButtons from "../etcButtons";
 import NumberButtons from "../number";
 import SliderButton from "../sliderButton";
 import StringButton from "../string";
-import EtcButtons from "../etcButtons";
+import { Container, NextButton } from "./index.style";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -33,7 +33,9 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   };
 
   const handleMultipleAnswer = () => {
-    if (selectedAnswer.length === 0) return;
+    if (selectedAnswer.length === 0) {
+      return;
+    }
 
     handleNext();
   };
