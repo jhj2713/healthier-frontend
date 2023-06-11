@@ -18,6 +18,12 @@ export const Container = styled.div`
     background: none;
   }
 
+  // 상단 달 이동 화살표 버튼
+  .react-calendar__navigation__arrow:enabled:hover,
+  .react-calendar__navigation__arrow:enabled:focus {
+    background: none;
+  }
+
   // 요일
   .react-calendar__month-view__weekdays__weekday {
     font-weight: 400;
@@ -60,7 +66,13 @@ export const Container = styled.div`
 
   // 선택된 날짜
   .react-calendar__tile--active {
-    background-color: #353f87;
-    border-radius: 0.4rem;
+    background: none;
+
+    abbr {
+      background-color: #353f87;
+      border-radius: 0.4rem;
+
+      padding: 0.4rem 0.8rem;
+    }
   }
 `;

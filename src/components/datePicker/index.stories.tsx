@@ -1,15 +1,16 @@
-import DatePicker, { IDatePickerProps } from ".";
-import { Meta, Story } from "@storybook/react";
+import DatePicker from ".";
+import { Meta } from "@storybook/react";
+import { useArgs } from "@storybook/client-api";
+import { Value } from "react-calendar/dist/cjs/shared/types";
 
 export default {
   component: DatePicker,
   title: "DatePicker",
 } as Meta;
 
-const Template: Story<IDatePickerProps> = (args) => <DatePicker {...args} />;
+export const Default = () => {
+  const [{ value }, updateArgs] = useArgs();
+  const handleValue = (val: Value) => updateArgs({ value: val });
 
-export const Default = Template.bind({});
-Default.args = {
-  value: new Date(),
-  setValue: (val) => console.log(val),
+  return <DatePicker value={value} setValue={handleValue} />;
 };
