@@ -56,7 +56,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
       <EtcButtons
-        answers={question.answers ?? []}
+        answers={question.answers as IAnswer[]}
         selectedAnswer={selectedAnswer}
         question={question}
         handleActive={handleActive}
