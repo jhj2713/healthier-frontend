@@ -1,5 +1,4 @@
 import { useLayoutEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import ResultHeader from "./resultHeader";
 import ResultModal from "./resultModal";
 import BottomBar from "src/components/bottomBar";
@@ -11,13 +10,12 @@ import TreatmentPage from "./treatmentPage";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { IDiagnosticResult } from "src/interfaces/diagnosticResult";
 import { Container, Description, LoadingIcon, LoadingTitle } from "./index.style";
 import useModal from "src/hooks/useModal";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosisResult from "src/hooks/useDiagnosisResult";
-import { ITreatmentType } from "../../interfaces/component";
+import { ITreatmentType } from "src/components/treatmentTag";
 
 const state = {
   type: "1",

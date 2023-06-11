@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { ITreatmentType } from "./component";
+import { ITreatmentType } from "src/components/treatmentTag";
 
 export interface IBottomNumber {
   curIndex: number;
