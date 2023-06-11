@@ -19,7 +19,7 @@ interface IAnswerButtonProps {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0) {
+    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0 && question.answer_type !== "DRAG_1") {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);

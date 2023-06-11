@@ -13,6 +13,7 @@ const symptomTypes = [
   { state: DIAGNOSE_TYPE.backpain, text: "허리통증" },
   { state: DIAGNOSE_TYPE.diarrhea, text: "배변이상/설사" },
   { state: DIAGNOSE_TYPE.gum, text: "잇몸통증" },
+  { state: DIAGNOSE_TYPE.chestpain, text: "흉통" },
 ];
 
 const SymptomTypePage = () => {
