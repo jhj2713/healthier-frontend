@@ -3,10 +3,10 @@ import theme from "src/lib/theme";
 import { Dispatch, useEffect } from "react";
 import { Container, NextButton } from "./index.style";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { ANSWER_TYPE } from "src/data/answer_type";
 import Buttons from "../buttons";
 import NumberButtons from "../number";
-import RangeAnswerButton from "../rangeAnswerButton";
-import { ANSWER_TYPE } from "src/data/answer_type";
+import SliderButton from "../sliderButton";
 import StringButton from "../string";
 import EtcButtons from "../etcButtons";
 
@@ -20,7 +20,7 @@ interface IAnswerButtonProps {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0) {
+    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0 && question.answer_type !== "DRAG_1") {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -44,12 +44,11 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
     return (
-      <RangeAnswerButton
-        answers={question.answers ?? []}
+      <SliderButton
         selectedAnswer={selectedAnswer}
-        question={question}
-        handleActive={handleActive}
         setSelectedAnswer={setSelectedAnswer}
+        handleNext={handleNext}
+        handleActive={handleActive}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {

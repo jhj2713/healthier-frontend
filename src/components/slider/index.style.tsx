@@ -1,80 +1,76 @@
 import { Body_3 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const RangeAnswerContainer = styled.div`
+export const SliderContainer = styled.div`
   display: flex;
   position: relative;
   margin: 6.7rem 4.5rem 2.4rem 4.5rem;
 
-  .range-answers {
+  .label-texts {
     width: calc(100% - 10rem);
   }
 
-  .range-numbers {
+  .label-numbers {
     width: 2.6rem;
     height: 36.7rem;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 `;
 
-export const RangeNumber = styled(Body_3)`
+export const SliderNumberLabel = styled(Body_3)`
   color: ${({ theme }) => theme.color.grey_400};
 `;
 
-export const RangeAnswer = styled.div<{ selected: boolean; idx: number }>`
-  height: 7rem;
-
+export const SliderLabelText = styled.div<{ selected: boolean; length: number }>`
   display: flex;
-  align-items: center;
+  white-space: pre-wrap;
+  width: 100%;
+  height: ${({ length }) => `calc(36.7rem / ${length - 1})`};
 
-  .answer-text {
-    width: 17rem;
-
-    margin: ${({ idx }) => (idx < 3 ? `0 0 ${4 - idx}rem 0` : `${idx}rem 0 0 0`)};
-
+  .label-text {
     font-size: 1.6rem;
     font-weight: 200;
     line-height: 150%;
+    margin-top: -1rem;
+    margin-right: 1.6rem;
     color: ${({ theme, selected }) => (selected ? theme.color.grey_200 : theme.color.grey_400)};
   }
 
-  .range-dots {
-    width: calc(100% - 17rem);
+  .label-indicator {
+    flex: 1;
     height: 0;
     border: 0.08rem dashed #3f444f;
-
-    margin: ${({ idx }) => (idx < 3 ? `0 0 ${4 - idx}rem 0` : `${idx}rem 0 0 0`)};
   }
 `;
 
-export const RangeContainer = styled.div`
+export const SliderInputContainer = styled.div`
   flex: 1;
   position: relative;
 
   height: 0.6rem;
-  width: 42rem;
+  width: 36.7rem;
   transform: rotate(90deg) translate(50%, 0);
 `;
 
-export const RangeBackground = styled.div`
+export const SliderTrack = styled.div`
   position: absolute;
   top: 0.2rem;
 
   height: 0.6rem;
-  width: 42rem;
+  width: 36.7rem;
   border-radius: 0.1rem;
   background: rgba(84, 100, 242, 0.33);
 `;
 
-export const RangeInput = styled.input`
+export const SliderInput = styled.input`
   position: absolute;
   height: 0.6rem;
-  width: 42rem;
+  width: 36.7rem;
   -webkit-appearance: none;
   background: none;
+  cursor: pointer;
 
   &::-webkit-slider-thumb {
     position: relative;
