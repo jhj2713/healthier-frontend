@@ -11,6 +11,11 @@ export default {
 export const Default = () => {
   const [{ value }, updateArgs] = useArgs();
   const handleValue = (val: Value) => updateArgs({ value: val });
+  const disabledArray = [
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() - 7),
+    new Date(),
+    new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 7),
+  ];
 
-  return <DatePicker value={value} setValue={handleValue} />;
+  return <DatePicker value={value} setValue={handleValue} disabledArray={disabledArray} />;
 };

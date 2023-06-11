@@ -8,13 +8,17 @@ export const Container = styled.div`
   }
 
   // 상단 달 선택 navigation
+  .react-calendar__navigation__label {
+    pointer-events: none;
+  }
   .react-calendar__navigation__label > span {
     font-weight: 500;
     font-size: 1.6rem;
     line-height: 2.4rem;
     color: #f2f2f2;
   }
-  .react-calendar__navigation__label:enabled:hover {
+  .react-calendar__navigation__label:enabled:hover,
+  .react-calendar__navigation__label:enabled:focus {
     background: none;
   }
 
