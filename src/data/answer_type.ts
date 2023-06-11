@@ -1,6 +1,7 @@
 export const ANSWER_TYPE = {
   DEF: "DEF",
   IMG: "IMG",
+  ETC: "ETC",
   NUMBER_1: "NUMBER_1",
   NUMBER_2: "NUMBER_2",
   NUMBER_3: "NUMBER_3",

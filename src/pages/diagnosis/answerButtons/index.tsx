@@ -8,6 +8,7 @@ import NumberButtons from "../number";
 import RangeAnswerButton from "../rangeAnswerButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import StringButton from "../string";
+import EtcButtons from "../etcButtons";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -53,6 +54,16 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {
     return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
+  } else if (question.answer_type === ANSWER_TYPE.ETC) {
+    return (
+      <EtcButtons
+        answers={question.answers ?? []}
+        selectedAnswer={selectedAnswer}
+        question={question}
+        handleActive={handleActive}
+        setSelectedAnswer={setSelectedAnswer}
+      />
+    );
   }
 
   return (
