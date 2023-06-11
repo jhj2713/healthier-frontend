@@ -10,16 +10,17 @@ export const Container = styled.div`
   // 상단 달 선택 navigation
   .react-calendar__navigation__label {
     pointer-events: none;
+
+    :enabled:hover,
+    :enabled:focus {
+      background: none;
+    }
   }
   .react-calendar__navigation__label > span {
     font-weight: 500;
     font-size: 1.6rem;
     line-height: 2.4rem;
     color: #f2f2f2;
-  }
-  .react-calendar__navigation__label:enabled:hover,
-  .react-calendar__navigation__label:enabled:focus {
-    background: none;
   }
 
   // 상단 달 이동 화살표 버튼
@@ -34,6 +35,10 @@ export const Container = styled.div`
     font-size: 1.2rem;
     line-height: 1.6rem;
     color: ${({ theme }) => theme.color.grey_600};
+
+    abbr[title] {
+      text-decoration: none !important;
+    }
   }
 
   // 날짜
