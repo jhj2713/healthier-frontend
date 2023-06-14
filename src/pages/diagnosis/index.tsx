@@ -11,11 +11,11 @@ const Diagnosis = () => {
   const navigate = useNavigate();
   const { state } = useLocation() as { state: TDiagnoseType };
 
-  const { loading, curQuestion, selectedAnswer, setSelectedAnswer, handleNext, handleBack } = useDiagnosis(state);
+  const { isLoading, curQuestion, selectedAnswer, setSelectedAnswer, handleNext, handleBack } = useDiagnosis(state);
 
   return (
     <>
-      {loading ? (
+      {isLoading ? (
         <Loading
           title={
             <LoadingTitle>

@@ -1,8 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { diagnosisFetcher } from "src/api/diagnose/fetcher";
+import { queryKeys } from "src/api/queryKeys";
 import { ANSWER_TYPE } from "src/data/answer_type";
-import { IAnswer, IQuestion, TDiagnoseType, ITrackData } from "src/interfaces/diagnoseApi/diagnosis";
+import { IAnswer, IQuestion, TDiagnoseType, ITrackData, IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppSelector } from "src/state";
 import { getNextQuestion } from "src/utils/diagnosisHook";
 
@@ -19,7 +21,6 @@ function useDiagnosis(state: TDiagnoseType) {
     answers: null,
   });
   const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
-  const [loading, setLoading] = useState(false);
 
   const questions = useRef<IQuestion[]>([]);
   const questionHistory = useRef<IQuestion[]>([]);
@@ -29,22 +30,21 @@ function useDiagnosis(state: TDiagnoseType) {
     if (!state) {
       navigate("/");
     }
+  }, [navigate, state]);
 
-    const getFirstQuestion = async () => {
-      try {
-        const { question: diagnosisQuestions } = await diagnosisFetcher.getQuestions(state, gender);
+  const { data, isSuccess, isLoading } = useQuery<IDiagnoseResponse>({
+    queryKey: [queryKeys.DIAGNOSE, gender, state],
+    queryFn: () => diagnosisFetcher.getQuestions(state, gender),
+    staleTime: Infinity,
+  });
 
-        questions.current = diagnosisQuestions;
+  if (isSuccess) {
+    questions.current = data.question;
 
-        setCurQuestion(diagnosisQuestions[0]);
-      } catch (err) {
-        alert("유효하지 않은 접근입니다");
-        navigate("/");
-      }
-    };
-
-    getFirstQuestion();
-  }, [navigate, gender, state]);
+    if (curQuestion.id === 0) {
+      setCurQuestion(data.question[0]);
+    }
+  }
 
   const handleNext = () => {
     if (questionHistory.current === undefined || questions.current === undefined) {
@@ -52,7 +52,6 @@ function useDiagnosis(state: TDiagnoseType) {
     }
 
     answers.current = [...answers.current, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }];
-
     questionHistory.current = [...questionHistory.current, curQuestion];
 
     const nextQuestion = getNextQuestion({
@@ -78,14 +77,15 @@ function useDiagnosis(state: TDiagnoseType) {
       return;
     }
 
-    const lastIdx = questionHistory.current.length - 1;
+    const historyLastIdx = questionHistory.current.length - 1;
+    const answersLastIdx = answers.current.length - 1;
 
-    setCurQuestion(questionHistory.current[lastIdx]);
-    questionHistory.current = questionHistory.current.slice(0, lastIdx);
-    answers.current = answers.current.slice(0, answers.current.length - 1);
+    setCurQuestion(questionHistory.current[historyLastIdx]);
+    questionHistory.current = questionHistory.current.slice(0, historyLastIdx);
+    answers.current = answers.current.slice(0, answersLastIdx);
   };
 
-  return { loading, curQuestion, handleNext, handleBack, selectedAnswer, setSelectedAnswer };
+  return { isLoading, curQuestion, handleNext, handleBack, selectedAnswer, setSelectedAnswer };
 }
 
 export default useDiagnosis;
