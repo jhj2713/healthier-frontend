@@ -1,9 +1,9 @@
 import { ChangeEvent, Dispatch } from "react";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import RoundButton from "src/components/roundButton";
+import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import { Container } from "../index.style";
 import { NextButton } from "../answerButtons/index.style";
+import { Container } from "../index.style";
 
 interface IStringButtonProps {
   selectedAnswer: IAnswer[];
@@ -13,7 +13,9 @@ interface IStringButtonProps {
 
 function StringButton({ selectedAnswer, setSelectedAnswer, handleNext }: IStringButtonProps) {
   const handleNextButtonClick = () => {
-    if (selectedAnswer.length === 0) return;
+    if (selectedAnswer.length === 0) {
+      return;
+    }
 
     handleNext();
   };
