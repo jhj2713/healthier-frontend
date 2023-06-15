@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Heading_5 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Container = styled.section<{ severity: number }>`
   position: relative;
@@ -21,8 +21,19 @@ export const Container = styled.section<{ severity: number }>`
   }
 `;
 
-export const Box = styled.section`
-  padding: 1.4rem 1.2rem 0 1.4rem;
+export const Box = styled.section<{ isDate: Date | null }>`
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2rem 1.8rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ isDate }) => (isDate ? "space-between" : "flex-end")};
+  align-items: flex-start;
+`;
+
+export const TitleContainer = styled.div`
+  margin-bottom: 0.6rem;
 `;
 
 export const Title = styled(Heading_5)<{ severity: number }>`
@@ -45,10 +56,6 @@ export const DateItem = styled.section<{ severity: number }>`
 `;
 
 export const Tag = styled.section<{ severity: number }>`
-  position: absolute;
-  bottom: 0;
-  display: inline;
-
   background-color: ${({ theme, severity }) =>
     (severity === 3 && theme.color.blue) || (severity === 2 && theme.color.blue_700) || (severity <= 1 && theme.color.sub_blue)};
   color: ${({ theme, severity }) => (severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue)};
@@ -59,7 +66,6 @@ export const Tag = styled.section<{ severity: number }>`
   letter-spacing: -0.05rem;
 
   padding: 0.6rem 1rem;
-  margin-bottom: 1.2rem;
   border-radius: 3rem;
 `;
 

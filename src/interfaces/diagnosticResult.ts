@@ -36,9 +36,8 @@ export interface IDiagnosticResult {
 export interface IDiagnosisResultList {
   dataList: {
     results: {
-      predicted: IDiagnosisItem[] | null;
-      suspicious: IDiagnosisItem[] | null;
-      likely: IDiagnosisItem[] | null;
+      likely: IDiagnosisItem;
+      predicted: IDiagnosisItem[];
     };
   };
 }
