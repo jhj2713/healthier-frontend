@@ -1,9 +1,9 @@
 import { Heading_5 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const Container = styled.section<{ severity: number }>`
+export const Container = styled.section<{ severity: number; isSquare: boolean }>`
   position: relative;
-  height: 16rem;
+  height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
   background: ${({ theme, severity }) =>
     severity === 3
       ? theme.color.sub_blue
@@ -22,6 +22,8 @@ export const Container = styled.section<{ severity: number }>`
 `;
 
 export const Box = styled.section<{ isDate: Date | null }>`
+  position: relative;
+
   height: 100%;
   box-sizing: border-box;
   padding: 2rem 1.8rem;
@@ -69,11 +71,12 @@ export const Tag = styled.section<{ severity: number }>`
   border-radius: 3rem;
 `;
 
-export const BannerImg = styled.section`
+export const BannerImgContainer = styled.section`
   position: absolute;
   right: 0;
+`;
 
-  img {
-    border-radius: 0 0.8rem 0.8rem 0;
-  }
+export const BannerImg = styled.img<{ isSquare: boolean }>`
+  height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
+  border-radius: ${({ isSquare }) => (isSquare ? "0.8rem" : "0 0.8rem 0.8rem 0")};
 `;

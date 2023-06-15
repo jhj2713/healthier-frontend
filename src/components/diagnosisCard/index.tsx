@@ -1,5 +1,5 @@
 import severityTypes from "src/data/severity_types";
-import { Container, BannerImg, Box, Title, DateItem, Tag, TitleContainer } from "./index.style";
+import { Container, BannerImgContainer, BannerImg, Box, Title, DateItem, Tag, TitleContainer } from "./index.style";
 
 export interface IDiagnosisItem {
   banner_illustration: string;
@@ -11,18 +11,19 @@ export interface IDiagnosisItem {
   };
 }
 export interface IDiagnosisCard {
+  isSquare?: boolean;
   diagnosis: IDiagnosisItem;
   handleNavigate: () => void;
 }
 
-const DiagnosisCard = ({ diagnosis, handleNavigate }: IDiagnosisCard) => {
+const DiagnosisCard = ({ isSquare = false, diagnosis, handleNavigate }: IDiagnosisCard) => {
   const diag_date = diagnosis.record.is_created ? new Date(diagnosis.record.is_created) : null;
 
   return (
-    <Container severity={diagnosis.record.severity} onClick={handleNavigate}>
-      <BannerImg>
-        <img alt="banner" src={diagnosis.banner_illustration} height={160} />
-      </BannerImg>
+    <Container severity={diagnosis.record.severity} onClick={handleNavigate} isSquare={isSquare}>
+      <BannerImgContainer>
+        <BannerImg alt="banner" src={diagnosis.banner_illustration} isSquare={isSquare} />
+      </BannerImgContainer>
       <Box isDate={diag_date}>
         <TitleContainer>
           <Title severity={diagnosis.record.severity}>{diagnosis.record.title}</Title>

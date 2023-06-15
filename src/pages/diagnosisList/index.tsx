@@ -74,7 +74,7 @@ const DiagnosisList = () => {
         </Title>
         {state && (
           <>
-            <DiagnosisCard diagnosis={likely} handleNavigate={() => handleNavigate(likely)} />
+            <DiagnosisCard isSquare diagnosis={likely} handleNavigate={() => handleNavigate(likely)} />
             <Title margin="4rem 0 1.6rem 0">
               가능성 높은
               <br />
