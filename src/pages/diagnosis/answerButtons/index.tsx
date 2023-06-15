@@ -13,7 +13,7 @@ import { Container, NextButton } from "./index.style";
 interface IAnswerButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
   handleNext: () => void;
 }
 
