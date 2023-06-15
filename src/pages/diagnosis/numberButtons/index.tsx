@@ -19,8 +19,6 @@ function NumberButtons({ question, selectedAnswer, setSelectedAnswer, handleNext
       return;
     }
 
-    // TODO: answer state 저장
-
     handleNext();
   };
 
