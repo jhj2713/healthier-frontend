@@ -34,10 +34,6 @@ export interface IDiagnosticResult {
 }
 
 export interface IDiagnosisResultList {
-  dataList: {
-    results: {
-      likely: IDiagnosisItem;
-      predicted: IDiagnosisItem[];
-    };
-  };
+  likely: IDiagnosisItem;
+  predicted: IDiagnosisItem[];
 }
