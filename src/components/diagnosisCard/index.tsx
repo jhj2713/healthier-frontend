@@ -17,7 +17,7 @@ export interface IDiagnosisCard {
 }
 
 const DiagnosisCard = ({ isSquare = false, diagnosis, handleNavigate }: IDiagnosisCard) => {
-  const diag_date = diagnosis.record.is_created ? new Date(diagnosis.record.is_created) : null;
+  const diagDate = diagnosis.record.is_created ? new Date(diagnosis.record.is_created) : null;
 
   return (
     <Container severity={diagnosis.record.severity} onClick={handleNavigate} isSquare={isSquare}>
@@ -25,12 +25,10 @@ const DiagnosisCard = ({ isSquare = false, diagnosis, handleNavigate }: IDiagnos
         <BannerImg alt="banner" src={diagnosis.banner_illustration} isSquare={isSquare} />
         {isSquare && <BannerShadow />}
       </BannerImgContainer>
-      <Box isDate={diag_date}>
+      <Box isDate={diagDate}>
         <TitleContainer>
           <Title severity={diagnosis.record.severity}>{diagnosis.record.title}</Title>
-          {diag_date && (
-            <DateItem severity={diagnosis.record.severity}>{`${diag_date.getMonth() + 1}월 ${diag_date.getDate()}일`}</DateItem>
-          )}
+          {diagDate && <DateItem severity={diagnosis.record.severity}>{`${diagDate.getMonth() + 1}월 ${diagDate.getDate()}일`}</DateItem>}
         </TitleContainer>
         <Tag severity={diagnosis.record.severity}>{severityTypes[diagnosis.record.severity]}</Tag>
       </Box>
