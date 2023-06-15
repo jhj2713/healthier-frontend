@@ -28,6 +28,7 @@ function SmockingButton({ setSelectedAnswer }: ISmockingButtonProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const number = validateNumber(e.target.value);
+
     setSmockingNumber({ ...smockingNumber, [e.target.name]: number });
   };
 
