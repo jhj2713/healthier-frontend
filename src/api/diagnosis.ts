@@ -30,5 +30,5 @@ const diagnosisRequests = {
 export const Diagnosis = {
   patchDiagnosis: (body: IDiagnosisPatchData, token: string): Promise<IDiagnosisList> => diagnosisRequests.patch(`/results`, body, token),
   getDiagnosis: (token: string): Promise<IDiagnosisList> => diagnosisRequests.get(`/results`, token),
-  getDiagnosisDetail: (id: string): Promise<IDiagnosisResult> => diagnosisRequests.get(`/results/${id}`),
+  getDiagnosisDetail: (id: number): Promise<IDiagnosisResult> => diagnosisRequests.get(`/results/${id}`),
 };

@@ -1,6 +1,6 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { TAppDispatch, TRootState } from "./store";
 import { BodyPart } from "src/interfaces/symptomPage";
+import { TAppDispatch, TRootState } from "./store";
 
 export const useAppDispatch: () => TAppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;

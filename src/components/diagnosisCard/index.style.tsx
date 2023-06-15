@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import { Heading_5 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
-export const Container = styled.section<{ severity: number }>`
+export const Container = styled.section<{ severity: number; isSquare: boolean }>`
   position: relative;
-  height: 16rem;
+  height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
   background: ${({ theme, severity }) =>
     severity === 3
       ? theme.color.sub_blue
@@ -21,8 +21,21 @@ export const Container = styled.section<{ severity: number }>`
   }
 `;
 
-export const Box = styled.section`
-  padding: 1.4rem 1.2rem 0 1.4rem;
+export const Box = styled.section<{ isDate: Date | null }>`
+  position: relative;
+
+  height: 100%;
+  box-sizing: border-box;
+  padding: 2rem 1.8rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: ${({ isDate }) => (isDate ? "space-between" : "flex-end")};
+  align-items: flex-start;
+`;
+
+export const TitleContainer = styled.div`
+  margin-bottom: 0.6rem;
 `;
 
 export const Title = styled(Heading_5)<{ severity: number }>`
@@ -45,10 +58,6 @@ export const DateItem = styled.section<{ severity: number }>`
 `;
 
 export const Tag = styled.section<{ severity: number }>`
-  position: absolute;
-  bottom: 0;
-  display: inline;
-
   background-color: ${({ theme, severity }) =>
     (severity === 3 && theme.color.blue) || (severity === 2 && theme.color.blue_700) || (severity <= 1 && theme.color.sub_blue)};
   color: ${({ theme, severity }) => (severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue)};
@@ -59,15 +68,27 @@ export const Tag = styled.section<{ severity: number }>`
   letter-spacing: -0.05rem;
 
   padding: 0.6rem 1rem;
-  margin-bottom: 1.2rem;
   border-radius: 3rem;
 `;
 
-export const BannerImg = styled.section`
+export const BannerImgContainer = styled.section`
   position: absolute;
   right: 0;
+`;
 
-  img {
-    border-radius: 0 0.8rem 0.8rem 0;
-  }
+export const BannerImg = styled.img<{ isSquare: boolean }>`
+  height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
+  border-radius: ${({ isSquare }) => (isSquare ? "0.8rem" : "0 0.8rem 0.8rem 0")};
+`;
+
+export const BannerShadow = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: calc(var(--vw, 1vw) * 100 - 4.8rem);
+  width: 100%;
+
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0.35) 0%, rgba(19, 20, 22, 0) 100%);
+  transform: rotate(-180deg);
 `;
