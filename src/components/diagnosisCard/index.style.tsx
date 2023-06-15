@@ -80,3 +80,15 @@ export const BannerImg = styled.img<{ isSquare: boolean }>`
   height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
   border-radius: ${({ isSquare }) => (isSquare ? "0.8rem" : "0 0.8rem 0.8rem 0")};
 `;
+
+export const BannerShadow = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  height: calc(var(--vw, 1vw) * 100 - 4.8rem);
+  width: 100%;
+
+  background: linear-gradient(180deg, rgba(19, 20, 22, 0.35) 0%, rgba(19, 20, 22, 0) 100%);
+  transform: rotate(-180deg);
+`;

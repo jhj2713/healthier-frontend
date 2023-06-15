@@ -1,5 +1,5 @@
 import severityTypes from "src/data/severity_types";
-import { Container, BannerImgContainer, BannerImg, Box, Title, DateItem, Tag, TitleContainer } from "./index.style";
+import { Container, BannerImgContainer, BannerImg, Box, Title, DateItem, Tag, TitleContainer, BannerShadow } from "./index.style";
 
 export interface IDiagnosisItem {
   banner_illustration: string;
@@ -23,6 +23,7 @@ const DiagnosisCard = ({ isSquare = false, diagnosis, handleNavigate }: IDiagnos
     <Container severity={diagnosis.record.severity} onClick={handleNavigate} isSquare={isSquare}>
       <BannerImgContainer>
         <BannerImg alt="banner" src={diagnosis.banner_illustration} isSquare={isSquare} />
+        {isSquare && <BannerShadow />}
       </BannerImgContainer>
       <Box isDate={diag_date}>
         <TitleContainer>
