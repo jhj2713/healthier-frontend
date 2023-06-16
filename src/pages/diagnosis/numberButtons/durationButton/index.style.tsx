@@ -25,8 +25,7 @@ export const Input = styled.input`
 
   text-align: center;
   background: transparent;
-  border: none;
-  outline: none;
+
   border-bottom: 1px solid ${({ theme }) => theme.color.grey_600};
 
   &:focus {
@@ -37,13 +36,6 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.color.grey_600};
     font-size: 1.8rem;
     font-height: 1.27em;
-  }
-
-  /* remove number arrows */
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
   }
 `;
 
