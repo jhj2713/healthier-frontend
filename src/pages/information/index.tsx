@@ -44,7 +44,7 @@ const Information = () => {
   };
 
   const isSelected = (): boolean => {
-    return year !== 0 && health.filter((item) => item.selected).length !== 0 && gender !== "" && agree.information && agree.member;
+    return year !== 0 && gender !== "" && agree.information && agree.member;
   };
 
   return (
