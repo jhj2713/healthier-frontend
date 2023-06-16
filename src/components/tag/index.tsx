@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { Container } from "./index.style";
 
-export interface ITag extends HTMLAttributes<HTMLButtonElement> {
+export interface ITag extends HTMLAttributes<HTMLDivElement> {
   children: string;
   selected?: boolean;
 }
