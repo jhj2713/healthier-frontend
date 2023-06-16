@@ -2,7 +2,7 @@ import { Dispatch } from "react";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
 
-interface IButtons {
+interface IDefButton {
   answers: IAnswer[];
   question: IQuestion;
   selectedAnswer: IAnswer[];
@@ -10,7 +10,7 @@ interface IButtons {
   handleActive: (id: number) => boolean;
 }
 
-const Buttons = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive }: IButtons) => {
+const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive }: IDefButton) => {
   const handleSelect = (id: number) => {
     if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -43,4 +43,4 @@ const Buttons = ({ answers, question, selectedAnswer, setSelectedAnswer, handleA
   );
 };
 
-export default Buttons;
+export default DefButton;

@@ -9,7 +9,7 @@ import NumberAnswerButton from "./numberAnswerButton";
 interface INumberButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
   handleNext: () => void;
 }
 
@@ -18,8 +18,6 @@ function NumberButtons({ question, selectedAnswer, setSelectedAnswer, handleNext
     if (selectedAnswer.length === 0) {
       return;
     }
-
-    // TODO: answer state 저장
 
     handleNext();
   };

@@ -22,6 +22,17 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    input{
+        border: none;
+        outline: none;
+        background: transparent;
+
+        ::-webkit-outer-spin-button,
+        ::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    }
 `;
 
 export default GlobalStyle;

@@ -3,17 +3,17 @@ import RoundButton from "src/components/roundButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import Buttons from "../buttons";
-import EtcButtons from "../etcButtons";
-import NumberButtons from "../number";
+import DefButton from "../defButton";
+import EtcButton from "../etcButton";
+import NumberButtons from "../numberButtons";
 import SliderButton from "../sliderButton";
-import StringButton from "../string";
+import StringButton from "../stringButton";
 import { Container, NextButton } from "./index.style";
 
 interface IAnswerButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
   handleNext: () => void;
 }
 
@@ -57,7 +57,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
-      <EtcButtons
+      <EtcButton
         answers={question.answers as IAnswer[]}
         selectedAnswer={selectedAnswer}
         question={question}
@@ -69,7 +69,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   return (
     <Container>
-      <Buttons
+      <DefButton
         answers={question.answers ?? []}
         question={question}
         selectedAnswer={selectedAnswer}

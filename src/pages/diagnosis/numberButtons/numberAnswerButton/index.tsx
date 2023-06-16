@@ -10,7 +10,7 @@ import SmockingButton from "../smockingButton";
 interface INumberAnswerButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
 }
 
 function NumberAnswerButton({ question, selectedAnswer, setSelectedAnswer }: INumberAnswerButtonProps) {

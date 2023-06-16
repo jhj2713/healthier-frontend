@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.section<{
+export const Container = styled.button<{
   backgroundColor: string;
   outline: string;
 }>`
@@ -13,7 +13,7 @@ export const Container = styled.section<{
 
   background: ${({ backgroundColor }) => backgroundColor};
 
-  border: ${({ outline }) => outline !== "none" && `0.1rem solid ${outline}`};
+  border: ${({ outline }) => (outline === "none" ? "none" : `0.1rem solid ${outline}`)};
   border-radius: 3rem;
   box-sizing: border-box;
   cursor: pointer;
@@ -23,7 +23,7 @@ export const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
 
   font-size: 1.6rem;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 150%;
 
   text-align: center;
