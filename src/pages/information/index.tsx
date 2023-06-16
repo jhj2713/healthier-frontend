@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
+import Layout from "src/components/layout";
 import RoundButton from "src/components/roundButton";
 import { health_interest } from "src/data/interest";
 import { IAgreement } from "src/interfaces/informationPage";
@@ -9,7 +10,7 @@ import { useAppDispatch } from "src/state";
 import { userSubmit } from "src/state/userSlice";
 import Agreement from "./agreement";
 import Gender from "./gender";
-import { Contents, Title, ButtonBackground } from "./index.style";
+import { Title, ButtonBackground } from "./index.style";
 import InformationAgreement from "./informationAgreement";
 import MemberAgreement from "./memberAgreement";
 import Tags from "./tags";
@@ -54,7 +55,7 @@ const Information = () => {
           <ContentHeader back={false} exit={true} exitCallback={() => navigate("/")}>
             정보 수집
           </ContentHeader>
-          <Contents>
+          <Layout padding="0 2.4rem 15rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
             <Title>
               잠깐! <br />더 나은 감별 서비스를 위해
               <br /> 간단한 정보가 필요해요
@@ -63,18 +64,18 @@ const Information = () => {
             <Gender gender={gender} setGender={setGender} />
             <Tags health={health} setHealth={setHealth} />
             <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
-          </Contents>
-          <ButtonBackground>
-            <section className="button-box" onClick={handleProceed}>
-              <RoundButton
-                outline="none"
-                backgroundColor={active ? theme.color.blue : theme.color.grey_750}
-                color={active ? theme.color.grey_100 : theme.color.grey_600}
-              >
-                증상 감별하러 가기
-              </RoundButton>
-            </section>
-          </ButtonBackground>
+            <ButtonBackground>
+              <section className="button-box" onClick={handleProceed}>
+                <RoundButton
+                  outline="none"
+                  backgroundColor={active ? theme.color.blue : theme.color.grey_750}
+                  color={active ? theme.color.grey_100 : theme.color.grey_600}
+                >
+                  증상 감별하러 가기
+                </RoundButton>
+              </section>
+            </ButtonBackground>
+          </Layout>
         </>
       ) : agreementDetail === 1 ? (
         <MemberAgreement agreementDetail={agreementDetail} setAgreementDetail={setAgreementDetail} />
