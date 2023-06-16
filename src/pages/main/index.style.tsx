@@ -1,20 +1,11 @@
 import { Heading_3 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const Container = styled.main`
-  padding-top: 5.6rem;
-  height: calc(var(--vh, 1vh) * 100 - 9.6rem);
-
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+export const Title = styled(Heading_3)`
+  padding-top: 4rem;
+  padding-left: 2.4rem;
 
   color: ${({ theme }) => theme.color.grey_100};
-`;
-
-export const Title = styled(Heading_3)`
-  margin-top: 4rem;
-  margin-left: 2.4rem;
 
   .strong {
     font-weight: 500;

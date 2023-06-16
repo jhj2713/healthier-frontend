@@ -1,5 +1,6 @@
 import Tag, { ITag } from ".";
 import { Meta, Story } from "@storybook/react";
+import theme from "src/lib/theme";
 
 export default {
   component: Tag,
@@ -14,16 +15,18 @@ export default {
   },
 } as Meta;
 
-const Template: Story<ITag> = (args) => <Tag {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  selected: false,
-  children: "Tag",
+export const Default = () => {
+  return <Tag selected={false}>Tag</Tag>;
 };
 
-export const Selected = Template.bind({});
-Selected.args = {
-  selected: true,
-  children: "Tag",
+export const Selected = () => {
+  return <Tag selected>Tag</Tag>;
+};
+
+export const StyledPrimaryButton = () => {
+  return <Tag style={{ color: theme.color.grey_200, background: theme.color.blue }}>Tag</Tag>;
+};
+
+export const StyledDisabledButton = () => {
+  return <Tag style={{ color: theme.color.grey_200, background: theme.color.grey_500 }}>Tag</Tag>;
 };

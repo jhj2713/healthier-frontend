@@ -1,5 +1,5 @@
-import Button, { IButton } from ".";
-import { Meta, Story } from "@storybook/react";
+import Button from ".";
+import { Meta } from "@storybook/react";
 
 export default {
   component: Button,
@@ -14,16 +14,26 @@ export default {
   },
 } as Meta;
 
-const Template: Story<IButton> = (args) => <Button {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  selected: false,
-  children: "Button",
+export const Default = () => {
+  return <Button selected={false}>Button</Button>;
 };
 
-export const Selected = Template.bind({});
-Selected.args = {
-  selected: true,
-  children: "Button",
+export const Selected = () => {
+  return <Button selected>Button</Button>;
+};
+
+export const StyledDefaultButton = () => {
+  return (
+    <Button selected={false} style={{ width: "7.9rem", height: "4.4rem" }}>
+      Button
+    </Button>
+  );
+};
+
+export const StyledSelectButton = () => {
+  return (
+    <Button selected style={{ width: "7.9rem", height: "4.4rem" }}>
+      Button
+    </Button>
+  );
 };

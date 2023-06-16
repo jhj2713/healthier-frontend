@@ -2,13 +2,14 @@ import { useLayoutEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Diagnosis } from "src/api/diagnosis";
 import DiagnosisCard, { IDiagnosisItem } from "src/components/diagnosisCard";
+import Layout from "src/components/layout";
 import MainHeader from "src/components/mainHeader";
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
 import { useAppSelector, useAppDispatch } from "src/state";
 import { DELETE_TOKEN } from "src/state/authSlice";
 import EmptyPage from "./emptyList";
-import { Container, Title, DescriptionBox, List, ButtonBackground } from "./index.style";
+import { Title, DescriptionBox, List, ButtonBackground } from "./index.style";
 
 const MyDiagnosis = () => {
   const navigate = useNavigate();
@@ -47,7 +48,7 @@ const MyDiagnosis = () => {
   };
 
   return (
-    <Container>
+    <Layout>
       <MainHeader />
       {loading || (
         <>
@@ -79,7 +80,7 @@ const MyDiagnosis = () => {
           </RoundButton>
         </section>
       </ButtonBackground>
-    </Container>
+    </Layout>
   );
 };
 
