@@ -1,8 +1,9 @@
+import Layout from "src/components/layout";
 import MainHeader from "src/components/mainHeader";
 import imageUrl from "src/data/image_url";
 import useModal from "src/hooks/useModal";
 import BottomButtons from "./bottomButtons";
-import { Container, Title, MainImage } from "./index.style";
+import { Title, MainImage } from "./index.style";
 import MainModal from "./mainModal";
 
 const MainPage = () => {
@@ -11,7 +12,7 @@ const MainPage = () => {
   return (
     <>
       <MainHeader />
-      <Container>
+      <Layout padding="0">
         <Title>
           <span className="strong">빠른 증상감별</span>로
           <br />
@@ -22,7 +23,7 @@ const MainPage = () => {
         </MainImage>
         <BottomButtons openModal={openModal} />
         {isOpenModal && <MainModal ref={modalRef} closeModal={closeModal} />}
-      </Container>
+      </Layout>
     </>
   );
 };
