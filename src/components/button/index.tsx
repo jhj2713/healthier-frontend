@@ -1,7 +1,7 @@
 import { HTMLAttributes } from "react";
 import { Container } from "./index.style";
 
-export interface IButton extends HTMLAttributes<HTMLDivElement> {
+export interface IButton extends HTMLAttributes<HTMLButtonElement> {
   selected: boolean;
   children: string;
 }

@@ -1,12 +1,17 @@
+import { HTMLAttributes } from "react";
 import { Container } from "./index.style";
 
-export interface ITag {
+export interface ITag extends HTMLAttributes<HTMLButtonElement> {
   children: string;
-  selected: boolean;
+  selected?: boolean;
 }
 
-const Tag = ({ children, selected }: ITag) => {
-  return <Container selected={selected}>{children}</Container>;
+const Tag = ({ children, selected = false, ...props }: ITag) => {
+  return (
+    <Container selected={selected} {...props}>
+      {children}
+    </Container>
+  );
 };
 
 export default Tag;
