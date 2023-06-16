@@ -9,8 +9,6 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  padding: 5.6rem 2rem 0 2rem;
 `;
 
 export const Title = styled(Heading_3)`

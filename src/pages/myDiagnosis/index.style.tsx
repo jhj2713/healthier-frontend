@@ -1,10 +1,6 @@
 import { Description, Heading_3 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const Container = styled.section`
-  padding-top: 5.6rem;
-`;
-
 export const ButtonBackground = styled.section`
   position: fixed;
   bottom: 0;

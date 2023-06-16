@@ -10,21 +10,19 @@ const MainPage = () => {
   const { isOpenModal, modalRef, openModal, closeModal } = useModal();
 
   return (
-    <>
+    <Layout>
       <MainHeader />
-      <Layout padding="0">
-        <Title>
-          <span className="strong">빠른 증상감별</span>로
-          <br />
-          <span className="strong">예상 질환</span>을 알아보세요!
-        </Title>
-        <MainImage>
-          <img className="image" alt="main" src={imageUrl.main_page}></img>
-        </MainImage>
-        <BottomButtons openModal={openModal} />
-        {isOpenModal && <MainModal ref={modalRef} closeModal={closeModal} />}
-      </Layout>
-    </>
+      <Title>
+        <span className="strong">빠른 증상감별</span>로
+        <br />
+        <span className="strong">예상 질환</span>을 알아보세요!
+      </Title>
+      <MainImage>
+        <img className="image" alt="main" src={imageUrl.main_page}></img>
+      </MainImage>
+      <BottomButtons openModal={openModal} />
+      {isOpenModal && <MainModal ref={modalRef} closeModal={closeModal} />}
+    </Layout>
   );
 };
 

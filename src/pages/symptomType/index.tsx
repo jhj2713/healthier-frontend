@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
+import Layout from "src/components/layout";
 import RoundButton from "src/components/roundButton";
 import useModal from "src/hooks/useModal";
 import theme from "src/lib/theme";
@@ -43,11 +44,12 @@ const SymptomTypePage = () => {
   }, [isOpenModal]);
 
   return (
-    <>
+    <Layout>
       {isOpenModal && <SymptomTypeModal ref={modalRef} closeModal={closeModal} select={select} />}
       <ContentHeader back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")}>
         증상 유형 선택
       </ContentHeader>
+
       <Container>
         <Title>
           증상 유형을
@@ -59,14 +61,18 @@ const SymptomTypePage = () => {
           </SymptomContainer>
         ))} */}
         {symptomTypes.map((type) => (
-          <div key={type.state} onClick={() => navigate("/diagnosis", { state: type.state })}>
-            <RoundButton outline={theme.color.blue} backgroundColor={theme.color.blue} color={theme.color.green_100}>
-              {type.text}
-            </RoundButton>
-          </div>
+          <RoundButton
+            key={type.state}
+            outline={theme.color.blue}
+            backgroundColor={theme.color.blue}
+            color={theme.color.green_100}
+            onClick={() => navigate("/diagnosis", { state: type.state })}
+          >
+            {type.text}
+          </RoundButton>
         ))}
       </Container>
-    </>
+    </Layout>
   );
 };
 

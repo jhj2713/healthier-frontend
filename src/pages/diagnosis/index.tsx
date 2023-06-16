@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
+import Layout from "src/components/layout";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
@@ -32,7 +33,7 @@ const Diagnosis = () => {
           }
         />
       ) : (
-        <>
+        <Layout>
           <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>
             감별진단
           </ContentHeader>
@@ -49,7 +50,7 @@ const Diagnosis = () => {
               handleNext={handleNext}
             />
           </Container>
-        </>
+        </Layout>
       )}
     </>
   );
