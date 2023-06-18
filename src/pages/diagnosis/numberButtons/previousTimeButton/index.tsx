@@ -1,6 +1,6 @@
 import { Dispatch, useState, useEffect } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { validateNumber } from "src/utils/inputValidator";
+import { validateNumber } from "src/utils/inputUtils";
 import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
 
 const SELECT_TYPES = [

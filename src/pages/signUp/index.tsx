@@ -5,7 +5,7 @@ import RoundButton from "src/components/roundButton";
 import TextField2 from "src/components/textField2";
 import { Label } from "src/components/textField2/index.style";
 import theme from "src/lib/theme";
-import { handleFocusInput } from "src/utils/inputValidator";
+import { handleFocusInput } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
 
 interface IRRN {
