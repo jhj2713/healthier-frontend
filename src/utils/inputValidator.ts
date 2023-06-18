@@ -7,3 +7,12 @@ export const validateNumber = (input: string) => {
 
   return parsedNumber;
 };
+
+export const handleFocusInput = (index: number, refs: Array<React.RefObject<HTMLInputElement>>) => {
+  if (refs[index + 1] && index < refs.length - 1) {
+    refs[index + 1].current?.focus();
+  }
+  if (index === refs.length - 1) {
+    refs[index].current?.blur();
+  }
+};
