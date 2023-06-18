@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
-import { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList } from "./pages";
+import { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList, SignUp } from "./pages";
 import { useAppSelector } from "./state";
 
 const handleResize = () => {
@@ -57,6 +57,7 @@ function App() {
           <Route path="/diagnosis" element={<Diagnosis />} />
           <Route path="/symptom" element={<SymptomPage />} />
           <Route path="/symptom-type" element={<SymptomTypePage />} />
+          <Route path="/signup" element={<SignUp />} />
           <Route path="/*" element={<Navigate to="/" replace />} />
         </Routes>
       </Container>
