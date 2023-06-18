@@ -1,19 +1,32 @@
+import { AnimatePresence } from "framer-motion";
 import * as Styled from "./index.style";
 
-const MOBILE_VENDORS = ["SKT", "KT", "LG 유플러스", "SKT 알뜰폰", "KT 알뜰폰", "LG 알뜰폰"];
+interface IBottomSheetProps {
+  header: string;
+  children?: React.ReactNode;
+  onClickOverlay: () => void;
+  isBottomSheetOpen: boolean;
+}
 
-function BottomSheet() {
+function BottomSheet({ header, children, onClickOverlay, isBottomSheetOpen }: IBottomSheetProps) {
   return (
-    <Styled.Overlay headerHeight="5.6rem">
-      <Styled.Container>
-        <Styled.Header>통신사를 선택해주세요</Styled.Header>
-        <Styled.ContentContainer>
-          {MOBILE_VENDORS.map((mv) => (
-            <Styled.ContentItem key={mv}>{mv}</Styled.ContentItem>
-          ))}
-        </Styled.ContentContainer>
-      </Styled.Container>
-    </Styled.Overlay>
+    <AnimatePresence>
+      {isBottomSheetOpen && (
+        <Styled.Overlay headerHeight="5.6rem" onClick={onClickOverlay}>
+          <Styled.Container
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            exit={{ y: "100%" }}
+            transition={{
+              duration: 0.1,
+            }}
+          >
+            <Styled.Header>{header}</Styled.Header>
+            <Styled.Content>{children}</Styled.Content>
+          </Styled.Container>
+        </Styled.Overlay>
+      )}
+    </AnimatePresence>
   );
 }
 export default BottomSheet;

@@ -36,3 +36,14 @@ export const RoundButtonContainer = styled.div`
   padding-top: 0.6rem;
   padding-bottom: 3rem;
 `;
+
+export const ContentContainer = styled.ul``;
+export const ContentItem = styled.li`
+  font-size: 1.6rem;
+  line-height: 1.25em;
+  color: ${({ theme }) => theme.color.grey_400};
+  font-weight: 200;
+  padding: 1.4rem 0;
+  margin-bottom: 0.4rem;
+  cursor: pointer;
+`;

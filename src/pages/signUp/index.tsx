@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import BottomSheet from "src/components/bottomSheet";
 import ContentHeader from "src/components/contentHeader";
 import RoundButton from "src/components/roundButton";
 import TextField2 from "src/components/textField2";
@@ -7,6 +8,8 @@ import { Label } from "src/components/textField2/index.style";
 import theme from "src/lib/theme";
 import { handleFocusInput } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
+
+const MOBILE_VENDORS = ["SKT", "KT", "LG 유플러스", "SKT 알뜰폰", "KT 알뜰폰", "LG 알뜰폰"];
 
 interface IRRN {
   first: string;
@@ -27,6 +30,7 @@ function SignUp() {
     third: "",
   });
   const [name, setName] = useState<string>("");
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(false);
 
   const RRNRefs: Array<React.RefObject<HTMLInputElement>> = [useRef(null), useRef(null)];
   const phoneNumberRefs: Array<React.RefObject<HTMLInputElement>> = [useRef(null), useRef(null), useRef(null)];
@@ -55,6 +59,38 @@ function SignUp() {
         handleFocusInput(refIdx, phoneNumberRefs);
       }
     };
+  };
+
+  const isNextButtonEnabled = (): boolean => {
+    // TODO: 각종 예외 상황 처리 필요
+    if (
+      RRN.first.length === 6 &&
+      RRN.second.length === 7 &&
+      phoneNumber.first.length === 3 &&
+      phoneNumber.second.length === 4 &&
+      phoneNumber.third.length === 4 &&
+      name.length >= 2
+    ) {
+      return true;
+    }
+
+    return false;
+  };
+
+  const handleClickNextButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (!isNextButtonEnabled()) {
+      return;
+    }
+
+    setIsBottomSheetOpen(true);
+  };
+
+  const handleClickMobileVendor = (e: React.MouseEvent<HTMLLIElement>) => {
+    e.stopPropagation();
+
+    alert("click vendor");
   };
 
   return (
@@ -130,11 +166,30 @@ function SignUp() {
             />
           </Styled.TextFieldContainer>
           <Styled.RoundButtonContainer>
-            <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
+            <RoundButton
+              outline="none"
+              backgroundColor={isNextButtonEnabled() ? theme.color.blue : theme.color.grey_650}
+              color={isNextButtonEnabled() ? theme.color.grey_100 : theme.color.grey_400}
+              onClick={handleClickNextButton}
+            >
               다음 단계
             </RoundButton>
           </Styled.RoundButtonContainer>
         </Styled.Form>
+
+        <BottomSheet
+          header="통신사를 선택해주세요"
+          onClickOverlay={() => setIsBottomSheetOpen(false)}
+          isBottomSheetOpen={isBottomSheetOpen}
+        >
+          <Styled.ContentContainer>
+            {MOBILE_VENDORS.map((mv) => (
+              <Styled.ContentItem key={mv} onClick={handleClickMobileVendor}>
+                {mv}
+              </Styled.ContentItem>
+            ))}
+          </Styled.ContentContainer>
+        </BottomSheet>
       </Styled.Container>
     </>
   );

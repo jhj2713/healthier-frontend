@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Overlay = styled.div<{ headerHeight: string }>`
@@ -8,19 +9,21 @@ export const Overlay = styled.div<{ headerHeight: string }>`
   height: ${({ headerHeight }) => `calc(100% + ${headerHeight})`};
   background: rgba(0, 0, 0, 0.5);
   z-index: 3;
+  overflow: hidden;
 `;
 
-export const Container = styled.div`
+export const Container = styled(motion.div)`
   position: absolute;
   bottom: 0;
-
   width: 100%;
   box-sizing: border-box;
   padding: 32px 24px;
 
   background: ${({ theme }) => theme.color.grey_900};
   border-radius: 20px 20px 0px 0px;
+  z-index: 4;
 `;
+
 export const Header = styled.header`
   color: ${({ theme }) => theme.color.grey_200};
   font-size: 2rem;
@@ -29,12 +32,4 @@ export const Header = styled.header`
   margin-bottom: 2.4rem;
 `;
 
-export const ContentContainer = styled.ul``;
-export const ContentItem = styled.li`
-  font-size: 1.6rem;
-  line-height: 1.25em;
-  color: ${({ theme }) => theme.color.grey_400};
-  font-weight: 200;
-  padding: 1.4rem 0;
-  margin-bottom: 0.4rem;
-`;
+export const Content = styled.div``;
