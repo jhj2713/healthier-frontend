@@ -20,6 +20,7 @@ function BottomSheet({ header, children, onClickOverlay, isBottomSheetOpen }: IB
             transition={{
               duration: 0.1,
             }}
+            onClick={(e) => e.stopPropagation()}
           >
             <Styled.Header>{header}</Styled.Header>
             <Styled.Content>{children}</Styled.Content>
