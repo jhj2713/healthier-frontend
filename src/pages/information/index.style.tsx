@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Heading_3 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const ButtonBackground = styled.section`
   width: 100%;
@@ -8,6 +8,7 @@ export const ButtonBackground = styled.section`
   bottom: 0;
   left: 0;
   font-size: 1.3rem;
+  box-sizing: border-box;
 
   padding: 10.4rem 2rem 3rem 2rem;
 
@@ -17,6 +18,8 @@ export const ButtonBackground = styled.section`
 
   .button-box {
     pointer-events: auto;
+    display: flex;
+    justify-content: center;
   }
 `;
 
