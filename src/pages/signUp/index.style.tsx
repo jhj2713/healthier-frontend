@@ -39,10 +39,16 @@ export const RoundButtonContainer = styled.div`
 
 export const ContentContainer = styled.ul``;
 export const ContentItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const Paragraph = styled.p<{ isSelected: boolean }>`
   font-size: 1.6rem;
   line-height: 1.25em;
-  color: ${({ theme }) => theme.color.grey_400};
-  font-weight: 200;
+  color: ${({ theme, isSelected }) => (isSelected ? theme.color.grey_200 : theme.color.grey_400)};
+  font-weight: ${({ isSelected }) => (isSelected ? 300 : 200)};
   padding: 1.4rem 0;
   margin-bottom: 0.4rem;
   cursor: pointer;

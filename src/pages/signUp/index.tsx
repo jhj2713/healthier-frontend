@@ -1,15 +1,15 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import CheckIcon from "src/assets/icons/CheckIcon";
 import BottomSheet from "src/components/bottomSheet";
 import ContentHeader from "src/components/contentHeader";
 import RoundButton from "src/components/roundButton";
 import TextField2 from "src/components/textField2";
 import { Label } from "src/components/textField2/index.style";
+import { MOBILE_VENDORS } from "src/data/signup_page";
 import theme from "src/lib/theme";
 import { handleFocusInput } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
-
-const MOBILE_VENDORS = ["SKT", "KT", "LG 유플러스", "SKT 알뜰폰", "KT 알뜰폰", "LG 알뜰폰"];
 
 interface IRRN {
   first: string;
@@ -19,6 +19,8 @@ interface IRRN {
 interface IPhoneNumber extends IRRN {
   third: string;
 }
+
+type TMobileVendor = typeof MOBILE_VENDORS[number];
 
 function SignUp() {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ function SignUp() {
     third: "",
   });
   const [name, setName] = useState<string>("");
+  const [mobileVendor, setMobileVendor] = useState<TMobileVendor>();
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(false);
 
   const RRNRefs: Array<React.RefObject<HTMLInputElement>> = [useRef(null), useRef(null)];
@@ -90,7 +93,7 @@ function SignUp() {
   const handleClickMobileVendor = (e: React.MouseEvent<HTMLLIElement>) => {
     e.stopPropagation();
 
-    alert("click vendor");
+    setMobileVendor(e.currentTarget.dataset.type as TMobileVendor);
   };
 
   return (
@@ -184,8 +187,9 @@ function SignUp() {
         >
           <Styled.ContentContainer>
             {MOBILE_VENDORS.map((mv) => (
-              <Styled.ContentItem key={mv} onClick={handleClickMobileVendor}>
-                {mv}
+              <Styled.ContentItem key={mv} onClick={handleClickMobileVendor} data-type={mv}>
+                <Styled.Paragraph isSelected={mobileVendor === mv}>{mv}</Styled.Paragraph>
+                {mobileVendor === mv && <CheckIcon />}
               </Styled.ContentItem>
             ))}
           </Styled.ContentContainer>
