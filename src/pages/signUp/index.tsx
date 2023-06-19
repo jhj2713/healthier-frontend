@@ -4,8 +4,8 @@ import CheckIcon from "src/assets/icons/CheckIcon";
 import BottomSheet from "src/components/bottomSheet";
 import ContentHeader from "src/components/contentHeader";
 import RoundButton from "src/components/roundButton";
-import TextField2 from "src/components/textField2";
-import { Label } from "src/components/textField2/index.style";
+import TextFieldStandard from "src/components/textFieldStandard";
+import { Label } from "src/components/textFieldStandard/index.style";
 import { MOBILE_VENDORS } from "src/data/signup_page";
 import theme from "src/lib/theme";
 import { handleFocusInput } from "src/utils/inputUtils";
@@ -105,7 +105,7 @@ function SignUp() {
           <Styled.TextFieldContainer>
             <Label>주민등록번호</Label>
             <Styled.TextFieldWrapper>
-              <TextField2
+              <TextFieldStandard
                 type="number"
                 placeholder="앞 6자리"
                 value={RRN.first}
@@ -114,7 +114,7 @@ function SignUp() {
                 ref={RRNRefs[0]}
               />
               <Styled.Hypen />
-              <TextField2
+              <TextFieldStandard
                 type="number"
                 placeholder="뒷 7자리"
                 value={RRN.second}
@@ -128,7 +128,7 @@ function SignUp() {
           <Styled.TextFieldContainer style={{ marginTop: "4rem" }}>
             <Label>전화번호</Label>
             <Styled.TextFieldWrapper>
-              <TextField2
+              <TextFieldStandard
                 type="number"
                 name="first"
                 placeholder="세 자리"
@@ -138,7 +138,7 @@ function SignUp() {
               />
               <Styled.Hypen />
 
-              <TextField2
+              <TextFieldStandard
                 type="number"
                 name="second"
                 placeholder="네 자리"
@@ -148,7 +148,7 @@ function SignUp() {
               />
               <Styled.Hypen />
 
-              <TextField2
+              <TextFieldStandard
                 type="number"
                 name="third"
                 placeholder="네 자리"
@@ -160,7 +160,7 @@ function SignUp() {
           </Styled.TextFieldContainer>
 
           <Styled.TextFieldContainer style={{ marginTop: "4rem" }}>
-            <TextField2
+            <TextFieldStandard
               type="text"
               label="이름"
               placeholder="이름을 입력해 주세요"

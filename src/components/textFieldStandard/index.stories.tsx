@@ -1,10 +1,10 @@
 import { useArgs } from "@storybook/client-api";
 import { Meta } from "@storybook/react";
-import TextField2 from ".";
+import TextFieldStandard from ".";
 
 export default {
-  component: TextField2,
-  title: "TextField2",
+  component: TextFieldStandard,
+  title: "TextFieldStandard",
   argTypes: {
     label: {
       description: "텍스트필드 상단 레이블",
@@ -31,5 +31,7 @@ export const Default = () => {
   const [{ value }, updateArgs] = useArgs();
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => updateArgs({ value: e.target.value });
 
-  return <TextField2 label="이름" placeholder="이름을 입력해 주세요" type="text" value={value} name="name" onChange={handleChangeValue} />;
+  return (
+    <TextFieldStandard label="이름" placeholder="이름을 입력해 주세요" type="text" value={value} name="name" onChange={handleChangeValue} />
+  );
 };
