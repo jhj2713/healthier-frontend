@@ -1,7 +1,7 @@
 import { AnimatePresence } from "framer-motion";
 import * as Styled from "./index.style";
 
-interface IBottomSheetProps {
+export interface IBottomSheetProps {
   header: string;
   children?: React.ReactNode;
   onClickOverlay: () => void;
