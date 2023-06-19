@@ -2,7 +2,7 @@ import { Dispatch, useState } from "react";
 import RoundButton from "src/components/roundButton";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import { validateNumber } from "src/utils/inputValidator";
+import { validateNumber } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
 
 const DURATION_TYPES = ["", "시간", "일", "주", "개월", "년"] as const;

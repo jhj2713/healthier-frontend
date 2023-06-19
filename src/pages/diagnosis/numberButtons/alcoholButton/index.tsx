@@ -1,6 +1,6 @@
 import { Dispatch, useEffect, useState, ChangeEvent } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { validateNumber } from "src/utils/inputValidator";
+import { validateNumber } from "src/utils/inputUtils";
 import { ButtonBox, Container } from "./index.style";
 
 interface IAlcoholNumberState {

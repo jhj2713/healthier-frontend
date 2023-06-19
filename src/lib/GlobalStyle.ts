@@ -33,6 +33,14 @@ const GlobalStyle = createGlobalStyle`
             margin: 0;
         }
     }
+    ul{
+        margin-block-start: 0;
+        margin-inline-start: 0;
+        padding-inline-start: 0;
+    }
+    li{
+        list-style: none;
+    }
 `;
 
 export default GlobalStyle;

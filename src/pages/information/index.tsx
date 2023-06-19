@@ -51,30 +51,32 @@ const Information = () => {
   return (
     <>
       {agreementDetail === 0 ? (
-        <Layout padding="0 2.4rem 15rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
+        <>
           <ContentHeader back={false} exit={true} exitCallback={() => navigate("/")}>
             정보 수집
           </ContentHeader>
-          <Title>
-            잠깐! <br />더 나은 감별 서비스를 위해
-            <br /> 간단한 정보가 필요해요
-          </Title>
-          <YearPicker year={year} setYear={setYear} />
-          <Gender gender={gender} setGender={setGender} />
-          <Tags health={health} setHealth={setHealth} />
-          <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
-          <ButtonBackground>
-            <section className="button-box" onClick={handleProceed}>
-              <RoundButton
-                outline="none"
-                backgroundColor={active ? theme.color.blue : theme.color.grey_750}
-                color={active ? theme.color.grey_100 : theme.color.grey_600}
-              >
-                증상 감별하러 가기
-              </RoundButton>
-            </section>
-          </ButtonBackground>
-        </Layout>
+          <Layout padding="0 2.4rem 15rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
+            <Title>
+              잠깐! <br />더 나은 감별 서비스를 위해
+              <br /> 간단한 정보가 필요해요
+            </Title>
+            <YearPicker year={year} setYear={setYear} />
+            <Gender gender={gender} setGender={setGender} />
+            <Tags health={health} setHealth={setHealth} />
+            <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
+            <ButtonBackground>
+              <section className="button-box" onClick={handleProceed}>
+                <RoundButton
+                  outline="none"
+                  backgroundColor={active ? theme.color.blue : theme.color.grey_750}
+                  color={active ? theme.color.grey_100 : theme.color.grey_600}
+                >
+                  증상 감별하러 가기
+                </RoundButton>
+              </section>
+            </ButtonBackground>
+          </Layout>
+        </>
       ) : agreementDetail === 1 ? (
         <MemberAgreement agreementDetail={agreementDetail} setAgreementDetail={setAgreementDetail} />
       ) : (

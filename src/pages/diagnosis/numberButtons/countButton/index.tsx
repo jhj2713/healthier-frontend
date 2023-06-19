@@ -1,6 +1,6 @@
 import { Dispatch, useState, ChangeEvent } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { validateNumber } from "src/utils/inputValidator";
+import { validateNumber } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
 
 interface ICountButtonProps {

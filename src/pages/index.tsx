@@ -4,7 +4,8 @@ import Information from "./information";
 import MainPage from "./main";
 import MyDiagnosis from "./myDiagnosis";
 import ResultPage from "./result";
+import SignUp from "./signUp";
 import SymptomPage from "./symptom";
 import SymptomTypePage from "./symptomType";
 
-export { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList };
+export { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList, SignUp };
