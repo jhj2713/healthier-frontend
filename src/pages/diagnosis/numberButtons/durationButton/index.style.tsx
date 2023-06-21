@@ -1,42 +1,14 @@
 import styled from "styled-components";
 
+export const Container = styled.div`
+  margin-top: 11.2rem;
+`;
+
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
-`;
-
-export const Label = styled.label`
-  font-size: 1.3rem;
-  line-height: 1.5em;
-  color: ${({ theme }) => theme.color.grey_300};
-  font-weight: 300;
-`;
-
-export const Input = styled.input`
-  width: 10rem;
-  padding: 0 0 0.8rem 0;
-  margin: 0 1.2rem 0 0;
-
-  font-size: 2rem;
-  line-height: 1.25em;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.grey_400};
-
-  text-align: center;
-  background: transparent;
-
-  border-bottom: 1px solid ${({ theme }) => theme.color.grey_600};
-
-  &:focus {
-    border-bottom: 1px solid #5464f2;
-  }
-
-  ::placeholder {
-    color: ${({ theme }) => theme.color.grey_600};
-    font-size: 1.8rem;
-    font-height: 1.27em;
-  }
 `;
 
 export const Text = styled.span<{ color: string }>`
@@ -44,13 +16,31 @@ export const Text = styled.span<{ color: string }>`
   line-height: 1.5em;
   color: ${({ color }) => color};
   font-weight: 200;
+
+  &.duration-type {
+    margin-right: 0.4rem;
+    font-weight: 300;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   margin-top: 6rem;
-  section {
-    &:last-child {
-      margin-bottom: 0 !important;
-    }
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const DurationButton = styled.button<{ selected: boolean }>`
+  font-size: 1.6rem;
+  line-height: 1rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  padding: 1.2rem 1.8rem;
+  border: 1px solid #5464f2;
+  border-radius: 2rem;
+  background: ${({ selected }) => (selected ? "#5464F2" : "transparent")};
+  color: ${({ selected }) => (selected ? "#fff" : "#5464F2")};
+  cursor: pointer;
 `;

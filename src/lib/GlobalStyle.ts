@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
         padding: 0;
     }
     input{
+        font-family: "Spoqa Han Sans";
         border: none;
         outline: none;
         background: transparent;
@@ -40,6 +41,9 @@ const GlobalStyle = createGlobalStyle`
     }
     li{
         list-style: none;
+    }
+    button{
+        font-family: "Spoqa Han Sans";
     }
 `;
 

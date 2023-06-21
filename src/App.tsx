@@ -1,7 +1,20 @@
+import { useQueryErrorResetBoundary } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { ErrorBoundary } from "react-error-boundary";
 import { Routes, Route, Navigate } from "react-router-dom";
 import styled from "styled-components";
-import { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList, SignUp } from "./pages";
+import {
+  Diagnosis,
+  MyDiagnosis,
+  Information,
+  MainPage,
+  ResultPage,
+  SymptomPage,
+  SymptomTypePage,
+  DiagnosisList,
+  SignUp,
+  Error,
+} from "./pages";
 import { useAppSelector } from "./state";
 
 const handleResize = () => {
@@ -36,6 +49,7 @@ const Container = styled.div`
 
 function App() {
   const { authenticated } = useAppSelector((state) => state.auth);
+  const { reset } = useQueryErrorResetBoundary();
 
   useEffect(() => {
     handleResize();
@@ -49,17 +63,19 @@ function App() {
   return (
     <Main>
       <Container>
-        <Routes>
-          <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
-          <Route path="/info" element={<Information />} />
-          <Route path="/diagnosis-list" element={<DiagnosisList />} />
-          <Route path="/result" element={<ResultPage />} />
-          <Route path="/diagnosis" element={<Diagnosis />} />
-          <Route path="/symptom" element={<SymptomPage />} />
-          <Route path="/symptom-type" element={<SymptomTypePage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <ErrorBoundary FallbackComponent={Error} onReset={reset}>
+          <Routes>
+            <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
+            <Route path="/info" element={<Information />} />
+            <Route path="/diagnosis-list" element={<DiagnosisList />} />
+            <Route path="/result" element={<ResultPage />} />
+            <Route path="/diagnosis" element={<Diagnosis />} />
+            <Route path="/symptom" element={<SymptomPage />} />
+            <Route path="/symptom-type" element={<SymptomTypePage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </ErrorBoundary>
       </Container>
     </Main>
   );
