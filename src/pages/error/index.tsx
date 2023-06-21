@@ -18,9 +18,7 @@ export default function Error({ resetErrorBoundary }: FallbackProps) {
 
   return (
     <Layout>
-      <ContentHeader back={true} backCallback={handleClickBackButton} exit={false}>
-        감별진단
-      </ContentHeader>
+      <ContentHeader back={true} backCallback={handleClickBackButton} exit={false}></ContentHeader>
       <Styled.Container>
         <Styled.Dialog>
           <Styled.Message>에러입니당</Styled.Message>
