@@ -4,7 +4,7 @@ import { TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
 import { DIAGNOSE_TYPE } from "../../utils/diagnosis";
 
 const instance = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/api/diagnose`,
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/diagnose`,
   timeout: 15000,
 });
 
