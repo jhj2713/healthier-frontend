@@ -10,7 +10,14 @@ import theme from "./lib/theme";
 import { store, persistor } from "./state/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      throwOnError: true,
+      retry: 0,
+    },
+  },
+});
 
 root.render(
   <QueryClientProvider client={queryClient}>
