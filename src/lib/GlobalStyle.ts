@@ -39,6 +39,7 @@ const GlobalStyle = createGlobalStyle`
         margin-block-start: 0;
         margin-inline-start: 0;
         padding-inline-start: 0;
+        margin-block-end: 0;
     }
     li{
         list-style: none;
