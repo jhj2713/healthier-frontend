@@ -1,4 +1,5 @@
 import { Dispatch, useState } from "react";
+import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
@@ -67,9 +68,19 @@ function DurationButton({ setSelectedAnswer }: IDurationButtonProps) {
 
       <Styled.ButtonContainer>
         {DURATION_TYPES.map((dt) => (
-          <Styled.DurationButton onClick={() => handleButtonClick(dt)} key={dt} selected={dt === duration.type}>
+          // <Styled.DurationButton onClick={() => handleButtonClick(dt)} key={dt} selected={dt === duration.type}>
+          //   {dt}
+          // </Styled.DurationButton>
+          <RoundButton
+            outline={duration.type === dt ? theme.color.sub_blue : theme.color.grey_650}
+            backgroundColor={duration.type === dt ? theme.color.sub_blue : "transparent"}
+            color={duration.type === dt ? "#5464F2" : theme.color.grey_300}
+            style={{ marginBottom: "1.2rem" }}
+            onClick={() => handleButtonClick(dt)}
+            key={dt}
+          >
             {dt}
-          </Styled.DurationButton>
+          </RoundButton>
         ))}
       </Styled.ButtonContainer>
     </Styled.Container>

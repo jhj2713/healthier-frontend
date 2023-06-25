@@ -25,11 +25,17 @@ export const Text = styled.span<{ color: string }>`
 
 export const ButtonContainer = styled.div`
   margin-top: 6rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: center;
+  // align-items: center;
+  // gap: 1rem;
+
+  section {
+    &:last-child {
+      margin-bottom: 0 !important;
+    }
+  }
 `;
 
 export const DurationButton = styled.button<{ selected: boolean }>`
