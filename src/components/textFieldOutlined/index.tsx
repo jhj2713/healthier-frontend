@@ -3,7 +3,7 @@ import * as Styled from "./index.style";
 
 type TTextFieldOutlinedType = "text" | "number";
 
-interface ITextFieldOutlinedProps {
+interface ITextFieldOutlinedProps extends React.HTMLAttributes<HTMLInputElement> {
   borderRadius?: string;
   placeholder?: string;
   type?: TTextFieldOutlinedType;

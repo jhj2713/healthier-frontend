@@ -3,7 +3,7 @@ import * as Styled from "./index.style";
 
 type TTextFieldStandardType = "number" | "text";
 
-export interface ITextFieldStandardProps {
+export interface ITextFieldStandardProps extends React.HTMLAttributes<HTMLInputElement> {
   label?: string;
   placeholder?: string;
   type?: TTextFieldStandardType;
