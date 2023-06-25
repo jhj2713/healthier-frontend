@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
         background: #131416;
 
         word-break: keep-all;
+        color: #fff;
     }
     p, h1, h2, h3, h4, h5{
         margin: 0;
