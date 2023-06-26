@@ -70,3 +70,4 @@ type TDigestiveDiagnoseType = {
 };
 
 export type TDiagnoseType = TDentalDiagnoseType | TDigestiveDiagnoseType;
+export type TDiagnoseCategory = TDiagnoseType["category"];
