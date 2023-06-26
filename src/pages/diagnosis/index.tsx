@@ -4,13 +4,13 @@ import Layout from "src/components/layout";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
-import { TDiagnoseType } from "src/interfaces/diagnoseApi/diagnosis";
 import AnswerButtons from "./answerButtons";
 import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
+import type { TSymptomType } from "src/interfaces/symptomPage";
 
 const Diagnosis = () => {
   const navigate = useNavigate();
-  const { state } = useLocation() as { state: TDiagnoseType };
+  const { state } = useLocation() as { state: TSymptomType };
 
   const { isLoading, curQuestion, selectedAnswer, setSelectedAnswer, handleNext, handleBack } = useDiagnosis(state);
 

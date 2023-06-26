@@ -1,5 +1,6 @@
 import { LayerProps } from "lamina/types";
 import { Abstract, LayerMaterial } from "lamina/vanilla";
+import { DENTAL_SYMPTOMS, DIGESTIVE_SYMPTOMS, SYMPTOM_TYPES } from "src/data/symptom_type";
 import { Vector3 } from "three";
 
 export interface IOverlayProps {
@@ -53,3 +54,19 @@ export enum BodyPart {
   HEAD = "HEAD",
   BACKNECK = "BACKNECK",
 }
+
+export type TSymptomType = typeof SYMPTOM_TYPES[number];
+type TDentalSymptomType = typeof DENTAL_SYMPTOMS[number];
+type TDigestiveSymptomType = typeof DIGESTIVE_SYMPTOMS[number];
+
+type TDentalDiagnoseType = {
+  category: "치과";
+  symptoms: TDentalSymptomType[];
+};
+
+type TDigestiveDiagnoseType = {
+  category: "소화기 내과";
+  symptoms: TDigestiveSymptomType[];
+};
+
+export type TDiagnoseType = TDentalDiagnoseType | TDigestiveDiagnoseType;

@@ -1,14 +1,5 @@
 import { BodyPart } from "src/interfaces/symptomPage";
 
-export const DIAGNOSE_TYPE = {
-  stomach: "급성복통",
-  backpain: "허리통증",
-  diarrhea: "배변이상/설사",
-  bloodystool: "혈변",
-  gum: "잇몸통증",
-  chestpain: "흉통",
-};
-
 export const PAIN_AREA_MAP = {
   [BodyPart.NONE]: "",
   [BodyPart.TEMPLE]: "관자놀이",
