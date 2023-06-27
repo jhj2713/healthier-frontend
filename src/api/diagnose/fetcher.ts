@@ -19,13 +19,50 @@ export const diagnosisFetcher = {
   getQuestions(diagnosisType: TSymptomType, gender: string): Promise<IDiagnoseResponse> {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.get(`/stomach?gender=${gender}`);
-    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.diarrhea) {
-      return fetcher.get(`/diarrhea`);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
+      return fetcher.get("/idigestion");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
+      return fetcher.get("/hematemesis");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
-      return fetcher.get(`/bloodystool`);
+      return fetcher.get("/bloodystool");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.vomit) {
+      return fetcher.get("/vomit");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.diarrhea) {
+      return fetcher.get("/diarrhea");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.constipation) {
+      return fetcher.get("/constipation");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
+      return fetcher.get(`/jaundice?gender=${gender}`);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tooth) {
+      return fetcher.get("/tooth");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.gum) {
-      return fetcher.get(`/gum`);
+      return fetcher.get("/gum");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tlm) {
+      return fetcher.get("/tlm");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tjt) {
+      return fetcher.get("/tjt");
     }
+    throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
+  },
+  getFollowingQuestions(diagnosisType: TSymptomType, gender: string): Promise<IDiagnoseResponse> {
+    if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
+      return fetcher.get(`/stomach?type=after&gender=${gender}`);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
+      return fetcher.get("/idigestion?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
+      return fetcher.get("/hematemesis?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
+      return fetcher.get("/bloodystool?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.vomit) {
+      return fetcher.get("/vomit?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.diarrhea) {
+      return fetcher.get("/diarrhea?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.constipation) {
+      return fetcher.get("/constipation?type=after");
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
+      return fetcher.get("jaundice?type=after");
+    }
+
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
   },
 };
