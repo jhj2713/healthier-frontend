@@ -9,6 +9,11 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
 `;
 
 export const Title = styled(Heading_3)`
@@ -27,5 +32,40 @@ export const SymptomContainer = styled.section`
 
   & + & {
     margin-top: 1.2rem;
+  }
+`;
+
+export const SymptomCategoryContainer = styled.ul`
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2rem;
+
+  &: last-child {
+    padding-bottom: 10rem;
+  }
+`;
+
+export const NextButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  flex-shrink: 0;
+
+  width: calc(var(--vw, 1vw) * 100);
+  height: 18.6rem;
+  box-sizing: border-box;
+
+  position: fixed;
+  bottom: 0;
+  padding-bottom: 3.4rem;
+
+  background: linear-gradient(180deg, rgba(38, 43, 85, 0) 0%, #262c56 78.13%, #282e5b 100%);
+  pointer-events: none;
+
+  .click-enabler {
+    pointer-events: auto;
+    display: flex;
+    justify-content: center;
   }
 `;

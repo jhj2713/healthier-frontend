@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
 import Layout from "src/components/layout";
+import RoundButton from "src/components/roundButton";
 import { DIAGNOSE_TYPES } from "src/data/symptom_type";
 import useModal from "src/hooks/useModal";
+import theme from "src/lib/theme";
 import * as Styled from "./index.style";
 import SymptomCategory from "./symptomCategory";
 import SymptomTypeModal from "./symptomTypeModal";
@@ -14,8 +16,8 @@ const SymptomTypePage = () => {
   const { state } = useLocation();
 
   const [select, setSelect] = useState(-1);
-  const [symptom, setSymptom] = useState<TSymptomType>();
-  const { modalRef, isOpenModal, openModal, closeModal } = useModal();
+  const [selectedSymptom, setSelectedSymptom] = useState<TSymptomType | null>(null);
+  const { modalRef, isOpenModal, closeModal } = useModal();
 
   useEffect(() => {
     if (!state) {
@@ -25,6 +27,12 @@ const SymptomTypePage = () => {
       setSelect(-1);
     }
   }, [isOpenModal, navigate, state]);
+
+  const handleClickNextButton = () => {
+    navigate("/diagnosis", {
+      state: selectedSymptom,
+    });
+  };
 
   return (
     <Layout>
@@ -45,10 +53,30 @@ const SymptomTypePage = () => {
         ))} */}
         <Styled.SymptomCategoryContainer>
           {DIAGNOSE_TYPES.map((dt: TDiagnoseType) => (
-            <SymptomCategory key={dt.category} diagnoseType={dt} />
+            <SymptomCategory
+              key={dt.category}
+              diagnoseType={dt}
+              selectedSymptom={selectedSymptom}
+              setSelectedSymptom={setSelectedSymptom}
+            />
           ))}
         </Styled.SymptomCategoryContainer>
       </Styled.Container>
+      <Styled.NextButtonContainer>
+        <div className="click-enabler">
+          <RoundButton
+            onClick={handleClickNextButton}
+            outline="none"
+            backgroundColor={selectedSymptom ? theme.color.blue : theme.color.grey_500}
+            color={selectedSymptom ? theme.color.grey_100 : theme.color.grey_400}
+            style={{
+              zIndex: 1,
+            }}
+          >
+            증상 감별 시작하기
+          </RoundButton>
+        </div>
+      </Styled.NextButtonContainer>
     </Layout>
   );
 };
