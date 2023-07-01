@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useRef, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
 import Layout from "src/components/layout";
 import * as Styled from "./index.style";
@@ -6,6 +7,14 @@ import type { FallbackProps } from "react-error-boundary";
 
 export default function Error({ resetErrorBoundary }: FallbackProps) {
   const navigate = useNavigate();
+  const location = useLocation();
+  const errorLocation = useRef(location.pathname);
+
+  useEffect(() => {
+    if (location.pathname !== errorLocation.current) {
+      resetErrorBoundary();
+    }
+  }, [location.pathname, resetErrorBoundary]);
 
   const handleClickRetryButton = () => {
     resetErrorBoundary();

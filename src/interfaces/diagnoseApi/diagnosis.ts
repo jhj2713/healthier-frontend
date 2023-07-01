@@ -1,5 +1,4 @@
 import { IDiagnosisItem } from "src/components/diagnosisCard";
-import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
 import { TAnswerType } from "./answer.type";
 
 export interface IDiagnosisPatchData {
@@ -88,6 +87,3 @@ export interface IDiagnoseAnswer {
 export interface ISiteDiagnose {
   site_id: number;
 }
-
-type TDiagnoseTypeKey = keyof typeof DIAGNOSE_TYPE;
-export type TDiagnoseType = typeof DIAGNOSE_TYPE[TDiagnoseTypeKey];

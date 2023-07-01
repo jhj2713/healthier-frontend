@@ -15,10 +15,13 @@ export const Overlay = styled.div<{ headerHeight: string }>`
 export const Container = styled(motion.div)`
   position: absolute;
   bottom: 0;
-  width: 100%;
   box-sizing: border-box;
   padding: 32px 24px;
-
+  width: calc(var(--vw, 1vw) * 100);
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   background: ${({ theme }) => theme.color.grey_900};
   border-radius: 20px 20px 0px 0px;
   z-index: 4;

@@ -3,36 +3,21 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
 import Layout from "src/components/layout";
 import RoundButton from "src/components/roundButton";
+import { DIAGNOSE_TYPES } from "src/data/symptom_type";
 import useModal from "src/hooks/useModal";
 import theme from "src/lib/theme";
-import { DIAGNOSE_TYPE } from "src/utils/diagnosis";
-import { Container, Title } from "./index.style";
+import * as Styled from "./index.style";
+import SymptomCategory from "./symptomCategory";
 import SymptomTypeModal from "./symptomTypeModal";
-
-const symptomTypes = [
-  { state: DIAGNOSE_TYPE.stomach, text: "급성복통" },
-  { state: DIAGNOSE_TYPE.backpain, text: "허리통증" },
-  { state: DIAGNOSE_TYPE.diarrhea, text: "배변이상/설사" },
-  { state: DIAGNOSE_TYPE.bloodystool, text: "혈변" },
-  { state: DIAGNOSE_TYPE.gum, text: "잇몸통증" },
-  { state: DIAGNOSE_TYPE.chestpain, text: "흉통" },
-];
+import type { TDiagnoseType, TSymptomType } from "src/interfaces/symptomPage";
 
 const SymptomTypePage = () => {
   const navigate = useNavigate();
   const { state } = useLocation();
 
   const [select, setSelect] = useState(-1);
-  const { modalRef, isOpenModal, openModal, closeModal } = useModal();
-
-  const handleSelect = (idx: number) => {
-    setSelect(idx);
-
-    const timer = setTimeout(() => {
-      openModal();
-      clearTimeout(timer);
-    }, 500);
-  };
+  const [selectedSymptom, setSelectedSymptom] = useState<TSymptomType | null>(null);
+  const { modalRef, isOpenModal, closeModal } = useModal();
 
   useEffect(() => {
     if (!state) {
@@ -41,7 +26,13 @@ const SymptomTypePage = () => {
     if (!isOpenModal) {
       setSelect(-1);
     }
-  }, [isOpenModal]);
+  }, [isOpenModal, navigate, state]);
+
+  const handleClickNextButton = () => {
+    navigate("/diagnosis", {
+      state: selectedSymptom,
+    });
+  };
 
   return (
     <Layout>
@@ -50,28 +41,38 @@ const SymptomTypePage = () => {
         증상 유형 선택
       </ContentHeader>
 
-      <Container>
-        <Title>
+      <Styled.Container>
+        <Styled.Title>
           증상 유형을
           <br /> 선택해주세요
-        </Title>
-        {/* {symptom_type.map((symp, idx) => (
-          <SymptomContainer key={idx} onClick={() => handleSelect(idx)}>
-            <SymptomTypeComponent selected={select === idx} title={symp.type} />
-          </SymptomContainer>
-        ))} */}
-        {symptomTypes.map((type) => (
+        </Styled.Title>
+
+        <Styled.SymptomCategoryContainer>
+          {DIAGNOSE_TYPES.map((dt: TDiagnoseType) => (
+            <SymptomCategory
+              key={dt.category}
+              diagnoseType={dt}
+              selectedSymptom={selectedSymptom}
+              setSelectedSymptom={setSelectedSymptom}
+            />
+          ))}
+        </Styled.SymptomCategoryContainer>
+      </Styled.Container>
+      <Styled.NextButtonContainer>
+        <div className="click-enabler">
           <RoundButton
-            key={type.state}
-            outline={theme.color.blue}
-            backgroundColor={theme.color.blue}
-            color={theme.color.green_100}
-            onClick={() => navigate("/diagnosis", { state: type.state })}
+            onClick={handleClickNextButton}
+            outline="none"
+            backgroundColor={selectedSymptom ? theme.color.blue : theme.color.grey_500}
+            color={selectedSymptom ? theme.color.grey_100 : theme.color.grey_400}
+            style={{
+              zIndex: 1,
+            }}
           >
-            {type.text}
+            증상 감별 시작하기
           </RoundButton>
-        ))}
-      </Container>
+        </div>
+      </Styled.NextButtonContainer>
     </Layout>
   );
 };
