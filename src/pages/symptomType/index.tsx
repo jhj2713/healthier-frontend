@@ -46,11 +46,7 @@ const SymptomTypePage = () => {
           증상 유형을
           <br /> 선택해주세요
         </Styled.Title>
-        {/* {symptom_type.map((symp, idx) => (
-          <SymptomContainer key={idx} onClick={() => handleSelect(idx)}>
-            <SymptomTypeComponent selected={select === idx} title={symp.type} />
-          </SymptomContainer>
-        ))} */}
+
         <Styled.SymptomCategoryContainer>
           {DIAGNOSE_TYPES.map((dt: TDiagnoseType) => (
             <SymptomCategory
