@@ -23,15 +23,8 @@ function NumberAnswerButton({ question, selectedAnswer, setSelectedAnswer }: INu
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
     return <SmockingButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_10) {
-    <CountButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
+    return <CountButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   }
-  setSelectedAnswer([
-    {
-      answer_id: 0,
-      answer: "",
-      next_question: null,
-    },
-  ]);
 
   return <div>구현 필요</div>;
 }
