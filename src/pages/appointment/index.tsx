@@ -2,6 +2,7 @@ import BottomSheet from "src/components/bottomSheet";
 import DoctorCard from "./doctorCard";
 import * as Styled from "./index.style";
 import Map from "./map";
+import Search from "./search";
 
 const MockDoctorData = [
   {
@@ -49,6 +50,7 @@ const Appointment = () => {
 
   return (
     <Styled.Container>
+      <Search />
       <Map />
       <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
         <Styled.FilterContainer>거리순</Styled.FilterContainer>
