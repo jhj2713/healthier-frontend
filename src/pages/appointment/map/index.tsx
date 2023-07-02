@@ -5,6 +5,11 @@ import styled from "styled-components";
 import RefixButton from "./refixButton";
 import { useEffect, useState } from "react";
 
+const DoctorPositions = [
+  { lat: 37.562, lng: 126.94 },
+  { lat: 37.561, lng: 126.938 },
+];
+
 const Map = () => {
   const [currentPosition, setCurrentPosition] = useState({
     lat: 0,
@@ -12,11 +17,15 @@ const Map = () => {
   });
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      setCurrentPosition({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
-      });
+    // navigator.geolocation.getCurrentPosition(function (position) {
+    //   setCurrentPosition({
+    //     lat: position.coords.latitude,
+    //     lng: position.coords.longitude,
+    //   });
+    // });
+    setCurrentPosition({
+      lat: 37.561,
+      lng: 126.946,
     });
   }, []);
 
@@ -31,11 +40,13 @@ const Map = () => {
           style={{ width: "100%", height: "100vh" }}
         >
           <TileLayer url="https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=exBCwycrpCQgSErKz3miLeuYFMkFX70rSFqS0VmN6BMBQ3EWyOIyQtSrh4revSxF" />
-          <Marker position={currentPosition} icon={markerIcon}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
-          </Marker>
+          {DoctorPositions.map((doc, idx) => (
+            <Marker key={idx} position={{ lat: doc.lat, lng: doc.lng }} icon={markerIcon}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          ))}
           <Marker position={currentPosition} icon={currentPositionIcon}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
