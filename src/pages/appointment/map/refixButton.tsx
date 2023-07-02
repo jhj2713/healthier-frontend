@@ -1,4 +1,4 @@
-import { useMap } from "react-leaflet";
+import { useMap } from "react-map-gl";
 import styled from "styled-components";
 
 interface IRefixButtonProps {
@@ -6,10 +6,13 @@ interface IRefixButtonProps {
 }
 
 const RefixButton = ({ currentPosition }: IRefixButtonProps) => {
-  const map = useMap();
+  const { current: map } = useMap();
 
   const handleRefixPosition = () => {
-    map.setView(currentPosition);
+    if (!map) {
+      return;
+    }
+    map.flyTo({ center: [currentPosition.lng, currentPosition.lat] });
   };
 
   return (
@@ -23,6 +26,7 @@ export default RefixButton;
 
 const Container = styled.div`
   z-index: 1000;
+  cursor: pointer;
 
   position: absolute;
   right: 2rem;
