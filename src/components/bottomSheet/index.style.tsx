@@ -13,12 +13,14 @@ export const Overlay = styled.div<{ headerHeight: string; background: string }>`
   overflow: hidden;
 `;
 
-export const Container = styled(motion.div)`
+export const Container = styled(motion.div)<{ height: string }>`
   position: absolute;
   bottom: 0;
   box-sizing: border-box;
   padding: 32px 24px;
   width: calc(var(--vw, 1vw) * 100);
+  height: ${({ height }) => height};
+  overflow-y: auto;
   margin-left: auto;
   margin-right: auto;
   left: 0;

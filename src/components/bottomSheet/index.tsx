@@ -1,15 +1,24 @@
 import { AnimatePresence } from "framer-motion";
+import { ReactNode } from "react";
 import * as Styled from "./index.style";
 
 export interface IBottomSheetProps {
-  header?: string;
+  header?: ReactNode;
+  height?: string;
   background?: string;
   children?: React.ReactNode;
   onClickOverlay: () => void;
   isBottomSheetOpen: boolean;
 }
 
-function BottomSheet({ header, background = "rgba(0, 0, 0, 0.5)", children, onClickOverlay, isBottomSheetOpen }: IBottomSheetProps) {
+function BottomSheet({
+  header,
+  height = "auto",
+  background = "rgba(0, 0, 0, 0.5)",
+  children,
+  onClickOverlay,
+  isBottomSheetOpen,
+}: IBottomSheetProps) {
   return (
     <AnimatePresence>
       {isBottomSheetOpen && (
@@ -21,6 +30,7 @@ function BottomSheet({ header, background = "rgba(0, 0, 0, 0.5)", children, onCl
             transition={{
               duration: 0.1,
             }}
+            height={height}
             onClick={(e) => e.stopPropagation()}
           >
             {header && <Styled.Header>{header}</Styled.Header>}

@@ -12,7 +12,7 @@ const RefixButton = ({ currentPosition }: IRefixButtonProps) => {
     if (!map) {
       return;
     }
-    map.flyTo({ center: [currentPosition.lng, currentPosition.lat] });
+    map.flyTo({ center: [currentPosition.lng, currentPosition.lat - 0.005], zoom: 14 });
   };
 
   return (
@@ -30,7 +30,7 @@ const Container = styled.div`
 
   position: absolute;
   right: 2rem;
-  bottom: 2rem;
+  bottom: 39rem;
 
   display: flex;
   justify-content: center;

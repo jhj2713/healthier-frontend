@@ -1,8 +1,8 @@
 import "leaflet/dist/leaflet.css";
+import { useEffect, useRef, useState } from "react";
+import MapGl, { Marker, ViewStateChangeEvent } from "react-map-gl";
 import styled from "styled-components";
 import RefixButton from "./refixButton";
-import { useEffect, useState } from "react";
-import MapGl, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 
 const DoctorPositions = [
@@ -15,6 +15,7 @@ const Map = () => {
     lat: 0,
     lng: 0,
   });
+  const throttleRef = useRef<boolean>(false);
 
   useEffect(() => {
     // navigator.geolocation.getCurrentPosition(function (position) {
@@ -29,6 +30,19 @@ const Map = () => {
     });
   }, []);
 
+  const handleMove = (e: ViewStateChangeEvent) => {
+    if (throttleRef.current) {
+      return;
+    }
+
+    throttleRef.current = true;
+    const timer = setTimeout(() => {
+      console.log(e, e.viewState.latitude, e.viewState.longitude);
+      throttleRef.current = false;
+      clearTimeout(timer);
+    }, 1000);
+  };
+
   return (
     <Container>
       {currentPosition.lat !== 0 && currentPosition.lng !== 0 && (
@@ -36,11 +50,12 @@ const Map = () => {
           mapboxAccessToken={process.env.REACT_APP_MAP_ACCESS_TOKEN}
           initialViewState={{
             longitude: currentPosition.lng,
-            latitude: currentPosition.lat,
+            latitude: currentPosition.lat - 0.005,
             zoom: 14,
           }}
           style={{ width: "100%", height: "100vh" }}
-          mapStyle="mapbox://styles/mapbox/dark-v11"
+          mapStyle={process.env.REACT_APP_MAP_STYLE}
+          onMove={handleMove}
         >
           {DoctorPositions.map((doc, idx) => (
             <Marker key={idx} latitude={doc.lat} longitude={doc.lng}>
@@ -54,31 +69,6 @@ const Map = () => {
         </MapGl>
       )}
     </Container>
-
-    //   {currentPosition.lat !== 0 && currentPosition.lng !== 0 && (
-    //     <MapContainer
-    //       center={currentPosition}
-    //       zoom={15}
-    //       scrollWheelZoom={true}
-    //       zoomControl={false}
-    //       style={{ width: "100%", height: "100vh" }}
-    //     >
-    //       <TileLayer url="https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=exBCwycrpCQgSErKz3miLeuYFMkFX70rSFqS0VmN6BMBQ3EWyOIyQtSrh4revSxF" />
-    //       {DoctorPositions.map((doc, idx) => (
-    //         <Marker key={idx} position={{ lat: doc.lat, lng: doc.lng }} icon={markerIcon}>
-    //           <Popup>
-    //             A pretty CSS3 popup. <br /> Easily customizable.
-    //           </Popup>
-    //         </Marker>
-    //       ))}
-    //       <Marker position={currentPosition} icon={currentPositionIcon}>
-    //         <Popup>
-    //           A pretty CSS3 popup. <br /> Easily customizable.
-    //         </Popup>
-    //       </Marker>
-    //       <RefixButton currentPosition={currentPosition} />
-    //     </MapContainer>
-    //   )}
   );
 };
 
