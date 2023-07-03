@@ -14,6 +14,7 @@ import {
   DiagnosisList,
   SignUp,
   Error,
+  Test,
 } from "./pages";
 import { useAppSelector } from "./state";
 
@@ -73,6 +74,7 @@ function App() {
             <Route path="/symptom" element={<SymptomPage />} />
             <Route path="/symptom-type" element={<SymptomTypePage />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/test" element={<Test />} />
             <Route path="/*" element={<Navigate to="/" replace />} />
           </Routes>
         </ErrorBoundary>
