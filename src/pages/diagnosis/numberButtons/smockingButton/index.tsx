@@ -1,46 +1,67 @@
-import { ChangeEvent, Dispatch, useEffect, useState } from "react";
+import { Dispatch, useState, useEffect } from "react";
+import TextFieldOutlined from "src/components/textFieldOutlined";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
-import { ButtonBox, Container } from "./index.style";
+import { Container } from "../../answerButtons/index.style";
+import * as Styled from "./index.style";
 
-interface ISmockingNumberState {
-  perDay: number;
-  year: number;
-}
 interface ISmockingButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
 }
 
+interface ISmokingAnswer {
+  year: number;
+  count: number;
+}
+
 function SmockingButton({ setSelectedAnswer }: ISmockingButtonProps) {
-  const [smockingNumber, setSmockingNumber] = useState<ISmockingNumberState>({ perDay: 0, year: 0 });
+  const [smokingAnswer, setSmokingAnswer] = useState<ISmokingAnswer>({
+    year: 0,
+    count: 0,
+  });
+
+  const handleChangeSmoking = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    const parsedValue = validateNumber(value);
+
+    setSmokingAnswer({ ...smokingAnswer, [name]: parsedValue });
+  };
 
   useEffect(() => {
+    if (smokingAnswer.year === 0 || smokingAnswer.count === 0) {
+      setSelectedAnswer([]);
+
+      return;
+    }
+
     setSelectedAnswer([
       {
         answer_id: 0,
-        answer: smockingNumber.perDay + "갑",
+        answer: smokingAnswer.year + "년/" + smokingAnswer.count + "번",
         next_question: null,
       },
     ]);
-  }, [smockingNumber, setSelectedAnswer]);
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const number = validateNumber(e.target.value);
-
-    setSmockingNumber({ ...smockingNumber, [e.target.name]: number });
-  };
+  }, [setSelectedAnswer, smokingAnswer]);
 
   return (
     <Container>
-      <ButtonBox>
-        하루
-        <input type="number" name="perDay" value={smockingNumber.perDay} onChange={handleChange} />갑
-      </ButtonBox>
-      <ButtonBox>
-        <input type="number" name="perYear" value={smockingNumber.year} onChange={handleChange} />년 동안
-      </ButtonBox>
+      <Styled.InputsContainer>
+        <Styled.InputContainer>
+          <Styled.InputWrapper>
+            <TextFieldOutlined value={smokingAnswer.year || ""} onChange={handleChangeSmoking} placeholder="횟수 입력" name="year" />
+          </Styled.InputWrapper>
+          <Styled.Text>년동안</Styled.Text>
+        </Styled.InputContainer>
+        <Styled.InputContainer>
+          <Styled.Text>하루</Styled.Text>
+          <Styled.InputWrapper>
+            <TextFieldOutlined value={smokingAnswer.count || ""} onChange={handleChangeSmoking} placeholder="횟수 입력" name="count" />
+          </Styled.InputWrapper>
+          <Styled.Text>번 피웠어요</Styled.Text>
+        </Styled.InputContainer>
+      </Styled.InputsContainer>
     </Container>
   );
 }
