@@ -17,7 +17,6 @@ export const BodyPartContainer = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  width: 66%;
   height: 40%;
 
   display: flex;
@@ -25,10 +24,10 @@ export const BodyPartContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const BodyPartRowContainer = styled.div<{ padding: string }>`
+export const BodyPartRowContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding: ${({ padding }) => padding};
+  justify-content: center;
+  gap: 6px;
 
   &.BodyPart_top,
   &.BodyPart_mid {

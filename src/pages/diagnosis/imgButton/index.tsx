@@ -32,7 +32,7 @@ function ImgButton({ setSelectedAnswer }: IImgButton) {
       <img src={BodyImage} width="100%" style={{ visibility: "hidden" }} />
 
       <Styled.BodyPartContainer>
-        <Styled.BodyPartRowContainer padding="0 5%" className="BodyPart_top">
+        <Styled.BodyPartRowContainer className="BodyPart_top">
           <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-upper-stomach">
             <BodyPart.DigestTopLeft style={bodyPartStyle} />
           </Styled.BodyPartButton>
@@ -46,7 +46,7 @@ function ImgButton({ setSelectedAnswer }: IImgButton) {
           </Styled.BodyPartButton>
         </Styled.BodyPartRowContainer>
 
-        <Styled.BodyPartRowContainer padding="0 0.8%" className="BodyPart_mid">
+        <Styled.BodyPartRowContainer className="BodyPart_mid">
           <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-side">
             <BodyPart.DigestMidLeft style={bodyPartStyle} />
           </Styled.BodyPartButton>
@@ -60,7 +60,7 @@ function ImgButton({ setSelectedAnswer }: IImgButton) {
           </Styled.BodyPartButton>
         </Styled.BodyPartRowContainer>
 
-        <Styled.BodyPartRowContainer padding="0 2%" className="BodyPart_bottom">
+        <Styled.BodyPartRowContainer className="BodyPart_bottom">
           <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-lower-stomach">
             <BodyPart.DigestBottomLeft style={bodyPartStyle} />
           </Styled.BodyPartButton>
