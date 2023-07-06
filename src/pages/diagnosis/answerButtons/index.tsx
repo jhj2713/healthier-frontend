@@ -5,6 +5,7 @@ import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
 import DefButton from "../defButton";
 import EtcButton from "../etcButton";
+import ImgButton from "../imgButton";
 import NumberButtons from "../numberButtons";
 import SliderButton from "../sliderButton";
 import StringButton from "../stringButton";
@@ -57,13 +58,43 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
-      <EtcButton
-        answers={question.answers as IAnswer[]}
-        selectedAnswer={selectedAnswer}
-        question={question}
-        handleActive={handleActive}
-        setSelectedAnswer={setSelectedAnswer}
-      />
+      <Container>
+        <EtcButton
+          answers={question.answers as IAnswer[]}
+          selectedAnswer={selectedAnswer}
+          question={question}
+          handleActive={handleActive}
+          setSelectedAnswer={setSelectedAnswer}
+        />
+        {question.is_multiple && (
+          <NextButton onClick={handleMultipleAnswer}>
+            <RoundButton
+              outline="none"
+              backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
+              color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
+            >
+              다음 단계
+            </RoundButton>
+          </NextButton>
+        )}
+      </Container>
+    );
+  } else if (question.answer_type === ANSWER_TYPE.IMG) {
+    return (
+      <Container>
+        <ImgButton />
+        {
+          <NextButton onClick={handleMultipleAnswer}>
+            <RoundButton
+              outline="none"
+              backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
+              color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
+            >
+              다음 단계
+            </RoundButton>
+          </NextButton>
+        }
+      </Container>
     );
   }
 
