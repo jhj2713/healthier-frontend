@@ -40,7 +40,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
       <SliderButton
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
-        handleNext={handleNext}
+        handleClickNextButton={handleClickNextButton}
         handleActive={handleActive}
       />
     );
