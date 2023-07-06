@@ -48,26 +48,14 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
-      <Container>
-        <EtcButton
-          answers={question.answers as IAnswer[]}
-          selectedAnswer={selectedAnswer}
-          question={question}
-          handleActive={handleActive}
-          setSelectedAnswer={setSelectedAnswer}
-        />
-        {question.is_multiple && (
-          <NextButton onClick={handleClickNextButton}>
-            <RoundButton
-              outline="none"
-              backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
-              color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
-            >
-              다음 단계
-            </RoundButton>
-          </NextButton>
-        )}
-      </Container>
+      <EtcButton
+        answers={question.answers ?? []}
+        selectedAnswer={selectedAnswer}
+        question={question}
+        handleActive={handleActive}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
     );
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
     return (

@@ -1,5 +1,7 @@
 import { Dispatch } from "react";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { Container as RootContainer } from "../answerButtons/index.style";
+import NextButton from "../nextButton";
 import { Container, ButtonBox, ButtonText } from "./index.style";
 
 interface IEtcButton {
@@ -8,9 +10,10 @@ interface IEtcButton {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleActive: (id: number) => boolean;
+  handleClickNextButton: () => void;
 }
 
-const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive }: IEtcButton) => {
+const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IEtcButton) => {
   const handleSelect = (id: number) => {
     if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -30,17 +33,20 @@ const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
   };
 
   return (
-    <Container ansCount={answers.length}>
-      {answers.length !== 0 &&
-        answers.map((ans, idx) => (
-          <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
-            <section className="button">
-              <ButtonText>{ans.answer}</ButtonText>
-            </section>
-          </ButtonBox>
-        ))}
-      <input />
-    </Container>
+    <RootContainer>
+      <Container ansCount={answers.length}>
+        {answers.length !== 0 &&
+          answers.map((ans, idx) => (
+            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+              <section className="button">
+                <ButtonText>{ans.answer}</ButtonText>
+              </section>
+            </ButtonBox>
+          ))}
+        <input />
+      </Container>
+      {question.is_multiple && <NextButton enabled={selectedAnswer.length > 0} onClick={handleClickNextButton} />}
+    </RootContainer>
   );
 };
 
