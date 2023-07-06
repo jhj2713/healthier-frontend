@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import BodyImage from "../../../assets/images/body.png";
 
+export const RootContainer = styled.div`
+  background: transparent;
+  width: 100%;
+`;
+
 export const Container = styled.div`
   position: relative;
 

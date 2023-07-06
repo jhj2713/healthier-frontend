@@ -1,15 +1,12 @@
 import { Dispatch } from "react";
-import RoundButton from "src/components/roundButton";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import theme from "src/lib/theme";
 import DefButton from "../defButton";
 import EtcButton from "../etcButton";
 import ImgButton from "../imgButton";
 import NumberButtons from "../numberButtons";
 import SliderButton from "../sliderButton";
 import StringButton from "../stringButton";
-import { Container, NextButton, ImgButtonContainer } from "./index.style";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -61,18 +58,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
     return (
-      <ImgButtonContainer>
-        <ImgButton setSelectedAnswer={setSelectedAnswer} />
-        <NextButton onClick={handleClickNextButton}>
-          <RoundButton
-            outline="none"
-            backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
-            color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
-          >
-            다음 단계
-          </RoundButton>
-        </NextButton>
-      </ImgButtonContainer>
+      <ImgButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleClickNextButton={handleClickNextButton} />
     );
   }
 

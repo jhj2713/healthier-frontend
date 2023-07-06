@@ -1,4 +1,3 @@
-import { Body_1 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
 export const Container = styled.section`
