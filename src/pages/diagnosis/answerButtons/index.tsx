@@ -21,7 +21,7 @@ interface IAnswerButtonProps {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   useEffect(() => {
     selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0 && question.answer_type !== "DRAG_1") {
+    if (!question.is_multiple && selectedAnswer.length !== 0 && question.answer_type === "DEF") {
       const timer = setTimeout(() => {
         handleNext();
         clearTimeout(timer);
@@ -82,18 +82,16 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
     return (
       <Container>
-        <ImgButton />
-        {
-          <NextButton onClick={handleMultipleAnswer}>
-            <RoundButton
-              outline="none"
-              backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
-              color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
-            >
-              다음 단계
-            </RoundButton>
-          </NextButton>
-        }
+        <ImgButton setSelectedAnswer={setSelectedAnswer} />
+        <NextButton onClick={handleMultipleAnswer}>
+          <RoundButton
+            outline="none"
+            backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
+            color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
+          >
+            다음 단계
+          </RoundButton>
+        </NextButton>
       </Container>
     );
   }

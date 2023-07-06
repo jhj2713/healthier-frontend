@@ -30,12 +30,12 @@ export const BodyPartRowContainer = styled.div<{ padding: string }>`
   justify-content: space-between;
   padding: ${({ padding }) => padding};
 
-  &.top,
-  &.mid {
+  &.BodyPart_top,
+  &.BodyPart_mid {
     height: calc((100% / 245) * 90 - 4px);
   }
 
-  &.bottom {
+  &.BodyPart_bottom {
     height: calc((100% / 245) * 65 - 4px);
   }
 `;
