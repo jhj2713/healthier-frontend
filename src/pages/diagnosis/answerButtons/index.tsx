@@ -45,7 +45,9 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {
-    return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
+    return (
+      <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleClickNextButton={handleClickNextButton} />
+    );
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
       <EtcButton
