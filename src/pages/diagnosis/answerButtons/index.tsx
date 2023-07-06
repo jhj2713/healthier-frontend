@@ -9,7 +9,7 @@ import ImgButton from "../imgButton";
 import NumberButtons from "../numberButtons";
 import SliderButton from "../sliderButton";
 import StringButton from "../stringButton";
-import { Container, NextButton } from "./index.style";
+import { Container, NextButton, ImgButtonContainer } from "./index.style";
 
 interface IAnswerButtonProps {
   question: IQuestion;
@@ -81,7 +81,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
     return (
-      <Container>
+      <ImgButtonContainer>
         <ImgButton setSelectedAnswer={setSelectedAnswer} />
         <NextButton onClick={handleMultipleAnswer}>
           <RoundButton
@@ -92,7 +92,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
             다음 단계
           </RoundButton>
         </NextButton>
-      </Container>
+      </ImgButtonContainer>
     );
   }
 

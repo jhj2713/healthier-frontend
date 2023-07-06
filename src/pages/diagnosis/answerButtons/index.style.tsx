@@ -8,6 +8,11 @@ export const Container = styled.section`
   margin-bottom: 13rem;
 `;
 
+export const ImgButtonContainer = styled.section`
+  background: transparent;
+  width: 100%;
+`;
+
 export const NextButton = styled.section`
   width: calc(var(--vw, 1vw) * 100);
 
