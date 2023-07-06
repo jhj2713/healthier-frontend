@@ -1,5 +1,7 @@
-import { Dispatch } from "react";
+import { Dispatch, useEffect } from "react";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { Container } from "../answerButtons/index.style";
+import NextButton from "../nextButton";
 import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
 
 interface IDefButton {
@@ -8,9 +10,10 @@ interface IDefButton {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
   handleActive: (id: number) => boolean;
+  handleClickNextButton: () => void;
 }
 
-const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive }: IDefButton) => {
+const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IDefButton) => {
   const handleSelect = (id: number) => {
     if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -29,17 +32,32 @@ const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
     }
   };
 
+  useEffect(() => {
+    if (question.is_multiple || selectedAnswer.length === 0) {
+      return;
+    }
+
+    const timerId = setTimeout(() => {
+      handleClickNextButton();
+    }, 300);
+
+    return () => clearTimeout(timerId);
+  }, [handleClickNextButton, question.is_multiple, selectedAnswer]);
+
   return (
-    <AnswersContainer ansCount={answers.length}>
-      {answers.length !== 0 &&
-        answers.map((ans, idx) => (
-          <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
-            <section className="button">
-              <ButtonText>{ans.answer}</ButtonText>
-            </section>
-          </ButtonBox>
-        ))}
-    </AnswersContainer>
+    <Container>
+      <AnswersContainer ansCount={answers.length}>
+        {answers.length !== 0 &&
+          answers.map((ans, idx) => (
+            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+              <section className="button">
+                <ButtonText>{ans.answer}</ButtonText>
+              </section>
+            </ButtonBox>
+          ))}
+      </AnswersContainer>
+      {question.is_multiple && <NextButton enabled={selectedAnswer.length > 0} onClick={handleClickNextButton} />}
+    </Container>
   );
 };
 
