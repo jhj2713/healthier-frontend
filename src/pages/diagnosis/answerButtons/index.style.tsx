@@ -24,6 +24,4 @@ export const NextButton = styled.section`
   bottom: 0;
   padding-bottom: 3rem;
   padding-top: 0.6rem;
-
-  background: linear-gradient(180deg, rgba(31, 37, 79, 0) 0%, #23284b 50%);
 `;
