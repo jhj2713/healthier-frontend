@@ -1,3 +1,5 @@
+import { IBodyPartStyle } from "src/interfaces/assets";
+import theme from "src/lib/theme";
 import styled from "styled-components";
 import BodyImage from "../../../assets/images/body.png";
 
@@ -48,3 +50,20 @@ export const BodyPartButton = styled.button`
   all: unset;
   cursor: pointer;
 `;
+
+export const defaultStyle: IBodyPartStyle = {
+  mixBlendMode: "multiply",
+  opacity: 0.8,
+  backgroundFill: "#6D7BF2",
+  fillOpacity: 0.5,
+  textFill: theme.color.grey_100,
+  stroke: true,
+};
+export const selectedStyle: IBodyPartStyle = {
+  mixBlendMode: "normal",
+  opacity: 1,
+  backgroundFill: theme.color.sub_blue,
+  fillOpacity: 1,
+  textFill: theme.color.blue,
+  stroke: false,
+};
