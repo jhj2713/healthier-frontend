@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { DIGESTIVE_BODY_PART } from "src/data/answer_type";
 import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import * as BodyPart from "../../../assets/bodyParts";
@@ -16,9 +17,12 @@ interface IImgButton {
 type TDigestiveBodyPartKey = keyof typeof DIGESTIVE_BODY_PART;
 
 function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IImgButton) {
+  const [digestivePart, setDigestivePart] = useState<TDigestiveBodyPartKey>();
+
   const handleClickBodyPartButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const [, bodyPart] = e.currentTarget.id.split("_");
 
+    setDigestivePart(bodyPart as TDigestiveBodyPartKey);
     setSelectedAnswer([
       {
         answer_id: 0,
@@ -28,6 +32,8 @@ function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }:
     ]);
   };
 
+  const styleMapper = (id: TDigestiveBodyPartKey) => (digestivePart === id ? Styled.selectedStyle : Styled.defaultStyle);
+
   return (
     <Styled.RootContainer>
       <Styled.Container>
@@ -36,43 +42,43 @@ function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }:
         <Styled.BodyPartContainer>
           <Styled.BodyPartRowContainer className="BodyPart_top">
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-upper-stomach">
-              <BodyPart.DigestTopLeft style={bodyPartStyle} />
+              <BodyPart.DigestTopLeft style={bodyPartStyle} customStyle={styleMapper("right-upper-stomach")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_solar-plexus">
-              <BodyPart.DigestTopMid style={bodyPartStyle} />
+              <BodyPart.DigestTopMid style={bodyPartStyle} customStyle={styleMapper("solar-plexus")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-upper-stomach">
-              <BodyPart.DigestTopRight style={bodyPartStyle} />
+              <BodyPart.DigestTopRight style={bodyPartStyle} customStyle={styleMapper("left-upper-stomach")} />
             </Styled.BodyPartButton>
           </Styled.BodyPartRowContainer>
 
           <Styled.BodyPartRowContainer className="BodyPart_mid">
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-side">
-              <BodyPart.DigestMidLeft style={bodyPartStyle} />
+              <BodyPart.DigestMidLeft style={bodyPartStyle} customStyle={styleMapper("right-side")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_belly-button">
-              <BodyPart.DigestMidMid style={bodyPartStyle} />
+              <BodyPart.DigestMidMid style={bodyPartStyle} customStyle={styleMapper("belly-button")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-side">
-              <BodyPart.DigestMidRight style={bodyPartStyle} />
+              <BodyPart.DigestMidRight style={bodyPartStyle} customStyle={styleMapper("left-side")} />
             </Styled.BodyPartButton>
           </Styled.BodyPartRowContainer>
 
           <Styled.BodyPartRowContainer className="BodyPart_bottom">
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-lower-stomach">
-              <BodyPart.DigestBottomLeft style={bodyPartStyle} />
+              <BodyPart.DigestBottomLeft style={bodyPartStyle} customStyle={styleMapper("right-lower-stomach")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_middle-lower-stomach">
-              <BodyPart.DigestBottomMid style={bodyPartStyle} />
+              <BodyPart.DigestBottomMid style={bodyPartStyle} customStyle={styleMapper("middle-lower-stomach")} />
             </Styled.BodyPartButton>
 
             <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-lower-stomach">
-              <BodyPart.DigestBottomRight style={bodyPartStyle} />
+              <BodyPart.DigestBottomRight style={bodyPartStyle} customStyle={styleMapper("left-lower-stomach")} />
             </Styled.BodyPartButton>
           </Styled.BodyPartRowContainer>
         </Styled.BodyPartContainer>
