@@ -1,5 +1,7 @@
 import { useEffect, useState, ChangeEvent } from "react";
 import { validateNumber } from "src/utils/inputUtils";
+import { Container as RootContainer } from "../../index.style";
+import NextButton from "../../nextButton";
 import { ButtonBox, Container } from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
@@ -8,7 +10,7 @@ interface IAlcoholNumberState {
   count: number;
 }
 
-export function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
+export function AlcoholButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [alcoholNumber, setAlcoholNumber] = useState<IAlcoholNumberState>({ perWeek: 0, count: 0 });
 
   useEffect(() => {
@@ -28,15 +30,19 @@ export function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
   };
 
   return (
-    <Container>
-      <ButtonBox>
-        1주에
-        <input type="number" name="perWeek" value={alcoholNumber.perWeek} onChange={handleChange} />번
-      </ButtonBox>
-      <ButtonBox>
-        1번 마실 때 소주기준
-        <input type="number" name="count" value={alcoholNumber.count} onChange={handleChange} />번 병
-      </ButtonBox>
-    </Container>
+    <RootContainer>
+      <Container>
+        <ButtonBox>
+          1주에
+          <input type="number" name="perWeek" value={alcoholNumber.perWeek} onChange={handleChange} />번
+        </ButtonBox>
+        <ButtonBox>
+          1번 마실 때 소주기준
+          <input type="number" name="count" value={alcoholNumber.count} onChange={handleChange} />번 병
+        </ButtonBox>
+      </Container>
+
+      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+    </RootContainer>
   );
 }

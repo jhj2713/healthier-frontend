@@ -22,7 +22,7 @@ interface IPreviousTimeButtonProps {
   handleClickNextButton: () => void;
 }
 
-export function PreviousTimeButton({ setSelectedAnswer, handleClickNextButton }: IPreviousTimeButtonProps) {
+export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IPreviousTimeButtonProps) {
   const [previousTime, setPreviousTime] = useState<IPreviousTime>({
     number: 0,
     type: "hour",
@@ -68,6 +68,8 @@ export function PreviousTimeButton({ setSelectedAnswer, handleClickNextButton }:
         </PreviousTimeSelect>
         <PreviousTimeText>전</PreviousTimeText>
       </PreviousTimeButtonContainer>
+
+      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }

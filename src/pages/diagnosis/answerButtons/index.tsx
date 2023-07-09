@@ -28,6 +28,8 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     handleNext();
   };
 
+  console.log("ANSWER_TYPE:", question.answer_type);
+
   if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
       <NumberButtons.DurationButton
@@ -37,9 +39,63 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         handleClickNextButton={handleClickNextButton}
       />
     );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_2) {
+    return (
+      <NumberButtons.PreviousTimeButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_4) {
+    return (
+      <NumberButtons.AlcoholButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
     return (
       <NumberButtons.SmockingButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_7) {
+    return (
+      <NumberButtons.DurationButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_8) {
+    return (
+      <NumberButtons.AlcoholButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_9) {
+    return (
+      <NumberButtons.CountButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_10) {
+    return (
+      <NumberButtons.DurationButton
         question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
