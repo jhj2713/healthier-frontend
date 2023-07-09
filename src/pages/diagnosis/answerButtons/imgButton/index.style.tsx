@@ -1,7 +1,7 @@
+import BodyImage from "src/assets/images/body.png";
 import { IBodyPartStyle } from "src/interfaces/assets";
 import theme from "src/lib/theme";
 import styled from "styled-components";
-import BodyImage from "../../../assets/images/body.png";
 
 export const RootContainer = styled.div`
   background: transparent;

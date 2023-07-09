@@ -1,7 +1,7 @@
 import { Dispatch, useState, useEffect } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
-import { Container as RootContainer } from "../../answerButtons/index.style";
+import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
 import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
 

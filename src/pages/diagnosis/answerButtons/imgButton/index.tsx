@@ -1,7 +1,7 @@
 import { useState } from "react";
+import * as BodyPart from "src/assets/bodyParts";
+import BodyImage from "src/assets/images/body.png";
 import { DIGESTIVE_BODY_PART } from "src/data/answer_type";
-import * as BodyPart from "../../../assets/bodyParts";
-import BodyImage from "../../../assets/images/body.png";
 import NextButton from "../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";

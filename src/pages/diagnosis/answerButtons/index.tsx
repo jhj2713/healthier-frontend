@@ -1,12 +1,12 @@
 import { Dispatch } from "react";
 import { ANSWER_TYPE } from "src/data/answer_type";
 import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import DefButton from "../defButton";
-import EtcButton from "../etcButton";
-import ImgButton from "../imgButton";
-import * as NumberButtons from "../numberButtons";
-import SliderButton from "../sliderButton";
-import StringButton from "../stringButton";
+import DefButton from "./defButton";
+import EtcButton from "./etcButton";
+import ImgButton from "./imgButton";
+import * as NumberButtons from "./numberButtons";
+import SliderButton from "./sliderButton";
+import StringButton from "./stringButton";
 
 interface IAnswerButtonProps {
   question: IQuestion;

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import TextFieldOutlined from "src/components/textFieldOutlined";
 import { validateNumber } from "src/utils/inputUtils";
-import { Container } from "../../answerButtons/index.style";
+import { Container } from "../../index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";

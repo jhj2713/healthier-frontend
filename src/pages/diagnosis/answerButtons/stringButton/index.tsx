@@ -2,8 +2,8 @@ import { ChangeEvent, useState } from "react";
 import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
 import theme from "src/lib/theme";
-import { NextButton } from "../answerButtons/index.style";
-import { Container } from "../answerButtons/index.style";
+import { NextButton } from "../index.style";
+import { Container } from "../index.style";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 

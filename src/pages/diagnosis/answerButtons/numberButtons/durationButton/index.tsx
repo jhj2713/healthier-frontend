@@ -3,7 +3,7 @@ import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
 import theme from "src/lib/theme";
 import { validateNumber } from "src/utils/inputUtils";
-import { Container as RootContainer } from "../../answerButtons/index.style";
+import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";

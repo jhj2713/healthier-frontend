@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import Slider from "src/components/slider";
-import { Container } from "../answerButtons/index.style";
+import { Container } from "../index.style";
 import NextButton from "../nextButton";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 

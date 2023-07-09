@@ -1,16 +1,15 @@
-import { useEffect } from "react";
 import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import { Container } from "../answerButtons/index.style";
+import { Container as RootContainer } from "../index.style";
 import NextButton from "../nextButton";
-import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
+import { Container, ButtonBox, ButtonText } from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-interface IDefButton extends IAnswerButtonProps {
+interface IEtcButton extends IAnswerButtonProps {
   answers: IAnswer[];
   handleActive: (id: number) => boolean;
 }
 
-const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IDefButton) => {
+const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IEtcButton) => {
   const handleSelect = (id: number) => {
     if (question.is_multiple) {
       const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
@@ -29,21 +28,9 @@ const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
     }
   };
 
-  useEffect(() => {
-    if (question.is_multiple || selectedAnswer.length === 0) {
-      return;
-    }
-
-    const timerId = setTimeout(() => {
-      handleClickNextButton();
-    }, 300);
-
-    return () => clearTimeout(timerId);
-  }, [handleClickNextButton, question.is_multiple, selectedAnswer]);
-
   return (
-    <Container>
-      <AnswersContainer ansCount={answers.length}>
+    <RootContainer>
+      <Container ansCount={answers.length}>
         {answers.length !== 0 &&
           answers.map((ans, idx) => (
             <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
@@ -52,10 +39,11 @@ const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
               </section>
             </ButtonBox>
           ))}
-      </AnswersContainer>
+        <input />
+      </Container>
       {question.is_multiple && <NextButton enabled={selectedAnswer.length > 0} onClick={handleClickNextButton} />}
-    </Container>
+    </RootContainer>
   );
 };
 
-export default DefButton;
+export default EtcButton;
