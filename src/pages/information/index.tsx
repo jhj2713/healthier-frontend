@@ -28,6 +28,10 @@ const Information = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const isSelected = (): boolean => {
+      return year !== 0 && gender !== "" && agree.information && agree.member;
+    };
+
     if (isSelected()) {
       setActive(true);
     } else {
@@ -42,10 +46,6 @@ const Information = () => {
       dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
       navigate("/symptom-type", { state: "info" });
     }
-  };
-
-  const isSelected = (): boolean => {
-    return year !== 0 && gender !== "" && agree.information && agree.member;
   };
 
   return (

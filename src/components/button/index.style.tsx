@@ -1,5 +1,5 @@
-import styled, { css } from "styled-components";
 import { Body_2 } from "src/lib/fontStyle";
+import styled, { css } from "styled-components";
 
 export const Container = styled(Body_2)<{
   selected: boolean;

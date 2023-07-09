@@ -5,7 +5,7 @@ import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import useDiagnosis from "src/hooks/diagnose/useDiagnosis";
 import AnswerButtons from "./answerButtons";
-import { Container, Question, LoadingTitle, LoadingIcon, LoadingBottomText, Tips, Description } from "./index.style";
+import { Container, Question, LoadingTitle, LoadingIcon } from "./index.style";
 import type { TSymptomType } from "src/interfaces/symptomPage";
 
 const Diagnosis = () => {

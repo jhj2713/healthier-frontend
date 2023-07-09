@@ -1,5 +1,5 @@
-import LogoHeader from ".";
 import { Meta, Story } from "@storybook/react";
+import LogoHeader from ".";
 
 export default {
   component: LogoHeader,
