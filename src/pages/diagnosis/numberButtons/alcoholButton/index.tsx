@@ -2,18 +2,14 @@ import { Dispatch, useEffect, useState, ChangeEvent } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
 import { ButtonBox, Container } from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 interface IAlcoholNumberState {
   perWeek: number;
   count: number;
 }
-interface IAlcoholButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-}
 
-function AlcoholButton({ setSelectedAnswer }: IAlcoholButtonProps) {
+function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
   const [alcoholNumber, setAlcoholNumber] = useState<IAlcoholNumberState>({ perWeek: 0, count: 0 });
 
   useEffect(() => {

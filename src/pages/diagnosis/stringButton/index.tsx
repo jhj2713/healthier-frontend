@@ -1,19 +1,13 @@
-import { ChangeEvent, Dispatch, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
 import { NextButton } from "../answerButtons/index.style";
 import { Container } from "../answerButtons/index.style";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-interface IStringButtonProps {
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleClickNextButton: () => void;
-}
-
-function StringButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IStringButtonProps) {
+function StringButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [answer, setAnswer] = useState<string>("");
 
   const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {

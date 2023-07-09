@@ -1,15 +1,9 @@
-import { Dispatch, useState, ChangeEvent } from "react";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { useState, ChangeEvent } from "react";
 import { validateNumber } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-interface ICountButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
-}
-
-function CountButton({ setSelectedAnswer }: ICountButtonProps) {
+function CountButton({ setSelectedAnswer }: IAnswerButtonProps) {
   const [count, setCount] = useState<number>(0);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {

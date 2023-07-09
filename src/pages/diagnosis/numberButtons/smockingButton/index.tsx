@@ -1,24 +1,17 @@
-import { Dispatch, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TextFieldOutlined from "src/components/textFieldOutlined";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container } from "../../answerButtons/index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
-
-interface ISmockingButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleClickNextButton: () => void;
-}
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 interface ISmokingAnswer {
   year: number;
   count: number;
 }
 
-function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: ISmockingButtonProps) {
+function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [smokingAnswer, setSmokingAnswer] = useState<ISmokingAnswer>({
     year: 0,
     count: 0,

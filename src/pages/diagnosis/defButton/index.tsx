@@ -1,16 +1,13 @@
-import { Dispatch, useEffect } from "react";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { useEffect } from "react";
+import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { Container } from "../answerButtons/index.style";
 import NextButton from "../nextButton";
 import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-interface IDefButton {
+interface IDefButton extends IAnswerButtonProps {
   answers: IAnswer[];
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
   handleActive: (id: number) => boolean;
-  handleClickNextButton: () => void;
 }
 
 const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IDefButton) => {

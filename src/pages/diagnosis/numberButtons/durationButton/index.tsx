@@ -1,12 +1,12 @@
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container as RootContainer } from "../../answerButtons/index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const DURATION_TYPES = ["시간", "일", "주", "개월", "년"] as const;
 
@@ -17,14 +17,7 @@ interface IDuration {
   type: TDurationType;
 }
 
-interface IDurationButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
-  handleClickNextButton: () => void;
-}
-
-function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IDurationButtonProps) {
+function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [duration, setDuration] = useState<IDuration>({
     number: 0,
     type: "시간",

@@ -1,22 +1,16 @@
 import { useState } from "react";
 import { DIGESTIVE_BODY_PART } from "src/data/answer_type";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import * as BodyPart from "../../../assets/bodyParts";
 import BodyImage from "../../../assets/images/body.png";
 import NextButton from "../nextButton";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const bodyPartStyle: React.CSSProperties = { height: "100%", width: "100%" };
 
-interface IImgButton {
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: React.Dispatch<React.SetStateAction<IAnswer[]>>;
-  handleClickNextButton: () => void;
-}
-
 type TDigestiveBodyPartKey = keyof typeof DIGESTIVE_BODY_PART;
 
-function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IImgButton) {
+function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [digestivePart, setDigestivePart] = useState<TDigestiveBodyPartKey>();
 
   const handleClickBodyPartButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

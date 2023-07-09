@@ -1,6 +1,8 @@
 import { Dispatch, useState, useEffect } from "react";
 import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
+import { Container as RootContainer } from "../../answerButtons/index.style";
+import NextButton from "../../nextButton";
 import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
 
 const SELECT_TYPES = [
@@ -17,9 +19,10 @@ interface IPreviousTimeButtonProps {
   question: IQuestion;
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
+  handleClickNextButton: () => void;
 }
 
-function PreviousTimeButton({ setSelectedAnswer }: IPreviousTimeButtonProps) {
+function PreviousTimeButton({ setSelectedAnswer, handleClickNextButton }: IPreviousTimeButtonProps) {
   const [previousTime, setPreviousTime] = useState<IPreviousTime>({
     number: 0,
     type: "hour",
@@ -53,17 +56,19 @@ function PreviousTimeButton({ setSelectedAnswer }: IPreviousTimeButtonProps) {
   }, [previousTime, setSelectedAnswer]);
 
   return (
-    <PreviousTimeButtonContainer>
-      <PreviousTimeInput value={previousTime.number || ""} onChange={handleInputChange} />
-      <PreviousTimeSelect value={previousTime.type} onChange={handleSelectChange}>
-        {SELECT_TYPES.map(({ value, text }) => (
-          <option key={value} value={value}>
-            {text}
-          </option>
-        ))}
-      </PreviousTimeSelect>
-      <PreviousTimeText>전</PreviousTimeText>
-    </PreviousTimeButtonContainer>
+    <RootContainer>
+      <PreviousTimeButtonContainer>
+        <PreviousTimeInput value={previousTime.number || ""} onChange={handleInputChange} />
+        <PreviousTimeSelect value={previousTime.type} onChange={handleSelectChange}>
+          {SELECT_TYPES.map(({ value, text }) => (
+            <option key={value} value={value}>
+              {text}
+            </option>
+          ))}
+        </PreviousTimeSelect>
+        <PreviousTimeText>전</PreviousTimeText>
+      </PreviousTimeButtonContainer>
+    </RootContainer>
   );
 }
 

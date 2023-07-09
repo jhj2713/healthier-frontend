@@ -29,7 +29,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     handleNext();
   };
 
-  if (question.answer_type === "NUMBER_1") {
+  if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
       <DurationButton
         question={question}
@@ -38,7 +38,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         handleClickNextButton={handleClickNextButton}
       />
     );
-  } else if (question.answer_type === "NUMBER_5") {
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
     return (
       <SmockingButton
         question={question}
@@ -50,6 +50,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
     return (
       <SliderButton
+        question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
@@ -58,7 +59,12 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {
     return (
-      <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleClickNextButton={handleClickNextButton} />
+      <StringButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
     );
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
@@ -73,7 +79,12 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
     return (
-      <ImgButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleClickNextButton={handleClickNextButton} />
+      <ImgButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
     );
   }
 

@@ -1,10 +1,8 @@
-import { Dispatch, useEffect } from "react";
-import RoundButton from "src/components/roundButton";
+import { useEffect } from "react";
 import Slider from "src/components/slider";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import theme from "src/lib/theme";
 import { Container } from "../answerButtons/index.style";
 import NextButton from "../nextButton";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const SLIDER_BUTTON_ANSWERS = [
   {
@@ -43,11 +41,8 @@ const DEFAULT_ANSWER_IDX = 2;
 const SLIDER_MIN_VLAUE = 0;
 const SLIDER_MAX_VALUE = 5;
 
-interface ISliderButtonProps {
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+interface ISliderButtonProps extends IAnswerButtonProps {
   handleActive: (id: number) => boolean;
-  handleClickNextButton: () => void;
 }
 
 const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton, handleActive }: ISliderButtonProps) => {
@@ -69,7 +64,7 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton
         next_question: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].next_question,
       },
     ]);
-  }, []);
+  }, [setSelectedAnswer]);
 
   return (
     <Container>
