@@ -4,7 +4,6 @@ import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import DefButton from "../defButton";
 import EtcButton from "../etcButton";
 import ImgButton from "../imgButton";
-import NumberButtons from "../numberButtons";
 import DurationButton from "../numberButtons/durationButton";
 import SmockingButton from "../numberButtons/smockingButton";
 import SliderButton from "../sliderButton";
@@ -47,10 +46,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
       />
-    );
-  } else if (question.answer_type.startsWith("NUMBER")) {
-    return (
-      <NumberButtons question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
     );
   } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
     return (
