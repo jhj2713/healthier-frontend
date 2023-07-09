@@ -4,8 +4,7 @@ import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import DefButton from "../defButton";
 import EtcButton from "../etcButton";
 import ImgButton from "../imgButton";
-import DurationButton from "../numberButtons/durationButton";
-import SmockingButton from "../numberButtons/smockingButton";
+import * as NumberButtons from "../numberButtons";
 import SliderButton from "../sliderButton";
 import StringButton from "../stringButton";
 
@@ -31,7 +30,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
   if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
-      <DurationButton
+      <NumberButtons.DurationButton
         question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
@@ -40,7 +39,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
     return (
-      <SmockingButton
+      <NumberButtons.SmockingButton
         question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}

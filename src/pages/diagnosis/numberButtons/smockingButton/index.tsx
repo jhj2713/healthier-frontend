@@ -11,7 +11,7 @@ interface ISmokingAnswer {
   count: number;
 }
 
-function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [smokingAnswer, setSmokingAnswer] = useState<ISmokingAnswer>({
     year: 0,
     count: 0,
@@ -61,5 +61,3 @@ function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
     </Container>
   );
 }
-
-export default SmockingButton;

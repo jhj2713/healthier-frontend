@@ -3,7 +3,7 @@ import { validateNumber } from "src/utils/inputUtils";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-function CountButton({ setSelectedAnswer }: IAnswerButtonProps) {
+export function CountButton({ setSelectedAnswer }: IAnswerButtonProps) {
   const [count, setCount] = useState<number>(0);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,5 +33,3 @@ function CountButton({ setSelectedAnswer }: IAnswerButtonProps) {
     </Styled.Container>
   );
 }
-
-export default CountButton;

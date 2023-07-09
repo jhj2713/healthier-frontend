@@ -17,7 +17,7 @@ interface IDuration {
   type: TDurationType;
 }
 
-function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
   const [duration, setDuration] = useState<IDuration>({
     number: 0,
     type: "시간",
@@ -85,5 +85,3 @@ function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
     </RootContainer>
   );
 }
-
-export default DurationButton;

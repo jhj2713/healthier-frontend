@@ -1,5 +1,4 @@
-import { Dispatch, useEffect, useState, ChangeEvent } from "react";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { useEffect, useState, ChangeEvent } from "react";
 import { validateNumber } from "src/utils/inputUtils";
 import { ButtonBox, Container } from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
@@ -9,7 +8,7 @@ interface IAlcoholNumberState {
   count: number;
 }
 
-function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
+export function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
   const [alcoholNumber, setAlcoholNumber] = useState<IAlcoholNumberState>({ perWeek: 0, count: 0 });
 
   useEffect(() => {
@@ -41,5 +40,3 @@ function AlcoholButton({ setSelectedAnswer }: IAnswerButtonProps) {
     </Container>
   );
 }
-
-export default AlcoholButton;
