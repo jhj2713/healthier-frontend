@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 export const InputsContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   margin-top: 10rem;
-  flex-wrap: wrap;
   padding: 2rem;
 `;
 

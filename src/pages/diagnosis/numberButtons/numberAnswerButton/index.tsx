@@ -4,7 +4,6 @@ import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import AlcoholButton from "../alcoholButton";
 import CountButton from "../countButton";
 import PreviousTimeButton from "../previousTimeButton";
-import SmockingButton from "../smockingButton";
 
 interface INumberAnswerButtonProps {
   question: IQuestion;
@@ -17,8 +16,6 @@ function NumberAnswerButton({ question, selectedAnswer, setSelectedAnswer }: INu
     return <PreviousTimeButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_4) {
     return <AlcoholButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
-  } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
-    return <SmockingButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_10) {
     return <CountButton question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} />;
   }

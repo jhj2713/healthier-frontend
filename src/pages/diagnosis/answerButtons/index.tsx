@@ -6,6 +6,7 @@ import EtcButton from "../etcButton";
 import ImgButton from "../imgButton";
 import NumberButtons from "../numberButtons";
 import DurationButton from "../numberButtons/durationButton";
+import SmockingButton from "../numberButtons/smockingButton";
 import SliderButton from "../sliderButton";
 import StringButton from "../stringButton";
 
@@ -32,6 +33,15 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
   if (question.answer_type === "NUMBER_1") {
     return (
       <DurationButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+      />
+    );
+  } else if (question.answer_type === "NUMBER_5") {
+    return (
+      <SmockingButton
         question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
