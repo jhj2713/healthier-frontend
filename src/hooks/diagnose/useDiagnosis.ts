@@ -59,7 +59,6 @@ function useDiagnosis(state: TSymptomType) {
       ...answers.current,
       { question_id: curQuestion.id + "", answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
     ];
-    questionHistory.current = [...questionHistory.current, curQuestion];
 
     const nextQuestion = getNextQuestion({
       selectedAnswer,
@@ -72,6 +71,8 @@ function useDiagnosis(state: TSymptomType) {
 
       return;
     }
+
+    questionHistory.current = [...questionHistory.current, curQuestion];
 
     setCurQuestion(nextQuestion);
     setSelectedAnswer({
@@ -95,6 +96,11 @@ function useDiagnosis(state: TSymptomType) {
     const answersLastIdx = answers.current.length - 1;
 
     setCurQuestion(questionHistory.current[historyLastIdx]);
+    setSelectedAnswer({
+      answer_id: [],
+      next_question: null,
+    });
+
     questionHistory.current = questionHistory.current.slice(0, historyLastIdx);
     answers.current = answers.current.slice(0, answersLastIdx);
   };
