@@ -13,7 +13,7 @@ function YearPicker({ year, setYear }: IYearPickerProps) {
     setYear(Number(target.value.slice(0, -1)));
   };
 
-  return <Dropdown title="출생연도" options={years} handleChange={handleChange} isSelected={year !== 0} />;
+  return <Dropdown title="출생연도" options={years} handleChange={handleChange} isSelected={year !== 0} value={year + "년"} />;
 }
 
 export default memo(YearPicker);

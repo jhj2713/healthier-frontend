@@ -3,10 +3,9 @@ import { useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
 import Layout from "src/components/layout";
 import RoundButton from "src/components/roundButton";
-import { health_interest } from "src/data/interest";
 import { IAgreement } from "src/interfaces/informationPage";
 import theme from "src/lib/theme";
-import { useAppDispatch } from "src/state";
+import { useAppDispatch, useAppSelector } from "src/state";
 import { userSubmit } from "src/state/userSlice";
 import Agreement from "./agreement";
 import Gender from "./gender";
@@ -17,10 +16,12 @@ import Tags from "./tags";
 import YearPicker from "./yearPicker";
 
 const Information = () => {
+  const defaultState = useAppSelector((appState) => appState.user);
+
   const [active, setActive] = useState(false);
-  const [year, setYear] = useState(0);
-  const [health, setHealth] = useState(health_interest);
-  const [gender, setGender] = useState("");
+  const [year, setYear] = useState(defaultState.birth_year);
+  const [interests, setInterests] = useState(defaultState.interests);
+  const [gender, setGender] = useState(defaultState.gender);
   const [agree, setAgree] = useState<IAgreement>({ member: false, information: false });
   const [agreementDetail, setAgreementDetail] = useState(0);
 
@@ -37,15 +38,15 @@ const Information = () => {
     } else {
       setActive(false);
     }
-  }, [year, health, gender, agree]);
+  }, [year, interests, gender, agree]);
 
   const handleProceed = () => {
-    if (active) {
-      const healthId = health.filter((item) => item.selected).map((item) => item.id);
-
-      dispatch(userSubmit({ gender, birth_year: year, interests: healthId }));
-      navigate("/symptom-type", { state: "info" });
+    if (!active) {
+      return;
     }
+
+    dispatch(userSubmit({ gender, birth_year: year, interests }));
+    navigate("/symptom-type", { state: "info" });
   };
 
   return (
@@ -62,7 +63,7 @@ const Information = () => {
             </Title>
             <YearPicker year={year} setYear={setYear} />
             <Gender gender={gender} setGender={setGender} />
-            <Tags health={health} setHealth={setHealth} />
+            <Tags interests={interests} setInterests={setInterests} />
             <Agreement agree={agree} setAgree={setAgree} setAgreementDetail={setAgreementDetail} />
             <ButtonBackground>
               <section className="button-box" onClick={handleProceed}>

@@ -6,13 +6,14 @@ export interface IDropdown {
   isSelected: boolean;
   options: string[];
   handleChange: (e: ChangeEvent<HTMLSelectElement>) => void;
+  value: number | string;
 }
 
-function Dropdown({ title, isSelected, options, handleChange }: IDropdown) {
+function Dropdown({ title, isSelected, options, handleChange, value }: IDropdown) {
   return (
     <Container>
       <Title>{title}</Title>
-      <SelectBox onChange={handleChange} defaultValue="" isSelected={isSelected}>
+      <SelectBox onChange={handleChange} isSelected={isSelected} value={value}>
         <option hidden disabled value="">
           선택해주세요
         </option>

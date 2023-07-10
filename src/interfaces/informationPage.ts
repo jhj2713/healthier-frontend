@@ -6,8 +6,8 @@ export interface IGenderProps {
 }
 
 export interface ITagsProps {
-  health: ITag[];
-  setHealth: (health: ITag[]) => void;
+  interests: number[];
+  setInterests: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 export interface ITag {
