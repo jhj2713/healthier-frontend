@@ -5,7 +5,7 @@ import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-export function CountButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function CountButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [count, setCount] = useState<number>(0);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,18 +14,18 @@ export function CountButton({ selectedAnswer, setSelectedAnswer, handleClickNext
     setCount(number);
 
     if (number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
 
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: number + "번",
-        next_question: null,
-      },
-    ]);
+    // setSelectedAnswer([
+    //   {
+    //     answer_id: 0,
+    //     answer: number + "번",
+    //     next_question: null,
+    //   },
+    // ]);
   };
 
   return (
@@ -35,7 +35,7 @@ export function CountButton({ selectedAnswer, setSelectedAnswer, handleClickNext
         <Styled.Text>번</Styled.Text>
       </Styled.Container>
 
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }

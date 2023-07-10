@@ -1,36 +1,45 @@
 import { useEffect } from "react";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { IAnswerData } from "src/interfaces/diagnoseApi/diagnosis";
 import { Container } from "../index.style";
 import NextButton from "../nextButton";
 import { AnswersContainer, ButtonBox, ButtonText } from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 interface IDefButton extends IAnswerButtonProps {
-  answers: IAnswer[];
-  handleActive: (id: number) => boolean;
+  answers: IAnswerData[];
+  handleActive: (id: string) => boolean;
 }
 
-const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IDefButton) => {
-  const handleSelect = (id: number) => {
+const DefButton = ({
+  answers,
+  question,
+  selectedAnswer,
+  setSelectedAnswer,
+  handleActive,
+  handleClickNextButton,
+  isNextButtonEnabled,
+}: IDefButton) => {
+  const handleClickAnswer = (selectedId: string) => {
     if (question.is_multiple) {
-      const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
+      if (selectedAnswer.answer_id.includes(selectedId)) {
+        setSelectedAnswer({ ...selectedAnswer, answer_id: selectedAnswer.answer_id.filter((id) => id !== selectedId) });
 
-      if (filtered.length !== selectedAnswer.length) {
-        setSelectedAnswer(filtered);
-      } else {
-        const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
-
-        setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
+        return;
       }
-    } else {
-      const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
 
-      setSelectedAnswer([answers[filtered_idx]]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [...selectedAnswer.answer_id, selectedId] });
+
+      return;
     }
+    if (selectedAnswer.answer_id.includes(selectedId)) {
+      return;
+    }
+
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [selectedId] });
   };
 
   useEffect(() => {
-    if (question.is_multiple || selectedAnswer.length === 0) {
+    if (question.is_multiple || selectedAnswer.answer_id.length === 0) {
       return;
     }
 
@@ -46,14 +55,14 @@ const DefButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
       <AnswersContainer ansCount={answers.length}>
         {answers.length !== 0 &&
           answers.map((ans, idx) => (
-            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+            <ButtonBox key={idx} onClick={() => handleClickAnswer(ans.answer_id + "")} selected={handleActive(ans.answer_id + "")}>
               <section className="button">
                 <ButtonText>{ans.answer}</ButtonText>
               </section>
             </ButtonBox>
           ))}
       </AnswersContainer>
-      {question.is_multiple && <NextButton enabled={selectedAnswer.length > 0} onClick={handleClickNextButton} />}
+      {question.is_multiple && <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />}
     </Container>
   );
 };

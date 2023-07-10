@@ -11,7 +11,7 @@ interface ISmokingAnswer {
   count: number;
 }
 
-export function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function SmockingButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [smokingAnswer, setSmokingAnswer] = useState<ISmokingAnswer>({
     year: 0,
     count: 0,
@@ -26,18 +26,12 @@ export function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickN
 
   useEffect(() => {
     if (smokingAnswer.year === 0 || smokingAnswer.count === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer((sa) => ({ ...sa, answer_id: [] }));
 
       return;
     }
 
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: smokingAnswer.year + "년/" + smokingAnswer.count + "번",
-        next_question: null,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [`하루 ${smokingAnswer.count} 갑, ${smokingAnswer.year} 년 동안`] }));
   }, [setSelectedAnswer, smokingAnswer]);
 
   return (
@@ -57,7 +51,7 @@ export function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickN
           <Styled.Text>번 피웠어요</Styled.Text>
         </Styled.InputContainer>
       </Styled.InputsContainer>
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Container>
   );
 }

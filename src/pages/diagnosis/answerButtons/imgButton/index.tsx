@@ -10,20 +10,14 @@ const bodyPartStyle: React.CSSProperties = { height: "100%", width: "100%" };
 
 type TDigestiveBodyPartKey = keyof typeof DIGESTIVE_BODY_PART;
 
-function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+function ImgButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [digestivePart, setDigestivePart] = useState<TDigestiveBodyPartKey>();
 
   const handleClickBodyPartButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const [, bodyPart] = e.currentTarget.id.split("_");
 
     setDigestivePart(bodyPart as TDigestiveBodyPartKey);
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: DIGESTIVE_BODY_PART[bodyPart as TDigestiveBodyPartKey],
-        next_question: null,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [bodyPart] }));
   };
 
   const styleMapper = (id: TDigestiveBodyPartKey) => (digestivePart === id ? Styled.selectedStyle : Styled.defaultStyle);
@@ -78,7 +72,7 @@ function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }:
         </Styled.BodyPartContainer>
       </Styled.Container>
 
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Styled.RootContainer>
   );
 }

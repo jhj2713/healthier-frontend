@@ -1,11 +1,11 @@
 import { Dispatch } from "react";
-import { IQuestion, IAnswer } from "./diagnoseApi/diagnosis";
+import { IQuestion, ISelectedAnswer } from "./diagnoseApi/diagnosis";
 
 export interface IUseDiagnosis {
   state: string;
   curQuestion: IQuestion;
   setCurQuestion: Dispatch<IQuestion>;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
+  selectedAnswer: ISelectedAnswer | null;
+  setSelectedAnswer: Dispatch<ISelectedAnswer | null>;
   setLoading: Dispatch<boolean>;
 }

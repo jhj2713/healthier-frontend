@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { diagnosisFetcher } from "src/api/diagnose/fetcher";
 import { queryKeys } from "src/api/queryKeys";
 import { ANSWER_TYPE } from "src/data/answer_type";
-import { IAnswer, IQuestion, ITrackData, IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
+import { IAnswer, ISelectedAnswer, IQuestion, IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppSelector } from "src/state";
 import { getNextQuestion } from "src/utils/diagnosisHook";
 import type { TSymptomType } from "src/interfaces/symptomPage";
@@ -21,11 +21,14 @@ function useDiagnosis(state: TSymptomType) {
     answer_type: ANSWER_TYPE.DEF,
     answers: null,
   });
-  const [selectedAnswer, setSelectedAnswer] = useState([] as IAnswer[]);
+  const [selectedAnswer, setSelectedAnswer] = useState<ISelectedAnswer>({
+    answer_id: [],
+    next_question: null,
+  });
 
   const questions = useRef<IQuestion[]>([]);
   const questionHistory = useRef<IQuestion[]>([]);
-  const answers = useRef<ITrackData[]>([]);
+  const answers = useRef<IAnswer[]>([]);
 
   useEffect(() => {
     if (!state) {
@@ -52,7 +55,10 @@ function useDiagnosis(state: TSymptomType) {
       return;
     }
 
-    answers.current = [...answers.current, { question_id: curQuestion.id, answer_id: selectedAnswer.map((ans) => ans.answer_id) }];
+    answers.current = [
+      ...answers.current,
+      { question_id: curQuestion.id + "", answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
+    ];
     questionHistory.current = [...questionHistory.current, curQuestion];
 
     const nextQuestion = getNextQuestion({
@@ -61,10 +67,17 @@ function useDiagnosis(state: TSymptomType) {
       questions: questions.current,
     });
 
-    if (nextQuestion) {
-      setCurQuestion(nextQuestion);
+    if (!nextQuestion) {
+      alert("끝");
+
+      return;
     }
-    setSelectedAnswer([]);
+
+    setCurQuestion(nextQuestion);
+    setSelectedAnswer({
+      answer_id: [],
+      next_question: null,
+    });
   };
 
   const handleBack = () => {

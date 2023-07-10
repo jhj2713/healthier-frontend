@@ -42,28 +42,16 @@ const SLIDER_MIN_VLAUE = 0;
 const SLIDER_MAX_VALUE = 5;
 
 interface ISliderButtonProps extends IAnswerButtonProps {
-  handleActive: (id: number) => boolean;
+  handleActive: (id: string) => boolean;
 }
 
-const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton, handleActive }: ISliderButtonProps) => {
+const SliderButton = ({ setSelectedAnswer, handleClickNextButton, handleActive, isNextButtonEnabled }: ISliderButtonProps) => {
   const handleChangeAnswer = (selectedIdx: number) => {
-    setSelectedAnswer([
-      {
-        answer_id: SLIDER_BUTTON_ANSWERS[selectedIdx].answer_id,
-        answer: SLIDER_BUTTON_ANSWERS[selectedIdx].answer,
-        next_question: SLIDER_BUTTON_ANSWERS[selectedIdx].next_question,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [SLIDER_BUTTON_ANSWERS[selectedIdx].answer_id + ""] }));
   };
 
   useEffect(() => {
-    setSelectedAnswer([
-      {
-        answer_id: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer_id,
-        answer: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer,
-        next_question: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].next_question,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer_id + ""] }));
   }, [setSelectedAnswer]);
 
   return (
@@ -76,7 +64,7 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton
         labels={SLIDER_BUTTON_ANSWERS.map(({ answer }) => answer)}
         isLabelActive={handleActive}
       />
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Container>
   );
 };

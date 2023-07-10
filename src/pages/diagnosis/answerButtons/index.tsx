@@ -1,6 +1,6 @@
 import { Dispatch } from "react";
 import { ANSWER_TYPE } from "src/data/answer_type";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { ISelectedAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import DefButton from "./defButton";
 import EtcButton from "./etcButton";
 import ImgButton from "./imgButton";
@@ -10,18 +10,23 @@ import StringButton from "./stringButton";
 
 interface IAnswerButtonProps {
   question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
+  selectedAnswer: ISelectedAnswer;
+  setSelectedAnswer: Dispatch<React.SetStateAction<ISelectedAnswer>>;
   handleNext: () => void;
 }
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  const handleActive = (id: number): boolean => {
-    return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
+  const handleActive = (id: string): boolean => {
+    return selectedAnswer.answer_id.includes(id);
+    //return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
+  };
+
+  const isNextButtonEnabled = (): boolean => {
+    return selectedAnswer.answer_id.length > 0;
   };
 
   const handleClickNextButton = () => {
-    if (selectedAnswer.length === 0) {
+    if (!isNextButtonEnabled()) {
       return;
     }
 
@@ -37,6 +42,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_2) {
@@ -46,6 +52,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_4) {
@@ -55,6 +62,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
@@ -64,6 +72,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_7) {
@@ -73,6 +82,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_8) {
@@ -82,6 +92,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_9) {
@@ -91,6 +102,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.NUMBER_10) {
@@ -100,6 +112,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
@@ -110,6 +123,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
         handleActive={handleActive}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {
@@ -119,6 +133,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
@@ -130,6 +145,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         handleActive={handleActive}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.IMG) {
@@ -139,6 +155,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
         handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   }
@@ -151,6 +168,7 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
       handleActive={handleActive}
       setSelectedAnswer={setSelectedAnswer}
       handleClickNextButton={handleClickNextButton}
+      isNextButtonEnabled={isNextButtonEnabled}
     />
   );
 };

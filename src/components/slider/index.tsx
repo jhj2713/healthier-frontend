@@ -8,7 +8,7 @@ interface ISliderProps {
   defaultValue: number;
   labels: string[];
   handleChangeAnswer: (idx: number) => void;
-  isLabelActive: (idx: number) => boolean;
+  isLabelActive: (idx: string) => boolean;
 }
 
 const SLIDER_NUMBER_LABELS = [100, 50, 0];
@@ -27,7 +27,7 @@ function Slider({ min, max, defaultValue, labels, handleChangeAnswer, isLabelAct
     <SliderContainer>
       <div className="label-texts">
         {labels.map((label, idx) => (
-          <SliderLabelText key={label} length={labels.length} selected={isLabelActive(idx)}>
+          <SliderLabelText key={label} length={labels.length} selected={isLabelActive(idx + "")}>
             <div className="label-text">{label}</div>
             <div className="label-indicator" />
           </SliderLabelText>

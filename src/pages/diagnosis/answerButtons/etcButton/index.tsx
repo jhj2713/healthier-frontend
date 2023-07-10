@@ -1,31 +1,31 @@
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { IAnswerData } from "src/interfaces/diagnoseApi/diagnosis";
 import { Container as RootContainer } from "../index.style";
 import NextButton from "../nextButton";
 import { Container, ButtonBox, ButtonText } from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 interface IEtcButton extends IAnswerButtonProps {
-  answers: IAnswer[];
-  handleActive: (id: number) => boolean;
+  answers: IAnswerData[];
+  handleActive: (id: string) => boolean;
 }
 
-const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handleActive, handleClickNextButton }: IEtcButton) => {
-  const handleSelect = (id: number) => {
-    if (question.is_multiple) {
-      const filtered = selectedAnswer.filter((ans) => ans.answer_id !== id);
+const EtcButton = ({
+  answers,
+  question,
+  selectedAnswer,
+  setSelectedAnswer,
+  handleActive,
+  handleClickNextButton,
+  isNextButtonEnabled,
+}: IEtcButton) => {
+  const handleClickAnswer = (selectedId: string) => {
+    if (selectedAnswer.answer_id.includes(selectedId)) {
+      setSelectedAnswer({ ...selectedAnswer, answer_id: selectedAnswer.answer_id.filter((id) => id !== selectedId) });
 
-      if (filtered.length !== selectedAnswer.length) {
-        setSelectedAnswer(filtered);
-      } else {
-        const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
-
-        setSelectedAnswer([...selectedAnswer, answers[filtered_idx]]);
-      }
-    } else {
-      const filtered_idx = answers.findIndex((ans) => ans.answer_id === id);
-
-      setSelectedAnswer([answers[filtered_idx]]);
+      return;
     }
+
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [...selectedAnswer.answer_id, selectedId] });
   };
 
   return (
@@ -33,7 +33,7 @@ const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
       <Container ansCount={answers.length}>
         {answers.length !== 0 &&
           answers.map((ans, idx) => (
-            <ButtonBox key={idx} onClick={() => handleSelect(ans.answer_id)} selected={handleActive(ans.answer_id)}>
+            <ButtonBox key={idx} onClick={() => handleClickAnswer(ans.answer_id + "")} selected={handleActive(ans.answer_id + "")}>
               <section className="button">
                 <ButtonText>{ans.answer}</ButtonText>
               </section>
@@ -41,7 +41,7 @@ const EtcButton = ({ answers, question, selectedAnswer, setSelectedAnswer, handl
           ))}
         <input />
       </Container>
-      {question.is_multiple && <NextButton enabled={selectedAnswer.length > 0} onClick={handleClickNextButton} />}
+      {question.is_multiple && <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />}
     </RootContainer>
   );
 };

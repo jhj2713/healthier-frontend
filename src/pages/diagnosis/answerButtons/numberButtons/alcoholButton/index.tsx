@@ -10,20 +10,20 @@ interface IAlcoholNumberState {
   count: number;
 }
 
-export function AlcoholButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function AlcoholButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [alcoholNumber, setAlcoholNumber] = useState<IAlcoholNumberState>({ perWeek: 0, count: 0 });
 
   useEffect(() => {
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: alcoholNumber.perWeek + "번",
-        next_question: null,
-      },
-    ]);
+    if (alcoholNumber.perWeek === 0 || alcoholNumber.count === 0) {
+      setSelectedAnswer((sa) => ({ ...sa, answer_id: [] }));
+
+      return;
+    }
+
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [`1 주에 ${alcoholNumber.count} 번, 1번 마실 때 소주 ${alcoholNumber.perWeek} 번`] }));
   }, [alcoholNumber, setSelectedAnswer]);
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const number = validateNumber(e.target.value);
 
     setAlcoholNumber({ ...alcoholNumber, [e.target.name]: number });
@@ -34,15 +34,15 @@ export function AlcoholButton({ selectedAnswer, setSelectedAnswer, handleClickNe
       <Container>
         <ButtonBox>
           1주에
-          <input type="number" name="perWeek" value={alcoholNumber.perWeek} onChange={handleChange} />번
+          <input type="number" name="perWeek" value={alcoholNumber.perWeek} onChange={handleChangeInput} style={{ color: "#fff" }} />번
         </ButtonBox>
         <ButtonBox>
           1번 마실 때 소주기준
-          <input type="number" name="count" value={alcoholNumber.count} onChange={handleChange} />번 병
+          <input type="number" name="count" value={alcoholNumber.count} onChange={handleChangeInput} style={{ color: "#fff" }} />번 병
         </ButtonBox>
       </Container>
 
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }

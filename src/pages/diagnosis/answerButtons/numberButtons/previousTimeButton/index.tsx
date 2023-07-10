@@ -1,9 +1,9 @@
-import { Dispatch, useState, useEffect } from "react";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { useState, useEffect } from "react";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
 import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const SELECT_TYPES = [
   { value: "hour", text: "시간" },
@@ -15,14 +15,7 @@ interface IPreviousTime {
   type: string;
 }
 
-interface IPreviousTimeButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleClickNextButton: () => void;
-}
-
-export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IPreviousTimeButtonProps) {
+export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [previousTime, setPreviousTime] = useState<IPreviousTime>({
     number: 0,
     type: "hour",
@@ -41,18 +34,18 @@ export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleCl
 
   useEffect(() => {
     if (previousTime.number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
 
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: previousTime.number + previousTime.type,
-        next_question: null,
-      },
-    ]);
+    // setSelectedAnswer([
+    //   {
+    //     answer_id: 0,
+    //     answer: previousTime.number + previousTime.type,
+    //     next_question: null,
+    //   },
+    // ]);
   }, [previousTime, setSelectedAnswer]);
 
   return (
@@ -69,7 +62,7 @@ export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleCl
         <PreviousTimeText>전</PreviousTimeText>
       </PreviousTimeButtonContainer>
 
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }

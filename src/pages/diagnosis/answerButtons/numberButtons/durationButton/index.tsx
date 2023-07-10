@@ -17,7 +17,7 @@ interface IDuration {
   type: TDurationType;
 }
 
-export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IAnswerButtonProps) {
+export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [duration, setDuration] = useState<IDuration>({
     number: 0,
     type: "시간",
@@ -30,24 +30,23 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
     setDuration({ ...duration, number: number });
 
     if (number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
-
-    setSelectedAnswer((sa) => [{ ...sa[0], answer: number + duration.type }]);
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + duration.type] });
   };
 
   const handleButtonClick = (durationType: TDurationType) => {
     setDuration({ ...duration, type: durationType });
 
     if (duration.number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
 
-    setSelectedAnswer((sa) => [{ ...sa[0], answer: duration.number + durationType }]);
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + durationType] });
   };
 
   return (
@@ -81,7 +80,7 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
           ))}
         </Styled.ButtonContainer>
       </Styled.Container>
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }
