@@ -29,3 +29,17 @@ export const DIGESTIVE_BODY_PART = {
 } as const;
 
 export const TIME_TYPES = ["시간", "일", "주", "개월", "년"] as const;
+
+export const INITIAL_QUESTION = {
+  id: 0,
+  question: "",
+  is_multiple: false,
+  image_url: null,
+  answer_type: ANSWER_TYPE.DEF,
+  answers: null,
+};
+
+export const INITIAL_ANSWER = {
+  answer_id: [],
+  next_question: null,
+};
