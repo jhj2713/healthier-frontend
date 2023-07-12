@@ -20,7 +20,7 @@ export const diagnosisFetcher = {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.get(`/stomach?gender=${gender}`);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
-      return fetcher.get("/idigestion");
+      return fetcher.get("/indigestion");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
       return fetcher.get("/hematemesis");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
