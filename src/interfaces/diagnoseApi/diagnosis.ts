@@ -70,6 +70,14 @@ export interface IQuestion {
   answers: IAnswerData[] | null;
 }
 
+export interface IPostAnswersBody {
+  user: {
+    gender: string;
+    age: number;
+  };
+  answers: IAnswer[];
+}
+
 export interface IDecisiveDate {
   question_id: number;
   answer_id: number;
