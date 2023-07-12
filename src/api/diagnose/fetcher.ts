@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { SYMPTOMS_TYPES_MAP } from "src/data/symptom_type";
-import { IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
+import { IDiagnoseResponse, IPostAnswersBody } from "src/interfaces/diagnoseApi/diagnosis";
 import { TSymptomType } from "src/interfaces/symptomPage";
 
 const instance = axios.create({
@@ -61,6 +61,27 @@ export const diagnosisFetcher = {
       return fetcher.get("/constipation?type=after");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
       return fetcher.get("jaundice?type=after");
+    }
+
+    throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
+  },
+  postAnswers(diagnosisType: TSymptomType, postAnswersBody: IPostAnswersBody) {
+    if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
+      return fetcher.post("/stomach", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
+      return fetcher.post("/idigestion", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
+      return fetcher.post("/hematemesis", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
+      return fetcher.post("/bloodystool", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.vomit) {
+      return fetcher.post("/vomit", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.diarrhea) {
+      return fetcher.post("/diarrhea", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.constipation) {
+      return fetcher.post("/constipation", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
+      return fetcher.post("jaundice", postAnswersBody);
     }
 
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
