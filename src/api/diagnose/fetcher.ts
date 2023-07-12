@@ -82,6 +82,14 @@ export const diagnosisFetcher = {
       return fetcher.post("/constipation", postAnswersBody);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
       return fetcher.post("jaundice", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tooth) {
+      return fetcher.post("/tooth", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.gum) {
+      return fetcher.post("/gum", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tlm) {
+      return fetcher.post("/tlm", postAnswersBody);
+    } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tjt) {
+      return fetcher.post("/tjt", postAnswersBody);
     }
 
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
