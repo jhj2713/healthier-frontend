@@ -27,3 +27,5 @@ export const DIGESTIVE_BODY_PART = {
   "middle-lower-stomach": "아랫배 중앙",
   "left-lower-stomach": "왼쪽 아랫배",
 } as const;
+
+export const TIME_TYPES = ["시간", "일", "주", "개월", "년"] as const;

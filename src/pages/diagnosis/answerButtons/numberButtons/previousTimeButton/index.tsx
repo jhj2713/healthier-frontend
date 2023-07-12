@@ -1,24 +1,23 @@
 import { useState, useEffect } from "react";
+import TextFieldStandard from "src/components/textFieldStandard";
+import { TIME_TYPES } from "src/data/answer_type";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
-import { PreviousTimeButtonContainer, PreviousTimeInput, PreviousTimeSelect, PreviousTimeText } from "./index.style";
+import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-const SELECT_TYPES = [
-  { value: "hour", text: "시간" },
-  { value: "day", text: "일" },
-] as const;
+type TTimeType = typeof TIME_TYPES[number];
 
 interface IPreviousTime {
   number: number;
-  type: string;
+  type: TTimeType;
 }
 
-export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
+export function PreviousTimeButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [previousTime, setPreviousTime] = useState<IPreviousTime>({
     number: 0,
-    type: "hour",
+    type: "시간",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,39 +27,49 @@ export function PreviousTimeButton({ selectedAnswer, setSelectedAnswer, handleCl
     setPreviousTime({ ...previousTime, number: number });
   };
 
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setPreviousTime({ ...previousTime, type: e.target.value });
+  const handleClickButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { name: timeType } = e.currentTarget;
+
+    setPreviousTime({ ...previousTime, type: timeType as TTimeType });
   };
 
   useEffect(() => {
     if (previousTime.number === 0) {
-      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
+      setSelectedAnswer((sa) => ({ ...sa, answer_id: [] }));
 
       return;
     }
 
-    // setSelectedAnswer([
-    //   {
-    //     answer_id: 0,
-    //     answer: previousTime.number + previousTime.type,
-    //     next_question: null,
-    //   },
-    // ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [`${previousTime.number} ${previousTime.type} 전`] }));
   }, [previousTime, setSelectedAnswer]);
 
   return (
     <RootContainer>
-      <PreviousTimeButtonContainer>
-        <PreviousTimeInput value={previousTime.number || ""} onChange={handleInputChange} />
-        <PreviousTimeSelect value={previousTime.type} onChange={handleSelectChange}>
-          {SELECT_TYPES.map(({ value, text }) => (
-            <option key={value} value={value}>
-              {text}
-            </option>
+      <Styled.Container>
+        <Styled.InputContainer>
+          <Styled.InputWrapper>
+            <TextFieldStandard
+              type="number"
+              value={previousTime.number || ""}
+              onChange={handleInputChange}
+              placeholder="숫자 입력"
+              style={{ textAlign: "center" }}
+            />
+          </Styled.InputWrapper>
+          <Styled.TextContainer>
+            <Styled.Text className="time-type">시간</Styled.Text>
+            <Styled.Text>전부터</Styled.Text>
+          </Styled.TextContainer>
+        </Styled.InputContainer>
+
+        <Styled.ButtonContainer>
+          {TIME_TYPES.map((timeType) => (
+            <Styled.Button key={timeType} selected={previousTime.type === timeType} onClick={handleClickButton} name={timeType}>
+              {timeType}
+            </Styled.Button>
           ))}
-        </PreviousTimeSelect>
-        <PreviousTimeText>전</PreviousTimeText>
-      </PreviousTimeButtonContainer>
+        </Styled.ButtonContainer>
+      </Styled.Container>
 
       <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>

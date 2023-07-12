@@ -1,6 +1,7 @@
 import { useState } from "react";
 import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
+import { TIME_TYPES } from "src/data/answer_type";
 import theme from "src/lib/theme";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container as RootContainer } from "../../index.style";
@@ -8,9 +9,7 @@ import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-const DURATION_TYPES = ["시간", "일", "주", "개월", "년"] as const;
-
-type TDurationType = typeof DURATION_TYPES[number];
+type TDurationType = typeof TIME_TYPES[number];
 
 interface IDuration {
   number: number;
@@ -63,19 +62,19 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
         </Styled.InputContainer>
 
         <Styled.ButtonContainer>
-          {DURATION_TYPES.map((dt) => (
+          {TIME_TYPES.map((timeType) => (
             // <Styled.DurationButton onClick={() => handleButtonClick(dt)} key={dt} selected={dt === duration.type}>
             //   {dt}
             // </Styled.DurationButton>
             <RoundButton
-              outline={duration.type === dt ? theme.color.sub_blue : theme.color.grey_650}
-              backgroundColor={duration.type === dt ? theme.color.sub_blue : "transparent"}
-              color={duration.type === dt ? "#5464F2" : theme.color.grey_300}
+              outline={duration.type === timeType ? theme.color.sub_blue : theme.color.grey_650}
+              backgroundColor={duration.type === timeType ? theme.color.sub_blue : "transparent"}
+              color={duration.type === timeType ? "#5464F2" : theme.color.grey_300}
               style={{ marginBottom: "1.2rem" }}
-              onClick={() => handleButtonClick(dt)}
-              key={dt}
+              onClick={() => handleButtonClick(timeType)}
+              key={timeType}
             >
-              {dt}
+              {timeType}
             </RoundButton>
           ))}
         </Styled.ButtonContainer>
