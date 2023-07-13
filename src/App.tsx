@@ -29,7 +29,7 @@ const handleResize = () => {
 
 const Main = styled.main`
   width: 100vw;
-  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 
   display: flex;
   flex: 1;
@@ -45,7 +45,7 @@ const Main = styled.main`
 
 const Container = styled.div`
   width: calc(var(--vw, 1vw) * 100);
-  height: (var(--vh, 1vh) * 100);
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 function App() {
