@@ -68,6 +68,7 @@ export interface IQuestion {
   image_url: string | null;
   answer_type: TAnswerType;
   answers: IAnswerData[] | null;
+  sub_content: string | null;
 }
 
 export interface IPostAnswersBody {

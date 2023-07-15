@@ -18,7 +18,6 @@ interface IAnswerButtonProps {
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
   const handleActive = (id: string): boolean => {
     return selectedAnswer.answer_id.includes(id);
-    //return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
   };
 
   const isNextButtonEnabled = (): boolean => {
@@ -32,8 +31,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
 
     handleNext();
   };
-
-  console.log("ANSWER_TYPE:", question.answer_type);
 
   if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
