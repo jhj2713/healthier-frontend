@@ -46,11 +46,6 @@ export const BodyPartRowContainer = styled.div`
   }
 `;
 
-export const BodyPartButton = styled.button`
-  all: unset;
-  cursor: pointer;
-`;
-
 export const defaultStyle: IBodyPartStyle = {
   mixBlendMode: "multiply",
   opacity: 0.8,

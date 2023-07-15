@@ -1,4 +1,4 @@
-export interface IIcon {
+export interface IIcon extends React.HTMLAttributes<HTMLOrSVGElement> {
   style?: React.CSSProperties;
   width?: number;
   height?: number;
