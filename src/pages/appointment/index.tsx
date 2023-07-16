@@ -84,8 +84,14 @@ const Appointment = () => {
                       status={doctor.operatingStatus}
                       distance={doctor.meToHospitalDistance}
                       address={doctor.address}
-                      operatingTime={doctor.operatingTime.start}
-                      lunchTime={doctor.lunchTime.start}
+                      operatingTime={
+                        doctor.operatingTime.start || doctor.operatingTime.end
+                          ? `${doctor.operatingTime.start} ~ ${doctor.operatingTime.end}`
+                          : ""
+                      }
+                      lunchTime={
+                        doctor.lunchTime.start || doctor.lunchTime.end ? `${doctor.lunchTime.start} ~ ${doctor.lunchTime.end}` : ""
+                      }
                       phoneNumber={doctor.phoneNumber}
                     />
                   ))}
