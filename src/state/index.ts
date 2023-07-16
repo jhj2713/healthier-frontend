@@ -17,6 +17,7 @@ export interface UserState {
   birth_year: number;
   interests: number[];
   site: BodyPart[];
+  age: number;
 }
 
 export interface fillInfoAction {

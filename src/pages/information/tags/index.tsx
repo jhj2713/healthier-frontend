@@ -1,23 +1,27 @@
 import React, { memo } from "react";
 import Tag from "src/components/tag";
+import { HEALTH_INTERESTS } from "src/data/interest";
 import { ITagsProps } from "src/interfaces/informationPage";
 import { Container, TagContainer, TagBox, Title } from "./index.style";
 
-const Tags = ({ health, setHealth }: ITagsProps) => {
-  const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    const target = e.target as HTMLElement;
-    const newHealthArr = health.map((heal) => (heal.name === target.innerHTML ? { ...heal, selected: !heal.selected } : heal));
+const Tags = ({ interests, setInterests }: ITagsProps) => {
+  const handleClickTag = (interestId: number) => {
+    if (interests.includes(interestId)) {
+      setInterests((i) => i.filter((id) => id !== interestId));
 
-    setHealth(newHealthArr);
+      return;
+    }
+
+    setInterests([...interests, interestId]);
   };
 
   return (
     <Container>
       <Title>관심 건강분야</Title>
       <TagContainer>
-        {health.map((heal) => (
-          <TagBox className={heal.id.toString()} key={heal.id} onClick={handleClick}>
-            <Tag selected={heal.selected}>{heal.name}</Tag>
+        {HEALTH_INTERESTS.map((heal) => (
+          <TagBox className={heal.id.toString()} key={heal.id} onClick={() => handleClickTag(heal.id)}>
+            <Tag selected={interests.includes(heal.id)}>{heal.name}</Tag>
           </TagBox>
         ))}
       </TagContainer>

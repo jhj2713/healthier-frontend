@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Heading_3 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Line = styled.section`
   width: 2.4rem;

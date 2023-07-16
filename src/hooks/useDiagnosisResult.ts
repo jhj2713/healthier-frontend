@@ -52,7 +52,7 @@ function useDiagnosisResult(state: IDiagnosticResult) {
         setIsSaved(true);
       }
     }
-  }, [state]);
+  }, [state, navigate]);
 
   return { coverData, defineData, lifeData, medicineData, treatData, isSaved };
 }

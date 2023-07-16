@@ -1,7 +1,7 @@
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import { ISelectedAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 
 interface IGetNextQuestionParams {
-  selectedAnswer: IAnswer[];
+  selectedAnswer: ISelectedAnswer;
   curQuestion: IQuestion;
   questions: IQuestion[];
 }
@@ -13,5 +13,5 @@ export const getNextQuestion = ({ selectedAnswer, curQuestion, questions }: IGet
     return null;
   }
 
-  return selectedAnswer[0]?.next_question ?? questions[nextQuestionIdx];
+  return selectedAnswer.next_question ?? questions[nextQuestionIdx];
 };

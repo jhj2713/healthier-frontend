@@ -1,10 +1,8 @@
-import { Dispatch, useEffect } from "react";
-import RoundButton from "src/components/roundButton";
+import { useEffect } from "react";
 import Slider from "src/components/slider";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import theme from "src/lib/theme";
-import { Container } from "../answerButtons/index.style";
+import { Container } from "../index.style";
 import NextButton from "../nextButton";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const SLIDER_BUTTON_ANSWERS = [
   {
@@ -43,33 +41,18 @@ const DEFAULT_ANSWER_IDX = 2;
 const SLIDER_MIN_VLAUE = 0;
 const SLIDER_MAX_VALUE = 5;
 
-interface ISliderButtonProps {
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleActive: (id: number) => boolean;
-  handleClickNextButton: () => void;
+interface ISliderButtonProps extends IAnswerButtonProps {
+  handleActive: (id: string) => boolean;
 }
 
-const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton, handleActive }: ISliderButtonProps) => {
+const SliderButton = ({ setSelectedAnswer, handleClickNextButton, handleActive, isNextButtonEnabled }: ISliderButtonProps) => {
   const handleChangeAnswer = (selectedIdx: number) => {
-    setSelectedAnswer([
-      {
-        answer_id: SLIDER_BUTTON_ANSWERS[selectedIdx].answer_id,
-        answer: SLIDER_BUTTON_ANSWERS[selectedIdx].answer,
-        next_question: SLIDER_BUTTON_ANSWERS[selectedIdx].next_question,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [SLIDER_BUTTON_ANSWERS[selectedIdx].answer_id + ""] }));
   };
 
   useEffect(() => {
-    setSelectedAnswer([
-      {
-        answer_id: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer_id,
-        answer: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer,
-        next_question: SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].next_question,
-      },
-    ]);
-  }, []);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [SLIDER_BUTTON_ANSWERS[DEFAULT_ANSWER_IDX].answer_id + ""] }));
+  }, [setSelectedAnswer]);
 
   return (
     <Container>
@@ -81,7 +64,7 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton
         labels={SLIDER_BUTTON_ANSWERS.map(({ answer }) => answer)}
         isLabelActive={handleActive}
       />
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Container>
   );
 };

@@ -1,24 +1,17 @@
-import { Dispatch, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import TextFieldOutlined from "src/components/textFieldOutlined";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import { validateNumber } from "src/utils/inputUtils";
-import { Container } from "../../answerButtons/index.style";
+import { Container } from "../../index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
-
-interface ISmockingButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleClickNextButton: () => void;
-}
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 interface ISmokingAnswer {
   year: number;
   count: number;
 }
 
-function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: ISmockingButtonProps) {
+export function SmockingButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [smokingAnswer, setSmokingAnswer] = useState<ISmokingAnswer>({
     year: 0,
     count: 0,
@@ -33,18 +26,12 @@ function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
 
   useEffect(() => {
     if (smokingAnswer.year === 0 || smokingAnswer.count === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer((sa) => ({ ...sa, answer_id: [] }));
 
       return;
     }
 
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: smokingAnswer.year + "년/" + smokingAnswer.count + "번",
-        next_question: null,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [`하루 ${smokingAnswer.count} 갑, ${smokingAnswer.year} 년 동안`] }));
   }, [setSelectedAnswer, smokingAnswer]);
 
   return (
@@ -64,9 +51,7 @@ function SmockingButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
           <Styled.Text>번 피웠어요</Styled.Text>
         </Styled.InputContainer>
       </Styled.InputsContainer>
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Container>
   );
 }
-
-export default SmockingButton;

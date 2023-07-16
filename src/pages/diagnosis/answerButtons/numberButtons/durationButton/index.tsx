@@ -1,30 +1,22 @@
-import { Dispatch, useState } from "react";
+import { useState } from "react";
 import RoundButton from "src/components/roundButton";
 import TextFieldOutlined from "src/components/textFieldOutlined";
-import { IQuestion, IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
+import { TIME_TYPES } from "src/data/answer_type";
 import theme from "src/lib/theme";
 import { validateNumber } from "src/utils/inputUtils";
-import { Container as RootContainer } from "../../answerButtons/index.style";
+import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-const DURATION_TYPES = ["시간", "일", "주", "개월", "년"] as const;
-
-type TDurationType = typeof DURATION_TYPES[number];
+type TDurationType = typeof TIME_TYPES[number];
 
 interface IDuration {
   number: number;
   type: TDurationType;
 }
 
-interface IDurationButtonProps {
-  question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
-  handleClickNextButton: () => void;
-}
-
-function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IDurationButtonProps) {
+export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [duration, setDuration] = useState<IDuration>({
     number: 0,
     type: "시간",
@@ -37,24 +29,23 @@ function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
     setDuration({ ...duration, number: number });
 
     if (number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
-
-    setSelectedAnswer((sa) => [{ ...sa[0], answer: number + duration.type }]);
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + duration.type] });
   };
 
   const handleButtonClick = (durationType: TDurationType) => {
     setDuration({ ...duration, type: durationType });
 
     if (duration.number === 0) {
-      setSelectedAnswer([]);
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [] });
 
       return;
     }
 
-    setSelectedAnswer((sa) => [{ ...sa[0], answer: duration.number + durationType }]);
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + durationType] });
   };
 
   return (
@@ -71,26 +62,24 @@ function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickNextButt
         </Styled.InputContainer>
 
         <Styled.ButtonContainer>
-          {DURATION_TYPES.map((dt) => (
+          {TIME_TYPES.map((timeType) => (
             // <Styled.DurationButton onClick={() => handleButtonClick(dt)} key={dt} selected={dt === duration.type}>
             //   {dt}
             // </Styled.DurationButton>
             <RoundButton
-              outline={duration.type === dt ? theme.color.sub_blue : theme.color.grey_650}
-              backgroundColor={duration.type === dt ? theme.color.sub_blue : "transparent"}
-              color={duration.type === dt ? "#5464F2" : theme.color.grey_300}
+              outline={duration.type === timeType ? theme.color.sub_blue : theme.color.grey_650}
+              backgroundColor={duration.type === timeType ? theme.color.sub_blue : "transparent"}
+              color={duration.type === timeType ? "#5464F2" : theme.color.grey_300}
               style={{ marginBottom: "1.2rem" }}
-              onClick={() => handleButtonClick(dt)}
-              key={dt}
+              onClick={() => handleButtonClick(timeType)}
+              key={timeType}
             >
-              {dt}
+              {timeType}
             </RoundButton>
           ))}
         </Styled.ButtonContainer>
       </Styled.Container>
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </RootContainer>
   );
 }
-
-export default DurationButton;

@@ -6,6 +6,7 @@ export const Container = styled.div`
   align-items: center;
 
   margin-top: 11.2rem;
+  padding: 0 2rem;
 `;
 
 export const InputContainer = styled.div`
@@ -29,6 +30,8 @@ export const Text = styled.span<{ color: string }>`
 
 export const ButtonContainer = styled.div`
   margin-top: 6rem;
+  width: 100%;
+
   // display: flex;
   // flex-direction: row;
   // justify-content: center;

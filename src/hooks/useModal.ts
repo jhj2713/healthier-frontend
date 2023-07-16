@@ -5,6 +5,14 @@ function useModal() {
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const handleOutsideClick = (e: Event) => {
+      const current = modalRef.current;
+
+      if (isOpenModal && current && !current.contains(e.target as Node)) {
+        setIsOpenModal(false);
+      }
+    };
+
     document.addEventListener("mousedown", handleOutsideClick);
 
     return () => {
@@ -22,14 +30,6 @@ function useModal() {
 
   const closeModal = () => {
     setIsOpenModal(false);
-  };
-
-  const handleOutsideClick = (e: Event) => {
-    const current = modalRef.current;
-
-    if (isOpenModal && current && !current.contains(e.target as Node)) {
-      setIsOpenModal(false);
-    }
   };
 
   return { isOpenModal, modalRef, toggleOpenModal, closeModal, openModal };

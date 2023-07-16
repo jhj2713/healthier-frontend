@@ -1,35 +1,23 @@
 import { useState } from "react";
+import * as BodyPart from "src/assets/bodyParts";
+import BodyImage from "src/assets/images/body.png";
 import { DIGESTIVE_BODY_PART } from "src/data/answer_type";
-import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
-import * as BodyPart from "../../../assets/bodyParts";
-import BodyImage from "../../../assets/images/body.png";
 import NextButton from "../nextButton";
 import * as Styled from "./index.style";
+import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
 const bodyPartStyle: React.CSSProperties = { height: "100%", width: "100%" };
 
-interface IImgButton {
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: React.Dispatch<React.SetStateAction<IAnswer[]>>;
-  handleClickNextButton: () => void;
-}
-
 type TDigestiveBodyPartKey = keyof typeof DIGESTIVE_BODY_PART;
 
-function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IImgButton) {
+function ImgButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [digestivePart, setDigestivePart] = useState<TDigestiveBodyPartKey>();
 
   const handleClickBodyPartButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     const [, bodyPart] = e.currentTarget.id.split("_");
 
     setDigestivePart(bodyPart as TDigestiveBodyPartKey);
-    setSelectedAnswer([
-      {
-        answer_id: 0,
-        answer: DIGESTIVE_BODY_PART[bodyPart as TDigestiveBodyPartKey],
-        next_question: null,
-      },
-    ]);
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [bodyPart] }));
   };
 
   const styleMapper = (id: TDigestiveBodyPartKey) => (digestivePart === id ? Styled.selectedStyle : Styled.defaultStyle);
@@ -84,7 +72,7 @@ function ImgButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }:
         </Styled.BodyPartContainer>
       </Styled.Container>
 
-      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
     </Styled.RootContainer>
   );
 }

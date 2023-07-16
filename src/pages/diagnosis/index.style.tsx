@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Heading_3, Body_1, Body_3 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Container = styled.section`
   height: 100%;
