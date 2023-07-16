@@ -4,7 +4,10 @@ import imageUrl from "src/data/image_url";
 import { ILoginModal } from "src/interfaces/modal";
 import { Container, Contents, NoteImage, BottomButtons, LoginButton, Continue } from "./index.style";
 
-const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ title, continueText, closeModal, handleContinue, handleLogin }, ref) => {
+const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(function LoginModal(
+  { title, continueText, closeModal, handleContinue, handleLogin },
+  ref
+) {
   return (
     <ModalContainer>
       <Container ref={ref}>
@@ -28,7 +31,5 @@ const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(({ title, continueTex
     </ModalContainer>
   );
 });
-
-LoginModal.displayName = "LoginModal";
 
 export default LoginModal;

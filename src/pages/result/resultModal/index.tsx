@@ -10,7 +10,7 @@ import { Title, Description } from "./index.style";
 
 const Kakao = (window as any).Kakao;
 
-const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setLoading, resultId }, ref) => {
+const ResultModal = forwardRef<HTMLDivElement, IResultModal>(function ResultModal({ closeModal, setLoading, resultId }, ref) {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -69,7 +69,5 @@ const ResultModal = forwardRef<HTMLDivElement, IResultModal>(({ closeModal, setL
     />
   );
 });
-
-ResultModal.displayName = "ResultModal";
 
 export default ResultModal;

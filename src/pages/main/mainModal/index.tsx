@@ -9,7 +9,7 @@ import { Title } from "./index.style";
 
 const Kakao = (window as any).Kakao;
 
-const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) => {
+const MainModal = forwardRef<HTMLDivElement, IMainModal>(function MainModal({ closeModal }, ref) {
   const dispatch = useAppDispatch();
 
   const kakaoLogin = () => {
@@ -55,7 +55,5 @@ const MainModal = forwardRef<HTMLDivElement, IMainModal>(({ closeModal }, ref) =
     />
   );
 });
-
-MainModal.displayName = "MainModal";
 
 export default MainModal;
