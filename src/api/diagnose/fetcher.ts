@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { SYMPTOMS_TYPES_MAP } from "src/data/symptom_type";
-import { IDiagnoseResponse, IPostAnswersBody } from "src/interfaces/diagnoseApi/diagnosis";
+import { IQuestionResponse, IPostAnswersBody } from "src/interfaces/diagnoseApi/diagnosis";
 import { TSymptomType } from "src/interfaces/symptomPage";
 
 const instance = axios.create({
@@ -16,7 +16,7 @@ export const fetcher = {
 };
 
 export const diagnosisFetcher = {
-  getQuestions(diagnosisType: TSymptomType, gender: string): Promise<IDiagnoseResponse> {
+  getQuestions(diagnosisType: TSymptomType, gender: string): Promise<IQuestionResponse> {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.get(`/stomach?gender=${gender}`);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
@@ -44,7 +44,7 @@ export const diagnosisFetcher = {
     }
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
   },
-  getFollowingQuestions(diagnosisType: TSymptomType, gender: string): Promise<IDiagnoseResponse> {
+  getFollowingQuestions(diagnosisType: TSymptomType, gender: string): Promise<IQuestionResponse> {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.get(`/stomach?type=after&gender=${gender}`);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {

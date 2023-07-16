@@ -1,5 +1,6 @@
 import severityTypes from "src/data/severity_types";
-import { Container, BannerImgContainer, BannerImg, Box, Title, DateItem, Tag, TitleContainer, BannerShadow } from "./index.style";
+import * as Styled from "./index.style";
+import type { IDiagnoseResult } from "src/interfaces/diagnoseApi/diagnosis";
 
 export interface IDiagnosisItem {
   banner_illustration: string;
@@ -10,29 +11,28 @@ export interface IDiagnosisItem {
     severity: number;
   };
 }
-export interface IDiagnosisCard {
+export interface IDiagnosisCardProps {
   isSquare?: boolean;
-  diagnosis: IDiagnosisItem;
-  handleNavigate: () => void;
+  result: IDiagnoseResult;
+  handleNavigate: (dx_id: string) => void;
 }
 
-const DiagnosisCard = ({ isSquare = false, diagnosis, handleNavigate }: IDiagnosisCard) => {
-  const diagDate = diagnosis.record.is_created ? new Date(diagnosis.record.is_created) : null;
+const DiagnosisCard = ({ isSquare = false, result, handleNavigate }: IDiagnosisCardProps) => {
+  const { severity, dx_name, dx_id } = result;
 
   return (
-    <Container severity={diagnosis.record.severity} onClick={handleNavigate} isSquare={isSquare}>
-      <BannerImgContainer>
-        <BannerImg alt="banner" src={diagnosis.banner_illustration} isSquare={isSquare} />
-        {isSquare && <BannerShadow />}
-      </BannerImgContainer>
-      <Box isDate={diagDate}>
-        <TitleContainer>
-          <Title severity={diagnosis.record.severity}>{diagnosis.record.title}</Title>
-          {diagDate && <DateItem severity={diagnosis.record.severity}>{`${diagDate.getMonth() + 1}월 ${diagDate.getDate()}일`}</DateItem>}
-        </TitleContainer>
-        <Tag severity={diagnosis.record.severity}>{severityTypes[diagnosis.record.severity]}</Tag>
-      </Box>
-    </Container>
+    <Styled.Container isSquare={isSquare} severity={severity} onClick={() => handleNavigate(dx_id)}>
+      <Styled.IllustrationWrapper>
+        <Styled.Illustration alt="illustration" src="" isSquare={isSquare} />
+        {isSquare && <Styled.IllustrationShadow />}
+      </Styled.IllustrationWrapper>
+      <Styled.Box isDate={null}>
+        <Styled.TitleWrapper>
+          <Styled.Title severity={severity}>{dx_name}</Styled.Title>
+        </Styled.TitleWrapper>
+        <Styled.Chip severity={severity}>{severity}</Styled.Chip>
+      </Styled.Box>
+    </Styled.Container>
   );
 };
 

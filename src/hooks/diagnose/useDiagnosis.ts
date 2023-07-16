@@ -12,7 +12,7 @@ function useDiagnosis(state: TSymptomType) {
   const navigate = useNavigate();
   const { gender, age } = useAppSelector((appState) => appState.user);
 
-  const [curQuestion, setCurQuestion] = useState<IQuestion>(INITIAL_QUESTION);
+  const [curQuestion, setCurQuestion] = useState<IQuestion | null>(INITIAL_QUESTION);
   const [selectedAnswer, setSelectedAnswer] = useState<ISelectedAnswer>(INITIAL_ANSWER);
 
   const questions = useRef<IQuestion[]>([]);
@@ -38,7 +38,7 @@ function useDiagnosis(state: TSymptomType) {
   }, [questionsData]);
 
   const handleNext = () => {
-    if (questionHistory.current === undefined || questions.current === undefined) {
+    if (curQuestion === null) {
       return;
     }
 
@@ -54,6 +54,7 @@ function useDiagnosis(state: TSymptomType) {
     });
 
     if (!nextQuestion) {
+      setCurQuestion(null);
       postAnswer();
 
       return;
@@ -69,10 +70,6 @@ function useDiagnosis(state: TSymptomType) {
   };
 
   const handleBack = () => {
-    if (questionHistory.current === undefined || questions.current === undefined) {
-      return;
-    }
-
     if (questionHistory.current.length === 0) {
       navigate(-1);
 
@@ -92,7 +89,14 @@ function useDiagnosis(state: TSymptomType) {
     answers.current = answers.current.slice(0, answersLastIdx);
   };
 
-  return { isLoading: isLoading || isPending, curQuestion, handleNext, handleBack, selectedAnswer, setSelectedAnswer };
+  return {
+    isLoading: isLoading || isPending,
+    curQuestion: curQuestion ?? INITIAL_QUESTION,
+    handleNext,
+    handleBack,
+    selectedAnswer,
+    setSelectedAnswer,
+  };
 }
 
 export default useDiagnosis;

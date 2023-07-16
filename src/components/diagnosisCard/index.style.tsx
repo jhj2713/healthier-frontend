@@ -1,20 +1,19 @@
 import { Heading_5 } from "src/lib/fontStyle";
 import styled from "styled-components";
+import type { TSeverity } from "src/interfaces/diagnoseApi/diagnosis";
 
-export const Container = styled.section<{ severity: number; isSquare: boolean }>`
+export const Container = styled.section<{ severity: TSeverity; isSquare: boolean }>`
   position: relative;
+  width: 100%;
   height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
+
   background: ${({ theme, severity }) =>
-    severity === 3
-      ? theme.color.sub_blue
-      : severity === 2
-      ? theme.color.blue_500
-      : severity === 1
-      ? theme.color.blue_700
-      : theme.color.blue_800};
+    severity === "관리가 필요해요" ? theme.color.blue_300 : severity === "병원에 가는 걸 추천해요" ? theme.color.blue_500 : "#2745A9"};
   background-size: cover;
 
   border-radius: 0.8rem;
+
+  cursor: pointer;
 
   & + & {
     margin-top: 1rem;
@@ -34,16 +33,18 @@ export const Box = styled.section<{ isDate: Date | null }>`
   align-items: flex-start;
 `;
 
-export const TitleContainer = styled.div`
+export const TitleWrapper = styled.div`
   margin-bottom: 0.6rem;
 `;
 
-export const Title = styled(Heading_5)<{ severity: number }>`
-  color: ${({ theme, severity }) => (severity === 3 ? theme.color.blue_800 : theme.color.grey_200)};
+export const Title = styled(Heading_5)<{ severity: TSeverity }>`
+  color: ${({ theme, severity }) => (severity === "관리가 필요해요" ? theme.color.blue_800 : theme.color.grey_200)};
 
   width: 12rem;
 
   font-size: 2rem;
+  line-height: 140%;
+  font-weight: 300;
 `;
 
 export const DateItem = styled.section<{ severity: number }>`
@@ -57,36 +58,42 @@ export const DateItem = styled.section<{ severity: number }>`
   margin-top: 0.4rem;
 `;
 
-export const Tag = styled.section<{ severity: number }>`
+export const Chip = styled.section<{ severity: TSeverity }>`
   background-color: ${({ theme, severity }) =>
-    (severity === 3 && theme.color.blue) || (severity === 2 && theme.color.blue_700) || (severity <= 1 && theme.color.sub_blue)};
-  color: ${({ theme, severity }) => (severity === 3 || severity === 2 ? theme.color.grey_200 : theme.color.blue)};
+    severity === "관리가 필요해요"
+      ? theme.color.blue
+      : severity === "병원에 가는 걸 추천해요"
+      ? theme.color.blue_700
+      : theme.color.sub_blue};
+  color: ${({ theme, severity }) => (severity === "병원에 꼭 가야해요" ? theme.color.blue : theme.color.grey_100)};
 
   font-weight: 300;
   font-size: 1.3rem;
-  line-height: 130%;
+  line-height: 150%;
   letter-spacing: -0.05rem;
 
   padding: 0.6rem 1rem;
   border-radius: 3rem;
 `;
 
-export const BannerImgContainer = styled.section`
+export const IllustrationWrapper = styled.section`
   position: absolute;
   right: 0;
+  height: 100%;
 `;
 
-export const BannerImg = styled.img<{ isSquare: boolean }>`
-  height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
+export const Illustration = styled.img<{ isSquare: boolean }>`
   border-radius: ${({ isSquare }) => (isSquare ? "0.8rem" : "0 0.8rem 0.8rem 0")};
+  height: 100%;
+  width: fit-content;
 `;
 
-export const BannerShadow = styled.div`
+export const IllustrationShadow = styled.div`
   position: absolute;
   left: 0;
   top: 0;
 
-  height: calc(var(--vw, 1vw) * 100 - 4.8rem);
+  height: 100%;
   width: 100%;
 
   background: linear-gradient(180deg, rgba(19, 20, 22, 0.35) 0%, rgba(19, 20, 22, 0) 100%);

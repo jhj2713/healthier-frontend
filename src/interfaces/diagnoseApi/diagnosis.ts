@@ -88,9 +88,23 @@ export interface IDecisiveDate {
   tracks: ITrackData[];
 }
 
-export interface IDiagnoseResponse {
+export interface IQuestionResponse {
   category: string;
   question: IQuestion[];
+}
+
+export type TSeverity = "관리가 필요해요" | "병원에 가는 걸 추천해요" | "병원에 꼭 가야해요";
+
+export interface IDiagnoseResult {
+  dx_id: string;
+  dx_name: string;
+  most_likely: boolean;
+  severity: TSeverity;
+}
+
+export interface IDiagnoseResponse {
+  user_id: string;
+  diagnosis: IDiagnoseResult[];
 }
 
 export interface IDiagnoseAnswers {
