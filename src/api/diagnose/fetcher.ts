@@ -26,13 +26,13 @@ export const diagnosisFetcher = {
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
       return fetcher.get("/bloodystool");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.vomit) {
-      return fetcher.get("/vomit");
+      return fetcher.get(`/vomit?gender=${gender}`);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.diarrhea) {
       return fetcher.get("/diarrhea");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.constipation) {
       return fetcher.get("/constipation");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.jaundice) {
-      return fetcher.get(`/jaundice?gender=${gender}`);
+      return fetcher.get("jaundice");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.tooth) {
       return fetcher.get("/tooth");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.gum) {
