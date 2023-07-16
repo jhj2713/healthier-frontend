@@ -6,6 +6,9 @@ export const Container = styled.div`
   left: 2rem;
   top: 5rem;
   width: calc(100% - 4rem);
+`;
+
+export const InputContainer = styled.div`
   box-sizing: border-box;
 
   display: flex;
@@ -27,4 +30,8 @@ export const Input = styled.input`
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.03rem;
+`;
+
+export const FilterContainer = styled.div`
+  margin-top: 1.8rem;
 `;

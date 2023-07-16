@@ -53,7 +53,6 @@ const Appointment = () => {
       <Search />
       <Map />
       <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
-        <Styled.FilterContainer>거리순</Styled.FilterContainer>
         <Styled.CardContainer>
           {MockDoctorData.map((doctor, idx) => (
             <DoctorCard
@@ -64,7 +63,6 @@ const Appointment = () => {
               distance={doctor.distance}
               address={doctor.address}
               time={doctor.time}
-              inspection={doctor.inspection}
             />
           ))}
         </Styled.CardContainer>

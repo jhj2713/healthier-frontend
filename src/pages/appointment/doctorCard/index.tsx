@@ -7,10 +7,9 @@ interface IDoctorCardProps {
   distance: number;
   address: string;
   time: string;
-  inspection: string[];
 }
 
-const DoctorCard = ({ title, category, status, distance, address, time, inspection }: IDoctorCardProps) => {
+const DoctorCard = ({ title, category, status, distance, address, time }: IDoctorCardProps) => {
   return (
     <Styled.Container>
       <Styled.HeaderContainer>
@@ -25,11 +24,6 @@ const DoctorCard = ({ title, category, status, distance, address, time, inspecti
           {distance}km ㅣ {address}
         </Styled.Description>
         <Styled.Description>{time}</Styled.Description>
-      </div>
-      <div>
-        {inspection.map((inspect, idx) => (
-          <Styled.InspectionTag key={idx}>{inspect}</Styled.InspectionTag>
-        ))}
       </div>
     </Styled.Container>
   );
