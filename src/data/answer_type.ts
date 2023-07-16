@@ -32,7 +32,7 @@ export const DIGESTIVE_BODY_PART = {
 export const TIME_TYPES = ["시간", "일", "주", "개월", "년"] as const;
 
 export const INITIAL_QUESTION = {
-  id: 0,
+  id: "",
   question: "",
   is_multiple: false,
   image_url: null,

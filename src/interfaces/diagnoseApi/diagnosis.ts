@@ -56,13 +56,13 @@ export interface IAnswer extends Omit<ISelectedAnswer, "next_question"> {
 }
 
 export interface IAnswerData {
-  answer_id: number;
+  answer_id: string;
   answer: string;
   next_question: IQuestion | null;
 }
 
 export interface IQuestion {
-  id: number;
+  id: string;
   question: string;
   is_multiple: boolean;
   image_url: string | null;

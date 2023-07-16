@@ -33,7 +33,7 @@ const EtcButton = ({
       <Container ansCount={answers.length}>
         {answers.length !== 0 &&
           answers.map((ans, idx) => (
-            <ButtonBox key={idx} onClick={() => handleClickAnswer(ans.answer_id + "")} selected={handleActive(ans.answer_id + "")}>
+            <ButtonBox key={idx} onClick={() => handleClickAnswer(ans.answer_id)} selected={handleActive(ans.answer_id)}>
               <section className="button">
                 <ButtonText>{ans.answer}</ButtonText>
               </section>

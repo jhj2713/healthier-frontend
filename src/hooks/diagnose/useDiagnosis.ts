@@ -44,7 +44,7 @@ function useDiagnosis(state: TSymptomType) {
 
     answers.current = [
       ...answers.current,
-      { question_id: curQuestion.id + "", answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
+      { question_id: curQuestion.id, answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
     ];
 
     const nextQuestion = getNextQuestion({

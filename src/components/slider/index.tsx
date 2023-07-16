@@ -8,7 +8,7 @@ interface ISliderProps {
   defaultValue: number;
   labels: string[];
   handleChangeAnswer: (idx: number) => void;
-  isLabelActive: (idx: string) => boolean;
+  isLabelActive: (id: string) => boolean;
 }
 
 const SLIDER_NUMBER_LABELS = [100, 50, 0];
