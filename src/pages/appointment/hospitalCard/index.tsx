@@ -1,6 +1,6 @@
 import * as Styled from "./index.style";
 
-interface IDoctorCardProps {
+interface IHospitalCardProps {
   title: string;
   category: string;
   status: "OPEN" | "CLOSED" | "UNKNOWN";
@@ -16,7 +16,7 @@ const statusMap = {
   UNKNOWN: "정보없음",
 } as const;
 
-const DoctorCard = ({ title, category, status, distance, address, operatingTime, lunchTime, phoneNumber }: IDoctorCardProps) => {
+const HospitalCard = ({ title, category, status, distance, address, operatingTime, lunchTime, phoneNumber }: IHospitalCardProps) => {
   return (
     <Styled.Container>
       <Styled.HeaderContainer>
@@ -43,4 +43,4 @@ const DoctorCard = ({ title, category, status, distance, address, operatingTime,
   );
 };
 
-export default DoctorCard;
+export default HospitalCard;

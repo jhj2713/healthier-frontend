@@ -7,7 +7,7 @@ import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import { IUserMapResponse } from "src/interfaces/map";
 import { emergencyNightData } from "./data";
-import DoctorCard from "./doctorCard";
+import HospitalCard from "./hospitalCard";
 import * as Styled from "./index.style";
 import Map from "./map";
 import Search from "./search";
@@ -77,7 +77,7 @@ const Appointment = () => {
                       (selectedFilter.nightService ? hospital.nightService === "Y" : true)
                   )
                   .map((doctor, idx) => (
-                    <DoctorCard
+                    <HospitalCard
                       key={idx}
                       title={doctor.name}
                       category={doctor.type}

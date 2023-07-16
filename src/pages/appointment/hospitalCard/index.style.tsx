@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Body_2 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Container = styled.div`
   box-sizing: border-box;
