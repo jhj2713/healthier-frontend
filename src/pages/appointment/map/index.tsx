@@ -1,34 +1,18 @@
 import "leaflet/dist/leaflet.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MapGl, { Marker, ViewStateChangeEvent } from "react-map-gl";
+import { IHospitalInfo } from "src/interfaces/map";
 import styled from "styled-components";
 import RefixButton from "./refixButton";
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const DoctorPositions = [
-  { lat: 37.562, lng: 126.94 },
-  { lat: 37.561, lng: 126.938 },
-];
+interface IMapProps {
+  currentPosition: { lat: number; lng: number };
+  doctorPositions: IHospitalInfo[];
+}
 
-const Map = () => {
-  const [currentPosition, setCurrentPosition] = useState({
-    lat: 0,
-    lng: 0,
-  });
+const Map = ({ currentPosition, doctorPositions }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
-
-  useEffect(() => {
-    // navigator.geolocation.getCurrentPosition(function (position) {
-    //   setCurrentPosition({
-    //     lat: position.coords.latitude,
-    //     lng: position.coords.longitude,
-    //   });
-    // });
-    setCurrentPosition({
-      lat: 37.561,
-      lng: 126.946,
-    });
-  }, []);
 
   const handleMove = (e: ViewStateChangeEvent) => {
     if (throttleRef.current) {
@@ -57,8 +41,8 @@ const Map = () => {
           mapStyle={process.env.REACT_APP_MAP_STYLE}
           onMove={handleMove}
         >
-          {DoctorPositions.map((doc, idx) => (
-            <Marker key={idx} latitude={doc.lat} longitude={doc.lng}>
+          {doctorPositions.map((doc, idx) => (
+            <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x}>
               <img src="/images/doctorAppointment/map-pin.svg" width={28} height={28} />
             </Marker>
           ))}

@@ -1,5 +1,11 @@
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { AxiosError } from "axios";
+import { useEffect, useState } from "react";
+import { mapFetcher } from "src/api/map/fetcher";
 import BottomSheet from "src/components/bottomSheet";
+import Loading from "src/components/loading";
+import imageUrl from "src/data/image_url";
+import { IUserMapResponse } from "src/interfaces/map";
 import { emergencyNightData } from "./data";
 import DoctorCard from "./doctorCard";
 import * as Styled from "./index.style";
@@ -7,88 +13,92 @@ import Map from "./map";
 import Search from "./search";
 import { EmergencyNightTag } from "./tags";
 
-const MockDoctorData = [
-  {
-    title: "세브란스병원",
-    category: "대학병원",
-    status: "진료중",
-    distance: 9.7,
-    address: "서울 서대문구 연세로 50-1 (신촌동)",
-    time: "평일 8:30 ~ 17:00 ㅣ 토요일 8:30 ~ 12:30",
-    inspection: ["MRI/CT 검사", "PCR검사", "초음파검사"],
-  },
-  {
-    title: "서강신촌병원",
-    category: "병원",
-    status: "진료마감",
-    distance: 13.1,
-    address: "13.1km ㅣ 서울 마포구 서강로 300",
-    time: "평일 8:30 ~ 17:00 ㅣ 토요일 8:30 ~ 12:30",
-    inspection: ["PCR검사"],
-  },
-  {
-    title: "세브란스병원",
-    category: "대학병원",
-    status: "진료중",
-    distance: 9.7,
-    address: "서울 서대문구 연세로 50-1 (신촌동)",
-    time: "평일 8:30 ~ 17:00 ㅣ 토요일 8:30 ~ 12:30",
-    inspection: ["MRI/CT 검사", "PCR검사", "초음파검사"],
-  },
-  {
-    title: "서강신촌병원",
-    category: "병원",
-    status: "진료마감",
-    distance: 13.1,
-    address: "13.1km ㅣ 서울 마포구 서강로 300",
-    time: "평일 8:30 ~ 17:00 ㅣ 토요일 8:30 ~ 12:30",
-    inspection: ["PCR검사"],
-  },
-];
-
 interface ISelectedFilter {
   emergencyNight: boolean;
   nightService: boolean;
 }
 
 const Appointment = () => {
+  const [currentPosition, setCurrentPosition] = useState({
+    lat: 0,
+    lng: 0,
+  });
+  const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
+
+  const { data, isFetching, isSuccess } = useQuery<IUserMapResponse, AxiosError>({
+    queryKey: ["appointment", "map", currentPosition],
+    queryFn: () => mapFetcher.getUserMap(currentPosition.lng, currentPosition.lat),
+    staleTime: Infinity,
+    enabled: isSettingPosition,
+  });
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      setCurrentPosition({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+      setIsSettingPosition(true);
+    });
+  }, []);
 
   const handleMoveMap = () => {
     console.log("move");
   };
 
+  const isReadyMap = isSettingPosition && !isFetching && isSuccess && data;
+
   return (
-    <Styled.Container>
-      <Search />
-      <Map />
-      <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
-        <Styled.FilterContainer>
-          {emergencyNightData.map((text, idx) => (
-            <EmergencyNightTag
-              key={idx}
-              isSelected={selectedFilter[text.key]}
-              onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
-            >
-              {text.label}
-            </EmergencyNightTag>
-          ))}
-        </Styled.FilterContainer>
-        <Styled.CardContainer>
-          {MockDoctorData.map((doctor, idx) => (
-            <DoctorCard
-              key={idx}
-              title={doctor.title}
-              category={doctor.category}
-              status={doctor.status}
-              distance={doctor.distance}
-              address={doctor.address}
-              time={doctor.time}
-            />
-          ))}
-        </Styled.CardContainer>
-      </BottomSheet>
-    </Styled.Container>
+    <>
+      {isSettingPosition ? (
+        <Styled.Container>
+          <Search />
+
+          {isReadyMap && <Map currentPosition={currentPosition} doctorPositions={data.hospitals} />}
+          <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
+            <Styled.FilterContainer>
+              {emergencyNightData.map((text, idx) => (
+                <EmergencyNightTag
+                  key={idx}
+                  isSelected={selectedFilter[text.key]}
+                  onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
+                >
+                  {text.label}
+                </EmergencyNightTag>
+              ))}
+            </Styled.FilterContainer>
+            <Styled.CardContainer>
+              {isReadyMap &&
+                data.hospitals
+                  .filter(
+                    (hospital) =>
+                      (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
+                      (selectedFilter.nightService ? hospital.nightService === "Y" : true)
+                  )
+                  .map((doctor, idx) => (
+                    <DoctorCard
+                      key={idx}
+                      title={doctor.name}
+                      category={doctor.type}
+                      status={doctor.operatingStatus}
+                      distance={doctor.meToHospitalDistance}
+                      address={doctor.address}
+                      operatingTime={doctor.operatingTime.start}
+                      lunchTime={doctor.lunchTime.start}
+                      phoneNumber={doctor.phoneNumber}
+                    />
+                  ))}
+            </Styled.CardContainer>
+          </BottomSheet>
+        </Styled.Container>
+      ) : (
+        <Loading
+          title={<Styled.LoadingTitle>지도 로딩중</Styled.LoadingTitle>}
+          icon={<img loading="eager" alt="icon" style={{ width: "26rem", height: "24.8rem" }} src={imageUrl.map_loading} />}
+        />
+      )}
+    </>
   );
 };
 
