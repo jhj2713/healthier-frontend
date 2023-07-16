@@ -11,7 +11,7 @@ export const RootContainer = styled.div`
 export const Container = styled.div`
   position: relative;
 
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${BodyImage});
 `;

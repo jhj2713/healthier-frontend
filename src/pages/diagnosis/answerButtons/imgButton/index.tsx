@@ -93,7 +93,7 @@ function ImgButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabl
         </Styled.BodyPartContainer>
       </Styled.Container>
 
-      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} style={{ opacity: 0.8 }} />
     </Styled.RootContainer>
   );
 }
