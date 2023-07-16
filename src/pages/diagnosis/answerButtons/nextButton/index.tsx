@@ -12,10 +12,10 @@ function NextButton({ enabled, onClick, style }: INextButtonProps) {
     <Styled.NextButtonContainer>
       <RoundButton
         outline="none"
-        backgroundColor={enabled ? theme.color.blue : theme.color.grey_500}
-        color={enabled ? theme.color.grey_100 : theme.color.grey_400}
+        backgroundColor={enabled ? theme.color.blue : theme.color.grey_650}
+        color={enabled ? theme.color.grey_100 : theme.color.grey_500}
         onClick={onClick}
-        style={style}
+        style={{ ...style, pointerEvents: "auto" }}
       >
         다음 단계
       </RoundButton>

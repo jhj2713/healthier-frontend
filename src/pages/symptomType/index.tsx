@@ -63,8 +63,8 @@ const SymptomTypePage = () => {
           <RoundButton
             onClick={handleClickNextButton}
             outline="none"
-            backgroundColor={selectedSymptom ? theme.color.blue : theme.color.grey_500}
-            color={selectedSymptom ? theme.color.grey_100 : theme.color.grey_400}
+            backgroundColor={selectedSymptom ? theme.color.blue : theme.color.grey_650}
+            color={selectedSymptom ? theme.color.grey_100 : theme.color.grey_500}
             style={{
               zIndex: 1,
             }}
