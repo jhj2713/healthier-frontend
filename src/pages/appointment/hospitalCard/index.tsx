@@ -1,6 +1,7 @@
+import { HTMLAttributes } from "react";
 import * as Styled from "./index.style";
 
-interface IHospitalCardProps {
+interface IHospitalCardProps extends HTMLAttributes<HTMLDivElement> {
   title: string;
   category: string;
   status: "OPEN" | "CLOSED" | "UNKNOWN";
@@ -16,9 +17,19 @@ const statusMap = {
   UNKNOWN: "정보없음",
 } as const;
 
-const HospitalCard = ({ title, category, status, distance, address, operatingTime, lunchTime, phoneNumber }: IHospitalCardProps) => {
+const HospitalCard = ({
+  title,
+  category,
+  status,
+  distance,
+  address,
+  operatingTime,
+  lunchTime,
+  phoneNumber,
+  ...props
+}: IHospitalCardProps) => {
   return (
-    <Styled.Container>
+    <Styled.Container {...props}>
       <Styled.HeaderContainer>
         <div className="left-content">
           <Styled.Title>{title}</Styled.Title>
