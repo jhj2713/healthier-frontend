@@ -61,6 +61,10 @@ interface IHospitalDetailProps {
       start: string;
       end: string;
     };
+    lunch: {
+      start: string;
+      end: string;
+    };
   };
   department: {
     name: string;
@@ -182,8 +186,39 @@ const statusMap = {
   CLOSED: "진료마감",
   UNKNOWN: "정보없음",
 } as const;
+const scheduleMap = {
+  Mon: "월요일",
+  Tue: "화요일",
+  Wed: "수요일",
+  Thu: "목요일",
+  Fri: "금요일",
+  Sat: "토요일",
+  Sun: "일요일",
+  lunch: "점심시간",
+} as const;
+
+type TScheduleDay = "Mon" | "Tue" | "Wed" | "Thu" | "Fri" | "Sat" | "Sun";
 
 const HospitalDetail = () => {
+  const renderSchedule = () => {
+    const scheduleArr = [] as { day: string; time: string }[];
+
+    for (const key in MockData.schedule) {
+      const scheduleKey = key as TScheduleDay;
+
+      if (MockData.schedule[scheduleKey].start === "" && MockData.schedule[scheduleKey].end === "") {
+        continue;
+      }
+
+      scheduleArr.push({
+        day: scheduleMap[scheduleKey],
+        time: `${MockData.schedule[scheduleKey].start} ~ ${MockData.schedule[scheduleKey].end}`,
+      });
+    }
+
+    return scheduleArr;
+  };
+
   return (
     <Styled.Container>
       <Styled.ContentContainer direction="column" gap={1} align="flex-start">
@@ -201,14 +236,23 @@ const HospitalDetail = () => {
 
         <Styled.Flex gap={0.6} align="flex-start">
           <img alt="position" src="/images/doctorAppointment/detail-time.svg" />
-          <Styled.Description color={theme.color.grey_300}>{statusMap[MockData.operatingStatus]}</Styled.Description>
+          <Styled.Flex direction="column" align="flex-start">
+            <Styled.Description color={theme.color.grey_300}>{statusMap[MockData.operatingStatus]}</Styled.Description>
+            {renderSchedule().map((schedule) => (
+              <Styled.Description key={schedule.day} color={theme.color.grey_300}>
+                {schedule.day} | {schedule.time}
+              </Styled.Description>
+            ))}
+          </Styled.Flex>
         </Styled.Flex>
 
         <Styled.Flex gap={0.6} align="flex-start">
           <img alt="position" src="/images/doctorAppointment/detail-site.svg" />
-          <Styled.Description color={theme.color.grey_300} style={{ textDecoration: "underline" }}>
-            {MockData.homepage}
-          </Styled.Description>
+          <a href={MockData.homepage} target="_blank" rel="noreferrer">
+            <Styled.Description color={theme.color.grey_300} style={{ textDecoration: "underline" }}>
+              {MockData.homepage}
+            </Styled.Description>
+          </a>
         </Styled.Flex>
 
         <Styled.Flex gap={0.6} align="flex-start">

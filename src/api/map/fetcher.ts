@@ -14,6 +14,6 @@ export const fetcher = {
 
 export const mapFetcher = {
   getUserMap(longitude: number, latitude: number): Promise<IUserMapResponse> {
-    return fetcher.get(`/`, { longitude, latitude });
+    return fetcher.get(``, { longitude, latitude });
   },
 };

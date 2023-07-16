@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div``;
 
-export const Flex = styled.div<{ gap: number; direction?: string; align?: string; justify?: string }>`
+export const Flex = styled.div<{ gap?: number; direction?: string; align?: string; justify?: string }>`
   display: flex;
   flex-direction: ${({ direction }) => direction ?? "row"};
   gap: ${({ gap }) => gap ?? 0}rem;
