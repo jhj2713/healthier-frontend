@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import { IUserMapResponse } from "src/interfaces/map";
 
 const instance = axios.create({
-  baseURL: `${process.env.REACT_APP_SERVER_URL}/user/map`,
+  baseURL: `${process.env.REACT_APP_SERVER_URL}/map`,
   timeout: 15000,
 });
 
@@ -12,8 +12,17 @@ export const fetcher = {
   get: <T>(url: string, params?: object) => instance.get<T>(url, { params }).then(responseBody),
 };
 
+export interface mapBoxRequest {
+  userLongitude: number;
+  userLatitude: number;
+  leftLongitude: number;
+  leftLatitude: number;
+  rightLongitude: number;
+  rightLatitude: number;
+}
+
 export const mapFetcher = {
-  getUserMap(longitude: number, latitude: number): Promise<IUserMapResponse> {
-    return fetcher.get(``, { longitude, latitude });
+  getUserMap(params: mapBoxRequest): Promise<IUserMapResponse> {
+    return fetcher.get(`/box`, params);
   },
 };

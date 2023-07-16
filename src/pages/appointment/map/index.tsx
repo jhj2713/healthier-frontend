@@ -11,15 +11,11 @@ interface IMapProps {
   currentPosition: { lat: number; lng: number };
   doctorPositions: IHospitalInfo[];
   isDetail?: boolean;
-  setSearchPosition?: Dispatch<{ lat: number; lng: number }>;
+  setSearchPosition?: Dispatch<{ left: { lat: number; lng: number }; right: { lat: number; lng: number } }>;
 }
 
 const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosition }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
-
-  useEffect(() => {
-    // detail인 경우 center 조정
-  }, []);
 
   const handleMove = (e: ViewStateChangeEvent) => {
     if (throttleRef.current || !setSearchPosition) {
@@ -28,7 +24,10 @@ const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosi
 
     throttleRef.current = true;
     const timer = setTimeout(() => {
-      setSearchPosition({ lat: e.viewState.latitude, lng: e.viewState.longitude });
+      setSearchPosition({
+        left: { lat: e.target.getBounds().getNorthWest().lat, lng: e.target.getBounds().getNorthWest().lng },
+        right: { lat: e.target.getBounds().getSouthEast().lat, lng: e.target.getBounds().getSouthEast().lng },
+      });
       throttleRef.current = false;
       clearTimeout(timer);
     }, 1000);

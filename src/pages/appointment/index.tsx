@@ -25,29 +25,40 @@ const Appointment = () => {
     lng: 0,
   });
   const [searchPosition, setSearchPosition] = useState({
-    lat: 0,
-    lng: 0,
+    left: { lat: 0, lng: 0 },
+    right: { lat: 0, lng: 0 },
   });
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
   const [selectedHospital, setSelectedHospital] = useState<string>("");
 
-  const { data, isFetching, isSuccess, refetch } = useQuery<IUserMapResponse, AxiosError>({
-    queryKey: ["appointment", "map", searchPosition],
-    queryFn: () => mapFetcher.getUserMap(searchPosition.lng, searchPosition.lat),
+  const { data, isFetching, isSuccess } = useQuery<IUserMapResponse, AxiosError>({
+    queryKey: ["appointment", "map", currentPosition, searchPosition],
+    queryFn: () =>
+      mapFetcher.getUserMap({
+        userLatitude: currentPosition.lat,
+        userLongitude: currentPosition.lng,
+        leftLatitude: searchPosition.left.lat,
+        leftLongitude: searchPosition.left.lng,
+        rightLatitude: searchPosition.right.lat,
+        rightLongitude: searchPosition.right.lng,
+      }),
     staleTime: Infinity,
     enabled: isSettingPosition,
   });
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
+      const curLat = position.coords.latitude;
+      const curLng = position.coords.longitude;
+
       setCurrentPosition({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        lat: curLat,
+        lng: curLng,
       });
       setSearchPosition({
-        lat: position.coords.latitude,
-        lng: position.coords.longitude,
+        left: { lat: curLat - 0.01, lng: curLng - 0.01 },
+        right: { lat: curLat + 0.01, lng: curLng + 0.01 },
       });
       setIsSettingPosition(true);
     });
