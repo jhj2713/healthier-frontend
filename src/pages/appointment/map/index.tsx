@@ -1,5 +1,6 @@
 import "leaflet/dist/leaflet.css";
-import { useRef, useState } from "react";
+import { Dispatch, useRef } from "react";
+import { useEffect } from "react";
 import MapGl, { Marker, ViewStateChangeEvent } from "react-map-gl";
 import { IHospitalInfo } from "src/interfaces/map";
 import styled from "styled-components";
@@ -9,19 +10,25 @@ import "mapbox-gl/dist/mapbox-gl.css";
 interface IMapProps {
   currentPosition: { lat: number; lng: number };
   doctorPositions: IHospitalInfo[];
+  isDetail?: boolean;
+  setSearchPosition?: Dispatch<{ lat: number; lng: number }>;
 }
 
-const Map = ({ currentPosition, doctorPositions }: IMapProps) => {
+const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosition }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
 
+  useEffect(() => {
+    // detail인 경우 center 조정
+  }, []);
+
   const handleMove = (e: ViewStateChangeEvent) => {
-    if (throttleRef.current) {
+    if (throttleRef.current || !setSearchPosition) {
       return;
     }
 
     throttleRef.current = true;
     const timer = setTimeout(() => {
-      console.log(e, e.viewState.latitude, e.viewState.longitude);
+      setSearchPosition({ lat: e.viewState.latitude, lng: e.viewState.longitude });
       throttleRef.current = false;
       clearTimeout(timer);
     }, 1000);
@@ -40,10 +47,12 @@ const Map = ({ currentPosition, doctorPositions }: IMapProps) => {
           style={{ width: "100%", height: "100vh" }}
           mapStyle={process.env.REACT_APP_MAP_STYLE}
           onMove={handleMove}
+          dragPan={!isDetail}
+          dragRotate={!isDetail}
         >
           {doctorPositions.map((doc, idx) => (
             <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x}>
-              <img src="/images/doctorAppointment/map-pin.svg" width={28} height={28} />
+              <img src={`/images/doctorAppointment/${isDetail ? "selected" : "map"}-pin.svg`} width={28} height={28} />
             </Marker>
           ))}
           <Marker latitude={currentPosition.lat} longitude={currentPosition.lng}>

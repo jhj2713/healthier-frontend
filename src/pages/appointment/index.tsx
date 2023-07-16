@@ -23,12 +23,16 @@ const Appointment = () => {
     lat: 0,
     lng: 0,
   });
+  const [searchPosition, setSearchPosition] = useState({
+    lat: 0,
+    lng: 0,
+  });
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
 
-  const { data, isFetching, isSuccess } = useQuery<IUserMapResponse, AxiosError>({
-    queryKey: ["appointment", "map", currentPosition],
-    queryFn: () => mapFetcher.getUserMap(currentPosition.lng, currentPosition.lat),
+  const { data, isFetching, isSuccess, refetch } = useQuery<IUserMapResponse, AxiosError>({
+    queryKey: ["appointment", "map", searchPosition],
+    queryFn: () => mapFetcher.getUserMap(searchPosition.lng, searchPosition.lat),
     staleTime: Infinity,
     enabled: isSettingPosition,
   });
@@ -36,6 +40,10 @@ const Appointment = () => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       setCurrentPosition({
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
+      });
+      setSearchPosition({
         lat: position.coords.latitude,
         lng: position.coords.longitude,
       });
@@ -55,7 +63,7 @@ const Appointment = () => {
         <Styled.Container>
           <Search />
 
-          {isReadyMap && <Map currentPosition={currentPosition} doctorPositions={data.hospitals} />}
+          {isReadyMap && <Map currentPosition={currentPosition} doctorPositions={data.hospitals} setSearchPosition={setSearchPosition} />}
           <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
             <Styled.FilterContainer>
               {emergencyNightData.map((text, idx) => (
