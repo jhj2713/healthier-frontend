@@ -1,7 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import { Dispatch, useRef } from "react";
 import { useEffect } from "react";
-import MapGl, { Marker, ViewStateChangeEvent } from "react-map-gl";
+import MapGl, { MapRef, Marker, ViewStateChangeEvent } from "react-map-gl";
 import { IHospitalInfo } from "src/interfaces/map";
 import styled from "styled-components";
 import RefixButton from "./refixButton";
@@ -10,12 +10,27 @@ import "mapbox-gl/dist/mapbox-gl.css";
 interface IMapProps {
   currentPosition: { lat: number; lng: number };
   doctorPositions: IHospitalInfo[];
-  isDetail?: boolean;
+  selectedHospital: string;
   setSearchPosition?: Dispatch<{ left: { lat: number; lng: number }; right: { lat: number; lng: number } }>;
 }
 
-const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosition }: IMapProps) => {
+const Map = ({ currentPosition, doctorPositions, selectedHospital, setSearchPosition }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
+  const mapRef = useRef<MapRef>(null);
+
+  useEffect(() => {
+    if (!mapRef.current || !selectedHospital) {
+      return;
+    }
+
+    const selectedLatLng = doctorPositions.filter((doc) => doc.id === selectedHospital);
+
+    if (selectedLatLng.length === 0) {
+      return;
+    }
+
+    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.007, lng: selectedLatLng[0].point.x });
+  }, [doctorPositions, selectedHospital]);
 
   const handleMove = (e: ViewStateChangeEvent) => {
     if (throttleRef.current || !setSearchPosition) {
@@ -37,6 +52,7 @@ const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosi
     <Container>
       {currentPosition.lat !== 0 && currentPosition.lng !== 0 && (
         <MapGl
+          ref={mapRef}
           mapboxAccessToken={process.env.REACT_APP_MAP_ACCESS_TOKEN}
           initialViewState={{
             longitude: currentPosition.lng,
@@ -46,12 +62,12 @@ const Map = ({ currentPosition, doctorPositions, isDetail = false, setSearchPosi
           style={{ width: "100%", height: "100vh" }}
           mapStyle={process.env.REACT_APP_MAP_STYLE}
           onMove={handleMove}
-          dragPan={!isDetail}
-          dragRotate={!isDetail}
+          dragPan={selectedHospital ? false : true}
+          dragRotate={selectedHospital ? false : true}
         >
           {doctorPositions.map((doc, idx) => (
             <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x}>
-              <img src={`/images/doctorAppointment/${isDetail ? "selected" : "map"}-pin.svg`} width={28} height={28} />
+              <img src={`/images/doctorAppointment/${selectedHospital === doc.id ? "selected" : "map"}-pin.svg`} width={28} height={28} />
             </Marker>
           ))}
           <Marker latitude={currentPosition.lat} longitude={currentPosition.lng}>

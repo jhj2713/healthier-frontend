@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { IUserMapResponse } from "src/interfaces/map";
+import { IUserMapResponse, IHospitalDetailInfo } from "src/interfaces/map";
 
 const instance = axios.create({
   baseURL: `${process.env.REACT_APP_SERVER_URL}/map`,
@@ -24,5 +24,8 @@ export interface mapBoxRequest {
 export const mapFetcher = {
   getUserMap(params: mapBoxRequest): Promise<IUserMapResponse> {
     return fetcher.get(`/box`, params);
+  },
+  getMapDetail(id: string): Promise<IHospitalDetailInfo> {
+    return fetcher.get(`/box/${id}`);
   },
 };

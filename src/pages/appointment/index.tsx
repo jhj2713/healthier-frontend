@@ -84,12 +84,12 @@ const Appointment = () => {
             <Map
               currentPosition={currentPosition}
               doctorPositions={data.hospitals}
-              isDetail={selectedHospital ? true : false}
+              selectedHospital={selectedHospital}
               setSearchPosition={setSearchPosition}
             />
           )}
           {selectedHospital ? (
-            <HospitalDetail />
+            <HospitalDetail selectedHospital={selectedHospital} />
           ) : (
             <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
               <Styled.FilterContainer>
