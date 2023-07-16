@@ -3,7 +3,8 @@ import RoundButton from "src/components/roundButton";
 import Slider from "src/components/slider";
 import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
-import { Container, NextButton } from "../answerButtons/index.style";
+import { Container } from "../answerButtons/index.style";
+import NextButton from "../nextButton";
 
 const SLIDER_BUTTON_ANSWERS = [
   {
@@ -45,12 +46,11 @@ const SLIDER_MAX_VALUE = 5;
 interface ISliderButtonProps {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
-
-  handleNext: () => void;
   handleActive: (id: number) => boolean;
+  handleClickNextButton: () => void;
 }
 
-const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleNext, handleActive }: ISliderButtonProps) => {
+const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleClickNextButton, handleActive }: ISliderButtonProps) => {
   const handleChangeAnswer = (selectedIdx: number) => {
     setSelectedAnswer([
       {
@@ -59,14 +59,6 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleNext, handleAct
         next_question: SLIDER_BUTTON_ANSWERS[selectedIdx].next_question,
       },
     ]);
-  };
-
-  const handleNextButtonClick = () => {
-    if (selectedAnswer.length === 0) {
-      return;
-    }
-
-    handleNext();
   };
 
   useEffect(() => {
@@ -89,15 +81,7 @@ const SliderButton = ({ selectedAnswer, setSelectedAnswer, handleNext, handleAct
         labels={SLIDER_BUTTON_ANSWERS.map(({ answer }) => answer)}
         isLabelActive={handleActive}
       />
-      <NextButton onClick={handleNextButtonClick}>
-        <RoundButton
-          outline="none"
-          backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
-          color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
-        >
-          다음 단계
-        </RoundButton>
-      </NextButton>
+      <NextButton enabled={selectedAnswer.length !== 0} onClick={handleClickNextButton} />
     </Container>
   );
 };

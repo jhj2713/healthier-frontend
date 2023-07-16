@@ -1,26 +1,30 @@
-import { ChangeEvent, Dispatch } from "react";
+import { ChangeEvent, Dispatch, useState } from "react";
 import RoundButton from "src/components/roundButton";
+import TextFieldOutlined from "src/components/textFieldOutlined";
 import { IAnswer } from "src/interfaces/diagnoseApi/diagnosis";
 import theme from "src/lib/theme";
 import { NextButton } from "../answerButtons/index.style";
-import { Container } from "../index.style";
+import { Container } from "../answerButtons/index.style";
+import * as Styled from "./index.style";
 
 interface IStringButtonProps {
   selectedAnswer: IAnswer[];
   setSelectedAnswer: Dispatch<IAnswer[]>;
-  handleNext: () => void;
+  handleClickNextButton: () => void;
 }
 
-function StringButton({ selectedAnswer, setSelectedAnswer, handleNext }: IStringButtonProps) {
-  const handleNextButtonClick = () => {
-    if (selectedAnswer.length === 0) {
+function StringButton({ selectedAnswer, setSelectedAnswer, handleClickNextButton }: IStringButtonProps) {
+  const [answer, setAnswer] = useState<string>("");
+
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.target.value);
+
+    if (e.target.value === "") {
+      setSelectedAnswer([]);
+
       return;
     }
 
-    handleNext();
-  };
-
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSelectedAnswer([
       {
         answer_id: 0,
@@ -32,8 +36,10 @@ function StringButton({ selectedAnswer, setSelectedAnswer, handleNext }: IString
 
   return (
     <Container>
-      <input onChange={handleChange} />
-      <NextButton onClick={handleNextButtonClick}>
+      <Styled.TextFieldContainer>
+        <TextFieldOutlined value={answer} onChange={handleChangeInput} placeholder="답변을 입력해주세요" />
+      </Styled.TextFieldContainer>
+      <NextButton onClick={handleClickNextButton}>
         <RoundButton
           outline="none"
           backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
