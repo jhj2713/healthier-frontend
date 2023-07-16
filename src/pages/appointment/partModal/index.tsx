@@ -1,7 +1,7 @@
 import { Dispatch, forwardRef } from "react";
 import RoundButton from "src/components/roundButton";
 import theme from "src/lib/theme";
-import { partList } from "./data";
+import { partList } from "../data";
 import * as Styled from "./index.style";
 
 export interface IPart {

@@ -2,7 +2,7 @@ import { useState } from "react";
 import useModal from "src/hooks/useModal";
 import PartModal from "../partModal";
 import { IPart } from "../partModal/index";
-import { MedicineTag, PartTags } from "../partTags";
+import { MedicineTag, PartTags } from "../tags";
 import * as Styled from "./index.style";
 
 const Search = () => {

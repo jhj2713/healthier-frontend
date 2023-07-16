@@ -32,3 +32,23 @@ export const MedicineContainer = styled.div<{ isSelected: boolean }>`
   line-height: 100%;
   color: ${({ theme, isSelected }) => (isSelected ? theme.color.white : theme.color.grey_300)};
 `;
+
+export const EmergencyNightContainer = styled.div<{ isSelected: boolean }>`
+  display: inline-block;
+
+  padding: 0.5rem 1rem;
+  border-radius: 3rem;
+  background-color: ${({ theme, isSelected }) => (isSelected ? theme.color.sub_blue : "transparent")};
+  border: 1px solid ${({ theme, isSelected }) => (isSelected ? theme.color.sub_blue : theme.color.blue)};
+
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.05rem;
+  color: ${({ theme }) => theme.color.blue};
+
+  & + & {
+    margin-left: 0.8rem;
+  }
+`;

@@ -1,8 +1,11 @@
+import { useState } from "react";
 import BottomSheet from "src/components/bottomSheet";
+import { emergencyNightData } from "./data";
 import DoctorCard from "./doctorCard";
 import * as Styled from "./index.style";
 import Map from "./map";
 import Search from "./search";
+import { EmergencyNightTag } from "./tags";
 
 const MockDoctorData = [
   {
@@ -43,7 +46,14 @@ const MockDoctorData = [
   },
 ];
 
+interface ISelectedFilter {
+  emergencyNight: boolean;
+  nightService: boolean;
+}
+
 const Appointment = () => {
+  const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
+
   const handleMoveMap = () => {
     console.log("move");
   };
@@ -53,6 +63,17 @@ const Appointment = () => {
       <Search />
       <Map />
       <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
+        <Styled.FilterContainer>
+          {emergencyNightData.map((text, idx) => (
+            <EmergencyNightTag
+              key={idx}
+              isSelected={selectedFilter[text.key]}
+              onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
+            >
+              {text.label}
+            </EmergencyNightTag>
+          ))}
+        </Styled.FilterContainer>
         <Styled.CardContainer>
           {MockDoctorData.map((doctor, idx) => (
             <DoctorCard

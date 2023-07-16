@@ -18,4 +18,10 @@ export const partList = [
   { id: 21, name: "재활의학과" },
   { id: 23, name: "가정의학과" },
   { id: 49, name: "치과" },
+] as const;
+
+export type TEmergencyNightKey = "emergencyNight" | "nightService";
+export const emergencyNightData: { key: TEmergencyNightKey; label: string }[] = [
+  { key: "emergencyNight", label: "응급실운영" },
+  { key: "nightService", label: "야간진료" },
 ];

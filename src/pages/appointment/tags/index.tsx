@@ -15,14 +15,22 @@ export const PartTags = ({ selectedPart, ...props }: IPartTagsProps) => {
   );
 };
 
-interface IMedicineTagProps extends HTMLAttributes<HTMLDivElement> {
+interface ISelectableTagProps extends HTMLAttributes<HTMLDivElement> {
   isSelected: boolean;
 }
 
-export const MedicineTag = ({ isSelected, ...props }: IMedicineTagProps) => {
+export const MedicineTag = ({ isSelected, ...props }: ISelectableTagProps) => {
   return (
     <Styled.MedicineContainer isSelected={isSelected} {...props}>
       약국
     </Styled.MedicineContainer>
+  );
+};
+
+export const EmergencyNightTag = ({ isSelected, children, ...props }: ISelectableTagProps) => {
+  return (
+    <Styled.EmergencyNightContainer isSelected={isSelected} {...props}>
+      {children}
+    </Styled.EmergencyNightContainer>
   );
 };
