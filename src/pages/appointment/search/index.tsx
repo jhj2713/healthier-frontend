@@ -2,11 +2,13 @@ import { useState } from "react";
 import useModal from "src/hooks/useModal";
 import PartModal from "../partModal";
 import { IPart } from "../partModal/index";
-import PartTags from "../partTags";
+import { MedicineTag, PartTags } from "../partTags";
 import * as Styled from "./index.style";
 
 const Search = () => {
   const [selectedPart, setSelectedPart] = useState<IPart[]>([{ id: 1, name: "내과" }]);
+  const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
+
   const { isOpenModal, modalRef, closeModal, openModal } = useModal();
 
   const handleSavePart = () => {
@@ -21,8 +23,13 @@ const Search = () => {
           <Styled.Input />
         </Styled.InputContainer>
 
-        <Styled.FilterContainer onClick={() => openModal()}>
-          <PartTags selectedPart={selectedPart} />
+        <Styled.FilterContainer>
+          <PartTags selectedPart={selectedPart} onClick={() => openModal()} />
+          <MedicineTag
+            isSelected={isSelectedMedicine}
+            onClick={() => setIsSelectedMedicine(!isSelectedMedicine)}
+            style={{ marginLeft: "0.8rem" }}
+          />
         </Styled.FilterContainer>
       </Styled.Container>
 

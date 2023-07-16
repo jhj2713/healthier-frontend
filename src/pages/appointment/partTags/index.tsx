@@ -6,13 +6,23 @@ interface IPartTagsProps extends HTMLAttributes<HTMLDivElement> {
   selectedPart: { id: number; name: string }[];
 }
 
-const PartTags = ({ selectedPart }: IPartTagsProps) => {
+export const PartTags = ({ selectedPart, ...props }: IPartTagsProps) => {
   return (
-    <Styled.Container>
+    <Styled.PartContainer {...props}>
       {selectedPart.map((part) => part.name).join("・")}
       <SmallChevronDownIcon />
-    </Styled.Container>
+    </Styled.PartContainer>
   );
 };
 
-export default PartTags;
+interface IMedicineTagProps extends HTMLAttributes<HTMLDivElement> {
+  isSelected: boolean;
+}
+
+export const MedicineTag = ({ isSelected, ...props }: IMedicineTagProps) => {
+  return (
+    <Styled.MedicineContainer isSelected={isSelected} {...props}>
+      약국
+    </Styled.MedicineContainer>
+  );
+};
