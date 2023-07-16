@@ -64,23 +64,3 @@ export const Description = styled(Body_2)`
   color: ${({ theme }) => theme.color.grey_400};
   display: inline-block;
 `;
-
-export const InspectionTag = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-
-  background: rgba(84, 100, 242, 0.18);
-  padding: 0 0.2rem;
-
-  color: ${({ theme }) => theme.color.blue_300};
-  font-size: 1.2rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  letter-spacing: -0.03rem;
-
-  & + & {
-    margin-left: 0.6rem;
-  }
-`;
