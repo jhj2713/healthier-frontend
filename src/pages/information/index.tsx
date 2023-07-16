@@ -56,7 +56,7 @@ const Information = () => {
           <ContentHeader back={false} exit={true} exitCallback={() => navigate("/")}>
             정보 수집
           </ContentHeader>
-          <Layout padding="0 2.4rem 15rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
+          <Layout padding="0 2.4rem 12rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
             <Title>
               잠깐! <br />더 나은 감별 서비스를 위해
               <br /> 간단한 정보가 필요해요

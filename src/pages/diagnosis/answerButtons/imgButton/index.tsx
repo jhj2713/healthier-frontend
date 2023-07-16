@@ -6,14 +6,14 @@ import NextButton from "../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-const bodyPartStyle: React.CSSProperties = { height: "100%", width: "100%" };
+const bodyPartStyle: React.CSSProperties = { height: "100%", cursor: "pointer" };
 
 type TDigestiveBodyPartKey = keyof typeof DIGESTIVE_BODY_PART;
 
 function ImgButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabled }: IAnswerButtonProps) {
   const [digestivePart, setDigestivePart] = useState<TDigestiveBodyPartKey>();
 
-  const handleClickBodyPartButton = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const handleClickBodyPartButton = (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
     const [, bodyPart] = e.currentTarget.id.split("_");
 
     setDigestivePart(bodyPart as TDigestiveBodyPartKey);
@@ -29,50 +29,71 @@ function ImgButton({ setSelectedAnswer, handleClickNextButton, isNextButtonEnabl
 
         <Styled.BodyPartContainer>
           <Styled.BodyPartRowContainer className="BodyPart_top">
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-upper-stomach">
-              <BodyPart.DigestTopLeft style={bodyPartStyle} customStyle={styleMapper("right-upper-stomach")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_solar-plexus">
-              <BodyPart.DigestTopMid style={bodyPartStyle} customStyle={styleMapper("solar-plexus")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-upper-stomach">
-              <BodyPart.DigestTopRight style={bodyPartStyle} customStyle={styleMapper("left-upper-stomach")} />
-            </Styled.BodyPartButton>
+            <BodyPart.DigestTopLeft
+              style={bodyPartStyle}
+              customStyle={styleMapper("right-upper-stomach")}
+              id="BodyPartButton_right-upper-stomach"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestTopMid
+              style={bodyPartStyle}
+              customStyle={styleMapper("solar-plexus")}
+              id="BodyPartButton_solar-plexus"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestTopRight
+              style={bodyPartStyle}
+              customStyle={styleMapper("left-upper-stomach")}
+              id="BodyPartButton_left-upper-stomach"
+              onClick={handleClickBodyPartButton}
+            />
           </Styled.BodyPartRowContainer>
 
           <Styled.BodyPartRowContainer className="BodyPart_mid">
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-side">
-              <BodyPart.DigestMidLeft style={bodyPartStyle} customStyle={styleMapper("right-side")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_belly-button">
-              <BodyPart.DigestMidMid style={bodyPartStyle} customStyle={styleMapper("belly-button")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-side">
-              <BodyPart.DigestMidRight style={bodyPartStyle} customStyle={styleMapper("left-side")} />
-            </Styled.BodyPartButton>
+            <BodyPart.DigestMidLeft
+              style={bodyPartStyle}
+              customStyle={styleMapper("right-side")}
+              id="BodyPartButton_right-side"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestMidMid
+              style={bodyPartStyle}
+              customStyle={styleMapper("belly-button")}
+              id="BodyPartButton_belly-button"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestMidRight
+              style={bodyPartStyle}
+              customStyle={styleMapper("left-side")}
+              id="BodyPartButton_left-side"
+              onClick={handleClickBodyPartButton}
+            />
           </Styled.BodyPartRowContainer>
 
           <Styled.BodyPartRowContainer className="BodyPart_bottom">
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_right-lower-stomach">
-              <BodyPart.DigestBottomLeft style={bodyPartStyle} customStyle={styleMapper("right-lower-stomach")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_middle-lower-stomach">
-              <BodyPart.DigestBottomMid style={bodyPartStyle} customStyle={styleMapper("middle-lower-stomach")} />
-            </Styled.BodyPartButton>
-
-            <Styled.BodyPartButton onClick={handleClickBodyPartButton} id="BodyPartButton_left-lower-stomach">
-              <BodyPart.DigestBottomRight style={bodyPartStyle} customStyle={styleMapper("left-lower-stomach")} />
-            </Styled.BodyPartButton>
+            <BodyPart.DigestBottomLeft
+              style={bodyPartStyle}
+              customStyle={styleMapper("right-lower-stomach")}
+              id="BodyPartButton_right-lower-stomach"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestBottomMid
+              style={bodyPartStyle}
+              customStyle={styleMapper("middle-lower-stomach")}
+              id="BodyPartButton_middle-lower-stomach"
+              onClick={handleClickBodyPartButton}
+            />
+            <BodyPart.DigestBottomRight
+              style={bodyPartStyle}
+              customStyle={styleMapper("left-lower-stomach")}
+              id="BodyPartButton_left-lower-stomach"
+              onClick={handleClickBodyPartButton}
+            />
           </Styled.BodyPartRowContainer>
         </Styled.BodyPartContainer>
       </Styled.Container>
 
-      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
+      <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} style={{ opacity: 0.8 }} />
     </Styled.RootContainer>
   );
 }

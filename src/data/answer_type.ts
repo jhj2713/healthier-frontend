@@ -14,6 +14,7 @@ export const ANSWER_TYPE = {
   NUMBER_10: "NUMBER_10",
   DRAG_1: "DRAG_1",
   STR: "STR",
+  NA: "NA",
 } as const;
 
 export const DIGESTIVE_BODY_PART = {
@@ -37,6 +38,7 @@ export const INITIAL_QUESTION = {
   image_url: null,
   answer_type: ANSWER_TYPE.DEF,
   answers: null,
+  sub_content: null,
 };
 
 export const INITIAL_ANSWER = {

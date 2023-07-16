@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { IAnswerData } from "src/interfaces/diagnoseApi/diagnosis";
 import { Container } from "../index.style";
 import NextButton from "../nextButton";
@@ -10,6 +10,8 @@ interface IDefButton extends IAnswerButtonProps {
   handleActive: (id: string) => boolean;
 }
 
+type TPrevAnswerType = "NA" | "DEF";
+
 const DefButton = ({
   answers,
   question,
@@ -19,23 +21,43 @@ const DefButton = ({
   handleClickNextButton,
   isNextButtonEnabled,
 }: IDefButton) => {
-  const handleClickAnswer = (selectedId: string) => {
-    if (question.is_multiple) {
-      if (selectedAnswer.answer_id.includes(selectedId)) {
-        setSelectedAnswer({ ...selectedAnswer, answer_id: selectedAnswer.answer_id.filter((id) => id !== selectedId) });
+  const prevAnswerType = useRef<TPrevAnswerType>("DEF");
 
+  const handleClickAnswer = (selectedId: string) => {
+    const { answer_id } = selectedAnswer;
+
+    if (!question.is_multiple) {
+      if (answer_id.length > 0 || answer_id.includes(selectedId)) {
         return;
       }
 
-      setSelectedAnswer({ ...selectedAnswer, answer_id: [...selectedAnswer.answer_id, selectedId] });
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [selectedId] });
 
       return;
     }
-    if (selectedAnswer.answer_id.includes(selectedId)) {
+
+    if (question.answer_type === "NA" && Number(selectedId) === answers.length - 1) {
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [selectedId] });
+      prevAnswerType.current = "NA";
+
       return;
     }
 
-    setSelectedAnswer({ ...selectedAnswer, answer_id: [selectedId] });
+    if (answer_id.includes(selectedId)) {
+      setSelectedAnswer({ ...selectedAnswer, answer_id: answer_id.filter((id) => id !== selectedId) });
+      prevAnswerType.current = "DEF";
+
+      return;
+    }
+    if (prevAnswerType.current === "NA") {
+      setSelectedAnswer({ ...selectedAnswer, answer_id: [selectedId] });
+      prevAnswerType.current = "DEF";
+
+      return;
+    }
+
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [...answer_id, selectedId] });
+    prevAnswerType.current = "DEF";
   };
 
   useEffect(() => {

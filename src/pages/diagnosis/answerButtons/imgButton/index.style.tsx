@@ -11,7 +11,7 @@ export const RootContainer = styled.div`
 export const Container = styled.div`
   position: relative;
 
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   background-image: url(${BodyImage});
 `;
@@ -44,11 +44,6 @@ export const BodyPartRowContainer = styled.div`
   &.BodyPart_bottom {
     height: calc((100% / 245) * 65 - 4px);
   }
-`;
-
-export const BodyPartButton = styled.button`
-  all: unset;
-  cursor: pointer;
 `;
 
 export const defaultStyle: IBodyPartStyle = {

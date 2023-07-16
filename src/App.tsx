@@ -27,27 +27,6 @@ const handleResize = () => {
   document.documentElement.style.setProperty("--vw", `${vw}px`);
 };
 
-const Main = styled.main`
-  width: 100vw;
-  height: 100vh;
-
-  display: flex;
-  flex: 1;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: flex-start;
-
-  overflow-x: hidden;
-  &::-webkit-scrollbar {
-    display: none !important;
-  }
-`;
-
-const Container = styled.div`
-  width: calc(var(--vw, 1vw) * 100);
-  height: (var(--vh, 1vh) * 100);
-`;
-
 function App() {
   const { authenticated } = useAppSelector((state) => state.auth);
   const { reset } = useQueryErrorResetBoundary();
@@ -84,3 +63,28 @@ function App() {
 }
 
 export default App;
+
+const Main = styled.main`
+  width: 100vw;
+  height: calc(var(--vh, 1vh) * 100);
+
+  display: flex;
+  flex: 1;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: flex-start;
+
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+`;
+
+const Container = styled.div`
+  width: 100vw;
+  @media (min-width: 500px) {
+    width: calc(var(--vw, 1vw) * 100);
+  }
+
+  height: 100%;
+`;

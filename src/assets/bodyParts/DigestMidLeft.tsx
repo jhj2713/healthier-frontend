@@ -1,10 +1,10 @@
 import { IBodyPartIcon } from "src/interfaces/assets";
 
-export function DigestMidLeft({ style, customStyle }: IBodyPartIcon) {
+export function DigestMidLeft({ style, customStyle, id, onClick }: IBodyPartIcon) {
   const { mixBlendMode, opacity, fillOpacity, backgroundFill, textFill, stroke } = customStyle;
 
   return (
-    <svg width="80" height="90" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={style}>
+    <svg viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg" style={style} id={id} onClick={onClick}>
       <g style={{ mixBlendMode }} opacity={opacity}>
         <path
           d="M7.69262 3.70934C7.84379 1.89532 9.36022 0.5 11.1805 0.5H76C77.933 0.5 79.5 2.067 79.5 4V86C79.5 87.933 77.933 89.5 76 89.5H4.3472C2.29956 89.5 0.689241 87.7499 0.859288 85.7093L7.69262 3.70934Z"
