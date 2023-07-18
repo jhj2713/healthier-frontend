@@ -78,7 +78,7 @@ const Appointment = () => {
     <>
       {isSettingPosition ? (
         <Styled.Container>
-          <Search />
+          {!selectedHospital && <Search />}
 
           {isSettingPosition && (
             <Map

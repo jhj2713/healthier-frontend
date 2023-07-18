@@ -29,7 +29,7 @@ const Map = ({ currentPosition, doctorPositions, selectedHospital, setSearchPosi
       return;
     }
 
-    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.007, lng: selectedLatLng[0].point.x });
+    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.01, lng: selectedLatLng[0].point.x });
   }, [doctorPositions, selectedHospital]);
 
   const handleMove = (e: ViewStateChangeEvent) => {

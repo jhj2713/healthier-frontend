@@ -1,7 +1,12 @@
 import { Body_2 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  position: absolute;
+  top: 22.8rem;
+  background-color: ${({ theme }) => theme.color.grey_900};
+  z-index: 10000;
+`;
 
 export const Flex = styled.div<{ gap?: number; direction?: string; align?: string; justify?: string }>`
   display: flex;
