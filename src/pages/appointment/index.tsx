@@ -80,10 +80,18 @@ const Appointment = () => {
         <Styled.Container>
           <Search />
 
-          {isReadyMap && (
+          {isSettingPosition && (
             <Map
               currentPosition={currentPosition}
-              doctorPositions={data.hospitals}
+              doctorPositions={
+                data
+                  ? data.hospitals.filter(
+                      (hospital) =>
+                        (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
+                        (selectedFilter.nightService ? hospital.nightService === "Y" : true)
+                    )
+                  : []
+              }
               selectedHospital={selectedHospital}
               setSearchPosition={setSearchPosition}
             />

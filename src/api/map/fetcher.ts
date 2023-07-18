@@ -26,6 +26,6 @@ export const mapFetcher = {
     return fetcher.get(`/box`, params);
   },
   getMapDetail(id: string): Promise<IHospitalDetailInfo> {
-    return fetcher.get(`/box/${id}`);
+    return fetcher.get(`/${id}`);
   },
 };
