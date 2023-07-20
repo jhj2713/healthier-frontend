@@ -6,7 +6,7 @@ import { MedicineTag, PartTags } from "../tags";
 import * as Styled from "./index.style";
 
 const Search = () => {
-  const [selectedPart, setSelectedPart] = useState<IPart[]>([{ id: 1, name: "내과" }]);
+  const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
   const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
 
   const { isOpenModal, modalRef, closeModal, openModal } = useModal();
@@ -20,7 +20,7 @@ const Search = () => {
       <Styled.Container>
         <Styled.InputContainer>
           <img src="/images/doctorAppointment/search.svg" />
-          <Styled.Input />
+          <Styled.Input placeholder="병원명 및 지역명을 입력해주세요" />
         </Styled.InputContainer>
 
         <Styled.FilterContainer>

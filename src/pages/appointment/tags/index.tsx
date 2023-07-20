@@ -8,7 +8,8 @@ interface IPartTagsProps extends HTMLAttributes<HTMLDivElement> {
 
 export const PartTags = ({ selectedPart, ...props }: IPartTagsProps) => {
   return (
-    <Styled.PartContainer {...props}>
+    <Styled.PartContainer isSelected={selectedPart.length !== 0} {...props}>
+      {selectedPart.length === 0 && "진료과목"}
       {selectedPart.map((part) => part.name).join("・")}
       <SmallChevronDownIcon />
     </Styled.PartContainer>

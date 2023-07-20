@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const PartContainer = styled.div`
+export const PartContainer = styled.div<{ isSelected: boolean }>`
   display: inline-flex;
   align-items: center;
 
@@ -8,13 +8,13 @@ export const PartContainer = styled.div`
 
   padding: 0.6rem 1rem;
   border-radius: 6rem;
-  background-color: ${({ theme }) => theme.color.blue};
+  background-color: ${({ theme, isSelected }) => (isSelected ? theme.color.blue : theme.color.grey_850)};
 
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 500;
   line-height: 100%;
-  color: ${({ theme }) => theme.color.white};
+  color: ${({ theme, isSelected }) => (isSelected ? theme.color.white : theme.color.grey_300)};
 
   cursor: pointer;
 `;
