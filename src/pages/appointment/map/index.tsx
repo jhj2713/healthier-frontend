@@ -11,10 +11,11 @@ interface IMapProps {
   currentPosition: { lat: number; lng: number };
   doctorPositions: IHospitalInfo[];
   selectedHospital: string;
+  setSelectedHospital: Dispatch<string>;
   setSearchPosition?: Dispatch<{ left: { lat: number; lng: number }; right: { lat: number; lng: number } }>;
 }
 
-const Map = ({ currentPosition, doctorPositions, selectedHospital, setSearchPosition }: IMapProps) => {
+const Map = ({ currentPosition, doctorPositions, selectedHospital, setSelectedHospital, setSearchPosition }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
   const mapRef = useRef<MapRef>(null);
 
@@ -29,8 +30,9 @@ const Map = ({ currentPosition, doctorPositions, selectedHospital, setSearchPosi
       return;
     }
 
-    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.01, lng: selectedLatLng[0].point.x });
-  }, [doctorPositions, selectedHospital]);
+    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.005, lng: selectedLatLng[0].point.x });
+    mapRef.current.setZoom(15);
+  }, [selectedHospital]);
 
   const handleMove = (e: ViewStateChangeEvent) => {
     if (throttleRef.current || !setSearchPosition) {
@@ -64,9 +66,10 @@ const Map = ({ currentPosition, doctorPositions, selectedHospital, setSearchPosi
           onMove={handleMove}
           dragPan={selectedHospital ? false : true}
           dragRotate={selectedHospital ? false : true}
+          scrollZoom={selectedHospital ? false : true}
         >
           {doctorPositions.map((doc, idx) => (
-            <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x}>
+            <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x} onClick={() => setSelectedHospital(doc.id)}>
               <img src={`/images/doctorAppointment/${selectedHospital === doc.id ? "selected" : "map"}-pin.svg`} width={28} height={28} />
             </Marker>
           ))}

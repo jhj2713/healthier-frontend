@@ -93,6 +93,7 @@ const Appointment = () => {
                   : []
               }
               selectedHospital={selectedHospital}
+              setSelectedHospital={setSelectedHospital}
               setSearchPosition={setSearchPosition}
             />
           )}
