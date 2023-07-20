@@ -5,6 +5,10 @@ export const Container = styled.div`
   position: absolute;
   top: 22.8rem;
   background-color: ${({ theme }) => theme.color.grey_900};
+
+  width: 100%;
+  height: calc(100% - 22.8rem);
+
   z-index: 10000;
 `;
 
