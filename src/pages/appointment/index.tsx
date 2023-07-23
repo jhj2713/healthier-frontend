@@ -147,6 +147,8 @@ const Appointment = () => {
                           doctor.lunchTime.start || doctor.lunchTime.end ? `${doctor.lunchTime.start} ~ ${doctor.lunchTime.end}` : ""
                         }
                         phoneNumber={doctor.phoneNumber}
+                        emergencyNight={doctor.emergencyNight}
+                        nightService={doctor.nightService}
                         onClick={() => handleClickHospitalCard(doctor.id)}
                       />
                     ))}

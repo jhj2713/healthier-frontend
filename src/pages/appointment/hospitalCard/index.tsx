@@ -10,6 +10,8 @@ interface IHospitalCardProps extends HTMLAttributes<HTMLDivElement> {
   operatingTime: string;
   lunchTime: string;
   phoneNumber: string;
+  emergencyNight: string;
+  nightService: string;
 }
 const statusMap = {
   OPEN: "진료중",
@@ -26,6 +28,8 @@ const HospitalCard = ({
   operatingTime,
   lunchTime,
   phoneNumber,
+  emergencyNight,
+  nightService,
   ...props
 }: IHospitalCardProps) => {
   return (
@@ -50,6 +54,10 @@ const HospitalCard = ({
         </Styled.Description>
         <Styled.Description>{phoneNumber}</Styled.Description>
       </div>
+      <Styled.TagContainer>
+        {nightService && <Styled.Tag>야간진료</Styled.Tag>}
+        {emergencyNight && <Styled.Tag>응급실운영</Styled.Tag>}
+      </Styled.TagContainer>
     </Styled.Container>
   );
 };
