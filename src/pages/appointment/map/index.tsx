@@ -14,6 +14,8 @@ interface IMapProps {
   setSelectedHospital: Dispatch<string>;
   setSearchPosition?: Dispatch<{ left: { lat: number; lng: number }; right: { lat: number; lng: number } }>;
   setMapSearchCount: Dispatch<number>;
+  isBottomSheetOpen: boolean;
+  setIsBottomSheetOpen: Dispatch<boolean>;
 }
 
 const Map = ({
@@ -23,6 +25,8 @@ const Map = ({
   setSelectedHospital,
   setSearchPosition,
   setMapSearchCount,
+  isBottomSheetOpen,
+  setIsBottomSheetOpen,
 }: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
   const mapRef = useRef<MapRef>(null);
@@ -38,7 +42,7 @@ const Map = ({
       return;
     }
 
-    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.005, lng: selectedLatLng[0].point.x });
+    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - (isBottomSheetOpen ? 0.005 : 0), lng: selectedLatLng[0].point.x });
     mapRef.current.setZoom(15);
   }, [selectedHospital]);
 
@@ -74,6 +78,7 @@ const Map = ({
           style={{ width: "100%", height: "100vh" }}
           mapStyle={process.env.REACT_APP_MAP_STYLE}
           onMove={handleMove}
+          onClick={() => setIsBottomSheetOpen(false)}
           dragPan={selectedHospital ? false : true}
           dragRotate={selectedHospital ? false : true}
           scrollZoom={selectedHospital ? false : true}
@@ -86,7 +91,7 @@ const Map = ({
           <Marker latitude={currentPosition.lat} longitude={currentPosition.lng}>
             <img src="/images/doctorAppointment/current-pin.png" width={128} height={128} />
           </Marker>
-          <RefixButton currentPosition={currentPosition} />
+          <RefixButton currentPosition={currentPosition} isBottomSheetOpen={isBottomSheetOpen} />
         </MapGl>
       )}
     </Container>

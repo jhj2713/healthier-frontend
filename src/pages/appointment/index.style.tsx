@@ -34,10 +34,10 @@ export const LoadingTitle = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 `;
 
-export const MoreSearchContainer = styled.div`
+export const MoreSearchContainer = styled.div<{ isBottomSheetOpen: boolean }>`
   position: absolute;
   left: 50%;
-  bottom: 39rem;
+  bottom: ${({ isBottomSheetOpen }) => (isBottomSheetOpen ? "39rem" : "1.6rem")};
   transform: translate(-50%, 0);
 
   z-index: 1000;

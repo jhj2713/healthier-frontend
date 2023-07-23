@@ -40,6 +40,7 @@ const Appointment = () => {
   const [selectedHospital, setSelectedHospital] = useState<string>("");
   const [mapSearchCount, setMapSearchCount] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
+  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(true);
 
   /* eslint "@tanstack/query/exhaustive-deps": 0 */
   const {
@@ -97,6 +98,9 @@ const Appointment = () => {
       setIsSettingPosition(true);
     });
   }, []);
+  useEffect(() => {
+    setIsBottomSheetOpen(true);
+  }, [mapData, searchMapData]);
 
   const handleMoveMap = () => {
     console.log("move");
@@ -114,8 +118,14 @@ const Appointment = () => {
     }
   };
 
+  const total = searchText ? searchMapData?.total ?? 0 : mapData?.total ?? 0;
+  const maxCount = MAX_SEARCH_DATA <= (total === 0 ? 1 : total) ? 4 : Math.floor(((total === 0 ? 1 : total) - 1) / SEARCH_UNIT) + 1;
   const handleReSearchResult = () => {
-    if (mapSearchCount === 4) {
+    if ((searchText && !searchMapData) || (!searchText && !mapData)) {
+      return;
+    }
+
+    if (mapSearchCount === 4 || (mapSearchCount !== 0 && maxCount <= mapSearchCount)) {
       return;
     }
 
@@ -162,23 +172,18 @@ const Appointment = () => {
               setSelectedHospital={setSelectedHospital}
               setSearchPosition={setSearchPosition}
               setMapSearchCount={setMapSearchCount}
+              isBottomSheetOpen={isBottomSheetOpen}
+              setIsBottomSheetOpen={setIsBottomSheetOpen}
             />
           )}
           {!selectedHospital && (
-            <Styled.MoreSearchContainer onClick={handleReSearchResult}>
+            <Styled.MoreSearchContainer onClick={handleReSearchResult} isBottomSheetOpen={isBottomSheetOpen}>
               <p style={{ color: theme.color.blue }}>결과 {mapSearchCount === 0 ? "재검색" : "더보기"}</p>
               {mapSearchCount === 0 ? (
                 <img alt="search again" src="/images/doctorAppointment/refresh-rotate.svg" />
               ) : (
                 <div style={{ display: "flex" }}>
-                  <p style={{ color: theme.color.blue }}>{mapSearchCount}</p>/
-                  {searchText
-                    ? MAX_SEARCH_DATA <= (searchMapData?.total ?? 0)
-                      ? 4
-                      : Math.floor(((searchMapData?.total ?? 1) - 1) / SEARCH_UNIT) + 1
-                    : MAX_SEARCH_DATA <= (mapData?.total ?? 0)
-                    ? 4
-                    : Math.floor(((mapData?.total ?? 1) - 1) / SEARCH_UNIT) + 1}
+                  <p style={{ color: theme.color.blue }}>{mapSearchCount}</p>/{maxCount}
                 </div>
               )}
             </Styled.MoreSearchContainer>
@@ -186,7 +191,7 @@ const Appointment = () => {
           {selectedHospital ? (
             <HospitalDetail selectedHospital={selectedHospital} />
           ) : (
-            <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
+            <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen={isBottomSheetOpen}>
               <Styled.FilterContainer>
                 <p className="sort">거리순 정렬</p>
                 <div className="filter-tags">
