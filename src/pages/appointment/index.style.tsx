@@ -7,7 +7,21 @@ export const Container = styled.div`
 
 export const FilterContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+
+  .sort {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.03rem;
+    color: ${({ theme }) => theme.color.grey_500};
+  }
+
+  .filter-tags {
+    display: flex;
+    gap: 0.8rem;
+  }
 `;
 
 export const CardContainer = styled.div`

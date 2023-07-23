@@ -22,7 +22,7 @@ export interface mapBoxRequest {
     rightLatitude: number;
     emergencyNight: string;
     nightService: string;
-    departments: string[];
+    departments?: string;
     page: number;
     size: number;
   };

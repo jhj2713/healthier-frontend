@@ -48,7 +48,7 @@ const Appointment = () => {
           rightLongitude: searchPosition.right.lng,
           emergencyNight: selectedFilter.emergencyNight ? "Y" : "N",
           nightService: selectedFilter.nightService ? "Y" : "N",
-          departments: selectedPart.map((part) => part.name),
+          ...(selectedPart.length !== 0 && { departments: selectedPart.map((part) => part.name).join(",") }),
           page: 0,
           size: 15,
         },
@@ -112,15 +112,18 @@ const Appointment = () => {
           ) : (
             <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen>
               <Styled.FilterContainer>
-                {emergencyNightData.map((text, idx) => (
-                  <EmergencyNightTag
-                    key={idx}
-                    isSelected={selectedFilter[text.key]}
-                    onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
-                  >
-                    {text.label}
-                  </EmergencyNightTag>
-                ))}
+                <p className="sort">거리순 정렬</p>
+                <div className="filter-tags">
+                  {emergencyNightData.map((text, idx) => (
+                    <EmergencyNightTag
+                      key={idx}
+                      isSelected={selectedFilter[text.key]}
+                      onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
+                    >
+                      {text.label}
+                    </EmergencyNightTag>
+                  ))}
+                </div>
               </Styled.FilterContainer>
               <Styled.CardContainer>
                 {isReadyMap &&
