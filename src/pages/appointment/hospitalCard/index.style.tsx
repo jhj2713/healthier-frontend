@@ -21,11 +21,9 @@ export const Container = styled.div`
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
 
   .left-content {
     display: flex;
-    align-items: center;
 
     p + p {
       margin-left: 0.6rem;
@@ -34,6 +32,9 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.p`
+  max-width: 13rem;
+  word-break: break-all;
+
   font-size: 1.8rem;
   font-style: normal;
   font-weight: 500;
@@ -43,6 +44,9 @@ export const Title = styled.p`
 `;
 
 export const Category = styled.p`
+  align-self: flex-end;
+  margin-bottom: 0.4rem;
+
   font-size: 1.2rem;
   font-style: normal;
   font-weight: 400;
@@ -52,6 +56,8 @@ export const Category = styled.p`
 `;
 
 export const Status = styled.p<{ isEnd: boolean }>`
+  align-self: flex-start;
+
   font-size: 1.3rem;
   font-style: normal;
   font-weight: 400;

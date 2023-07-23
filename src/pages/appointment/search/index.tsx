@@ -12,11 +12,19 @@ interface ISearchProps {
   handleSearch: () => void;
   searchText: string;
   setSearchText: Dispatch<string>;
+  isSelectedMedicine: boolean;
+  setIsSelectedMedicine: Dispatch<boolean>;
 }
 
-const Search = ({ selectedPart, setSelectedPart, handleSearch, searchText, setSearchText }: ISearchProps) => {
-  const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
-
+const Search = ({
+  selectedPart,
+  setSelectedPart,
+  handleSearch,
+  searchText,
+  setSearchText,
+  isSelectedMedicine,
+  setIsSelectedMedicine,
+}: ISearchProps) => {
   const { isOpenModal, modalRef, closeModal, openModal } = useModal();
 
   useEffect(() => {

@@ -131,26 +131,40 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
             <Styled.Button>전화로 병원 예약하기</Styled.Button>
           </Styled.ContentContainer>
 
-          <Styled.Line />
-          <Styled.ContentContainer direction="column" align="flex-start">
-            <Styled.Flex gap={1} direction="column">
-              <Styled.SubTitle color={theme.color.grey_300}>주차 정보</Styled.SubTitle>
-            </Styled.Flex>
-          </Styled.ContentContainer>
+          {data.parkingSpace && Number(data.parkingSpace) !== 0 && (
+            <>
+              <Styled.Line />
+              <Styled.ContentContainer direction="column" align="flex-start">
+                <Styled.Flex gap={1} direction="column">
+                  <Styled.SubTitle color={theme.color.grey_300}>주차 정보</Styled.SubTitle>
+                  <Styled.TagContainer>
+                    {Number(data.parkingSpace) !== 0 && (
+                      <>
+                        <AppointmentTag>주차장 있음</AppointmentTag>
+                        <AppointmentTag>주차가능대수 : {data.parkingSpace}</AppointmentTag>
+                      </>
+                    )}
+                  </Styled.TagContainer>
+                </Styled.Flex>
+              </Styled.ContentContainer>
+            </>
+          )}
 
           <Styled.Line />
           <Styled.ContentContainer direction="column" align="flex-start">
             <Styled.SubTitle color={theme.color.grey_300}>진료 정보</Styled.SubTitle>
             <div style={{ height: "1.2rem" }} />
             <Styled.Flex gap={2} direction="column" align="flex-start">
-              <div>
-                <Styled.Description color={theme.color.grey_300}>진료 과목</Styled.Description>
-                <Styled.TagContainer>
-                  {data.department.map((part, idx) => (
-                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
-                  ))}
-                </Styled.TagContainer>
-              </div>
+              {data.department.length !== 0 && (
+                <div>
+                  <Styled.Description color={theme.color.grey_300}>진료 과목</Styled.Description>
+                  <Styled.TagContainer>
+                    {data.department.map((part, idx) => (
+                      <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                    ))}
+                  </Styled.TagContainer>
+                </div>
+              )}
 
               <div>
                 <Styled.Description color={theme.color.grey_300}>진료 과목별 전문의 정보</Styled.Description>
@@ -176,27 +190,41 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
                         </td>
                       </tr>
                     ))}
+                    {data.department.length === 0 && (
+                      <tr>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>-</Styled.Description>
+                        </td>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>-</Styled.Description>
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </Styled.Table>
               </div>
 
-              <div>
-                <Styled.Description color={theme.color.grey_300}>의료 장비</Styled.Description>
-                <Styled.TagContainer>
-                  {data.equipment.map((part, idx) => (
-                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
-                  ))}
-                </Styled.TagContainer>
-              </div>
+              {data.equipment.length !== 0 && (
+                <div>
+                  <Styled.Description color={theme.color.grey_300}>의료 장비</Styled.Description>
+                  <Styled.TagContainer>
+                    {data.equipment.map((part, idx) => (
+                      <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                    ))}
+                  </Styled.TagContainer>
+                </div>
+              )}
 
-              <div>
-                <Styled.Description color={theme.color.grey_300}>특수 진료 목록</Styled.Description>
-                <Styled.TagContainer>
-                  {data.specialTreatment.map((part, idx) => (
-                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
-                  ))}
-                </Styled.TagContainer>
-              </div>
+              {data.specialTreatment.length !== 0 && (
+                <div>
+                  <Styled.Description color={theme.color.grey_300}>특수 진료 목록</Styled.Description>
+                  <Styled.TagContainer>
+                    {data.specialTreatment.map((part, idx) => (
+                      <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                    ))}
+                  </Styled.TagContainer>
+                </div>
+              )}
 
               <div>
                 <Styled.Description color={theme.color.grey_300}>우수기관 평가 정보</Styled.Description>
@@ -222,6 +250,16 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
                         </td>
                       </tr>
                     ))}
+                    {data.excellentAgency.length === 0 && (
+                      <tr>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>-</Styled.Description>
+                        </td>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>-</Styled.Description>
+                        </td>
+                      </tr>
+                    )}
                   </tbody>
                 </Styled.Table>
               </div>
@@ -230,6 +268,14 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
             <Styled.SubDescription style={{ marginTop: "1.2rem" }}>
               헬시어에서 제공하는 정보는 건강보험심사평가원, 국민건강보험공단의 의료빅데이터 정보를 기반으로 작성되었습니다.
             </Styled.SubDescription>
+          </Styled.ContentContainer>
+
+          <Styled.Line />
+          <Styled.ContentContainer direction="column" align="flex-start">
+            <Styled.Flex justify="space-between" style={{ width: "100%" }}>
+              <Styled.Description color={theme.color.grey_200}>위 정보 중 잘못 작성된 내용이 있나요?</Styled.Description>
+              <Styled.EditButton>수정 요청하기</Styled.EditButton>
+            </Styled.Flex>
           </Styled.ContentContainer>
         </>
       )}

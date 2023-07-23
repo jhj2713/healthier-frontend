@@ -2,7 +2,8 @@ import { Body_2 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  position: absolute;
+  position: fixed;
+  overflow-y: auto;
   top: 22.8rem;
   background-color: ${({ theme }) => theme.color.grey_900};
 
@@ -132,4 +133,19 @@ export const Table = styled.table`
     text-align: left;
     padding: 1rem 1.8rem;
   }
+`;
+
+export const EditButton = styled.div`
+  cursor: pointer;
+
+  border-radius: 0.8rem;
+  padding: 0.8rem 1rem;
+  background-color: ${({ theme }) => theme.color.blue};
+
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.05rem;
+  color: ${({ theme }) => theme.color.grey_200};
 `;
