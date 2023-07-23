@@ -48,12 +48,8 @@ const Search = ({ selectedPart, setSelectedPart, handleSearch, searchText, setSe
         </Styled.InputContainer>
 
         <Styled.FilterContainer>
-          <MedicineTag
-            isSelected={isSelectedMedicine}
-            onClick={() => setIsSelectedMedicine(!isSelectedMedicine)}
-            style={{ marginLeft: "0.8rem" }}
-          />
-          <PartTags selectedPart={selectedPart} onClick={() => openModal()} />
+          <MedicineTag isSelected={isSelectedMedicine} onClick={() => setIsSelectedMedicine(!isSelectedMedicine)} />
+          <PartTags selectedPart={selectedPart} onClick={() => openModal()} style={{ marginLeft: "0.8rem" }} />
         </Styled.FilterContainer>
       </Styled.Container>
 
