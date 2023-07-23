@@ -38,7 +38,7 @@ const Appointment = () => {
   const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
   const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
-  const [mapSearchCount, setMapSearchCount] = useState<number>(1);
+  const [mapSearchCount, setMapSearchCount] = useState<number>(0);
   const [searchText, setSearchText] = useState<string>("");
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState<boolean>(true);
 
@@ -60,7 +60,7 @@ const Appointment = () => {
         rightLongitude: String(searchPosition.right.lng),
         emergencyNight: selectedFilter.emergencyNight ? "Y" : "",
         nightService: selectedFilter.nightService ? "Y" : "",
-        departments: selectedPart.map((part) => part.name).join(",") + isSelectedMedicine ? ",약국" : "",
+        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
         page: mapSearchCount,
         size: 15,
       }),
@@ -74,7 +74,7 @@ const Appointment = () => {
         userLatitude: currentPosition.lat,
         userLongitude: currentPosition.lng,
         nameContaining: searchText,
-        departments: selectedPart.map((part) => part.name).join(",") + isSelectedMedicine ? ",약국" : "",
+        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
         page: mapSearchCount,
         size: 15,
       }),
