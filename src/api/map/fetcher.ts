@@ -13,30 +13,26 @@ export const fetcher = {
 };
 
 export interface IMapBoxRequest {
-  mapSearchCondition: {
-    userLongitude: string;
-    userLatitude: string;
-    leftLongitude: string;
-    leftLatitude: string;
-    rightLongitude: string;
-    rightLatitude: string;
-    emergencyNight: string;
-    nightService: string;
-    departments: string;
-    page: number;
-    size: number;
-  };
+  userLongitude: string;
+  userLatitude: string;
+  leftLongitude: string;
+  leftLatitude: string;
+  rightLongitude: string;
+  rightLatitude: string;
+  emergencyNight: string;
+  nightService: string;
+  departments: string;
+  page: number;
+  size: number;
 }
 
 export interface ISearchMapRequest {
-  mapSearchCondition: {
-    userLongitude: number;
-    userLatitude: number;
-    departments: string;
-    nameContaining: string;
-    page: number;
-    size: number;
-  };
+  userLongitude: number;
+  userLatitude: number;
+  departments: string;
+  nameContaining: string;
+  page: number;
+  size: number;
 }
 
 export const mapFetcher = {
