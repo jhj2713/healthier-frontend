@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
+import { useState } from "react";
 import { mapFetcher } from "src/api/map/fetcher";
 import { IHospitalDetailInfo } from "src/interfaces/map";
 import theme from "src/lib/theme";
+import { convertWeekDay } from "src/utils/appointment";
 import * as Styled from "./index.style";
 
 const statusMap = {
@@ -29,6 +31,8 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
     queryFn: () => mapFetcher.getMapDetail(selectedHospital),
     staleTime: Infinity,
   });
+
+  const [isOpenSchedule, setIsOpenSchedule] = useState<boolean>(false);
 
   const renderSchedule = () => {
     if (!data) {
@@ -65,36 +69,63 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
               </Styled.Description>
             </Styled.Flex>
 
-            <Styled.Flex gap={0.6} align="flex-start">
-              <img alt="position" src="/images/doctorAppointment/detail-position.svg" />
-              <Styled.Description color={theme.color.grey_300}>{data.address}</Styled.Description>
-            </Styled.Flex>
+            {data.address && (
+              <Styled.Flex gap={0.6} align="flex-start">
+                <img alt="position" src="/images/doctorAppointment/detail-position.svg" />
+                <Styled.Description color={theme.color.grey_300}>{data.address}</Styled.Description>
+              </Styled.Flex>
+            )}
 
             <Styled.Flex gap={0.6} align="flex-start">
               <img alt="position" src="/images/doctorAppointment/detail-time.svg" />
               <Styled.Flex direction="column" align="flex-start">
-                <Styled.Description color={theme.color.grey_300}>{statusMap[data.operatingStatus]}</Styled.Description>
-                {renderSchedule().map((schedule) => (
-                  <Styled.Description key={schedule.day} color={theme.color.grey_300}>
-                    {schedule.day} | {schedule.time}
+                <Styled.Flex>
+                  <Styled.Description color={data.operatingStatus === "OPEN" ? theme.color.green : theme.color.grey_600}>
+                    {statusMap[data.operatingStatus]}
+                    {data.operatingStatus !== "UNKNOWN" &&
+                      ` ・ ${data.schedule[convertWeekDay()].start ?? "00:00"} ~ ${data.schedule[convertWeekDay()].end ?? "00:00"}`}
                   </Styled.Description>
-                ))}
+                  <img
+                    alt="dropdown"
+                    src="/images/doctorAppointment/chevron-down.svg"
+                    style={{ marginLeft: "0.2rem", transform: `rotate(${isOpenSchedule ? "180deg" : "0"})` }}
+                    onClick={() => setIsOpenSchedule(!isOpenSchedule)}
+                  />
+                </Styled.Flex>
+                {isOpenSchedule &&
+                  renderSchedule().map((schedule, idx) => (
+                    <Styled.Description key={schedule.day} color={theme.color.grey_300}>
+                      <p
+                        style={{
+                          color: idx === renderSchedule().length - 1 ? theme.color.sub_blue : theme.color.grey_300,
+                          display: "inline",
+                        }}
+                      >
+                        {schedule.day}
+                      </p>{" "}
+                      | {schedule.time}
+                    </Styled.Description>
+                  ))}
               </Styled.Flex>
             </Styled.Flex>
 
-            <Styled.Flex gap={0.6} align="flex-start">
-              <img alt="position" src="/images/doctorAppointment/detail-site.svg" />
-              <a href={data.homepage} target="_blank" rel="noreferrer">
-                <Styled.Description color={theme.color.grey_300} style={{ textDecoration: "underline" }}>
-                  {data.homepage}
-                </Styled.Description>
-              </a>
-            </Styled.Flex>
+            {data.homepage && (
+              <Styled.Flex gap={0.6} align="flex-start">
+                <img alt="position" src="/images/doctorAppointment/detail-site.svg" />
+                <a href={data.homepage} target="_blank" rel="noreferrer">
+                  <Styled.Description color={theme.color.grey_300} style={{ textDecoration: "underline" }}>
+                    {data.homepage}
+                  </Styled.Description>
+                </a>
+              </Styled.Flex>
+            )}
 
-            <Styled.Flex gap={0.6} align="flex-start">
-              <img alt="position" src="/images/doctorAppointment/detail-phone.svg" />
-              <Styled.Description color={theme.color.grey_300}>{data.phoneNumber}</Styled.Description>
-            </Styled.Flex>
+            {data.phoneNumber && (
+              <Styled.Flex gap={0.6} align="flex-start">
+                <img alt="position" src="/images/doctorAppointment/detail-phone.svg" />
+                <Styled.Description color={theme.color.grey_300}>{data.phoneNumber}</Styled.Description>
+              </Styled.Flex>
+            )}
 
             <Styled.Button>전화로 병원 예약하기</Styled.Button>
           </Styled.ContentContainer>
