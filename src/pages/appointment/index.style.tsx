@@ -35,10 +35,20 @@ export const LoadingTitle = styled(Heading_3)`
 `;
 
 export const MoreSearchContainer = styled.div`
+  position: absolute;
+  left: 50%;
+  bottom: 39rem;
+  transform: translate(-50%, 0);
+
+  z-index: 1000;
+  cursor: pointer;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
 
+  width: 13rem;
+  box-sizing: border-box;
   padding: 1.2rem 1.4rem;
 
   background-color: ${({ theme }) => theme.color.grey_850};

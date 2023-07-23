@@ -23,7 +23,7 @@ const Search = ({ selectedPart, setSelectedPart, handleSearch, searchText, setSe
     document.addEventListener("keydown", submitSearch);
 
     return () => document.removeEventListener("keydown", submitSearch);
-  }, []);
+  }, [searchText]);
 
   const submitSearch = (e: KeyboardEvent) => {
     if (e.key === "Enter") {

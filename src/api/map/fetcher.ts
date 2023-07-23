@@ -43,6 +43,6 @@ export const mapFetcher = {
     return fetcher.get(`/${id}`);
   },
   getSearchMap(params: ISearchMapRequest): Promise<IUserMapResponse> {
-    return fetcher.get(`/map/search`, params);
+    return fetcher.get(`/search`, params);
   },
 };

@@ -16,6 +16,9 @@ import { IPart } from "./partModal/index";
 import Search from "./search";
 import { EmergencyNightTag } from "./tags";
 
+const MAX_SEARCH_DATA = 60;
+const SEARCH_UNIT = 15;
+
 interface ISelectedFilter {
   emergencyNight: boolean;
   nightService: boolean;
@@ -34,7 +37,7 @@ const Appointment = () => {
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
   const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
-  const [mapSearchCount, setMapSearchCount] = useState<number>(0);
+  const [mapSearchCount, setMapSearchCount] = useState<number>(1);
   const [searchText, setSearchText] = useState<string>("");
 
   /* eslint "@tanstack/query/exhaustive-deps": 0 */
@@ -42,6 +45,7 @@ const Appointment = () => {
     data: mapData,
     isFetching: isFetchingMapData,
     isSuccess: isSuccessMapData,
+    refetch: refetchMapData,
   } = useQuery<IUserMapResponse, AxiosError>({
     queryKey: ["appointment", "map"],
     queryFn: () =>
@@ -61,12 +65,7 @@ const Appointment = () => {
     staleTime: Infinity,
     enabled: isSettingPosition,
   });
-  const {
-    data: searchMapData,
-    isFetching: isFetchingSearchMapData,
-    isSuccess: isSuccessSearchMapData,
-    refetch: refetchSearchData,
-  } = useQuery<IUserMapResponse, AxiosError>({
+  const { data: searchMapData, refetch: refetchSearchData } = useQuery<IUserMapResponse, AxiosError>({
     queryKey: ["appointment", "search", mapSearchCount],
     queryFn: () =>
       mapFetcher.getSearchMap({
@@ -78,7 +77,7 @@ const Appointment = () => {
         size: 15,
       }),
     staleTime: Infinity,
-    enabled: mapSearchCount !== 0,
+    enabled: false,
   });
 
   useEffect(() => {
@@ -107,11 +106,28 @@ const Appointment = () => {
   };
 
   const handleSearch = () => {
-    refetchSearchData();
+    if (searchText) {
+      refetchSearchData();
+    } else {
+      refetchMapData();
+    }
+  };
+
+  const handleReSearchResult = () => {
+    if (mapSearchCount === 4) {
+      return;
+    }
+
+    if (searchText) {
+      refetchSearchData();
+    } else {
+      refetchMapData();
+    }
+    setMapSearchCount(mapSearchCount + 1);
   };
 
   const isReadyMap = isSettingPosition && !isFetchingMapData && isSuccessMapData && mapData;
-  const hospitalData = !isFetchingSearchMapData && isSuccessSearchMapData ? searchMapData : mapData;
+  const hospitalData = searchText ? searchMapData : mapData;
 
   return (
     <>
@@ -146,14 +162,21 @@ const Appointment = () => {
             />
           )}
           {!selectedHospital && (
-            <Styled.MoreSearchContainer>
+            <Styled.MoreSearchContainer onClick={handleReSearchResult}>
               <p style={{ color: theme.color.blue }}>결과 {mapSearchCount === 0 ? "재검색" : "더보기"}</p>
               {mapSearchCount === 0 ? (
                 <img alt="search again" src="/images/doctorAppointment/refresh-rotate.svg" />
               ) : (
-                <>
-                  <p style={{ color: theme.color.blue }}>{mapSearchCount}</p>/5
-                </>
+                <div style={{ display: "flex" }}>
+                  <p style={{ color: theme.color.blue }}>{mapSearchCount}</p>/
+                  {searchText
+                    ? MAX_SEARCH_DATA <= (searchMapData?.total ?? 0)
+                      ? 4
+                      : Math.floor(((searchMapData?.total ?? 1) - 1) / SEARCH_UNIT) + 1
+                    : MAX_SEARCH_DATA <= (mapData?.total ?? 0)
+                    ? 4
+                    : Math.floor(((mapData?.total ?? 1) - 1) / SEARCH_UNIT) + 1}
+                </div>
               )}
             </Styled.MoreSearchContainer>
           )}

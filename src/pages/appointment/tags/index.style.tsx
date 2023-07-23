@@ -47,8 +47,4 @@ export const EmergencyNightContainer = styled.div<{ isSelected: boolean }>`
   line-height: 130%;
   letter-spacing: -0.05rem;
   color: ${({ theme }) => theme.color.blue};
-
-  & + & {
-    margin-left: 0.8rem;
-  }
 `;
