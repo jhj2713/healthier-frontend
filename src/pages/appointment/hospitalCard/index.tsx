@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+import { AppointmentTag } from "../tags";
 import * as Styled from "./index.style";
 
 interface IHospitalCardProps extends HTMLAttributes<HTMLDivElement> {
@@ -55,8 +56,8 @@ const HospitalCard = ({
         <Styled.Description>{phoneNumber}</Styled.Description>
       </div>
       <Styled.TagContainer>
-        {nightService && <Styled.Tag>야간진료</Styled.Tag>}
-        {emergencyNight && <Styled.Tag>응급실운영</Styled.Tag>}
+        {nightService && <AppointmentTag>야간진료</AppointmentTag>}
+        {emergencyNight && <AppointmentTag>응급실운영</AppointmentTag>}
       </Styled.TagContainer>
     </Styled.Container>
   );

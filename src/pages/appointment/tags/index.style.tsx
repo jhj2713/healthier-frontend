@@ -48,3 +48,16 @@ export const EmergencyNightContainer = styled.div<{ isSelected: boolean }>`
   letter-spacing: -0.05rem;
   color: ${({ theme }) => theme.color.blue};
 `;
+
+export const TagContainer = styled.div`
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.05rem;
+  color: ${({ theme }) => theme.color.sub_blue};
+
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  background: rgba(84, 100, 242, 0.2);
+`;
