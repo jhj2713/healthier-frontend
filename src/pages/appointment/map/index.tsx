@@ -13,9 +13,17 @@ interface IMapProps {
   selectedHospital: string;
   setSelectedHospital: Dispatch<string>;
   setSearchPosition?: Dispatch<{ left: { lat: number; lng: number }; right: { lat: number; lng: number } }>;
+  setMapSearchCount: Dispatch<number>;
 }
 
-const Map = ({ currentPosition, doctorPositions, selectedHospital, setSelectedHospital, setSearchPosition }: IMapProps) => {
+const Map = ({
+  currentPosition,
+  doctorPositions,
+  selectedHospital,
+  setSelectedHospital,
+  setSearchPosition,
+  setMapSearchCount,
+}: IMapProps) => {
   const throttleRef = useRef<boolean>(false);
   const mapRef = useRef<MapRef>(null);
 
@@ -38,6 +46,8 @@ const Map = ({ currentPosition, doctorPositions, selectedHospital, setSelectedHo
     if (throttleRef.current || !setSearchPosition) {
       return;
     }
+
+    setMapSearchCount(0);
 
     throttleRef.current = true;
     const timer = setTimeout(() => {

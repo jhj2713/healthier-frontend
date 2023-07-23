@@ -12,27 +12,41 @@ export const fetcher = {
   get: <T>(url: string, params?: object) => instance.get<T>(url, { params }).then(responseBody),
 };
 
-export interface mapBoxRequest {
+export interface IMapBoxRequest {
+  mapSearchCondition: {
+    userLongitude: string;
+    userLatitude: string;
+    leftLongitude: string;
+    leftLatitude: string;
+    rightLongitude: string;
+    rightLatitude: string;
+    emergencyNight: string;
+    nightService: string;
+    departments: string;
+    page: number;
+    size: number;
+  };
+}
+
+export interface ISearchMapRequest {
   mapSearchCondition: {
     userLongitude: number;
     userLatitude: number;
-    leftLongitude: number;
-    leftLatitude: number;
-    rightLongitude: number;
-    rightLatitude: number;
-    emergencyNight: string;
-    nightService: string;
-    departments?: string;
+    departments: string;
+    nameContaining: string;
     page: number;
     size: number;
   };
 }
 
 export const mapFetcher = {
-  getUserMap(params: mapBoxRequest): Promise<IUserMapResponse> {
+  getUserMap(params: IMapBoxRequest): Promise<IUserMapResponse> {
     return fetcher.get(`/box`, params);
   },
   getMapDetail(id: string): Promise<IHospitalDetailInfo> {
     return fetcher.get(`/${id}`);
+  },
+  getSearchMap(params: ISearchMapRequest): Promise<IUserMapResponse> {
+    return fetcher.get(`/map/search`, params);
   },
 };
