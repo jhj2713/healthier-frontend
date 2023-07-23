@@ -135,17 +135,16 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
             <>
               <Styled.Line />
               <Styled.ContentContainer direction="column" align="flex-start">
-                <Styled.Flex gap={1} direction="column">
-                  <Styled.SubTitle color={theme.color.grey_300}>주차 정보</Styled.SubTitle>
-                  <Styled.TagContainer>
-                    {Number(data.parkingSpace) !== 0 && (
-                      <>
-                        <AppointmentTag>주차장 있음</AppointmentTag>
-                        <AppointmentTag>주차가능대수 : {data.parkingSpace}</AppointmentTag>
-                      </>
-                    )}
-                  </Styled.TagContainer>
-                </Styled.Flex>
+                <Styled.SubTitle color={theme.color.grey_300}>주차 정보</Styled.SubTitle>
+                <div style={{ height: "1rem" }} />
+                <Styled.TagContainer>
+                  {Number(data.parkingSpace) !== 0 && (
+                    <>
+                      <AppointmentTag>주차장 있음</AppointmentTag>
+                      <AppointmentTag>주차가능대수 : {data.parkingSpace}</AppointmentTag>
+                    </>
+                  )}
+                </Styled.TagContainer>
               </Styled.ContentContainer>
             </>
           )}

@@ -42,7 +42,7 @@ const Map = ({
       return;
     }
 
-    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - (isBottomSheetOpen ? 0.005 : 0), lng: selectedLatLng[0].point.x });
+    mapRef.current.setCenter({ lat: selectedLatLng[0].point.y - 0.005, lng: selectedLatLng[0].point.x });
     mapRef.current.setZoom(15);
   }, [selectedHospital]);
 
@@ -85,7 +85,11 @@ const Map = ({
         >
           {doctorPositions.map((doc, idx) => (
             <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x} onClick={() => setSelectedHospital(doc.id)}>
-              <img src={`/images/doctorAppointment/${selectedHospital === doc.id ? "selected" : "map"}-pin.svg`} width={28} height={28} />
+              <img
+                src={`/images/doctorAppointment/${selectedHospital === doc.id ? "selected" : "map"}-pin.svg`}
+                width={selectedHospital ? 28 : 22}
+                height={selectedHospital ? 28 : 22}
+              />
             </Marker>
           ))}
           <Marker latitude={currentPosition.lat} longitude={currentPosition.lng}>
