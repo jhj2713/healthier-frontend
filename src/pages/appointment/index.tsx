@@ -11,6 +11,7 @@ import HospitalCard from "./hospitalCard";
 import HospitalDetail from "./hospitalDetail";
 import * as Styled from "./index.style";
 import Map from "./map";
+import { IPart } from "./partModal/index";
 import Search from "./search";
 import { EmergencyNightTag } from "./tags";
 
@@ -30,18 +31,27 @@ const Appointment = () => {
   });
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
+  const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
 
+  /* eslint "@tanstack/query/exhaustive-deps": 0 */
   const { data, isFetching, isSuccess } = useQuery<IUserMapResponse, AxiosError>({
-    queryKey: ["appointment", "map", currentPosition, searchPosition],
+    queryKey: ["appointment", "map"],
     queryFn: () =>
       mapFetcher.getUserMap({
-        userLatitude: currentPosition.lat,
-        userLongitude: currentPosition.lng,
-        leftLatitude: searchPosition.left.lat,
-        leftLongitude: searchPosition.left.lng,
-        rightLatitude: searchPosition.right.lat,
-        rightLongitude: searchPosition.right.lng,
+        mapSearchCondition: {
+          userLatitude: currentPosition.lat,
+          userLongitude: currentPosition.lng,
+          leftLatitude: searchPosition.left.lat,
+          leftLongitude: searchPosition.left.lng,
+          rightLatitude: searchPosition.right.lat,
+          rightLongitude: searchPosition.right.lng,
+          emergencyNight: selectedFilter.emergencyNight ? "Y" : "N",
+          nightService: selectedFilter.nightService ? "Y" : "N",
+          departments: selectedPart.map((part) => part.name),
+          page: 0,
+          size: 15,
+        },
       }),
     staleTime: Infinity,
     enabled: isSettingPosition,
@@ -78,7 +88,7 @@ const Appointment = () => {
     <>
       {isSettingPosition ? (
         <Styled.Container>
-          {!selectedHospital && <Search />}
+          {!selectedHospital && <Search selectedPart={selectedPart} setSelectedPart={setSelectedPart} />}
 
           {isSettingPosition && (
             <Map

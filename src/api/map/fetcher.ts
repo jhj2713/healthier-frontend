@@ -13,12 +13,19 @@ export const fetcher = {
 };
 
 export interface mapBoxRequest {
-  userLongitude: number;
-  userLatitude: number;
-  leftLongitude: number;
-  leftLatitude: number;
-  rightLongitude: number;
-  rightLatitude: number;
+  mapSearchCondition: {
+    userLongitude: number;
+    userLatitude: number;
+    leftLongitude: number;
+    leftLatitude: number;
+    rightLongitude: number;
+    rightLatitude: number;
+    emergencyNight: string;
+    nightService: string;
+    departments: string[];
+    page: number;
+    size: number;
+  };
 }
 
 export const mapFetcher = {

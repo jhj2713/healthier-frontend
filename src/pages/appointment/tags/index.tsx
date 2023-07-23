@@ -1,5 +1,5 @@
 import { HTMLAttributes } from "react";
-import { SmallChevronDownIcon } from "src/assets/icons/ChevronDownIcon";
+import { ChevronRightIcon } from "src/assets/icons/ChevronRightIcon";
 import * as Styled from "./index.style";
 
 interface IPartTagsProps extends HTMLAttributes<HTMLDivElement> {
@@ -10,8 +10,8 @@ export const PartTags = ({ selectedPart, ...props }: IPartTagsProps) => {
   return (
     <Styled.PartContainer isSelected={selectedPart.length !== 0} {...props}>
       {selectedPart.length === 0 && "진료과목"}
-      {selectedPart.map((part) => part.name).join("・")}
-      <SmallChevronDownIcon />
+      {selectedPart.map((part) => part.name).join(" ・ ")}
+      <ChevronRightIcon />
     </Styled.PartContainer>
   );
 };
