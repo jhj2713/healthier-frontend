@@ -33,3 +33,22 @@ export const LoadingTitle = styled(Heading_3)`
   word-break: keep-all;
   color: ${({ theme }) => theme.color.grey_200};
 `;
+
+export const MoreSearchContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.2rem 1.4rem;
+
+  background-color: ${({ theme }) => theme.color.grey_850};
+  border: 0.1rem solid ${({ theme }) => theme.color.blue};
+  border-radius: 6rem;
+
+  font-size: 1.2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%;
+  letter-spacing: -0.05rem;
+  color: ${({ theme }) => theme.color.grey_400};
+`;

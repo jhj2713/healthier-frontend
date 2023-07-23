@@ -6,6 +6,7 @@ import BottomSheet from "src/components/bottomSheet";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import { IUserMapResponse } from "src/interfaces/map";
+import theme from "src/lib/theme";
 import { emergencyNightData } from "./data";
 import HospitalCard from "./hospitalCard";
 import HospitalDetail from "./hospitalDetail";
@@ -33,28 +34,55 @@ const Appointment = () => {
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
   const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
+  const [mapSearchCount, setMapSearchCount] = useState<number>(0);
+  const [searchText, setSearchText] = useState<string>("");
 
   /* eslint "@tanstack/query/exhaustive-deps": 0 */
-  const { data, isFetching, isSuccess } = useQuery<IUserMapResponse, AxiosError>({
+  const {
+    data: mapData,
+    isFetching: isFetchingMapData,
+    isSuccess: isSuccessMapData,
+  } = useQuery<IUserMapResponse, AxiosError>({
     queryKey: ["appointment", "map"],
     queryFn: () =>
       mapFetcher.getUserMap({
         mapSearchCondition: {
-          userLatitude: currentPosition.lat,
-          userLongitude: currentPosition.lng,
-          leftLatitude: searchPosition.left.lat,
-          leftLongitude: searchPosition.left.lng,
-          rightLatitude: searchPosition.right.lat,
-          rightLongitude: searchPosition.right.lng,
-          emergencyNight: selectedFilter.emergencyNight ? "Y" : "N",
-          nightService: selectedFilter.nightService ? "Y" : "N",
-          ...(selectedPart.length !== 0 && { departments: selectedPart.map((part) => part.name).join(",") }),
-          page: 0,
+          userLatitude: String(currentPosition.lat),
+          userLongitude: String(currentPosition.lng),
+          leftLatitude: String(searchPosition.left.lat),
+          leftLongitude: String(searchPosition.left.lng),
+          rightLatitude: String(searchPosition.right.lat),
+          rightLongitude: String(searchPosition.right.lng),
+          emergencyNight: selectedFilter.emergencyNight ? "Y" : "",
+          nightService: selectedFilter.nightService ? "Y" : "",
+          departments: selectedPart.map((part) => part.name).join(","),
+          page: mapSearchCount,
           size: 15,
         },
       }),
     staleTime: Infinity,
     enabled: isSettingPosition,
+  });
+  const {
+    data: searchMapData,
+    isFetching: isFetchingSearchMapData,
+    isSuccess: isSuccessSearchMapData,
+    refetch: refetchSearchData,
+  } = useQuery<IUserMapResponse, AxiosError>({
+    queryKey: ["appointment", "search", mapSearchCount],
+    queryFn: () =>
+      mapFetcher.getSearchMap({
+        mapSearchCondition: {
+          userLatitude: currentPosition.lat,
+          userLongitude: currentPosition.lng,
+          nameContaining: searchText,
+          departments: selectedPart.map((part) => part.name).join(","),
+          page: mapSearchCount,
+          size: 15,
+        },
+      }),
+    staleTime: Infinity,
+    enabled: mapSearchCount !== 0,
   });
 
   useEffect(() => {
@@ -82,20 +110,33 @@ const Appointment = () => {
     setSelectedHospital(id);
   };
 
-  const isReadyMap = isSettingPosition && !isFetching && isSuccess && data;
+  const handleSearch = () => {
+    refetchSearchData();
+  };
+
+  const isReadyMap = isSettingPosition && !isFetchingMapData && isSuccessMapData && mapData;
+  const hospitalData = !isFetchingSearchMapData && isSuccessSearchMapData ? searchMapData : mapData;
 
   return (
     <>
       {isSettingPosition ? (
         <Styled.Container>
-          {!selectedHospital && <Search selectedPart={selectedPart} setSelectedPart={setSelectedPart} />}
+          {!selectedHospital && (
+            <Search
+              selectedPart={selectedPart}
+              setSelectedPart={setSelectedPart}
+              handleSearch={handleSearch}
+              searchText={searchText}
+              setSearchText={setSearchText}
+            />
+          )}
 
           {isSettingPosition && (
             <Map
               currentPosition={currentPosition}
               doctorPositions={
-                data
-                  ? data.hospitals.filter(
+                hospitalData
+                  ? hospitalData.hospitals.filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
                         (selectedFilter.nightService ? hospital.nightService === "Y" : true)
@@ -105,7 +146,20 @@ const Appointment = () => {
               selectedHospital={selectedHospital}
               setSelectedHospital={setSelectedHospital}
               setSearchPosition={setSearchPosition}
+              setMapSearchCount={setMapSearchCount}
             />
+          )}
+          {!selectedHospital && (
+            <Styled.MoreSearchContainer>
+              <p style={{ color: theme.color.blue }}>결과 {mapSearchCount === 0 ? "재검색" : "더보기"}</p>
+              {mapSearchCount === 0 ? (
+                <img alt="search again" src="/images/doctorAppointment/refresh-rotate.svg" />
+              ) : (
+                <>
+                  <p style={{ color: theme.color.blue }}>{mapSearchCount}</p>/5
+                </>
+              )}
+            </Styled.MoreSearchContainer>
           )}
           {selectedHospital ? (
             <HospitalDetail selectedHospital={selectedHospital} />
@@ -127,7 +181,8 @@ const Appointment = () => {
               </Styled.FilterContainer>
               <Styled.CardContainer>
                 {isReadyMap &&
-                  data.hospitals
+                  hospitalData &&
+                  hospitalData.hospitals
                     .filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
