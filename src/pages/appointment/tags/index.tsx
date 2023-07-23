@@ -1,4 +1,4 @@
-import { HTMLAttributes, ReactNode } from "react";
+import { HTMLAttributes } from "react";
 import { ChevronRightIcon } from "src/assets/icons/ChevronRightIcon";
 import * as Styled from "./index.style";
 
@@ -36,6 +36,6 @@ export const EmergencyNightTag = ({ isSelected, children, ...props }: ISelectabl
   );
 };
 
-export const AppointmentTag = ({ children }: { children: ReactNode }) => {
-  return <Styled.TagContainer>{children}</Styled.TagContainer>;
+export const AppointmentTag = ({ children, ...props }: HTMLAttributes<HTMLDivElement>) => {
+  return <Styled.TagContainer {...props}>{children}</Styled.TagContainer>;
 };

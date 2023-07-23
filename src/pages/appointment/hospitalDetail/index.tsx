@@ -5,6 +5,7 @@ import { mapFetcher } from "src/api/map/fetcher";
 import { IHospitalDetailInfo } from "src/interfaces/map";
 import theme from "src/lib/theme";
 import { convertWeekDay } from "src/utils/appointment";
+import { AppointmentTag } from "../tags";
 import * as Styled from "./index.style";
 
 const statusMap = {
@@ -131,15 +132,104 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
           </Styled.ContentContainer>
 
           <Styled.Line />
-
-          <Styled.ContentContainer direction="column" gap={3.2} align="flex-start">
+          <Styled.ContentContainer direction="column" align="flex-start">
             <Styled.Flex gap={1} direction="column">
-              <Styled.Description color={theme.color.grey_300}>상세 정보</Styled.Description>
+              <Styled.SubTitle color={theme.color.grey_300}>주차 정보</Styled.SubTitle>
+            </Styled.Flex>
+          </Styled.ContentContainer>
+
+          <Styled.Line />
+          <Styled.ContentContainer direction="column" align="flex-start">
+            <Styled.SubTitle color={theme.color.grey_300}>진료 정보</Styled.SubTitle>
+            <div style={{ height: "1.2rem" }} />
+            <Styled.Flex gap={2} direction="column" align="flex-start">
+              <div>
+                <Styled.Description color={theme.color.grey_300}>진료 과목</Styled.Description>
+                <Styled.TagContainer>
+                  {data.department.map((part, idx) => (
+                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                  ))}
+                </Styled.TagContainer>
+              </div>
+
+              <div>
+                <Styled.Description color={theme.color.grey_300}>진료 과목별 전문의 정보</Styled.Description>
+                <Styled.Table>
+                  <thead>
+                    <tr>
+                      <th>
+                        <Styled.Description color={theme.color.grey_300}>진료 과목명</Styled.Description>
+                      </th>
+                      <th>
+                        <Styled.Description color={theme.color.grey_300}>전문의 수</Styled.Description>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.department.map((part, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>{part.name}</Styled.Description>
+                        </td>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>{part.count}</Styled.Description>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Styled.Table>
+              </div>
+
+              <div>
+                <Styled.Description color={theme.color.grey_300}>의료 장비</Styled.Description>
+                <Styled.TagContainer>
+                  {data.equipment.map((part, idx) => (
+                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                  ))}
+                </Styled.TagContainer>
+              </div>
+
+              <div>
+                <Styled.Description color={theme.color.grey_300}>특수 진료 목록</Styled.Description>
+                <Styled.TagContainer>
+                  {data.specialTreatment.map((part, idx) => (
+                    <AppointmentTag key={idx}>{part.name}</AppointmentTag>
+                  ))}
+                </Styled.TagContainer>
+              </div>
+
+              <div>
+                <Styled.Description color={theme.color.grey_300}>우수기관 평가 정보</Styled.Description>
+                <Styled.Table>
+                  <thead>
+                    <tr>
+                      <th>
+                        <Styled.Description color={theme.color.grey_300}>평가항목</Styled.Description>
+                      </th>
+                      <th>
+                        <Styled.Description color={theme.color.grey_300}>평가정보</Styled.Description>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {data.excellentAgency.map((part, idx) => (
+                      <tr key={idx}>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>{part.name}</Styled.Description>
+                        </td>
+                        <td>
+                          <Styled.Description color={theme.color.grey_400}>{part.grade} 우수기관</Styled.Description>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </Styled.Table>
+              </div>
             </Styled.Flex>
 
-            <Styled.Flex gap={1} direction="column">
-              <Styled.Description color={theme.color.grey_300}>주차 정보</Styled.Description>
-            </Styled.Flex>
+            <Styled.SubDescription style={{ marginTop: "1.2rem" }}>
+              헬시어에서 제공하는 정보는 건강보험심사평가원, 국민건강보험공단의 의료빅데이터 정보를 기반으로 작성되었습니다.
+            </Styled.SubDescription>
           </Styled.ContentContainer>
         </>
       )}
