@@ -29,6 +29,17 @@ export const DIGESTIVE_BODY_PART = {
   "left-lower-stomach": "왼쪽 아랫배",
 } as const;
 
+export const TOOTH_PART = {
+  top: "앞니",
+  "top-right": "상악 우측",
+  "top-left": "상악 좌측",
+  bottom: "아랫니",
+  "bottom-right": "하악 우측",
+  "bottom-left": "하악 좌측",
+  "soft-palate-right": "연구개 우측",
+  "soft-palate-left": "연구개 좌측",
+};
+
 export const TIME_TYPES = ["시간", "일", "주", "개월", "년"] as const;
 
 export const INITIAL_QUESTION = {
