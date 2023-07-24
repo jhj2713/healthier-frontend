@@ -18,15 +18,15 @@ export const ANSWER_TYPE = {
 } as const;
 
 export const DIGESTIVE_BODY_PART = {
-  "right-upper-stomach": "오른쪽 윗배",
-  "solar-plexus": "명치",
-  "left-upper-stomach": "왼쪽 윗배",
-  "right-side": "오른쪽 옆구리",
-  "belly-button": "배꼽 주위",
-  "left-side": "왼쪽 옆구리",
-  "right-lower-stomach": "오른쪽 아랫배",
-  "middle-lower-stomach": "아랫배 중앙",
-  "left-lower-stomach": "왼쪽 아랫배",
+  "right-upper-stomach": "0",
+  "solar-plexus": "1",
+  "left-upper-stomach": "2",
+  "right-side": "3",
+  "belly-button": "4",
+  "left-side": "5",
+  "right-lower-stomach": "6",
+  "middle-lower-stomach": "7",
+  "left-lower-stomach": "8",
 } as const;
 
 export const TOOTH_PART = {

@@ -17,7 +17,7 @@ function DigestiveImgButton({ setSelectedAnswer, handleClickNextButton, isNextBu
     const [, bodyPart] = e.currentTarget.id.split("_");
 
     setDigestivePart(bodyPart as TDigestiveBodyPartKey);
-    setSelectedAnswer((sa) => ({ ...sa, answer_id: [bodyPart] }));
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [DIGESTIVE_BODY_PART[bodyPart as TDigestiveBodyPartKey]] }));
   };
 
   const styleMapper = (id: TDigestiveBodyPartKey) => (digestivePart === id ? Styled.selectedStyle : Styled.defaultStyle);
