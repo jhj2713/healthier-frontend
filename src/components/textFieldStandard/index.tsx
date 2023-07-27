@@ -11,17 +11,16 @@ export interface ITextFieldStandardProps extends React.HTMLAttributes<HTMLInputE
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const TextFieldStandard = forwardRef<HTMLInputElement, ITextFieldStandardProps>(
-  ({ label, placeholder, type = "text", value, name, onChange, style }, ref) => {
-    return (
-      <Styled.Container>
-        <Styled.Label>{label}</Styled.Label>
-        <Styled.Input type={type} value={value} name={name} placeholder={placeholder} onChange={onChange} ref={ref} style={style} />
-      </Styled.Container>
-    );
-  }
-);
-
-TextFieldStandard.displayName = "TextFieldStandard";
+const TextFieldStandard = forwardRef<HTMLInputElement, ITextFieldStandardProps>(function TextFieldStandard(
+  { label, placeholder, type = "text", value, name, onChange, style },
+  ref
+) {
+  return (
+    <Styled.Container>
+      <Styled.Label>{label}</Styled.Label>
+      <Styled.Input type={type} value={value} name={name} placeholder={placeholder} onChange={onChange} ref={ref} style={style} />
+    </Styled.Container>
+  );
+});
 
 export default TextFieldStandard;

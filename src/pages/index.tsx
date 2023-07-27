@@ -8,6 +8,20 @@ import ResultPage from "./result";
 import SignUp from "./signUp";
 import SymptomPage from "./symptom";
 import SymptomTypePage from "./symptomType";
+import Appointment from "./appointment";
 import Test from "./test";
 
-export { Diagnosis, MyDiagnosis, Information, MainPage, ResultPage, SymptomPage, SymptomTypePage, DiagnosisList, SignUp, Error, Test };
+export {
+  Diagnosis,
+  MyDiagnosis,
+  Information,
+  MainPage,
+  ResultPage,
+  SymptomPage,
+  SymptomTypePage,
+  DiagnosisList,
+  SignUp,
+  Error,
+  Test,
+  Appointment,
+};

@@ -8,6 +8,7 @@ const BottomButtons = ({ openModal }: { openModal: () => void }) => {
 
   return (
     <Buttons>
+      <button onClick={() => navigate("/appointment")}>go to appointment</button>
       <ButtonBox onClick={() => navigate("/info")}>
         <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_800}>
           빠른 증상 감별 시작하기

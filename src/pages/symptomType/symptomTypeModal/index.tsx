@@ -5,7 +5,7 @@ import { symptom_type } from "src/data/symptom_type";
 import { ISymptomModal } from "src/interfaces/modal";
 import { Wrapper, Container, Contents, Description, Title, NoteImage, ButtonContainer } from "./index.style";
 
-const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, select }, ref) => {
+const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(function SymptomModal({ closeModal, select }, ref) {
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -42,7 +42,5 @@ const SymptomModal = forwardRef<HTMLDivElement, ISymptomModal>(({ closeModal, se
     </Wrapper>
   );
 });
-
-SymptomModal.displayName = "SymptomModal";
 
 export default SymptomModal;

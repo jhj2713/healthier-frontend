@@ -13,6 +13,7 @@ import {
   SymptomTypePage,
   DiagnosisList,
   SignUp,
+  Appointment,
   Error,
   Test,
 } from "./pages";
@@ -52,6 +53,7 @@ function App() {
             <Route path="/diagnosis" element={<Diagnosis />} />
             <Route path="/symptom" element={<SymptomPage />} />
             <Route path="/symptom-type" element={<SymptomTypePage />} />
+            <Route path="/appointment" element={<Appointment />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/test" element={<Test />} />
             <Route path="/*" element={<Navigate to="/" replace />} />
