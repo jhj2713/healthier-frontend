@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Heading_3, Body_1, Body_3 } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Container = styled.section`
   height: 100%;
@@ -61,4 +61,18 @@ export const Description = styled(Body_1)`
   width: 17.2rem;
 
   color: ${({ theme }) => theme.color.grey_400};
+`;
+
+export const SubContent = styled.p`
+  margin-top: 0.6rem;
+
+  font-size: 1.6rem;
+  line-height: 140%;
+  font-weight: 200;
+
+  color: ${({ theme }) => theme.color.grey_500};
+
+  & span {
+    color: ${({ theme }) => theme.color.blue_500};
+  }
 `;

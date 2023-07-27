@@ -1,4 +1,4 @@
-export const health_interest = [
+export const HEALTH_INTERESTS = [
   { id: 0, name: "금연", selected: false },
   { id: 1, name: "금주", selected: false },
   { id: 2, name: "수면", selected: false },

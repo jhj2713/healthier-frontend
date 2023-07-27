@@ -11,8 +11,8 @@ export const Input = styled.input`
   padding: 0 0 0.8rem 0;
   font-size: 20px;
   line-height: 1.25em;
-  font-weight: 400;
-  color: ${({ theme }) => theme.color.grey_400};
+  font-weight: 300;
+  color: ${({ theme }) => theme.color.grey_300};
   flex-grow: 1;
   flex-shrink: 0;
 
@@ -29,6 +29,7 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.color.grey_600};
     font-size: 1.8rem;
     font-height: 1.27em;
+    font-weight: 200;
   }
 `;
 

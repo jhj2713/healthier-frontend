@@ -14,4 +14,34 @@ export const ANSWER_TYPE = {
   NUMBER_10: "NUMBER_10",
   DRAG_1: "DRAG_1",
   STR: "STR",
+  NA: "NA",
 } as const;
+
+export const DIGESTIVE_BODY_PART = {
+  "right-upper-stomach": "오른쪽 윗배",
+  "solar-plexus": "명치",
+  "left-upper-stomach": "왼쪽 윗배",
+  "right-side": "오른쪽 옆구리",
+  "belly-button": "배꼽 주위",
+  "left-side": "왼쪽 옆구리",
+  "right-lower-stomach": "오른쪽 아랫배",
+  "middle-lower-stomach": "아랫배 중앙",
+  "left-lower-stomach": "왼쪽 아랫배",
+} as const;
+
+export const TIME_TYPES = ["시간", "일", "주", "개월", "년"] as const;
+
+export const INITIAL_QUESTION = {
+  id: 0,
+  question: "",
+  is_multiple: false,
+  image_url: null,
+  answer_type: ANSWER_TYPE.DEF,
+  answers: null,
+  sub_content: null,
+};
+
+export const INITIAL_ANSWER = {
+  answer_id: [],
+  next_question: null,
+};

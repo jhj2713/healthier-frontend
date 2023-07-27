@@ -9,6 +9,7 @@ import SignUp from "./signUp";
 import SymptomPage from "./symptom";
 import SymptomTypePage from "./symptomType";
 import Appointment from "./appointment";
+import Test from "./test";
 
 export {
   Diagnosis,
@@ -21,5 +22,6 @@ export {
   DiagnosisList,
   SignUp,
   Error,
+  Test,
   Appointment,
 };

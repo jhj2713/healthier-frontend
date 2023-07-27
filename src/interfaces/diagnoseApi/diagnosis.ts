@@ -45,7 +45,17 @@ export interface IDiagnosisResult {
   };
 }
 
-export interface IAnswer {
+export interface ISelectedAnswer {
+  answer_id: string[];
+  next_question: IQuestion | null;
+}
+
+export interface IAnswer extends Omit<ISelectedAnswer, "next_question"> {
+  question_id: string;
+  answer_type: TAnswerType;
+}
+
+export interface IAnswerData {
   answer_id: number;
   answer: string;
   next_question: IQuestion | null;
@@ -57,7 +67,16 @@ export interface IQuestion {
   is_multiple: boolean;
   image_url: string | null;
   answer_type: TAnswerType;
-  answers: IAnswer[] | null;
+  answers: IAnswerData[] | null;
+  sub_content: string | null;
+}
+
+export interface IPostAnswersBody {
+  user: {
+    gender: string;
+    age: number;
+  };
+  answers: IAnswer[];
 }
 
 export interface IDecisiveDate {

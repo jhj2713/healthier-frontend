@@ -1,93 +1,172 @@
-import { Dispatch, useEffect } from "react";
-import RoundButton from "src/components/roundButton";
+import { Dispatch } from "react";
 import { ANSWER_TYPE } from "src/data/answer_type";
-import { IAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
-import theme from "src/lib/theme";
-import DefButton from "../defButton";
-import EtcButton from "../etcButton";
-import NumberButtons from "../numberButtons";
-import SliderButton from "../sliderButton";
-import StringButton from "../stringButton";
-import { Container, NextButton } from "./index.style";
+import { ISelectedAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
+import DefButton from "./defButton";
+import EtcButton from "./etcButton";
+import ImgButton from "./imgButton";
+import * as NumberButtons from "./numberButtons";
+import SliderButton from "./sliderButton";
+import StringButton from "./stringButton";
 
 interface IAnswerButtonProps {
   question: IQuestion;
-  selectedAnswer: IAnswer[];
-  setSelectedAnswer: Dispatch<React.SetStateAction<IAnswer[]>>;
+  selectedAnswer: ISelectedAnswer;
+  setSelectedAnswer: Dispatch<React.SetStateAction<ISelectedAnswer>>;
   handleNext: () => void;
 }
 
 const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext }: IAnswerButtonProps) => {
-  useEffect(() => {
-    selectedAnswer.sort((a, b) => a.answer_id - b.answer_id);
-    if (question.answers && !question.is_multiple && selectedAnswer.length !== 0 && question.answer_type !== "DRAG_1") {
-      const timer = setTimeout(() => {
-        handleNext();
-        clearTimeout(timer);
-      }, 300);
-    }
-  }, [selectedAnswer]);
-
-  const handleActive = (id: number): boolean => {
-    return selectedAnswer.findIndex((ans) => ans.answer_id === id) !== -1;
+  const handleActive = (id: string): boolean => {
+    return selectedAnswer.answer_id.includes(id);
   };
 
-  const handleMultipleAnswer = () => {
-    if (selectedAnswer.length === 0) {
+  const isNextButtonEnabled = (): boolean => {
+    return selectedAnswer.answer_id.length > 0;
+  };
+
+  const handleClickNextButton = () => {
+    if (!isNextButtonEnabled()) {
       return;
     }
 
     handleNext();
   };
 
-  if (question.answer_type.startsWith("NUMBER")) {
+  if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
-      <NumberButtons question={question} selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />
+      <NumberButtons.DurationButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_2) {
+    return (
+      <NumberButtons.PreviousTimeButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_4) {
+    return (
+      <NumberButtons.AlcoholButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_5) {
+    return (
+      <NumberButtons.SmockingButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_7) {
+    return (
+      <NumberButtons.DurationButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_8) {
+    return (
+      <NumberButtons.AlcoholButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_9) {
+    return (
+      <NumberButtons.CountButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.NUMBER_10) {
+    return (
+      <NumberButtons.DurationButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
     );
   } else if (question.answer_type === ANSWER_TYPE.DRAG_1) {
     return (
       <SliderButton
+        question={question}
         selectedAnswer={selectedAnswer}
         setSelectedAnswer={setSelectedAnswer}
-        handleNext={handleNext}
+        handleClickNextButton={handleClickNextButton}
         handleActive={handleActive}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   } else if (question.answer_type === ANSWER_TYPE.STR) {
-    return <StringButton selectedAnswer={selectedAnswer} setSelectedAnswer={setSelectedAnswer} handleNext={handleNext} />;
+    return (
+      <StringButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
   } else if (question.answer_type === ANSWER_TYPE.ETC) {
     return (
       <EtcButton
-        answers={question.answers as IAnswer[]}
+        answers={question.answers ?? []}
         selectedAnswer={selectedAnswer}
         question={question}
         handleActive={handleActive}
         setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
+      />
+    );
+  } else if (question.answer_type === ANSWER_TYPE.IMG) {
+    return (
+      <ImgButton
+        question={question}
+        selectedAnswer={selectedAnswer}
+        setSelectedAnswer={setSelectedAnswer}
+        handleClickNextButton={handleClickNextButton}
+        isNextButtonEnabled={isNextButtonEnabled}
       />
     );
   }
 
   return (
-    <Container>
-      <DefButton
-        answers={question.answers ?? []}
-        question={question}
-        selectedAnswer={selectedAnswer}
-        handleActive={handleActive}
-        setSelectedAnswer={setSelectedAnswer}
-      />
-      {question.is_multiple && (
-        <NextButton onClick={handleMultipleAnswer}>
-          <RoundButton
-            outline="none"
-            backgroundColor={selectedAnswer.length === 0 ? theme.color.grey_650 : theme.color.blue}
-            color={selectedAnswer.length === 0 ? theme.color.grey_400 : theme.color.grey_100}
-          >
-            다음 단계
-          </RoundButton>
-        </NextButton>
-      )}
-    </Container>
+    <DefButton
+      answers={question.answers ?? []}
+      question={question}
+      selectedAnswer={selectedAnswer}
+      handleActive={handleActive}
+      setSelectedAnswer={setSelectedAnswer}
+      handleClickNextButton={handleClickNextButton}
+      isNextButtonEnabled={isNextButtonEnabled}
+    />
   );
 };
 
