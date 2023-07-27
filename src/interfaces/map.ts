@@ -1,3 +1,8 @@
+export interface ITimeDuration {
+  start: string;
+  end: string;
+}
+
 export interface IHospitalInfo {
   id: string;
   name: string;
@@ -9,10 +14,7 @@ export interface IHospitalInfo {
     start: string;
     end: string;
   };
-  lunchTime: {
-    start: string;
-    end: string;
-  };
+  lunchTime: ITimeDuration;
   point: {
     x: number;
     y: number;
@@ -31,14 +33,8 @@ export interface IHospitalDetailInfo {
   homepage: string;
   establishedDate: string;
   meToHospitalDistance: string;
-  operatingTime: {
-    start: string;
-    end: string;
-  };
-  lunchTime: {
-    start: string;
-    end: string;
-  };
+  operatingTime: ITimeDuration;
+  lunchTime: ITimeDuration;
   point: {
     x: number;
     y: number;
@@ -54,38 +50,14 @@ export interface IHospitalDetailInfo {
   nightService: string;
   operatingStatus: "OPEN" | "CLOSED" | "UNKNOWN";
   schedule: {
-    Mon: {
-      start: string;
-      end: string;
-    };
-    Tue: {
-      start: string;
-      end: string;
-    };
-    Wed: {
-      start: string;
-      end: string;
-    };
-    Thu: {
-      start: string;
-      end: string;
-    };
-    Fri: {
-      start: string;
-      end: string;
-    };
-    Sat: {
-      start: string;
-      end: string;
-    };
-    Sun: {
-      start: string;
-      end: string;
-    };
-    lunch: {
-      start: string;
-      end: string;
-    };
+    Mon: ITimeDuration;
+    Tue: ITimeDuration;
+    Wed: ITimeDuration;
+    Thu: ITimeDuration;
+    Fri: ITimeDuration;
+    Sat: ITimeDuration;
+    Sun: ITimeDuration;
+    lunch: ITimeDuration;
   };
   department: {
     name: string;
