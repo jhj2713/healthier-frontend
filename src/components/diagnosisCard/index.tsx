@@ -1,4 +1,4 @@
-import severityTypes from "src/data/severity_types";
+import { SEVERITY_TYPES } from "src/data/severity_types";
 import * as Styled from "./index.style";
 import type { IDiagnoseResult } from "src/interfaces/diagnoseApi/diagnosis";
 
@@ -30,7 +30,7 @@ const DiagnosisCard = ({ isSquare = false, result, handleNavigate }: IDiagnosisC
         <Styled.TitleWrapper>
           <Styled.Title severity={severity}>{dx_name}</Styled.Title>
         </Styled.TitleWrapper>
-        <Styled.Chip severity={severity}>{severity}</Styled.Chip>
+        <Styled.Chip severity={severity}>{SEVERITY_TYPES[severity]}</Styled.Chip>
       </Styled.Box>
     </Styled.Container>
   );

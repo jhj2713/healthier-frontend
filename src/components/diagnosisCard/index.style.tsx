@@ -7,8 +7,7 @@ export const Container = styled.section<{ severity: TSeverity; isSquare: boolean
   width: 100%;
   height: ${({ isSquare }) => (isSquare ? "calc(var(--vw, 1vw) * 100 - 4.8rem)" : "16rem")};
 
-  background: ${({ theme, severity }) =>
-    severity === "관리가 필요해요" ? theme.color.blue_300 : severity === "병원에 가는 걸 추천해요" ? theme.color.blue_500 : "#2745A9"};
+  background: ${({ theme, severity }) => (severity === 1 ? theme.color.blue_300 : severity === 2 ? theme.color.blue_500 : "#2745A9")};
   background-size: cover;
 
   border-radius: 0.8rem;
@@ -38,7 +37,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const Title = styled(Heading_5)<{ severity: TSeverity }>`
-  color: ${({ theme, severity }) => (severity === "관리가 필요해요" ? theme.color.blue_800 : theme.color.grey_200)};
+  color: ${({ theme, severity }) => (severity === 1 ? theme.color.blue_800 : theme.color.grey_200)};
 
   width: 12rem;
 
@@ -60,12 +59,8 @@ export const DateItem = styled.section<{ severity: number }>`
 
 export const Chip = styled.section<{ severity: TSeverity }>`
   background-color: ${({ theme, severity }) =>
-    severity === "관리가 필요해요"
-      ? theme.color.blue
-      : severity === "병원에 가는 걸 추천해요"
-      ? theme.color.blue_700
-      : theme.color.sub_blue};
-  color: ${({ theme, severity }) => (severity === "병원에 꼭 가야해요" ? theme.color.blue : theme.color.grey_100)};
+    severity === 1 ? theme.color.blue : severity === 2 ? theme.color.blue_700 : theme.color.sub_blue};
+  color: ${({ theme, severity }) => (severity === 3 ? theme.color.blue : theme.color.grey_100)};
 
   font-weight: 300;
   font-size: 1.3rem;
@@ -80,6 +75,7 @@ export const IllustrationWrapper = styled.section`
   position: absolute;
   right: 0;
   height: 100%;
+  width: 100%;
 `;
 
 export const Illustration = styled.img<{ isSquare: boolean }>`

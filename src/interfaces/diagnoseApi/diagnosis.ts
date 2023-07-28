@@ -1,4 +1,5 @@
 import { IDiagnosisItem } from "src/components/diagnosisCard";
+import { SEVERITY_TYPES } from "src/data/severity_types";
 import { TAnswerType } from "./answer.type";
 
 export interface IDiagnosisPatchData {
@@ -73,8 +74,9 @@ export interface IQuestion {
 
 export interface IPostAnswersBody {
   user: {
+    name: string;
     gender: string;
-    age: number;
+    birth_date: string;
   };
   answers: IAnswer[];
 }
@@ -93,7 +95,7 @@ export interface IQuestionResponse {
   question: IQuestion[];
 }
 
-export type TSeverity = "관리가 필요해요" | "병원에 가는 걸 추천해요" | "병원에 꼭 가야해요";
+export type TSeverity = keyof typeof SEVERITY_TYPES;
 
 export interface IDiagnoseResult {
   dx_id: string;

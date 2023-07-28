@@ -12,7 +12,7 @@ export const Default = () => {
     dx_id: "1000",
     dx_name: "안양부동시",
     most_likely: false,
-    severity: "병원에 꼭 가야해요",
+    severity: 1,
   };
 
   const handleNavigate = () => {
@@ -46,7 +46,7 @@ export const SquareCard = () => {
     dx_id: "1000",
     dx_name: "안양부동시",
     most_likely: true,
-    severity: "관리가 필요해요",
+    severity: 1,
   };
 
   const handleNavigate = () => {

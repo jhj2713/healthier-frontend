@@ -10,7 +10,7 @@ import type { TSymptomType } from "src/interfaces/symptomPage";
 
 function useDiagnosis(state: TSymptomType) {
   const navigate = useNavigate();
-  const { gender, age } = useAppSelector((appState) => appState.user);
+  const { gender, name, birth_year } = useAppSelector((appState) => appState.user);
 
   const [curQuestion, setCurQuestion] = useState<IQuestion | null>(INITIAL_QUESTION);
   const [selectedAnswer, setSelectedAnswer] = useState<ISelectedAnswer>(INITIAL_ANSWER);
@@ -20,7 +20,11 @@ function useDiagnosis(state: TSymptomType) {
   const answers = useRef<IAnswer[]>([]);
 
   const { questionsData, isLoading } = useGetQuestions({ gender, state });
-  const { postAnswer, isPending } = usePostAnswer({ diagnoseType: state, user: { gender, age }, answers: answers.current });
+  const { postAnswer, isPending } = usePostAnswer({
+    diagnoseType: state,
+    user: { name, gender, birth_date: `${birth_year}-01-01` },
+    answers: answers.current,
+  });
 
   useEffect(() => {
     if (!state) {
