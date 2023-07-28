@@ -14,3 +14,10 @@ export const Title = styled(Heading_3)<{ padding: string }>`
 export const List = styled.div`
   margin-top: 0.6rem;
 `;
+
+export const ExtraResultsTitle = styled(Heading_3)<{ padding?: string }>`
+  color: ${({ theme }) => theme.color.grey_200};
+
+  padding: ${({ padding }) => padding};
+  white-space: pre-line;
+`;

@@ -33,7 +33,7 @@ const DiagnosisList = () => {
   return (
     <>
       <ContentHeader back={true} exit={true} backCallback={() => navigate(-1)} exitCallback={() => navigate("/")} />
-      <Layout padding="0 2.4rem">
+      <Layout padding="0 2.4rem 8rem 2.4rem" style={{ height: "fit-content" }}>
         <Styled.Title padding="2rem 0 1.6rem 0">
           가장 가능성 높은 질환은
           <br />
@@ -41,8 +41,14 @@ const DiagnosisList = () => {
         </Styled.Title>
 
         {mostLikelyResult && <DiagnosisCard isSquare={true} result={mostLikelyResult} handleNavigate={handleNavigate} />}
-        {extraResults &&
-          extraResults.map((extraResult) => <DiagnosisCard key={extraResult.dx_id} result={extraResult} handleNavigate={handleNavigate} />)}
+        {extraResults && (
+          <>
+            <Styled.ExtraResultsTitle padding="4rem 0 1.6rem 0">가능성 높은{"\n"}추가 질환을 알려드려요</Styled.ExtraResultsTitle>
+            {extraResults.map((extraResult) => (
+              <DiagnosisCard key={extraResult.dx_id} result={extraResult} handleNavigate={handleNavigate} />
+            ))}
+          </>
+        )}
       </Layout>
     </>
   );
