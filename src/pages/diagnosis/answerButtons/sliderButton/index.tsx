@@ -61,7 +61,7 @@ const SliderButton = ({ setSelectedAnswer, handleClickNextButton, handleActive, 
         max={SLIDER_MAX_VALUE}
         defaultValue={DEFAULT_ANSWER_IDX}
         handleChangeAnswer={handleChangeAnswer}
-        labels={SLIDER_BUTTON_ANSWERS.map(({ answer }) => answer)}
+        labels={SLIDER_BUTTON_ANSWERS.map(({ answer, answer_id }) => ({ content: answer, answer_id }))}
         isLabelActive={handleActive}
       />
       <NextButton enabled={isNextButtonEnabled()} onClick={handleClickNextButton} />
