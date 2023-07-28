@@ -32,8 +32,6 @@ const AnswerButtons = ({ question, selectedAnswer, setSelectedAnswer, handleNext
     handleNext();
   };
 
-  console.log(question.answer_type);
-
   if (question.answer_type === ANSWER_TYPE.NUMBER_1) {
     return (
       <NumberButtons.DurationButton

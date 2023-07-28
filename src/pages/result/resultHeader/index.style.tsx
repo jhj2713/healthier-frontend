@@ -29,6 +29,8 @@ export const Container = styled.section`
 
     margin-left: 1.5rem;
     margin-bottom: 0.9rem;
+
+    cursor: pointer;
   }
 
   .exit-button {

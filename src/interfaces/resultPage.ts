@@ -1,5 +1,13 @@
 import { Dispatch } from "react";
 import { TTreatmentType } from "src/components/treatmentTag";
+import { IDDXResultResponse } from "./diagnoseApi/result";
+
+export type TCoverPageData = Pick<
+  IDDXResultResponse,
+  "mainImg" | "typicalSymptom" | "name" | "necessaryMeasures" | "medicalDepartments" | "severity"
+>;
+
+export type TDefinitionData = Pick<IDDXResultResponse, "description" | "cause">;
 
 export interface IBottomNumber {
   curIndex: number;

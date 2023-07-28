@@ -1,14 +1,8 @@
+import { Body_1, Body_2 } from "src/lib/fontStyle";
 import styled from "styled-components";
-import { Body_1 } from "src/lib/fontStyle";
 
 export const Container = styled.section`
-  padding-top: 5.6rem;
-  padding-bottom: 13rem;
-
-  .contents {
-    margin: 2rem 2.4rem 0 2.4rem;
-    width: calc(var(--vw, 1vw) * 100 - 4.8rem);
-  }
+  padding: 5.6rem 2.4rem 13rem 2.4rem;
 `;
 
 export const DescriptionBox = styled.section<{ top: number; bottom: number }>`
@@ -16,19 +10,65 @@ export const DescriptionBox = styled.section<{ top: number; bottom: number }>`
   margin-bottom: ${({ bottom }) => bottom}rem;
 `;
 
-export const SymptomBox = styled.section`
-  margin-bottom: 7.2rem;
+export const KeySymptomContainer = styled.div`
+  margin-top: 3rem;
 `;
 
 export const SymptomText = styled(Body_1)`
   font-weight: 300;
   color: ${({ theme }) => theme.color.grey_300};
+
+  margin-bottom: 1.2rem;
 `;
 
-export const SymptomTags = styled.section`
-  margin-top: 1.2rem;
+export const Description = styled(Body_2)`
+  color: ${({ theme }) => theme.color.grey_400};
+  font-weight: 100;
 
-  section {
-    margin-right: 0.8rem;
-  }
+  white-space: pre-line;
+`;
+
+export const CauseTagsContainer = styled.div<{ marginBottom: string }>`
+  display: flex;
+  gap: 1rem;
+
+  margin-bottom: ${({ marginBottom }) => marginBottom};
+`;
+
+export const CauseTagBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+
+  width: 100%;
+
+  padding: 1.4rem 1.8rem;
+  border-radius: 0.8rem;
+
+  background: #1e2127;
+`;
+
+export const CauseTag = styled.div<{ variant: "primary" | "secondary" }>`
+  padding: 0.8rem 1rem;
+  border-radius: 10rem;
+
+  font-size: 1.3rem;
+  font-weight: 300;
+  line-height: 100%;
+  letter-spacing: -0.5px;
+
+  color: ${({ theme }) => theme.color.grey_200};
+  background: ${({ variant, theme }) => (variant === "primary" ? theme.color.blue : theme.color.sub_blue_2)};
+`;
+
+export const CauseText = styled.p`
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 150%;
+
+  color: ${({ theme }) => theme.color.grey_300};
+
+  white-space: pre-line;
+  text-align: center;
 `;

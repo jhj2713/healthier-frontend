@@ -32,3 +32,11 @@ export const Description = styled(Heading_5)`
     font-weight: 500;
   }
 `;
+
+export const SwiperContainer = styled.div`
+  .swiper {
+    &-wrapper {
+      height: fit-content !important;
+    }
+  }
+`;
