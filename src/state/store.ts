@@ -2,17 +2,19 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import authReducer from "./authSlice";
+import diagnoseReducer from "./diagnoseSlice";
 import userReducer from "./userSlice";
 
 const persistConfig = {
   key: "root",
   storage,
-  whitelist: ["user"],
+  whitelist: ["user", "diagnose"],
 };
 
 const rootReducer = combineReducers({
   user: userReducer,
   auth: authReducer,
+  diagnose: diagnoseReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

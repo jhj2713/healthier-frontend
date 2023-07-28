@@ -33,7 +33,7 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
 
       return;
     }
-    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + duration.type] });
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + " " + duration.type] });
   };
 
   const handleButtonClick = (durationType: TDurationType) => {

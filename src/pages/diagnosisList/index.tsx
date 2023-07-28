@@ -1,13 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import ContentHeader from "src/components/contentHeader";
-import DiagnosisCard, { IDiagnosisItem } from "src/components/diagnosisCard";
+import DiagnosisCard from "src/components/diagnosisCard";
 import Layout from "src/components/layout";
-import { IDiagnosisResultList } from "src/interfaces/diagnosticResult";
-import { List, Title } from "./index.style";
+import * as Styled from "./index.style";
+import type { IDiagnoseResult } from "src/interfaces/diagnoseApi/diagnosis";
 
 const DiagnosisList = () => {
-  const { state } = useLocation() as { state: IDiagnosisResultList };
+  const { state } = useLocation() as { state: IDiagnoseResult[] };
+  const [mostLikelyResult, setMostLikelyResult] = useState<IDiagnoseResult>();
+  const [extraResults, setExtraResults] = useState<IDiagnoseResult[]>([]);
 
   const navigate = useNavigate();
 
@@ -15,42 +17,40 @@ const DiagnosisList = () => {
     if (!state) {
       navigate("/");
     }
+
+    setMostLikelyResult(state[0]);
+    setExtraResults(state.slice(1, state.length));
   }, [state, navigate]);
 
-  const handleNavigate = async (diag: IDiagnosisItem) => {
-    // TODO: 상세 페이지 이동
-    // navigate("/result", {
-    //   state: {
-    //     type: "result",
-    //     diagnostic_result: diagnosisResult.diagnostic_result,
-    //   },
-    // });
+  const handleNavigate = (dx_id: string) => {
+    navigate("/result", {
+      state: {
+        dx_id,
+      },
+    });
   };
 
   return (
-    <Layout padding="0 2.4rem">
+    <>
       <ContentHeader back={true} exit={true} backCallback={() => navigate(-1)} exitCallback={() => navigate("/")} />
-      {state && (
-        <>
-          <Title margin="2rem 0 1.6rem 0">
-            가장 가능성 높은 질환은
-            <br />
-            <span className="highlight">{state.likely.record.title}</span>에요
-          </Title>
-          <DiagnosisCard isSquare diagnosis={state.likely} handleNavigate={() => handleNavigate(state.likely)} />
-          <Title margin="4rem 0 1.6rem 0">
-            가능성 높은
-            <br />
-            추가 질환을 알려드려요
-          </Title>
-          <List>
-            {state.predicted.map((diag, idx) => (
-              <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
+      <Layout padding="0 2.4rem 8rem 2.4rem" style={{ height: "fit-content" }}>
+        <Styled.Title padding="2rem 0 1.6rem 0">
+          가장 가능성 높은 질환은
+          <br />
+          <span className="highlight">{mostLikelyResult?.dx_name}</span>에요
+        </Styled.Title>
+
+        {mostLikelyResult && <DiagnosisCard isSquare={true} result={mostLikelyResult} handleNavigate={handleNavigate} />}
+        {extraResults && (
+          <>
+            <Styled.ExtraResultsTitle padding="4rem 0 1.6rem 0">가능성 높은{"\n"}추가 질환을 알려드려요</Styled.ExtraResultsTitle>
+            {extraResults.map((extraResult) => (
+              <DiagnosisCard key={extraResult.dx_id} result={extraResult} handleNavigate={handleNavigate} />
             ))}
-          </List>
-        </>
-      )}
-    </Layout>
+          </>
+        )}
+      </Layout>
+    </>
   );
 };
 

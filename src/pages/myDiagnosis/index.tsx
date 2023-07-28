@@ -10,10 +10,11 @@ import { useAppSelector, useAppDispatch } from "src/state";
 import { DELETE_TOKEN } from "src/state/authSlice";
 import EmptyPage from "./emptyList";
 import { Title, DescriptionBox, List, ButtonBackground } from "./index.style";
+import type { IDiagnoseResult } from "src/interfaces/diagnoseApi/diagnosis";
 
 const MyDiagnosis = () => {
   const navigate = useNavigate();
-  const [diagnosisList, setDiagnosisList] = useState([] as IDiagnosisItem[]);
+  const [diagnosisList, setDiagnosisList] = useState([] as IDiagnoseResult[]);
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(true);
   const { accessToken } = useAppSelector((state) => state.auth);
@@ -21,30 +22,28 @@ const MyDiagnosis = () => {
 
   useLayoutEffect(() => {
     const getList = async () => {
-      try {
-        const res = await Diagnosis.getDiagnosis(accessToken);
-
-        setDiagnosisList(res.diagnosis.reverse());
-        setName(res.nickname);
-        setLoading(false);
-      } catch (error) {
-        dispatch(DELETE_TOKEN);
-        alert("감별 기록 로딩 실패, 다시 시도해주세요");
-      }
+      // try {
+      //   const res = await Diagnosis.getDiagnosis(accessToken);
+      //   setDiagnosisList(res.diagnosis.reverse());
+      //   setName(res.nickname);
+      //   setLoading(false);
+      // } catch (error) {
+      //   dispatch(DELETE_TOKEN);
+      //   alert("감별 기록 로딩 실패, 다시 시도해주세요");
+      // }
     };
 
     getList();
   }, []);
 
-  const handleNavigate = async (diag: IDiagnosisItem) => {
-    const diagnosisResult = await Diagnosis.getDiagnosisDetail(diag.record.diagnosis_id);
-
-    navigate("/result", {
-      state: {
-        type: "result",
-        diagnostic_result: diagnosisResult.diagnostic_result,
-      },
-    });
+  const handleNavigate = async (diag: IDiagnoseResult) => {
+    // const diagnosisResult = await Diagnosis.getDiagnosisDetail(diag.record.diagnosis_id);
+    // navigate("/result", {
+    //   state: {
+    //     type: "result",
+    //     diagnostic_result: diagnosisResult.diagnostic_result,
+    //   },
+    // });
   };
 
   return (
@@ -66,7 +65,7 @@ const MyDiagnosis = () => {
               </DescriptionBox>
               <List>
                 {diagnosisList.map((diag, idx) => (
-                  <DiagnosisCard key={idx} diagnosis={diag} handleNavigate={() => handleNavigate(diag)} />
+                  <DiagnosisCard key={idx} result={diag} handleNavigate={() => handleNavigate(diag)} />
                 ))}
               </List>
             </>

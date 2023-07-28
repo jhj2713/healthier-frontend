@@ -3,6 +3,8 @@ import CheckIcon from "src/assets/icons/CheckIcon";
 import ChevronDownIcon from "src/assets/icons/ChevronDownIcon";
 import ChevronUpIcon from "src/assets/icons/ChevronUpIcon";
 import theme from "src/lib/theme";
+import { useAppDispatch } from "src/state";
+import { setCategory } from "src/state/diagnoseSlice";
 import * as Styled from "./index.style";
 import type { TDiagnoseType, TSymptomType, TDiagnoseCategory } from "src/interfaces/symptomPage";
 
@@ -19,6 +21,8 @@ function SymptomCategory({ diagnoseType, selectedSymptom, setSelectedSymptom }: 
     "소화기 내과": false,
   });
 
+  const dispatch = useAppDispatch();
+
   const handleClickCategory = (e: React.MouseEvent<HTMLDivElement>) => {
     const selectedCategory = e.currentTarget.dataset.category as TDiagnoseCategory;
 
@@ -30,6 +34,7 @@ function SymptomCategory({ diagnoseType, selectedSymptom, setSelectedSymptom }: 
 
   const handleClickSymptom = (e: React.MouseEvent<HTMLLIElement>) => {
     setSelectedSymptom(e.currentTarget.dataset.symptom as TSymptomType);
+    dispatch(setCategory({ category }));
   };
 
   return (

@@ -1,4 +1,5 @@
 import { IDiagnosisItem } from "src/components/diagnosisCard";
+import { SEVERITY_TYPES } from "src/data/severity_types";
 import { TAnswerType } from "./answer.type";
 
 export interface IDiagnosisPatchData {
@@ -56,13 +57,13 @@ export interface IAnswer extends Omit<ISelectedAnswer, "next_question"> {
 }
 
 export interface IAnswerData {
-  answer_id: number;
+  answer_id: string;
   answer: string;
   next_question: IQuestion | null;
 }
 
 export interface IQuestion {
-  id: number;
+  id: string;
   question: string;
   is_multiple: boolean;
   image_url: string | null;
@@ -73,8 +74,9 @@ export interface IQuestion {
 
 export interface IPostAnswersBody {
   user: {
+    name: string;
     gender: string;
-    age: number;
+    birth_date: string;
   };
   answers: IAnswer[];
 }
@@ -88,9 +90,23 @@ export interface IDecisiveDate {
   tracks: ITrackData[];
 }
 
-export interface IDiagnoseResponse {
+export interface IQuestionResponse {
   category: string;
   question: IQuestion[];
+}
+
+export type TSeverity = keyof typeof SEVERITY_TYPES;
+
+export interface IDiagnoseResult {
+  dx_id: string;
+  dx_name: string;
+  most_likely: boolean;
+  severity: TSeverity;
+}
+
+export interface IDiagnoseResponse {
+  user_id: string;
+  diagnosis: IDiagnoseResult[];
 }
 
 export interface IDiagnoseAnswers {

@@ -1,6 +1,7 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { BodyPart } from "src/interfaces/symptomPage";
 import { TAppDispatch, TRootState } from "./store";
+import type { TDiagnoseCategory } from "src/interfaces/symptomPage";
 
 export const useAppDispatch: () => TAppDispatch = useDispatch;
 export const useAppSelector: TypedUseSelectorHook<TRootState> = useSelector;
@@ -30,4 +31,8 @@ export interface AuthState {
   authenticated: boolean;
   accessToken: any;
   expireTime: any;
+}
+
+export interface IDiagnoseState {
+  category: TDiagnoseCategory;
 }
