@@ -25,7 +25,7 @@ const DefinitionPage = ({ data }: IDefinitionPageProps) => {
         </Styled.KeySymptomContainer>
       </Styled.DescriptionBox>
 
-      <Styled.DescriptionBox top={0} bottom={8}>
+      <Styled.DescriptionBox top={0} bottom={0}>
         <Title text="원인이 무엇인가요?" />
         <Styled.CauseTagsContainer marginBottom={tags[0].title ? "1.6rem" : "0"}>
           {tags.map((tag, index) =>

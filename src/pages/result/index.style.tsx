@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   width: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vh, 1vh) * 100);
 `;
 
 export const LoadingTitle = styled(Heading_3)`
@@ -33,9 +34,15 @@ export const Description = styled(Heading_5)`
 `;
 
 export const SwiperContainer = styled.div`
+  height: 100%;
   .swiper {
-    &-wrapper {
-      height: fit-content !important;
+    height: 100%;
+
+    .swiper-slide {
+      overflow-y: auto;
+      &::-webkit-scrollbar {
+        display: none !important;
+      }
     }
   }
 `;
