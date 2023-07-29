@@ -1,4 +1,5 @@
-import { Chip, ChipsContainer, Separator, Title } from "../lib/index.style";
+import Chips from "../lib/chips";
+import Title from "../lib/Title";
 import * as Styled from "./index.style";
 import type { TDefinitionData } from "src/interfaces/resultPage";
 
@@ -15,26 +16,20 @@ const DefinitionPage = ({ data }: IDefinitionPageProps) => {
   return (
     <Styled.Container>
       <Styled.DescriptionBox top={2} bottom={8}>
-        <Separator />
-        <Title>{title}</Title>
+        <Title text={title} />
         <Styled.Description>{content}</Styled.Description>
 
         <Styled.KeySymptomContainer>
           <Styled.SymptomText>다음과 같은 증상이 나타날 수 있어요</Styled.SymptomText>
-          <ChipsContainer>
-            {keySymptom.map((symptom) => (
-              <Chip key={symptom}>{symptom}</Chip>
-            ))}
-          </ChipsContainer>
+          <Chips labels={keySymptom} />
         </Styled.KeySymptomContainer>
       </Styled.DescriptionBox>
 
       <Styled.DescriptionBox top={0} bottom={8}>
-        <Separator />
-        <Title>원인이 무엇인가요?</Title>
-        <Styled.CauseTagsContainer marginBottom={tags.length > 0 ? "1.6rem" : "0"}>
+        <Title text="원인이 무엇인가요?" />
+        <Styled.CauseTagsContainer marginBottom={tags[0].title ? "1.6rem" : "0"}>
           {tags.map((tag, index) =>
-            tag ? (
+            tag.title !== null ? (
               <Styled.CauseTagBox key={tag.title}>
                 <Styled.CauseTag variant={index === 0 ? "primary" : "secondary"}>#{tag.title}</Styled.CauseTag>
                 <Styled.CauseText>{tag.content}</Styled.CauseText>

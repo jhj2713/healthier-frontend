@@ -25,7 +25,7 @@ export interface ILifestyleHabit {
 export interface IMedicine {
   name: string;
   img: string;
-  efficacyEffectiveness: string[];
+  efficacyEffectiveness: string;
   ingredient: string[];
   types: string[];
   dosageUsage: string[];
@@ -51,5 +51,5 @@ export interface IDDXResultResponse {
   cause: ICause;
   lifestyleHabits: ILifestyleHabit[];
   medicines: IMedicine[];
-  examinationTreatments: IExaminationTreatment;
+  examinationTreatments: IExaminationTreatment[];
 }

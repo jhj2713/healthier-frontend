@@ -9,6 +9,12 @@ export type TCoverPageData = Pick<
 
 export type TDefinitionData = Pick<IDDXResultResponse, "description" | "cause">;
 
+export type TLifestyleData = Pick<IDDXResultResponse, "lifestyleHabits">;
+
+export type TMedicinesData = Pick<IDDXResultResponse, "medicines">;
+
+export type TExaminationTreatmentsData = Pick<IDDXResultResponse, "examinationTreatments">;
+
 export interface IBottomNumber {
   curIndex: number;
   totalCount: number;

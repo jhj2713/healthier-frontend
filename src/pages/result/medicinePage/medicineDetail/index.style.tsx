@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { Body_2 } from "src/lib/fontStyle";
 
 export const Contents = styled.section`
   margin-top: 2.2rem;
@@ -13,8 +12,8 @@ export const Contents = styled.section`
 
     margin-bottom: 0.2rem;
   }
-`;
 
-export const Highlight = styled(Body_2)`
-  color: ${({ theme }) => theme.color.green};
+  .mb-8 {
+    margin-bottom: 0.8rem;
+  }
 `;

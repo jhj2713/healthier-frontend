@@ -1,8 +1,11 @@
 import { Body_1, Body_2 } from "src/lib/fontStyle";
 import styled from "styled-components";
+import { RootContainer } from "../lib/index.style";
 
-export const Container = styled.section`
-  padding: 5.6rem 2.4rem 13rem 2.4rem;
+export const Container = styled(RootContainer)`
+  padding-top: 5.6rem;
+  padding-left: 2.4rem;
+  padding-right: 2.4rem;
 `;
 
 export const DescriptionBox = styled.section<{ top: number; bottom: number }>`

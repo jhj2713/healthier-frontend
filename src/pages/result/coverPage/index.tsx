@@ -1,7 +1,7 @@
 import { TCoverPageData } from "src/interfaces/resultPage";
-import { ChipsContainer, Chip } from "../lib/index.style";
-import SeverityBar from "../severityBar";
+import Chips from "../lib/chips";
 import * as Styled from "./index.style";
+import SeverityBar from "./severityBar";
 
 interface ICoverPageProps {
   data: TCoverPageData;
@@ -20,11 +20,7 @@ const CoverPage = ({ data }: ICoverPageProps) => {
         <Styled.TypicalSymptom>{typicalSymptom}</Styled.TypicalSymptom>
         <Styled.Name>{name}</Styled.Name>
         <Styled.NecessaryMeasures>{necessaryMeasures}</Styled.NecessaryMeasures>
-        <ChipsContainer>
-          {medicalDepartments.map((medicalDepartment) => (
-            <Chip key={medicalDepartment}>{medicalDepartment}</Chip>
-          ))}
-        </ChipsContainer>
+        <Chips labels={medicalDepartments} />
       </Styled.ContentsContainer>
 
       <Styled.SeverityBarWrapper>

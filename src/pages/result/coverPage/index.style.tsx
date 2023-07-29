@@ -1,7 +1,8 @@
 import { Heading_1 } from "src/lib/fontStyle";
 import styled from "styled-components";
+import { RootContainer } from "../lib/index.style";
 
-export const Container = styled.section`
+export const Container = styled(RootContainer)`
   overflow-y: scroll;
   &::-webkit-scrollbar {
     display: none !important;
