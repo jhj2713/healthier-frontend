@@ -45,7 +45,7 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
       return;
     }
 
-    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + durationType] });
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + " " + durationType] });
   };
 
   return (
