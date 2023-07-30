@@ -20,7 +20,7 @@ interface IPhoneNumber extends IRRN {
   third: string;
 }
 
-type TMobileVendor = typeof MOBILE_VENDORS[number];
+type TMobileVendor = (typeof MOBILE_VENDORS)[number];
 
 function SignUp() {
   const navigate = useNavigate();

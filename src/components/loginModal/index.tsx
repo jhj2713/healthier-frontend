@@ -6,7 +6,7 @@ import { Container, Contents, NoteImage, BottomButtons, LoginButton, Continue } 
 
 const LoginModal = forwardRef<HTMLDivElement, ILoginModal>(function LoginModal(
   { title, continueText, closeModal, handleContinue, handleLogin },
-  ref
+  ref,
 ) {
   return (
     <ModalContainer>

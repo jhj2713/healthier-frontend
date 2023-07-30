@@ -34,7 +34,7 @@ const DefinitionPage = ({ data }: IDefinitionPageProps) => {
                 <Styled.CauseTag variant={index === 0 ? "primary" : "secondary"}>#{tag.title}</Styled.CauseTag>
                 <Styled.CauseText>{tag.content}</Styled.CauseText>
               </Styled.CauseTagBox>
-            ) : undefined
+            ) : undefined,
           )}
         </Styled.CauseTagsContainer>
         <Styled.Description>{description}</Styled.Description>
