@@ -18,12 +18,12 @@ export interface IDiagnosisCardProps {
 }
 
 const DiagnosisCard = ({ isSquare = false, result, handleNavigate }: IDiagnosisCardProps) => {
-  const { severity, dx_name, dx_id } = result;
+  const { severity, dx_name, dx_id, img_url } = result;
 
   return (
     <Styled.Container isSquare={isSquare} severity={severity} onClick={() => handleNavigate(dx_id)}>
       <Styled.IllustrationWrapper>
-        <Styled.Illustration alt="illustration" src="" isSquare={isSquare} />
+        <Styled.Illustration alt="illustration" src={img_url + "_" + severity} isSquare={isSquare} />
         {isSquare && <Styled.IllustrationShadow />}
       </Styled.IllustrationWrapper>
       <Styled.Box isDate={null}>
