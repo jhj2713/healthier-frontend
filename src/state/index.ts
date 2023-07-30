@@ -29,8 +29,8 @@ export interface fillInfoAction {
 
 export interface AuthState {
   authenticated: boolean;
-  accessToken: any;
-  expireTime: any;
+  accessToken: string;
+  expireTime: string;
 }
 
 export interface IDiagnoseState {
