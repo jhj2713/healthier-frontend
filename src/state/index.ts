@@ -30,7 +30,7 @@ export interface fillInfoAction {
 export interface AuthState {
   authenticated: boolean;
   accessToken: string;
-  expireTime: string;
+  expireTime: string | null | Date | number;
 }
 
 export interface IDiagnoseState {
