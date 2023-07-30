@@ -41,8 +41,9 @@ export const LoadingTitle = styled(Heading_3)`
 `;
 
 export const LoadingIcon = styled.img`
-  width: 26rem;
-  height: 24.8rem;
+  width: 80%;
+  align-self: flex-end;
+  margin-top: 1.5rem;
 `;
 
 export const LoadingBottomText = styled.section`

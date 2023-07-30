@@ -39,6 +39,7 @@ function ToothImgButton({ setSelectedAnswer, handleClickNextButton, isNextButton
   return (
     <Styled.Container>
       <Styled.ToothPartImg
+        loading="eager"
         src={
           toothPart === undefined
             ? ToothDefault

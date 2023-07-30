@@ -1,19 +1,31 @@
 import { ReactNode } from "react";
-import { Container, IconContainer } from "./index.style";
+import * as Styled from "./index.style";
+
+interface IText {
+  text: string;
+  style?: React.CSSProperties;
+}
 
 export interface ILoading {
-  title: ReactNode;
-  icon: ReactNode;
+  titleTexts: IText[];
+  subTitle?: string;
+  illustration: ReactNode;
   bottomInformation?: ReactNode;
 }
 
-const Loading = ({ title, icon, bottomInformation }: ILoading) => {
+const Loading = ({ titleTexts, illustration, bottomInformation }: ILoading) => {
   return (
-    <Container>
-      {title}
-      <IconContainer marginBottom={bottomInformation ? 1.2 : 8.9}>{icon}</IconContainer>
-      {bottomInformation ? bottomInformation : null}
-    </Container>
+    <Styled.Container>
+      <Styled.TitleContainer>
+        {titleTexts.map((titleText) => (
+          <span key={titleText.text} style={titleText.style}>
+            {titleText.text}
+          </span>
+        ))}
+      </Styled.TitleContainer>
+      {illustration}
+      {bottomInformation}
+    </Styled.Container>
   );
 };
 

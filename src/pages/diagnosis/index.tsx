@@ -18,14 +18,8 @@ const Diagnosis = () => {
     <>
       {isLoading ? (
         <Loading
-          title={
-            <Styled.LoadingTitle>
-              본격적인
-              <br />
-              증상 감별을 시작할게요
-            </Styled.LoadingTitle>
-          }
-          icon={<Styled.LoadingIcon loading="eager" alt="icon" src={imageUrl.diagnosis_loading} />}
+          titleTexts={[{ text: "본격적인\n증상 감별을 시작할게요", style: { fontWeight: 500 } }]}
+          illustration={<Styled.LoadingIcon loading="eager" alt="icon" src={imageUrl.diagnosis_loading} />}
         />
       ) : (
         <Layout>
