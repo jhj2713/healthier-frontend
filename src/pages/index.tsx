@@ -1,3 +1,4 @@
+import Appointment from "./appointment";
 import Diagnosis from "./diagnosis";
 import DiagnosisList from "./diagnosisList";
 import Error from "./error";
@@ -8,7 +9,6 @@ import ResultPage from "./result";
 import SignUp from "./signUp";
 import SymptomPage from "./symptom";
 import SymptomTypePage from "./symptomType";
-import Appointment from "./appointment";
 import Test from "./test";
 
 export {

@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import ChevronLeftIcon from "src/assets/icons/ChevronLeftIcon";
+import XIcon from "src/assets/icons/XIcon";
 import { HeaderContainer, Container, Title } from "./index.style";
 
 const ResultHeader = ({ isCover }: { isCover: boolean }) => {
@@ -7,11 +9,18 @@ const ResultHeader = ({ isCover }: { isCover: boolean }) => {
   return (
     <HeaderContainer isCover={isCover}>
       <Container>
-        <section className="back-button" />
+        {isCover ? (
+          <div className="back-button" onClick={() => navigate(-1)}>
+            <ChevronLeftIcon />
+          </div>
+        ) : (
+          <div className="back-button" />
+        )}
+
         <Title isCover={isCover}>감별 결과</Title>
-        <section className="exit-button" onClick={() => navigate("/")}>
-          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
-        </section>
+        <div className="exit-button" onClick={() => navigate("/")}>
+          <XIcon />
+        </div>
       </Container>
     </HeaderContainer>
   );
