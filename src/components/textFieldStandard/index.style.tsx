@@ -11,7 +11,7 @@ export const Input = styled.input`
   padding: 0 0 0.8rem 0;
   font-size: 20px;
   line-height: 1.25em;
-  font-weight: 300;
+  font-weight: 200;
   color: ${({ theme }) => theme.color.grey_300};
   flex-grow: 1;
   flex-shrink: 0;
@@ -25,11 +25,17 @@ export const Input = styled.input`
     border-bottom: 1px solid #5464f2;
   }
 
-  ::placeholder {
+  &::placeholder {
     color: ${({ theme }) => theme.color.grey_600};
     font-size: 1.8rem;
     font-height: 1.27em;
     font-weight: 200;
+  }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 

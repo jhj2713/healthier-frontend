@@ -21,4 +21,10 @@ export const Input = styled.input`
     font-height: 1.5em;
     font-weight: 200;
   }
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 `;

@@ -5,7 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
 
-  margin-top: 11.2rem;
+  margin-top: 6.6rem;
   padding: 0 2rem;
 `;
 
@@ -13,47 +13,48 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 `;
 
-export const Text = styled.span<{ color: string }>`
+export const Text = styled.span`
   font-size: 1.8rem;
   line-height: 1.5em;
-  color: ${({ color }) => color};
+  color: ${({ theme }) => theme.color.grey_200};
   font-weight: 200;
+  margin-bottom: 0.1rem;
 
   &.duration-type {
     margin-right: 0.4rem;
     font-weight: 300;
+    color: ${({ theme }) => theme.color.sub_blue};
   }
 `;
 
 export const ButtonContainer = styled.div`
-  margin-top: 6rem;
+  margin-top: 7.3rem;
   width: 100%;
 
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: center;
-  // align-items: center;
-  // gap: 1rem;
-
-  section {
-    &:last-child {
-      margin-bottom: 0 !important;
-    }
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
 `;
 
-export const DurationButton = styled.button<{ selected: boolean }>`
+export const DurationButton = styled.button<{ isSelected: boolean }>`
   font-size: 1.6rem;
-  line-height: 1rem;
+  line-height: 150%;
   font-weight: 300;
-  letter-spacing: -0.5px;
-  padding: 1.2rem 1.8rem;
-  border: 1px solid #5464f2;
-  border-radius: 2rem;
-  background: ${({ selected }) => (selected ? "#5464F2" : "transparent")};
-  color: ${({ selected }) => (selected ? "#fff" : "#5464F2")};
+
+  padding: 3rem 0;
+  width: 100%;
+  max-width: 7.2rem;
+
+  border: 1px solid ${({ isSelected, theme }) => (isSelected ? "transparent" : theme.color.grey_650)};
+  border-radius: 1.2rem;
+
+  background: ${({ isSelected }) => (isSelected ? "rgba(109, 123, 242, 0.24)" : "transparent")};
+  color: ${({ isSelected, theme }) => (isSelected ? theme.color.sub_blue : theme.color.grey_300)};
+
   cursor: pointer;
 `;

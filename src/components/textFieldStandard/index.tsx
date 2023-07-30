@@ -17,7 +17,7 @@ const TextFieldStandard = forwardRef<HTMLInputElement, ITextFieldStandardProps>(
 ) {
   return (
     <Styled.Container>
-      <Styled.Label>{label}</Styled.Label>
+      {label && <Styled.Label>{label}</Styled.Label>}
       <Styled.Input type={type} value={value} name={name} placeholder={placeholder} onChange={onChange} ref={ref} style={style} />
     </Styled.Container>
   );
