@@ -58,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Spoqa Han Sans";
     }
     :root{
-        --gradient: radial-gradient(305.24% 173.78% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%, #131416);
+        --gradient: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%) #131416;
     }
 `;
 
