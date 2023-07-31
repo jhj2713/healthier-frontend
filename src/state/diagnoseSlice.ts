@@ -17,8 +17,11 @@ export const diagnoseSlice = createSlice({
     setHospitalId: (state, action: PayloadAction<Pick<IDiagnoseState, "hospitalId">>) => {
       state.hospitalId = action.payload.hospitalId;
     },
+    clearHospitalId: (state) => {
+      state.hospitalId = "";
+    },
   },
 });
 
-export const { setCategory, setHospitalId } = diagnoseSlice.actions;
+export const { setCategory, setHospitalId, clearHospitalId } = diagnoseSlice.actions;
 export default diagnoseSlice.reducer;

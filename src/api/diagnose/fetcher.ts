@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import { SYMPTOMS_TYPES_MAP } from "src/data/symptom_type";
-import { IQuestionResponse, IPostAnswersBody } from "src/interfaces/diagnoseApi/diagnosis";
+import { IQuestionResponse, IPostAnswersBody, IDiagnoseResponse } from "src/interfaces/diagnoseApi/diagnosis";
 import { TSymptomType } from "src/interfaces/symptomPage";
 
 const instance = axios.create({
@@ -48,7 +48,7 @@ export const diagnosisFetcher = {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.get(`/stomach?type=after&gender=${gender}`);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
-      return fetcher.get("/idigestion?type=after");
+      return fetcher.get("/indigestion?type=after");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
       return fetcher.get("/hematemesis?type=after");
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {
@@ -65,11 +65,11 @@ export const diagnosisFetcher = {
 
     throw new Error(`Invalid diagnosis type: ${diagnosisType}`);
   },
-  postAnswers(diagnosisType: TSymptomType, postAnswersBody: IPostAnswersBody) {
+  postAnswers(diagnosisType: TSymptomType, postAnswersBody: IPostAnswersBody): Promise<IDiagnoseResponse> {
     if (diagnosisType === SYMPTOMS_TYPES_MAP.stomach) {
       return fetcher.post("/stomach", postAnswersBody);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.indigestion) {
-      return fetcher.post("/idigestion", postAnswersBody);
+      return fetcher.post("/indigestion", postAnswersBody);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.hematemesis) {
       return fetcher.post("/hematemesis", postAnswersBody);
     } else if (diagnosisType === SYMPTOMS_TYPES_MAP.bloodystool) {

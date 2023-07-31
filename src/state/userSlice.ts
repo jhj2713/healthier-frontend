@@ -34,8 +34,11 @@ export const userSlice = createSlice({
       state.name = action.payload.name;
       state.birth = action.payload.birth;
     },
+    clearUserName: (state) => {
+      state.name = "";
+    },
   },
 });
 
-export const { userSubmit, setSite, setQRInformation } = userSlice.actions;
+export const { userSubmit, setSite, setQRInformation, clearUserName } = userSlice.actions;
 export default userSlice.reducer;
