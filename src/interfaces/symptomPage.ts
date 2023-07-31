@@ -56,7 +56,7 @@ export enum BodyPart {
 }
 
 export type TSymptomType = typeof SYMPTOM_TYPES[number];
-type TDentalSymptomType = typeof DENTAL_SYMPTOMS[number];
+export type TDentalSymptomType = typeof DENTAL_SYMPTOMS[number];
 type TDigestiveSymptomType = typeof DIGESTIVE_SYMPTOMS[number];
 
 type TDentalDiagnoseType = {

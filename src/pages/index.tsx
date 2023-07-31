@@ -9,6 +9,7 @@ import MyDiagnosis from "./myDiagnosis";
 import ResultPage from "./result";
 import SignUp from "./signUp";
 import SymptomPage from "./symptom";
+import SymptomTypeQR from "./symptom-qr";
 import SymptomTypePage from "./symptomType";
 import Test from "./test";
 
@@ -26,4 +27,5 @@ export {
   Test,
   Appointment,
   InformationQR,
+  SymptomTypeQR,
 };

@@ -68,7 +68,7 @@ function InformationQR() {
     dispatch(setQRInformation(information));
     dispatch(setHospitalId({ hospitalId: hospitalId ?? "" }));
 
-    navigate("/symptom-type", { state: "info" });
+    navigate("/qr/symptom-type", { state: "info" });
   };
 
   const isNextButtonEnabled = () => {

@@ -17,6 +17,7 @@ import {
   Error,
   Test,
   InformationQR,
+  SymptomTypeQR,
 } from "./pages";
 import { useAppSelector } from "./state";
 
@@ -49,7 +50,6 @@ function App() {
           <Routes>
             <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
             <Route path="/info" element={<Information />} />
-            <Route path="/info-qr" element={<InformationQR />} />
             <Route path="/result-list" element={<DiagnosisList />} />
             <Route path="/result" element={<ResultPage />} />
             <Route path="/diagnosis" element={<Diagnosis />} />
@@ -57,6 +57,8 @@ function App() {
             <Route path="/symptom-type" element={<SymptomTypePage />} />
             <Route path="/appointment" element={<Appointment />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/qr/info" element={<InformationQR />} />
+            <Route path="/qr/symptom-type" element={<SymptomTypeQR />} />
             <Route path="/test" element={<Test />} />
             <Route path="/*" element={<Navigate to="/" replace />} />
           </Routes>

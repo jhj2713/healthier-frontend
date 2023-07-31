@@ -22,6 +22,7 @@ export const Title = styled(Heading_3)`
 
   margin-top: 7rem;
   margin-bottom: 6.6rem;
+  white-space: pre-line;
 `;
 
 export const SymptomContainer = styled.section`
