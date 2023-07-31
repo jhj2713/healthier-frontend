@@ -31,11 +31,7 @@ const Diagnosis = () => {
                 <div key={idx}>{text}</div>
               ))}
             </Styled.Question>
-            {curQuestion.sub_content && (
-              <Styled.SubContent>
-                해당하는 것을 <span>모두 선택</span>해주세요
-              </Styled.SubContent>
-            )}
+            {curQuestion.sub_content && <Styled.SubContent>{curQuestion.sub_content}</Styled.SubContent>}
             <AnswerButtons
               question={curQuestion}
               selectedAnswer={selectedAnswer}

@@ -66,10 +66,14 @@ export const Description = styled(Body_1)`
 
 export const SubContent = styled.p`
   margin-top: 0.6rem;
+  padding: 0 4rem;
 
   font-size: 1.6rem;
   line-height: 140%;
   font-weight: 200;
+
+  text-align: center;
+  white-space: pre-line;
 
   color: ${({ theme }) => theme.color.grey_500};
 
