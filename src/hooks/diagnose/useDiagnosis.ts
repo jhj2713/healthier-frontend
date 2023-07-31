@@ -3,14 +3,18 @@ import { useNavigate } from "react-router-dom";
 import { INITIAL_QUESTION, INITIAL_ANSWER } from "src/data/answer_type";
 import { IAnswer, ISelectedAnswer, IQuestion } from "src/interfaces/diagnoseApi/diagnosis";
 import { useAppSelector } from "src/state";
-import { getNextQuestion } from "src/utils/diagnosisHook";
+import { getNextQuestion, formatBirth } from "src/utils/diagnosisHook";
 import { useGetQuestions } from "./useGetQuestions";
 import { usePostAnswer } from "./usePostAnswer";
 import type { TSymptomType } from "src/interfaces/symptomPage";
 
 function useDiagnosis(state: TSymptomType) {
   const navigate = useNavigate();
-  const { gender, name, birth_year } = useAppSelector((appState) => appState.user);
+  const {
+    gender,
+    name,
+    birth: { year, month, date },
+  } = useAppSelector((appState) => appState.user);
 
   const [curQuestion, setCurQuestion] = useState<IQuestion | null>(INITIAL_QUESTION);
   const [selectedAnswer, setSelectedAnswer] = useState<ISelectedAnswer>(INITIAL_ANSWER);
@@ -22,7 +26,7 @@ function useDiagnosis(state: TSymptomType) {
   const { questionsData, isLoading } = useGetQuestions({ gender, state });
   const { postAnswer, isPending } = usePostAnswer({
     diagnoseType: state,
-    user: { name, gender, birth_date: `${birth_year}-01-01` },
+    user: { name, gender, birth_date: formatBirth({ year, month, date }) },
     answers: answers.current,
   });
 

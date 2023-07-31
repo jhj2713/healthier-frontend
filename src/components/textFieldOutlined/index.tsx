@@ -10,18 +10,42 @@ interface ITextFieldOutlinedProps extends React.HTMLAttributes<HTMLInputElement>
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   name?: string;
+  label?: string;
+  id?: string;
+  labelGap?: string;
+  placeholderSize?: string;
 }
 
-function TextFieldOutlined({ borderRadius = "3rem", placeholder, type = "text", value, onChange, name }: ITextFieldOutlinedProps) {
+function TextFieldOutlined({
+  placeholder,
+  type = "text",
+  value,
+  onChange,
+  name,
+  label,
+  id,
+  labelGap = "0.7rem",
+  style,
+  placeholderSize = "1.6rem",
+}: ITextFieldOutlinedProps) {
   return (
-    <Styled.Input
-      type={type}
-      style={{ borderRadius }}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
-      name={name}
-    ></Styled.Input>
+    <div>
+      {label && (
+        <Styled.Label htmlFor={id} labelGap={labelGap}>
+          {label}
+        </Styled.Label>
+      )}
+      <Styled.Input
+        type={type}
+        style={{ ...style }}
+        value={value}
+        placeholder={placeholder}
+        onChange={onChange}
+        name={name}
+        id={id}
+        placeholderSize={placeholderSize}
+      ></Styled.Input>
+    </div>
   );
 }
 

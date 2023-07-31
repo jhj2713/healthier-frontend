@@ -19,7 +19,7 @@ const Information = () => {
   const defaultState = useAppSelector((appState) => appState.user);
 
   const [active, setActive] = useState(false);
-  const [year, setYear] = useState(defaultState.birth_year);
+  const [year, setYear] = useState(defaultState.birth.year);
   const [interests, setInterests] = useState(defaultState.interests);
   const [gender, setGender] = useState(defaultState.gender);
   const [agree, setAgree] = useState<IAgreement>({ member: false, information: false });
@@ -45,7 +45,7 @@ const Information = () => {
       return;
     }
 
-    dispatch(userSubmit({ gender, birth_year: year, interests }));
+    dispatch(userSubmit({ gender, birth: { year, month: 0, date: 0 }, interests }));
     navigate("/symptom-type", { state: "info" });
   };
 
@@ -53,9 +53,8 @@ const Information = () => {
     <>
       {agreementDetail === 0 ? (
         <>
-          <ContentHeader back={false} exit={true} exitCallback={() => navigate("/")}>
-            정보 수집
-          </ContentHeader>
+          <ContentHeader back={false} exit={true} exitCallback={() => navigate("/")} label="정보 수집" />
+
           <Layout padding="0 2.4rem 12rem 2.4rem" style={{ height: "(var(--vh, 1vh) * 100)" }}>
             <Title>
               잠깐! <br />더 나은 감별 서비스를 위해

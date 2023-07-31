@@ -33,6 +33,9 @@ export const BackButton = styled.section<{ visible: boolean }>`
 export const ExitButton = styled.section<{ visible: boolean }>`
   opacity: ${({ visible }) => (visible ? 1 : 0)};
 
+  width: 3.2rem;
+  height: 3.2rem;
+
   margin-bottom: 0.9rem;
   margin-right: 1.5rem;
 

@@ -23,9 +23,8 @@ const Diagnosis = () => {
         />
       ) : (
         <Layout>
-          <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>
-            감별진단
-          </ContentHeader>
+          <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")} label="감별 진단" />
+
           <Styled.Container>
             <Styled.Question>
               {curQuestion.question.split("\\n").map((text: string, idx: number) => (

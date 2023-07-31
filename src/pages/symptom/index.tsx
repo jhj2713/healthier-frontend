@@ -50,9 +50,7 @@ const Symptom = () => {
           </Suspense>
         </Canvas>
       </CanvasSection>
-      <ContentHeader back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")}>
-        {""}
-      </ContentHeader>
+      <ContentHeader back={true} backCallback={() => navigate(-1)} exit={true} exitCallback={() => navigate("/")} />
       <Overlay selection={selection} setSelection={setSelection} view={view} setView={setView} />
     </Container>
   );

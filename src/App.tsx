@@ -16,6 +16,7 @@ import {
   Appointment,
   Error,
   Test,
+  InformationQR,
 } from "./pages";
 import { useAppSelector } from "./state";
 
@@ -48,6 +49,7 @@ function App() {
           <Routes>
             <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
             <Route path="/info" element={<Information />} />
+            <Route path="/info-qr" element={<InformationQR />} />
             <Route path="/result-list" element={<DiagnosisList />} />
             <Route path="/result" element={<ResultPage />} />
             <Route path="/diagnosis" element={<Diagnosis />} />

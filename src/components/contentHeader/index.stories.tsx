@@ -1,5 +1,5 @@
-import ContentHeader, { IContentHeader } from ".";
 import { Meta, Story } from "@storybook/react";
+import ContentHeader, { IContentHeader } from ".";
 
 export default {
   component: ContentHeader,
@@ -23,19 +23,19 @@ export const Default = Template.bind({});
 Default.args = {
   back: true,
   exit: true,
-  children: "감별 결과",
+  label: "감별 결과",
 };
 
 export const BackHeader = Template.bind({});
 BackHeader.args = {
   back: true,
   exit: false,
-  children: "감별 결과",
+  label: "감별 결과",
 };
 
 export const ExitHeader = Template.bind({});
 ExitHeader.args = {
   back: false,
   exit: true,
-  children: "감별 결과",
+  label: "감별 결과",
 };

@@ -41,3 +41,9 @@ export interface IAgreementComponentProps {
   agreementDetail: number;
   setAgreementDetail: Dispatch<number>;
 }
+
+export interface IBirth {
+  year: number;
+  month: number;
+  date: number;
+}

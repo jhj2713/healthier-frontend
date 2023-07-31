@@ -2,6 +2,7 @@ import Appointment from "./appointment";
 import Diagnosis from "./diagnosis";
 import DiagnosisList from "./diagnosisList";
 import Error from "./error";
+import InformationQR from "./info-qr";
 import Information from "./information";
 import MainPage from "./main";
 import MyDiagnosis from "./myDiagnosis";
@@ -24,4 +25,5 @@ export {
   Error,
   Test,
   Appointment,
+  InformationQR,
 };
