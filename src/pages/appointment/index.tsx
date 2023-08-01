@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
 import { mapFetcher } from "src/api/map/fetcher";
+import ChevronDownIcon from "src/assets/icons/ChevronDownIcon";
 import BottomSheet from "src/components/bottomSheet";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
@@ -189,7 +190,12 @@ const Appointment = () => {
             </Styled.MoreSearchContainer>
           )}
           {selectedHospital ? (
-            <HospitalDetail selectedHospital={selectedHospital} />
+            <>
+              <Styled.BackButton onClick={() => setSelectedHospital("")}>
+                <ChevronDownIcon stroke={theme.color.grey_300} />
+              </Styled.BackButton>
+              <HospitalDetail selectedHospital={selectedHospital} />
+            </>
           ) : (
             <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen={isBottomSheetOpen}>
               <Styled.FilterContainer>
