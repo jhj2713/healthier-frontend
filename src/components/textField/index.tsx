@@ -1,23 +1,25 @@
 import { Dispatch, ChangeEvent } from "react";
-import { Container, StyledLabel, StyledTextArea } from "./index.style";
+import { Container, StyledBottomText, StyledLabel, StyledTextArea } from "./index.style";
 
 export interface TTextFieldProps {
-  label: string;
+  label?: string;
   placeholder: string;
   value: string;
   setValue: Dispatch<string>;
+  bottomText: string;
 }
 
-function TextField({ label, placeholder, value, setValue }: TTextFieldProps) {
+function TextField({ label, placeholder, value, setValue, bottomText }: TTextFieldProps) {
   return (
     <Container>
-      <StyledLabel>{label}</StyledLabel>
+      {label && <StyledLabel>{label}</StyledLabel>}
       <StyledTextArea
         placeholder={placeholder}
         spellCheck={false}
         value={value}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)}
       />
+      <StyledBottomText>{bottomText}</StyledBottomText>
     </Container>
   );
 }

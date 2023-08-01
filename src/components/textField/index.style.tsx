@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
+  position: relative;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 0.8rem;
 `;
@@ -13,22 +15,20 @@ export const StyledTextArea = styled.textarea`
 
   box-sizing: border-box;
 
-  background: ${({ theme }) => theme.color.grey_800};
-  border-radius: 0.8rem;
+  background: ${({ theme }) => theme.color.grey_900};
+  border-radius: 1.6rem;
   resize: none;
 
   border: 0.1rem solid ${({ theme }) => theme.color.grey_600};
+  outline: none;
 
   /* typo */
+  font-family: Spoqa Han Sans Neo;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 1.4rem;
   line-height: 150%;
-  letter-spacing: -0.3px;
-  color: ${({ theme }) => theme.color.grey_600};
-
-  :focus {
-    outline: none;
-  }
+  letter-spacing: -0.03rem;
+  color: ${({ theme }) => theme.color.grey_300};
 
   ::placeholder {
     color: ${({ theme }) => theme.color.grey_600};
@@ -52,4 +52,17 @@ export const StyledLabel = styled.p`
   letter-spacing: -0.3px;
 
   color: ${({ theme }) => theme.color.grey_300};
+`;
+
+export const StyledBottomText = styled.p`
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.03rem;
+  color: ${({ theme }) => theme.color.grey_500};
+
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
 `;

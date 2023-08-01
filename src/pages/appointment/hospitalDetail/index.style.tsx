@@ -62,12 +62,13 @@ export const SubDescription = styled.p`
 
 export const Button = styled.div`
   width: 100%;
-  padding: 1.4rem 6.2rem;
+  padding: 1.4rem;
   display: flex;
   justify-content: center;
   box-sizing: border-box;
 
   cursor: pointer;
+  white-space: nowrap;
 
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.color.blue};
@@ -151,4 +152,37 @@ export const EditButton = styled.div`
   line-height: 130%;
   letter-spacing: -0.05rem;
   color: ${({ theme }) => theme.color.grey_200};
+`;
+
+export const EditSheet = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 1.4rem;
+`;
+
+export const EditTitle = styled.h1`
+  color: ${({ theme }) => theme.color.grey_200};
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  letter-spacing: -0.03rem;
+`;
+
+export const HospitalTitle = styled.div`
+  padding: 1.4rem 2rem;
+  border-radius: 1.2rem;
+
+  font-size: 1.4rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.03rem;
+  color: ${({ theme }) => theme.color.grey_500};
+
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: ${({ theme }) => theme.color.grey_800};
 `;

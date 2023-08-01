@@ -1,8 +1,8 @@
 import { AnimatePresence } from "framer-motion";
-import { ReactNode } from "react";
+import { ReactNode, HTMLAttributes } from "react";
 import * as Styled from "./index.style";
 
-export interface IBottomSheetProps {
+export interface IBottomSheetProps extends HTMLAttributes<HTMLDivElement> {
   header?: ReactNode;
   height?: string;
   background?: string;
@@ -18,11 +18,12 @@ function BottomSheet({
   children,
   onClickOverlay,
   isBottomSheetOpen,
+  ...props
 }: IBottomSheetProps) {
   return (
     <AnimatePresence>
       {isBottomSheetOpen && (
-        <Styled.Overlay headerHeight="5.6rem" background={background} onClick={onClickOverlay}>
+        <Styled.Overlay headerHeight="5.6rem" background={background} onClick={onClickOverlay} {...props}>
           <Styled.Container
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
@@ -31,7 +32,7 @@ function BottomSheet({
               duration: 0.1,
             }}
             height={height}
-            onClick={(e) => e.stopPropagation()}
+            onClick={(e: any) => e.stopPropagation()}
           >
             {header && <Styled.Header>{header}</Styled.Header>}
             <Styled.Content>{children}</Styled.Content>
