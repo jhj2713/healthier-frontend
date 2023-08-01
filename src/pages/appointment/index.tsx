@@ -164,7 +164,7 @@ const Appointment = () => {
                   ? hospitalData.hospitals.filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
-                        (selectedFilter.nightService ? hospital.nightService === "Y" : true)
+                        (selectedFilter.nightService ? hospital.nightService === "Y" : true),
                     )
                   : []
               }
@@ -213,7 +213,7 @@ const Appointment = () => {
                     .filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
-                        (selectedFilter.nightService ? hospital.nightService === "Y" : true)
+                        (selectedFilter.nightService ? hospital.nightService === "Y" : true),
                     )
                     .map((doctor, idx) => (
                       <HospitalCard

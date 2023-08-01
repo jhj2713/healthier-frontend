@@ -23,7 +23,7 @@ export const ButtonText = styled.section<{ color: string }>`
   color: ${({ color }) => color};
 
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 150%;
 
   text-align: center;

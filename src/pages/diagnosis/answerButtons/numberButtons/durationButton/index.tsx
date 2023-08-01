@@ -9,7 +9,7 @@ import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-type TDurationType = typeof TIME_TYPES[number];
+type TDurationType = (typeof TIME_TYPES)[number];
 
 interface IDuration {
   number: number;
@@ -33,7 +33,7 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
 
       return;
     }
-    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + duration.type] });
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [number + " " + duration.type] });
   };
 
   const handleButtonClick = (durationType: TDurationType) => {
@@ -45,7 +45,7 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
       return;
     }
 
-    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + durationType] });
+    setSelectedAnswer({ ...selectedAnswer, answer_id: [duration.number + " " + durationType] });
   };
 
   return (

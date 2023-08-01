@@ -10,9 +10,9 @@ import type { TSymptomType } from "src/interfaces/symptomPage";
 
 function useDiagnosis(state: TSymptomType) {
   const navigate = useNavigate();
-  const { gender, age } = useAppSelector((appState) => appState.user);
+  const { gender, name, birth_year } = useAppSelector((appState) => appState.user);
 
-  const [curQuestion, setCurQuestion] = useState<IQuestion>(INITIAL_QUESTION);
+  const [curQuestion, setCurQuestion] = useState<IQuestion | null>(INITIAL_QUESTION);
   const [selectedAnswer, setSelectedAnswer] = useState<ISelectedAnswer>(INITIAL_ANSWER);
 
   const questions = useRef<IQuestion[]>([]);
@@ -20,7 +20,11 @@ function useDiagnosis(state: TSymptomType) {
   const answers = useRef<IAnswer[]>([]);
 
   const { questionsData, isLoading } = useGetQuestions({ gender, state });
-  const { postAnswer, isPending } = usePostAnswer({ diagnoseType: state, user: { gender, age }, answers: answers.current });
+  const { postAnswer, isPending } = usePostAnswer({
+    diagnoseType: state,
+    user: { name, gender, birth_date: `${birth_year}-01-01` },
+    answers: answers.current,
+  });
 
   useEffect(() => {
     if (!state) {
@@ -38,13 +42,13 @@ function useDiagnosis(state: TSymptomType) {
   }, [questionsData]);
 
   const handleNext = () => {
-    if (questionHistory.current === undefined || questions.current === undefined) {
+    if (curQuestion === null) {
       return;
     }
 
     answers.current = [
       ...answers.current,
-      { question_id: curQuestion.id + "", answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
+      { question_id: curQuestion.id, answer_type: curQuestion.answer_type, answer_id: selectedAnswer.answer_id },
     ];
 
     const nextQuestion = getNextQuestion({
@@ -54,6 +58,7 @@ function useDiagnosis(state: TSymptomType) {
     });
 
     if (!nextQuestion) {
+      setCurQuestion(null);
       postAnswer();
 
       return;
@@ -69,10 +74,6 @@ function useDiagnosis(state: TSymptomType) {
   };
 
   const handleBack = () => {
-    if (questionHistory.current === undefined || questions.current === undefined) {
-      return;
-    }
-
     if (questionHistory.current.length === 0) {
       navigate(-1);
 
@@ -92,7 +93,14 @@ function useDiagnosis(state: TSymptomType) {
     answers.current = answers.current.slice(0, answersLastIdx);
   };
 
-  return { isLoading: isLoading || isPending, curQuestion, handleNext, handleBack, selectedAnswer, setSelectedAnswer };
+  return {
+    isLoading: isLoading || isPending,
+    curQuestion: curQuestion ?? INITIAL_QUESTION,
+    handleNext,
+    handleBack,
+    selectedAnswer,
+    setSelectedAnswer,
+  };
 }
 
 export default useDiagnosis;

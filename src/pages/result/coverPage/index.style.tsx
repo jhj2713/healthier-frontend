@@ -1,51 +1,68 @@
+import { Heading_1 } from "src/lib/fontStyle";
 import styled from "styled-components";
-import { Body_2, Heading_1, Body_4 } from "src/lib/fontStyle";
+import { RootContainer } from "../lib/index.style";
 
-export const Container = styled.section`
-  padding-bottom: 13rem;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const TagContainer = styled.section`
-  margin-top: 2.8rem;
-
-  section + section {
-    margin-left: 0.8rem;
+export const Container = styled(RootContainer)`
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none !important;
   }
 `;
 
-export const CoverImage = styled.img`
-  width: calc(var(--vw, 1vw) * 100);
-  height: calc(var(--vw, 1vw) * 100);
-  border: 0;
+export const MainImg = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
-export const Contents = styled.section`
+export const MainImgWrapper = styled.div`
+  background: ${({ theme }) => theme.color.grey_700};
+  height: calc(var(--vw, 1vw) * 100);
+  height: calc(var(--vw, 1vw) * 100);
+`;
+
+export const SeverityBarWrapper = styled.section`
+  padding: 0 3.4rem;
+
+  margin-top: 6rem;
+`;
+
+export const ContentsContainer = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 
-  width: 31rem;
-
-  margin: 3.2rem 0 6.6rem 0;
+  margin: 3.6rem 4rem;
 `;
 
-export const SeverityText = styled(Body_2)`
+export const TypicalSymptom = styled.p`
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 150%;
+
+  white-space: pre-line;
+
   color: ${({ theme }) => theme.color.green};
+
+  text-align: center;
 
   margin-bottom: 1rem;
 `;
 
-export const Title = styled(Heading_1)`
+export const Name = styled(Heading_1)`
   color: ${({ theme }) => theme.color.grey_100};
-
   margin-bottom: 1.6rem;
 `;
 
-export const Description = styled(Body_4)`
+export const NecessaryMeasures = styled.p`
   color: ${({ theme }) => theme.color.grey_200};
+
+  font-size: 1.3rem;
+  font-weight: 200;
+  line-height: 150%;
+
+  white-space: pre-line;
   text-align: center;
+
+  margin-bottom: 1.6rem;
 `;

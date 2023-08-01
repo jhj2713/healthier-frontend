@@ -18,14 +18,6 @@ export function CountButton({ selectedAnswer, setSelectedAnswer, handleClickNext
 
       return;
     }
-
-    // setSelectedAnswer([
-    //   {
-    //     answer_id: 0,
-    //     answer: number + "번",
-    //     next_question: null,
-    //   },
-    // ]);
   };
 
   return (

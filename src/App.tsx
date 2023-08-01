@@ -48,7 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={authenticated ? <MyDiagnosis /> : <MainPage />} />
             <Route path="/info" element={<Information />} />
-            <Route path="/diagnosis-list" element={<DiagnosisList />} />
+            <Route path="/result-list" element={<DiagnosisList />} />
             <Route path="/result" element={<ResultPage />} />
             <Route path="/diagnosis" element={<Diagnosis />} />
             <Route path="/symptom" element={<SymptomPage />} />

@@ -1,31 +1,32 @@
-import Tag from "src/components/tag";
-import { ICoverPageProps } from "src/interfaces/resultPage";
-import SeverityBar from "../severityBar";
-import { Container, CoverImage, Contents, SeverityText, Title, Description, TagContainer } from "./index.style";
+import { TCoverPageData } from "src/interfaces/resultPage";
+import Chips from "../lib/chips";
+import * as Styled from "./index.style";
+import SeverityBar from "./severityBar";
 
-const CoverPage = ({ coverData: { illustration, highlight, title, description, severity } }: { coverData: ICoverPageProps }) => {
-  const tags = ["신경과", "정신건강의학과"];
+interface ICoverPageProps {
+  data: TCoverPageData;
+}
+
+const CoverPage = ({ data }: ICoverPageProps) => {
+  const { mainImg, typicalSymptom, name, necessaryMeasures, medicalDepartments, severity } = data;
 
   return (
-    <Container>
-      <CoverImage loading="eager" alt="cover" src={illustration} />
+    <Styled.Container>
+      <Styled.MainImgWrapper>
+        <Styled.MainImg src={mainImg ?? ""} alt="main-img" />
+      </Styled.MainImgWrapper>
 
-      <Contents>
-        <SeverityText>{highlight}</SeverityText>
-        <Title>{title}</Title>
-        {description.map((des, idx) => (
-          <Description key={idx}>{des}</Description>
-        ))}
-        <TagContainer>
-          {tags.map((tag, idx) => (
-            <Tag key={idx} selected={false}>
-              {tag}
-            </Tag>
-          ))}
-        </TagContainer>
-      </Contents>
-      <SeverityBar severity={severity} />
-    </Container>
+      <Styled.ContentsContainer>
+        <Styled.TypicalSymptom>{typicalSymptom}</Styled.TypicalSymptom>
+        <Styled.Name>{name}</Styled.Name>
+        <Styled.NecessaryMeasures>{necessaryMeasures}</Styled.NecessaryMeasures>
+        <Chips labels={medicalDepartments} />
+      </Styled.ContentsContainer>
+
+      <Styled.SeverityBarWrapper>
+        <SeverityBar severity={severity} />
+      </Styled.SeverityBarWrapper>
+    </Styled.Container>
   );
 };
 

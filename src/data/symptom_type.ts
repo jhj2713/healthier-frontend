@@ -15,13 +15,13 @@ export const DENTAL_SYMPTOMS = Object.values(DENTAL_SYMPTOMS_MAP);
 
 export const DIGESTIVE_SYMPTOMS_MAP = {
   jaundice: "황달",
-  diarrhea: "배변이상/설사",
-  constipation: "배변이상/변비",
-  stomach: "급성복통",
-  indigestion: "만성복통 & 소화불량",
-  bloodystool: "혈변",
-  hematemesis: "토혈",
-  vomit: "구토",
+  diarrhea: "설사",
+  constipation: "변비",
+  stomach: "배 아픔",
+  indigestion: "속이 불편함 & 소화 안됨",
+  bloodystool: "변에 피가 나옴",
+  hematemesis: "피를 토함",
+  vomit: "토함",
 } as const;
 export const DIGESTIVE_SYMPTOMS = Object.values(DIGESTIVE_SYMPTOMS_MAP);
 

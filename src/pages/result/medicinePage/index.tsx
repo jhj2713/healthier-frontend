@@ -1,22 +1,29 @@
 import { useState } from "react";
-import Title from "src/components/title";
-import { IMedicine } from "src/interfaces/resultPage";
-import Medicine from "../medicine";
-import MedicineDetail from "../medicineDetail";
-import { Container, Description } from "./index.style";
+import Title from "../lib/Title";
+import * as Styled from "./index.style";
+import MedicineDetail from "./medicineDetail";
+import MedicinesList from "./medicinesList";
+import type { TMedicinesData } from "src/interfaces/resultPage";
 
-const MedicinePage = ({ medicine }: { medicine: IMedicine[] }) => {
-  const [selected, setSelected] = useState(1);
+interface IMedicinesPageProps {
+  data: TMedicinesData;
+}
+
+const MedicinePage = ({ data }: IMedicinesPageProps) => {
+  const [selectedIdx, setSelectedIdx] = useState<number>(0);
+
+  const handleClickMedicine = (idx: number) => {
+    setSelectedIdx(idx);
+  };
 
   return (
-    <Container>
-      <section className="contents">
-        <Title text="증상에 맞는 약을 추천해 드려요" />
-        <Description>해당 의약품은 처방없이 구매할 수 있어요</Description>
-        <Medicine selected={selected} setSelected={setSelected} medicine={medicine} />
-        <MedicineDetail selected={selected} medicine={medicine} />
-      </section>
-    </Container>
+    <Styled.Container>
+      <Styled.TitleWrapper>
+        <Title text="증상에 맞는 약을 추천해드려요" subTitle="해당 의약품은 처방없이 구매할 수 있어요" />
+      </Styled.TitleWrapper>
+      <MedicinesList medicines={data.medicines} selectedIdx={selectedIdx} handleClickMedicine={handleClickMedicine} />
+      <MedicineDetail medicine={data.medicines[selectedIdx]} />
+    </Styled.Container>
   );
 };
 
