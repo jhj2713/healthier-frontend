@@ -77,6 +77,5 @@ export interface IHospitalDetailInfo {
 
 export interface IUserMapResponse {
   total: number;
-  Page: number;
-  hospitals: IHospitalInfo[];
+  data: IHospitalInfo[];
 }

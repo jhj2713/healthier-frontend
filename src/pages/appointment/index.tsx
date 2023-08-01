@@ -162,7 +162,7 @@ const Appointment = () => {
               currentPosition={currentPosition}
               doctorPositions={
                 hospitalData
-                  ? hospitalData.hospitals.filter(
+                  ? hospitalData.data.filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
                         (selectedFilter.nightService ? hospital.nightService === "Y" : true),
@@ -215,7 +215,7 @@ const Appointment = () => {
               <Styled.CardContainer>
                 {isReadyMap &&
                   hospitalData &&
-                  hospitalData.hospitals
+                  hospitalData.data
                     .filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&

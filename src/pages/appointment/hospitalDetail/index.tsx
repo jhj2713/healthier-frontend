@@ -63,9 +63,9 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
       {!isFetching && isSuccess && (
         <>
           <Styled.ContentContainer direction="column" gap={1} align="flex-start">
-            <Styled.Flex gap={1}>
+            <Styled.Flex gap={1} align="flex-end">
               <Styled.Title>{data.name}</Styled.Title>
-              <Styled.Description color={theme.color.grey_400}>
+              <Styled.Description color={theme.color.grey_400} style={{ whiteSpace: "nowrap" }}>
                 {data.type} | {data.meToHospitalDistance}
               </Styled.Description>
             </Styled.Flex>

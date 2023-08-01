@@ -26,6 +26,9 @@ export const ContentContainer = styled(Flex)`
 `;
 
 export const Title = styled.h1`
+  max-width: 22.4rem;
+  word-break: break-all;
+
   font-size: 2.4rem;
   font-style: normal;
   font-weight: 500;
