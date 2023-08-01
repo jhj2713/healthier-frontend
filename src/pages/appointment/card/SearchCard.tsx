@@ -40,6 +40,7 @@ export default SearchCard;
 const Container = styled.div`
   padding: 2rem 1.8rem;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;

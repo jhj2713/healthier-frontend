@@ -2,13 +2,16 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 15.8rem);
+  position: absolute;
+  z-index: 5000;
+
   background-color: ${({ theme }) => theme.color.grey_900};
   padding-top: 15.8rem;
 `;
 
 export const Container = styled.div`
-  z-index: 1000;
+  z-index: 10000;
   position: absolute;
   left: 2rem;
   top: 4.8rem;
@@ -49,7 +52,7 @@ export const FilterContainer = styled.div`
   display: flex;
   justify-content: space-between;
 
-  margin: 1.6rem 2.4rem;
+  margin: 1.6rem 2.4rem 0 2.4rem;
 
   .sort {
     font-size: 1.4rem;

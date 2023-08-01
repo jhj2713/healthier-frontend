@@ -2,7 +2,9 @@ import { ChangeEvent, Dispatch, useRef, useState } from "react";
 import { useEffect } from "react";
 import ChevronLeftIcon from "src/assets/icons/ChevronLeftIcon";
 import useModal from "src/hooks/useModal";
+import { IUserMapResponse } from "src/interfaces/map";
 import theme from "src/lib/theme";
+import SearchCard from "../card/SearchCard";
 import { emergencyNightData } from "../data";
 import PartModal from "../partModal";
 import { IPart } from "../partModal/index";
@@ -10,11 +12,13 @@ import { EmergencyNightTag, MedicineTag, PartTags } from "../tags";
 import * as Styled from "./index.style";
 
 interface ISearchProps {
+  searchData: IUserMapResponse | undefined;
   selectedPart: IPart[];
   setSelectedPart: Dispatch<IPart[]>;
   handleSearch: () => void;
   searchText: string;
   setSearchText: Dispatch<string>;
+  setSelectedHospital: Dispatch<string>;
   isSelectedMedicine: boolean;
   setIsSelectedMedicine: Dispatch<boolean>;
 }
@@ -24,18 +28,22 @@ interface ISelectedFilter {
 }
 
 const Search = ({
+  searchData,
   selectedPart,
   setSelectedPart,
   handleSearch,
   searchText,
   setSearchText,
+  setSelectedHospital,
   isSelectedMedicine,
   setIsSelectedMedicine,
 }: ISearchProps) => {
   const { isOpenModal, modalRef, closeModal, openModal } = useModal();
   const [isFocus, setIsFocus] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
+
   const inputRef = useRef<HTMLInputElement>(null);
+  const throttleRef = useRef<boolean>(false);
 
   useEffect(() => {
     if (!inputRef.current) {
@@ -77,7 +85,19 @@ const Search = ({
           <Styled.Input
             placeholder="병원명 및 지역명을 입력해주세요"
             value={searchText}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setSearchText(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              setSearchText(e.target.value);
+              if (throttleRef.current) {
+                return;
+              }
+
+              handleSearch();
+              throttleRef.current = true;
+
+              setTimeout(() => {
+                throttleRef.current = false;
+              }, 1000);
+            }}
             ref={inputRef}
           />
         </Styled.InputContainer>
@@ -105,6 +125,28 @@ const Search = ({
               ))}
             </div>
           </Styled.FilterContainer>
+
+          {searchData &&
+            searchData.data
+              .filter(
+                (hospital) =>
+                  (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
+                  (selectedFilter.nightService ? hospital.nightService === "Y" : true),
+              )
+              .map((doctor, idx) => (
+                <SearchCard
+                  key={idx}
+                  title={doctor.name}
+                  category={doctor.type}
+                  status={doctor.operatingStatus}
+                  distance={doctor.meToHospitalDistance}
+                  address={doctor.address}
+                  onClick={() => {
+                    setIsFocus(false);
+                    setSelectedHospital(doctor.id);
+                  }}
+                />
+              ))}
         </Styled.Wrapper>
       )}
 

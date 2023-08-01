@@ -147,10 +147,12 @@ const Appointment = () => {
         <Styled.Container>
           {!selectedHospital && (
             <Search
+              searchData={searchMapData}
               selectedPart={selectedPart}
               setSelectedPart={setSelectedPart}
               handleSearch={handleSearch}
               searchText={searchText}
+              setSelectedHospital={setSelectedHospital}
               setSearchText={setSearchText}
               isSelectedMedicine={isSelectedMedicine}
               setIsSelectedMedicine={setIsSelectedMedicine}
