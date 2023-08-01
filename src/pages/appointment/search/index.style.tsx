@@ -1,14 +1,21 @@
 import styled from "styled-components";
 
+export const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: ${({ theme }) => theme.color.grey_900};
+  padding-top: 15.8rem;
+`;
+
 export const Container = styled.div`
   z-index: 1000;
   position: absolute;
   left: 2rem;
-  top: 5rem;
+  top: 4.8rem;
   width: calc(100% - 4rem);
 `;
 
-export const InputContainer = styled.div`
+export const InputContainer = styled.div<{ isFocus: boolean }>`
   box-sizing: border-box;
 
   display: flex;
@@ -19,19 +26,42 @@ export const InputContainer = styled.div`
   border-radius: 3rem;
 
   background: ${({ theme }) => theme.color.grey_850};
+  border: 1px solid ${({ theme, isFocus }) => (isFocus ? theme.color.blue : theme.color.grey_850)};
 `;
 
 export const Input = styled.input`
   width: 100%;
+  box-sizing: border-box;
 
-  color: ${({ theme }) => theme.color.grey_400};
+  color: ${({ theme }) => theme.color.grey_200};
   font-size: 1.6rem;
   font-style: normal;
   font-weight: 400;
   line-height: 150%;
   letter-spacing: -0.03rem;
+
+  ::placeholder {
+    color: ${({ theme }) => theme.color.grey_400};
+  }
 `;
 
 export const FilterContainer = styled.div`
-  margin-top: 1.8rem;
+  display: flex;
+  justify-content: space-between;
+
+  margin: 1.6rem 2.4rem;
+
+  .sort {
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.03rem;
+    color: ${({ theme }) => theme.color.grey_500};
+  }
+
+  .filter-tags {
+    display: flex;
+    gap: 0.8rem;
+  }
 `;
