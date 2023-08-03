@@ -5,16 +5,27 @@ import * as Styled from "./index.style";
 interface IPaginationProps {
   page: number;
   setPage: React.Dispatch<React.SetStateAction<number>>;
+  departments: string[];
   count: number;
 }
 
-function Pagination({ page, count }: IPaginationProps) {
+function Pagination({ page, count, departments }: IPaginationProps) {
   const navigate = useNavigate();
 
   return (
     <Styled.RootContainer>
       {page === count ? (
-        <RoundButton onClick={() => navigate("/appointment")}>병원 예약하기</RoundButton>
+        <RoundButton
+          onClick={() =>
+            navigate("/appointment", {
+              state: {
+                departments,
+              },
+            })
+          }
+        >
+          병원 예약하기
+        </RoundButton>
       ) : (
         <Styled.ButtonsContainer>
           {[1, 2, 3, 4, 5].slice(0, count).map((index) => (

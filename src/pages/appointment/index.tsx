@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { mapFetcher } from "src/api/map/fetcher";
 import ChevronDownIcon from "src/assets/icons/ChevronDownIcon";
 import BottomSheet from "src/components/bottomSheet";
@@ -9,11 +10,10 @@ import imageUrl from "src/data/image_url";
 import { IUserMapResponse } from "src/interfaces/map";
 import theme from "src/lib/theme";
 import HospitalCard from "./card/HospitalCard";
-import { emergencyNightData } from "./data";
+import { emergencyNightData, partList } from "./data";
 import HospitalDetail from "./hospitalDetail";
 import * as Styled from "./index.style";
 import Map from "./map";
-import { IPart } from "./partModal/index";
 import Search from "./search";
 import { EmergencyNightTag } from "./tags";
 
@@ -26,6 +26,8 @@ interface ISelectedFilter {
 }
 
 const Appointment = () => {
+  const { state } = useLocation();
+
   const [currentPosition, setCurrentPosition] = useState({
     lat: 0,
     lng: 0,
@@ -36,7 +38,9 @@ const Appointment = () => {
   });
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
-  const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
+  const [selectedPart, setSelectedPart] = useState<string[]>(
+    state ? partList.filter((part) => state.departments.includes(part)).slice(0, 3) : [],
+  );
   const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
   const [mapSearchCount, setMapSearchCount] = useState<number>(0);
@@ -61,7 +65,7 @@ const Appointment = () => {
         rightLongitude: String(searchPosition.right.lng),
         emergencyNight: selectedFilter.emergencyNight ? "Y" : "",
         nightService: selectedFilter.nightService ? "Y" : "",
-        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
+        departments: [...selectedPart, ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
         page: mapSearchCount,
         size: 15,
       }),
@@ -75,7 +79,7 @@ const Appointment = () => {
         userLatitude: currentPosition.lat,
         userLongitude: currentPosition.lng,
         nameContaining: searchText,
-        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
+        departments: [...selectedPart, ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
         page: mapSearchCount,
         size: 15,
       }),

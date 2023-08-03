@@ -7,14 +7,13 @@ import theme from "src/lib/theme";
 import SearchCard from "../card/SearchCard";
 import { emergencyNightData } from "../data";
 import PartModal from "../partModal";
-import { IPart } from "../partModal/index";
 import { EmergencyNightTag, MedicineTag, PartTags } from "../tags";
 import * as Styled from "./index.style";
 
 interface ISearchProps {
   searchData: IUserMapResponse | undefined;
-  selectedPart: IPart[];
-  setSelectedPart: Dispatch<IPart[]>;
+  selectedPart: string[];
+  setSelectedPart: Dispatch<string[]>;
   handleSearch: () => void;
   searchText: string;
   setSearchText: Dispatch<string>;
