@@ -289,7 +289,10 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
 
       <BottomSheet
         background="rgba(0,0,0,0.6)"
-        onClickOverlay={() => setIsEditInfo(false)}
+        onClickOverlay={() => {
+          setIsEditInfo(false);
+          setEditText("");
+        }}
         isBottomSheetOpen={isEditInfo}
         style={{ zIndex: 20000 }}
       >
