@@ -31,6 +31,10 @@ export const Button = styled.button<{ isSelected: boolean }>`
   font-size: 1.2rem;
   font-weight: 200;
   line-height: 150%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 export const ButtonWrapper = styled.div`
   width: 2.6rem;

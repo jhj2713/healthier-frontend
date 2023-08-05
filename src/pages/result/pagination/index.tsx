@@ -19,7 +19,9 @@ function Pagination({ page, count }: IPaginationProps) {
         <Styled.ButtonsContainer>
           {[1, 2, 3, 4, 5].slice(0, count).map((index) => (
             <Styled.ButtonWrapper key={index}>
-              <Styled.Button isSelected={page === index}>{index}</Styled.Button>
+              <Styled.Button isSelected={page === index}>
+                <span>{index}</span>
+              </Styled.Button>
             </Styled.ButtonWrapper>
           ))}
         </Styled.ButtonsContainer>
