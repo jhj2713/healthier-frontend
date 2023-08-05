@@ -342,15 +342,19 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
           />
           <div style={{ display: "flex", gap: "1rem", width: "100%" }}>
             <Styled.Button
-              style={{ backgroundColor: theme.color.grey_650 }}
               onClick={() => {
-                setIsEditInfo(false);
-                setEditText("");
+                if (editText) {
+                  postInquiry();
+                }
               }}
+              borderRadius={5}
+              {...(!editText && {
+                backgroundColor: theme.color.grey_650,
+                color: theme.color.grey_500,
+              })}
             >
-              다음에 하기
+              수정 요청하기
             </Styled.Button>
-            <Styled.Button onClick={() => postInquiry()}>요청하기</Styled.Button>
           </div>
         </Styled.EditSheet>
       </BottomSheet>
