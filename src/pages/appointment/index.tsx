@@ -39,7 +39,7 @@ const Appointment = () => {
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
   const [selectedPart, setSelectedPart] = useState<string[]>(
-    state ? partList.filter((part) => state.departments.includes(part)).slice(0, 3) : [],
+    state ? partList.filter((part) => state.departments.includes(part)).slice(0, 3) : []
   );
   const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
   const [selectedHospital, setSelectedHospital] = useState<string>("");

@@ -6,7 +6,7 @@ export interface TTextFieldProps {
   placeholder: string;
   value: string;
   setValue: Dispatch<string>;
-  bottomText: string;
+  bottomText?: string;
 }
 
 function TextField({ label, placeholder, value, setValue, bottomText }: TTextFieldProps) {
@@ -19,7 +19,7 @@ function TextField({ label, placeholder, value, setValue, bottomText }: TTextFie
         value={value}
         onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)}
       />
-      <StyledBottomText>{bottomText}</StyledBottomText>
+      {bottomText && <StyledBottomText>{bottomText}</StyledBottomText>}
     </Container>
   );
 }
