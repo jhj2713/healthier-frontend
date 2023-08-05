@@ -54,12 +54,12 @@ const Search = ({
     });
   }, [isFocus]);
   useEffect(() => {
-    document.addEventListener("keydown", submitSearch);
+    document.addEventListener("keydown", handleSearchSubmit);
 
-    return () => document.removeEventListener("keydown", submitSearch);
+    return () => document.removeEventListener("keydown", handleSearchSubmit);
   }, [searchText]);
 
-  const submitSearch = (e: KeyboardEvent) => {
+  const handleSearchSubmit = (e: KeyboardEvent) => {
     if (e.key === "Enter") {
       handleSearch();
       setIsFocus(false);
@@ -68,6 +68,20 @@ const Search = ({
 
   const handleSavePart = () => {
     closeModal();
+  };
+
+  const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    if (throttleRef.current) {
+      return;
+    }
+
+    handleSearch();
+    throttleRef.current = true;
+
+    setTimeout(() => {
+      throttleRef.current = false;
+    }, 1000);
   };
 
   return (
@@ -81,24 +95,7 @@ const Search = ({
           ) : (
             <img src="/images/doctorAppointment/search.svg" />
           )}
-          <Styled.Input
-            placeholder="병원명 및 지역명을 입력해주세요"
-            value={searchText}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              setSearchText(e.target.value);
-              if (throttleRef.current) {
-                return;
-              }
-
-              handleSearch();
-              throttleRef.current = true;
-
-              setTimeout(() => {
-                throttleRef.current = false;
-              }, 1000);
-            }}
-            ref={inputRef}
-          />
+          <Styled.Input placeholder="병원명 및 지역명을 입력해주세요" value={searchText} onChange={handleChangeSearchText} ref={inputRef} />
         </Styled.InputContainer>
 
         <div style={{ marginTop: "1.4rem" }}>
@@ -113,9 +110,9 @@ const Search = ({
           <Styled.FilterContainer>
             <p className="sort">거리순 정렬</p>
             <div className="filter-tags">
-              {emergencyNightData.map((text, idx) => (
+              {emergencyNightData.map((text) => (
                 <EmergencyNightTag
-                  key={idx}
+                  key={text.key}
                   isSelected={selectedFilter[text.key]}
                   onClick={() => setSelectedFilter({ ...selectedFilter, [text.key]: !selectedFilter[text.key] })}
                 >

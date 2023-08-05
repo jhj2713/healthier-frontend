@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { ReactNode, HTMLAttributes } from "react";
+import { ReactNode, HTMLAttributes, MouseEvent } from "react";
 import * as Styled from "./index.style";
 
 export interface IBottomSheetProps extends HTMLAttributes<HTMLDivElement> {
@@ -32,7 +32,7 @@ function BottomSheet({
               duration: 0.1,
             }}
             height={height}
-            onClick={(e: any) => e.stopPropagation()}
+            onClick={(e: MouseEvent) => e.stopPropagation()}
           >
             {header && <Styled.Header>{header}</Styled.Header>}
             <Styled.Content>{children}</Styled.Content>
