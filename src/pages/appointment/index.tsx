@@ -65,7 +65,8 @@ const Appointment = () => {
         rightLongitude: String(searchPosition.right.lng),
         emergencyNight: selectedFilter.emergencyNight ? "Y" : "",
         nightService: selectedFilter.nightService ? "Y" : "",
-        departments: [...selectedPart, ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
+        departments: selectedPart.filter(Boolean).join(","),
+        isPharmacy: isSelectedMedicine,
         page: mapSearchCount,
         size: 15,
       }),
@@ -87,6 +88,16 @@ const Appointment = () => {
     enabled: false,
   });
 
+  useEffect(() => {
+    if (isSelectedMedicine) {
+      setSelectedPart([]);
+    }
+  }, [isSelectedMedicine]);
+  useEffect(() => {
+    if (selectedPart.length > 0) {
+      setIsSelectedMedicine(false);
+    }
+  }, [selectedPart]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       const curLat = position.coords.latitude;
