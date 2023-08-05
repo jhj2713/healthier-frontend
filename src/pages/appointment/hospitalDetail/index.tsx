@@ -1,6 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useState } from "react";
+import { inquiryFetcher } from "src/api/inquiry/fetcher";
 import { mapFetcher } from "src/api/map/fetcher";
 import BottomSheet from "src/components/bottomSheet";
 import TextField from "src/components/textField";
@@ -38,6 +39,20 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
   const [isOpenSchedule, setIsOpenSchedule] = useState<boolean>(false);
   const [isEditInfo, setIsEditInfo] = useState<boolean>(false);
   const [editText, setEditText] = useState<string>("");
+
+  const { mutate: postInquiry } = useMutation({
+    mutationFn: () =>
+      inquiryFetcher.postInquiry({
+        hospitalId: data?.id ?? "",
+        hospitalName: data?.name ?? "",
+        inquiryType: "INFO_UPDATE_INQUIRY",
+        inquiryContent: editText,
+      }),
+    onSuccess() {
+      setIsEditInfo(false);
+      setEditText("");
+    },
+  });
 
   const renderSchedule = () => {
     if (!data) {
@@ -335,7 +350,7 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
             >
               다음에 하기
             </Styled.Button>
-            <Styled.Button>요청하기</Styled.Button>
+            <Styled.Button onClick={() => postInquiry()}>요청하기</Styled.Button>
           </div>
         </Styled.EditSheet>
       </BottomSheet>
