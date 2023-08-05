@@ -7,10 +7,14 @@ export const Container = styled.div`
   top: 22.8rem;
   background-color: ${({ theme }) => theme.color.grey_900};
 
-  width: 100%;
+  width: 100vw;
   height: calc(100% - 22.8rem);
 
   z-index: 10000;
+
+  @media (min-width: 500px) {
+    width: calc(var(--vw, 1vw) * 100);
+  }
 `;
 
 export const Flex = styled.div<{ gap?: number; direction?: string; align?: string; justify?: string }>`
