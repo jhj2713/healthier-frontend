@@ -30,7 +30,7 @@ function SymptomTypeQR() {
       dispatch(
         setCategory({
           category: "치과",
-        })
+        }),
       );
 
       navigate("/diagnosis", {

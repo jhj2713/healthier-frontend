@@ -1,7 +1,7 @@
-import DatePicker from ".";
-import { Meta } from "@storybook/react";
 import { useArgs } from "@storybook/client-api";
+import { Meta } from "@storybook/react";
 import { Value } from "react-calendar/dist/cjs/shared/types";
+import DatePicker from ".";
 
 export default {
   component: DatePicker,

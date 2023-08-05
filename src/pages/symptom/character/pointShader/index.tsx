@@ -1,9 +1,8 @@
-import React, { forwardRef } from "react";
-
-import { Vector3 } from "three";
-import { Abstract } from "lamina/vanilla";
 import { Node, extend } from "@react-three/fiber";
+import { Abstract } from "lamina/vanilla";
+import React, { forwardRef } from "react";
 import { IPointLayerProps } from "src/interfaces/symptomPage";
+import { Vector3 } from "three";
 
 class PointLayer extends Abstract {
   static u_near = 2;

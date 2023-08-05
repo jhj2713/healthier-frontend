@@ -7,7 +7,7 @@ import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-type TDurationType = typeof TIME_TYPES[number];
+type TDurationType = (typeof TIME_TYPES)[number];
 
 interface IDuration {
   number: number;

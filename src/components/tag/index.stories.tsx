@@ -1,6 +1,6 @@
-import Tag, { ITag } from ".";
 import { Meta, Story } from "@storybook/react";
 import theme from "src/lib/theme";
+import Tag, { ITag } from ".";
 
 export default {
   component: Tag,

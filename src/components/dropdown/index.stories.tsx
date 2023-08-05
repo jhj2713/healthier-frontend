@@ -1,5 +1,5 @@
-import Dropdown, { IDropdown } from ".";
 import { Meta, Story } from "@storybook/react";
+import Dropdown, { IDropdown } from ".";
 
 export default {
   component: Dropdown,

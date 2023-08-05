@@ -13,7 +13,7 @@ export const Default = () => {
     dx_name: "안양부동시",
     most_likely: false,
     severity: 1,
-    img_url: ""
+    img_url: "",
   };
 
   const handleNavigate = () => {
@@ -48,7 +48,7 @@ export const SquareCard = () => {
     dx_name: "안양부동시",
     most_likely: true,
     severity: 1,
-    img_url: ""
+    img_url: "",
   };
 
   const handleNavigate = () => {

@@ -1,6 +1,6 @@
-import SwiperPageNumber from ".";
 import { Meta, Story } from "@storybook/react";
 import { IBottomNumber } from "src/interfaces/resultPage";
+import SwiperPageNumber from ".";
 
 export default {
   component: SwiperPageNumber,

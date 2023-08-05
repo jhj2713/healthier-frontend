@@ -1,6 +1,6 @@
-import RoundButton, { IRoundButton } from ".";
 import { Meta, Story } from "@storybook/react";
 import theme from "src/lib/theme";
+import RoundButton, { IRoundButton } from ".";
 
 export default {
   component: RoundButton,

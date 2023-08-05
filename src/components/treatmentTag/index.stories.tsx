@@ -1,5 +1,5 @@
-import TreatmentTag, { TTreatmentTag } from ".";
 import { Meta, Story } from "@storybook/react";
+import TreatmentTag, { TTreatmentTag } from ".";
 
 export default {
   component: TreatmentTag,

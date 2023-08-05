@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import { Description } from "src/lib/fontStyle";
+import styled from "styled-components";
 
 export const Container = styled.article<{ agreementDetail: number }>`
   margin-top: 5.6rem;
