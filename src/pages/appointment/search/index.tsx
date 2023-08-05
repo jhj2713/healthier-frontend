@@ -77,7 +77,7 @@ const Search = ({
 
     debounceRef.current = setTimeout(() => {
       handleSearch();
-    }, 1000);
+    }, 500);
   };
 
   const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
@@ -128,7 +128,7 @@ const Search = ({
               .filter(
                 (hospital) =>
                   (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
-                  (selectedFilter.nightService ? hospital.nightService === "Y" : true)
+                  (selectedFilter.nightService ? hospital.nightService === "Y" : true),
               )
               .map((doctor, idx) => (
                 <SearchCard
