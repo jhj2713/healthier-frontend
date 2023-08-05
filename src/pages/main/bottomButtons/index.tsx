@@ -1,25 +1,31 @@
 import { useNavigate } from "react-router-dom";
-import RoundButton from "src/components/roundButton";
-import theme from "src/lib/theme";
-import { Buttons, ButtonBox } from "./index.style";
+import Bookmark from "src/assets/icons/main/Bookmark";
+import Diagnose from "src/assets/icons/main/Diagnose";
+import Search from "src/assets/icons/main/Search";
+import * as Styled from "./index.style";
 
 const BottomButtons = ({ openModal }: { openModal: () => void }) => {
   const navigate = useNavigate();
 
   return (
-    <Buttons>
-      <button onClick={() => navigate("/appointment")}>go to appointment</button>
-      <ButtonBox onClick={() => navigate("/info")}>
-        <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_800}>
-          빠른 증상 감별 시작하기
-        </RoundButton>
-      </ButtonBox>
-      <ButtonBox onClick={openModal}>
-        <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
-          나의 건강기록장 보기
-        </RoundButton>
-      </ButtonBox>
-    </Buttons>
+    <Styled.Container>
+      <Styled.ButtonContainer gap={0.5} style={{ marginTop: "1.7rem" }} onClick={() => navigate("/appointment")}>
+        <Search />
+        <Styled.ButtonText>병원 찾기</Styled.ButtonText>
+      </Styled.ButtonContainer>
+
+      <Styled.ButtonContainer gap={0.7} onClick={() => navigate("/info")}>
+        <Styled.Diagnose>
+          <Diagnose />
+        </Styled.Diagnose>
+        <Styled.ButtonText>빠른 증상감별</Styled.ButtonText>
+      </Styled.ButtonContainer>
+
+      <Styled.ButtonContainer gap={0.5} style={{ marginTop: "1.7rem" }} onClick={openModal}>
+        <Bookmark />
+        <Styled.ButtonText>건강 기록장</Styled.ButtonText>
+      </Styled.ButtonContainer>
+    </Styled.Container>
   );
 };
 
