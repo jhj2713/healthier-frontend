@@ -6,7 +6,7 @@ export const Container = styled.div`
   height: 10.9rem;
   width: calc(var(--vw, 1vw) * 100);
 
-  background-image: url("/images/main/tab.svg");
+  background-image: url("/images/main-tab.svg");
   background-size: calc(var(--vw, 1vw) * 100);
   background-repeat: no-repeat;
   background-position: center;
