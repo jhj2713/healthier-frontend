@@ -25,11 +25,12 @@ export const usePostAnswer = ({ diagnoseType, user, answers }: IUsePostAnswer) =
     onSuccess(data) {
       if (hospitalId) {
         postSoap({ userId: data.user_id });
+        navigate("/qr/complete");
+      } else {
+        navigate("/result-list", {
+          state: data.diagnosis,
+        });
       }
-
-      navigate("/result-list", {
-        state: data.diagnosis,
-      });
     },
     mutationKey: [hospitalId],
   });

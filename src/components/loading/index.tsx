@@ -13,7 +13,7 @@ export interface ILoading {
   bottomInformation?: ReactNode;
 }
 
-const Loading = ({ titleTexts, illustration, bottomInformation }: ILoading) => {
+const Loading = ({ titleTexts, subTitle, illustration, bottomInformation }: ILoading) => {
   return (
     <Styled.Container>
       <Styled.TitleContainer>
@@ -22,6 +22,11 @@ const Loading = ({ titleTexts, illustration, bottomInformation }: ILoading) => {
             {titleText.text}
           </span>
         ))}
+        {subTitle && (
+          <Styled.SubtitleContainer>
+            <p className="subtitle">{subTitle}</p>
+          </Styled.SubtitleContainer>
+        )}
       </Styled.TitleContainer>
       {illustration}
       {bottomInformation}

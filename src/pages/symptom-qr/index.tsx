@@ -43,7 +43,7 @@ function SymptomTypeQR() {
 
   return (
     <>
-      <ContentHeader back={true} backCallback={() => navigate(-1)} label="감별진단" exit={true} exitCallback={() => navigate("/")} />
+      <ContentHeader back={true} backCallback={() => navigate(-1)} label="문진" exit={true} exitCallback={() => navigate("/")} />
       <Layout padding="0 2rem 12rem 2rem" style={{ background: "var(--gradient)" }}>
         <Title>{"증상 부위를\n선택해주세요"}</Title>
         <Styled.Container>

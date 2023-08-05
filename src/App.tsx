@@ -18,6 +18,7 @@ import {
   Test,
   InformationQR,
   SymptomTypeQR,
+  CompleteQR,
 } from "./pages";
 import { useAppSelector } from "./state";
 
@@ -59,6 +60,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/qr/info" element={<InformationQR />} />
             <Route path="/qr/symptom-type" element={<SymptomTypeQR />} />
+            <Route path="/qr/complete" element={<CompleteQR />} />
             <Route path="/test" element={<Test />} />
             <Route path="/*" element={<Navigate to="/" replace />} />
           </Routes>

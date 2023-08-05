@@ -1,4 +1,5 @@
 import Appointment from "./appointment";
+import CompleteQR from "./complete-qr";
 import Diagnosis from "./diagnosis";
 import DiagnosisList from "./diagnosisList";
 import Error from "./error";
@@ -28,4 +29,5 @@ export {
   Appointment,
   InformationQR,
   SymptomTypeQR,
+  CompleteQR,
 };

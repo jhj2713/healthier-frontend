@@ -25,3 +25,15 @@ export const TitleContainer = styled.h1`
 
   white-space: pre-line;
 `;
+
+export const SubtitleContainer = styled.div`
+  margin-top: 1.5rem;
+  .subtitle {
+    color: ${({ theme }) => theme.color.grey_400};
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 200;
+    line-height: 150%;
+    white-space: pre-line;
+  }
+`;
