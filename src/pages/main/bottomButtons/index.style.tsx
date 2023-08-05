@@ -1,21 +1,44 @@
 import styled from "styled-components";
 
-export const Buttons = styled.section`
+export const Container = styled.div`
   position: fixed;
   bottom: 0;
+  height: 10.9rem;
+  width: calc(var(--vw, 1vw) * 100);
+
+  background-image: url("/images/main/tab.svg");
+  background-size: calc(var(--vw, 1vw) * 100);
+  background-repeat: no-repeat;
+  background-position: center;
 
   display: flex;
-  flex-direction: column;
-
-  margin: 0 2rem;
-  padding-top: 6.8rem;
-  padding-bottom: 3rem;
-
-  background: linear-gradient(180deg, rgba(19, 20, 22, 0) 0%, #131416 49.48%);
+  justify-content: space-evenly;
 `;
 
-export const ButtonBox = styled.section`
-  & + & {
-    margin-top: 1.2rem;
-  }
+export const ButtonContainer = styled.div<{ gap: number }>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: ${({ gap }) => gap}rem;
+  width: 6.3rem;
+`;
+
+export const Diagnose = styled.button`
+  border-radius: 6rem;
+  width: 5.8rem;
+  height: 5.8rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: ${({ theme }) => theme.color.blue};
+`;
+
+export const ButtonText = styled.p`
+  font-size: 1.1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 140%;
+  letter-spacing: -0.035px;
 `;

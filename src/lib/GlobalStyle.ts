@@ -46,6 +46,8 @@ const GlobalStyle = createGlobalStyle`
     }
     button{
         font-family: "Spoqa Han Sans";
+        border: none;
+        outline: none;
     }
     :root{
         --gradient: radial-gradient(305.24% 173.78% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%, #131416);

@@ -1,29 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import RoundButton from "src/components/roundButton";
-import theme from "src/lib/theme";
-import { Buttons, ButtonBox } from "./index.style";
+import * as Styled from "./index.style";
 
 const BottomButtons = ({ openModal }: { openModal: () => void }) => {
   const navigate = useNavigate();
 
   return (
-    <Buttons>
-      <ButtonBox onClick={() => navigate("/appointment")}>
-        <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
-          병원 찾기
-        </RoundButton>
-      </ButtonBox>
-      <ButtonBox onClick={() => navigate("/info")}>
-        <RoundButton outline="none" backgroundColor={theme.color.green} color={theme.color.grey_800}>
-          빠른 증상 감별 시작하기
-        </RoundButton>
-      </ButtonBox>
-      <ButtonBox onClick={openModal}>
-        <RoundButton outline="none" backgroundColor={theme.color.blue} color={theme.color.grey_100}>
-          나의 건강기록장 보기
-        </RoundButton>
-      </ButtonBox>
-    </Buttons>
+    <Styled.Container>
+      <Styled.ButtonContainer gap={0.5} style={{ marginTop: "1.7rem" }} onClick={() => navigate("/appointment")}>
+        <img alt="go to diagnose" src="/images/main/search.svg" />
+        <Styled.ButtonText>병원 찾기</Styled.ButtonText>
+      </Styled.ButtonContainer>
+
+      <Styled.ButtonContainer gap={0.7} onClick={() => navigate("/info")}>
+        <Styled.Diagnose>
+          <img alt="go to diagnose" src="/images/main/diagnose.svg" />
+        </Styled.Diagnose>
+        <Styled.ButtonText>빠른 증상감별</Styled.ButtonText>
+      </Styled.ButtonContainer>
+
+      <Styled.ButtonContainer gap={0.5} style={{ marginTop: "1.7rem" }} onClick={openModal}>
+        <img alt="go to diagnose" src="/images/main/bookmark.svg" />
+        <Styled.ButtonText>건강 기록장</Styled.ButtonText>
+      </Styled.ButtonContainer>
+    </Styled.Container>
   );
 };
 
