@@ -1,3 +1,4 @@
+import { number, string } from "prop-types";
 import { Body_2 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
@@ -64,7 +65,7 @@ export const SubDescription = styled.p`
   color: ${({ theme }) => theme.color.grey_500};
 `;
 
-export const Button = styled.div`
+export const Button = styled.div<{ borderRadius?: number; backgroundColor?: string; color?: string }>`
   width: 100%;
   padding: 1.4rem;
   display: flex;
@@ -74,15 +75,15 @@ export const Button = styled.div`
   cursor: pointer;
   white-space: nowrap;
 
-  border-radius: 0.8rem;
-  background-color: ${({ theme }) => theme.color.blue};
+  border-radius: ${({ borderRadius }) => (borderRadius ? borderRadius : 0.8)}rem;
+  background-color: ${({ theme, backgroundColor }) => (backgroundColor ? backgroundColor : theme.color.blue)};
 
   font-size: 1.4rem;
   font-style: normal;
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.03rem;
-  color: ${({ theme }) => theme.color.grey_100};
+  color: ${({ theme, color }) => (color ? color : theme.color.grey_100)};
 `;
 
 export const DescriptionTag = styled.div`
