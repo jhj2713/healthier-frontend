@@ -42,7 +42,7 @@ const Search = ({
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const throttleRef = useRef<boolean>(false);
+  const debounceRef = useRef<any>();
 
   useEffect(() => {
     if (!inputRef.current) {
@@ -70,18 +70,19 @@ const Search = ({
     closeModal();
   };
 
-  const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchText(e.target.value);
-    if (throttleRef.current) {
-      return;
+  const handleSearchDebounce = () => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
     }
 
-    handleSearch();
-    throttleRef.current = true;
-
-    setTimeout(() => {
-      throttleRef.current = false;
+    debounceRef.current = setTimeout(() => {
+      handleSearch();
     }, 1000);
+  };
+
+  const handleChangeSearchText = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+    handleSearchDebounce();
   };
 
   return (

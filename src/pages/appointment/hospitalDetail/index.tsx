@@ -135,7 +135,16 @@ const HospitalDetail = ({ selectedHospital }: { selectedHospital: string }) => {
                 </Styled.Flex>
               )}
 
-              <Styled.Button>전화로 병원 예약하기</Styled.Button>
+              <Styled.Button
+                {...(!data.phoneNumber && { style: { backgroundColor: theme.color.grey_650, color: theme.color.grey_500 } })}
+                onClick={() => {
+                  if (data.phoneNumber) {
+                    location.href = "tel:" + data.phoneNumber;
+                  }
+                }}
+              >
+                전화로 병원 예약하기
+              </Styled.Button>
             </Styled.ContentContainer>
 
             {data.parkingSpace && Number(data.parkingSpace) !== 0 && (
