@@ -1,18 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { mapFetcher } from "src/api/map/fetcher";
+import ChevronDownIcon from "src/assets/icons/ChevronDownIcon";
 import BottomSheet from "src/components/bottomSheet";
 import Loading from "src/components/loading";
 import imageUrl from "src/data/image_url";
 import { IUserMapResponse } from "src/interfaces/map";
 import theme from "src/lib/theme";
-import { emergencyNightData } from "./data";
-import HospitalCard from "./hospitalCard";
+import HospitalCard from "./card/HospitalCard";
+import { emergencyNightData, partList } from "./data";
 import HospitalDetail from "./hospitalDetail";
 import * as Styled from "./index.style";
 import Map from "./map";
-import { IPart } from "./partModal/index";
 import Search from "./search";
 import { EmergencyNightTag } from "./tags";
 
@@ -25,6 +26,8 @@ interface ISelectedFilter {
 }
 
 const Appointment = () => {
+  const { state } = useLocation();
+
   const [currentPosition, setCurrentPosition] = useState({
     lat: 0,
     lng: 0,
@@ -35,7 +38,9 @@ const Appointment = () => {
   });
   const [isSettingPosition, setIsSettingPosition] = useState<boolean>(false);
   const [selectedFilter, setSelectedFilter] = useState<ISelectedFilter>({ emergencyNight: false, nightService: false });
-  const [selectedPart, setSelectedPart] = useState<IPart[]>([]);
+  const [selectedPart, setSelectedPart] = useState<string[]>(
+    state ? partList.filter((part) => state.departments.includes(part)).slice(0, 3) : [],
+  );
   const [isSelectedMedicine, setIsSelectedMedicine] = useState<boolean>(false);
   const [selectedHospital, setSelectedHospital] = useState<string>("");
   const [mapSearchCount, setMapSearchCount] = useState<number>(0);
@@ -60,7 +65,8 @@ const Appointment = () => {
         rightLongitude: String(searchPosition.right.lng),
         emergencyNight: selectedFilter.emergencyNight ? "Y" : "",
         nightService: selectedFilter.nightService ? "Y" : "",
-        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
+        departments: selectedPart.filter(Boolean).join(","),
+        isPharmacy: isSelectedMedicine,
         page: mapSearchCount,
         size: 15,
       }),
@@ -74,7 +80,7 @@ const Appointment = () => {
         userLatitude: currentPosition.lat,
         userLongitude: currentPosition.lng,
         nameContaining: searchText,
-        departments: [...selectedPart.map((part) => part.name), ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
+        departments: [...selectedPart, ...[isSelectedMedicine ? "약국" : ""]].filter(Boolean).join(","),
         page: mapSearchCount,
         size: 15,
       }),
@@ -82,6 +88,16 @@ const Appointment = () => {
     enabled: false,
   });
 
+  useEffect(() => {
+    if (isSelectedMedicine) {
+      setSelectedPart([]);
+    }
+  }, [isSelectedMedicine]);
+  useEffect(() => {
+    if (selectedPart.length > 0) {
+      setIsSelectedMedicine(false);
+    }
+  }, [selectedPart]);
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(function (position) {
       const curLat = position.coords.latitude;
@@ -146,10 +162,12 @@ const Appointment = () => {
         <Styled.Container>
           {!selectedHospital && (
             <Search
+              searchData={searchMapData}
               selectedPart={selectedPart}
               setSelectedPart={setSelectedPart}
               handleSearch={handleSearch}
               searchText={searchText}
+              setSelectedHospital={setSelectedHospital}
               setSearchText={setSearchText}
               isSelectedMedicine={isSelectedMedicine}
               setIsSelectedMedicine={setIsSelectedMedicine}
@@ -161,7 +179,7 @@ const Appointment = () => {
               currentPosition={currentPosition}
               doctorPositions={
                 hospitalData
-                  ? hospitalData.hospitals.filter(
+                  ? hospitalData.data.filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
                         (selectedFilter.nightService ? hospital.nightService === "Y" : true),
@@ -189,7 +207,12 @@ const Appointment = () => {
             </Styled.MoreSearchContainer>
           )}
           {selectedHospital ? (
-            <HospitalDetail selectedHospital={selectedHospital} />
+            <>
+              <Styled.BackButton onClick={() => setSelectedHospital("")}>
+                <ChevronDownIcon stroke={theme.color.grey_300} />
+              </Styled.BackButton>
+              <HospitalDetail selectedHospital={selectedHospital} />
+            </>
           ) : (
             <BottomSheet background="transparent" onClickOverlay={handleMoveMap} height="374px" isBottomSheetOpen={isBottomSheetOpen}>
               <Styled.FilterContainer>
@@ -209,7 +232,7 @@ const Appointment = () => {
               <Styled.CardContainer>
                 {isReadyMap &&
                   hospitalData &&
-                  hospitalData.hospitals
+                  hospitalData.data
                     .filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
@@ -224,12 +247,18 @@ const Appointment = () => {
                         distance={doctor.meToHospitalDistance}
                         address={doctor.address}
                         operatingTime={
-                          doctor.operatingTime.start || doctor.operatingTime.end
-                            ? `${doctor.operatingTime.start} ~ ${doctor.operatingTime.end}`
+                          doctor.operatingTime
+                            ? doctor.operatingTime.start || doctor.operatingTime.end
+                              ? `${doctor.operatingTime.start} ~ ${doctor.operatingTime.end}`
+                              : ""
                             : ""
                         }
                         lunchTime={
-                          doctor.lunchTime.start || doctor.lunchTime.end ? `${doctor.lunchTime.start} ~ ${doctor.lunchTime.end}` : ""
+                          doctor.lunchTime
+                            ? doctor.lunchTime.start || doctor.lunchTime.end
+                              ? `${doctor.lunchTime.start} ~ ${doctor.lunchTime.end}`
+                              : ""
+                            : ""
                         }
                         phoneNumber={doctor.phoneNumber}
                         emergencyNight={doctor.emergencyNight}

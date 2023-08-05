@@ -22,6 +22,7 @@ export interface IMapBoxRequest {
   emergencyNight: string;
   nightService: string;
   departments: string;
+  isPharmacy: boolean;
   page: number;
   size: number;
 }

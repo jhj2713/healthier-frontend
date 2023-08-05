@@ -55,10 +55,24 @@ export const MoreSearchContainer = styled.div<{ isBottomSheetOpen: boolean }>`
   border: 0.1rem solid ${({ theme }) => theme.color.blue};
   border-radius: 6rem;
 
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-style: normal;
   font-weight: 500;
   line-height: 130%;
   letter-spacing: -0.05rem;
   color: ${({ theme }) => theme.color.grey_400};
+`;
+
+export const BackButton = styled.div`
+  position: fixed;
+  left: 1.6rem;
+  top: 4.8rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+  border-radius: 6rem;
+  background-color: ${({ theme }) => theme.color.grey_850};
 `;

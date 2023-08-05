@@ -3,14 +3,14 @@ import { ChevronRightIcon } from "src/assets/icons/ChevronRightIcon";
 import * as Styled from "./index.style";
 
 interface IPartTagsProps extends HTMLAttributes<HTMLDivElement> {
-  selectedPart: { id: number; name: string }[];
+  selectedPart: string[];
 }
 
 export const PartTags = ({ selectedPart, ...props }: IPartTagsProps) => {
   return (
     <Styled.PartContainer isSelected={selectedPart.length !== 0} {...props}>
       {selectedPart.length === 0 && "진료과목"}
-      {selectedPart.map((part) => part.name).join(" ・ ")}
+      {selectedPart.join(" ・ ")}
       <ChevronRightIcon />
     </Styled.PartContainer>
   );

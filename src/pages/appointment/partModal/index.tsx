@@ -4,25 +4,21 @@ import theme from "src/lib/theme";
 import { partList } from "../data";
 import * as Styled from "./index.style";
 
-export interface IPart {
-  id: number;
-  name: string;
-}
 interface IPartModalProps {
-  selectedPart: IPart[];
-  setSelectedPart: Dispatch<IPart[]>;
+  selectedPart: string[];
+  setSelectedPart: Dispatch<string[]>;
   handleSave: () => void;
 }
 
 const PartModal = forwardRef<HTMLDivElement, IPartModalProps>(function PartModal({ selectedPart, setSelectedPart, handleSave }, ref) {
-  const handleSelectPart = (part: IPart) => {
-    const isSelected = selectedPart.findIndex((selected) => selected.id === part.id) !== -1;
+  const handleSelectPart = (part: string) => {
+    const isSelected = selectedPart.findIndex((selected) => selected === part) !== -1;
 
     if (!isSelected && selectedPart.length === 3) {
       return;
     }
 
-    setSelectedPart(isSelected ? selectedPart.filter((selected) => selected.id !== part.id) : [...selectedPart, part]);
+    setSelectedPart(isSelected ? selectedPart.filter((selected) => selected !== part) : [...selectedPart, part]);
   };
 
   return (
@@ -32,11 +28,11 @@ const PartModal = forwardRef<HTMLDivElement, IPartModalProps>(function PartModal
         <Styled.ContentContainer>
           {partList.map((part) => (
             <Styled.Card
-              key={part.id}
-              selected={selectedPart.findIndex((selected) => selected.id === part.id) !== -1}
+              key={part}
+              selected={selectedPart.findIndex((selected) => selected === part) !== -1}
               onClick={() => handleSelectPart(part)}
             >
-              {part.name}
+              {part}
             </Styled.Card>
           ))}
         </Styled.ContentContainer>

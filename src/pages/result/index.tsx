@@ -56,7 +56,12 @@ const ResultPage = () => {
               </SwiperSlide>
             </Swiper>
           </Styled.SwiperContainer>
-          <Pagination page={page} setPage={setPage} count={resultData.medicines.length > 0 ? 5 : 4} />
+          <Pagination
+            page={page}
+            setPage={setPage}
+            count={resultData.medicines.length > 0 ? 5 : 4}
+            departments={resultData.medicalDepartments}
+          />
         </>
       )}
     </Styled.Container>

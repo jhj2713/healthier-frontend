@@ -53,6 +53,7 @@ const HospitalCard = ({
           {operatingTime && lunchTime && " | "}
           {lunchTime && `점심시간 ${lunchTime}`}
         </Styled.Description>
+        <br />
         <Styled.Description>{phoneNumber}</Styled.Description>
       </div>
       <Styled.TagContainer>

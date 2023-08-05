@@ -64,6 +64,8 @@ const Map = ({
     }, 1000);
   };
 
+  const isZoom = selectedHospital ? false : true;
+
   return (
     <Container>
       {currentPosition.lat !== 0 && currentPosition.lng !== 0 && (
@@ -79,16 +81,18 @@ const Map = ({
           mapStyle={process.env.REACT_APP_MAP_STYLE}
           onMove={handleMove}
           onClick={() => setIsBottomSheetOpen(false)}
-          dragPan={selectedHospital ? false : true}
-          dragRotate={selectedHospital ? false : true}
-          scrollZoom={selectedHospital ? false : true}
+          dragPan={isZoom}
+          dragRotate={isZoom}
+          scrollZoom={isZoom}
+          touchZoomRotate={isZoom}
+          doubleClickZoom={isZoom}
         >
           {doctorPositions.map((doc, idx) => (
             <Marker key={idx} latitude={doc.point.y} longitude={doc.point.x} onClick={() => setSelectedHospital(doc.id)}>
               <img
                 src={`/images/doctorAppointment/${selectedHospital === doc.id ? "selected" : "map"}-pin.svg`}
-                width={selectedHospital ? 28 : 22}
-                height={selectedHospital ? 28 : 22}
+                width={selectedHospital === doc.id ? 44 : 22}
+                height={selectedHospital === doc.id ? 44 : 22}
               />
             </Marker>
           ))}

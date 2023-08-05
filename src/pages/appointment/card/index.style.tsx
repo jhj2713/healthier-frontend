@@ -32,7 +32,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const Title = styled.p`
-  max-width: 13rem;
+  max-width: 18.3rem;
   word-break: break-all;
 
   font-size: 1.8rem;
