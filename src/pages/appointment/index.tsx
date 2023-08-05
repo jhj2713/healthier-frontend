@@ -182,7 +182,7 @@ const Appointment = () => {
                   ? hospitalData.data.filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
-                        (selectedFilter.nightService ? hospital.nightService === "Y" : true),
+                        (selectedFilter.nightService ? hospital.nightService === "Y" : true)
                     )
                   : []
               }
@@ -236,7 +236,7 @@ const Appointment = () => {
                     .filter(
                       (hospital) =>
                         (selectedFilter.emergencyNight ? hospital.emergencyNight === "Y" : true) &&
-                        (selectedFilter.nightService ? hospital.nightService === "Y" : true),
+                        (selectedFilter.nightService ? hospital.nightService === "Y" : true)
                     )
                     .map((doctor, idx) => (
                       <HospitalCard
@@ -272,8 +272,12 @@ const Appointment = () => {
         </Styled.Container>
       ) : (
         <Loading
-          title={<Styled.LoadingTitle>지도 로딩중</Styled.LoadingTitle>}
-          icon={<img loading="eager" alt="icon" style={{ width: "26rem", height: "24.8rem" }} src={imageUrl.map_loading} />}
+          titleTexts={[
+            {
+              text: "지도 로딩중",
+            },
+          ]}
+          illustration={<img loading="eager" alt="icon" style={{ width: "26rem", height: "24.8rem" }} src={imageUrl.map_loading} />}
         />
       )}
     </>

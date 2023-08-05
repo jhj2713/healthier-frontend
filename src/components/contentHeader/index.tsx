@@ -1,25 +1,24 @@
-import { ReactNode } from "react";
 import HeaderContainer from "../headerContainer";
 import { Container, BackButton, ExitButton } from "./index.style";
 
 export interface IContentHeader {
-  children?: ReactNode;
+  label?: string;
   back: boolean;
   exit: boolean;
   backCallback?: () => void;
   exitCallback?: () => void;
 }
 
-const ContentHeader = ({ children, back, exit, backCallback, exitCallback }: IContentHeader) => {
+const ContentHeader = ({ label = "", back, exit, backCallback, exitCallback }: IContentHeader) => {
   return (
     <HeaderContainer>
       <Container>
         <BackButton visible={back} onClick={() => backCallback && backCallback()}>
-          <img alt="back" src="/images/header/back.svg" width={32} height={32} />
+          {back && <img alt="back" src="/images/header/back.svg" width={32} height={32} />}
         </BackButton>
-        <section className="title">{children ?? ""}</section>
+        <section className="title">{label}</section>
         <ExitButton visible={exit} onClick={() => exitCallback && exitCallback()}>
-          <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />
+          {exit && <img alt="exit" src="/images/header/exit.svg" width={32} height={32} />}
         </ExitButton>
       </Container>
     </HeaderContainer>

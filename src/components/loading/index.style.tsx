@@ -15,3 +15,25 @@ export const Container = styled.section`
 export const IconContainer = styled.section<{ marginBottom: number }>`
   margin: 2rem 5rem ${({ marginBottom }) => marginBottom}rem 5rem;
 `;
+
+export const TitleContainer = styled.h1`
+  text-align: center;
+
+  font-size: 2.4rem;
+  line-height: 140%;
+  font-weight: 200;
+
+  white-space: pre-line;
+`;
+
+export const SubtitleContainer = styled.div`
+  margin-top: 1.5rem;
+  .subtitle {
+    color: ${({ theme }) => theme.color.grey_400};
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 200;
+    line-height: 150%;
+    white-space: pre-line;
+  }
+`;

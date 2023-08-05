@@ -41,8 +41,9 @@ export const LoadingTitle = styled(Heading_3)`
 `;
 
 export const LoadingIcon = styled.img`
-  width: 26rem;
-  height: 24.8rem;
+  width: 80%;
+  align-self: flex-end;
+  margin-top: 1.5rem;
 `;
 
 export const LoadingBottomText = styled.section`
@@ -65,10 +66,14 @@ export const Description = styled(Body_1)`
 
 export const SubContent = styled.p`
   margin-top: 0.6rem;
+  padding: 0 4rem;
 
   font-size: 1.6rem;
   line-height: 140%;
   font-weight: 200;
+
+  text-align: center;
+  white-space: pre-line;
 
   color: ${({ theme }) => theme.color.grey_500};
 

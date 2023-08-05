@@ -1,15 +1,13 @@
 import { useState } from "react";
-import RoundButton from "src/components/roundButton";
-import TextFieldOutlined from "src/components/textFieldOutlined";
+import TextFieldStandard from "src/components/textFieldStandard";
 import { TIME_TYPES } from "src/data/answer_type";
-import theme from "src/lib/theme";
 import { validateNumber } from "src/utils/inputUtils";
 import { Container as RootContainer } from "../../index.style";
 import NextButton from "../../nextButton";
 import * as Styled from "./index.style";
 import type { IAnswerButtonProps } from "src/interfaces/diagnosisPage";
 
-type TDurationType = (typeof TIME_TYPES)[number];
+type TDurationType = typeof TIME_TYPES[number];
 
 interface IDuration {
   number: number;
@@ -52,30 +50,24 @@ export function DurationButton({ selectedAnswer, setSelectedAnswer, handleClickN
     <RootContainer>
       <Styled.Container>
         <Styled.InputContainer>
-          <div style={{ width: "130px", marginRight: "1.2rem" }}>
-            <TextFieldOutlined type="number" value={duration.number || ""} onChange={handleInputChange} placeholder="숫자 입력" />
+          <div style={{ width: "10rem", marginRight: "1.2rem" }}>
+            <TextFieldStandard
+              type="number"
+              value={duration.number || ""}
+              onChange={handleInputChange}
+              placeholder="숫자 입력"
+              style={{ textAlign: "center" }}
+            />
           </div>
-          <Styled.Text color={theme.color.sub_blue} className="duration-type">
-            {duration.type}
-          </Styled.Text>
-          <Styled.Text color={theme.color.grey_200}>전부터</Styled.Text>
+          <Styled.Text className="duration-type">{duration.type}</Styled.Text>
+          <Styled.Text>전부터</Styled.Text>
         </Styled.InputContainer>
 
         <Styled.ButtonContainer>
           {TIME_TYPES.map((timeType) => (
-            // <Styled.DurationButton onClick={() => handleButtonClick(dt)} key={dt} selected={dt === duration.type}>
-            //   {dt}
-            // </Styled.DurationButton>
-            <RoundButton
-              outline={duration.type === timeType ? theme.color.sub_blue : theme.color.grey_650}
-              backgroundColor={duration.type === timeType ? theme.color.sub_blue : "transparent"}
-              color={duration.type === timeType ? "#5464F2" : theme.color.grey_300}
-              style={{ marginBottom: "1.2rem" }}
-              onClick={() => handleButtonClick(timeType)}
-              key={timeType}
-            >
+            <Styled.DurationButton onClick={() => handleButtonClick(timeType)} key={timeType} isSelected={timeType === duration.type}>
               {timeType}
-            </RoundButton>
+            </Styled.DurationButton>
           ))}
         </Styled.ButtonContainer>
       </Styled.Container>

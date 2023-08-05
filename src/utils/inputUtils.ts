@@ -16,3 +16,10 @@ export const handleFocusInput = (index: number, refs: Array<React.RefObject<HTML
     refs[index].current?.blur();
   }
 };
+
+export const makeYears = () =>
+  Array.from(Array(100).keys())
+    .map((y) => `${y + 1924}년`)
+    .reverse();
+
+export const makeDates = (end: number) => Array.from(Array(end).keys()).map((d) => `${d + 1}일`);

@@ -102,6 +102,7 @@ export interface IDiagnoseResult {
   dx_name: string;
   most_likely: boolean;
   severity: TSeverity;
+  img_url: string;
 }
 
 export interface IDiagnoseResponse {

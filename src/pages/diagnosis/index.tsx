@@ -18,31 +18,20 @@ const Diagnosis = () => {
     <>
       {isLoading ? (
         <Loading
-          title={
-            <Styled.LoadingTitle>
-              본격적인
-              <br />
-              증상 감별을 시작할게요
-            </Styled.LoadingTitle>
-          }
-          icon={<Styled.LoadingIcon loading="eager" alt="icon" src={imageUrl.diagnosis_loading} />}
+          titleTexts={[{ text: "본격적인\n증상 감별을 시작할게요", style: { fontWeight: 500 } }]}
+          illustration={<Styled.LoadingIcon loading="eager" alt="icon" src={imageUrl.diagnosis_loading} />}
         />
       ) : (
         <Layout>
-          <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")}>
-            감별진단
-          </ContentHeader>
+          <ContentHeader back={true} backCallback={handleBack} exit={true} exitCallback={() => navigate("/")} label="감별 진단" />
+
           <Styled.Container>
             <Styled.Question>
               {curQuestion.question.split("\\n").map((text: string, idx: number) => (
                 <div key={idx}>{text}</div>
               ))}
             </Styled.Question>
-            {curQuestion.sub_content && (
-              <Styled.SubContent>
-                해당하는 것을 <span>모두 선택</span>해주세요
-              </Styled.SubContent>
-            )}
+            {curQuestion.sub_content && <Styled.SubContent>{curQuestion.sub_content}</Styled.SubContent>}
             <AnswerButtons
               question={curQuestion}
               selectedAnswer={selectedAnswer}

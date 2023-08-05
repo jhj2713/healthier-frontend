@@ -1,7 +1,5 @@
 import ImageMap from "image-map";
 import { useEffect, useState } from "react";
-import SoftPalateLeft from "src/assets/images/SoftPalateLeft.png";
-import SoftPalateRight from "src/assets/images/SoftPalateRight.png";
 import ToothBottom from "src/assets/images/ToothBottom.png";
 import ToothBottomLeft from "src/assets/images/ToothBottomLeft.png";
 import ToothBottomRight from "src/assets/images/ToothBottomRight.png";
@@ -25,7 +23,7 @@ function ToothImgButton({ setSelectedAnswer, handleClickNextButton, isNextButton
     const [, part] = e.currentTarget.id.split("_");
 
     setToothPart(part as TToothPart);
-    setSelectedAnswer((sa) => ({ ...sa, answer_id: [part] }));
+    setSelectedAnswer((sa) => ({ ...sa, answer_id: [TOOTH_PART[part as TToothPart]] }));
   };
 
   useEffect(() => {
@@ -39,6 +37,7 @@ function ToothImgButton({ setSelectedAnswer, handleClickNextButton, isNextButton
   return (
     <Styled.Container>
       <Styled.ToothPartImg
+        loading="eager"
         src={
           toothPart === undefined
             ? ToothDefault
@@ -52,11 +51,7 @@ function ToothImgButton({ setSelectedAnswer, handleClickNextButton, isNextButton
             ? ToothBottomRight
             : toothPart === "bottom"
             ? ToothBottom
-            : toothPart === "bottom-left"
-            ? ToothBottomLeft
-            : toothPart === "soft-palate-left"
-            ? SoftPalateLeft
-            : SoftPalateRight
+            : ToothBottomLeft
         }
         useMap="#image-map"
       />
@@ -101,20 +96,6 @@ function ToothImgButton({ setSelectedAnswer, handleClickNextButton, isNextButton
           href=""
           coords="78,477,87,385,107,309,137,261,178,198,228,238,185,320,178,345,164,404,163,453,155,482"
           shape="poly"
-          onClick={handleClickToothPartButton}
-        />
-        <area
-          id="ToothPartButton_soft-palate-left"
-          href=""
-          coords="320,227,322,375,455,420,426,327,361,229"
-          shape="poly"
-          onClick={handleClickToothPartButton}
-        />
-        <area
-          id="ToothPartButton_soft-palate-right"
-          href=""
-          shape="poly"
-          coords="309,227,260,224,208,314,186,418,312,373"
           onClick={handleClickToothPartButton}
         />
       </map>

@@ -1,10 +1,6 @@
 import { Body_4 } from "src/lib/fontStyle";
 import styled from "styled-components";
 
-export const Container = styled.section`
-  margin-top: 4.6rem;
-`;
-
 export const Title = styled(Body_4)`
   color: ${({ theme }) => theme.color.grey_300};
 
@@ -15,7 +11,7 @@ export const SelectBox = styled.select<{ isSelected: boolean }>`
   cursor: pointer;
   background: transparent;
 
-  width: calc(var(--vw, 1vw) * 100 - 4.8rem);
+  width: 100%;
 
   border-radius: 0.8rem;
   border: 0.1rem solid ${({ theme }) => theme.color.grey_600};

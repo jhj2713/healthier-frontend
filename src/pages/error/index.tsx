@@ -28,7 +28,7 @@ export default function Error({ resetErrorBoundary }: FallbackProps) {
 
   return (
     <Styled.RootContainer padding="0">
-      <ContentHeader back={true} backCallback={handleClickBackButton} exit={false}></ContentHeader>
+      <ContentHeader back={true} backCallback={handleClickBackButton} exit={false} />
       <Styled.Container>
         <Styled.Message>잠깐!{"\n"}에러가 발생했어요</Styled.Message>
         <Styled.EmptyImage src={EmptyImageSrc} />

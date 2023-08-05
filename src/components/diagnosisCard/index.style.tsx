@@ -79,9 +79,11 @@ export const IllustrationWrapper = styled.section`
 `;
 
 export const Illustration = styled.img<{ isSquare: boolean }>`
-  border-radius: ${({ isSquare }) => (isSquare ? "0.8rem" : "0 0.8rem 0.8rem 0")};
+  border-radius: 0.8rem;
+  width: 100%;
   height: 100%;
-  width: fit-content;
+
+  object-fit: cover;
 `;
 
 export const IllustrationShadow = styled.div`

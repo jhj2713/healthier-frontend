@@ -34,6 +34,16 @@ const GlobalStyle = createGlobalStyle`
             -webkit-appearance: none;
             margin: 0;
         }
+
+        :-webkit-autofill,
+        :-webkit-autofill:hover, 
+        :-webkit-autofill:focus, 
+        :-webkit-autofill:active{
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: #ffffff;
+            transition: background-color 5000s ease-in-out 0s;
+            box-shadow: inset 0 0 20px 20px #23232329;
+        }
     }
     ul{
         margin-block-start: 0;
@@ -48,7 +58,7 @@ const GlobalStyle = createGlobalStyle`
         font-family: "Spoqa Han Sans";
     }
     :root{
-        --gradient: radial-gradient(305.24% 173.78% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%, #131416);
+        --gradient: radial-gradient(300.02% 130.63% at 164.62% 165.58%, rgba(84, 100, 242, 0.9) 0%, rgba(52, 62, 135, 0) 100%) #131416;
     }
 `;
 

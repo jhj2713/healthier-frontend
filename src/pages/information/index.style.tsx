@@ -27,4 +27,5 @@ export const Title = styled(Heading_3)`
   color: ${({ theme }) => theme.color.grey_200};
 
   padding-top: 4rem;
+  white-space: pre-line;
 `;

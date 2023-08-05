@@ -15,3 +15,10 @@ export const getNextQuestion = ({ selectedAnswer, curQuestion, questions }: IGet
 
   return selectedAnswer.next_question ?? questions[nextQuestionIdx];
 };
+
+export const formatBirth = ({ year, month, date }: { year: number; month: number; date: number }): string => {
+  const formattedMonth = month < 10 ? "0" + (month || 1) : month;
+  const formattedDate = date < 10 ? "0" + (date || 1) : date;
+
+  return `${year}-${formattedMonth}-${formattedDate}`;
+};

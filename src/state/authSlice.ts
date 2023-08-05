@@ -5,7 +5,7 @@ export const TOKEN_TIME_OUT = 600 * 1000;
 
 const initialState: AuthState = {
   authenticated: false,
-  accessToken: null,
+  accessToken: "",
   expireTime: null,
 };
 
@@ -20,7 +20,7 @@ export const authSlice = createSlice({
     },
     DELETE_TOKEN: (state: AuthState) => {
       state.authenticated = false;
-      state.accessToken = null;
+      state.accessToken = "";
       state.expireTime = null;
     },
   },

@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import Loading from "src/components/loading";
+import imageUrl from "src/data/image_url";
 import { useGetDDXResult } from "src/hooks/diagnose/useGetResultDetail";
 import { Swiper, SwiperSlide } from "swiper/react";
 import CoverPage from "./coverPage";
@@ -25,7 +27,16 @@ const ResultPage = () => {
   const { resultData, isLoading } = useGetDDXResult(Number(dx_id));
 
   return isLoading ? (
-    <div>로딩중</div>
+    <Loading
+      titleTexts={[{ text: "정확한 증상 감별", style: { fontWeight: 500 } }, { text: "을 위해\n헬시어가 증상을 분석중이에요" }]}
+      illustration={<Styled.LoadingImage loading="eager" src={imageUrl.diagnosis_loading} />}
+      bottomInformation={
+        <Styled.BottomTextsContainer>
+          <Styled.BottomTitle>Tips</Styled.BottomTitle>
+          <Styled.BottomText>{"로그인을 하면 감별진단 내역을\n모아 볼 수 있어요!"}</Styled.BottomText>
+        </Styled.BottomTextsContainer>
+      }
+    />
   ) : (
     <Styled.Container>
       <ResultHeader isCover={page === 1} />
